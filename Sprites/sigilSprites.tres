@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cj1arsu3uvlgg"]
+
+[ext_resource type="Texture2D" uid="uid://yw4xwsre1f4q" path="res://Sprites/sigils.png" id="1_r7dbm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5a6y7"]
+atlas = ExtResource("1_r7dbm")
+region = Rect2(0, 0, 299, 299)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a4uy"]
+atlas = ExtResource("1_r7dbm")
+region = Rect2(299, 0, 299, 299)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gaf1k"]
+atlas = ExtResource("1_r7dbm")
+region = Rect2(598, 0, 299, 299)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5a6y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a4uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gaf1k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

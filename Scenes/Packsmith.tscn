@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxl1u18lcp2y8"]
+
+[ext_resource type="Texture2D" uid="uid://c4aeully4muwb" path="res://Sprites/RustSpace/packsmith.png" id="1_nd2e7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6phnb"]
+atlas = ExtResource("1_nd2e7")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awbh7"]
+atlas = ExtResource("1_nd2e7")
+region = Rect2(500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqsr6"]
+atlas = ExtResource("1_nd2e7")
+region = Rect2(1000, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wl524"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6phnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awbh7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqsr6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Packsmith" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_wl524")

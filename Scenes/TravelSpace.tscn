@@ -1,0 +1,164 @@
+[gd_scene load_steps=42 format=3 uid="uid://cuk5evkb4ykl3"]
+
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_trx0p"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_tbl7s"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceSceneManager.gd" id="3_i3hd7"]
+[ext_resource type="Texture2D" uid="uid://cjrponoa23g0e" path="res://Sprites/Spaces/Rust/rust_space.png" id="4_5gufq"]
+[ext_resource type="Texture2D" uid="uid://bs53g0yb4iw38" path="res://Sprites/Spaces/Rust/rust_space_light.png" id="4_b0c6l"]
+[ext_resource type="Texture2D" uid="uid://bb2574fidse41" path="res://Sprites/Spaces/Rust/rust_space_dark.png" id="5_04br7"]
+[ext_resource type="Texture2D" uid="uid://ccl18cp7pfb35" path="res://Sprites/Spaces/Rust/rust_space_demonic.png" id="6_ury4k"]
+[ext_resource type="Texture2D" uid="uid://bx7a75qankfgn" path="res://Sprites/Spaces/Hell/hell_space_light.png" id="7_6a35o"]
+[ext_resource type="Texture2D" uid="uid://xu7p3a58kc4a" path="res://Sprites/Spaces/Void/void_space_light.png" id="7_fogj8"]
+[ext_resource type="Texture2D" uid="uid://djma1nsfo5pjs" path="res://Sprites/Spaces/Void/void_space_blue.png" id="8_7e8s2"]
+[ext_resource type="Texture2D" uid="uid://bsaqojpiws71x" path="res://Sprites/Spaces/Void/void_space.png" id="8_065bd"]
+[ext_resource type="Texture2D" uid="uid://dbdy44qqrr817" path="res://Sprites/Spaces/Hell/hell_space_green.png" id="8_71bsy"]
+[ext_resource type="Texture2D" uid="uid://2gm34l35jfir" path="res://Sprites/Spaces/Void/void_space_dark.png" id="9_461di"]
+[ext_resource type="Texture2D" uid="uid://7nii5ko2gqhw" path="res://Sprites/Spaces/Hell/hell_space_dark.png" id="9_b7kgu"]
+[ext_resource type="Texture2D" uid="uid://7a0t43kecggf" path="res://Sprites/Spaces/Hell/hell_space.png" id="12_1gx3u"]
+[ext_resource type="Texture2D" uid="uid://c0da0iu7f6lnp" path="res://Sprites/Spaces/Heaven/heaven_space.png" id="12_7sbpn"]
+[ext_resource type="Texture2D" uid="uid://busup1exm6ph6" path="res://Sprites/Spaces/Heaven/heaven_space_purple.png" id="13_bcsvk"]
+[ext_resource type="Texture2D" uid="uid://cqhoo5ciyed2n" path="res://Sprites/Spaces/Heaven/heaven_space_dark.png" id="14_ncq0l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_p7dqp"]
+default_font = ExtResource("2_tbl7s")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_trx0p")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c081o"]
+texture = ExtResource("4_5gufq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4s4c"]
+texture = ExtResource("6_ury4k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7jqrv"]
+texture = ExtResource("5_04br7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwss3"]
+texture = ExtResource("4_b0c6l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh58t"]
+texture = ExtResource("8_065bd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fiv7o"]
+texture = ExtResource("8_7e8s2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4b8qu"]
+texture = ExtResource("8_7e8s2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v61fm"]
+texture = ExtResource("9_461di")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ct34u"]
+texture = ExtResource("7_fogj8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iwfb"]
+texture = ExtResource("12_7sbpn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rua"]
+texture = ExtResource("13_bcsvk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0xlg"]
+texture = ExtResource("13_bcsvk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvaq7"]
+texture = ExtResource("14_ncq0l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0w2vc"]
+texture = ExtResource("12_7sbpn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr3a5"]
+texture = ExtResource("12_1gx3u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27swn"]
+texture = ExtResource("8_71bsy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_engd3"]
+texture = ExtResource("8_71bsy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_43nh8"]
+texture = ExtResource("9_b7kgu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_whn2k"]
+texture = ExtResource("7_6a35o")
+
+[node name="TravelSpace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_p7dqp")
+
+[node name="Space control" type="Container" parent="." node_paths=PackedStringArray("button", "button2", "button3", "button4")]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 150.0
+script = ExtResource("3_i3hd7")
+button = NodePath("RustButton")
+button2 = NodePath("VoidButton")
+button3 = NodePath("HeavenButton")
+button4 = NodePath("HellButton")
+
+[node name="RustButton" type="Button" parent="Space control"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_c081o")
+theme_override_styles/hover = SubResource("StyleBoxTexture_w4s4c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w4s4c")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7jqrv")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vwss3")
+text = "Rust Space"
+
+[node name="VoidButton" type="Button" parent="Space control"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_eh58t")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fiv7o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4b8qu")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v61fm")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ct34u")
+text = "Rust Space"
+
+[node name="HeavenButton" type="Button" parent="Space control"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_1iwfb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e3rua")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d0xlg")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_yvaq7")
+theme_override_styles/focus = SubResource("StyleBoxTexture_0w2vc")
+text = "Rust Space"
+
+[node name="HellButton" type="Button" parent="Space control"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_pr3a5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_27swn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_engd3")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_43nh8")
+theme_override_styles/focus = SubResource("StyleBoxTexture_whn2k")
+text = "Rust Space"

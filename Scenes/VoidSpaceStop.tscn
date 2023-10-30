@@ -1,0 +1,199 @@
+[gd_scene load_steps=28 format=3 uid="uid://nc3r8b15k1bk"]
+
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_7lqlb"]
+[ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="1_burux"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_4s8n3"]
+[ext_resource type="Texture2D" uid="uid://bxe44cpe8n2sq" path="res://Sprites/VoidSpace/back_void/tile000.png" id="2_sapct"]
+[ext_resource type="Texture2D" uid="uid://b2p6qbiri8oc6" path="res://Sprites/VoidSpace/back_void/tile001.png" id="3_pm404"]
+[ext_resource type="Texture2D" uid="uid://ckqfyij8e073u" path="res://Sprites/VoidSpace/back_void/tile002.png" id="4_vh7tf"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/BusStopTut.gd" id="8_lvpo8"]
+[ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="9_75xv6"]
+[ext_resource type="Texture2D" uid="uid://d2a33mt2yv85v" path="res://Sprites/VoidSpace/sigil_bunny.png" id="10_23qhp"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopManage.gd" id="10_f5fk2"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="10_v3y1n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_hrirr"]
+default_font = ExtResource("2_4s8n3")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_7lqlb")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc7py"]
+texture = ExtResource("2_sapct")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e772k"]
+texture = ExtResource("3_pm404")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssjow"]
+texture = ExtResource("4_vh7tf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbvxf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dil3"]
+atlas = ExtResource("9_75xv6")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruuii"]
+atlas = ExtResource("9_75xv6")
+region = Rect2(500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6eep"]
+atlas = ExtResource("9_75xv6")
+region = Rect2(1000, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu7eo"]
+atlas = ExtResource("9_75xv6")
+region = Rect2(1500, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmjuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dil3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruuii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6eep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu7eo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oplk6"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6iml"]
+bg_color = Color(0.780392, 0.482353, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yfho"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hrirr")
+
+[node name="BusStop" type="Sprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+texture = ExtResource("1_burux")
+
+[node name="SigilZone" type="Button" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 221.0
+offset_right = 470.0
+offset_bottom = 521.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
+theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
+
+[node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen", "sigilbut", "busstop", "goback", "sigilshop")]
+process_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_lvpo8")
+text = NodePath("DialougeBox")
+button = NodePath("NextButton")
+tutScreen = NodePath(".")
+sigilbut = NodePath("../SigilZone")
+busstop = NodePath("../BusStop")
+goback = NodePath("../Back")
+sigilshop = NodePath("../SigilShop")
+
+[node name="Mask" type="Sprite2D" parent="TutorialBox"]
+modulate = Color(1, 1, 1, 0.580392)
+self_modulate = Color(1, 1, 1, 0.47451)
+show_behind_parent = true
+position = Vector2(500, 300)
+scale = Vector2(10, 6)
+texture = ExtResource("10_v3y1n")
+
+[node name="Bunnies" type="AnimatedSprite2D" parent="TutorialBox"]
+position = Vector2(500, 250)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_lmjuv")
+
+[node name="DialougeBox" type="Label" parent="TutorialBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+
+[node name="NextButton" type="Button" parent="TutorialBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_oplk6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i6iml")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8yfho")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8yfho")
+
+[node name="SigilShop" type="Container" parent="." node_paths=PackedStringArray("text")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_f5fk2")
+text = NodePath("Sigiltext")
+
+[node name="MaskSigil" type="Sprite2D" parent="SigilShop"]
+modulate = Color(0, 0, 0, 0.690196)
+self_modulate = Color(0, 0, 0, 0.690196)
+position = Vector2(714.75, 297)
+scale = Vector2(6.385, 6.46)
+texture = ExtResource("10_v3y1n")
+
+[node name="Diabox" type="Sprite2D" parent="SigilShop"]
+position = Vector2(660, 239)
+scale = Vector2(2, 2)
+texture = ExtResource("10_23qhp")
+
+[node name="Sigiltext" type="Label" parent="SigilShop"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25

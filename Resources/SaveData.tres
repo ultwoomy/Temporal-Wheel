@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7g5tskf8kjb0"]
+
+[ext_resource type="Script" path="res://Scripts/SaveData.gd" id="1_ba8r7"]
+
+[resource]
+script = ExtResource("1_ba8r7")
+spin = 0
+size = 0
+density = 0

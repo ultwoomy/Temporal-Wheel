@@ -18,6 +18,7 @@ extends Resource
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
 @export var sigilCostRotScale : float
+@export var numberOfSigils : float
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var iffirstboot : bool
@@ -49,6 +50,7 @@ func _init():
 	sigilCostRot = 20
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
+	numberOfSigils = 0
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true

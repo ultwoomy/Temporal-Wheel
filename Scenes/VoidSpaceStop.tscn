@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://nc3r8b15k1bk"]
+[gd_scene load_steps=29 format=3 uid="uid://nc3r8b15k1bk"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_7lqlb"]
 [ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="1_burux"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://d2a33mt2yv85v" path="res://Sprites/VoidSpace/sigil_bunny.png" id="10_23qhp"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopManage.gd" id="10_f5fk2"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="10_v3y1n"]
+[ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="12_i8vqs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -133,6 +134,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
 
 [node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen", "sigilbut", "busstop", "goback", "sigilshop")]
 process_mode = 3
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_lvpo8")
@@ -175,12 +177,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_i6iml")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8yfho")
 theme_override_styles/focus = SubResource("StyleBoxFlat_8yfho")
 
-[node name="SigilShop" type="Container" parent="." node_paths=PackedStringArray("text")]
+[node name="SigilShop" type="Container" parent="." node_paths=PackedStringArray("text", "button", "sigilDisplay")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_f5fk2")
 text = NodePath("Sigiltext")
+button = NodePath("BuySigil")
+sigilDisplay = NodePath("SigilDisplay")
 
 [node name="MaskSigil" type="Sprite2D" parent="SigilShop"]
 modulate = Color(0, 0, 0, 0.690196)
@@ -197,3 +201,11 @@ texture = ExtResource("10_23qhp")
 [node name="Sigiltext" type="Label" parent="SigilShop"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+
+[node name="BuySigil" type="Button" parent="SigilShop"]
+layout_mode = 2
+
+[node name="SigilDisplay" type="AnimatedSprite2D" parent="SigilShop"]
+position = Vector2(231, 438)
+scale = Vector2(0.51, 0.5)
+sprite_frames = ExtResource("12_i8vqs")

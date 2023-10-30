@@ -18,6 +18,7 @@ extends Node
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
 @export var sigilCostRotScale : float
+@export var numberOfSigils : float
 @export_group("R1stats")
 @export var ifhell : bool
 @export var ifheaven : bool
@@ -51,6 +52,7 @@ func save_prog():
 	loader.sigilCostRot = sigilCostRot
 	loader.sigilCostSpinScale = sigilCostSpinScale
 	loader.sigilCostRotScale = sigilCostRotScale
+	loader.numberOfSigils = numberOfSigils
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
@@ -77,6 +79,7 @@ func resetR0Stats():
 	sigilCostRot = 20
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
+	numberOfSigils = 0
 
 func resetR1Stats():
 	ifhell = false
@@ -107,6 +110,7 @@ func load_as_normal():
 	sigilCostSpin = loader.sigilCostSpin
 	sigilCostRotScale = loader.sigilCostRotScale
 	sigilCostSpinScale = loader.sigilCostSpinScale
+	numberOfSigils = loader.numberOfSigils
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstbot

@@ -24,7 +24,7 @@ func _ready():
 	button.expand_icon = true
 	button.pressed.connect(self._button_pressed)
 	sigilbut.size = Vector2(100,100)
-	sigilbut.position = Vector2(350,200)
+	sigilbut.position = Vector2(300,200)
 	sigilbut.text = "Sigil"
 	sigilbut.pressed.connect(self.opensigilshop)
 	goback.pressed.connect(self._go_back)

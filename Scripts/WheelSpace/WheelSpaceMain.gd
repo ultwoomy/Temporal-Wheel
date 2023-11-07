@@ -1,5 +1,6 @@
 extends CharacterBody2D
 var angle = 0
+const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 func update_wheel_sprite(frameno):
 	GVars.wheelphase = int(GVars.density)
 	if(frameno > 11):
@@ -10,7 +11,7 @@ func _process(_delta):
 	var changerot = 0.0
 	if(GVars.spin > 0):
 		if(GVars.wheelphase == 1):
-			changerot = (log(GVars.spin)/log(2))/800
+			changerot = (log(GVars.spin)/log(2))/1000
 		elif(GVars.wheelphase == 2):
 			changerot = (log(GVars.spin)/log(2))/600
 		elif(GVars.wheelphase == 3):
@@ -39,7 +40,15 @@ func _process(_delta):
 		angle += changerot
 		if(angle > 2*PI):
 			GVars.rotations += int(angle/(2*PI))
+			GVars.RthreshProg += int(angle/(2*PI))
 			angle = fmod(angle,(2*PI))
+			if(GVars.RthreshProg > GVars.Rthresh):
+				GVars.RthreshProg -= GVars.Rthresh
+				GVars.rust += GVars.Rperthresh
+				GVars.Rthresh *= GVars.Rthreshmult
+				var rus = RUST_PART.instantiate()
+				self.add_child(rus)
+				
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
 	update_wheel_sprite(GVars.wheelphase-1)
 

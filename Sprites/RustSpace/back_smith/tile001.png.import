@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1kfudrwc6xdn"
-path="res://.godot/imported/packsmith.png-8cea13dfbd81e46a139623871b913b41.ctex"
+uid="uid://dsbvkjihwkbni"
+path="res://.godot/imported/tile001.png-b2a1e4e1dc792ce32c9e6cd9abb404da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/RustSpace/packsmith.png"
-dest_files=["res://.godot/imported/packsmith.png-8cea13dfbd81e46a139623871b913b41.ctex"]
+source_file="res://Sprites/RustSpace/back_smith/tile001.png"
+dest_files=["res://.godot/imported/tile001.png-b2a1e4e1dc792ce32c9e6cd9abb404da.ctex"]
 
 [params]
 

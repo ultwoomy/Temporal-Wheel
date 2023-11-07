@@ -13,12 +13,25 @@ extends Resource
 @export var wheelphase : int
 @export var rotations : float
 @export var rust : float
-@export var Rincreasespin : int
+@export var Rincreasespin : float
+@export var RincreasespinCost : float
+@export var RincreasespinScaling : float
+@export var Rincreasehunger : float
+@export var RincreasehungerCost : float
+@export var RincreasehungerScaling : float
+@export var Rincreaserust : float
+@export var RincreaserustCost : float
+@export var RincreaserustScaling : float
+@export var Rthresh : float
+@export var Rperthresh : float
+@export var RthreshProg : float
+@export var Rthreshmult : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
 @export var sigilCostRotScale : float
 @export var numberOfSigils : float
+@export var curSigilBuff : int
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var iffirstboot : bool
@@ -45,12 +58,25 @@ func _init():
 	wheelphase = 1
 	rotations = 0
 	rust = 0
-	Rincreasespin = 0
+	Rincreasespin = 1
+	RincreasespinCost = 1
+	RincreasespinScaling = 1.5
+	Rincreasehunger = 1
+	RincreasehungerCost = 1
+	RincreasehungerScaling = 2
+	Rincreaserust = 1
+	RincreaserustCost = 2
+	RincreaserustScaling = 3
+	Rthresh = 3
+	Rperthresh = 1
+	RthreshProg = 0
+	Rthreshmult = 2
 	sigilCostSpin = 500
 	sigilCostRot = 20
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
 	numberOfSigils = 0
+	curSigilBuff = 0
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true

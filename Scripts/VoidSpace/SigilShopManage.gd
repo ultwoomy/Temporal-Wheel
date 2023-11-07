@@ -92,8 +92,8 @@ func _button_pressed():
 			elif(stupids == 25):
 				text.text = "Just vaguely annoying."
 				stupids += 1
-			elif(stupids == 100):
-				text.text = "I'm going to stop you here before you\nstart gunning for the integer\nlimit."
+			elif(stupids == 30):
+				text.text = "I'm going to stop you here."
 			else:
 				text.text = "I like secrets!"
 				stupids += 1

@@ -13,12 +13,25 @@ extends Node
 @export var wheelphase : int
 @export var rotations : float
 @export var rust : float
-@export var Rincreasespin : int
+@export var Rincreasespin : float
+@export var RincreasespinCost : float
+@export var RincreasespinScaling : float
+@export var Rincreasehunger : float
+@export var RincreasehungerCost : float
+@export var RincreasehungerScaling : float
+@export var Rincreaserust : float
+@export var RincreaserustCost : float
+@export var RincreaserustScaling : float
+@export var Rthresh : float
+@export var Rperthresh : float
+@export var RthreshProg : float
+@export var Rthreshmult : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
 @export var sigilCostRotScale : float
 @export var numberOfSigils : float
+@export var curSigilBuff : int
 @export_group("R1stats")
 @export var ifhell : bool
 @export var ifheaven : bool
@@ -48,11 +61,24 @@ func save_prog():
 	loader.rotations = rotations
 	loader.rust = rust
 	loader.Rincreasespin = Rincreasespin
+	loader.RincreasespinCost = RincreasespinCost
+	loader.RincreasespinScaling = RincreasespinScaling
+	loader.Rincreasehunger = Rincreasehunger
+	loader.RincreasehungerCost = RincreasehungerCost
+	loader.RincreasehungerScaling = RincreasehungerScaling
+	loader.Rincreaserust = Rincreaserust
+	loader.RincreaserustCost = RincreaserustCost
+	loader.RincreaserustScaling = RincreaserustScaling
+	loader.Rthresh = Rthresh
+	loader.Rperthresh = Rperthresh
+	loader.RthreshProg = RthreshProg
+	loader.Rthreshmult = Rthreshmult
 	loader.sigilCostSpin = sigilCostSpin
 	loader.sigilCostRot = sigilCostRot
 	loader.sigilCostSpinScale = sigilCostSpinScale
 	loader.sigilCostRotScale = sigilCostRotScale
 	loader.numberOfSigils = numberOfSigils
+	loader.curSigilBuff = curSigilBuff
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
@@ -74,12 +100,25 @@ func resetR0Stats():
 	wheelphase = 1
 	rotations = 0
 	rust = 0
-	Rincreasespin = 0
+	Rincreasespin = 1
+	RincreasespinCost = 1
+	RincreasespinScaling = 1.5
+	Rincreasehunger = 1
+	RincreasehungerCost = 1
+	RincreasehungerScaling = 2
+	Rincreaserust = 1
+	RincreaserustCost = 2
+	RincreaserustScaling = 3
+	Rthresh = 3
+	RthreshProg = 0
+	Rperthresh = 1
+	Rthreshmult = 2
 	sigilCostSpin = 500
 	sigilCostRot = 20
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
 	numberOfSigils = 0
+	curSigilBuff = 0
 
 func resetR1Stats():
 	ifhell = false
@@ -106,11 +145,24 @@ func load_as_normal():
 	rotations = loader.rotations
 	rust = loader.rust
 	Rincreasespin = loader.Rincreasespin
+	RincreasespinCost = loader.RincreasespinCost
+	RincreasespinScaling = loader.RincreasespinScaling
+	Rincreasehunger = loader.Rincreasehunger
+	RincreasehungerCost = loader.RincreasehungerCost
+	RincreasehungerScaling = loader.RincreasehungerScaling
+	Rincreaserust = loader.Rincreaserust
+	RincreaserustCost = loader.RincreaserustCost
+	RincreaserustScaling = loader.RincreaserustScaling
+	Rthresh = loader.Rthresh
+	Rperthresh = loader.Rperthresh
+	RthreshProg = loader.RthreshProg
+	Rthreshmult = loader.Rthreshmult
 	sigilCostRot = loader.sigilCostRot
 	sigilCostSpin = loader.sigilCostSpin
 	sigilCostRotScale = loader.sigilCostRotScale
 	sigilCostSpinScale = loader.sigilCostSpinScale
 	numberOfSigils = loader.numberOfSigils
+	curSigilBuff = loader.curSigilBuff
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstbot

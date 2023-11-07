@@ -15,7 +15,7 @@ func _ready():
 func _button_pressed():
 	if(ifsucc):
 		ifsucc = false
-		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
+		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 	else :
 		ifsucc = true
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))

@@ -5,21 +5,33 @@ extends Node
 @export var text : Label
 @export var selection : Sprite2D
 @export var upgrademenu : Sprite2D
+@export var sigil01sprite : Sprite2D
+@export var sigil02sprite : Sprite2D
+@export var sigil03sprite : Sprite2D
 @export var sigil01button : Button
 @export var sigil02button : Button
 @export var sigil03button : Button
 @export var upgrade1 : Button
 @export var upgrade2 : Button
 @export var upgrade3 : Button
+@export var up1text : Label
+@export var up2text : Label
+@export var up3text : Label
+@export var rDisplay : Label
 @export var sigilDisplay : AnimatedSprite2D
 @export var next : Button
 @export var packback :AnimatedSprite2D
 var ifinspect = false
+var ifinmen = false
+var ifbuff = false
 var inmenu = false
+var ifupscreen = false
 var line = 0
 var mode = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rDisplay.position = Vector2(-190,0)
+	rDisplay.text = str(GVars.getScientific(GVars.rust))
 	inspect.size = Vector2(400,50)
 	inspect.position = Vector2(100,100)
 	augment.size = Vector2(400,50)
@@ -31,16 +43,22 @@ func _ready():
 	upgrade.text = "Upgrade"
 	upgrademenu.hide()
 	upgrade1.size = Vector2(350,150)
-	upgrade1.position = Vector2(0,-50)
+	upgrade1.position = Vector2(15,-50)
 	upgrade2.size = Vector2(350,150)
 	upgrade2.position = Vector2(-50,-50)
 	upgrade3.size = Vector2(350,150)
-	upgrade3.position = Vector2(-50,0)
+	upgrade3.position = Vector2(-50,35)
 	upgrade1.text = "Increase Spin Per Click"
 	upgrade2.text = "Increase Hunger Per Tick"
 	upgrade3.text = "Increase Rust Per Drop"
+	up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
+	up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
+	up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
+	upgrade1.pressed.connect(self._up01)
+	upgrade2.pressed.connect(self._up02)
+	upgrade3.pressed.connect(self._up03)
 	next.size = Vector2(100,100)
-	next.position = Vector2(370,410)
+	next.position = Vector2(390,420)
 	next.text = "Next"
 	next.hide()
 	inspect.pressed.connect(self._inspect)
@@ -52,18 +70,55 @@ func _ready():
 	next.pressed.connect(self._nextline)
 	selection.hide()
 func _inspect():
-	selection.show()
 	ifinspect = true
-	inmenu = true
+	if(ifinmen == false):
+		dispSigils()
+		ifinmen = true
+		inmenu = true
+	else:
+		selection.hide()
+		ifinmen = false
+		inmenu = false
 
 func _augment():
-	selection.show()
 	ifinspect = false
-	inmenu = true
+	if(ifbuff == false):
+		dispSigils()
+		ifbuff = true
+		inmenu = true
+	else:
+		selection.hide()
+		ifbuff = false
+		inmenu = false
+
+func dispSigils():
+	selection.show()
+	if(GVars.numberOfSigils > 1):
+		sigil02sprite.show()
+		sigil02button.show()
+	else:
+		sigil02sprite.hide()
+		sigil02button.hide()
+	if(GVars.numberOfSigils > 2):
+		sigil03sprite.show()
+		sigil03button.show()
+	else:
+		sigil03sprite.hide()
+		sigil03button.hide()
+	upgrademenu.hide()
+	resetWindowVars()
 
 func _upgrade():
-	upgrademenu.show()
-	inmenu = true
+	if(ifupscreen == false):
+		upgrademenu.show()
+		selection.hide()
+		resetWindowVars()
+		ifupscreen = true
+		inmenu = true
+	else:
+		upgrademenu.hide()
+		ifupscreen = false
+		inmenu = false
 
 func _01Sigil():
 	manageChoice(1)
@@ -72,15 +127,45 @@ func _02Sigil():
 func _03Sigil():
 	manageChoice(3)
 	
+func resetWindowVars():
+	inmenu = false
+	ifupscreen = false
+	ifbuff = false
+	ifinmen = false
 func resetChoice():
 	text.text = ""
 	packback.frame = 2
 	line = 0
+	resetWindowVars()
 	inspect.show()
 	augment.show()
 	upgrade.show()
 	next.hide()
 	
+func updateDisplays():
+	up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
+	up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
+	up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
+	rDisplay.text = str(GVars.getScientific(GVars.rust))
+func _up01():
+	if(GVars.rust >= GVars.RincreasespinCost):
+		GVars.rust -= GVars.RincreasespinCost
+		GVars.RincreasespinCost *= GVars.RincreasespinScaling
+		GVars.Rincreasespin += 1
+		updateDisplays()
+func _up02():
+	if(GVars.rust >= GVars.RincreasehungerCost):
+		GVars.rust -= GVars.RincreasehungerCost
+		GVars.RincreasehungerCost *= GVars.RincreasehungerScaling
+		GVars.Rincreasehunger += 1
+		updateDisplays()
+func _up03():
+	if(GVars.rust >= GVars.RincreaserustCost):
+		GVars.rust -= GVars.RincreaserustCost
+		GVars.RincreaserustCost *= GVars.RincreaserustScaling
+		GVars.Rincreaserust += 1
+		GVars.Rperthresh += 1
+		updateDisplays()
 func manageChoice(n):
 	selection.hide()
 	inspect.hide()
@@ -152,6 +237,7 @@ func _nextline():
 			text.text = "You should get more rust\nfrom that wheel now."
 			line += 1
 		elif(line == 1):
+			GVars.curSigilBuff = 1
 			resetDisplay(1)
 			resetChoice()
 	elif(mode == 14):
@@ -181,6 +267,7 @@ func _nextline():
 			packback.frame = 4
 			line += 1
 		elif(line == 4):
+			GVars.curSigilBuff = 3
 			resetDisplay(3)
 			resetChoice()
 	else:

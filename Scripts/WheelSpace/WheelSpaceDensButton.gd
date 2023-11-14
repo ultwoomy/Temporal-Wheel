@@ -36,3 +36,5 @@ func suc_loop():
 	image.scale.x = GVars.curSucDens/GVars.densTresh*2
 	await get_tree().create_timer(2.0).timeout
 	suc_loop()
+	
+

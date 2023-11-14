@@ -43,11 +43,20 @@ func _process(_delta):
 			GVars.RthreshProg += int(angle/(2*PI))
 			angle = fmod(angle,(2*PI))
 			if(GVars.RthreshProg > GVars.Rthresh):
-				GVars.RthreshProg -= GVars.Rthresh
-				GVars.rust += GVars.Rperthresh
-				GVars.Rthresh *= GVars.Rthreshmult
-				var rus = RUST_PART.instantiate()
-				self.add_child(rus)
+				if(GVars.curSigilBuff == 1):
+					GVars.RthreshProg -= GVars.Rthresh
+					GVars.rust += GVars.Rperthresh * 2
+					GVars.Rthresh *= GVars.Rthreshmult
+					var rus = RUST_PART.instantiate()
+					rus.get_child(0).init(GVars.Rperthresh * 2)
+					self.add_child(rus)
+				else:
+					GVars.RthreshProg -= GVars.Rthresh
+					GVars.rust += GVars.Rperthresh
+					GVars.Rthresh *= GVars.Rthreshmult
+					var rus = RUST_PART.instantiate()
+					rus.get_child(0).init(GVars.Rperthresh)
+					self.add_child(rus)
 				
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
 	update_wheel_sprite(GVars.wheelphase-1)

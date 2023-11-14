@@ -25,7 +25,7 @@ func _ready():
 	if(GVars.iffirstpack):
 		packback.frame = 1
 		text.text = "We're Closed."
-		if(GVars.numberOfSigils >= 0):
+		if(GVars.numberOfSigils > 0):
 			next.show()
 			next.text = "Perhaps this will\nchange your mind"
 	else:

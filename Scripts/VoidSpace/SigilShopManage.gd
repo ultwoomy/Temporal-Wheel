@@ -102,18 +102,10 @@ func _button_pressed():
 		
 func reset():
 	if(GVars.numberOfSigils > 2):
-		text.text = "We're ready.\nBlow the horn.\nBring about the end."
+		text.text = "Blow the horn.\nBring about the end."
 		button.hide()
 	else :
-		text.text = "Here for a sigil?\nIt'll cost ya:\n" + get_sci(GVars.sigilCostSpin) + " momentum\n" + get_sci(GVars.sigilCostRot) + " rotations"
+		text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilCostSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilCostRot)) + " rotations"
 		button.text = "Buy"
 		failbought = false
-
-func get_sci(val):
-	var dispSpin
-	if(val > 1000):
-		dispSpin = fmat.scientific(val,2)
-	else :
-		dispSpin = val
-	return str(dispSpin)
 

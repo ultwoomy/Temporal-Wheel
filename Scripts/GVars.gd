@@ -26,6 +26,10 @@ extends Node
 @export var Rperthresh : float
 @export var RthreshProg : float
 @export var Rthreshmult : float
+@export var SmushLevel : float
+@export var Scurrent : Array[int]
+@export var StimeLeft : Array[float]
+@export var SpendingRots : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
@@ -40,11 +44,13 @@ extends Node
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 var loader = preload("res://Resources/SaveData.tres")
+var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
-	resetR0Stats()
-	resetR1Stats()
-	resetPermStats()
-	#load_as_normal()
+	#resetR0Stats()
+	#resetR1Stats()
+	#resetPermStats()
+	#save_prog()
+	load_as_normal()
 
 func save_prog():
 	loader.spin = spin
@@ -73,6 +79,10 @@ func save_prog():
 	loader.Rperthresh = Rperthresh
 	loader.RthreshProg = RthreshProg
 	loader.Rthreshmult = Rthreshmult
+	loader.SmushLevel = SmushLevel
+	loader.Scurrent = Scurrent
+	loader.StimeLeft = StimeLeft
+	loader.SpendingRots = SpendingRots
 	loader.sigilCostSpin = sigilCostSpin
 	loader.sigilCostRot = sigilCostRot
 	loader.sigilCostSpinScale = sigilCostSpinScale
@@ -109,12 +119,16 @@ func resetR0Stats():
 	Rincreaserust = 1
 	RincreaserustCost = 2
 	RincreaserustScaling = 3
-	Rthresh = 3
+	Rthresh = 1
 	RthreshProg = 0
 	Rperthresh = 1
-	Rthreshmult = 2
-	sigilCostSpin = 500
-	sigilCostRot = 20
+	Rthreshmult = 1.5
+	SmushLevel = 1
+	Scurrent = [0,0,0,0]
+	StimeLeft = [0,0,0,0]
+	SpendingRots = 0
+	sigilCostSpin = 300
+	sigilCostRot = 10
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
 	numberOfSigils = 0
@@ -128,6 +142,12 @@ func resetPermStats():
 	iffirstboot = true
 	iffirstvoid = true
 	iffirstpack = true
+	
+func getScientific(val):
+	if(val > 1000):
+		return fmat.scientific(val,2)
+	else :
+		return snapped(val,0.01)
 	
 func load_as_normal():
 	loader = loader.load_stats()
@@ -157,6 +177,10 @@ func load_as_normal():
 	Rperthresh = loader.Rperthresh
 	RthreshProg = loader.RthreshProg
 	Rthreshmult = loader.Rthreshmult
+	SmushLevel = loader.SmushLevel
+	Scurrent = loader.Scurrent
+	StimeLeft = loader.StimeLeft
+	SpendingRots = loader.SpendingRots
 	sigilCostRot = loader.sigilCostRot
 	sigilCostSpin = loader.sigilCostSpin
 	sigilCostRotScale = loader.sigilCostRotScale
@@ -165,6 +189,6 @@ func load_as_normal():
 	curSigilBuff = loader.curSigilBuff
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
-	iffirstboot = loader.iffirstbot
+	iffirstboot = loader.iffirstboot
 	iffirstvoid = loader.iffirstvoid
 	iffirstpack = loader.iffirstpack

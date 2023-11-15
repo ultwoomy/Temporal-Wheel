@@ -27,9 +27,14 @@ extends Node
 @export var RthreshProg : float
 @export var Rthreshmult : float
 @export var SmushLevel : float
+@export var Sxp : float
+@export var Sxpthresh : float
+@export var Sxpthreshmult : float
 @export var Scurrent : Array[int]
 @export var StimeLeft : Array[float]
 @export var SpendingRots : float
+@export var Sspinbuff : float
+@export var Sascbuff : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
@@ -46,10 +51,10 @@ extends Node
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
-	#resetR0Stats()
-	#resetR1Stats()
-	#resetPermStats()
-	#save_prog()
+	resetR0Stats()
+	resetR1Stats()
+	resetPermStats()
+	save_prog()
 	load_as_normal()
 
 func save_prog():
@@ -80,9 +85,14 @@ func save_prog():
 	loader.RthreshProg = RthreshProg
 	loader.Rthreshmult = Rthreshmult
 	loader.SmushLevel = SmushLevel
+	loader.Sxp = Sxp
+	loader.Sxpthresh = Sxpthresh
+	loader.Sxpthreshmult = Sxpthreshmult
 	loader.Scurrent = Scurrent
 	loader.StimeLeft = StimeLeft
 	loader.SpendingRots = SpendingRots
+	loader.Sspinbuff = Sspinbuff
+	loader.Sascbuff = Sascbuff
 	loader.sigilCostSpin = sigilCostSpin
 	loader.sigilCostRot = sigilCostRot
 	loader.sigilCostSpinScale = sigilCostSpinScale
@@ -124,14 +134,19 @@ func resetR0Stats():
 	Rperthresh = 1
 	Rthreshmult = 1.5
 	SmushLevel = 1
+	Sxp = 0
+	Sxpthresh = 100
+	Sxpthreshmult = 1.5
 	Scurrent = [0,0,0,0]
 	StimeLeft = [0,0,0,0]
 	SpendingRots = 0
+	Sspinbuff = 1
+	Sascbuff = 1
 	sigilCostSpin = 300
 	sigilCostRot = 10
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
-	numberOfSigils = 0
+	numberOfSigils = 2
 	curSigilBuff = 0
 
 func resetR1Stats():
@@ -178,9 +193,14 @@ func load_as_normal():
 	RthreshProg = loader.RthreshProg
 	Rthreshmult = loader.Rthreshmult
 	SmushLevel = loader.SmushLevel
+	Sascbuff = loader.Sascbuff
+	Sxp = loader.Sxp
+	Sxpthresh = loader.Sxpthresh
+	Sxpthreshmult = loader.Sxpthreshmult
 	Scurrent = loader.Scurrent
 	StimeLeft = loader.StimeLeft
 	SpendingRots = loader.SpendingRots
+	Sspinbuff = loader.Sspinbuff
 	sigilCostRot = loader.sigilCostRot
 	sigilCostSpin = loader.sigilCostSpin
 	sigilCostRotScale = loader.sigilCostRotScale

@@ -23,8 +23,9 @@ func _ready():
 	button.expand_icon = true
 	spinDisplay.text = str(GVars.spin)
 	button.pressed.connect(self._button_pressed)
+	mushroom.pressed.connect(self._mush_scene)
 func _button_pressed():
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin
+	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff
 	spinDisplay.text = str(GVars.getScientific(GVars.spin))
 	GVars.save_prog()
 func spin_update_loop():
@@ -40,3 +41,5 @@ func save_loop():
 	print("saved")
 	await get_tree().create_timer(20).timeout
 	save_loop()
+func _mush_scene():
+	get_tree().change_scene_to_file("res://Scenes/MushSpace.tscn")

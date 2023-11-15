@@ -27,9 +27,14 @@ extends Resource
 @export var RthreshProg : float
 @export var Rthreshmult : float
 @export var SmushLevel : float
+@export var Sxp : float
+@export var Sxpthresh : float
+@export var Sxpthreshmult : float
 @export var Scurrent : Array[int]
 @export var StimeLeft : Array[float]
 @export var SpendingRots : float
+@export var Sspinbuff : float
+@export var Sascbuff : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
@@ -76,9 +81,14 @@ func _init():
 	RthreshProg = 0
 	Rthreshmult = 1.5
 	SmushLevel = 1
+	Sxp = 0
+	Sxpthresh = 100
+	Sxpthreshmult = 1.5
 	Scurrent = [0,0,0,0]
 	StimeLeft = [0,0,0,0]
 	SpendingRots = 0
+	Sspinbuff = 1
+	Sascbuff = 1
 	sigilCostSpin = 300
 	sigilCostRot = 10
 	sigilCostSpinScale = 1.2

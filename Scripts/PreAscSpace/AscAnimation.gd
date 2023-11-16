@@ -14,7 +14,7 @@ func _ready():
 	forward.pressed.connect(self._end_sequence)
 	var dis = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\nNext Presence: " + str(GVars.getScientific(GVars.Sascbuff))
 	if(GVars.curSigilBuff == 4):
-		dis += "You have worn the\nface of myraid emotion."
+		dis += "\n\nYou have worn the\nface of myraid emotion."
 	statDisplay.text = dis
 
 func update_wheel_sprite(frameno):

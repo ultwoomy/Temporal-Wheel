@@ -179,6 +179,7 @@ func _up03():
 		GVars.Rperthresh += 1
 		updateDisplays()
 func manageChoice(n):
+	GVars._dialouge(text,0,0.04)
 	selection.hide()
 	inspect.hide()
 	augment.hide()
@@ -212,6 +213,7 @@ func manageChoice(n):
 			text.text = "I'm not entirely sure what\nyou want me to do with this."
 			mode = 16
 func _nextline():
+	GVars._dialouge(text,0,0.04)
 	if(mode == 1):
 		if(line == 0):
 			text.text = "All sigils are kind of like...\npermissions of sorts."

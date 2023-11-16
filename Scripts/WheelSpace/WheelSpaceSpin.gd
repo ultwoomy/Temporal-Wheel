@@ -47,5 +47,5 @@ func save_loop():
 func _mush_scene():
 	get_tree().change_scene_to_file("res://Scenes/MushSpace.tscn")
 func _changetopreasc():
-	if(GVars.numberOfSigils > -1):
+	if(GVars.numberOfSigils > 2):
 		get_tree().change_scene_to_file("res://Scenes/PreAscSpace.tscn")

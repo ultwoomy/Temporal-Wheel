@@ -1,0 +1,145 @@
+[gd_scene load_steps=14 format=3 uid="uid://2m32epwoimoi"]
+
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_supup"]
+[ext_resource type="Texture2D" uid="uid://bo20xfgwhr2bf" path="res://Sprites/Ascension/asc_back/tile000.png" id="1_tllrj"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_olp15"]
+[ext_resource type="Texture2D" uid="uid://dwxcfivsaasbm" path="res://Sprites/Ascension/asc_back/tile001.png" id="2_xkygk"]
+[ext_resource type="Texture2D" uid="uid://ike3hhcec7h2" path="res://Sprites/Ascension/asc_back/tile002.png" id="3_4fn1j"]
+[ext_resource type="Texture2D" uid="uid://dt4deysgc40yo" path="res://Sprites/Ascension/asc_back/tile003.png" id="4_26tce"]
+[ext_resource type="Texture2D" uid="uid://das71kk4d7xxj" path="res://Sprites/Ascension/asc_back/tile004.png" id="5_04exf"]
+[ext_resource type="Script" path="res://Scripts/AscSpace/Amain.gd" id="8_2fh3s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_jb3jp"]
+default_font = ExtResource("2_olp15")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_supup")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2fdy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tllrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xkygk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4fn1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_26tce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_04exf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jb3jp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("dia", "fear", "cold", "warmth", "wrath", "complacent", "awaken")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(500, 300)
+sprite_frames = SubResource("SpriteFrames_x2fdy")
+script = ExtResource("8_2fh3s")
+dia = NodePath("../Dialouge")
+fear = NodePath("../Fear")
+cold = NodePath("../Cold")
+warmth = NodePath("../Warmth")
+wrath = NodePath("../Wrath")
+complacent = NodePath("../Complacency")
+awaken = NodePath("../Awaken")
+
+[node name="Dialouge" type="Label" parent="."]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 729.0
+offset_top = 20.0
+offset_right = 930.0
+offset_bottom = 567.0
+horizontal_alignment = 1
+
+[node name="Fear" type="Button" parent="."]
+self_modulate = Color(1, 0.188235, 0.137255, 1)
+layout_mode = 0
+offset_left = 146.0
+offset_top = 101.0
+offset_right = 298.0
+offset_bottom = 192.0
+text = "Afraid"
+
+[node name="Cold" type="Button" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+offset_left = 382.0
+offset_top = 217.0
+offset_right = 534.0
+offset_bottom = 308.0
+text = "Cold"
+
+[node name="Warmth" type="Button" parent="."]
+self_modulate = Color(0.258824, 1, 0.2, 1)
+offset_left = 473.0
+offset_top = 383.0
+offset_right = 625.0
+offset_bottom = 474.0
+text = "Content"
+
+[node name="Wrath" type="Button" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+offset_left = 158.0
+offset_top = 320.0
+offset_right = 310.0
+offset_bottom = 411.0
+text = "Anger"
+
+[node name="Complacency" type="Button" parent="."]
+offset_left = 514.0
+offset_top = 73.0
+offset_right = 666.0
+offset_bottom = 164.0
+text = "Nothing"
+
+[node name="Awaken" type="Button" parent="."]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 774.0
+offset_top = 470.0
+offset_right = 955.0
+offset_bottom = 564.0
+text = "Wake Up"

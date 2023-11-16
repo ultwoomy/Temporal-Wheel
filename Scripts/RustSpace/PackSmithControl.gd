@@ -25,6 +25,7 @@ func _ready():
 	if(GVars.iffirstpack):
 		packback.frame = 1
 		text.text = "We're Closed."
+		GVars._dialouge(text,0,0.04)
 		if(GVars.numberOfSigils > 0):
 			next.show()
 			next.text = "Perhaps this will\nchange your mind"
@@ -32,6 +33,7 @@ func _ready():
 		menu.show()
 
 func button_pressed():
+	GVars._dialouge(text,0,0.04)
 	if(line == 0):
 		text.text = "Huh. Where'd you even get \nthat hammer sigil?"
 		packback.frame = 0

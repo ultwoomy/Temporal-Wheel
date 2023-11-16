@@ -12,6 +12,7 @@ func _ready():
 		tutScreen.hide()
 	text.position = Vector2(300,300)
 	text.text = "Hellos!"
+	GVars._dialouge(text,0,0.02)
 	button.size = Vector2(100,100)
 	button.position = Vector2(650,400)
 	button.text = "Next"
@@ -20,6 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _button_pressed():
+	GVars._dialouge(text,0,0.02)
 	if(line == 0):
 		self.get_node("Bunnies").frame = 2
 		text.text = "Welcome to your new job!"

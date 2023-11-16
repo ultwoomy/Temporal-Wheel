@@ -42,12 +42,14 @@ extends Node
 @export var numberOfSigils : float
 @export var curSigilBuff : int
 @export_group("R1stats")
+@export var Aspinbuff : float
 @export var ifhell : bool
 @export var ifheaven : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
+var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
@@ -93,6 +95,7 @@ func save_prog():
 	loader.SpendingRots = SpendingRots
 	loader.Sspinbuff = Sspinbuff
 	loader.Sascbuff = Sascbuff
+	loader.Aspinbuff = Aspinbuff
 	loader.sigilCostSpin = sigilCostSpin
 	loader.sigilCostRot = sigilCostRot
 	loader.sigilCostSpinScale = sigilCostSpinScale
@@ -144,14 +147,15 @@ func resetR0Stats():
 	Sascbuff = 1
 	sigilCostSpin = 300
 	sigilCostRot = 10
-	sigilCostSpinScale = 1.2
+	sigilCostSpinScale = 1.3
 	sigilCostRotScale = 3
-	numberOfSigils = 2
+	numberOfSigils = 0
 	curSigilBuff = 0
 
 func resetR1Stats():
 	ifhell = false
 	ifheaven = false
+	Aspinbuff = 1
 	
 func resetPermStats():
 	iffirstboot = true
@@ -164,6 +168,13 @@ func getScientific(val):
 	else :
 		return snapped(val,0.01)
 	
+func _dialouge(lbl,charat,time):
+	chars = charat
+	while(chars <= lbl.text.length()):
+		lbl.visible_characters = chars
+		chars += 1
+		await get_tree().create_timer(time).timeout
+		
 func load_as_normal():
 	loader = loader.load_stats()
 	spin = loader.spin
@@ -193,7 +204,6 @@ func load_as_normal():
 	RthreshProg = loader.RthreshProg
 	Rthreshmult = loader.Rthreshmult
 	SmushLevel = loader.SmushLevel
-	Sascbuff = loader.Sascbuff
 	Sxp = loader.Sxp
 	Sxpthresh = loader.Sxpthresh
 	Sxpthreshmult = loader.Sxpthreshmult
@@ -201,6 +211,8 @@ func load_as_normal():
 	StimeLeft = loader.StimeLeft
 	SpendingRots = loader.SpendingRots
 	Sspinbuff = loader.Sspinbuff
+	Sascbuff = loader.Sascbuff
+	Aspinbuff = loader.Aspinbuff
 	sigilCostRot = loader.sigilCostRot
 	sigilCostSpin = loader.sigilCostSpin
 	sigilCostRotScale = loader.sigilCostRotScale

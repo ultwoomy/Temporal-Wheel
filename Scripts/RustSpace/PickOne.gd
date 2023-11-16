@@ -8,9 +8,11 @@ extends Node
 @export var sigil01sprite : Sprite2D
 @export var sigil02sprite : Sprite2D
 @export var sigil03sprite : Sprite2D
+@export var sigil04sprite : Sprite2D
 @export var sigil01button : Button
 @export var sigil02button : Button
 @export var sigil03button : Button
+@export var sigil04button : Button
 @export var upgrade1 : Button
 @export var upgrade2 : Button
 @export var upgrade3 : Button
@@ -67,8 +69,10 @@ func _ready():
 	sigil01button.pressed.connect(self._01Sigil)
 	sigil02button.pressed.connect(self._02Sigil)
 	sigil03button.pressed.connect(self._03Sigil)
+	sigil04button.pressed.connect(self._04Sigil)
 	next.pressed.connect(self._nextline)
 	selection.hide()
+	updateDisplays()
 func _inspect():
 	ifinspect = true
 	if(ifinmen == false):
@@ -105,6 +109,12 @@ func dispSigils():
 	else:
 		sigil03sprite.hide()
 		sigil03button.hide()
+	if(GVars.numberOfSigils > 3):
+		sigil04sprite.show()
+		sigil04button.show()
+	else:
+		sigil04sprite.hide()
+		sigil04button.hide()
 	upgrademenu.hide()
 	resetWindowVars()
 
@@ -126,6 +136,8 @@ func _02Sigil():
 	manageChoice(2)
 func _03Sigil():
 	manageChoice(3)
+func _04Sigil():
+	manageChoice(4)
 	
 func resetWindowVars():
 	inmenu = false
@@ -183,6 +195,9 @@ func manageChoice(n):
 		elif(n == 3):
 			text.text = "Looks like a portal or\nsomething."
 			mode = 3
+		elif(n == 4):
+			text.text = "A vague memory of a face."
+			mode = 4
 	if(!ifinspect):
 		if(n == 1):
 			text.text = "Now it's a rust magnet."
@@ -193,6 +208,9 @@ func manageChoice(n):
 		elif(n == 3):
 			text.text = "I don't think I know enough\nto touch this."
 			mode = 15
+		elif(n == 4):
+			text.text = "I'm not entirely sure what\nyou want me to do with this."
+			mode = 16
 func _nextline():
 	if(mode == 1):
 		if(line == 0):
@@ -232,12 +250,29 @@ func _nextline():
 		elif(line == 3):
 			text.text = ""
 			resetChoice()
+	elif(mode == 4):
+		if(line == 0):
+			text.text = "It's honestly kind of creepy\nthat you have this."
+			packback.frame = 4
+			line += 1
+		elif(line == 1):
+			text.text = "Wearing this will amplify an\nemotion of your choice\nto a ridiculous degree."
+			packback.frame = 2
+			line += 1
+		elif(line == 2):
+			text.text = "To the point where it persists\nafter death."
+			line += 1
+		elif(line == 3):
+			text.text = "...You'd have to wear it\nthough.\nEw."
+			line += 1
+		elif(line == 4):
+			text.text = ""
+			resetChoice()
 	elif(mode == 13):
 		if(line == 0):
 			text.text = "You should get more rust\nfrom that wheel now."
 			line += 1
 		elif(line == 1):
-			GVars.curSigilBuff = 1
 			resetDisplay(1)
 			resetChoice()
 	elif(mode == 14):
@@ -249,7 +284,6 @@ func _nextline():
 			packback.frame = 3
 			line += 1
 		elif(line == 2):
-			GVars.curSigilBuff = 2
 			resetDisplay(2)
 			resetChoice()
 	elif(mode == 15):
@@ -267,8 +301,21 @@ func _nextline():
 			packback.frame = 4
 			line += 1
 		elif(line == 4):
-			GVars.curSigilBuff = 3
 			resetDisplay(3)
+			resetChoice()
+	elif(mode == 16):
+		if(line == 0):
+			text.text = "You're going to wear that?\nReally?."
+			packback.frame = 4
+			line += 1
+		elif(line == 1):
+			text.text = "..."
+			line += 1
+		elif(line == 2):
+			text.text = "Your presence is certainly\nmore powerful."
+			line += 1
+		elif(line == 3):
+			resetDisplay(4)
 			resetChoice()
 	else:
 		text.text = ""

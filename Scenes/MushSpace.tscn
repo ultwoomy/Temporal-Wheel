@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dw0r2bbqgf17s"]
+[gd_scene load_steps=33 format=3 uid="uid://dw0r2bbqgf17s"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_27x6k"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_lw4ws"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="8_sa7tt"]
 [ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="9_g2bu2"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="10_fdmec"]
+[ext_resource type="Texture2D" uid="uid://bjr4hvvmbbjm8" path="res://Sprites/WheelSpace/greenrect.png" id="20_dnr8x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -116,15 +117,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_wedbe")
 
-[node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "currentMush", "desc")]
+[node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "plant", "plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4", "harvest", "currentMush", "desc", "xpbar", "leveldisp", "statsdisp")]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
 script = ExtResource("3_15p2a")
 left = NodePath("../Left")
 right = NodePath("../Right")
+plant = NodePath("../Plant")
+plot1 = NodePath("../Node2D/Plot1")
+plot2 = NodePath("../Node2D/Plot2")
+plot3 = NodePath("../Node2D/Plot3")
+plot4 = NodePath("../Node2D/Plot4")
+disp1 = NodePath("../Node2D/TimeLeftDisp1")
+disp2 = NodePath("../Node2D/TimeLeftDisp2")
+disp3 = NodePath("../Node2D/TimeLeftDisp3")
+disp4 = NodePath("../Node2D/TimeLeftDisp4")
+harvest = NodePath("../Harvest")
 currentMush = NodePath("MushPanel/CurrentMush")
 desc = NodePath("../Label")
+xpbar = NodePath("../Xp Bar Prog")
+leveldisp = NodePath("../Current Level")
+statsdisp = NodePath("../Stats Panel/StatsDisp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Container"]
 self_modulate = Color(0.415686, 0.215686, 0.113725, 1)
@@ -201,24 +215,96 @@ text = "Plant"
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Plot1" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(515, 351)
+position = Vector2(519, 397)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp1" type="Label" parent="Node2D"]
+offset_left = 494.0
+offset_top = 278.0
+offset_right = 534.0
+offset_bottom = 306.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
 
 [node name="Plot2" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(853, 335)
+position = Vector2(854, 375)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp2" type="Label" parent="Node2D"]
+offset_left = 832.0
+offset_top = 262.0
+offset_right = 872.0
+offset_bottom = 290.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
 
 [node name="Plot3" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(569, 474)
+position = Vector2(571, 517)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp3" type="Label" parent="Node2D"]
+offset_left = 543.0
+offset_top = 398.0
+offset_right = 590.0
+offset_bottom = 426.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
 
 [node name="Plot4" type="AnimatedSprite2D" parent="Node2D"]
-position = Vector2(805, 460)
+position = Vector2(805, 500)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
 
-[node name="Plant2" type="Button" parent="."]
+[node name="TimeLeftDisp4" type="Label" parent="Node2D"]
+offset_left = 784.0
+offset_top = 387.0
+offset_right = 824.0
+offset_bottom = 412.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Harvest" type="Button" parent="."]
 offset_left = 145.0
 offset_top = 495.0
 offset_right = 245.0
 offset_bottom = 545.0
 text = "Harvest"
+
+[node name="Current Level" type="Label" parent="."]
+offset_left = 206.0
+offset_top = 50.0
+offset_right = 347.0
+offset_bottom = 76.0
+text = "Level: "
+
+[node name="Xp Bar" type="Sprite2D" parent="."]
+self_modulate = Color(0.505882, 0.313726, 0.145098, 1)
+position = Vector2(280, 80)
+scale = Vector2(1.5, 1)
+texture = ExtResource("20_dnr8x")
+
+[node name="Xp Bar Prog" type="Sprite2D" parent="."]
+position = Vector2(280, 80)
+scale = Vector2(1.5, 1)
+texture = ExtResource("20_dnr8x")
+
+[node name="Stats Panel" type="Sprite2D" parent="."]
+self_modulate = Color(0.368627, 0.0941176, 0.0352941, 0.67451)
+position = Vector2(500, 120)
+scale = Vector2(2, 2.4)
+texture = ExtResource("3_teq87")
+
+[node name="StatsDisp" type="Label" parent="Stats Panel"]
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 49.0
+scale = Vector2(0.5, 0.417)
+theme = SubResource("Theme_wedbe")

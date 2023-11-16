@@ -121,7 +121,7 @@ texture_hover = ExtResource("5_uc6mm")
 texture_disabled = ExtResource("6_00pdw")
 texture_focused = ExtResource("5_uc6mm")
 
-[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinDisplay", "spinPerCDisplay", "sizeDisplay", "densDisplay", "rotsDisplay", "button", "mushroom")]
+[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinDisplay", "spinPerCDisplay", "sizeDisplay", "densDisplay", "rotsDisplay", "button", "mushroom", "spinbody", "changepreasc")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 offset_left = 750.0
@@ -136,6 +136,8 @@ densDisplay = NodePath("../DensButton/DensDisplay")
 rotsDisplay = NodePath("../RotsDisplay")
 button = NodePath("SpinUp")
 mushroom = NodePath("../Ground/TextureButton")
+spinbody = NodePath("../CharacterBody2D")
+changepreasc = NodePath("../CharacterBody2D/PreAscTransfer")
 
 [node name="SpinUp" type="Button" parent="SpinButton"]
 layout_mode = 2
@@ -150,6 +152,20 @@ script = ExtResource("4_3lf5g")
 
 [node name="Centerpiece" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = ExtResource("5_eh2pp")
+
+[node name="PreAscTransfer" type="Button" parent="CharacterBody2D"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -110.0
+offset_right = 110.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0

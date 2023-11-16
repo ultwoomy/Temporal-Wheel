@@ -1,6 +1,8 @@
 extends CharacterBody2D
 var angle = 0
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
+signal oneClick
+
 func update_wheel_sprite(frameno):
 	GVars.wheelphase = int(GVars.density)
 	if(frameno > 11):
@@ -39,9 +41,13 @@ func _process(_delta):
 		rotation += changerot
 		angle += changerot
 		if(angle > 2*PI):
-			GVars.rotations += int(angle/(2*PI))
-			GVars.RthreshProg += int(angle/(2*PI))
+			var temp = float(angle/(2*PI))
+			GVars.rotations += temp
+			if(GVars.numberOfSigils > 1):
+				GVars.SpendingRots += temp
+			GVars.RthreshProg += temp
 			angle = fmod(angle,(2*PI))
+			emit_signal("oneClick")
 			if(GVars.RthreshProg > GVars.Rthresh):
 				if(GVars.curSigilBuff == 1):
 					GVars.RthreshProg -= GVars.Rthresh

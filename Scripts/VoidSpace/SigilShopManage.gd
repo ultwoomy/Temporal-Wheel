@@ -16,6 +16,7 @@ func _ready():
 	button.pressed.connect(self._button_pressed)
 
 func _button_pressed():
+	GVars._dialouge(text,0,0.02)
 	if(failbought):
 		reset()
 	else :
@@ -31,6 +32,8 @@ func _button_pressed():
 				text.text = "A warm candle!\nLights up your entire universe!"
 			elif(GVars.numberOfSigils == 3):
 				text.text = "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!"
+			elif(GVars.numberOfSigils == 4):
+				text.text = "Emptiness!\nExtremely ironic name!\nFull of emoticon!"
 			else :
 				text.text = "Use it well!"
 			button.text = "Thx"
@@ -81,7 +84,7 @@ func _button_pressed():
 				text.text = "Good for you. It doesn't last."
 				stupids += 1
 			elif(stupids == 22):
-				text.text = "Oh wait I'm talking to a Chronos here."
+				text.text = "Unless you literally make time."
 				stupids += 1
 			elif(stupids == 23):
 				text.text = "Now I'm the stupid one."
@@ -101,7 +104,7 @@ func _button_pressed():
 			failbought = true
 		
 func reset():
-	if(GVars.numberOfSigils > 2):
+	if(GVars.numberOfSigils > 3):
 		text.text = "Blow the horn.\nBring about the end."
 		button.hide()
 	else :

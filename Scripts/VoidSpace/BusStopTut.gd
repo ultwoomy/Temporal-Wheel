@@ -28,6 +28,7 @@ func _ready():
 	sigilbut.text = "Sigil"
 	sigilbut.pressed.connect(self.opensigilshop)
 	goback.pressed.connect(self._go_back)
+	GVars._dialouge(text,0,0.02)
 	
 func _go_back():
 	if(layersin == 1):
@@ -41,6 +42,7 @@ func _go_back():
 		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
 func _button_pressed():
+	GVars._dialouge(text,0,0.03)
 	if(line == 0):
 		self.get_node("Bunnies").frame = 2
 		text.text = "This is where the business \nhappens."

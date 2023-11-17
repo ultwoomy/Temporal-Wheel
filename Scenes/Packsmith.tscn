@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=30 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="1_nd2e7"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_rmgjs"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_wcjgc"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/PackSmithControl.gd" id="2_xckey"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="3_a44lj"]
+[ext_resource type="Texture2D" uid="uid://iu6arl5ie6om" path="res://Sprites/RustSpace/packsmith_disgust.png" id="4_l2nbn"]
 [ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="6_3sexc"]
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="7_op6jd"]
 [ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="8_o1iu8"]
@@ -84,6 +85,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_khtqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l2nbn")
 }],
 "loop": true,
 "name": &"default",

@@ -52,6 +52,20 @@ func button_pressed():
 	elif(line == 3):
 		text.text = "I know a bit of strengthening\ntoo, so I can give you buffs\nto your production."
 		line += 1
+	elif(line == 4):
+		text.text = "Lastly, rust is a currency.\nEven though I live in a place\nsurrounded by rust, I can't\nleave this room."
+		packback.frame = 3
+		line += 1
+	elif(line == 5):
+		text.text = "The irony is cruel."
+		packback.frame = 2
+		line += 1
+	elif(line == 6):
+		text.text = "Bring me some and I'll buff\nsome more things."
+		line += 1
+	elif(line == 7):
+		text.text = "Be careful though, rust drops\nmore and more infrequently\nas time goes on"
+		line += 1
 		GVars.iffirstpack = false
 	elif(line == 4):
 		text.text = ""

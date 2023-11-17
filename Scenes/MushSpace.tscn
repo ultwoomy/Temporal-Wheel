@@ -271,6 +271,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="Harvest" type="Button" parent="."]
+layout_mode = 0
 offset_left = 145.0
 offset_top = 495.0
 offset_right = 245.0
@@ -278,6 +279,7 @@ offset_bottom = 545.0
 text = "Harvest"
 
 [node name="Current Level" type="Label" parent="."]
+layout_mode = 0
 offset_left = 206.0
 offset_top = 50.0
 offset_right = 347.0

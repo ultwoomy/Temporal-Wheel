@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://2m32epwoimoi"]
+[gd_scene load_steps=15 format=3 uid="uid://2m32epwoimoi"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_supup"]
 [ext_resource type="Texture2D" uid="uid://bo20xfgwhr2bf" path="res://Sprites/Ascension/asc_back/tile000.png" id="1_tllrj"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dt4deysgc40yo" path="res://Sprites/Ascension/asc_back/tile003.png" id="4_26tce"]
 [ext_resource type="Texture2D" uid="uid://das71kk4d7xxj" path="res://Sprites/Ascension/asc_back/tile004.png" id="5_04exf"]
 [ext_resource type="Script" path="res://Scripts/AscSpace/Amain.gd" id="8_2fh3s"]
+[ext_resource type="Texture2D" uid="uid://c4yc6q3pu5phl" path="res://Sprites/Ascension/asc_back/Aswallow.png" id="8_veqme"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -48,6 +49,9 @@ animations = [{
 "texture": ExtResource("1_tllrj")
 }, {
 "duration": 1.0,
+"texture": ExtResource("5_04exf")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_xkygk")
 }, {
 "duration": 1.0,
@@ -57,7 +61,7 @@ animations = [{
 "texture": ExtResource("4_26tce")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_04exf")
+"texture": ExtResource("8_veqme")
 }],
 "loop": true,
 "name": &"default",
@@ -106,6 +110,7 @@ text = "Afraid"
 
 [node name="Cold" type="Button" parent="."]
 self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
 offset_left = 382.0
 offset_top = 217.0
 offset_right = 534.0
@@ -114,6 +119,7 @@ text = "Cold"
 
 [node name="Warmth" type="Button" parent="."]
 self_modulate = Color(0.258824, 1, 0.2, 1)
+layout_mode = 0
 offset_left = 473.0
 offset_top = 383.0
 offset_right = 625.0
@@ -122,6 +128,7 @@ text = "Content"
 
 [node name="Wrath" type="Button" parent="."]
 self_modulate = Color(1, 0, 1, 1)
+layout_mode = 0
 offset_left = 158.0
 offset_top = 320.0
 offset_right = 310.0
@@ -129,6 +136,7 @@ offset_bottom = 411.0
 text = "Anger"
 
 [node name="Complacency" type="Button" parent="."]
+layout_mode = 0
 offset_left = 514.0
 offset_top = 73.0
 offset_right = 666.0
@@ -138,8 +146,8 @@ text = "Nothing"
 [node name="Awaken" type="Button" parent="."]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 0
-offset_left = 774.0
+offset_left = 750.0
 offset_top = 470.0
-offset_right = 955.0
+offset_right = 931.0
 offset_bottom = 564.0
 text = "Wake Up"

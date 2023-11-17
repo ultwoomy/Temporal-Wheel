@@ -42,6 +42,7 @@ extends Node
 @export var numberOfSigils : float
 @export var curSigilBuff : int
 @export_group("R1stats")
+@export var curEmotionBuff : int
 @export var Aspinbuff : float
 @export var ifhell : bool
 @export var ifheaven : bool
@@ -53,10 +54,10 @@ var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
-	resetR0Stats()
-	resetR1Stats()
-	resetPermStats()
-	save_prog()
+	#resetR0Stats()
+	#resetR1Stats()
+	#resetPermStats()
+	#save_prog()
 	load_as_normal()
 
 func save_prog():
@@ -96,6 +97,7 @@ func save_prog():
 	loader.Sspinbuff = Sspinbuff
 	loader.Sascbuff = Sascbuff
 	loader.Aspinbuff = Aspinbuff
+	loader.curEmotionBuff = curEmotionBuff
 	loader.sigilCostSpin = sigilCostSpin
 	loader.sigilCostRot = sigilCostRot
 	loader.sigilCostSpinScale = sigilCostSpinScale
@@ -155,6 +157,7 @@ func resetR0Stats():
 func resetR1Stats():
 	ifhell = false
 	ifheaven = false
+	curEmotionBuff = 0
 	Aspinbuff = 1
 	
 func resetPermStats():
@@ -213,6 +216,7 @@ func load_as_normal():
 	Sspinbuff = loader.Sspinbuff
 	Sascbuff = loader.Sascbuff
 	Aspinbuff = loader.Aspinbuff
+	curEmotionBuff = loader.curEmotionBuff
 	sigilCostRot = loader.sigilCostRot
 	sigilCostSpin = loader.sigilCostSpin
 	sigilCostRotScale = loader.sigilCostRotScale

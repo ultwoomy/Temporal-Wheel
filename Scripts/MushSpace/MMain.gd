@@ -16,7 +16,7 @@ extends Node
 @export var xpbar : Sprite2D
 @export var leveldisp : Label
 @export var statsdisp : Label
-var curFrame
+@export var curFrame : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for n in GVars.Scurrent.size():
@@ -121,18 +121,21 @@ func _harvest():
 			_update_sprites()
 			
 func _harvest_shroom(val):
+	var Ebuff = 1
+	if(GVars.curEmotionBuff == 3):
+		Ebuff = (log(GVars.rotations))/2 + 0.5
 	if(val == 1):
 		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.SmushLevel * 20
-		GVars.Sxp += 25
+		GVars.Sxp += 25 * Ebuff
 	elif(val == 2):
 		GVars.rotations += GVars.SmushLevel * 3
-		GVars.Sxp += 50
+		GVars.Sxp += 50 * Ebuff
 	elif(val == 3):
 		GVars.Sspinbuff += (3 * (log(GVars.SmushLevel + 1)/log(3)))/(pow(2,GVars.Sspinbuff))
-		GVars.Sxp += 75
+		GVars.Sxp += 75 * Ebuff
 	elif(val == 4):
 		GVars.Sascbuff += (log(GVars.SmushLevel + 1)/log(3))/(pow(2,GVars.Sascbuff))
-		GVars.Sxp += 100
+		GVars.Sxp += 100 * Ebuff
 	_check_xp()
 
 func _check_xp():

@@ -67,7 +67,7 @@ func button_pressed():
 		text.text = "Be careful though, rust drops\nmore and more infrequently\nas time goes on"
 		line += 1
 		GVars.iffirstpack = false
-	elif(line == 4):
+	elif(line == 8):
 		text.text = ""
 		menu.show()
 		next.hide()

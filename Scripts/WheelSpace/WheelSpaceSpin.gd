@@ -1,8 +1,6 @@
 extends Node
 
 @export var spinPerCDisplay: Label
-
-
 @export var button : Button
 @export var spinbody : CharacterBody2D
 @export var changepreasc : Button
@@ -31,11 +29,7 @@ func _button_pressed():
 
 
 func spin_update_loop():
-	
-	
-	
 	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinPerClick))
-	
 	await get_tree().create_timer(0.1).timeout
 	spin_update_loop()
 

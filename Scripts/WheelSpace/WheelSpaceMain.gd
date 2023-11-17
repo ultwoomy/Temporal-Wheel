@@ -13,6 +13,8 @@ func update_wheel_sprite(frameno):
 		self.get_node("Centerpiece").frame = 11
 	else :
 		self.get_node("Centerpiece").frame = frameno
+
+
 func _process(_delta):
 	var changerot = 0.0
 	if(GVars.spin > 0):

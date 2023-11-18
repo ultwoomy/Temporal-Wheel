@@ -23,10 +23,13 @@ func _button_pressed():
 	
 func suc_loop():
 	var suc = 0.0;
+	var Ebuff = 1;
+	if(GVars.curEmotionBuff == 2):
+		Ebuff = log(GVars.size)
 	if(GVars.curSigilBuff == 3):
-		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.size
+		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.size * Ebuff
 	else:
-		suc = GVars.sucPerTick * GVars.Rincreasehunger
+		suc = GVars.sucPerTick * GVars.Rincreasehunger * Ebuff
 	if(ifsucc):
 		if(GVars.spin >= suc):
 			GVars.spin -= suc

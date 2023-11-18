@@ -1,13 +1,10 @@
 extends Node
 
 @export var spinPerCDisplay: Label
-
-
 @export var button: Button
 
 # Does this even do anything...?
 @export var spinbody: CharacterBody2D
-
 var fmat = preload("res://Scripts/FormatNo.gd")
 
 

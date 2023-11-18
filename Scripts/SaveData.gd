@@ -45,6 +45,7 @@ extends Resource
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var Aspinbuff : float
+@export var curEmotionBuff : float
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var iffirstvoid : bool
@@ -91,6 +92,7 @@ func _init():
 	Sspinbuff = 1
 	Sascbuff = 1
 	Aspinbuff = 1
+	curEmotionBuff = 0
 	sigilCostSpin = 300
 	sigilCostRot = 10
 	sigilCostSpinScale = 1.2

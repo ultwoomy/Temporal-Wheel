@@ -1,9 +1,13 @@
 extends CharacterBody2D
 var angle = 0
+var emoBuff = 1
+var emoBuffSpeed = 1
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
 
 func update_wheel_sprite(frameno):
+	if(GVars.curEmotionBuff == 1):
+		emoBuffSpeed = 1.2
 	GVars.wheelphase = int(GVars.density)
 	if(frameno > 11):
 		self.get_node("Centerpiece").frame = 11
@@ -40,7 +44,7 @@ func _process(_delta):
 			changerot = (log(GVars.spin)/log(2))/80
 		else:
 			changerot = (log(GVars.spin)/log(2))/80
-		rotation += changerot
+		rotation += changerot * emoBuffSpeed
 		angle += changerot
 		if(angle > 2*PI):
 			var temp = float(angle/(2*PI))
@@ -51,16 +55,18 @@ func _process(_delta):
 			angle = fmod(angle,(2*PI))
 			emit_signal("oneClick")
 			if(GVars.RthreshProg > GVars.Rthresh):
+				if(GVars.curEmotionBuff == 4):
+					emoBuff = log(GVars.rust) + 0.5
 				if(GVars.curSigilBuff == 1):
 					GVars.RthreshProg -= GVars.Rthresh
-					GVars.rust += GVars.Rperthresh * 2
+					GVars.rust += GVars.Rperthresh * 2 * emoBuff
 					GVars.Rthresh *= GVars.Rthreshmult
 					var rus = RUST_PART.instantiate()
-					rus.get_child(0).init(GVars.Rperthresh * 2)
+					rus.get_child(0).init(GVars.Rperthresh * 2 * emoBuff)
 					self.add_child(rus)
 				else:
 					GVars.RthreshProg -= GVars.Rthresh
-					GVars.rust += GVars.Rperthresh
+					GVars.rust += GVars.Rperthresh * emoBuff
 					GVars.Rthresh *= GVars.Rthreshmult
 					var rus = RUST_PART.instantiate()
 					rus.get_child(0).init(GVars.Rperthresh)

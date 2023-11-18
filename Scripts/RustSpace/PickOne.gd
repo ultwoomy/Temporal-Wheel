@@ -255,7 +255,7 @@ func _nextline():
 	elif(mode == 4):
 		if(line == 0):
 			text.text = "It's honestly kind of creepy\nthat you have this."
-			packback.frame = 4
+			packback.frame = 5
 			line += 1
 		elif(line == 1):
 			text.text = "Wearing this will amplify an\nemotion of your choice\nto a ridiculous degree."
@@ -312,9 +312,11 @@ func _nextline():
 			line += 1
 		elif(line == 1):
 			text.text = "..."
+			packback.frame = 5
 			line += 1
 		elif(line == 2):
 			text.text = "Your presence is certainly\nmore powerful."
+			packback.frame = 2
 			line += 1
 		elif(line == 3):
 			resetDisplay(4)

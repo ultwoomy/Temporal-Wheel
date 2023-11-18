@@ -3,8 +3,6 @@ extends Node
 @export var spinPerCDisplay: Label
 @export var button: Button
 
-# Does this even do anything...?
-@export var spinbody: CharacterBody2D
 var fmat = preload("res://Scripts/FormatNo.gd")
 
 
@@ -21,19 +19,10 @@ func _ready():
 	button.text = "Spin"
 	button.expand_icon = true
 	button.pressed.connect(self._button_pressed)
-	
-	# L.B: Like I said, possibly use a signal.
-	spinbody.oneClick.connect(_button_pressed)
-
 
 # L.B: Probably just use a signal in a different script so all things can add to spin.
 func _button_pressed():
 	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff
-#	L.B: This line of code is being commented out since it isn't needed (since SpinDisplay has it in its _process() function)
-#	...If you want to change the text only when necessary, use signals instead of assigning the Node to a variable.
-#	...Ex: Call a signal when GVars.spin changes.
-#	spinDisplay.text = str(GVars.getScientific(GVars.spin))
-
 
 func spin_update_loop():
 	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinPerClick))

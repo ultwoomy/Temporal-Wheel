@@ -2,9 +2,12 @@ extends Node
 @export var growDisplay: Label
 @export var button : Button
 @export var image : Sprite2D
+@export var spinbody: CharacterBody2D
 var ifsucc = false
 func _ready():
-	suc_loop()
+	#Yu: Every time one rotation finishes, succ will trigger once. Changed from once per second.
+	#    Threshold and threshold multiplier for size reduced accordingly
+	spinbody.oneClick.connect(suc_loop)
 	button.text = str("Toggle Grow")
 	button.size = Vector2(200,100)
 	button.expand_icon = true
@@ -38,7 +41,5 @@ func suc_loop():
 				GVars.size += 1
 				growDisplay.text = str(GVars.size)
 				GVars.curSucSize = 0
-				GVars.sucTresh *= 5
+				GVars.sucTresh *= 3
 	image.scale.x = GVars.curSucSize/GVars.sucTresh*2
-	await get_tree().create_timer(1.0).timeout
-	suc_loop()

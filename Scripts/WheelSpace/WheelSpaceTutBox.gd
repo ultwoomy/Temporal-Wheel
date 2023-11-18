@@ -32,12 +32,12 @@ func _button_pressed():
 		self.get_node("Bunnies").frame = 1
 		text.text = "The spin button increases this \nwheel's momentum."
 	elif(line == 3):
-		text.text = "The grow button consumes \nmomentum slowly, eventually \nincreasing the size of the wheel."
+		text.text = "The grow button consumes \nmomentum every spin, eventually \nincreasing the size of the wheel."
 	elif(line == 4):
-		text.text = "The condense button consumes \nsize slowly, decreasing your \nwheel size but increasing its \nspin speed."
+		text.text = "The condense button consumes \nsize every time you click,\nreducing it's size but\nincreasing it's spin speed."
 	elif(line == 5):
 		self.get_node("Bunnies").frame = 3
-		text.text = "Both of these multiply your \nmomentum per spin, so don't \ncome crying to me if \nyou softlock yourself by \ncondensing too much."
+		text.text = "Both of these multiply your \nmomentum per spin, so don't\nsoftlock yourself by\ncondensing too much."
 	elif(line == 6):
 		self.get_node("Bunnies").frame = 2
 		text.text = "But that's it! It's a very\n easy job!"

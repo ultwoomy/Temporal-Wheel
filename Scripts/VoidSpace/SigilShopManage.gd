@@ -20,25 +20,28 @@ func _button_pressed():
 	if(failbought):
 		reset()
 	else :
-		if(GVars.spin > GVars.sigilCostSpin && GVars.rotations > GVars.sigilCostRot):
-			GVars.spin -= GVars.sigilCostSpin
-			GVars.rotations -= GVars.sigilCostRot
+		if((GVars.spin > GVars.sigilCostSpin) && (GVars.rotations > GVars.sigilCostRot)):
+			#GVars.spin -= GVars.sigilCostSpin
+			#GVars.rotations -= GVars.sigilCostRot
 			GVars.sigilCostSpin = pow(GVars.sigilCostSpin,GVars.sigilCostSpinScale)
 			GVars.sigilCostRot *= GVars.sigilCostRotScale
-			GVars.numberOfSigils += 1
-			if(GVars.numberOfSigils == 1):
+			var curSigil = 0
+			while GVars.numberOfSigils[curSigil]:
+				curSigil += 1
+			if(curSigil == 0):
 				text.text = "The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!"
-			elif(GVars.numberOfSigils == 2):
+			elif(curSigil == 1):
 				text.text = "A warm candle!\nLights up your entire universe!"
-			elif(GVars.numberOfSigils == 3):
+			elif(curSigil == 2):
 				text.text = "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!"
-			elif(GVars.numberOfSigils == 4):
+			elif(curSigil == 3):
 				text.text = "Emptiness!\nExtremely ironic name!\nFull of emoticon!"
 			else :
 				text.text = "Use it well!"
+			GVars.numberOfSigils[curSigil] = true
 			button.text = "Thx"
 			sigilDisplay.show()
-			sigilDisplay.frame = int(GVars.numberOfSigils - 1)
+			sigilDisplay.frame = curSigil
 			failbought = true
 		else :
 			if(stupids == 0):
@@ -104,8 +107,8 @@ func _button_pressed():
 			failbought = true
 		
 func reset():
-	if(GVars.numberOfSigils > 3):
-		text.text = "Blow the horn.\nBring about the end."
+	if(GVars.numberOfSigils[3]):
+		text.text = "We're out lmao."
 		button.hide()
 	else :
 		text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilCostSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilCostRot)) + " rotations"

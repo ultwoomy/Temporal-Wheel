@@ -39,7 +39,7 @@ extends Node
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
 @export var sigilCostRotScale : float
-@export var numberOfSigils : float
+@export var numberOfSigils : Array[bool]
 @export var curSigilBuff : int
 @export_group("R1stats")
 @export var curEmotionBuff : int
@@ -115,8 +115,8 @@ func resetR0Stats():
 	spin = 0
 	spinPerClick = 1
 	size = 1
-	sucPerTick = 1
-	sucTresh = 10
+	sucPerTick = 5
+	sucTresh = 15
 	curSucSize = 0
 	density = 1
 	sucPerTDens = 1
@@ -151,7 +151,7 @@ func resetR0Stats():
 	sigilCostRot = 10
 	sigilCostSpinScale = 1.3
 	sigilCostRotScale = 3
-	numberOfSigils = 0
+	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
 	curSigilBuff = 0
 
 func resetR1Stats():

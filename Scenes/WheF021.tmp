@@ -130,7 +130,7 @@ texture_disabled = ExtResource("6_00pdw")
 texture_focused = ExtResource("5_uc6mm")
 script = ExtResource("7_2e481")
 
-[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
+[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button", "spinbody")]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 offset_left = 750.0
@@ -140,6 +140,7 @@ offset_bottom = 150.0
 script = ExtResource("3_wlyuf")
 spinPerCDisplay = NodePath("SpinPClickDiplay")
 button = NodePath("SpinUp")
+spinbody = NodePath("../CharacterBody2D")
 
 [node name="SpinUp" type="Button" parent="SpinButton"]
 layout_mode = 2
@@ -148,10 +149,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("densityButton")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(500, 300)
 script = ExtResource("4_3lf5g")
-densityButton = NodePath("../DensButton")
 
 [node name="Centerpiece" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = ExtResource("5_eh2pp")
@@ -171,7 +171,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_reugq")
 
-[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image", "spinbody")]
+[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 250.0
@@ -181,7 +181,6 @@ script = ExtResource("6_86y4n")
 growDisplay = NodePath("GrowDisplay")
 button = NodePath("GrowToggle")
 image = NodePath("GrowRectDisp")
-spinbody = NodePath("../CharacterBody2D")
 
 [node name="GrowRectDisp" type="Sprite2D" parent="GrowButton"]
 scale = Vector2(2, 1)

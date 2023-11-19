@@ -22,7 +22,17 @@ func _ready():
 
 # L.B: Probably just use a signal in a different script so all things can add to spin.
 func _button_pressed():
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff
+	var event_manager: EventManager = owner.get_node("EventManager")
+	event_manager.wheel_spun.emit()
+	
+	
+#	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff
+
+
+#	L.B: This line of code is being commented out since it isn't needed (since SpinDisplay has it in its _process() function)
+#	...If you want to change the text only when necessary, use signals instead of assigning the Node to a variable.
+#	...Ex: Call a signal when GVars.spin changes.
+#	spinDisplay.text = str(GVars.getScientific(GVars.spin))
 
 func spin_update_loop():
 	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinPerClick))

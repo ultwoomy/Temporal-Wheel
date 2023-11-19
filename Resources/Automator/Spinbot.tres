@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Automator" load_steps=2 format=3 uid="uid://d3inl4ncrr0uo"]
+
+[ext_resource type="Script" path="res://Resources/Automator/Automator.gd" id="1_m0quu"]
+
+[resource]
+script = ExtResource("1_m0quu")
+name = "Spinbot"
+level = 1
+amount = 1
+cooldown = 1.0

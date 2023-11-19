@@ -100,6 +100,7 @@ text = "A strange force pulls you
 horizontal_alignment = 1
 
 [node name="Stat Display" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 746.0
 offset_top = 8.0
 offset_right = 1031.0

@@ -181,11 +181,13 @@ func getScientific(val):
 		return snapped(val,0.01)
 	
 func _dialouge(lbl,charat,time):
-	chars = charat
-	while(chars <= lbl.text.length()):
-		lbl.visible_characters = chars
-		chars += 1
-		await get_tree().create_timer(time).timeout
+	if(is_instance_valid(lbl)):
+		chars = charat
+		if(chars <= lbl.text.length()):
+			lbl.visible_characters = chars
+			chars += 1
+			await get_tree().create_timer(time).timeout
+			_dialouge(lbl,chars,time)
 		
 func load_as_normal():
 	loader = loader.load_stats()

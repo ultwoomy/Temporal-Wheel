@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_trx0p"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_tbl7s"]
 [ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceSceneManager.gd" id="3_i3hd7"]
-[ext_resource type="Script" path="res://Scenes/TravelSpace.gd" id="3_wdev8"]
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_m7pqi"]
 [ext_resource type="Texture2D" uid="uid://cjrponoa23g0e" path="res://Sprites/Spaces/Rust/rust_space.png" id="4_5gufq"]
 [ext_resource type="Texture2D" uid="uid://bs53g0yb4iw38" path="res://Sprites/Spaces/Rust/rust_space_light.png" id="4_b0c6l"]
 [ext_resource type="Texture2D" uid="uid://bb2574fidse41" path="res://Sprites/Spaces/Rust/rust_space_dark.png" id="5_04br7"]
@@ -117,7 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_p7dqp")
-script = ExtResource("3_wdev8")
+script = ExtResource("3_m7pqi")
 
 [node name="Space control" type="Container" parent="." node_paths=PackedStringArray("button", "button2", "button3", "button4")]
 layout_mode = 0

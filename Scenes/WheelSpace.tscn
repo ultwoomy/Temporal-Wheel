@@ -2,7 +2,7 @@
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_glr4n"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
-[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpace.gd" id="3_a68l3"]
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_ro1bm"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpin.gd" id="3_wlyuf"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="4_2qlpx"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="4_3lf5g"]
@@ -110,7 +110,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hyv8k")
-script = ExtResource("3_a68l3")
+script = ExtResource("3_ro1bm")
 
 [node name="Ground" type="Sprite2D" parent="."]
 self_modulate = Color(0.266667, 0.266667, 0.266667, 1)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://dw0r2bbqgf17s"]
+[gd_scene load_steps=34 format=3 uid="uid://dw0r2bbqgf17s"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_27x6k"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_lw4ws"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MMain.gd" id="3_15p2a"]
 [ext_resource type="Texture2D" uid="uid://vugvkm7hi778" path="res://Sprites/MushSpace/mush_int/tile000.png" id="3_avmde"]
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_tatml"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="3_teq87"]
 [ext_resource type="Texture2D" uid="uid://dhbmhx6q20m8s" path="res://Sprites/MushSpace/mush_int/tile001.png" id="4_tuhju"]
 [ext_resource type="Texture2D" uid="uid://0cyy1vlw0jt3" path="res://Sprites/MushSpace/mush_int/tile002.png" id="5_fi0vc"]
@@ -116,6 +117,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_wedbe")
+script = ExtResource("3_tatml")
 
 [node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "plant", "plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4", "harvest", "currentMush", "desc", "xpbar", "leveldisp", "statsdisp")]
 layout_mode = 0

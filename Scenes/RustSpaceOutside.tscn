@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3cwx5qjxmdup"]
+[gd_scene load_steps=19 format=3 uid="uid://b3cwx5qjxmdup"]
 
 [ext_resource type="Texture2D" uid="uid://cr2gx5g5yrq4q" path="res://Sprites/RustSpace/rusthome_outside.png" id="1_2jcfw"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_freuj"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/RustSpaceOutsideButtons.gd" id="1_pv3pn"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_yjwgo"]
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_nh6nf"]
 [ext_resource type="Texture2D" uid="uid://domdcir7ttm4h" path="res://Sprites/RustSpace/back_rust/back_rust.png" id="5_jsaej"]
 [ext_resource type="Texture2D" uid="uid://cmqobk7x265a6" path="res://Sprites/RustSpace/back_rust/back_rust2.png" id="6_eu6dj"]
 [ext_resource type="Texture2D" uid="uid://cif2yvh3nf0hs" path="res://Sprites/RustSpace/back_rust/back_rust3.png" id="7_gnir7"]
@@ -55,7 +56,7 @@ texture = ExtResource("7_gnir7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6fey"]
 
-[node name="RustSpaceOutside" type="Control" node_paths=PackedStringArray("button")]
+[node name="RustSpaceOutside" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -63,21 +64,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_a0bkc")
-script = ExtResource("1_pv3pn")
-button = NodePath("GoInside")
+script = ExtResource("3_nh6nf")
 
 [node name="RustOutside" type="Sprite2D" parent="."]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("1_2jcfw")
 
-[node name="GoInside" type="Button" parent="."]
+[node name="GoInside" type="Button" parent="." node_paths=PackedStringArray("button")]
 layout_mode = 0
 offset_left = 630.0
 offset_top = 300.0
 offset_right = 638.0
 offset_bottom = 308.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_rvkyr")
+script = ExtResource("1_pv3pn")
+button = NodePath(".")
 
 [node name="Back" type="Button" parent="." node_paths=PackedStringArray("button")]
 layout_mode = 0

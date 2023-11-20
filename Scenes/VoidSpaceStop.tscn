@@ -1,9 +1,10 @@
-[gd_scene load_steps=35 format=3 uid="uid://nc3r8b15k1bk"]
+[gd_scene load_steps=36 format=3 uid="uid://nc3r8b15k1bk"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_7lqlb"]
 [ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="1_burux"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_4s8n3"]
 [ext_resource type="Texture2D" uid="uid://bxe44cpe8n2sq" path="res://Sprites/VoidSpace/back_void/tile000.png" id="2_sapct"]
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_11awi"]
 [ext_resource type="Texture2D" uid="uid://b2p6qbiri8oc6" path="res://Sprites/VoidSpace/back_void/tile001.png" id="3_pm404"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopEnter.gd" id="4_erhsg"]
 [ext_resource type="Texture2D" uid="uid://ckqfyij8e073u" path="res://Sprites/VoidSpace/back_void/tile002.png" id="4_vh7tf"]
@@ -14,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="10_v3y1n"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="12_i8vqs"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/RitualManage.gd" id="13_wqxsc"]
-[ext_resource type="Texture2D" uid="uid://bt50cnulqyp7n" path="res://Sprites/VoidSpace/ritualbunny.png" id="14_ikg7b"]
-[ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="16_af81a"]
+[ext_resource type="Texture2D" path="res://Sprites/VoidSpace/ritualbunny.png" id="14_ikg7b"]
+[ext_resource type="Texture2D" path="res://Sprites/VoidSpace/ritual.png" id="16_af81a"]
 [ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="17_mss5q"]
 [ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="18_f5spc"]
 
@@ -115,6 +116,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_hrirr")
+script = ExtResource("3_11awi")
 
 [node name="BusStop" type="Sprite2D" parent="."]
 position = Vector2(500, 300)

@@ -9,4 +9,4 @@ name = "Spinbot"
 automator = 0
 level = 1
 amount = 1
-cooldown = 0.1
+cooldown = 1.0

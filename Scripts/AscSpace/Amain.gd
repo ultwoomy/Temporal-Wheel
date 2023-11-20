@@ -62,7 +62,7 @@ func _button_generic(switchEmotion,text):
 	awaken.show()
 
 func _awaken():
-	GVars.Aspinbuff = GVars.Sascbuff
+	GVars.Aspinbuff = GVars.Sascbuff + GVars.RitAscBuff
 	GVars.resetR0Stats()
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 	

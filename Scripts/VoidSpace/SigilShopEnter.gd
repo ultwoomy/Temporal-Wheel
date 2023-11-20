@@ -1,8 +1,12 @@
 extends Button
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(GVars.numberOfSigils[4]):
+		show()
+	else:
+		hide()
 	size = Vector2(100,100)
-	position = Vector2(500,200)
+	position = Vector2(370,410)
 	text = "Ritual"
 	pressed.connect(self.sendopensignal)
 

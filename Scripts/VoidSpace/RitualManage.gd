@@ -4,15 +4,16 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png")
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
 var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
-					, "Lose rotations per spin, but get\nmomentum back."
+					, "Lose rotations per spin, but get\nthe wheel to spit out\na lot of momentum in scale\nwith its hunger."
 					, "Double mushroom growth rate."
-					, "Solidify your identity."
+					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.RitAscBuff))
 					, "Gain a small amount of rust\nper spin"
-					, "Gain an increase to rotation\nspeed."
+					, "Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.RitRotBuff)) + ". Perpetual!"
 					, "Powers the kbity creation\nmachine!!!!!"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
+	setCandleSprites()
 	setIdleText()
 	text.position = Vector2(500,400)
 
@@ -23,11 +24,21 @@ func setIdleText():
 			numOfCandles += 1
 	if(numOfCandles > 5):
 		numOfCandles = 5
-	effectsDesc[0] += str(1 - (numOfCandles * 0.2))
+	effectsDesc[0] = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (numOfCandles * 0.2))
 	text.text = effectsDesc[0]
 	
+func setCandleSprites():
+	for n in GVars.RitCandlesLit.size():
+		var path = "Ritual/Candle" + str(n + 1)
+		if(GVars.RitCandlesLit[n]):
+			get_node(path).texture_normal = enabledSprite
+			get_node(path).texture_focused = enabledSprite
+		else: 
+			get_node(path).texture_normal = disabledSprite
+			get_node(path).texture_focused = disabledSprite
+	
 func setDescText(n):
-	text.text = effectsDesc[n - 1]
+	text.text = effectsDesc[n]
 
 func getPath(cand):
 	var path = "Ritual/Candle" + str(cand)

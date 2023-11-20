@@ -19,6 +19,8 @@ extends Node
 @export var curFrame : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(GVars.SpendingRots < 0):
+		GVars.SpendingRots = 0
 	for n in GVars.Scurrent.size():
 		GVars.StimeLeft[n] -= GVars.SpendingRots
 		if(GVars.StimeLeft[n] <= 0):

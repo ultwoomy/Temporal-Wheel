@@ -3,6 +3,7 @@ var angle = 0
 var speedDivisor = 0
 var emoBuff = 1
 var emoBuffSpeed = 1
+var numOfCandles = 0.0
 @export var densityButton : Container
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
@@ -22,11 +23,11 @@ func updateDivisor():
 	if(GVars.wheelphase == 1):
 		speedDivisor = 1000
 	elif(GVars.wheelphase == 2):
-		speedDivisor = 600
+		speedDivisor = 700
 	elif(GVars.wheelphase == 3):
-		speedDivisor = 500
+		speedDivisor = 600
 	elif(GVars.wheelphase == 4):
-		speedDivisor = 450
+		speedDivisor = 500
 	elif(GVars.wheelphase == 5):
 		speedDivisor = 400
 	elif(GVars.wheelphase == 6):
@@ -49,14 +50,38 @@ func updateDivisor():
 func _process(_delta):
 	var changerot = 0.0
 	if(GVars.spin > 0):
-		changerot = (log(GVars.spin)/log(2))/speedDivisor
-		rotation += changerot * emoBuffSpeed
-		angle += changerot
+		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.RitRotBuff
+		if(GVars.RitCandlesLit[0]):
+			rotation -= changerot
+			angle -= changerot
+		else:
+			rotation += changerot
+			angle += changerot
+		if(angle < -2*PI):
+			if(GVars.RitCandlesLit[2]):
+				GVars.RitAscBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.RitAscBuff * (GVars.rotations + 500))
+			if(GVars.RitCandlesLit[3]):
+				GVars.rust += 0.1
+			if(GVars.RitCandlesLit[4]):
+				GVars.RitRotBuff += (GVars.rotations * GVars.density)/(GVars.RitRotBuff * (GVars.rotations + 1000))
+			var temp = float(angle/(2*PI))
+			GVars.rotations += temp
+			GVars.RthreshProg += temp
+			angle = fmod(angle,(2*PI))
+			GVars.spin += GVars.sucPerTick * 5
 		if(angle > 2*PI):
+			if(GVars.RitCandlesLit[2]):
+				GVars.RitAscBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.RitAscBuff * (GVars.rotations + 500))
+			if(GVars.RitCandlesLit[3]):
+				GVars.rust += 0.1
+			if(GVars.RitCandlesLit[4]):
+				GVars.RitRotBuff += (GVars.rotations * GVars.density)/(GVars.RitRotBuff * (GVars.rotations + 1000))
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
 			if(GVars.numberOfSigils[1]):
 				GVars.SpendingRots += temp
+				if(GVars.RitCandlesLit[1]):
+					GVars.SpendingRots += temp
 			GVars.RthreshProg += temp
 			angle = fmod(angle,(2*PI))
 			emit_signal("oneClick")
@@ -86,6 +111,12 @@ func _ready():
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
 	densityButton.densUp.connect(updateDivisor)
+	numOfCandles = 0.0
+	for n in GVars.RitCandlesLit.size():
+		if(GVars.RitCandlesLit[n]):
+			numOfCandles += 1
+	if(numOfCandles > 5):
+		numOfCandles = 5
 	updateDivisor()
 
 

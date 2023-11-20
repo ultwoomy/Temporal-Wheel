@@ -12,7 +12,7 @@ func _ready():
 	back.pressed.connect(self._wheel_scene)
 	forward.text = "Proceed"
 	forward.pressed.connect(self._end_sequence)
-	var dis = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\nNext Presence: " + str(GVars.getScientific(GVars.Sascbuff))
+	var dis = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\nNext Presence: " + str(GVars.getScientific(GVars.Sascbuff) + GVars.getScientific(GVars.RitAscBuff))
 	if(GVars.curSigilBuff == 4):
 		dis += "\n\nYou have worn the\nface of myraid emotion."
 	statDisplay.text = dis

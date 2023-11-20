@@ -39,7 +39,7 @@ extends Resource
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
 @export var sigilCostRotScale : float
-@export var numberOfSigils : float
+@export var numberOfSigils : Array[bool]
 @export var curSigilBuff : int
 @export_group("R1stats")
 @export var ifhell : bool
@@ -97,7 +97,7 @@ func _init():
 	sigilCostRot = 10
 	sigilCostSpinScale = 1.2
 	sigilCostRotScale = 3
-	numberOfSigils = 0
+	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
 	curSigilBuff = 0
 	ifhell = false
 	ifheaven = false

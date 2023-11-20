@@ -3,10 +3,7 @@ var dismush = preload("res://Sprites/WheelSpace/mush_ext_sheet/tile002.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# L.B: Odd how numberOfSigils does not tell us that the player needs the candle sigil.
-	# ...This actually means that if you have two non-candle sigils, this would be valid.
-	#Yu: The sigil order will never change, so if the player has 2 sigils, one will always be a candle, thus unlocking this.
-	if(GVars.numberOfSigils > 1):
+	if(GVars.numberOfSigils[1]):
 		disabled = false
 	else:
 		disabled = true

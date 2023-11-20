@@ -3,6 +3,7 @@ extends Node
 @export var button : Button
 @export var image : Sprite2D
 var ifsucc = false
+signal densUp
 func _ready():
 	button.text = str("Condense")
 	button.size = Vector2(200,100)
@@ -19,9 +20,10 @@ func _button_pressed():
 		GVars.curSucDens += GVars.sucPerTDens
 	if(GVars.curSucDens >= GVars.densTresh):
 		GVars.density += 1
+		emit_signal("densUp")
 		growDisplay.text = str(GVars.density)
 		GVars.curSucDens = 0
 		GVars.sucPerTDens *= 2
 		GVars.densTresh *= 2
 		GVars.wheelphase = int(GVars.density)
-		image.scale.x = GVars.curSucDens/GVars.densTresh*2
+	image.scale.x = GVars.curSucDens/GVars.densTresh*2

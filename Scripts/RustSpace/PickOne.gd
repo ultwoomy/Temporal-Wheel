@@ -97,19 +97,19 @@ func _augment():
 
 func dispSigils():
 	selection.show()
-	if(GVars.numberOfSigils > 1):
+	if(GVars.numberOfSigils[1]):
 		sigil02sprite.show()
 		sigil02button.show()
 	else:
 		sigil02sprite.hide()
 		sigil02button.hide()
-	if(GVars.numberOfSigils > 2):
+	if(GVars.numberOfSigils[2]):
 		sigil03sprite.show()
 		sigil03button.show()
 	else:
 		sigil03sprite.hide()
 		sigil03button.hide()
-	if(GVars.numberOfSigils > 3):
+	if(GVars.numberOfSigils[3]):
 		sigil04sprite.show()
 		sigil04button.show()
 	else:

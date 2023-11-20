@@ -26,7 +26,7 @@ func _ready():
 		packback.frame = 1
 		text.text = "We're Closed."
 		GVars._dialouge(text,0,0.04)
-		if(GVars.numberOfSigils > 0):
+		if(GVars.numberOfSigils[0]):
 			next.show()
 			next.text = "Perhaps this will\nchange your mind"
 	else:

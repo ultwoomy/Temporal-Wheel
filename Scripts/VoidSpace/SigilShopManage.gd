@@ -9,9 +9,9 @@ var stupids
 func _ready():
 	stupids = 0
 	sigilDisplay.hide()
-	text.position = Vector2(450,300)
+	text.position = Vector2(500,300)
 	button.size = Vector2(100,100)
-	button.position = Vector2(800,370)
+	button.position = Vector2(850,380)
 	reset()
 	button.pressed.connect(self._button_pressed)
 

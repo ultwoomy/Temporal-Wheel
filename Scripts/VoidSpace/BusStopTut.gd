@@ -39,8 +39,9 @@ func _go_back():
 		layersin = 0
 		sigilbut.show()
 		sigilshop.hide()
-		ritualEnter.show()
-		ritualShop.hide()
+		if(GVars.numberOfSigils[4]):
+			ritualEnter.show()
+			ritualShop.hide()
 	else :
 		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 

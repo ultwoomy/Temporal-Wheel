@@ -21,8 +21,8 @@ func _button_pressed():
 		reset()
 	else :
 		if((GVars.spin > GVars.sigilCostSpin) && (GVars.rotations > GVars.sigilCostRot)):
-			#GVars.spin -= GVars.sigilCostSpin
-			#GVars.rotations -= GVars.sigilCostRot
+			GVars.spin -= GVars.sigilCostSpin
+			GVars.rotations -= GVars.sigilCostRot
 			GVars.sigilCostSpin = pow(GVars.sigilCostSpin,GVars.sigilCostSpinScale)
 			GVars.sigilCostRot *= GVars.sigilCostRotScale
 			var curSigil = 0
@@ -36,6 +36,8 @@ func _button_pressed():
 				text.text = "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!"
 			elif(curSigil == 3):
 				text.text = "Emptiness!\nExtremely ironic name!\nFull of emoticon!"
+			elif(curSigil == 4):
+				text.text = "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!"
 			else :
 				text.text = "Use it well!"
 			GVars.numberOfSigils[curSigil] = true
@@ -107,7 +109,7 @@ func _button_pressed():
 			failbought = true
 		
 func reset():
-	if(GVars.numberOfSigils[3]):
+	if(GVars.numberOfSigils[4]):
 		text.text = "We're out lmao."
 		button.hide()
 	else :

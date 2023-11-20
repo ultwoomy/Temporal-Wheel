@@ -1,11 +1,12 @@
-extends Node
+extends Container
 @export var text : Label
 @export var button : Button
-@export var tutScreen : Container
 @export var sigilbut : Button
+@export var ritualEnter : Button
 @export var busstop : Sprite2D
 @export var goback : Button
 @export var sigilshop : Container
+@export var ritualShop : Container
 var layersin = 0
 var line = 0
 # Called when the node enters the scene tree for the first time.
@@ -13,9 +14,9 @@ func _ready():
 	sigilshop.hide()
 	if(GVars.iffirstvoid):
 		get_tree().paused = true
-		tutScreen.show()
+		show()
 	else :
-		tutScreen.hide()
+		hide()
 	text.position = Vector2(300,300)
 	text.text = "Welcome to the bus stop!"
 	button.size = Vector2(100,100)
@@ -38,6 +39,8 @@ func _go_back():
 		layersin = 0
 		sigilbut.show()
 		sigilshop.hide()
+		ritualEnter.show()
+		ritualShop.hide()
 	else :
 		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
@@ -58,7 +61,7 @@ func _button_pressed():
 		self.get_node("Bunnies").frame = 1
 		text.text = "But I need those so come to\nme every time you have enough\nto trade, yes?"
 	else:
-		tutScreen.hide()
+		hide()
 		GVars.iffirstvoid = false
 		get_tree().paused = false
 	line += 1
@@ -69,4 +72,16 @@ func opensigilshop():
 	busstop.position = Vector2(600,250)
 	layersin = 1
 	sigilbut.hide()
+	ritualEnter.hide()
+	ritualShop.hide()
 	sigilshop.show()
+	
+func openRitual():
+	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
+	busstop.scale = Vector2(6,6)
+	busstop.position = Vector2(400,230)
+	layersin = 1
+	sigilbut.hide()
+	ritualEnter.hide()
+	sigilshop.hide()
+	ritualShop.show()

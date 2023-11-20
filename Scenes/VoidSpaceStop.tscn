@@ -1,10 +1,11 @@
-[gd_scene load_steps=29 format=3 uid="uid://nc3r8b15k1bk"]
+[gd_scene load_steps=35 format=3 uid="uid://nc3r8b15k1bk"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_7lqlb"]
 [ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="1_burux"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_4s8n3"]
 [ext_resource type="Texture2D" uid="uid://bxe44cpe8n2sq" path="res://Sprites/VoidSpace/back_void/tile000.png" id="2_sapct"]
 [ext_resource type="Texture2D" uid="uid://b2p6qbiri8oc6" path="res://Sprites/VoidSpace/back_void/tile001.png" id="3_pm404"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopEnter.gd" id="4_erhsg"]
 [ext_resource type="Texture2D" uid="uid://ckqfyij8e073u" path="res://Sprites/VoidSpace/back_void/tile002.png" id="4_vh7tf"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/BusStopTut.gd" id="8_lvpo8"]
 [ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="9_75xv6"]
@@ -12,6 +13,11 @@
 [ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopManage.gd" id="10_f5fk2"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="10_v3y1n"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="12_i8vqs"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/RitualManage.gd" id="13_wqxsc"]
+[ext_resource type="Texture2D" uid="uid://bt50cnulqyp7n" path="res://Sprites/VoidSpace/ritualbunny.png" id="14_ikg7b"]
+[ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="16_af81a"]
+[ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="17_mss5q"]
+[ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="18_f5spc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -120,6 +126,12 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="RitualZone" type="Button" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_erhsg")
+
 [node name="Back" type="Button" parent="."]
 layout_mode = 0
 offset_left = -30.0
@@ -132,7 +144,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
 theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
 
-[node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen", "sigilbut", "busstop", "goback", "sigilshop")]
+[node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "sigilbut", "ritualEnter", "busstop", "goback", "sigilshop", "ritualShop")]
 process_mode = 3
 layout_mode = 0
 offset_right = 40.0
@@ -140,11 +152,12 @@ offset_bottom = 40.0
 script = ExtResource("8_lvpo8")
 text = NodePath("DialougeBox")
 button = NodePath("NextButton")
-tutScreen = NodePath(".")
 sigilbut = NodePath("../SigilZone")
+ritualEnter = NodePath("../RitualZone")
 busstop = NodePath("../BusStop")
 goback = NodePath("../Back")
 sigilshop = NodePath("../SigilShop")
+ritualShop = NodePath("../RitualShop")
 
 [node name="Mask" type="Sprite2D" parent="TutorialBox"]
 modulate = Color(1, 1, 1, 0.580392)
@@ -194,7 +207,7 @@ scale = Vector2(6.385, 6.46)
 texture = ExtResource("10_v3y1n")
 
 [node name="Diabox" type="Sprite2D" parent="SigilShop"]
-position = Vector2(660, 239)
+position = Vector2(700, 240)
 scale = Vector2(2, 2)
 texture = ExtResource("10_23qhp")
 
@@ -209,3 +222,91 @@ layout_mode = 2
 position = Vector2(231, 438)
 scale = Vector2(0.51, 0.5)
 sprite_frames = ExtResource("12_i8vqs")
+
+[node name="RitualShop" type="Container" parent="." node_paths=PackedStringArray("text")]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_wqxsc")
+text = NodePath("Sigiltext")
+
+[node name="MaskSigil" type="Sprite2D" parent="RitualShop"]
+modulate = Color(0, 0, 0, 0.690196)
+self_modulate = Color(0, 0, 0, 0.690196)
+position = Vector2(714.75, 297)
+scale = Vector2(6.385, 6.46)
+texture = ExtResource("10_v3y1n")
+
+[node name="Diabox" type="Sprite2D" parent="RitualShop"]
+position = Vector2(700, 340)
+scale = Vector2(2, 2)
+texture = ExtResource("14_ikg7b")
+
+[node name="Sigiltext" type="Label" parent="RitualShop"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+
+[node name="Ritual" type="Sprite2D" parent="RitualShop"]
+position = Vector2(720, 200)
+texture = ExtResource("16_af81a")
+
+[node name="Candle1" type="TextureButton" parent="RitualShop/Ritual"]
+offset_left = -25.0
+offset_top = -160.0
+offset_right = 25.0
+offset_bottom = -110.0
+texture_normal = ExtResource("17_mss5q")
+texture_hover = ExtResource("18_f5spc")
+
+[node name="Candle2" type="TextureButton" parent="RitualShop/Ritual"]
+offset_left = 80.0
+offset_top = -110.0
+offset_right = 130.0
+offset_bottom = -60.0
+texture_normal = ExtResource("17_mss5q")
+texture_hover = ExtResource("18_f5spc")
+
+[node name="Candle3" type="TextureButton" parent="RitualShop/Ritual"]
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 130.0
+offset_bottom = 110.0
+texture_normal = ExtResource("17_mss5q")
+texture_hover = ExtResource("18_f5spc")
+
+[node name="Candle4" type="TextureButton" parent="RitualShop/Ritual"]
+offset_left = -25.0
+offset_top = 115.0
+offset_right = 25.0
+offset_bottom = 165.0
+texture_normal = ExtResource("17_mss5q")
+texture_hover = ExtResource("18_f5spc")
+
+[node name="Candle5" type="TextureButton" parent="RitualShop/Ritual"]
+offset_left = -130.0
+offset_top = 60.0
+offset_right = -80.0
+offset_bottom = 110.0
+texture_normal = ExtResource("17_mss5q")
+texture_hover = ExtResource("18_f5spc")
+
+[node name="Candle6" type="TextureButton" parent="RitualShop/Ritual"]
+offset_left = -130.0
+offset_top = -110.0
+offset_right = -80.0
+offset_bottom = -60.0
+texture_normal = ExtResource("17_mss5q")
+texture_hover = ExtResource("18_f5spc")
+
+[connection signal="mouse_entered" from="RitualShop/Ritual/Candle1" to="RitualShop" method="_on_candle_1_mouse_entered"]
+[connection signal="pressed" from="RitualShop/Ritual/Candle1" to="RitualShop" method="_on_candle_1_pressed"]
+[connection signal="mouse_entered" from="RitualShop/Ritual/Candle2" to="RitualShop" method="_on_candle_2_mouse_entered"]
+[connection signal="pressed" from="RitualShop/Ritual/Candle2" to="RitualShop" method="_on_candle_2_pressed"]
+[connection signal="mouse_entered" from="RitualShop/Ritual/Candle3" to="RitualShop" method="_on_candle_3_mouse_entered"]
+[connection signal="pressed" from="RitualShop/Ritual/Candle3" to="RitualShop" method="_on_candle_3_pressed"]
+[connection signal="mouse_entered" from="RitualShop/Ritual/Candle4" to="RitualShop" method="_on_candle_4_mouse_entered"]
+[connection signal="pressed" from="RitualShop/Ritual/Candle4" to="RitualShop" method="_on_candle_4_pressed"]
+[connection signal="mouse_entered" from="RitualShop/Ritual/Candle5" to="RitualShop" method="_on_candle_5_mouse_entered"]
+[connection signal="pressed" from="RitualShop/Ritual/Candle5" to="RitualShop" method="_on_candle_5_pressed"]
+[connection signal="mouse_entered" from="RitualShop/Ritual/Candle6" to="RitualShop" method="_on_candle_6_mouse_entered"]
+[connection signal="pressed" from="RitualShop/Ritual/Candle6" to="RitualShop" method="_on_candle_6_pressed"]

@@ -35,6 +35,9 @@ extends Resource
 @export var SpendingRots : float
 @export var Sspinbuff : float
 @export var Sascbuff : float
+@export var RitCandlesLit : Array[bool]
+@export var RitAscBuff : float
+@export var RitRotBuff : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
@@ -91,6 +94,9 @@ func _init():
 	SpendingRots = 0
 	Sspinbuff = 1
 	Sascbuff = 1
+	RitCandlesLit = [false,false,false,false,false,false]
+	RitAscBuff = 1
+	RitRotBuff = 1
 	Aspinbuff = 1
 	curEmotionBuff = 0
 	sigilCostSpin = 300

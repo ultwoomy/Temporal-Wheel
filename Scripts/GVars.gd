@@ -35,6 +35,9 @@ extends Node
 @export var SpendingRots : float
 @export var Sspinbuff : float
 @export var Sascbuff : float
+@export var RitCandlesLit : Array[bool]
+@export var RitAscBuff : float
+@export var RitRotBuff : float
 @export var sigilCostSpin : float
 @export var sigilCostRot : float
 @export var sigilCostSpinScale : float
@@ -96,6 +99,9 @@ func save_prog():
 	loader.SpendingRots = SpendingRots
 	loader.Sspinbuff = Sspinbuff
 	loader.Sascbuff = Sascbuff
+	loader.RitCandlesLit = RitCandlesLit
+	loader.RitAscBuff = RitAscBuff
+	loader.RitRotBuff = RitRotBuff
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
 	loader.sigilCostSpin = sigilCostSpin
@@ -147,6 +153,9 @@ func resetR0Stats():
 	SpendingRots = 0
 	Sspinbuff = 1
 	Sascbuff = 1
+	RitCandlesLit = [false,false,false,false,false,false]
+	RitAscBuff = 1
+	RitRotBuff = 1
 	sigilCostSpin = 300
 	sigilCostRot = 10
 	sigilCostSpinScale = 1.3
@@ -215,6 +224,9 @@ func load_as_normal():
 	SpendingRots = loader.SpendingRots
 	Sspinbuff = loader.Sspinbuff
 	Sascbuff = loader.Sascbuff
+	RitCandlesLit = loader.RitCandlesLit
+	RitAscBuff = loader.RitAscBuff
+	RitRotBuff = loader.RitRotBuff
 	Aspinbuff = loader.Aspinbuff
 	curEmotionBuff = loader.curEmotionBuff
 	sigilCostRot = loader.sigilCostRot

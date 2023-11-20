@@ -23,7 +23,6 @@ func _button_pressed():
 		emit_signal("densUp")
 		growDisplay.text = str(GVars.density)
 		GVars.curSucDens = 0
-		GVars.sucPerTDens *= 2
-		GVars.densTresh *= 2
+		GVars.densTresh += 1
 		GVars.wheelphase = int(GVars.density)
 	image.scale.x = GVars.curSucDens/GVars.densTresh*2

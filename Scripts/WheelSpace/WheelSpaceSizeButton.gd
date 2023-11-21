@@ -28,9 +28,9 @@ func suc_loop():
 	var suc = 0.0;
 	var Ebuff = 1;
 	if(GVars.curEmotionBuff == 2):
-		Ebuff = log(GVars.size)
+		Ebuff = GVars.sizeRecord
 	if(GVars.curSigilBuff == 3):
-		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.size * Ebuff
+		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.sizeRecord * Ebuff
 	else:
 		suc = GVars.sucPerTick * GVars.Rincreasehunger * Ebuff
 	if(ifsucc):
@@ -39,6 +39,8 @@ func suc_loop():
 			GVars.curSucSize += suc
 			if(GVars.curSucSize >= GVars.sucTresh):
 				GVars.size += 1
+				if(GVars.size > GVars.sizeRecord):
+					GVars.sizeRecord = GVars.size
 				growDisplay.text = str(GVars.size)
 				GVars.curSucSize = 0
 				GVars.sucTresh *= 3

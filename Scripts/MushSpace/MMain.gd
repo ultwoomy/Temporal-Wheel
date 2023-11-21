@@ -136,7 +136,7 @@ func _harvest_shroom(val):
 		GVars.Sspinbuff += (3 * (log(GVars.SmushLevel + 1)/log(3)))/(pow(2,GVars.Sspinbuff))
 		GVars.Sxp += 75 * Ebuff
 	elif(val == 4):
-		GVars.Sascbuff += (log(GVars.SmushLevel + 1)/log(3))/(pow(2,GVars.Sascbuff))
+		GVars.Sascbuff += (log(GVars.SmushLevel + 1)/log(3))/(2 * GVars.Sascbuff)
 		GVars.Sxp += 100 * Ebuff
 	_check_xp()
 

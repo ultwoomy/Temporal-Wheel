@@ -21,6 +21,7 @@ func _ready() -> void:
 
 	create_event_manager()
 	event_manager.wheel_spun.connect(on_wheel_spun)
+	event_manager.reset_automators.connect(clear_automators)
 	create_automators()
 
 
@@ -35,7 +36,7 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff
+	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.Aspinbuff
 
 
 #func save_resources() -> void:
@@ -60,7 +61,7 @@ func create_automators() -> void:
 	# GameScenes will only create the automators it contains in its array.
 	for automator_data in automators:
 		# Check if automator already exists.
-		if (get_tree().root.get_node(automator_data.name)):
+		if (get_tree().root.get_node_or_null(automator_data.name)):
 			continue
 		
 		# If does not exist, make a new one.
@@ -86,3 +87,9 @@ func add_automator(automator: AutomatorData) -> void:
 	if automator in automators:
 		return
 	automators.append(automator)
+	
+func clear_automators() -> void:
+	for automator_data in automators:
+		if (get_tree().root.get_node_or_null(automator_data.name)):
+			get_tree().root.remove_child(get_node(automator_data.name))
+	automators.clear()

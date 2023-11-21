@@ -14,5 +14,5 @@ func _process(_delta: float) -> void:
 
 
 func changetopreasc():
-	if(GVars.numberOfSigils[3]):
+	if(GVars.numberOfSigils[2]):
 		get_tree().change_scene_to_file("res://Scenes/PreAscSpace.tscn")

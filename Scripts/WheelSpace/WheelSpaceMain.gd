@@ -48,6 +48,28 @@ func updateDivisor():
 		speedDivisor = 80
 
 func _process(_delta):
+	if(calculateOneRot()):
+		emit_signal("oneClick")
+	if(GVars.RthreshProg > GVars.Rthresh):
+		if(GVars.curEmotionBuff == 4):
+			emoBuff = log(GVars.rust) + 1
+		if(GVars.curSigilBuff == 1):
+			GVars.RthreshProg -= GVars.Rthresh
+			GVars.rust += GVars.Rperthresh * 2 * emoBuff
+			GVars.Rthresh *= GVars.Rthreshmult
+			var rus = RUST_PART.instantiate()
+			rus.get_child(0).init(GVars.Rperthresh * 2 * emoBuff)
+			self.add_child(rus)
+		else:
+			GVars.RthreshProg -= GVars.Rthresh
+			GVars.rust += GVars.Rperthresh * emoBuff
+			GVars.Rthresh *= GVars.Rthreshmult
+			var rus = RUST_PART.instantiate()
+			rus.get_child(0).init(GVars.Rperthresh)
+			self.add_child(rus)	
+	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
+
+func calculateOneRot():
 	var changerot = 0.0
 	if(GVars.spin > 0):
 		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.RitRotBuff
@@ -84,28 +106,8 @@ func _process(_delta):
 					GVars.SpendingRots += temp
 			GVars.RthreshProg += temp
 			angle = fmod(angle,(2*PI))
-			emit_signal("oneClick")
-			if(GVars.RthreshProg > GVars.Rthresh):
-				if(GVars.curEmotionBuff == 4):
-					emoBuff = log(GVars.rust) + 0.5
-				if(GVars.curSigilBuff == 1):
-					GVars.RthreshProg -= GVars.Rthresh
-					GVars.rust += GVars.Rperthresh * 2 * emoBuff
-					GVars.Rthresh *= GVars.Rthreshmult
-					var rus = RUST_PART.instantiate()
-					rus.get_child(0).init(GVars.Rperthresh * 2 * emoBuff)
-					self.add_child(rus)
-				else:
-					GVars.RthreshProg -= GVars.Rthresh
-					GVars.rust += GVars.Rperthresh * emoBuff
-					GVars.Rthresh *= GVars.Rthreshmult
-					var rus = RUST_PART.instantiate()
-					rus.get_child(0).init(GVars.Rperthresh)
-					self.add_child(rus)
-				
-	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
-
-
+			return true
+	return false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)

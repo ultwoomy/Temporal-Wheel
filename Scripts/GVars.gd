@@ -6,6 +6,7 @@ extends Node
 @export var sucPerTick : float
 @export var sucTresh : float
 @export var curSucSize : float
+@export var sizeRecord : float
 @export var density : float
 @export var sucPerTDens : float
 @export var densTresh : float
@@ -70,6 +71,7 @@ func save_prog():
 	loader.sucPerTick = sucPerTick
 	loader.sucTresh = sucTresh
 	loader.curSucSize = curSucSize
+	loader.sizeRecord = sizeRecord
 	loader.density = density
 	loader.sucPerTDens = sucPerTDens
 	loader.densTresh = densTresh
@@ -124,6 +126,7 @@ func resetR0Stats():
 	sucPerTick = 5
 	sucTresh = 15
 	curSucSize = 0
+	sizeRecord = 1
 	density = 1
 	sucPerTDens = 1
 	densTresh = 2
@@ -197,6 +200,7 @@ func load_as_normal():
 	sucPerTick = loader.sucPerTick
 	sucTresh = loader.sucTresh
 	curSucSize = loader.curSucSize
+	sizeRecord = loader.sizeRecord
 	density = loader.density
 	sucPerTDens = loader.sucPerTDens
 	densTresh = loader.densTresh

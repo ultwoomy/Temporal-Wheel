@@ -6,6 +6,7 @@ extends Resource
 @export var sucPerTick : float
 @export var sucTresh : float
 @export var curSucSize : float
+@export var sizeRecord : float
 @export var density : float
 @export var sucPerTDens : float
 @export var densTresh : float
@@ -65,6 +66,7 @@ func _init():
 	sucPerTick = 1
 	sucTresh = 10
 	curSucSize = 0
+	sizeRecord = 1
 	density = 1
 	sucPerTDens = 1
 	densTresh = 2

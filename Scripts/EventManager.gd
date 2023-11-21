@@ -19,3 +19,4 @@ class_name EventManager
 #				event_manager.wheel_spun.emit()
 
 signal wheel_spun
+signal reset_automators

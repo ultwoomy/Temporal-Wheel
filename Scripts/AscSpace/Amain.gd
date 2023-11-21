@@ -63,6 +63,9 @@ func _button_generic(switchEmotion,text):
 
 func _awaken():
 	GVars.Aspinbuff = GVars.Sascbuff + GVars.RitAscBuff
+	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
+	if (event_manager):
+		event_manager.reset_automators.emit()
 	GVars.resetR0Stats()
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 	

@@ -8,7 +8,6 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 func _ready():
 	save_loop()
-	
 	spin_update_loop()
 	
 	# L.B: Since clicking on the button adds to spin, this can be kept here.

@@ -1,18 +1,76 @@
 extends Automator
 class_name Spinbot
-
+var angle = 0.0
+var speedDivisor = 0.0
+var numOfCandles = 0.0
+var emoBuffSpeed = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Upon creation, enable the automator.
 	enabled = true
+	updateDivisor()
+	initialize()
 	_automate()
 
+func initialize():
+	if(GVars.curEmotionBuff == 1):
+		emoBuffSpeed = 1.2
+	else:
+		emoBuffSpeed = 1
+	numOfCandles = 0.0
+	for n in GVars.RitCandlesLit.size():
+		if(GVars.RitCandlesLit[n]):
+			numOfCandles += 1
+	if(numOfCandles > 5):
+		numOfCandles = 5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if (!enabled):
+		return
+	calculateOneRot()
+		
+func calculateOneRot():
+	var changerot = 0.0
+	if(GVars.spin > 0):
+		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.RitRotBuff
+		angle += changerot
+		if(angle > 2*PI):
+			var temp = float(angle/(2*PI))
+			GVars.rotations += temp
+			if(GVars.numberOfSigils[1]):
+				GVars.SpendingRots += temp
+			GVars.RthreshProg += temp
+			angle = fmod(angle,(2*PI))
 
-
+func updateDivisor():
+	GVars.wheelphase = int(GVars.density)
+	if(GVars.wheelphase == 1):
+		speedDivisor = 1000
+	elif(GVars.wheelphase == 2):
+		speedDivisor = 700
+	elif(GVars.wheelphase == 3):
+		speedDivisor = 600
+	elif(GVars.wheelphase == 4):
+		speedDivisor = 500
+	elif(GVars.wheelphase == 5):
+		speedDivisor = 400
+	elif(GVars.wheelphase == 6):
+		speedDivisor = 350
+	elif(GVars.wheelphase == 7):
+		speedDivisor = 300
+	elif(GVars.wheelphase == 8):
+		speedDivisor = 250
+	elif(GVars.wheelphase == 9):
+		speedDivisor = 200
+	elif(GVars.wheelphase == 10):
+		speedDivisor = 150
+	elif(GVars.wheelphase == 11):
+		speedDivisor = 100
+	elif(GVars.wheelphase == 12):
+		speedDivisor = 80
+	else:
+		speedDivisor = 80
 #func _init(_automator_data: AutomatorData) -> void:
 #	super._init(_automator_data)
 
@@ -26,6 +84,8 @@ func _automate() -> void:
 	if (event_manager):
 		event_manager.wheel_spun.emit()
 	await get_tree().create_timer(automator_data.cooldown).timeout
+	updateDivisor()
+	initialize()
 	_automate()
 
 

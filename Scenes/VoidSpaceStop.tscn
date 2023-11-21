@@ -15,8 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="10_v3y1n"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="12_i8vqs"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/RitualManage.gd" id="13_wqxsc"]
-[ext_resource type="Texture2D" path="res://Sprites/VoidSpace/ritualbunny.png" id="14_ikg7b"]
-[ext_resource type="Texture2D" path="res://Sprites/VoidSpace/ritual.png" id="16_af81a"]
+[ext_resource type="Texture2D" uid="uid://bt50cnulqyp7n" path="res://Sprites/VoidSpace/ritualbunny.png" id="14_ikg7b"]
+[ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="16_af81a"]
 [ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="17_mss5q"]
 [ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="18_f5spc"]
 

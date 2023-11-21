@@ -23,6 +23,9 @@ extends Node
 @export var Rincreaserust : float
 @export var RincreaserustCost : float
 @export var RincreaserustScaling : float
+@export var Rfourth : float
+@export var RfourthCost : float
+@export var RfourthScaling : float
 @export var Rthresh : float
 @export var Rperthresh : float
 @export var RthreshProg : float
@@ -88,6 +91,9 @@ func save_prog():
 	loader.Rincreaserust = Rincreaserust
 	loader.RincreaserustCost = RincreaserustCost
 	loader.RincreaserustScaling = RincreaserustScaling
+	loader.Rfourth = Rfourth
+	loader.RfourthCost = RfourthCost
+	loader.RfourthScaling = RfourthScaling
 	loader.Rthresh = Rthresh
 	loader.Rperthresh = Rperthresh
 	loader.RthreshProg = RthreshProg
@@ -143,6 +149,9 @@ func resetR0Stats():
 	Rincreaserust = 1
 	RincreaserustCost = 2
 	RincreaserustScaling = 3
+	Rfourth = 1
+	RfourthCost = 3
+	RfourthScaling = 2
 	Rthresh = 1
 	RthreshProg = 0
 	Rperthresh = 1

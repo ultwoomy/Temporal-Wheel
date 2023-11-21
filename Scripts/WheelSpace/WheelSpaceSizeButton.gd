@@ -27,8 +27,10 @@ func _button_pressed():
 func suc_loop():
 	var suc = 0.0;
 	var Ebuff = 1;
+	if(GVars.curEmotionBuff == 4):
+		Ebuff = GVars.Rfourth
 	if(GVars.curEmotionBuff == 2):
-		Ebuff = GVars.sizeRecord
+		Ebuff = GVars.sizeRecord * ((GVars.Rfourth - 1) * GVars.sucTresh)
 	if(GVars.curSigilBuff == 3):
 		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.sizeRecord * Ebuff
 	else:

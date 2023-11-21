@@ -6,12 +6,16 @@ var automators: Array[AutomatorData]
 
 var event_manager: EventManager
 
+var emoBuff : float = 1
+
 #const SAVE_AUTOMATORS_PATH: String = "user://saveautomators.tres"
 
 # Its inheriters should call this function with super._ready().
 # Otherwise, this _ready function will get replaced and will be unable to run its functions.
 func _ready() -> void:
 	run_tests()
+	if(GVars.curEmotionBuff == 4):
+		emoBuff = GVars.Rfourth
 	# L.B:
 	# When going to a new scene, this will create the event_manager and the automators (if any).
 	# Therefore, must be important to save the elements in "automators" when transitioning to different stages.
@@ -36,7 +40,8 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.Aspinbuff
+	
+	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:
@@ -91,5 +96,5 @@ func add_automator(automator: AutomatorData) -> void:
 func clear_automators() -> void:
 	for automator_data in automators:
 		if (get_tree().root.get_node_or_null(automator_data.name)):
-			get_tree().root.remove_child(get_node(automator_data.name))
+			get_tree().root.get_node_or_null(automator_data.name).queue_free()
 	automators.clear()

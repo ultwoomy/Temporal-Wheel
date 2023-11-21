@@ -124,20 +124,22 @@ func _harvest():
 			
 func _harvest_shroom(val):
 	var Ebuff = 1
+	var EexpBuff = 1
 	if(GVars.curEmotionBuff == 3):
 		Ebuff = (log(GVars.rotations))/2 + 0.5
+		EexpBuff = GVars.Rfourth
 	if(val == 1):
-		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.SmushLevel * 20
-		GVars.Sxp += 25 * Ebuff
+		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.SmushLevel * 20 * Ebuff
+		GVars.Sxp += 25 * EexpBuff
 	elif(val == 2):
-		GVars.rotations += GVars.SmushLevel * 3
-		GVars.Sxp += 50 * Ebuff
+		GVars.rotations += GVars.SmushLevel * 3 * Ebuff
+		GVars.Sxp += 50 * EexpBuff
 	elif(val == 3):
-		GVars.Sspinbuff += (3 * (log(GVars.SmushLevel + 1)/log(3)))/(pow(2,GVars.Sspinbuff))
-		GVars.Sxp += 75 * Ebuff
+		GVars.Sspinbuff += (3 * (log(GVars.SmushLevel + 1) * Ebuff/log(3)))/(pow(2,GVars.Sspinbuff))
+		GVars.Sxp += 75 * EexpBuff
 	elif(val == 4):
-		GVars.Sascbuff += (log(GVars.SmushLevel + 1)/log(3))/(2 * GVars.Sascbuff)
-		GVars.Sxp += 100 * Ebuff
+		GVars.Sascbuff += (log(GVars.SmushLevel + 1) * Ebuff/log(3))/(2 * GVars.Sascbuff)
+		GVars.Sxp += 100 * EexpBuff
 	_check_xp()
 
 func _check_xp():

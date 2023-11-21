@@ -16,9 +16,11 @@ extends Node
 @export var upgrade1 : Button
 @export var upgrade2 : Button
 @export var upgrade3 : Button
+@export var upgrade4 : Button
 @export var up1text : Label
 @export var up2text : Label
 @export var up3text : Label
+@export var up4text : Label
 @export var rDisplay : Label
 @export var sigilDisplay : AnimatedSprite2D
 @export var next : Button
@@ -50,12 +52,29 @@ func _ready():
 	upgrade2.position = Vector2(-50,-50)
 	upgrade3.size = Vector2(350,150)
 	upgrade3.position = Vector2(-50,35)
+	upgrade4.size = Vector2(350,150)
+	upgrade4.position = Vector2(15,35)
 	upgrade1.text = "Increase Spin Per Click"
 	upgrade2.text = "Increase Hunger Per Tick"
 	upgrade3.text = "Increase Rust Per Drop"
+	if(GVars.curEmotionBuff == 0):
+		upgrade4.hide()
+	elif(GVars.curEmotionBuff == 1):
+		#fear
+		upgrade4.text = "Increase Wheel Spin Rate Per\nRotation"
+	elif(GVars.curEmotionBuff == 2):
+		#cold
+		upgrade4.text = "Increase Hunger By Percentage\nOf Momentum Needed For\nNext Size"
+	elif(GVars.curEmotionBuff == 3):
+		#warmth
+		upgrade4.text = "Increase Mushroom Experience Gain"
+	elif(GVars.curEmotionBuff == 4):
+		#wrath
+		upgrade4.text = "Increase Effect Of Rust\nUpgrades"
 	up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
 	up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
 	up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
+	up4text.text = "Cost: " + str(GVars.getScientific(GVars.RfourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rfourth))
 	upgrade1.pressed.connect(self._up01)
 	upgrade2.pressed.connect(self._up02)
 	upgrade3.pressed.connect(self._up03)
@@ -155,9 +174,16 @@ func resetChoice():
 	next.hide()
 	
 func updateDisplays():
-	up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
-	up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
-	up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
+	if(GVars.curEmotionBuff == 4):
+		up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin * GVars.Rfourth))
+		up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger * GVars.Rfourth))
+		up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust * GVars.Rfourth))
+		up4text.text = "Cost: " + str(GVars.getScientific(GVars.RfourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rfourth))
+	else:
+		up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
+		up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
+		up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
+		up4text.text = "Cost: " + str(GVars.getScientific(GVars.RfourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rfourth))
 	rDisplay.text = str(GVars.getScientific(GVars.rust))
 func _up01():
 	if(GVars.rust >= GVars.RincreasespinCost):
@@ -177,6 +203,23 @@ func _up03():
 		GVars.RincreaserustCost *= GVars.RincreaserustScaling
 		GVars.Rincreaserust += 1
 		GVars.Rperthresh += 1
+		updateDisplays()
+func _up04():
+	if(GVars.rust >= GVars.RfourthCost):
+		GVars.rust -= GVars.RfourthCost
+		GVars.RfourthCost *= GVars.RfourthScaling
+		if(GVars.curEmotionBuff == 1):
+		#fear
+			GVars.Rfourth += 0.01
+		elif(GVars.curEmotionBuff == 2):
+		#cold
+			GVars.Rfourth += 1
+		elif(GVars.curEmotionBuff == 3):
+		#warmth
+			GVars.Rfourth += 0.5
+		elif(GVars.curEmotionBuff == 4):
+		#wrath
+			GVars.Rfourth += 0.2
 		updateDisplays()
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)

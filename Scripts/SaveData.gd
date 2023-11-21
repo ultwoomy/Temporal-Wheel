@@ -23,6 +23,9 @@ extends Resource
 @export var Rincreaserust : float
 @export var RincreaserustCost : float
 @export var RincreaserustScaling : float
+@export var Rfourth : float
+@export var RfourthCost : float
+@export var RfourthScaling : float
 @export var Rthresh : float
 @export var Rperthresh : float
 @export var RthreshProg : float
@@ -83,6 +86,9 @@ func _init():
 	Rincreaserust = 1
 	RincreaserustCost = 2
 	RincreaserustScaling = 3
+	Rfourth = 0
+	RfourthCost = 0
+	RfourthScaling = 0
 	Rthresh = 1
 	Rperthresh = 1
 	RthreshProg = 0

@@ -4,13 +4,16 @@ var speedDivisor = 0
 var emoBuff = 1
 var emoBuffSpeed = 1
 var numOfCandles = 0.0
+var fourthRustBuff = 1
 @export var densityButton : Container
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
 
 func update_wheel_sprite(frameno):
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2
+		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations)/log(2))
+	if(GVars.curEmotionBuff == 4):
+		fourthRustBuff = GVars.Rfourth
 	GVars.wheelphase = int(GVars.density)
 	if(frameno > 11):
 		self.get_node("Centerpiece").frame = 11
@@ -55,17 +58,17 @@ func _process(_delta):
 			emoBuff = log(GVars.rust) + 1
 		if(GVars.curSigilBuff == 1):
 			GVars.RthreshProg -= GVars.Rthresh
-			GVars.rust += GVars.Rperthresh * 2 * emoBuff
+			GVars.rust += GVars.Rperthresh * 2 * emoBuff * fourthRustBuff
 			GVars.Rthresh *= GVars.Rthreshmult
 			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.Rperthresh * 2 * emoBuff)
+			rus.get_child(0).init(GVars.Rperthresh * 2 * emoBuff * fourthRustBuff)
 			self.add_child(rus)
 		else:
 			GVars.RthreshProg -= GVars.Rthresh
-			GVars.rust += GVars.Rperthresh * emoBuff
+			GVars.rust += GVars.Rperthresh * emoBuff * fourthRustBuff
 			GVars.Rthresh *= GVars.Rthreshmult
 			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.Rperthresh)
+			rus.get_child(0).init(GVars.Rperthresh * emoBuff * fourthRustBuff)
 			self.add_child(rus)	
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
 

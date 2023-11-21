@@ -168,7 +168,7 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("10_np0fv")
 
-[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "text", "selection", "upgrademenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "upgrade1", "upgrade2", "upgrade3", "up1text", "up2text", "up3text", "rDisplay", "sigilDisplay", "next", "packback")]
+[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "text", "selection", "upgrademenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -190,9 +190,11 @@ sigil04button = NodePath("Selection/Sigil4/Sigil04Button")
 upgrade1 = NodePath("UpgradeMenu/Up1Button")
 upgrade2 = NodePath("UpgradeMenu/Up2Button")
 upgrade3 = NodePath("UpgradeMenu/Up3Button")
+upgrade4 = NodePath("UpgradeMenu/Up4Button")
 up1text = NodePath("UpgradeMenu/Up1Button/Up1Label")
 up2text = NodePath("UpgradeMenu/Up2Button/Up2Label")
 up3text = NodePath("UpgradeMenu/Up3Button/Up3Label")
+up4text = NodePath("UpgradeMenu/Up4Button/Up4Label")
 rDisplay = NodePath("UpgradeMenu/Up1Button/RustDisplay")
 sigilDisplay = NodePath("../SigilDisplay")
 next = NodePath("NextButton")
@@ -319,6 +321,21 @@ theme = SubResource("Theme_5gkbs")
 theme_override_font_sizes/font_size = 25
 
 [node name="Up3Label" type="Label" parent="Menu/UpgradeMenu/Up3Button"]
+layout_mode = 0
+offset_top = -190.0
+offset_right = 300.0
+offset_bottom = -40.0
+
+[node name="Up4Button" type="Button" parent="Menu/UpgradeMenu"]
+offset_left = -46.25
+offset_top = 18.0
+offset_right = 252.75
+offset_bottom = 317.0
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up4Label" type="Label" parent="Menu/UpgradeMenu/Up4Button"]
 layout_mode = 0
 offset_top = -190.0
 offset_right = 300.0

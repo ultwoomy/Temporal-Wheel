@@ -85,6 +85,10 @@ func _ready():
 	inspect.pressed.connect(self._inspect)
 	augment.pressed.connect(self._augment)
 	upgrade.pressed.connect(self._upgrade)
+	if(!GVars.numberOfSigils[0]):
+		inspect.hide()
+		augment.hide()
+		upgrade.hide()
 	sigil01button.pressed.connect(self._01Sigil)
 	sigil02button.pressed.connect(self._02Sigil)
 	sigil03button.pressed.connect(self._03Sigil)

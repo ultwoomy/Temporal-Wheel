@@ -4,9 +4,13 @@ var angle = 0.0
 var speedDivisor = 0.0
 var numOfCandles = 0.0
 var emoBuffSpeed = 0.0
+var shouldSpin = true
+var event_manager: EventManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Upon creation, enable the automator.
+	event_manager = get_tree().get_root().find_child("EventManager", true, false)
+	event_manager.scene_change.connect(_check_scene)
 	enabled = true
 	updateDivisor()
 	initialize()
@@ -14,7 +18,7 @@ func _ready() -> void:
 
 func initialize():
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2
+		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations)/log(2))
 	else:
 		emoBuffSpeed = 1
 	numOfCandles = 0.0
@@ -32,7 +36,7 @@ func _process(_delta: float) -> void:
 		
 func calculateOneRot():
 	var changerot = 0.0
-	if(GVars.spin > 0):
+	if(GVars.spin > 0) and (shouldSpin):
 		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.RitRotBuff
 		angle += changerot
 		if(angle > 2*PI):
@@ -80,7 +84,7 @@ func _automate() -> void:
 	if (!enabled):
 		return
 	# Find any node (preferably "EventManager") with the name "EventManager".
-	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
+	event_manager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.wheel_spun.emit()
 	await get_tree().create_timer(automator_data.cooldown).timeout
@@ -88,7 +92,15 @@ func _automate() -> void:
 	initialize()
 	_automate()
 
-
+func _check_scene(ifwheel) -> void:
+	if(ifwheel == null):
+		shouldSpin = true
+		return
+	if(ifwheel):
+		shouldSpin = false
+	else:
+		shouldSpin = true
+		
 #	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinPerClick))
 #	await get_tree().create_timer(0.1).timeout
 #	spin_update_loop()

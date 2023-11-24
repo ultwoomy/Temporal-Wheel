@@ -55,9 +55,12 @@ func on_wheel_spun() -> void:
 
 
 func create_event_manager() -> void:
-	event_manager = EventManager.new()
-	event_manager.name = "EventManager"
-	add_child(event_manager)
+	if(get_tree().root.get_node_or_null("EventManager")):
+		event_manager = get_window().get_node("EventManager")
+	else:
+		event_manager = EventManager.new()
+		event_manager.name = "EventManager"
+		get_window().add_child.call_deferred(event_manager)
 
 
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.
@@ -98,3 +101,4 @@ func clear_automators() -> void:
 		if (get_tree().root.get_node_or_null(automator_data.name)):
 			get_tree().root.get_node_or_null(automator_data.name).queue_free()
 	automators.clear()
+	

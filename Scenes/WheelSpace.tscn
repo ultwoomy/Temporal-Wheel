@@ -101,7 +101,7 @@ bg_color = Color(0.780392, 0.482353, 0.713726, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
 bg_color = Color(1, 0.278431, 0.580392, 1)
 
-[node name="Control" type="Control"]
+[node name="WheelSpace" type="Control"]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 15

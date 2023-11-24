@@ -20,3 +20,4 @@ class_name EventManager
 
 signal wheel_spun
 signal reset_automators
+signal scene_change

@@ -75,7 +75,6 @@ func create_automators() -> void:
 		# If does not exist, make a new one.
 		match(automator_data.automator):
 			AutomatorData.Automators.Spinbot:
-				print("test!")
 				var spinbot: Spinbot = Spinbot.new(automator_data)
 				spinbot.name = automator_data.name
 				# Add to the root of the tree, so that creating a new scene does not delete the automator.

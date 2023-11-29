@@ -22,7 +22,7 @@ func _ready():
 # L.B: Probably just use a signal in a different script so all things can add to spin.
 func _button_pressed():
 	# L.B: Can also use get_tree().root.get_node(...) I believe.
-	var event_manager: EventManager = owner.get_node("EventManager")
+	var event_manager: EventManager = get_window().get_node("EventManager")
 	event_manager.wheel_spun.emit()
 	
 	

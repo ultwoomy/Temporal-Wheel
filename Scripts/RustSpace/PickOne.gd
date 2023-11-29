@@ -9,10 +9,12 @@ extends Node
 @export var sigil02sprite : Sprite2D
 @export var sigil03sprite : Sprite2D
 @export var sigil04sprite : Sprite2D
+@export var sigil05sprite : Sprite2D
 @export var sigil01button : Button
 @export var sigil02button : Button
 @export var sigil03button : Button
 @export var sigil04button : Button
+@export var sigil05button : Button
 @export var upgrade1 : Button
 @export var upgrade2 : Button
 @export var upgrade3 : Button
@@ -93,6 +95,7 @@ func _ready():
 	sigil02button.pressed.connect(self._02Sigil)
 	sigil03button.pressed.connect(self._03Sigil)
 	sigil04button.pressed.connect(self._04Sigil)
+	sigil05button.pressed.connect(self._05Sigil)
 	next.pressed.connect(self._nextline)
 	selection.hide()
 	updateDisplays()
@@ -161,6 +164,8 @@ func _03Sigil():
 	manageChoice(3)
 func _04Sigil():
 	manageChoice(4)
+func _05Sigil():
+	manageChoice(5)
 	
 func resetWindowVars():
 	inmenu = false
@@ -223,7 +228,7 @@ func _up04():
 			GVars.Rfourth += 0.5
 		elif(GVars.curEmotionBuff == 4):
 		#wrath
-			GVars.Rfourth += 0.2
+			GVars.Rfourth += 0.4
 		updateDisplays()
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)
@@ -246,6 +251,9 @@ func manageChoice(n):
 		elif(n == 4):
 			text.text = "A vague memory of a face."
 			mode = 4
+		elif(n == 5):
+			text.text = "A relic from hell, the\nritual."
+			mode = 5
 	if(!ifinspect):
 		if(n == 1):
 			text.text = "Now it's a rust magnet."
@@ -259,6 +267,9 @@ func manageChoice(n):
 		elif(n == 4):
 			text.text = "I'm not entirely sure what\nyou want me to do with this."
 			mode = 16
+		elif(n == 5):
+			text.text = "This one's easy, I can just\nreplace one of these\ncandles with one of mine."
+			mode = 17
 func _nextline():
 	GVars._dialouge(text,0,0.04)
 	if(mode == 1):
@@ -317,6 +328,27 @@ func _nextline():
 		elif(line == 4):
 			text.text = ""
 			resetChoice()
+	elif(mode == 5):
+		if(line == 0):
+			text.text = "It represents a deal with\nthe devil, though the\ndevil happens to be dead."
+			packback.frame = 5
+			line += 1
+		elif(line == 1):
+			text.text = "So it's peculiar that this\nis working at all."
+			packback.frame = 2
+			line += 1
+		elif(line == 2):
+			text.text = "Maybe a new one spawned in."
+			line += 1
+		elif(line == 3):
+			text.text = "Each deal has a cost,\nbut the price seems\npretty low for you."
+			line += 1
+		elif(line == 4):
+			text.text = "You got lucky."
+			line += 1
+		elif(line == 5):
+			text.text = ""
+			resetChoice()
 	elif(mode == 13):
 		if(line == 0):
 			text.text = "You should get more rust\nfrom that wheel now."
@@ -362,11 +394,19 @@ func _nextline():
 			packback.frame = 5
 			line += 1
 		elif(line == 2):
-			text.text = "Your presence is certainly\nmore powerful."
+			text.text = "It uh, looks good on you\nI think?"
 			packback.frame = 2
 			line += 1
 		elif(line == 3):
 			resetDisplay(4)
+			resetChoice()
+	elif(mode == 17):
+		if(line == 0):
+			text.text = "Now the first candle you\nLight is free."
+			packback.frame = 4
+			line += 1
+		elif(line == 1):
+			resetDisplay(5)
 			resetChoice()
 	else:
 		text.text = ""

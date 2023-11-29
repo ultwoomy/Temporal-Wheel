@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=38 format=3 uid="uid://buu1sadwadteo"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_glr4n"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinDisplay.gd" id="14_74yq1"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensDisplay.gd" id="15_xbhsq"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRotsDisplay.gd" id="17_333p7"]
+[ext_resource type="Texture2D" uid="uid://dbxedep3ucns5" path="res://Sprites/WheelSpace/spinbot.png" id="24_50bes"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/SpinbotShow.gd" id="25_hnqpy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -300,3 +302,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
+
+[node name="Spinbot" type="Sprite2D" parent="."]
+position = Vector2(68, 536)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("24_50bes")
+script = ExtResource("25_hnqpy")

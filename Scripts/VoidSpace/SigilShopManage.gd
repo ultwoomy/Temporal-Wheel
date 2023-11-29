@@ -5,6 +5,12 @@ extends Node
 var fmat = preload("res://Scripts/FormatNo.gd")
 var failbought
 var stupids
+var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!",
+				  "A warm candle!\nLights up your entire universe!",
+				  "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!",
+				  "Emptiness!\nExtremely ironic name!\nFull of emoticon!",
+				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
+				  "Token Hell!\nAccess a wonderful new realm!\nDo you smell smoke?"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stupids = 0
@@ -28,16 +34,8 @@ func _button_pressed():
 			var curSigil = 0
 			while GVars.numberOfSigils[curSigil]:
 				curSigil += 1
-			if(curSigil == 0):
-				text.text = "The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!"
-			elif(curSigil == 1):
-				text.text = "A warm candle!\nLights up your entire universe!"
-			elif(curSigil == 2):
-				text.text = "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!"
-			elif(curSigil == 3):
-				text.text = "Emptiness!\nExtremely ironic name!\nFull of emoticon!"
-			elif(curSigil == 4):
-				text.text = "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!"
+			if(curSigil <= 5):
+				text.text = sigilText[curSigil]
 			else :
 				text.text = "Use it well!"
 			GVars.numberOfSigils[curSigil] = true

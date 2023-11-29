@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=32 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="1_nd2e7"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_rmgjs"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/RustSpace/PackSmithControl.gd" id="2_xckey"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="3_a44lj"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_gqsbv"]
-[ext_resource type="Texture2D" uid="uid://iu6arl5ie6om" path="res://Sprites/RustSpace/packsmith_disgust.png" id="4_l2nbn"]
+[ext_resource type="Texture2D" uid="uid://bm6i3qh08rmsl" path="res://Sprites/RustSpace/pack_concern.png" id="5_2lf68"]
 [ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="6_3sexc"]
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="7_op6jd"]
 [ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="8_o1iu8"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dmit8kja5co48" path="res://Sprites/Sigils/sigil02.png" id="12_i5wif"]
 [ext_resource type="Texture2D" uid="uid://bcte3ctqjjdpd" path="res://Sprites/Sigils/sigil03.png" id="13_m76yw"]
 [ext_resource type="Texture2D" uid="uid://y8g1idx3il2b" path="res://Sprites/Sigils/sigil04.png" id="14_1s67n"]
+[ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="17_2jcya"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -88,7 +89,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_khtqg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_l2nbn")
+"texture": ExtResource("5_2lf68")
 }],
 "loop": true,
 "name": &"default",
@@ -168,7 +169,7 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("10_np0fv")
 
-[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "text", "selection", "upgrademenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
+[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "text", "selection", "upgrademenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil05sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "sigil05button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -183,10 +184,12 @@ sigil01sprite = NodePath("Selection/Sigil1")
 sigil02sprite = NodePath("Selection/Sigil2")
 sigil03sprite = NodePath("Selection/Sigil3")
 sigil04sprite = NodePath("Selection/Sigil4")
+sigil05sprite = NodePath("Selection/Sigil5")
 sigil01button = NodePath("Selection/Sigil1/Sigil01Button")
 sigil02button = NodePath("Selection/Sigil2/Sigil02Button")
 sigil03button = NodePath("Selection/Sigil3/Sigil03Button")
 sigil04button = NodePath("Selection/Sigil4/Sigil04Button")
+sigil05button = NodePath("Selection/Sigil5/Sigil05Button")
 upgrade1 = NodePath("UpgradeMenu/Up1Button")
 upgrade2 = NodePath("UpgradeMenu/Up2Button")
 upgrade3 = NodePath("UpgradeMenu/Up3Button")
@@ -257,6 +260,17 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("14_1s67n")
 
 [node name="Sigil04Button" type="Button" parent="Menu/Selection/Sigil4"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="Sigil5" type="Sprite2D" parent="Menu/Selection"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("17_2jcya")
+
+[node name="Sigil05Button" type="Button" parent="Menu/Selection/Sigil5"]
 modulate = Color(1, 1, 1, 0.0392157)
 offset_left = -150.0
 offset_top = -150.0

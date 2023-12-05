@@ -1,0 +1,19 @@
+{
+	"this_is_a_key_that_wont_be_used_but_is_for_show":"this_is_a_value_that_also_wont_be_used_but_is_for_show",
+	"please_delete_these_two_examples_later":"or_waste_precious_space",
+	"wheelphases": {
+		"1":1000,
+		"2":700,
+		"3":600,
+		"4":500,
+		"5":400,
+		"6":350,
+		"7":300,
+		"8":250,
+		"9":200,
+		"10":150,
+		"11":100,
+		"12":80,
+		"other":80,
+	},
+}

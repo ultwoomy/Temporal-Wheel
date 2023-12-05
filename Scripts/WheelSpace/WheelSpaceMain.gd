@@ -45,10 +45,8 @@ func updateDivisor():
 					# You can do it another way as well:
 					#	- speedDivisor = wheelphase_json.wheelphases[str(count)]
 					speedDivisor = wheelphase_json.wheelphases.values()[wheelphase_index]
-				print("GVars.wheelphase = ", GVars.wheelphase, " | count = ", count, " | speedDivisor = ", speedDivisor)
 	else:
 		speedDivisor = wheelphase_json.wheelphases.other
-		print("GVars.wheelphase = ", GVars.wheelphase, " | speedDivisor = ", speedDivisor)
 	
 	###
 	# L.B: Old zombie code. Delete this and this comment after once you understand how my changes work.

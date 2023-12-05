@@ -23,32 +23,60 @@ func update_wheel_sprite(frameno):
 func updateDivisor():
 	GVars.wheelphase = int(GVars.density)
 	update_wheel_sprite(GVars.wheelphase-1)
-	if(GVars.wheelphase == 1):
-		speedDivisor = 1000
-	elif(GVars.wheelphase == 2):
-		speedDivisor = 700
-	elif(GVars.wheelphase == 3):
-		speedDivisor = 600
-	elif(GVars.wheelphase == 4):
-		speedDivisor = 500
-	elif(GVars.wheelphase == 5):
-		speedDivisor = 400
-	elif(GVars.wheelphase == 6):
-		speedDivisor = 350
-	elif(GVars.wheelphase == 7):
-		speedDivisor = 300
-	elif(GVars.wheelphase == 8):
-		speedDivisor = 250
-	elif(GVars.wheelphase == 9):
-		speedDivisor = 200
-	elif(GVars.wheelphase == 10):
-		speedDivisor = 150
-	elif(GVars.wheelphase == 11):
-		speedDivisor = 100
-	elif(GVars.wheelphase == 12):
-		speedDivisor = 80
+	
+	
+	# L.B: Utilizes my JSONReader class to load in a .json file intentionally written for this specific function.
+	var wheelphase_json: Dictionary = JSONReader.new().load_json_file("res://JSON/WheelPhases.json")
+	# (!) Hard-coded minimum and maximum for the range to match your previous code.
+	var wheelphaseRange: Array = range(1, 12) # Note: range takes steps and stops before the second arg; first arg is inclusive, second arg is exclusive.
+	if (GVars.wheelphase in wheelphaseRange):
+		for count in wheelphaseRange: 
+			if (GVars.wheelphase == count):
+				# Use "count" as a way of finding a key in the JSON object "wheelphases".
+				#	- Since count is an integer and a key has to be a string, change count as an integer into a string.
+				#	- "wheelphases" is a JSON object that contains { "1":1000, "2":700, . . ., "other":80 }
+				var wheelphase_index: int = wheelphase_json.wheelphases.keys().find(str(count))
+				
+				# If the string of the integer "count" is not a key in "wheelphases", then wheelphase_index will be -1 and thus not in range.
+				if (wheelphase_index == -1):
+					speedDivisor = wheelphase_json.wheelphases.other
+				else:
+					# If the string of the integer "count" is a key within "wheelphases", then you can find that key and its value at index "wheelphase_index".
+					# You can do it another way as well:
+					#	- speedDivisor = wheelphase_json.wheelphases[str(count)]
+					speedDivisor = wheelphase_json.wheelphases.values()[wheelphase_index]
 	else:
-		speedDivisor = 80
+		speedDivisor = wheelphase_json.wheelphases.other
+	
+	###
+	# L.B: Old zombie code. Delete this and this comment after once you understand how my changes work.
+	###
+#	if(GVars.wheelphase == 1):
+#		speedDivisor = 1000
+#	elif(GVars.wheelphase == 2):
+#		speedDivisor = 700
+#	elif(GVars.wheelphase == 3):
+#		speedDivisor = 600
+#	elif(GVars.wheelphase == 4):
+#		speedDivisor = 500
+#	elif(GVars.wheelphase == 5):
+#		speedDivisor = 400
+#	elif(GVars.wheelphase == 6):
+#		speedDivisor = 350
+#	elif(GVars.wheelphase == 7):
+#		speedDivisor = 300
+#	elif(GVars.wheelphase == 8):
+#		speedDivisor = 250
+#	elif(GVars.wheelphase == 9):
+#		speedDivisor = 200
+#	elif(GVars.wheelphase == 10):
+#		speedDivisor = 150
+#	elif(GVars.wheelphase == 11):
+#		speedDivisor = 100
+#	elif(GVars.wheelphase == 12):
+#		speedDivisor = 80
+#	else:
+#		speedDivisor = 80
 
 func _process(_delta):
 	if(calculateOneRot()):
@@ -111,6 +139,8 @@ func calculateOneRot():
 			angle = fmod(angle,(2*PI))
 			return true
 	return false
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)

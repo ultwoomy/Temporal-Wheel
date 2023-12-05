@@ -94,7 +94,8 @@ func add_automator(automator: AutomatorData) -> void:
 	if automator in automators:
 		return
 	automators.append(automator)
-	
+
+
 func clear_automators() -> void:
 	for automator_data in automators:
 		if (get_tree().root.get_node_or_null(automator_data.name)):

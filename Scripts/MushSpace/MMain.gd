@@ -2,6 +2,7 @@ extends Node
 @export var left : Button
 @export var right : Button
 @export var plant : Button
+@export var remove : Button
 @export var plot1 : AnimatedSprite2D
 @export var plot2 : AnimatedSprite2D
 @export var plot3 : AnimatedSprite2D
@@ -36,6 +37,7 @@ func _ready():
 	right.pressed.connect(self._right)
 	plant.pressed.connect(self._plant)
 	harvest.pressed.connect(self._harvest)
+	remove.pressed.connect(self._remove)
 
 func _left():
 	if(curFrame == 0):
@@ -138,6 +140,12 @@ func _harvest_shroom(val):
 		GVars.Sascbuff += (log(GVars.SmushLevel + 1) * Ebuff/log(3))/(2 * GVars.Sascbuff)
 		GVars.Sxp += 100 * EexpBuff
 	_check_xp()
+
+func _remove():
+	for n in GVars.Scurrent.size():
+		if(GVars.Scurrent[n] != 0):
+			GVars.Scurrent[n] = 0
+			GVars.StimeLeft[n] = 0
 
 func _check_xp():
 	while(GVars.Sxp >= GVars.Sxpthresh):

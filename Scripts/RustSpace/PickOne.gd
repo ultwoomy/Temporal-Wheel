@@ -229,13 +229,13 @@ func _up04():
 			GVars.Rfourth += 0.03
 		elif(GVars.curEmotionBuff == 2):
 		#cold
-			GVars.Rfourth += 0.01
+			GVars.Rfourth += 0.02
 		elif(GVars.curEmotionBuff == 3):
 		#warmth
-			GVars.Rfourth += 0.5
+			GVars.Rfourth *= 1.5
 		elif(GVars.curEmotionBuff == 4):
 		#wrath
-			GVars.Rfourth += 0.4
+			GVars.Rfourth *= 1.2
 		updateDisplays()
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)

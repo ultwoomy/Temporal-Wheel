@@ -59,7 +59,6 @@ func _process(_delta):
 	if(GVars.RthreshProg > GVars.Rthresh):
 		if(GVars.curEmotionBuff == 4):
 			emoBuff = log(GVars.rust) + 1
-			print(str(emoBuff))
 		if(GVars.curSigilBuff == 1):
 			GVars.RthreshProg -= GVars.Rthresh
 			GVars.rust += GVars.Rperthresh * 2 * emoBuff * fourthRustBuff

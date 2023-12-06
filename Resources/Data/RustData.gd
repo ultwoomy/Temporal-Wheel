@@ -1,7 +1,6 @@
 extends Resource
 class_name RustData
 
-
 @export var rust : float
 @export var increaseSpin : float
 @export var increaseSpinCost : float

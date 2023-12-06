@@ -31,7 +31,7 @@ func suc_loop():
 		Ebuff = GVars.rustData.fourth
 	if(GVars.curEmotionBuff == 2):
 		Ebuff = GVars.sizeRecord * ((GVars.rustData.fourth - 1) * GVars.sucTresh)
-	if(GVars.curSigilBuff == 3):
+	if(GVars.sigilData.curSigilBuff == 3):
 		suc = GVars.sucPerTick * GVars.rustData.increaseHunger * GVars.sizeRecord * Ebuff
 	else:
 		suc = GVars.sucPerTick * GVars.rustData.increaseHunger * Ebuff

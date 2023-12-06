@@ -22,8 +22,8 @@ func initialize():
 	else:
 		emoBuffSpeed = 1
 	numOfCandles = 0.0
-	for n in GVars.RitCandlesLit.size():
-		if(GVars.RitCandlesLit[n]):
+	for n in GVars.ritualData.candlesLit.size():
+		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
 	if(numOfCandles > 5):
 		numOfCandles = 5
@@ -37,13 +37,13 @@ func _process(_delta: float) -> void:
 func calculateOneRot():
 	var changerot = 0.0
 	if(GVars.spin > 0) and (shouldSpin):
-		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.RitRotBuff
+		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		angle += changerot
 		if(angle > 2*PI):
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
-			if(GVars.numberOfSigils[1]):
-				GVars.SpendingRots += temp
+			if(GVars.sigilData.numberOfSigils[1]):
+				GVars.mushroomData.pendingRots += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 

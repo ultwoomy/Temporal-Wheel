@@ -87,7 +87,7 @@ func _ready():
 	inspect.pressed.connect(self._inspect)
 	augment.pressed.connect(self._augment)
 	upgrade.pressed.connect(self._upgrade)
-	if(!GVars.numberOfSigils[0]):
+	if(!GVars.sigilData.numberOfSigils[0]):
 		inspect.hide()
 		augment.hide()
 		upgrade.hide()
@@ -123,19 +123,19 @@ func _augment():
 
 func dispSigils():
 	selection.show()
-	if(GVars.numberOfSigils[1]):
+	if(GVars.sigilData.numberOfSigils[1]):
 		sigil02sprite.show()
 		sigil02button.show()
 	else:
 		sigil02sprite.hide()
 		sigil02button.hide()
-	if(GVars.numberOfSigils[2]):
+	if(GVars.sigilData.numberOfSigils[2]):
 		sigil03sprite.show()
 		sigil03button.show()
 	else:
 		sigil03sprite.hide()
 		sigil03button.hide()
-	if(GVars.numberOfSigils[3]):
+	if(GVars.sigilData.numberOfSigils[3]):
 		sigil04sprite.show()
 		sigil04button.show()
 	else:
@@ -411,9 +411,11 @@ func _nextline():
 	else:
 		text.text = ""
 		resetChoice()
-func resetDisplay(n):
-	GVars.curSigilBuff = n
-	sigilDisplay.frame = GVars.curSigilBuff - 1
+
+
+func resetDisplay(n: int):
+	GVars.sigilData.curSigilBuff = n
+	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
 	sigilDisplay.show()
 	
 

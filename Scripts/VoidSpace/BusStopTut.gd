@@ -39,7 +39,7 @@ func _go_back():
 		layersin = 0
 		sigilbut.show()
 		sigilshop.hide()
-		if(GVars.numberOfSigils[4]):
+		if(GVars.sigilData.numberOfSigils[4]):
 			ritualEnter.show()
 			ritualShop.hide()
 	else :

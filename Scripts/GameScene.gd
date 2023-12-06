@@ -41,7 +41,7 @@ func run_tests() -> void:
 
 func on_wheel_spun() -> void:
 	
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.Sspinbuff * GVars.Aspinbuff * emoBuff
+	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:

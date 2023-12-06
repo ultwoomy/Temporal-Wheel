@@ -71,7 +71,7 @@ func _plant():
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] == 0):
 			GVars.mushroomData.current[n] = curFrame + 1
-			if(GVars.curSigilBuff == 2):
+			if(GVars.sigilData.curSigilBuff == 2):
 				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 10 + GVars.mushroomData.level * 8
 			else:
 				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 15 + GVars.mushroomData.level * 10
@@ -145,10 +145,11 @@ func _harvest_shroom(val):
 	_check_xp()
 
 func _remove():
-	for n in GVars.Scurrent.size():
-		if(GVars.Scurrent[n] != 0):
-			GVars.Scurrent[n] = 0
-			GVars.StimeLeft[n] = 0
+	for n in GVars.mushroomData.current.size():
+		if(GVars.mushroomData.current[n] != 0):
+			GVars.mushroomData.current[n] = 0
+			GVars.mushroomData.timeLeft[n] = 0
+	_update_sprites()
 
 func _check_xp():
 	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):

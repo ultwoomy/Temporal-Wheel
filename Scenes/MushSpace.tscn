@@ -282,6 +282,7 @@ offset_bottom = 545.0
 text = "Harvest"
 
 [node name="Delete" type="Button" parent="."]
+layout_mode = 0
 offset_left = 145.0
 offset_top = 550.0
 offset_right = 245.0

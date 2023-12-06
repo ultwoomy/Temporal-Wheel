@@ -142,7 +142,7 @@ func dispSigils():
 	else:
 		sigil04sprite.hide()
 		sigil04button.hide()
-	if(GVars.numberOfSigils[4]):
+	if(GVars.sigilData.numberOfSigils[4]):
 		sigil05sprite.show()
 		sigil05button.show()
 	else:

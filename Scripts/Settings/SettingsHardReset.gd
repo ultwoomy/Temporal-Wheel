@@ -14,6 +14,7 @@ func _ready():
 func _button_pressed():
 	presses += 1.0
 	if(presses > 9):
+		GVars.create_data()
 		GVars.resetR0Stats()
 		GVars.resetR1Stats()
 		GVars.resetR2Stats()

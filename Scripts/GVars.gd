@@ -14,15 +14,10 @@ extends Node
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
-
 @export var rustData : RustData
-
 @export var mushroomData : MushroomData
-
 @export var ritualData : RitualData
-
 @export var sigilData : SigilData
-
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -36,11 +31,11 @@ var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
-#	create_data() # L.B: Needed for reset.
-#	resetR0Stats()
-#	resetR1Stats()
-#	resetPermStats()
-#	save_prog()
+	#create_data() # L.B: Needed for reset.
+	#resetR0Stats()
+	#resetR1Stats()
+	#resetPermStats()
+	#save_prog()
 	load_as_normal()
 
 func create_data():
@@ -69,18 +64,12 @@ func save_prog():
 	loader.curSucDens = curSucDens
 	loader.wheelphase = wheelphase
 	loader.rotations = rotations
-	
 	loader.rustData = rustData
-	
 	loader.mushroomData = mushroomData
-	
 	loader.ritualData = ritualData
-	
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
-	
 	loader.sigilData = sigilData
-	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
@@ -156,7 +145,7 @@ func load_as_normal():
 	curSucDens = loader.curSucDens
 	wheelphase = loader.wheelphase
 	rotations = loader.rotations
-  rustData = loader.rustData
+	rustData = loader.rustData
 	mushroomData = loader.mushroomData
 	ritualData = loader.ritualData
 	Aspinbuff = loader.Aspinbuff

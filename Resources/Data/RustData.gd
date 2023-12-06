@@ -35,6 +35,6 @@ func resetData() -> void:
 	fourthCost = 3
 	fourthScaling = 2
 	thresh = 1
-	perThresh = 0
+	perThresh = 1
 	threshProgress = 1
 	threshMult = 1.5

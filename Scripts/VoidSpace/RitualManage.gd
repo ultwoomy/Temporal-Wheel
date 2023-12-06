@@ -22,6 +22,8 @@ func setIdleText():
 	for n in GVars.RitCandlesLit.size():
 		if(GVars.RitCandlesLit[n]):
 			numOfCandles += 1
+	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
+		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5
 	effectsDesc[0] = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (numOfCandles * 0.2))

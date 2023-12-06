@@ -141,6 +141,12 @@ func dispSigils():
 	else:
 		sigil04sprite.hide()
 		sigil04button.hide()
+	if(GVars.numberOfSigils[4]):
+		sigil05sprite.show()
+		sigil05button.show()
+	else:
+		sigil05sprite.hide()
+		sigil05button.hide()
 	upgrademenu.hide()
 	resetWindowVars()
 

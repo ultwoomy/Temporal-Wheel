@@ -47,36 +47,6 @@ func updateDivisor():
 					speedDivisor = wheelphase_json.wheelphases.values()[wheelphase_index]
 	else:
 		speedDivisor = wheelphase_json.wheelphases.other
-	
-	###
-	# L.B: Old zombie code. Delete this and this comment after once you understand how my changes work.
-	###
-#	if(GVars.wheelphase == 1):
-#		speedDivisor = 1000
-#	elif(GVars.wheelphase == 2):
-#		speedDivisor = 700
-#	elif(GVars.wheelphase == 3):
-#		speedDivisor = 600
-#	elif(GVars.wheelphase == 4):
-#		speedDivisor = 500
-#	elif(GVars.wheelphase == 5):
-#		speedDivisor = 400
-#	elif(GVars.wheelphase == 6):
-#		speedDivisor = 350
-#	elif(GVars.wheelphase == 7):
-#		speedDivisor = 300
-#	elif(GVars.wheelphase == 8):
-#		speedDivisor = 250
-#	elif(GVars.wheelphase == 9):
-#		speedDivisor = 200
-#	elif(GVars.wheelphase == 10):
-#		speedDivisor = 150
-#	elif(GVars.wheelphase == 11):
-#		speedDivisor = 100
-#	elif(GVars.wheelphase == 12):
-#		speedDivisor = 80
-#	else:
-#		speedDivisor = 80
 
 func _process(_delta):
 	if(calculateOneRot()):
@@ -150,6 +120,8 @@ func _ready():
 	for n in GVars.RitCandlesLit.size():
 		if(GVars.RitCandlesLit[n]):
 			numOfCandles += 1
+	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
+		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5
 	updateDivisor()

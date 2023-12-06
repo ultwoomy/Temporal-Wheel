@@ -3,6 +3,7 @@ extends Node
 @export var spin : float
 @export var spinPerClick : float
 @export var size : float
+@export var sizeToggle : bool
 @export var sucPerTick : float
 @export var sucTresh : float
 @export var curSucSize : float
@@ -71,6 +72,7 @@ func save_prog():
 	loader.spin = spin
 	loader.spinPerClick = spinPerClick
 	loader.size = size
+	loader.sizeToggle = sizeToggle
 	loader.sucPerTick = sucPerTick
 	loader.sucTresh = sucTresh
 	loader.curSucSize = curSucSize
@@ -129,6 +131,7 @@ func resetR0Stats():
 	spin = 0
 	spinPerClick = 1
 	size = 1
+	sizeToggle = false
 	sucPerTick = 5
 	sucTresh = 15
 	curSucSize = 0

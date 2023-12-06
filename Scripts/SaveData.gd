@@ -3,6 +3,7 @@ extends Resource
 @export var spin : float
 @export var spinPerClick : float
 @export var size : float
+@export var sizeToggle : float
 @export var sucPerTick : float
 @export var sucTresh : float
 @export var curSucSize : float
@@ -66,6 +67,7 @@ func _init():
 	spin = 0
 	spinPerClick = 1
 	size = 1
+	sizeToggle = false
 	sucPerTick = 1
 	sucTresh = 10
 	curSucSize = 0

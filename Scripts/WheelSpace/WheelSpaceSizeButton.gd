@@ -7,6 +7,8 @@ var ifsucc = false
 func _ready():
 	#Yu: Every time one rotation finishes, succ will trigger once. Changed from once per second.
 	#    Threshold and threshold multiplier for size reduced accordingly
+	if(GVars.sizeToggle):
+		ifsucc = true
 	spinbody.oneClick.connect(suc_loop)
 	button.text = str("Toggle Grow")
 	button.size = Vector2(200,100)
@@ -14,13 +16,19 @@ func _ready():
 	growDisplay.text = str(GVars.size)
 	button.pressed.connect(self._button_pressed)
 	image.scale.x = GVars.curSucSize/GVars.sucTresh*2
+	if(ifsucc):
+		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
+	else :
+		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 
 func _button_pressed():
 	if(ifsucc):
 		ifsucc = false
+		GVars.sizeToggle = false
 		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 	else :
 		ifsucc = true
+		GVars.sizeToggle = true
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 	GVars.save_prog()
 	

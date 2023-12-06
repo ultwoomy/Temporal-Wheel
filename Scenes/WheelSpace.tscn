@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=41 format=3 uid="uid://buu1sadwadteo"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_glr4n"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
@@ -25,6 +25,9 @@
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRotsDisplay.gd" id="17_333p7"]
 [ext_resource type="Texture2D" uid="uid://dbxedep3ucns5" path="res://Sprites/WheelSpace/spinbot.png" id="24_50bes"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/SpinbotShow.gd" id="25_hnqpy"]
+[ext_resource type="Texture2D" uid="uid://dbqifpea6l5v3" path="res://Sprites/WheelSpace/settings buttons/tile000.png" id="26_vcmby"]
+[ext_resource type="Texture2D" uid="uid://da7ojbspruc6b" path="res://Sprites/WheelSpace/settings buttons/tile001.png" id="27_t10mo"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/SettingsTravel.gd" id="28_ob0gv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -150,15 +153,15 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("densityButton")]
+[node name="Wheel" type="CharacterBody2D" parent="." node_paths=PackedStringArray("densityButton")]
 position = Vector2(500, 300)
 script = ExtResource("4_3lf5g")
 densityButton = NodePath("../DensButton")
 
-[node name="Centerpiece" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="Centerpiece" type="AnimatedSprite2D" parent="Wheel"]
 sprite_frames = ExtResource("5_eh2pp")
 
-[node name="PreAscTransfer" type="Button" parent="CharacterBody2D"]
+[node name="PreAscTransfer" type="Button" parent="Wheel"]
 self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -183,7 +186,7 @@ script = ExtResource("6_86y4n")
 growDisplay = NodePath("GrowDisplay")
 button = NodePath("GrowToggle")
 image = NodePath("GrowRectDisp")
-spinbody = NodePath("../CharacterBody2D")
+spinbody = NodePath("../Wheel")
 
 [node name="GrowRectDisp" type="Sprite2D" parent="GrowButton"]
 scale = Vector2(2, 1)
@@ -262,6 +265,26 @@ button = NodePath("TravelBut")
 layout_mode = 2
 text = "Travel"
 
+[node name="Spinbot" type="Sprite2D" parent="."]
+position = Vector2(68, 536)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("24_50bes")
+script = ExtResource("25_hnqpy")
+
+[node name="Settings" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 910.0
+offset_top = 20.0
+offset_right = 1209.0
+offset_bottom = 319.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("26_vcmby")
+texture_pressed = ExtResource("27_t10mo")
+texture_hover = ExtResource("27_t10mo")
+texture_disabled = ExtResource("26_vcmby")
+texture_focused = ExtResource("26_vcmby")
+script = ExtResource("28_ob0gv")
+
 [node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
 process_mode = 3
 layout_mode = 0
@@ -302,9 +325,3 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
-
-[node name="Spinbot" type="Sprite2D" parent="."]
-position = Vector2(68, 536)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("24_50bes")
-script = ExtResource("25_hnqpy")

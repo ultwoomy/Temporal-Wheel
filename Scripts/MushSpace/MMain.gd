@@ -19,13 +19,10 @@ extends Node
 @export var curFrame : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var sigbuf = 1
-	if(GVars.curSigilBuff == 2):
-		sigbuf = 2
 	if(GVars.SpendingRots < 0):
 		GVars.SpendingRots = 0
 	for n in GVars.Scurrent.size():
-		GVars.StimeLeft[n] -= GVars.SpendingRots * sigbuf
+		GVars.StimeLeft[n] -= GVars.SpendingRots
 		if(GVars.StimeLeft[n] <= 0):
 			GVars.StimeLeft[n] = 0
 	_update_sprites()

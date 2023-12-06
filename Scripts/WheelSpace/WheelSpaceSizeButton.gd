@@ -34,15 +34,17 @@ func _button_pressed():
 	
 func suc_loop():
 	var suc = 0.0;
-	var Ebuff = 1;
+	var Ebuff = 0;
+	var rustUpBuff = GVars.Rincreasehunger
 	if(GVars.curEmotionBuff == 4):
-		Ebuff = GVars.Rfourth
+		rustUpBuff = rustUpBuff * GVars.Rfourth
 	if(GVars.curEmotionBuff == 2):
-		Ebuff = GVars.sizeRecord * ((GVars.Rfourth - 1) * GVars.sucTresh)
+		Ebuff = GVars.Rfourth * GVars.sucTresh
 	if(GVars.curSigilBuff == 3):
-		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.sizeRecord * Ebuff
+		suc = GVars.sucPerTick * rustUpBuff * GVars.sizeRecord + Ebuff
 	else:
-		suc = GVars.sucPerTick * GVars.Rincreasehunger * Ebuff
+		suc = GVars.sucPerTick * rustUpBuff + Ebuff
+	print(str(suc))
 	if(ifsucc):
 		if(GVars.spin >= suc):
 			GVars.spin -= suc

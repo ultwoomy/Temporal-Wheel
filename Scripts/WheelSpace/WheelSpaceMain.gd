@@ -5,14 +5,16 @@ var emoBuff = 1
 var emoBuffSpeed = 1
 var numOfCandles = 0.0
 var fourthRustBuff = 1
+var sigaugbuf = 1
 @export var densityButton : Container
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
 
 func update_wheel_sprite(frameno):
+	if(GVars.curSigilBuff == 2):
+		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
-		print(emoBuffSpeed)
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.Rfourth
 	GVars.wheelphase = int(GVars.density)
@@ -52,6 +54,8 @@ func updateDivisor():
 func _process(_delta):
 	if(calculateOneRot()):
 		emit_signal("oneClick")
+		if(GVars.curEmotionBuff == 1):
+			emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
 	if(GVars.RthreshProg > GVars.Rthresh):
 		if(GVars.curEmotionBuff == 4):
 			emoBuff = log(GVars.rust) + 1
@@ -104,9 +108,9 @@ func calculateOneRot():
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
 			if(GVars.numberOfSigils[1]):
-				GVars.SpendingRots += temp
+				GVars.SpendingRots += temp * sigaugbuf
 				if(GVars.RitCandlesLit[1]):
-					GVars.SpendingRots += temp
+					GVars.SpendingRots += temp * sigaugbuf
 			GVars.RthreshProg += temp
 			angle = fmod(angle,(2*PI))
 			return true

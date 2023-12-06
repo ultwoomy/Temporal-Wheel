@@ -80,6 +80,7 @@ func _ready():
 	upgrade1.pressed.connect(self._up01)
 	upgrade2.pressed.connect(self._up02)
 	upgrade3.pressed.connect(self._up03)
+	upgrade4.pressed.connect(self._up04)
 	next.size = Vector2(100,100)
 	next.position = Vector2(390,420)
 	next.text = "Next"
@@ -225,10 +226,10 @@ func _up04():
 		GVars.RfourthCost *= GVars.RfourthScaling
 		if(GVars.curEmotionBuff == 1):
 		#fear
-			GVars.Rfourth += 0.01
+			GVars.Rfourth += 0.03
 		elif(GVars.curEmotionBuff == 2):
 		#cold
-			GVars.Rfourth += 1
+			GVars.Rfourth += 0.01
 		elif(GVars.curEmotionBuff == 3):
 		#warmth
 			GVars.Rfourth += 0.5

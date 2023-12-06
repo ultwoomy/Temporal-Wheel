@@ -232,6 +232,9 @@ func load_as_normal():
 	Rincreaserust = loader.Rincreaserust
 	RincreaserustCost = loader.RincreaserustCost
 	RincreaserustScaling = loader.RincreaserustScaling
+	Rfourth = loader.Rfourth
+	RfourthCost = loader.RfourthCost
+	RfourthScaling = loader.RfourthScaling
 	Rthresh = loader.Rthresh
 	Rperthresh = loader.Rperthresh
 	RthreshProg = loader.RthreshProg

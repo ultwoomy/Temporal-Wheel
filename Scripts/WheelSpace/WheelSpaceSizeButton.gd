@@ -28,13 +28,13 @@ func suc_loop():
 	var suc = 0.0;
 	var Ebuff = 1;
 	if(GVars.curEmotionBuff == 4):
-		Ebuff = GVars.Rfourth
+		Ebuff = GVars.rustData.fourth
 	if(GVars.curEmotionBuff == 2):
-		Ebuff = GVars.sizeRecord * ((GVars.Rfourth - 1) * GVars.sucTresh)
+		Ebuff = GVars.sizeRecord * ((GVars.rustData.fourth - 1) * GVars.sucTresh)
 	if(GVars.curSigilBuff == 3):
-		suc = GVars.sucPerTick * GVars.Rincreasehunger * GVars.sizeRecord * Ebuff
+		suc = GVars.sucPerTick * GVars.rustData.increaseHunger * GVars.sizeRecord * Ebuff
 	else:
-		suc = GVars.sucPerTick * GVars.Rincreasehunger * Ebuff
+		suc = GVars.sucPerTick * GVars.rustData.increaseHunger * Ebuff
 	if(ifsucc):
 		if(GVars.spin >= suc):
 			GVars.spin -= suc

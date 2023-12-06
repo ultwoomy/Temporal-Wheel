@@ -37,7 +37,7 @@ var mode = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rDisplay.position = Vector2(-190,0)
-	rDisplay.text = str(GVars.getScientific(GVars.rust))
+	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
 	inspect.size = Vector2(400,50)
 	inspect.position = Vector2(100,100)
 	augment.size = Vector2(400,50)
@@ -73,10 +73,10 @@ func _ready():
 	elif(GVars.curEmotionBuff == 4):
 		#wrath
 		upgrade4.text = "Increase Effect Of Rust\nUpgrades"
-	up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
-	up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
-	up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
-	up4text.text = "Cost: " + str(GVars.getScientific(GVars.RfourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rfourth))
+	up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
+	up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
+	up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
+	up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
 	upgrade1.pressed.connect(self._up01)
 	upgrade2.pressed.connect(self._up02)
 	upgrade3.pressed.connect(self._up03)
@@ -184,51 +184,51 @@ func resetChoice():
 	
 func updateDisplays():
 	if(GVars.curEmotionBuff == 4):
-		up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin * GVars.Rfourth))
-		up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger * GVars.Rfourth))
-		up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust * GVars.Rfourth))
-		up4text.text = "Cost: " + str(GVars.getScientific(GVars.RfourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rfourth))
+		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
+		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger * GVars.rustData.fourth))
+		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust * GVars.rustData.fourth))
+		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
 	else:
-		up1text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasespinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasespin))
-		up2text.text = "Cost: " + str(GVars.getScientific(GVars.RincreasehungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreasehunger))
-		up3text.text = "Cost: " + str(GVars.getScientific(GVars.RincreaserustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rincreaserust))
-		up4text.text = "Cost: " + str(GVars.getScientific(GVars.RfourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.Rfourth))
-	rDisplay.text = str(GVars.getScientific(GVars.rust))
+		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
+		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
+		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
+		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
+	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
 func _up01():
-	if(GVars.rust >= GVars.RincreasespinCost):
-		GVars.rust -= GVars.RincreasespinCost
-		GVars.RincreasespinCost *= GVars.RincreasespinScaling
-		GVars.Rincreasespin += 1
+	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
+		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
+		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
+		GVars.rustData.increaseSpin += 1
 		updateDisplays()
 func _up02():
-	if(GVars.rust >= GVars.RincreasehungerCost):
-		GVars.rust -= GVars.RincreasehungerCost
-		GVars.RincreasehungerCost *= GVars.RincreasehungerScaling
-		GVars.Rincreasehunger += 1
+	if(GVars.rustData.rust >= GVars.rustData.increaseHungerCost):
+		GVars.rustData.rust -= GVars.rustData.increaseHungerCost
+		GVars.rustData.increaseHungerCost *= GVars.rustData.increaseHungerScaling
+		GVars.rustData.increaseHunger += 1
 		updateDisplays()
 func _up03():
-	if(GVars.rust >= GVars.RincreaserustCost):
-		GVars.rust -= GVars.RincreaserustCost
-		GVars.RincreaserustCost *= GVars.RincreaserustScaling
-		GVars.Rincreaserust += 1
-		GVars.Rperthresh += 1
+	if(GVars.rustData.rust >= GVars.rustData.increaseRustCost):
+		GVars.rustData.rust -= GVars.rustData.increaseRustCost
+		GVars.rustData.increaseRustCost *= GVars.rustData.increaseRustScaling
+		GVars.rustData.increaseRust += 1
+		GVars.rustData.perThresh += 1
 		updateDisplays()
 func _up04():
-	if(GVars.rust >= GVars.RfourthCost):
-		GVars.rust -= GVars.RfourthCost
-		GVars.RfourthCost *= GVars.RfourthScaling
+	if(GVars.rustData.rust >= GVars.rustData.fourthCost):
+		GVars.rustData.rust -= GVars.rustData.fourthCost
+		GVars.rustData.fourthCost *= GVars.rustData.fourthScaling
 		if(GVars.curEmotionBuff == 1):
 		#fear
-			GVars.Rfourth += 0.01
+			GVars.rustData.fourth += 0.01
 		elif(GVars.curEmotionBuff == 2):
 		#cold
-			GVars.Rfourth += 1
+			GVars.rustData.fourth += 1
 		elif(GVars.curEmotionBuff == 3):
 		#warmth
-			GVars.Rfourth += 0.5
+			GVars.rustData.fourth += 0.5
 		elif(GVars.curEmotionBuff == 4):
 		#wrath
-			GVars.Rfourth += 0.4
+			GVars.rustData.fourth += 0.4
 		updateDisplays()
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)

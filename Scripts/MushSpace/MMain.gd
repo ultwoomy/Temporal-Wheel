@@ -127,9 +127,9 @@ func _harvest_shroom(val):
 	var EexpBuff = 1
 	if(GVars.curEmotionBuff == 3):
 		Ebuff = (log(GVars.rotations))/2 + 0.5
-		EexpBuff = GVars.Rfourth
+		EexpBuff = GVars.rustData.fourth
 	if(val == 1):
-		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.SmushLevel * 20 * Ebuff
+		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.Sspinbuff * GVars.SmushLevel * 20 * Ebuff
 		GVars.Sxp += 25 * EexpBuff
 	elif(val == 2):
 		GVars.rotations += GVars.SmushLevel * 3 * Ebuff

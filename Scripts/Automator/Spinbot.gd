@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func initialize():
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations)/log(2))
+		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations)/log(2))
 	else:
 		emoBuffSpeed = 1
 	numOfCandles = 0.0
@@ -44,7 +44,7 @@ func calculateOneRot():
 			GVars.rotations += temp
 			if(GVars.numberOfSigils[1]):
 				GVars.SpendingRots += temp
-			GVars.RthreshProg += temp
+			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 
 func updateDivisor():

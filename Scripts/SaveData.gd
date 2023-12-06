@@ -13,6 +13,8 @@ extends Resource
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
+
+@export var rustData : RustData
 @export var rust : float
 @export var Rincreasespin : float
 @export var RincreasespinCost : float
@@ -30,6 +32,7 @@ extends Resource
 @export var Rperthresh : float
 @export var RthreshProg : float
 @export var Rthreshmult : float
+
 @export var SmushLevel : float
 @export var Sxp : float
 @export var Sxpthresh : float
@@ -76,6 +79,8 @@ func _init():
 	curSucDens = 0
 	wheelphase = 1
 	rotations = 0
+	
+	rustData = RustData.new()
 	rust = 0
 	Rincreasespin = 1
 	RincreasespinCost = 1
@@ -93,6 +98,7 @@ func _init():
 	Rperthresh = 1
 	RthreshProg = 0
 	Rthreshmult = 1.5
+	
 	SmushLevel = 1
 	Sxp = 0
 	Sxpthresh = 100

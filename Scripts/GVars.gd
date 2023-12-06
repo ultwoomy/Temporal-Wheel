@@ -13,23 +13,9 @@ extends Node
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
-@export var rust : float
-@export var Rincreasespin : float
-@export var RincreasespinCost : float
-@export var RincreasespinScaling : float
-@export var Rincreasehunger : float
-@export var RincreasehungerCost : float
-@export var RincreasehungerScaling : float
-@export var Rincreaserust : float
-@export var RincreaserustCost : float
-@export var RincreaserustScaling : float
-@export var Rfourth : float
-@export var RfourthCost : float
-@export var RfourthScaling : float
-@export var Rthresh : float
-@export var Rperthresh : float
-@export var RthreshProg : float
-@export var Rthreshmult : float
+
+@export var rustData : RustData
+
 @export var SmushLevel : float
 @export var Sxp : float
 @export var Sxpthresh : float
@@ -81,23 +67,29 @@ func save_prog():
 	loader.curSucDens = curSucDens
 	loader.wheelphase = wheelphase
 	loader.rotations = rotations
-	loader.rust = rust
-	loader.Rincreasespin = Rincreasespin
-	loader.RincreasespinCost = RincreasespinCost
-	loader.RincreasespinScaling = RincreasespinScaling
-	loader.Rincreasehunger = Rincreasehunger
-	loader.RincreasehungerCost = RincreasehungerCost
-	loader.RincreasehungerScaling = RincreasehungerScaling
-	loader.Rincreaserust = Rincreaserust
-	loader.RincreaserustCost = RincreaserustCost
-	loader.RincreaserustScaling = RincreaserustScaling
-	loader.Rfourth = Rfourth
-	loader.RfourthCost = RfourthCost
-	loader.RfourthScaling = RfourthScaling
-	loader.Rthresh = Rthresh
-	loader.Rperthresh = Rperthresh
-	loader.RthreshProg = RthreshProg
-	loader.Rthreshmult = Rthreshmult
+	
+	# L.B: There may be a way of shortening the code in here.
+	# (?) Could have the RustData class have a function in its class that does this exact thing. Weird to have that kind of function in its class though.
+	# 
+	loader.rustData = rustData
+	loader.rust = rustData.rust
+	loader.Rincreasespin = rustData.increaseSpin
+	loader.RincreasespinCost = rustData.increaseSpinCost
+	loader.RincreasespinScaling = rustData.increaseSpinScaling
+	loader.Rincreasehunger = rustData.increaseHunger
+	loader.RincreasehungerCost = rustData.increaseHungerCost
+	loader.RincreasehungerScaling = rustData.increaseHungerScaling
+	loader.Rincreaserust = rustData.increaseRust
+	loader.RincreaserustCost = rustData.increaseRustCost
+	loader.RincreaserustScaling = rustData.increaseRustScaling
+	loader.Rfourth = rustData.fourth
+	loader.RfourthCost = rustData.fourthCost
+	loader.RfourthScaling = rustData.fourthScaling
+	loader.Rthresh = rustData.thresh
+	loader.Rperthresh = rustData.perThresh
+	loader.RthreshProg = rustData.threshProgress
+	loader.Rthreshmult = rustData.threshMult
+	
 	loader.SmushLevel = SmushLevel
 	loader.Sxp = Sxp
 	loader.Sxpthresh = Sxpthresh
@@ -139,23 +131,9 @@ func resetR0Stats():
 	curSucDens = 0
 	wheelphase = 1
 	rotations = 0
-	rust = 0
-	Rincreasespin = 1
-	RincreasespinCost = 1
-	RincreasespinScaling = 1.5
-	Rincreasehunger = 1
-	RincreasehungerCost = 1
-	RincreasehungerScaling = 2
-	Rincreaserust = 1
-	RincreaserustCost = 2
-	RincreaserustScaling = 3
-	Rfourth = 1
-	RfourthCost = 3
-	RfourthScaling = 2
-	Rthresh = 1
-	RthreshProg = 0
-	Rperthresh = 1
-	Rthreshmult = 1.5
+	
+	rustData.resetData()
+	
 	SmushLevel = 1
 	Sxp = 0
 	Sxpthresh = 100
@@ -216,20 +194,23 @@ func load_as_normal():
 	curSucDens = loader.curSucDens
 	wheelphase = loader.wheelphase
 	rotations = loader.rotations
-	rust = loader.rust
-	Rincreasespin = loader.Rincreasespin
-	RincreasespinCost = loader.RincreasespinCost
-	RincreasespinScaling = loader.RincreasespinScaling
-	Rincreasehunger = loader.Rincreasehunger
-	RincreasehungerCost = loader.RincreasehungerCost
-	RincreasehungerScaling = loader.RincreasehungerScaling
-	Rincreaserust = loader.Rincreaserust
-	RincreaserustCost = loader.RincreaserustCost
-	RincreaserustScaling = loader.RincreaserustScaling
-	Rthresh = loader.Rthresh
-	Rperthresh = loader.Rperthresh
-	RthreshProg = loader.RthreshProg
-	Rthreshmult = loader.Rthreshmult
+	
+	rustData = loader.rustData
+#	rustData.rust = loader.rust
+#	rustData.increaseSpin = loader.Rincreasespin
+#	rustData.increaseSpinCost = loader.RincreasespinCost
+#	rustData.increaseSpinScaling = loader.RincreasespinScaling
+#	rustData.increaseHunger = loader.Rincreasehunger
+#	rustData.increaseHungerCost = loader.RincreasehungerCost
+#	rustData.increaseHungerScaling = loader.RincreasehungerScaling
+#	rustData.increaseRust = loader.Rincreaserust
+#	rustData.increaseRustCost = loader.RincreaserustCost
+#	rustData.increaseRustScaling = loader.RincreaserustScaling
+#	rustData.thresh = loader.Rthresh
+#	rustData.perThresh = loader.Rperthresh
+#	rustData.threshProg = loader.RthreshProg
+#	rustData.threshMult = loader.Rthreshmult
+	
 	SmushLevel = loader.SmushLevel
 	Sxp = loader.Sxp
 	Sxpthresh = loader.Sxpthresh

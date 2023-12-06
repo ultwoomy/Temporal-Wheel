@@ -14,41 +14,15 @@ extends Resource
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
-@export var rust : float
-@export var Rincreasespin : float
-@export var RincreasespinCost : float
-@export var RincreasespinScaling : float
-@export var Rincreasehunger : float
-@export var RincreasehungerCost : float
-@export var RincreasehungerScaling : float
-@export var Rincreaserust : float
-@export var RincreaserustCost : float
-@export var RincreaserustScaling : float
-@export var Rfourth : float
-@export var RfourthCost : float
-@export var RfourthScaling : float
-@export var Rthresh : float
-@export var Rperthresh : float
-@export var RthreshProg : float
-@export var Rthreshmult : float
-@export var SmushLevel : float
-@export var Sxp : float
-@export var Sxpthresh : float
-@export var Sxpthreshmult : float
-@export var Scurrent : Array[int]
-@export var StimeLeft : Array[float]
-@export var SpendingRots : float
-@export var Sspinbuff : float
-@export var Sascbuff : float
-@export var RitCandlesLit : Array[bool]
-@export var RitAscBuff : float
-@export var RitRotBuff : float
-@export var sigilCostSpin : float
-@export var sigilCostRot : float
-@export var sigilCostSpinScale : float
-@export var sigilCostRotScale : float
-@export var numberOfSigils : Array[bool]
-@export var curSigilBuff : int
+
+@export var rustData : RustData
+
+@export var mushroomData : MushroomData
+
+@export var ritualData : RitualData
+
+@export var sigilData : SigilData
+
 @export_group("R1stats")
 @export var ifhell : bool
 @export var ifheaven : bool
@@ -78,48 +52,24 @@ func _init():
 	curSucDens = 0
 	wheelphase = 1
 	rotations = 0
-	rust = 0
-	Rincreasespin = 1
-	RincreasespinCost = 1
-	RincreasespinScaling = 1.5
-	Rincreasehunger = 1
-	RincreasehungerCost = 1
-	RincreasehungerScaling = 2
-	Rincreaserust = 1
-	RincreaserustCost = 2
-	RincreaserustScaling = 3
-	Rfourth = 1
-	RfourthCost = 3
-	RfourthScaling = 2
-	Rthresh = 1
-	Rperthresh = 1
-	RthreshProg = 0
-	Rthreshmult = 1.5
-	SmushLevel = 1
-	Sxp = 0
-	Sxpthresh = 100
-	Sxpthreshmult = 1.5
-	Scurrent = [0,0,0,0]
-	StimeLeft = [0,0,0,0]
-	SpendingRots = 0
-	Sspinbuff = 1
-	Sascbuff = 1
-	RitCandlesLit = [false,false,false,false,false,false]
-	RitAscBuff = 1
-	RitRotBuff = 1
+	rustData = RustData.new()
+	
+	mushroomData = MushroomData.new()
+	
+	ritualData = RitualData.new()
+	
 	Aspinbuff = 1
 	curEmotionBuff = 0
-	sigilCostSpin = 300
-	sigilCostRot = 10
-	sigilCostSpinScale = 1.2
-	sigilCostRotScale = 3
-	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
-	curSigilBuff = 0
+	
+	sigilData = SigilData.new()
+	
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true
 	iffirstvoid = true
 	iffirstpack = true
+
+
 func save_stats(data):
 	ResourceSaver.save(data,save_path)
 	

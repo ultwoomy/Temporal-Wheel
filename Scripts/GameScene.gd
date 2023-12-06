@@ -15,7 +15,7 @@ var emoBuff : float = 1
 func _ready() -> void:
 	run_tests()
 	if(GVars.curEmotionBuff == 4):
-		emoBuff = GVars.Rfourth
+		emoBuff = GVars.rustData.fourth
 	# L.B:
 	# When going to a new scene, this will create the event_manager and the automators (if any).
 	# Therefore, must be important to save the elements in "automators" when transitioning to different stages.
@@ -41,7 +41,7 @@ func run_tests() -> void:
 
 func on_wheel_spun() -> void:
 	
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.Aspinbuff * emoBuff
+	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:

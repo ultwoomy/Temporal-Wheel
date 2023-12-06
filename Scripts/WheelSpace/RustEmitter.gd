@@ -1,6 +1,6 @@
 extends Node
 
-func init(Rperthresh = GVars.Rperthresh):
+func init(Rperthresh = GVars.rustData.perThresh):
 	if(Rperthresh > 100000):
 		self.process_material.scale_min = 6.0
 		self.amount = 1

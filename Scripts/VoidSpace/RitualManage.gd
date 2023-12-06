@@ -6,9 +6,9 @@ var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.pn
 var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
 					, "Lose rotations per spin, but get\nthe wheel to spit out\na lot of momentum in scale\nwith its hunger."
 					, "Double mushroom growth rate."
-					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.RitAscBuff))
+					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff))
 					, "Gain a small amount of rust\nper spin"
-					, "Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.RitRotBuff)) + ". Perpetual!"
+					, "Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.ritualData.rotBuff)) + ". Perpetual!"
 					, "Powers the kbity creation\nmachine!!!!!"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,8 +19,8 @@ func _ready():
 
 func setIdleText():
 	var numOfCandles = 0.0
-	for n in GVars.RitCandlesLit.size():
-		if(GVars.RitCandlesLit[n]):
+	for n in GVars.ritualData.candlesLit.size():
+		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
 	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
 		numOfCandles -= 1
@@ -30,9 +30,9 @@ func setIdleText():
 	text.text = effectsDesc[0]
 	
 func setCandleSprites():
-	for n in GVars.RitCandlesLit.size():
+	for n in GVars.ritualData.candlesLit.size():
 		var path = "Ritual/Candle" + str(n + 1)
-		if(GVars.RitCandlesLit[n]):
+		if(GVars.ritualData.candlesLit[n]):
 			get_node(path).texture_normal = enabledSprite
 			get_node(path).texture_focused = enabledSprite
 		else: 
@@ -47,11 +47,11 @@ func getPath(cand):
 	if(get_node(path).texture_normal == enabledSprite):
 		get_node(path).texture_normal = disabledSprite
 		get_node(path).texture_focused = disabledSprite
-		GVars.RitCandlesLit[cand - 1] = false
+		GVars.ritualData.candlesLit[cand - 1] = false
 	else:
 		get_node(path).texture_normal = enabledSprite
 		get_node(path).texture_focused = enabledSprite
-		GVars.RitCandlesLit[cand - 1] = true
+		GVars.ritualData.candlesLit[cand - 1] = true
 	setIdleText()
 		
 func _on_candle_1_pressed():

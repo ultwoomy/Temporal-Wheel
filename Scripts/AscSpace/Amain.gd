@@ -28,7 +28,7 @@ func _ready():
 	dia.text += "\n\nIt calls to you."
 	dia.text += "\n\nYou feel..."
 	await get_tree().create_timer(5).timeout
-	if(GVars.curSigilBuff == 4):
+	if(GVars.sigilData.curSigilBuff == 4):
 		fear.show()
 		cold.show()
 		warmth.show()
@@ -62,7 +62,7 @@ func _button_generic(switchEmotion,text):
 	awaken.show()
 
 func _awaken():
-	GVars.Aspinbuff = GVars.Sascbuff + GVars.RitAscBuff
+	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()

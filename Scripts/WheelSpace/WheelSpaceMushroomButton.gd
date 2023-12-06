@@ -3,7 +3,7 @@ var dismush = preload("res://Sprites/WheelSpace/mush_ext_sheet/tile002.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if(GVars.numberOfSigils[1]):
+	if(GVars.sigilData.numberOfSigils[1]):
 		disabled = false
 	else:
 		disabled = true

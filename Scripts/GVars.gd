@@ -14,41 +14,15 @@ extends Node
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
-@export var rust : float
-@export var Rincreasespin : float
-@export var RincreasespinCost : float
-@export var RincreasespinScaling : float
-@export var Rincreasehunger : float
-@export var RincreasehungerCost : float
-@export var RincreasehungerScaling : float
-@export var Rincreaserust : float
-@export var RincreaserustCost : float
-@export var RincreaserustScaling : float
-@export var Rfourth : float
-@export var RfourthCost : float
-@export var RfourthScaling : float
-@export var Rthresh : float
-@export var Rperthresh : float
-@export var RthreshProg : float
-@export var Rthreshmult : float
-@export var SmushLevel : float
-@export var Sxp : float
-@export var Sxpthresh : float
-@export var Sxpthreshmult : float
-@export var Scurrent : Array[int]
-@export var StimeLeft : Array[float]
-@export var SpendingRots : float
-@export var Sspinbuff : float
-@export var Sascbuff : float
-@export var RitCandlesLit : Array[bool]
-@export var RitAscBuff : float
-@export var RitRotBuff : float
-@export var sigilCostSpin : float
-@export var sigilCostRot : float
-@export var sigilCostSpinScale : float
-@export var sigilCostRotScale : float
-@export var numberOfSigils : Array[bool]
-@export var curSigilBuff : int
+
+@export var rustData : RustData
+
+@export var mushroomData : MushroomData
+
+@export var ritualData : RitualData
+
+@export var sigilData : SigilData
+
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -62,12 +36,23 @@ var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
-	#resetR0Stats()
-	#resetR1Stats()
-	#resetR2Stats()
-	#resetPermStats()
-	#save_prog()
+#	create_data() # L.B: Needed for reset.
+#	resetR0Stats()
+#	resetR1Stats()
+#	resetPermStats()
+#	save_prog()
 	load_as_normal()
+
+func create_data():
+	if (!rustData):
+		rustData = RustData.new()
+	if (!mushroomData):
+		mushroomData = MushroomData.new()
+	if (!ritualData):
+		ritualData = RitualData.new()
+	if (!sigilData):
+		sigilData = SigilData.new()
+
 
 func save_prog():
 	loader.spin = spin
@@ -84,43 +69,18 @@ func save_prog():
 	loader.curSucDens = curSucDens
 	loader.wheelphase = wheelphase
 	loader.rotations = rotations
-	loader.rust = rust
-	loader.Rincreasespin = Rincreasespin
-	loader.RincreasespinCost = RincreasespinCost
-	loader.RincreasespinScaling = RincreasespinScaling
-	loader.Rincreasehunger = Rincreasehunger
-	loader.RincreasehungerCost = RincreasehungerCost
-	loader.RincreasehungerScaling = RincreasehungerScaling
-	loader.Rincreaserust = Rincreaserust
-	loader.RincreaserustCost = RincreaserustCost
-	loader.RincreaserustScaling = RincreaserustScaling
-	loader.Rfourth = Rfourth
-	loader.RfourthCost = RfourthCost
-	loader.RfourthScaling = RfourthScaling
-	loader.Rthresh = Rthresh
-	loader.Rperthresh = Rperthresh
-	loader.RthreshProg = RthreshProg
-	loader.Rthreshmult = Rthreshmult
-	loader.SmushLevel = SmushLevel
-	loader.Sxp = Sxp
-	loader.Sxpthresh = Sxpthresh
-	loader.Sxpthreshmult = Sxpthreshmult
-	loader.Scurrent = Scurrent
-	loader.StimeLeft = StimeLeft
-	loader.SpendingRots = SpendingRots
-	loader.Sspinbuff = Sspinbuff
-	loader.Sascbuff = Sascbuff
-	loader.RitCandlesLit = RitCandlesLit
-	loader.RitAscBuff = RitAscBuff
-	loader.RitRotBuff = RitRotBuff
+	
+	loader.rustData = rustData
+	
+	loader.mushroomData = mushroomData
+	
+	loader.ritualData = ritualData
+	
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
-	loader.sigilCostSpin = sigilCostSpin
-	loader.sigilCostRot = sigilCostRot
-	loader.sigilCostSpinScale = sigilCostSpinScale
-	loader.sigilCostRotScale = sigilCostRotScale
-	loader.numberOfSigils = numberOfSigils
-	loader.curSigilBuff = curSigilBuff
+	
+	loader.sigilData = sigilData
+	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
@@ -143,41 +103,15 @@ func resetR0Stats():
 	curSucDens = 0
 	wheelphase = 1
 	rotations = 0
-	rust = 0
-	Rincreasespin = 1
-	RincreasespinCost = 1
-	RincreasespinScaling = 1.5
-	Rincreasehunger = 1
-	RincreasehungerCost = 1
-	RincreasehungerScaling = 2
-	Rincreaserust = 1
-	RincreaserustCost = 2
-	RincreaserustScaling = 3
-	Rfourth = 1
-	RfourthCost = 3
-	RfourthScaling = 2
-	Rthresh = 1
-	RthreshProg = 0
-	Rperthresh = 1
-	Rthreshmult = 1.5
-	SmushLevel = 1
-	Sxp = 0
-	Sxpthresh = 100
-	Sxpthreshmult = 1.5
-	Scurrent = [0,0,0,0]
-	StimeLeft = [0,0,0,0]
-	SpendingRots = 0
-	Sspinbuff = 1
-	Sascbuff = 1
-	RitCandlesLit = [false,false,false,false,false,false]
-	RitAscBuff = 1
-	RitRotBuff = 1
-	sigilCostSpin = 300
-	sigilCostRot = 10
-	sigilCostSpinScale = 1.3
-	sigilCostRotScale = 3
-	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
-	curSigilBuff = 0
+	
+	rustData.resetData()
+	
+	mushroomData.resetData()
+	
+	ritualData.resetData()
+	
+	sigilData.resetData()
+
 
 func resetR1Stats():
 	curEmotionBuff = 0
@@ -222,43 +156,12 @@ func load_as_normal():
 	curSucDens = loader.curSucDens
 	wheelphase = loader.wheelphase
 	rotations = loader.rotations
-	rust = loader.rust
-	Rincreasespin = loader.Rincreasespin
-	RincreasespinCost = loader.RincreasespinCost
-	RincreasespinScaling = loader.RincreasespinScaling
-	Rincreasehunger = loader.Rincreasehunger
-	RincreasehungerCost = loader.RincreasehungerCost
-	RincreasehungerScaling = loader.RincreasehungerScaling
-	Rincreaserust = loader.Rincreaserust
-	RincreaserustCost = loader.RincreaserustCost
-	RincreaserustScaling = loader.RincreaserustScaling
-	Rfourth = loader.Rfourth
-	RfourthCost = loader.RfourthCost
-	RfourthScaling = loader.RfourthScaling
-	Rthresh = loader.Rthresh
-	Rperthresh = loader.Rperthresh
-	RthreshProg = loader.RthreshProg
-	Rthreshmult = loader.Rthreshmult
-	SmushLevel = loader.SmushLevel
-	Sxp = loader.Sxp
-	Sxpthresh = loader.Sxpthresh
-	Sxpthreshmult = loader.Sxpthreshmult
-	Scurrent = loader.Scurrent
-	StimeLeft = loader.StimeLeft
-	SpendingRots = loader.SpendingRots
-	Sspinbuff = loader.Sspinbuff
-	Sascbuff = loader.Sascbuff
-	RitCandlesLit = loader.RitCandlesLit
-	RitAscBuff = loader.RitAscBuff
-	RitRotBuff = loader.RitRotBuff
+  rustData = loader.rustData
+	mushroomData = loader.mushroomData
+	ritualData = loader.ritualData
 	Aspinbuff = loader.Aspinbuff
 	curEmotionBuff = loader.curEmotionBuff
-	sigilCostRot = loader.sigilCostRot
-	sigilCostSpin = loader.sigilCostSpin
-	sigilCostRotScale = loader.sigilCostRotScale
-	sigilCostSpinScale = loader.sigilCostSpinScale
-	numberOfSigils = loader.numberOfSigils
-	curSigilBuff = loader.curSigilBuff
+	sigilData = loader.sigilData
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstboot

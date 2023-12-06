@@ -1,7 +1,7 @@
 extends Button
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(GVars.numberOfSigils[4]):
+	if(GVars.sigilData.numberOfSigils[4]):
 		print("r")
 		show()
 	else:

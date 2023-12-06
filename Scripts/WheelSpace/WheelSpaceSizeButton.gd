@@ -37,10 +37,10 @@ func suc_loop():
 	var Ebuff = 0;
 	var rustUpBuff = GVars.Rincreasehunger
 	if(GVars.curEmotionBuff == 4):
-		rustUpBuff = rustUpBuff * GVars.Rfourth
+		rustUpBuff = rustUpBuff * GVars.rustData.fourth
 	if(GVars.curEmotionBuff == 2):
-		Ebuff = (GVars.Rfourth - 1) * GVars.sucTresh
-	if(GVars.curSigilBuff == 3):
+		Ebuff = (GVars.rustData.fourth - 1) * GVars.sucTresh
+	if(GVars.sigilData.curSigilBuff == 3):
 		suc = GVars.sucPerTick * rustUpBuff * GVars.sizeRecord + Ebuff
 	else:
 		suc = GVars.sucPerTick * rustUpBuff + Ebuff

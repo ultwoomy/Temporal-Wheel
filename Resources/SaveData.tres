@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://7g5tskf8kjb0"]
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://masin1kdhswu"]
 
 [ext_resource type="Script" path="res://Scripts/SaveData.gd" id="1_ba8r7"]
 
@@ -10,38 +10,23 @@ size = 0.0
 sucPerTick = 0.0
 sucTresh = 0.0
 curSucSize = 0.0
+sizeRecord = 0.0
 density = 0.0
 sucPerTDens = 0.0
 densTresh = 0.0
 curSucDens = 0.0
 wheelphase = 0
 rotations = 0.0
-rust = 0.0
-Rincreasespin = 0.0
-RincreasespinCost = 0.0
-RincreasespinScaling = 0.0
-Rincreasehunger = 0.0
-RincreasehungerCost = 0.0
-RincreasehungerScaling = 0.0
-Rincreaserust = 0.0
-RincreaserustCost = 0.0
-RincreaserustScaling = 0.0
-Rthresh = 0.0
-Rperthresh = 0.0
-RthreshProg = 0.0
-Rthreshmult = 0.0
-SmushLevel = 0.0
-Scurrent = Array[int]([])
-StimeLeft = Array[float]([])
-SpendingRots = 0.0
 sigilCostSpin = 0.0
 sigilCostRot = 0.0
 sigilCostSpinScale = 0.0
 sigilCostRotScale = 0.0
-numberOfSigils = 0.0
+numberOfSigils = Array[bool]([])
 curSigilBuff = 0
 ifhell = false
 ifheaven = false
+Aspinbuff = 0.0
+curEmotionBuff = 0.0
 iffirstboot = false
 iffirstvoid = false
 iffirstpack = false

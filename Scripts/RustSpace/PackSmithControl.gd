@@ -16,8 +16,8 @@ func _ready():
 	back.pressed.connect(self.back_button_pressed)
 	next.hide()
 	menu.hide()
-	if(GVars.curSigilBuff != 0):
-		sigilDisplay.frame = GVars.curSigilBuff - 1
+	if(GVars.sigilData.curSigilBuff != 0):
+		sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
 		sigilDisplay.show()
 	else:
 		sigilDisplay.frame = 0
@@ -26,7 +26,7 @@ func _ready():
 		packback.frame = 1
 		text.text = "We're Closed."
 		GVars._dialouge(text,0,0.04)
-		if(GVars.numberOfSigils[0]):
+		if(GVars.sigilData.numberOfSigils[0]):
 			next.show()
 			next.text = "Perhaps this will\nchange your mind"
 	else:

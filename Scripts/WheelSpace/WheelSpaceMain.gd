@@ -14,14 +14,15 @@ func update_wheel_sprite(frameno):
 	if(GVars.curSigilBuff == 2):
 		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
+		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
 	if(GVars.curEmotionBuff == 4):
-		fourthRustBuff = GVars.Rfourth
+		fourthRustBuff = GVars.rustData.fourth
 	GVars.wheelphase = int(GVars.density)
 	if(frameno > 11):
 		self.get_node("Centerpiece").frame = 11
 	else :
 		self.get_node("Centerpiece").frame = frameno
+
 
 func updateDivisor():
 	GVars.wheelphase = int(GVars.density)
@@ -51,66 +52,67 @@ func updateDivisor():
 	else:
 		speedDivisor = wheelphase_json.wheelphases.other
 
+
 func _process(_delta):
 	if(calculateOneRot()):
 		emit_signal("oneClick")
+	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
 		if(GVars.curEmotionBuff == 1):
 			emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
-	if(GVars.RthreshProg > GVars.Rthresh):
 		if(GVars.curEmotionBuff == 4):
-			emoBuff = log(GVars.rust) + 1
-		if(GVars.curSigilBuff == 1):
-			GVars.RthreshProg -= GVars.Rthresh
-			GVars.rust += GVars.Rperthresh * 2 * emoBuff * fourthRustBuff
-			GVars.Rthresh *= GVars.Rthreshmult
+			emoBuff = log(GVars.rustData.rust) + 1
+		if(GVars.sigilData.curSigilBuff == 1):
+			GVars.rustData.threshProgress -= GVars.rustData.thresh
+			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
+			GVars.rustData.thresh *= GVars.rustData.threshMult
 			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.Rperthresh * 2 * emoBuff * fourthRustBuff)
+			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff)
 			self.add_child(rus)
 		else:
-			GVars.RthreshProg -= GVars.Rthresh
-			GVars.rust += GVars.Rperthresh * emoBuff * fourthRustBuff
-			GVars.Rthresh *= GVars.Rthreshmult
+			GVars.rustData.threshProgress -= GVars.rustData.thresh
+			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff
+			GVars.rustData.thresh *= GVars.rustData.threshMult
 			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.Rperthresh * emoBuff * fourthRustBuff)
+			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
 			self.add_child(rus)	
 	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
 
 func calculateOneRot():
 	var changerot = 0.0
 	if(GVars.spin > 0):
-		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.RitRotBuff
-		if(GVars.RitCandlesLit[0]):
+		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
+		if(GVars.ritualData.candlesLit[0]):
 			rotation -= changerot
 			angle -= changerot
 		else:
 			rotation += changerot
 			angle += changerot
 		if(angle < -2*PI):
-			if(GVars.RitCandlesLit[2]):
-				GVars.RitAscBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.RitAscBuff * (GVars.rotations + 500))
-			if(GVars.RitCandlesLit[3]):
-				GVars.rust += 0.1
-			if(GVars.RitCandlesLit[4]):
-				GVars.RitRotBuff += (GVars.rotations * GVars.density)/(GVars.RitRotBuff * (GVars.rotations + 1000))
+			if(GVars.ritualData.candlesLit[2]):
+				GVars.ritualData.ascBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations + 500))
+			if(GVars.ritualData.candlesLit[3]):
+				GVars.rustData.rust += 0.1
+			if(GVars.ritualData.candlesLit[4]):
+				GVars.ritualData.rotBuff += (GVars.rotations * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations + 1000))
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
-			GVars.RthreshProg += temp
+			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 			GVars.spin += GVars.sucPerTick * 5
 		if(angle > 2*PI):
-			if(GVars.RitCandlesLit[2]):
-				GVars.RitAscBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.RitAscBuff * (GVars.rotations + 500))
-			if(GVars.RitCandlesLit[3]):
-				GVars.rust += 0.1
-			if(GVars.RitCandlesLit[4]):
-				GVars.RitRotBuff += (GVars.rotations * GVars.density)/(GVars.RitRotBuff * (GVars.rotations + 1000))
+			if(GVars.ritualData.candlesLit[2]):
+				GVars.ritualData.ascBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations + 500))
+			if(GVars.ritualData.candlesLit[3]):
+				GVars.rustData.rust += 0.1
+			if(GVars.ritualData.candlesLit[4]):
+				GVars.ritualData.rotBuff += (GVars.rotations * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations + 1000))
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
-			if(GVars.numberOfSigils[1]):
-				GVars.SpendingRots += temp * sigaugbuf
-				if(GVars.RitCandlesLit[1]):
-					GVars.SpendingRots += temp * sigaugbuf
-			GVars.RthreshProg += temp
+			if(GVars.sigilData.numberOfSigils[1]):
+				GVars.mushroomData.pendingRots += temp * sigaugbuf
+				if(GVars.ritualData.candlesLit[1]):
+					GVars.mushroomData.pendingRots += temp * sigaugbuf
+			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 			return true
 	return false
@@ -122,8 +124,8 @@ func _ready():
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
 	densityButton.densUp.connect(updateDivisor)
 	numOfCandles = 0.0
-	for n in GVars.RitCandlesLit.size():
-		if(GVars.RitCandlesLit[n]):
+	for n in GVars.ritualData.candlesLit.size():
+		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
 	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
 		numOfCandles -= 1

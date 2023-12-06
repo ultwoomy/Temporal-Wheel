@@ -20,14 +20,14 @@ extends Node
 @export var curFrame : int
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(GVars.SpendingRots < 0):
-		GVars.SpendingRots = 0
-	for n in GVars.Scurrent.size():
-		GVars.StimeLeft[n] -= GVars.SpendingRots
-		if(GVars.StimeLeft[n] <= 0):
-			GVars.StimeLeft[n] = 0
+	if(GVars.mushroomData.pendingRots < 0):
+		GVars.mushroomData.pendingRots = 0
+	for n in GVars.mushroomData.current.size():
+		GVars.mushroomData.timeLeft[n] -= GVars.mushroomData.pendingRots
+		if(GVars.mushroomData.timeLeft[n] <= 0):
+			GVars.mushroomData.timeLeft[n] = 0
 	_update_sprites()
-	GVars.SpendingRots = 0
+	GVars.mushroomData.pendingRots = 0
 	desc.size = Vector2(216,90)
 	desc.position = Vector2(90,350)
 	currentMush.frame = 0
@@ -68,10 +68,13 @@ func _setdesc():
 		desc.text = ""
 
 func _plant():
-	for n in GVars.Scurrent.size():
-		if(GVars.Scurrent[n] == 0):
-			GVars.Scurrent[n] = curFrame + 1
-			GVars.StimeLeft[n] = (curFrame + 1) * 15 + GVars.SmushLevel * 10
+	for n in GVars.mushroomData.current.size():
+		if(GVars.mushroomData.current[n] == 0):
+			GVars.mushroomData.current[n] = curFrame + 1
+			if(GVars.curSigilBuff == 2):
+				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 10 + GVars.mushroomData.level * 8
+			else:
+				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 15 + GVars.mushroomData.level * 10
 			_update_sprites()
 			return
 			
@@ -84,41 +87,41 @@ func _update_sprites():
 	disp2.hide()
 	disp3.hide()
 	disp4.hide()
-	xpbar.scale.x = GVars.Sxp/GVars.Sxpthresh*1.5
-	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.SmushLevel))
-	statsdisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.Sspinbuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.Sascbuff))
-	for n in GVars.Scurrent.size():
-		if(GVars.Scurrent[n] != 0):
+	xpbar.scale.x = GVars.mushroomData.xp/GVars.mushroomData.xpThresh*1.5
+	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))
+	statsdisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff))
+	for n in GVars.mushroomData.current.size():
+		if(GVars.mushroomData.current[n] != 0):
 			if(n == 0):
 				plot1.show()
-				plot1.frame = GVars.Scurrent[n] - 1
-				plot1.scale = Vector2(1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01,1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01)
+				plot1.frame = GVars.mushroomData.current[n] - 1
+				plot1.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01)
 				disp1.show()
-				disp1.text = str(GVars.getScientific(GVars.StimeLeft[n]))
+				disp1.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 			if(n == 1):
 				plot2.show()
-				plot2.frame = GVars.Scurrent[n] - 1
-				plot2.scale = Vector2(1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01,1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01)
+				plot2.frame = GVars.mushroomData.current[n] - 1
+				plot2.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01)
 				disp2.show()
-				disp2.text = str(GVars.getScientific(GVars.StimeLeft[n]))
+				disp2.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 			if(n == 2):
 				plot3.show()
-				plot3.frame = GVars.Scurrent[n] - 1
-				plot3.scale = Vector2(1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01,1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01)
+				plot3.frame = GVars.mushroomData.current[n] - 1
+				plot3.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01)
 				disp3.show()
-				disp3.text = str(GVars.getScientific(GVars.StimeLeft[n]))
+				disp3.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 			if(n ==3):
 				plot4.show()
-				plot4.frame = GVars.Scurrent[n] - 1
-				plot4.scale = Vector2(1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01,1-(GVars.StimeLeft[n]/(GVars.Scurrent[n]*15 + GVars.SmushLevel * 10)) + 0.01)
+				plot4.frame = GVars.mushroomData.current[n] - 1
+				plot4.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*15 + GVars.mushroomData.level * 10)) + 0.01)
 				disp4.show()
-				disp4.text = str(GVars.getScientific(GVars.StimeLeft[n]))
+				disp4.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 func _harvest():
-	for n in GVars.Scurrent.size():
-		if(GVars.Scurrent[n] != 0) and (GVars.StimeLeft[n] <= 0):
-			_harvest_shroom(GVars.Scurrent[n])
-			GVars.Scurrent[n] = 0
-			GVars.StimeLeft[n] = 0
+	for n in GVars.mushroomData.current.size():
+		if(GVars.mushroomData.current[n] != 0) and (GVars.mushroomData.timeLeft[n] <= 0):
+			_harvest_shroom(GVars.mushroomData.current[n])
+			GVars.mushroomData.current[n] = 0
+			GVars.mushroomData.timeLeft[n] = 0
 			_update_sprites()
 			
 func _harvest_shroom(val):
@@ -126,19 +129,19 @@ func _harvest_shroom(val):
 	var EexpBuff = 1
 	if(GVars.curEmotionBuff == 3):
 		Ebuff = (log(GVars.rotations))/2 + 0.5
-		EexpBuff = GVars.Rfourth
+		EexpBuff = GVars.rustData.fourth
 	if(val == 1):
-		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff * GVars.SmushLevel * 20 * Ebuff
-		GVars.Sxp += 25 * EexpBuff
+		GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff
+		GVars.mushroomData.xp += 25 * EexpBuff
 	elif(val == 2):
-		GVars.rotations += GVars.SmushLevel * 3 * Ebuff
-		GVars.Sxp += 50 * EexpBuff
+		GVars.rotations += GVars.mushroomData.level * 3 * Ebuff
+		GVars.mushroomData.xp += 50 * EexpBuff
 	elif(val == 3):
-		GVars.Sspinbuff += (3 * (log(GVars.SmushLevel + 1) * Ebuff/log(3)))/(pow(2,GVars.Sspinbuff))
-		GVars.Sxp += 75 * EexpBuff
+		GVars.mushroomData.spinBuff += (3 * (log(GVars.mushroomData.level + 1) * Ebuff/log(3)))/(pow(2,GVars.mushroomData.spinBuff))
+		GVars.mushroomData.xp += 75 * EexpBuff
 	elif(val == 4):
-		GVars.Sascbuff += (log(GVars.SmushLevel + 1) * Ebuff/log(3))/(2 * GVars.Sascbuff)
-		GVars.Sxp += 100 * EexpBuff
+		GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(2 * GVars.mushroomData.ascBuff)
+		GVars.mushroomData.xp += 100 * EexpBuff
 	_check_xp()
 
 func _remove():
@@ -148,7 +151,7 @@ func _remove():
 			GVars.StimeLeft[n] = 0
 
 func _check_xp():
-	while(GVars.Sxp >= GVars.Sxpthresh):
-		GVars.SmushLevel += 1
-		GVars.Sxp -= GVars.Sxpthresh
-		GVars.Sxpthresh *= GVars.Sxpthreshmult
+	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):
+		GVars.mushroomData.level += 1
+		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
+		GVars.mushroomData.xpThresh *= GVars.mushroomData.xpThreshMult

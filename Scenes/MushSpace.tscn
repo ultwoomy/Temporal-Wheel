@@ -119,7 +119,7 @@ grow_vertical = 2
 theme = SubResource("Theme_wedbe")
 script = ExtResource("3_tatml")
 
-[node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "plant", "plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4", "harvest", "currentMush", "desc", "xpbar", "leveldisp", "statsdisp")]
+[node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "plant", "remove", "plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4", "harvest", "currentMush", "desc", "xpbar", "leveldisp", "statsdisp")]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
@@ -127,6 +127,7 @@ script = ExtResource("3_15p2a")
 left = NodePath("../Left")
 right = NodePath("../Right")
 plant = NodePath("../Plant")
+remove = NodePath("../Delete")
 plot1 = NodePath("../Node2D/Plot1")
 plot2 = NodePath("../Node2D/Plot2")
 plot3 = NodePath("../Node2D/Plot3")
@@ -279,6 +280,13 @@ offset_top = 495.0
 offset_right = 245.0
 offset_bottom = 545.0
 text = "Harvest"
+
+[node name="Delete" type="Button" parent="."]
+offset_left = 145.0
+offset_top = 550.0
+offset_right = 245.0
+offset_bottom = 600.0
+text = "Delete"
 
 [node name="Current Level" type="Label" parent="."]
 layout_mode = 0

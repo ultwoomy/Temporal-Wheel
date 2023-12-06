@@ -80,6 +80,7 @@ func _ready():
 	upgrade1.pressed.connect(self._up01)
 	upgrade2.pressed.connect(self._up02)
 	upgrade3.pressed.connect(self._up03)
+	upgrade4.pressed.connect(self._up04)
 	next.size = Vector2(100,100)
 	next.position = Vector2(390,420)
 	next.text = "Next"
@@ -141,6 +142,12 @@ func dispSigils():
 	else:
 		sigil04sprite.hide()
 		sigil04button.hide()
+	if(GVars.numberOfSigils[4]):
+		sigil05sprite.show()
+		sigil05button.show()
+	else:
+		sigil05sprite.hide()
+		sigil05button.hide()
 	upgrademenu.hide()
 	resetWindowVars()
 
@@ -219,16 +226,16 @@ func _up04():
 		GVars.rustData.fourthCost *= GVars.rustData.fourthScaling
 		if(GVars.curEmotionBuff == 1):
 		#fear
-			GVars.rustData.fourth += 0.01
+			GVars.rustData.fourth += 0.03
 		elif(GVars.curEmotionBuff == 2):
 		#cold
-			GVars.rustData.fourth += 1
+			GVars.rustData.fourth += 0.02
 		elif(GVars.curEmotionBuff == 3):
 		#warmth
-			GVars.rustData.fourth += 0.5
+			GVars.rustData.fourth *= 1.5
 		elif(GVars.curEmotionBuff == 4):
 		#wrath
-			GVars.rustData.fourth += 0.4
+			GVars.rustData.fourth *= 1.2
 		updateDisplays()
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)

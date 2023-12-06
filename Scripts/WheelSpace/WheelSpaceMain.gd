@@ -5,13 +5,16 @@ var emoBuff = 1
 var emoBuffSpeed = 1
 var numOfCandles = 0.0
 var fourthRustBuff = 1
+var sigaugbuf = 1
 @export var densityButton : Container
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
 
 func update_wheel_sprite(frameno):
+	if(GVars.curSigilBuff == 2):
+		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations)/log(2))
+		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
 	GVars.wheelphase = int(GVars.density)
@@ -48,42 +51,14 @@ func updateDivisor():
 					speedDivisor = wheelphase_json.wheelphases.values()[wheelphase_index]
 	else:
 		speedDivisor = wheelphase_json.wheelphases.other
-	
-	###
-	# L.B: Old zombie code. Delete this and this comment after once you understand how my changes work.
-	###
-#	if(GVars.wheelphase == 1):
-#		speedDivisor = 1000
-#	elif(GVars.wheelphase == 2):
-#		speedDivisor = 700
-#	elif(GVars.wheelphase == 3):
-#		speedDivisor = 600
-#	elif(GVars.wheelphase == 4):
-#		speedDivisor = 500
-#	elif(GVars.wheelphase == 5):
-#		speedDivisor = 400
-#	elif(GVars.wheelphase == 6):
-#		speedDivisor = 350
-#	elif(GVars.wheelphase == 7):
-#		speedDivisor = 300
-#	elif(GVars.wheelphase == 8):
-#		speedDivisor = 250
-#	elif(GVars.wheelphase == 9):
-#		speedDivisor = 200
-#	elif(GVars.wheelphase == 10):
-#		speedDivisor = 150
-#	elif(GVars.wheelphase == 11):
-#		speedDivisor = 100
-#	elif(GVars.wheelphase == 12):
-#		speedDivisor = 80
-#	else:
-#		speedDivisor = 80
 
 
 func _process(_delta):
 	if(calculateOneRot()):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
+		if(GVars.curEmotionBuff == 1):
+			emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
 		if(GVars.curEmotionBuff == 4):
 			emoBuff = log(GVars.rustData.rust) + 1
 		if(GVars.sigilData.curSigilBuff == 1):
@@ -134,9 +109,9 @@ func calculateOneRot():
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
-				GVars.mushroomData.pendingRots += temp
+				GVars.mushroomData.pendingRots += temp * sigaugbuf
 				if(GVars.ritualData.candlesLit[1]):
-					GVars.mushroomData.pendingRots += temp
+					GVars.mushroomData.pendingRots += temp * sigaugbuf
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 			return true
@@ -152,6 +127,8 @@ func _ready():
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
+	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
+		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5
 	updateDivisor()

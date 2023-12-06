@@ -3,6 +3,7 @@ extends Node
 @export var spin : float
 @export var spinPerClick : float
 @export var size : float
+@export var sizeToggle : bool
 @export var sucPerTick : float
 @export var sucTresh : float
 @export var curSucSize : float
@@ -40,7 +41,6 @@ func _init():
 #	resetR1Stats()
 #	resetPermStats()
 #	save_prog()
-	
 	load_as_normal()
 
 func create_data():
@@ -58,6 +58,7 @@ func save_prog():
 	loader.spin = spin
 	loader.spinPerClick = spinPerClick
 	loader.size = size
+	loader.sizeToggle = sizeToggle
 	loader.sucPerTick = sucPerTick
 	loader.sucTresh = sucTresh
 	loader.curSucSize = curSucSize
@@ -91,6 +92,7 @@ func resetR0Stats():
 	spin = 0
 	spinPerClick = 1
 	size = 1
+	sizeToggle = false
 	sucPerTick = 5
 	sucTresh = 15
 	curSucSize = 0
@@ -112,10 +114,12 @@ func resetR0Stats():
 
 
 func resetR1Stats():
-	ifhell = false
-	ifheaven = false
 	curEmotionBuff = 0
 	Aspinbuff = 1
+	
+func resetR2Stats():
+	ifhell = false
+	ifheaven = false
 	
 func resetPermStats():
 	iffirstboot = true
@@ -152,18 +156,12 @@ func load_as_normal():
 	curSucDens = loader.curSucDens
 	wheelphase = loader.wheelphase
 	rotations = loader.rotations
-	
-	rustData = loader.rustData
-	
+  rustData = loader.rustData
 	mushroomData = loader.mushroomData
-	
 	ritualData = loader.ritualData
-	
 	Aspinbuff = loader.Aspinbuff
 	curEmotionBuff = loader.curEmotionBuff
-	
 	sigilData = loader.sigilData
-	
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstboot

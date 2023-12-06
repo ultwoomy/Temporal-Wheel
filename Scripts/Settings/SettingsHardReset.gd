@@ -16,6 +16,7 @@ func _button_pressed():
 	if(presses > 9):
 		GVars.resetR0Stats()
 		GVars.resetR1Stats()
+		GVars.resetR2Stats()
 		GVars.resetPermStats()
 		button.text = "Game Reset!"
 		presses = 0

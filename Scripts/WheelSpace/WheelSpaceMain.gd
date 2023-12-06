@@ -11,7 +11,8 @@ signal oneClick
 
 func update_wheel_sprite(frameno):
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations)/log(2))
+		emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
+		print(emoBuffSpeed)
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.Rfourth
 	GVars.wheelphase = int(GVars.density)
@@ -54,6 +55,7 @@ func _process(_delta):
 	if(GVars.RthreshProg > GVars.Rthresh):
 		if(GVars.curEmotionBuff == 4):
 			emoBuff = log(GVars.rust) + 1
+			print(str(emoBuff))
 		if(GVars.curSigilBuff == 1):
 			GVars.RthreshProg -= GVars.Rthresh
 			GVars.rust += GVars.Rperthresh * 2 * emoBuff * fourthRustBuff

@@ -63,6 +63,7 @@ texture_focused = ExtResource("2_iba5r")
 script = ExtResource("3_i3nnn")
 
 [node name="HardReset" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+layout_mode = 0
 offset_left = 200.0
 offset_top = 150.0
 offset_right = 400.0

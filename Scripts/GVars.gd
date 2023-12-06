@@ -64,6 +64,7 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
 	#resetR0Stats()
 	#resetR1Stats()
+	#resetR2Stats()
 	#resetPermStats()
 	#save_prog()
 	load_as_normal()
@@ -179,10 +180,12 @@ func resetR0Stats():
 	curSigilBuff = 0
 
 func resetR1Stats():
-	ifhell = false
-	ifheaven = false
 	curEmotionBuff = 0
 	Aspinbuff = 1
+	
+func resetR2Stats():
+	ifhell = false
+	ifheaven = false
 	
 func resetPermStats():
 	iffirstboot = true

@@ -9,7 +9,6 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 func _ready():
 	save_loop()
 	spin_update_loop()
-	
 	# L.B: Since clicking on the button adds to spin, this can be kept here.
 	# ...However, you can also have it in its own script w/ the function
 	# ...OR have the button call the function here.
@@ -18,6 +17,9 @@ func _ready():
 	button.text = "Spin"
 	button.expand_icon = true
 	button.pressed.connect(self._button_pressed)
+	await get_tree().create_timer(0.1).timeout
+	var event_manager: EventManager = get_window().get_node("EventManager")
+	event_manager.emit_signal("scene_change",true)
 
 # L.B: Probably just use a signal in a different script so all things can add to spin.
 func _button_pressed():

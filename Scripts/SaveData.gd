@@ -88,9 +88,9 @@ func _init():
 	Rincreaserust = 1
 	RincreaserustCost = 2
 	RincreaserustScaling = 3
-	Rfourth = 0
-	RfourthCost = 0
-	RfourthScaling = 0
+	Rfourth = 1
+	RfourthCost = 3
+	RfourthScaling = 2
 	Rthresh = 1
 	Rperthresh = 1
 	RthreshProg = 0

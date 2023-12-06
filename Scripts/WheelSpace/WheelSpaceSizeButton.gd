@@ -17,9 +17,9 @@ func _ready():
 	button.pressed.connect(self._button_pressed)
 	image.scale.x = GVars.curSucSize/GVars.sucTresh*2
 	if(ifsucc):
-		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
-	else :
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
+	else :
+		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 
 func _button_pressed():
 	if(ifsucc):

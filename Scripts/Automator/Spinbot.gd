@@ -95,12 +95,6 @@ func _automate() -> void:
 func _check_scene(ifwheel) -> void:
 	if(ifwheel == null):
 		shouldSpin = true
+		print("maybespin")
 		return
-	if(ifwheel):
-		shouldSpin = false
-	else:
-		shouldSpin = true
-		
-#	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinPerClick))
-#	await get_tree().create_timer(0.1).timeout
-#	spin_update_loop()
+	shouldSpin = !ifwheel

@@ -11,4 +11,7 @@ func _process(_delta: float) -> void:
 	# L.B: For better performance, have this happen everytime the number of size changes.
 	# ...Probably through the use of signals.
 	# ...Ex: Call a signal when GVars.size changes.
-	text = str(GVars.getScientific(GVars.size))
+	if(GVars.curEmotionBuff == 2):
+		text = str(GVars.getScientific(GVars.size)) + "^2"
+	else:
+		text = str(GVars.getScientific(GVars.size))

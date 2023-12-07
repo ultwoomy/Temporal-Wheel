@@ -40,8 +40,10 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	
-	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	var sizePow = 1
+	if(GVars.curEmotionBuff == 2):
+		sizePow = 2
+	GVars.spin += GVars.spinPerClick * pow(GVars.size,sizePow) * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:

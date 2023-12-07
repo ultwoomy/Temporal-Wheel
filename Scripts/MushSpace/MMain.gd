@@ -22,7 +22,7 @@ extends Node
 func _ready():
 	var curRotMult = 1
 	if(GVars.sigilData.curSigilBuff == 2):
-		curRotMult *= 2
+		curRotMult *= 1.5
 	if(GVars.mushroomData.pendingRots < 0):
 		GVars.mushroomData.pendingRots = 0
 	for n in GVars.mushroomData.current.size():
@@ -139,19 +139,19 @@ func _harvest_shroom(val):
 	var Ebuff = 1
 	var EexpBuff = 1
 	if(GVars.curEmotionBuff == 3):
-		Ebuff = (log(GVars.rotations))/log(4) + 0.5
+		Ebuff = (log(GVars.rotations))/log(5) + 0.5
 		EexpBuff = GVars.rustData.fourth
 	if(val == 1):
 		GVars.spin += GVars.spinPerClick * GVars.mushroomData.level * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff
 		GVars.mushroomData.xp += 25 * EexpBuff
 	elif(val == 2):
-		GVars.rotations += GVars.mushroomData.level * (3 + Ebuff)/4 * 5
+		GVars.rotations += (2 + GVars.mushroomData.level)/3 * (3 + Ebuff)/4 * 5
 		GVars.mushroomData.xp += 50 * EexpBuff
 	elif(val == 3):
 		GVars.mushroomData.spinBuff += (3 * (log(GVars.mushroomData.level + 1) * Ebuff/log(3)))/(pow(2,GVars.mushroomData.spinBuff))
 		GVars.mushroomData.xp += 75 * EexpBuff
 	elif(val == 4):
-		GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(2 * GVars.mushroomData.ascBuff)
+		GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(pow(1.5,GVars.mushroomData.ascBuff))
 		GVars.mushroomData.xp += 100 * EexpBuff
 	_check_xp()
 

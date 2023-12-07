@@ -64,10 +64,19 @@ func button_pressed():
 		text.text = "Bring me some and I'll buff\nsome more things."
 		line += 1
 	elif(line == 7):
-		text.text = "Be careful though, rust drops\nmore and more infrequently\nas time goes on"
+		text.text = "You can just grab some from\nthe ground outside and-"
+		line += 1
+	elif(line == 8):
+		text.text = "Unless you uh don't have\narms."
+		line += 1
+	elif(line == 9):
+		text.text = "In any case some will get\nshaken off the wheel\nas it spins."
+		line += 1
+	elif(line == 10):
+		text.text = "It will happen less often\nas time goes on though.\nBe warned."
 		line += 1
 		GVars.iffirstpack = false
-	elif(line == 8):
+	elif(line == 11):
 		text.text = ""
 		menu.show()
 		next.hide()

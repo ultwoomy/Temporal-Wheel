@@ -93,6 +93,9 @@ func _automate() -> void:
 	_automate()
 
 func _check_scene(ifwheel) -> void:
+	if(GVars.curEmotionBuff == 1):
+		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
+		print(str(emoBuffSpeed))
 	if(ifwheel == null):
 		shouldSpin = true
 		return

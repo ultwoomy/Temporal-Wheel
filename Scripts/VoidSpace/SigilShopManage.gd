@@ -107,7 +107,7 @@ func _button_pressed():
 			failbought = true
 		
 func reset():
-	if(GVars.sigilData.numberOfSigils[4]):
+	if(GVars.sigilData.numberOfSigils[5]):
 		text.text = "We're out lmao."
 		button.hide()
 	else :

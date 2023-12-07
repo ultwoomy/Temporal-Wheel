@@ -57,8 +57,6 @@ func _process(_delta):
 	if(calculateOneRot()):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
-		if(GVars.curEmotionBuff == 1):
-			emoBuffSpeed = 1.2 + ((GVars.Rfourth - 1) * log(GVars.rotations + 1)/log(2))
 		if(GVars.curEmotionBuff == 4):
 			emoBuff = log(GVars.rustData.rust) + 1
 		if(GVars.sigilData.curSigilBuff == 1):
@@ -98,10 +96,12 @@ func calculateOneRot():
 			GVars.rotations += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
+			if(GVars.curEmotionBuff == 1):
+				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
 			GVars.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff += (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 10))
+				GVars.ritualData.ascBuff += (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 5))
 			if(GVars.ritualData.candlesLit[3]):
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
@@ -113,6 +113,8 @@ func calculateOneRot():
 				if(GVars.ritualData.candlesLit[1]):
 					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
 			GVars.rustData.threshProgress += temp
+			if(GVars.curEmotionBuff == 1):
+				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
 			angle = fmod(angle,(2*PI))
 			return true
 	return false

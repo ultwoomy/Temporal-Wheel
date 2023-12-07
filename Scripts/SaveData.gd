@@ -30,6 +30,7 @@ extends Resource
 @export var curEmotionBuff : float
 @export_group("PermStats")
 @export var iffirstboot : bool
+@export var ifsecondboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 var save_path = "user://stats.tres"
@@ -66,6 +67,7 @@ func _init():
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true
+	ifsecondboot = false
 	iffirstvoid = true
 	iffirstpack = true
 

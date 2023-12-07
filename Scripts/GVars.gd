@@ -25,6 +25,7 @@ extends Node
 @export var ifheaven : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
+@export var ifsecondboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 var chars = 0
@@ -92,13 +93,9 @@ func resetR0Stats():
 	curSucDens = 0
 	wheelphase = 1
 	rotations = 0
-	
 	rustData.resetData()
-	
 	mushroomData.resetData()
-	
 	ritualData.resetData()
-	
 	sigilData.resetData()
 
 
@@ -112,6 +109,7 @@ func resetR2Stats():
 	
 func resetPermStats():
 	iffirstboot = true
+	ifsecondboot = true
 	iffirstvoid = true
 	iffirstpack = true
 	
@@ -154,5 +152,6 @@ func load_as_normal():
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstboot
+	ifsecondboot = loader.ifsecondboot
 	iffirstvoid = loader.iffirstvoid
 	iffirstpack = loader.iffirstpack

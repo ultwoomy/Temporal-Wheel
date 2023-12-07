@@ -95,6 +95,5 @@ func _automate() -> void:
 func _check_scene(ifwheel) -> void:
 	if(ifwheel == null):
 		shouldSpin = true
-		print("maybespin")
 		return
 	shouldSpin = !ifwheel

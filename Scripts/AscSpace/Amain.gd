@@ -62,7 +62,8 @@ func _button_generic(switchEmotion,text):
 	awaken.show()
 
 func _awaken():
-	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
+	if(GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff > GVars.Aspinbuff):
+		GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()

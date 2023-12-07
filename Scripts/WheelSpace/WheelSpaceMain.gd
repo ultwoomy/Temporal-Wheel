@@ -89,29 +89,29 @@ func calculateOneRot():
 			angle += changerot
 		if(angle < -2*PI):
 			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations + 500))
+				GVars.ritualData.ascBuff -= (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 10))
 			if(GVars.ritualData.candlesLit[3]):
-				GVars.rustData.rust += 0.1
+				GVars.rustData.rust -= 0.1
 			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += (GVars.rotations * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations + 1000))
+				GVars.ritualData.rotBuff -= (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
-			GVars.spin += GVars.sucPerTick * 5
+			GVars.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff += (GVars.rotations * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations + 500))
+				GVars.ritualData.ascBuff += (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 10))
 			if(GVars.ritualData.candlesLit[3]):
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += (GVars.rotations * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations + 1000))
+				GVars.ritualData.rotBuff += (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
 				GVars.mushroomData.pendingRots += temp * sigaugbuf
 				if(GVars.ritualData.candlesLit[1]):
-					GVars.mushroomData.pendingRots += temp * sigaugbuf
+					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 			return true
@@ -127,7 +127,7 @@ func _ready():
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
-	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
+	if(numOfCandles > 0) and (GVars.sigilData.curSigilBuff == 5):
 		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5

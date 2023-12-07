@@ -69,7 +69,7 @@ func _ready():
 		upgrade4.text = "Increase Hunger By Percentage\nOf Momentum Needed For\nNext Size"
 	elif(GVars.curEmotionBuff == 3):
 		#warmth
-		upgrade4.text = "Increase Mushroom Experience Gain"
+		upgrade4.text = "Increase Mushroom\nExperience Gain"
 	elif(GVars.curEmotionBuff == 4):
 		#wrath
 		upgrade4.text = "Increase Effect Of Rust\nUpgrades"
@@ -365,7 +365,7 @@ func _nextline():
 			resetChoice()
 	elif(mode == 14):
 		if(line == 0):
-			text.text = "The warm grow should make\nshrooms grow faster."
+			text.text = "The warm glow should make\nshrooms grow twice as\nfast."
 			line += 1
 		elif(line == 1):
 			text.text = "Which makes no sense since\nthey like dim lighting."
@@ -382,7 +382,7 @@ func _nextline():
 			text.text = "Oops."
 			line += 1
 		elif(line == 2):
-			text.text = "It seems to be sucking in\nmatter at an increased\nrate."
+			text.text = "It seems to be sucking in\nmomentum at an increased\nrate."
 			line += 1
 		elif(line == 3):
 			text.text = "I barely touched it I swear."

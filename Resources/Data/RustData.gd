@@ -37,4 +37,4 @@ func resetData() -> void:
 	thresh = 1
 	perThresh = 1
 	threshProgress = 1
-	threshMult = 1.5
+	threshMult = 1.3

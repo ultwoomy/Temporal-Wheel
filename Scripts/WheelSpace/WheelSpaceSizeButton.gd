@@ -35,7 +35,7 @@ func _button_pressed():
 func suc_loop():
 	var suc = 0.0;
 	var Ebuff = 0;
-	var rustUpBuff = GVars.Rincreasehunger
+	var rustUpBuff = GVars.rustData.increaseHunger
 	if(GVars.curEmotionBuff == 4):
 		rustUpBuff = rustUpBuff * GVars.rustData.fourth
 	if(GVars.curEmotionBuff == 2):

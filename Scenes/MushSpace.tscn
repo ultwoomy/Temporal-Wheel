@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dw0r2bbqgf17s"]
+[gd_scene load_steps=38 format=3 uid="uid://dw0r2bbqgf17s"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_27x6k"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_lw4ws"]
@@ -54,6 +54,15 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("1_27x6k")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
+[sub_resource type="QuadMesh" id="QuadMesh_ljwbl"]
+size = Vector2(200, 200)
+center_offset = Vector3(100, 100, 0)
+
+[sub_resource type="MeshTexture" id="MeshTexture_qg50n"]
+mesh = SubResource("QuadMesh_ljwbl")
+base_texture = ExtResource("5_w2d6a")
+image_size = Vector2(200, 200)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
 animations = [{
 "frames": [{
@@ -73,6 +82,24 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aet8d"]
+texture = ExtResource("5_kg50m")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyrne"]
+texture = ExtResource("6_i4oaq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ju6m2"]
+texture = ExtResource("7_qjnyc")
+
+[sub_resource type="QuadMesh" id="QuadMesh_be3hl"]
+size = Vector2(1000, 600)
+center_offset = Vector3(500, 300, 0)
+
+[sub_resource type="MeshTexture" id="MeshTexture_lb1vt"]
+mesh = SubResource("QuadMesh_be3hl")
+base_texture = ExtResource("3_teq87")
+image_size = Vector2(1000, 600)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mwljc"]
 animations = [{
@@ -100,15 +127,6 @@ texture = ExtResource("7_7vdb6")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2vid"]
 texture = ExtResource("8_pioun")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aet8d"]
-texture = ExtResource("5_kg50m")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyrne"]
-texture = ExtResource("6_i4oaq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ju6m2"]
-texture = ExtResource("7_qjnyc")
-
 [node name="MushSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -120,63 +138,42 @@ theme = SubResource("Theme_wedbe")
 script = ExtResource("3_tatml")
 
 [node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "plant", "remove", "plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4", "harvest", "currentMush", "desc", "xpbar", "leveldisp", "statsdisp")]
-layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
 script = ExtResource("3_15p2a")
-left = NodePath("../Left")
-right = NodePath("../Right")
-plant = NodePath("../Plant")
-remove = NodePath("../Delete")
-plot1 = NodePath("../Node2D/Plot1")
-plot2 = NodePath("../Node2D/Plot2")
-plot3 = NodePath("../Node2D/Plot3")
-plot4 = NodePath("../Node2D/Plot4")
-disp1 = NodePath("../Node2D/TimeLeftDisp1")
-disp2 = NodePath("../Node2D/TimeLeftDisp2")
-disp3 = NodePath("../Node2D/TimeLeftDisp3")
-disp4 = NodePath("../Node2D/TimeLeftDisp4")
-harvest = NodePath("../Harvest")
-currentMush = NodePath("MushPanel/CurrentMush")
-desc = NodePath("../Label")
+left = NodePath("../MushInfoPanel/LeftArrow")
+right = NodePath("../MushInfoPanel/RightArrow")
+plant = NodePath("../PlantButton")
+remove = NodePath("../DeleteButton")
+plot1 = NodePath("../FarmPlots/Plot1")
+plot2 = NodePath("../FarmPlots/Plot2")
+plot3 = NodePath("../FarmPlots/Plot3")
+plot4 = NodePath("../FarmPlots/Plot4")
+disp1 = NodePath("../FarmPlots/TimeLeftDisp1")
+disp2 = NodePath("../FarmPlots/TimeLeftDisp2")
+disp3 = NodePath("../FarmPlots/TimeLeftDisp3")
+disp4 = NodePath("../FarmPlots/TimeLeftDisp4")
+harvest = NodePath("../HarvestButton")
+currentMush = NodePath("../MushInfoPanel/CurrentMush")
+desc = NodePath("../MushDescription")
 xpbar = NodePath("../Xp Bar Prog")
 leveldisp = NodePath("../Current Level")
 statsdisp = NodePath("../Stats Panel/StatsDisp")
 
-[node name="Sprite2D" type="Sprite2D" parent="Container"]
-self_modulate = Color(0.415686, 0.215686, 0.113725, 1)
-position = Vector2(491, 290.25)
-scale = Vector2(10.76, 6.445)
-texture = ExtResource("3_teq87")
+[node name="MushInfoPanel" type="Node" parent="."]
 
-[node name="MushPanel" type="Sprite2D" parent="Container"]
+[node name="PanelBackground" type="Sprite2D" parent="MushInfoPanel"]
 self_modulate = Color(0.509804, 0.34902, 0.168627, 1)
 position = Vector2(200, 250)
-scale = Vector2(19.35, 15.65)
-texture = ExtResource("5_w2d6a")
+scale = Vector2(1, 0.809)
+texture = SubResource("MeshTexture_qg50n")
 
-[node name="CurrentMush" type="AnimatedSprite2D" parent="Container/MushPanel"]
-scale = Vector2(0.08, 0.08)
+[node name="CurrentMush" type="AnimatedSprite2D" parent="MushInfoPanel"]
+position = Vector2(200, 250)
+scale = Vector2(1.548, 1.252)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 
-[node name="MushBack" type="AnimatedSprite2D" parent="."]
-position = Vector2(700, 300)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_mwljc")
-
-[node name="Back" type="Button" parent="." node_paths=PackedStringArray("back")]
-layout_mode = 0
-offset_right = 193.0
-offset_bottom = 146.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
-theme_override_styles/hover = SubResource("StyleBoxTexture_lww6x")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_f2vid")
-theme_override_styles/focus = SubResource("StyleBoxTexture_lww6x")
-script = ExtResource("10_fdmec")
-back = NodePath(".")
-
-[node name="Left" type="Button" parent="."]
-layout_mode = 2
+[node name="LeftArrow" type="Button" parent="MushInfoPanel"]
 offset_left = 40.0
 offset_top = 230.0
 offset_right = 80.0
@@ -186,8 +183,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
 theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 
-[node name="Right" type="Button" parent="."]
-layout_mode = 2
+[node name="RightArrow" type="Button" parent="MushInfoPanel"]
 offset_left = 360.0
 offset_top = 270.0
 offset_right = 400.0
@@ -198,8 +194,28 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
 theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.415686, 0.215686, 0.113725, 1)
+texture = SubResource("MeshTexture_lb1vt")
+centered = false
+
+[node name="MushRoom" type="AnimatedSprite2D" parent="."]
+position = Vector2(700, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mwljc")
+
+[node name="BackButton" type="Button" parent="." node_paths=PackedStringArray("back")]
+layout_mode = 0
+offset_right = 193.0
+offset_bottom = 146.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lww6x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f2vid")
+theme_override_styles/focus = SubResource("StyleBoxTexture_lww6x")
+script = ExtResource("10_fdmec")
+back = NodePath(".")
+
+[node name="MushDescription" type="Label" parent="."]
 offset_left = 90.0
 offset_top = 350.0
 offset_right = 306.0
@@ -207,22 +223,14 @@ offset_bottom = 440.0
 theme_override_font_sizes/font_size = 18
 text = "ihjlkjfnkjz"
 
-[node name="Plant" type="Button" parent="."]
-layout_mode = 0
-offset_left = 145.0
-offset_top = 440.0
-offset_right = 245.0
-offset_bottom = 490.0
-text = "Plant"
+[node name="FarmPlots" type="Node2D" parent="."]
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Plot1" type="AnimatedSprite2D" parent="Node2D"]
+[node name="Plot1" type="AnimatedSprite2D" parent="FarmPlots"]
 position = Vector2(519, 397)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp1" type="Label" parent="Node2D"]
+[node name="TimeLeftDisp1" type="Label" parent="FarmPlots"]
 offset_left = 494.0
 offset_top = 278.0
 offset_right = 534.0
@@ -231,12 +239,12 @@ theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Plot2" type="AnimatedSprite2D" parent="Node2D"]
+[node name="Plot2" type="AnimatedSprite2D" parent="FarmPlots"]
 position = Vector2(854, 375)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp2" type="Label" parent="Node2D"]
+[node name="TimeLeftDisp2" type="Label" parent="FarmPlots"]
 offset_left = 832.0
 offset_top = 262.0
 offset_right = 872.0
@@ -245,12 +253,12 @@ theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Plot3" type="AnimatedSprite2D" parent="Node2D"]
+[node name="Plot3" type="AnimatedSprite2D" parent="FarmPlots"]
 position = Vector2(571, 517)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp3" type="Label" parent="Node2D"]
+[node name="TimeLeftDisp3" type="Label" parent="FarmPlots"]
 offset_left = 543.0
 offset_top = 398.0
 offset_right = 590.0
@@ -259,12 +267,12 @@ theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Plot4" type="AnimatedSprite2D" parent="Node2D"]
+[node name="Plot4" type="AnimatedSprite2D" parent="FarmPlots"]
 position = Vector2(805, 500)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp4" type="Label" parent="Node2D"]
+[node name="TimeLeftDisp4" type="Label" parent="FarmPlots"]
 offset_left = 784.0
 offset_top = 387.0
 offset_right = 824.0
@@ -273,7 +281,15 @@ theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Harvest" type="Button" parent="."]
+[node name="PlantButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 440.0
+offset_right = 245.0
+offset_bottom = 490.0
+text = "Plant"
+
+[node name="HarvestButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 145.0
 offset_top = 495.0
@@ -281,7 +297,8 @@ offset_right = 245.0
 offset_bottom = 545.0
 text = "Harvest"
 
-[node name="Delete" type="Button" parent="."]
+[node name="DeleteButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 145.0
 offset_top = 550.0
 offset_right = 245.0

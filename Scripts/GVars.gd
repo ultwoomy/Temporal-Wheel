@@ -35,6 +35,8 @@ extends Node
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
+
+
 func _init():
 #	create_data() # L.B: Needed for reset.
 #	resetR0Stats()
@@ -42,6 +44,7 @@ func _init():
 #	resetPermStats()
 #	save_prog()
 	load_as_normal()
+
 
 func create_data():
 	if (!rustData):
@@ -156,7 +159,7 @@ func load_as_normal():
 	curSucDens = loader.curSucDens
 	wheelphase = loader.wheelphase
 	rotations = loader.rotations
-  rustData = loader.rustData
+	rustData = loader.rustData
 	mushroomData = loader.mushroomData
 	ritualData = loader.ritualData
 	Aspinbuff = loader.Aspinbuff

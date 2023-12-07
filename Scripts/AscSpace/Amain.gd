@@ -8,6 +8,8 @@ extends AnimatedSprite2D
 @export var awaken : Button
 var line
 var frames = 0.00
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(GVars.curEmotionBuff < 5):
@@ -35,21 +37,26 @@ func _ready():
 		wrath.show()
 	complacent.show()
 
+
 func _butF():
 	_button_generic(1,"feel afraid.\n\nYou try to fly away.\nYou do not escape.")
-	
+
+
 func _butC():
 	_button_generic(2,"feel cold.\n\nYou can't move as water\nCreeps up your limbs\nswallowing you whole.")
 
 func _butW():
 	_button_generic(3,"feel warm.\n\nYou willingly embrace the\nwaves.\nYou are crushed.")
-	
+
+
 func _butWrath():
 	_button_generic(4,"feel wrath.\n\nYou strike at the sea\nwith all your might.\nIt's not enough.")
-	
+
+
 func _butComp():
 	_button_generic(0,"feel nothing.\n\nYou sink willingly\ninto the deep.")
-	
+
+
 func _button_generic(switchEmotion,text):
 	_hide_all()
 	dia.text = dia.text.left(dia.text.length() - 7)
@@ -61,6 +68,7 @@ func _button_generic(switchEmotion,text):
 	GVars.curEmotionBuff = switchEmotion
 	awaken.show()
 
+
 func _awaken():
 	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
@@ -68,7 +76,8 @@ func _awaken():
 		event_manager.reset_automators.emit()
 	GVars.resetR0Stats()
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
-	
+
+
 func _hide_all():
 	fear.hide()
 	cold.hide()
@@ -76,6 +85,8 @@ func _hide_all():
 	wrath.hide()
 	complacent.hide()
 	awaken.hide()
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if(frames < 200):

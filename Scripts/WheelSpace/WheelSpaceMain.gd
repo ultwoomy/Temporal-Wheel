@@ -11,7 +11,7 @@ const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
 
 func update_wheel_sprite(frameno):
-	if(GVars.curSigilBuff == 2):
+	if(GVars.sigilData.curSigilBuff == 2):
 		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))

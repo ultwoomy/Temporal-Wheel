@@ -18,6 +18,8 @@ extends Node
 @export var leveldisp : Label
 @export var statsdisp : Label
 @export var curFrame : int
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(GVars.mushroomData.pendingRots < 0):
@@ -39,6 +41,7 @@ func _ready():
 	harvest.pressed.connect(self._harvest)
 	remove.pressed.connect(self._remove)
 
+
 func _left():
 	if(curFrame == 0):
 		curFrame = 3
@@ -46,7 +49,8 @@ func _left():
 		curFrame -= 1
 	_setdesc()
 	currentMush.frame = curFrame
-	
+
+
 func _right():
 	if(curFrame == 3):
 		curFrame = 0
@@ -54,7 +58,8 @@ func _right():
 		curFrame += 1
 	_setdesc()
 	currentMush.frame = curFrame
-	
+
+
 func _setdesc():
 	if(curFrame == 0):
 		desc.text = "Lamp Shroom\nLights up your day.\nGives you momentum."
@@ -67,17 +72,19 @@ func _setdesc():
 	else:
 		desc.text = ""
 
+
 func _plant():
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] == 0):
 			GVars.mushroomData.current[n] = curFrame + 1
-			if(GVars.curSigilBuff == 2):
+			if(GVars.sigilData.curSigilBuff == 2):
 				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 10 + GVars.mushroomData.level * 8
 			else:
 				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 15 + GVars.mushroomData.level * 10
 			_update_sprites()
 			return
-			
+
+
 func _update_sprites():
 	plot1.hide()
 	plot2.hide()
@@ -145,10 +152,10 @@ func _harvest_shroom(val):
 	_check_xp()
 
 func _remove():
-	for n in GVars.Scurrent.size():
-		if(GVars.Scurrent[n] != 0):
-			GVars.Scurrent[n] = 0
-			GVars.StimeLeft[n] = 0
+	for n in GVars.mushroomData.current.size():
+		if(GVars.mushroomData.current[n] != 0):
+			GVars.mushroomData.current[n] = 0
+			GVars.mushroomData.timeLeft[n] = 0
 
 func _check_xp():
 	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):

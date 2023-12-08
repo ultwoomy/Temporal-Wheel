@@ -15,6 +15,8 @@ func update_wheel_sprite(frameno):
 		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
+	elif(GVars.hellChallengeNerf == 1):
+		emoBuffSpeed = 1.2 + ((log(GVars.rotations + 1)/85 - 1) * log(GVars.rotations + 1)/log(2))
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
 	GVars.wheelphase = int(GVars.density)
@@ -58,8 +60,16 @@ func _process(_delta):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
 		if(GVars.curEmotionBuff == 4):
-			emoBuff = log(GVars.rustData.rust) + 1
-		if(GVars.sigilData.curSigilBuff == 1):
+			GVars.rustData.rust = 0
+			emoBuff = log(GVars.rustData.rust + 1) + 1
+		if(GVars.hellChallengeNerf == 4):
+			GVars.rustData.threshProgress -= GVars.rustData.thresh
+			GVars.rustData.rust += 1
+			GVars.rustData.thresh *= GVars.rustData.threshMult
+			var rus = RUST_PART.instantiate()
+			rus.get_child(0).init(1)
+			self.add_child(rus)	
+		elif(GVars.sigilData.curSigilBuff == 1):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
 			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
 			GVars.rustData.thresh *= GVars.rustData.threshMult
@@ -78,7 +88,10 @@ func _process(_delta):
 func calculateOneRot():
 	var changerot = 0.0
 	if(GVars.spin > 0):
-		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
+		if(GVars.hellChallengeNerf == 1):
+			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
+		else:
+			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		if(GVars.ritualData.candlesLit[0]):
 			rotation -= changerot
 			angle -= changerot

@@ -14,20 +14,17 @@ extends Resource
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
-
 @export var rustData : RustData
-
 @export var mushroomData : MushroomData
-
 @export var ritualData : RitualData
-
 @export var sigilData : SigilData
-
 @export_group("R1stats")
-@export var ifhell : bool
-@export var ifheaven : bool
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
+@export_group("R2stats")
+@export var hellChallengeNerf : int
+@export var ifhell : bool
+@export var ifheaven : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : bool
@@ -54,16 +51,12 @@ func _init():
 	wheelphase = 1
 	rotations = 0
 	rustData = RustData.new()
-	
 	mushroomData = MushroomData.new()
-	
 	ritualData = RitualData.new()
-	
 	Aspinbuff = 1
 	curEmotionBuff = 0
-	
 	sigilData = SigilData.new()
-	
+	hellChallengeNerf = 0
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true

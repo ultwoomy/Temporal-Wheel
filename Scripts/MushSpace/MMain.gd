@@ -138,7 +138,9 @@ func _harvest():
 func _harvest_shroom(val):
 	var Ebuff = 1
 	var EexpBuff = 1
-	if(GVars.curEmotionBuff == 3):
+	if(GVars.hellChallengeNerf == 3):
+		Ebuff = 1/((log(GVars.rotations))/log(5) + 0.5)
+	elif(GVars.curEmotionBuff == 3):
 		Ebuff = (log(GVars.rotations))/log(5) + 0.5
 		EexpBuff = GVars.rustData.fourth
 	if(val == 1):

@@ -41,7 +41,9 @@ func run_tests() -> void:
 
 func on_wheel_spun() -> void:
 	var sizePow = 1
-	if(GVars.curEmotionBuff == 2):
+	if(GVars.hellChallengeNerf == 2):
+		sizePow = 0.5
+	elif(GVars.curEmotionBuff == 2):
 		sizePow = 2
 	GVars.spin += GVars.spinPerClick * pow(GVars.size,sizePow) * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 

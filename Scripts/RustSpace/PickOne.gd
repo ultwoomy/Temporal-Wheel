@@ -10,11 +10,13 @@ extends Node
 @export var sigil03sprite : Sprite2D
 @export var sigil04sprite : Sprite2D
 @export var sigil05sprite : Sprite2D
+@export var sigil06sprite : Sprite2D
 @export var sigil01button : Button
 @export var sigil02button : Button
 @export var sigil03button : Button
 @export var sigil04button : Button
 @export var sigil05button : Button
+@export var sigil06button : Button
 @export var upgrade1 : Button
 @export var upgrade2 : Button
 @export var upgrade3 : Button
@@ -92,11 +94,13 @@ func _ready():
 		inspect.hide()
 		augment.hide()
 		upgrade.hide()
+		text.text = "No shirt, no sigil, no service."
 	sigil01button.pressed.connect(self._01Sigil)
 	sigil02button.pressed.connect(self._02Sigil)
 	sigil03button.pressed.connect(self._03Sigil)
 	sigil04button.pressed.connect(self._04Sigil)
 	sigil05button.pressed.connect(self._05Sigil)
+	sigil06button.pressed.connect(self._06Sigil)
 	next.pressed.connect(self._nextline)
 	selection.hide()
 	updateDisplays()
@@ -148,6 +152,12 @@ func dispSigils():
 	else:
 		sigil05sprite.hide()
 		sigil05button.hide()
+	if(GVars.sigilData.numberOfSigils[5]):
+		sigil06sprite.show()
+		sigil06button.show()
+	else:
+		sigil06sprite.hide()
+		sigil06button.hide()
 	upgrademenu.hide()
 	resetWindowVars()
 
@@ -173,6 +183,8 @@ func _04Sigil():
 	manageChoice(4)
 func _05Sigil():
 	manageChoice(5)
+func _06Sigil():
+	manageChoice(6)
 	
 func resetWindowVars():
 	inmenu = false
@@ -261,6 +273,11 @@ func manageChoice(n):
 		elif(n == 5):
 			text.text = "A relic from hell, the\nritual."
 			mode = 5
+		elif(n == 6) and !GVars.ifhell:
+			text.text = "Oh hey, it's the sigil\nof a blue baby."
+			mode = 6
+		elif(n == 6):
+			text.text = "placeholder"
 	if(!ifinspect):
 		if(n == 1):
 			text.text = "Now it's a rust magnet."
@@ -277,6 +294,11 @@ func manageChoice(n):
 		elif(n == 5):
 			text.text = "This one's easy, I can just\nreplace one of these\ncandles with one of mine."
 			mode = 17
+		elif(n == 6) and !GVars.ifhell:
+			text.text = "There's a powerful contract\netched into this sigil."
+			mode = 18
+		elif(n == 6):
+			text.text = "placholder"
 func _nextline():
 	GVars._dialouge(text,0,0.04)
 	if(mode == 1):
@@ -356,6 +378,22 @@ func _nextline():
 		elif(line == 5):
 			text.text = ""
 			resetChoice()
+	elif(mode == 6):
+		if(line == 0):
+			text.text = "It's representative of\nthe servants of Divine."
+			line += 1
+		elif(line == 1):
+			text.text = "You could probably use\nthis to get into heaven."
+			line += 1
+		elif(line == 2):
+			text.text = "...actually there's no\nperm for that in here."
+			line += 1
+		elif(line == 3):
+			text.text = "Huh, guess it's useless\nbut it makes sense that\nit doesn't work, given where\nyou got it from."
+			line += 1
+		elif(line == 5):
+			text.text = ""
+			resetChoice()
 	elif(mode == 13):
 		if(line == 0):
 			text.text = "You should get more rust\nfrom that wheel now."
@@ -415,12 +453,55 @@ func _nextline():
 		elif(line == 1):
 			resetDisplay(5)
 			resetChoice()
+	elif(mode == 18):
+		if(line == 0):
+			text.text = "I can start this contract\nfor you, but be warned."
+			packback.frame = 4
+			line += 1
+		elif(line == 1):
+			text.text = "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now."
+			line += 1
+		elif(line == 2):
+			text.text = "It will invert the effect\nof your current emotion\nturning it into a debuff."
+			line += 1
+			packback.frame = 2
+		elif(line == 3):
+			if(GVars.curEmotionBuff == 1):
+				#fear
+				text.text = "Rotations will divide\nyour wheel's spin speed."
+			elif(GVars.curEmotionBuff == 2):
+				#cold
+				text.text = "The effect of size is\nsquare rooted."
+			elif(GVars.curEmotionBuff == 3):
+				#warmth
+				text.text = "The effects of mushrooms\nare greatly decreased."
+			elif(GVars.curEmotionBuff == 4):
+				#wrath
+				text.text = "You get a max of 1 rust\nper rust drop."
+			else:
+				text.text = "Which is no nerf at all\nLol, nice one."
+			line += 1
+		elif(line == 4):
+			text.text = "This will persist until\nyou regain this sigil."
+			line += 1
+		elif(line == 5):
+			text.text = "If you don't want to\ndo this yet, it's ok\nto just leave."
+			line += 1
+		elif(line == 6):
+			text.text = "Alright, good luck."
+			packback.frame = 1
+		elif(line == 7):
+			resetDisplay(6)
+			resetChoice()
 	else:
 		text.text = ""
 		resetChoice()
 
 
 func resetDisplay(n: int):
+	if(n == 6) and !GVars.ifhell:
+		GVars.sigilData.curSigilBuff = n
+		get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
 	GVars.sigilData.curSigilBuff = n
 	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
 	sigilDisplay.show()

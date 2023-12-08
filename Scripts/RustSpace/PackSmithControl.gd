@@ -67,7 +67,7 @@ func button_pressed():
 		text.text = "You can just grab some from\nthe ground outside and-"
 		line += 1
 	elif(line == 8):
-		text.text = "Unless you uh don't have\narms."
+		text.text = "Unless you don't uh have\narms."
 		line += 1
 	elif(line == 9):
 		text.text = "In any case some will get\nshaken off the wheel\nas it spins."

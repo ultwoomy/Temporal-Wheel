@@ -21,6 +21,8 @@ extends Node
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
+@export_group("R2stats")
+@export var hellChallengeNerf : int
 @export var ifhell : bool
 @export var ifheaven : bool
 @export_group("PermStats")
@@ -71,6 +73,7 @@ func save_prog():
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
 	loader.sigilData = sigilData
+	loader.hellChallengeNerf = hellChallengeNerf
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
@@ -104,6 +107,7 @@ func resetR1Stats():
 	Aspinbuff = 1
 	
 func resetR2Stats():
+	hellChallengeNerf = 0
 	ifhell = false
 	ifheaven = false
 	
@@ -149,6 +153,7 @@ func load_as_normal():
 	Aspinbuff = loader.Aspinbuff
 	curEmotionBuff = loader.curEmotionBuff
 	sigilData = loader.sigilData
+	hellChallengeNerf = loader.hellChallengeNerf
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstboot

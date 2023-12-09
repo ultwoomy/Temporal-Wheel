@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=15 format=3 uid="uid://dp6jl75bx4qcp"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_676fp"]
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsHardReset.gd" id="6_5t2xk"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_vivg8"]
 [ext_resource type="Script" path="res://Scripts/Settings/Save.gd" id="8_rg3j3"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsExitGame.gd" id="9_c8atx"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsCheat.gd" id="10_vlmff"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -88,3 +90,20 @@ offset_top = 150.0
 offset_right = 724.0
 offset_bottom = 256.0
 script = ExtResource("8_rg3j3")
+
+[node name="Exit" type="Button" parent="."]
+offset_left = 200.0
+offset_top = 350.0
+offset_right = 324.0
+offset_bottom = 456.0
+script = ExtResource("9_c8atx")
+
+[node name="CheatsLine" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 500.0
+offset_right = 650.0
+offset_bottom = 528.0
+script = ExtResource("10_vlmff")
+
+[connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]

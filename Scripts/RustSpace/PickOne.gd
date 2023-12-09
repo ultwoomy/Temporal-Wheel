@@ -274,10 +274,11 @@ func manageChoice(n):
 			text.text = "A relic from hell, the\nritual."
 			mode = 5
 		elif(n == 6) and !GVars.ifhell:
-			text.text = "Oh hey, it's the sigil\nof a blue baby."
+			text.text = "Oh hey, it's the sigil of a\nblue baby."
 			mode = 6
 		elif(n == 6):
-			text.text = "placeholder"
+			text.text = "Oh hey, it's the sigil of \nliteral Satan."
+			mode = 25
 	if(!ifinspect):
 		if(n == 1):
 			text.text = "Now it's a rust magnet."
@@ -298,7 +299,8 @@ func manageChoice(n):
 			text.text = "There's a powerful contract\netched into this sigil."
 			mode = 18
 		elif(n == 6):
-			text.text = "placholder"
+			text.text = "Surprise surprise! It's more\ncontracts!"
+			mode = 26
 func _nextline():
 	GVars._dialouge(text,0,0.04)
 	if(mode == 1):
@@ -380,18 +382,18 @@ func _nextline():
 			resetChoice()
 	elif(mode == 6):
 		if(line == 0):
-			text.text = "It's representative of\nthe servants of Divine."
+			text.text = "It's representative of the\nservants of Divine."
 			line += 1
 		elif(line == 1):
-			text.text = "You could probably use\nthis to get into heaven."
+			text.text = "You could probably use this\nto get into heaven."
 			line += 1
 		elif(line == 2):
-			text.text = "...actually there's no\nperm for that in here."
+			text.text = "...actually there's no perm\nfor that in here."
 			line += 1
 		elif(line == 3):
-			text.text = "Huh, guess it's useless\nbut it makes sense that\nit doesn't work, given where\nyou got it from."
+			text.text = "Huh, guess it's useless then."
 			line += 1
-		elif(line == 5):
+		elif(line == 4):
 			text.text = ""
 			resetChoice()
 	elif(mode == 13):
@@ -477,7 +479,7 @@ func _nextline():
 				text.text = "The effects of mushrooms\nare greatly decreased."
 			elif(GVars.curEmotionBuff == 4):
 				#wrath
-				text.text = "You get a max of 1 rust\nper rust drop."
+				text.text = "You will get a max of 1\nrust per rust drop."
 			else:
 				text.text = "Which is no nerf at all\nLol, nice one."
 			line += 1
@@ -490,8 +492,37 @@ func _nextline():
 		elif(line == 6):
 			text.text = "Alright, good luck."
 			packback.frame = 1
+			line += 1
 		elif(line == 7):
 			resetDisplay(6)
+			resetChoice()
+	elif(mode == 25):
+		if(line == 0):
+			text.text = "You really pick up a lot\nof weird things don't you."
+			line += 1
+		elif(line == 1):
+			text.text = "I'm out of the loop with\nhistory.\nI fear my knowledge can't\nkeep up."
+			line += 1
+		elif(line == 2):
+			text.text = "How about you tell me the\nlatest whenever you visit."
+			line += 1
+		elif(line == 3):
+			resetChoice()
+	elif(mode == 26):
+		if(line == 0):
+			text.text = "Be warned though, these\ncontracts mean business."
+			line += 1
+		elif(line == 1):
+			text.text = "These will be harder than\nanything else the blue\nguy's cooked up for you."
+			line += 1
+		elif(line == 2):
+			text.text = "But I(the developer) am not\nthere yet, so."
+			line += 1
+		elif(line == 3):
+			text.text = "WHO SAID THAT!?"
+			line += 1
+		elif(line == 4):
+			resetDisplay(0)
 			resetChoice()
 	else:
 		text.text = ""

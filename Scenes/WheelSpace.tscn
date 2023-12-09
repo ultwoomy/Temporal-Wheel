@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=42 format=3 uid="uid://buu1sadwadteo"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_glr4n"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dbqifpea6l5v3" path="res://Sprites/WheelSpace/settings buttons/tile000.png" id="26_vcmby"]
 [ext_resource type="Texture2D" uid="uid://da7ojbspruc6b" path="res://Sprites/WheelSpace/settings buttons/tile001.png" id="27_t10mo"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/SettingsTravel.gd" id="28_ob0gv"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="29_womxx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -325,3 +326,22 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
+
+[node name="ExitContract" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 200.0
+script = ExtResource("29_womxx")
+button = NodePath("ResetCounter")
+image = NodePath("ResetDisp")
+
+[node name="ResetDisp" type="Sprite2D" parent="ExitContract"]
+position = Vector2(0, -75)
+scale = Vector2(2, 1)
+texture = ExtResource("7_kph8u")
+offset = Vector2(50, 105)
+
+[node name="ResetCounter" type="Button" parent="ExitContract"]
+layout_mode = 2
+text = "Toggle Grow"

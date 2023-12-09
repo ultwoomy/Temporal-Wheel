@@ -22,6 +22,7 @@ extends Resource
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
 @export_group("R2stats")
+@export var inContract : bool
 @export var hellChallengeNerf : int
 @export var ifhell : bool
 @export var ifheaven : bool
@@ -56,6 +57,7 @@ func _init():
 	Aspinbuff = 1
 	curEmotionBuff = 0
 	sigilData = SigilData.new()
+	inContract = false
 	hellChallengeNerf = 0
 	ifhell = false
 	ifheaven = false

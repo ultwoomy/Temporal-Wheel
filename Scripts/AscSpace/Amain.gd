@@ -12,7 +12,7 @@ var frames = 0.00
 func _ready():
 	if(GVars.curEmotionBuff < 5):
 		frame = GVars.curEmotionBuff
-	elif(GVars.sigilData.curSigilBuff == 6):
+	if(GVars.sigilData.curSigilBuff == 6):
 		frame = 6
 	else:
 		frame = 0
@@ -77,6 +77,7 @@ func _button_generic(switchEmotion,text):
 func _awaken():
 	if(GVars.sigilData.curSigilBuff == 6) and !GVars.ifhell:
 		GVars.resetR0Stats()
+		GVars.inContract = true
 		GVars.hellChallengeNerf = GVars.curEmotionBuff
 		GVars.resetR1Stats()
 		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")

@@ -19,10 +19,12 @@ extends Node
 @export var ritualData : RitualData
 @export var sigilData : SigilData
 @export_group("R1stats")
+@export var spinBotStats : Spinbot
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
 @export_group("R2stats")
 @export var hellChallengeNerf : int
+@export var inContract : bool
 @export var ifhell : bool
 @export var ifheaven : bool
 @export_group("PermStats")
@@ -40,6 +42,10 @@ func _init():
 	#resetPermStats()
 	#save_prog()
 	load_as_normal()
+
+func unlock_all_sigils():
+	for n in sigilData.numberOfSigils.size():
+		sigilData.numberOfSigils[n] = true
 
 func create_data():
 	if (!rustData):
@@ -73,6 +79,7 @@ func save_prog():
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
 	loader.sigilData = sigilData
+	loader.inContract = inContract
 	loader.hellChallengeNerf = hellChallengeNerf
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
@@ -107,6 +114,7 @@ func resetR1Stats():
 	Aspinbuff = 1
 	
 func resetR2Stats():
+	inContract = false
 	hellChallengeNerf = 0
 	ifhell = false
 	ifheaven = false
@@ -153,6 +161,7 @@ func load_as_normal():
 	Aspinbuff = loader.Aspinbuff
 	curEmotionBuff = loader.curEmotionBuff
 	sigilData = loader.sigilData
+	inContract = loader.inContract
 	hellChallengeNerf = loader.hellChallengeNerf
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven

@@ -60,8 +60,7 @@ func _process(_delta):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
 		if(GVars.curEmotionBuff == 4):
-			GVars.rustData.rust = 0
-			emoBuff = log(GVars.rustData.rust + 1) + 1
+			emoBuff = log(GVars.rotations + 1) + 1
 		if(GVars.hellChallengeNerf == 4):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
 			GVars.rustData.rust += 1

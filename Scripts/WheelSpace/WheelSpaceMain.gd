@@ -14,12 +14,12 @@ func update_wheel_sprite(frameno):
 	if(GVars.sigilData.curSigilBuff == 2):
 		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
+		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	elif(GVars.hellChallengeNerf == 1):
-		emoBuffSpeed = 1.2 + ((log(GVars.rotations + 1)/85 - 1) * log(GVars.rotations + 1)/log(2))
+		emoBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
-	GVars.wheelphase = int(GVars.density)
+	GVars.spinData.wheelphase = int(GVars.spinData.density)
 	if(frameno > 11):
 		self.get_node("Centerpiece").frame = 11
 	else :
@@ -27,17 +27,17 @@ func update_wheel_sprite(frameno):
 
 
 func updateDivisor():
-	GVars.wheelphase = int(GVars.density)
-	update_wheel_sprite(GVars.wheelphase-1)
+	GVars.spinData.wheelphase = int(GVars.spinData.density)
+	update_wheel_sprite(GVars.spinData.wheelphase-1)
 	
 	
 	# L.B: Utilizes my JSONReader class to load in a .json file intentionally written for this specific function.
 	var wheelphase_json: Dictionary = JSONReader.new().load_json_file("res://JSON/WheelPhases.json")
 	# (!) Hard-coded minimum and maximum for the range to match your previous code.
 	var wheelphaseRange: Array = range(1, 12) # Note: range takes steps and stops before the second arg; first arg is inclusive, second arg is exclusive.
-	if (GVars.wheelphase in wheelphaseRange):
+	if (GVars.spinData.wheelphase in wheelphaseRange):
 		for count in wheelphaseRange: 
-			if (GVars.wheelphase == count):
+			if (GVars.spinData.wheelphase == count):
 				# Use "count" as a way of finding a key in the JSON object "wheelphases".
 				#	- Since count is an integer and a key has to be a string, change count as an integer into a string.
 				#	- "wheelphases" is a JSON object that contains { "1":1000, "2":700, . . ., "other":80 }
@@ -60,7 +60,7 @@ func _process(_delta):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
 		if(GVars.curEmotionBuff == 4):
-			emoBuff = log(GVars.rotations + 1) + 1
+			emoBuff = log(GVars.spinData.rotations + 1) + 1
 		if(GVars.hellChallengeNerf == 4):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
 			GVars.rustData.rust += 1
@@ -82,15 +82,15 @@ func _process(_delta):
 			var rus = RUST_PART.instantiate()
 			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
 			self.add_child(rus)	
-	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
+	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 
 func calculateOneRot():
 	var changerot = 0.0
-	if(GVars.spin > 0):
+	if(GVars.spinData.spin > 0):
 		if(GVars.hellChallengeNerf == 1):
-			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
+			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
 		else:
-			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
+			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		if(GVars.ritualData.candlesLit[0]):
 			rotation -= changerot
 			angle -= changerot
@@ -105,19 +105,19 @@ func calculateOneRot():
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff -= (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
 			var temp = float(angle/(2*PI))
-			GVars.rotations += temp
+			GVars.spinData.rotations += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 			if(GVars.curEmotionBuff == 1):
-				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
+				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			GVars.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff += (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 5))
+				GVars.ritualData.ascBuff += (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
 			if(GVars.ritualData.candlesLit[3]):
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
+				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			var temp = float(angle/(2*PI))
 			GVars.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
@@ -134,7 +134,7 @@ func calculateOneRot():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scale = Vector2(0.5 + log(GVars.size)/5,0.5 + log(GVars.size)/5)
+	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
 	densityButton.densUp.connect(updateDivisor)
 	numOfCandles = 0.0

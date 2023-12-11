@@ -26,9 +26,9 @@ func _button_pressed():
 	if(failbought):
 		reset()
 	else :
-		if((GVars.spin > GVars.sigilData.costSpin) && (GVars.rotations > GVars.sigilData.costRot)):
-			GVars.spin -= GVars.sigilData.costSpin
-			GVars.rotations -= GVars.sigilData.costRot
+		if((GVars.spinData.spin > GVars.sigilData.costSpin) && (GVars.spinData.rotations > GVars.sigilData.costRot)):
+			GVars.spinData.spin -= GVars.sigilData.costSpin
+			GVars.spinData.rotations -= GVars.sigilData.costRot
 			GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 			GVars.sigilData.costRot *= GVars.sigilData.costRotScale
 			var curSigil = 0

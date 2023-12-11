@@ -328,6 +328,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
 
 [node name="ExitContract" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+layout_mode = 0
 offset_left = 400.0
 offset_top = 100.0
 offset_right = 600.0

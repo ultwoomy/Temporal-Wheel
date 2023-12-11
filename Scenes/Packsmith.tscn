@@ -170,7 +170,7 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("10_np0fv")
 
-[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "text", "selection", "upgrademenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil05sprite", "sigil06sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "sigil05button", "sigil06button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
+[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "automate", "text", "selection", "upgrademenu", "automationmenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil05sprite", "sigil06sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "sigil05button", "sigil06button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -178,9 +178,11 @@ script = ExtResource("9_7yayj")
 inspect = NodePath("Inspect")
 augment = NodePath("Augment")
 upgrade = NodePath("Upgrade")
+automate = NodePath("Automate")
 text = NodePath("../Dia")
 selection = NodePath("Selection")
 upgrademenu = NodePath("UpgradeMenu")
+automationmenu = NodePath("AutomationMenu")
 sigil01sprite = NodePath("Selection/Sigil1")
 sigil02sprite = NodePath("Selection/Sigil2")
 sigil03sprite = NodePath("Selection/Sigil3")
@@ -213,6 +215,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Upgrade" type="Button" parent="Menu"]
+layout_mode = 2
+
+[node name="Automate" type="Button" parent="Menu"]
 layout_mode = 2
 
 [node name="Selection" type="Sprite2D" parent="Menu"]
@@ -369,3 +374,9 @@ layout_mode = 0
 offset_top = -190.0
 offset_right = 300.0
 offset_bottom = -40.0
+
+[node name="AutomationMenu" type="Sprite2D" parent="Menu"]
+self_modulate = Color(0.0941176, 0.0117647, 0, 1)
+position = Vector2(744, 308)
+scale = Vector2(4, 4)
+texture = ExtResource("3_a44lj")

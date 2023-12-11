@@ -45,7 +45,7 @@ func on_wheel_spun() -> void:
 		sizePow = 0.5
 	elif(GVars.curEmotionBuff == 2):
 		sizePow = 2
-	GVars.spin += GVars.spinPerClick * pow(GVars.size,sizePow) * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	GVars.spinData.spin += GVars.spinData.spinPerClick * pow(GVars.spinData.size,sizePow) * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:

@@ -92,6 +92,7 @@ offset_bottom = 256.0
 script = ExtResource("8_rg3j3")
 
 [node name="Exit" type="Button" parent="."]
+layout_mode = 0
 offset_left = 200.0
 offset_top = 350.0
 offset_right = 324.0

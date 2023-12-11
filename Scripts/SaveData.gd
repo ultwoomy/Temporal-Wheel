@@ -1,19 +1,6 @@
 extends Resource
 @export_group("R0stats")
-@export var spin : float
-@export var spinPerClick : float
-@export var size : float
-@export var sizeToggle : float
-@export var sucPerTick : float
-@export var sucTresh : float
-@export var curSucSize : float
-@export var sizeRecord : float
-@export var density : float
-@export var sucPerTDens : float
-@export var densTresh : float
-@export var curSucDens : float
-@export var wheelphase : int
-@export var rotations : float
+@export var spinData : SpinData
 @export var rustData : RustData
 @export var mushroomData : MushroomData
 @export var ritualData : RitualData
@@ -37,20 +24,7 @@ func load_stats():
 		return load(save_path)
 	return null
 func _init():
-	spin = 0
-	spinPerClick = 1
-	size = 1
-	sizeToggle = false
-	sucPerTick = 1
-	sucTresh = 10
-	curSucSize = 0
-	sizeRecord = 1
-	density = 1
-	sucPerTDens = 1
-	densTresh = 2
-	curSucDens = 0
-	wheelphase = 1
-	rotations = 0
+	spinData = SpinData.new()
 	rustData = RustData.new()
 	mushroomData = MushroomData.new()
 	ritualData = RitualData.new()

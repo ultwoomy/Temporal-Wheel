@@ -7,15 +7,15 @@ var ifsucc = false
 func _ready():
 	#Yu: Every time one rotation finishes, succ will trigger once. Changed from once per second.
 	#    Threshold and threshold multiplier for size reduced accordingly
-	if(GVars.sizeToggle):
+	if(GVars.spinData.sizeToggle):
 		ifsucc = true
 	spinbody.oneClick.connect(suc_loop)
 	button.text = str("Toggle Grow")
 	button.size = Vector2(200,100)
 	button.expand_icon = true
-	growDisplay.text = str(GVars.size)
+	growDisplay.text = str(GVars.spinData.size)
 	button.pressed.connect(self._button_pressed)
-	image.scale.x = GVars.curSucSize/GVars.sucTresh*2
+	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2
 	if(ifsucc):
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 	else :
@@ -39,20 +39,20 @@ func suc_loop():
 	if(GVars.curEmotionBuff == 4):
 		rustUpBuff = rustUpBuff * GVars.rustData.fourth
 	if(GVars.curEmotionBuff == 2):
-		Ebuff = (GVars.rustData.fourth - 1) * GVars.sucTresh
+		Ebuff = (GVars.rustData.fourth - 1) * GVars.spinData.sucTresh
 	if(GVars.sigilData.curSigilBuff == 3):
-		suc = GVars.sucPerTick * rustUpBuff * GVars.sizeRecord + Ebuff
+		suc = GVars.spinData.sucPerTick * rustUpBuff * GVars.spinData.sizeRecord + Ebuff
 	else:
-		suc = GVars.sucPerTick * rustUpBuff + Ebuff
+		suc = GVars.spinData.sucPerTick * rustUpBuff + Ebuff
 	if(ifsucc):
-		if(GVars.spin >= suc):
-			GVars.spin -= suc
-			GVars.curSucSize += suc
-			if(GVars.curSucSize >= GVars.sucTresh):
-				GVars.size += 1
-				if(GVars.size > GVars.sizeRecord):
-					GVars.sizeRecord = GVars.size
-				growDisplay.text = str(GVars.size)
-				GVars.curSucSize = 0
-				GVars.sucTresh *= 3
-	image.scale.x = GVars.curSucSize/GVars.sucTresh*2
+		if(GVars.spinData.spin >= suc):
+			GVars.spinData.spin -= suc
+			GVars.spinData.curSucSize += suc
+			if(GVars.spinData.curSucSize >= GVars.spinData.sucTresh):
+				GVars.spinData.size += 1
+				if(GVars.spinData.size > GVars.spinData.sizeRecord):
+					GVars.spinData.sizeRecord = GVars.spinData.size
+				growDisplay.text = str(GVars.spinData.size)
+				GVars.spinData.curSucSize = 0
+				GVars.spinData.sucTresh *= 3
+	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2

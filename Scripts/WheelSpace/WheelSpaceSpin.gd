@@ -37,7 +37,7 @@ func _button_pressed():
 #	spinDisplay.text = str(GVars.getScientific(GVars.spin))
 
 func spin_update_loop():
-	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinPerClick))
+	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinData.spinPerClick))
 	await get_tree().create_timer(0.1).timeout
 	spin_update_loop()
 

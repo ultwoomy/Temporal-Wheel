@@ -2,9 +2,11 @@ extends Node
 @export var inspect : Button
 @export var augment : Button
 @export var upgrade : Button
+@export var automate : Button
 @export var text : Label
 @export var selection : Sprite2D
 @export var upgrademenu : Sprite2D
+@export var automationmenu : Sprite2D
 @export var sigil01sprite : Sprite2D
 @export var sigil02sprite : Sprite2D
 @export var sigil03sprite : Sprite2D
@@ -34,6 +36,7 @@ var ifinmen = false
 var ifbuff = false
 var inmenu = false
 var ifupscreen = false
+var ifautomascreen = false
 var line = 0
 var mode = 0
 # Called when the node enters the scene tree for the first time.
@@ -46,10 +49,14 @@ func _ready():
 	augment.position = Vector2(100,150)
 	upgrade.size = Vector2(400,50)
 	upgrade.position = Vector2(100,200)
+	automate.size = Vector2(400,50)
+	automate.position = Vector2(100,250)
 	inspect.text = "Inspect"
 	augment.text = "Augment"
 	upgrade.text = "Upgrade"
+	automate.text = "Automate"
 	upgrademenu.hide()
+	automationmenu.hide()
 	upgrade1.size = Vector2(350,150)
 	upgrade1.position = Vector2(15,-50)
 	upgrade2.size = Vector2(350,150)
@@ -90,10 +97,12 @@ func _ready():
 	inspect.pressed.connect(self._inspect)
 	augment.pressed.connect(self._augment)
 	upgrade.pressed.connect(self._upgrade)
+	automate.pressed.connect(self._automate)
 	if(!GVars.sigilData.numberOfSigils[0]):
 		inspect.hide()
 		augment.hide()
 		upgrade.hide()
+		automate.hide()
 		text.text = "No shirt, no sigil, no service."
 	sigil01button.pressed.connect(self._01Sigil)
 	sigil02button.pressed.connect(self._02Sigil)
@@ -159,18 +168,35 @@ func dispSigils():
 		sigil06sprite.hide()
 		sigil06button.hide()
 	upgrademenu.hide()
+	automationmenu.hide()
 	resetWindowVars()
 
 func _upgrade():
 	if(ifupscreen == false):
 		upgrademenu.show()
 		selection.hide()
+		automationmenu.hide()
 		resetWindowVars()
 		ifupscreen = true
+		ifautomascreen = false
 		inmenu = true
 	else:
 		upgrademenu.hide()
 		ifupscreen = false
+		inmenu = false
+
+func _automate():
+	if(ifautomascreen == false):
+		automationmenu.show()
+		selection.hide()
+		upgrademenu.hide()
+		resetWindowVars()
+		ifautomascreen = true
+		ifupscreen = false
+		inmenu = true
+	else:
+		automationmenu.hide()
+		ifautomascreen = false
 		inmenu = false
 
 func _01Sigil():
@@ -199,6 +225,7 @@ func resetChoice():
 	inspect.show()
 	augment.show()
 	upgrade.show()
+	automate.show()
 	next.hide()
 	
 func updateDisplays():
@@ -255,6 +282,7 @@ func manageChoice(n):
 	inspect.hide()
 	augment.hide()
 	upgrade.hide()
+	automate.hide()
 	next.show()
 	text.show()
 	if(ifinspect):

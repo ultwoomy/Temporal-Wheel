@@ -12,8 +12,8 @@ func _process(_delta: float) -> void:
 	# ...Probably through the use of signals.
 	# ...Ex: Call a signal when GVars.size changes.
 	if(GVars.hellChallengeNerf == 2):
-		text = str(GVars.getScientific(GVars.size)) + "^0.5"
+		text = str(GVars.getScientific(GVars.spinData.size)) + "^0.5"
 	elif(GVars.curEmotionBuff == 2):
-		text = str(GVars.getScientific(GVars.size)) + "^2"
+		text = str(GVars.getScientific(GVars.spinData.size)) + "^2"
 	else:
-		text = str(GVars.getScientific(GVars.size))
+		text = str(GVars.getScientific(GVars.spinData.size))

@@ -23,11 +23,11 @@ var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 func _init():
-	create_data() # L.B: Needed for reset.
-	resetR0Stats()
-	resetR1Stats()
-	resetPermStats()
-	save_prog()
+	#create_data() # L.B: Needed for reset.
+	#resetR0Stats()
+	#resetR1Stats()
+	#resetPermStats()
+	#save_prog()
 	load_as_normal()
 
 func unlock_all_sigils():

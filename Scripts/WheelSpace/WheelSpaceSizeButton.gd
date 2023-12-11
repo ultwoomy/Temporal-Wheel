@@ -24,11 +24,11 @@ func _ready():
 func _button_pressed():
 	if(ifsucc):
 		ifsucc = false
-		GVars.sizeToggle = false
+		GVars.spinData.sizeToggle = false
 		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 	else :
 		ifsucc = true
-		GVars.sizeToggle = true
+		GVars.spinData.sizeToggle = true
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 	GVars.save_prog()
 	

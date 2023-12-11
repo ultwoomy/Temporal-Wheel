@@ -119,14 +119,14 @@ func calculateOneRot():
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			var temp = float(angle/(2*PI))
-			GVars.rotations += temp
+			GVars.spinData.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
 				GVars.mushroomData.pendingRots += temp * sigaugbuf
 				if(GVars.ritualData.candlesLit[1]):
 					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
 			GVars.rustData.threshProgress += temp
 			if(GVars.curEmotionBuff == 1):
-				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
+				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			angle = fmod(angle,(2*PI))
 			return true
 	return false

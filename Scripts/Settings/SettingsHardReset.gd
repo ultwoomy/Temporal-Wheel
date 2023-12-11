@@ -19,7 +19,6 @@ func _button_pressed():
 		GVars.resetR1Stats()
 		GVars.resetR2Stats()
 		GVars.resetPermStats()
-		GVars.unlock_all_sigils()
 		button.text = "Game Reset!"
 		presses = 0
 	if(presses > 0):

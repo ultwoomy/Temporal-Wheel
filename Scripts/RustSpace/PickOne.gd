@@ -56,6 +56,10 @@ func _ready():
 	upgrade.text = "Upgrade"
 	automate.text = "Automate"
 	upgrademenu.hide()
+	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+		automate.show()
+	else:
+		automate.hide()
 	automationmenu.hide()
 	upgrade1.size = Vector2(350,150)
 	upgrade1.position = Vector2(15,-50)
@@ -225,7 +229,8 @@ func resetChoice():
 	inspect.show()
 	augment.show()
 	upgrade.show()
-	automate.show()
+	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+		automate.show()
 	next.hide()
 	
 func updateDisplays():

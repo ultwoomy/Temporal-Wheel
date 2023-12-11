@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=17 format=3 uid="uid://dp6jl75bx4qcp"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_676fp"]
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_mcq1j"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsBack.gd" id="3_i3nnn"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsHardReset.gd" id="6_5t2xk"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsLegal.gd" id="6_eb0wv"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="7_6fwt2"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_vivg8"]
 [ext_resource type="Script" path="res://Scripts/Settings/Save.gd" id="8_rg3j3"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsExitGame.gd" id="9_c8atx"]
@@ -52,18 +54,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_8klss")
 
-[node name="Back" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("1_bifml")
-texture_pressed = ExtResource("2_iba5r")
-texture_hover = ExtResource("2_iba5r")
-texture_disabled = ExtResource("1_bifml")
-texture_focused = ExtResource("2_iba5r")
-script = ExtResource("3_i3nnn")
-
 [node name="HardReset" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
 layout_mode = 0
 offset_left = 200.0
@@ -106,5 +96,39 @@ offset_top = 500.0
 offset_right = 650.0
 offset_bottom = 528.0
 script = ExtResource("10_vlmff")
+
+[node name="License" type="Button" parent="."]
+offset_left = 600.0
+offset_top = 350.0
+offset_right = 800.0
+offset_bottom = 450.0
+
+[node name="LicenseSprite" type="Container" parent="." node_paths=PackedStringArray("license", "back", "licensebutton")]
+layout_mode = 0
+script = ExtResource("6_eb0wv")
+license = NodePath("Label")
+back = NodePath("Sprite2D")
+licensebutton = NodePath("../License")
+
+[node name="Sprite2D" type="Sprite2D" parent="LicenseSprite"]
+self_modulate = Color(0.0156863, 0, 0.243137, 0.584314)
+position = Vector2(491.5, 298)
+scale = Vector2(10.83, 6.96)
+texture = ExtResource("7_6fwt2")
+
+[node name="Label" type="Label" parent="LicenseSprite"]
+layout_mode = 2
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_bifml")
+texture_pressed = ExtResource("2_iba5r")
+texture_hover = ExtResource("2_iba5r")
+texture_disabled = ExtResource("1_bifml")
+texture_focused = ExtResource("2_iba5r")
+script = ExtResource("3_i3nnn")
 
 [connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]

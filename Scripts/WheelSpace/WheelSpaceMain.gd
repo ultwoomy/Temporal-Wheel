@@ -83,9 +83,8 @@ func _process(_delta):
 			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
 			self.add_child(rus)	
 	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
-
 func calculateOneRot():
-	var changerot = 0.0
+	var changerot = 0.
 	if(GVars.spinData.spin > 0):
 		if(GVars.hellChallengeNerf == 1):
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
@@ -95,6 +94,7 @@ func calculateOneRot():
 			rotation -= changerot
 			angle -= changerot
 		else:
+			GVars.spinSpeed = int(pow(changerot * 1000,0.6))
 			rotation += changerot
 			angle += changerot
 		if(angle < -2*PI):

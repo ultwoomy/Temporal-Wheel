@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bbdn3joapnpik"
+path="res://.godot/imported/jeff hotman music box wind sfx.mp3-746d50ab340b62d1aba83cf7e0cc561a.mp3str"
+
+[deps]
+
+source_file="res://Sound/jeff hotman music box wind sfx.mp3"
+dest_files=["res://.godot/imported/jeff hotman music box wind sfx.mp3-746d50ab340b62d1aba83cf7e0cc561a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

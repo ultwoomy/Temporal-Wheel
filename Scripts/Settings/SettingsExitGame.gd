@@ -7,4 +7,5 @@ func _ready():
 	pressed.connect(self._wheel_scene)
 	
 func _wheel_scene():
+	GVars.save_prog()
 	get_tree().quit()

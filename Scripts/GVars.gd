@@ -5,6 +5,7 @@ extends Node
 @export var mushroomData : MushroomData
 @export var ritualData : RitualData
 @export var sigilData : SigilData
+@export var spinSpeed : int
 @export_group("R1stats")
 @export var spinBotStats : Spinbot
 @export var curEmotionBuff : int
@@ -19,6 +20,8 @@ extends Node
 @export var ifsecondboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
+@export var musicvol : float
+@export var sfxvol : float
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
@@ -62,6 +65,8 @@ func save_prog():
 	loader.iffirstboot = iffirstboot
 	loader.iffirstvoid = iffirstvoid
 	loader.iffirstpack = iffirstpack
+	loader.musicvol = musicvol
+	loader.sfxvol = sfxvol
 	loader.save_stats(loader)
 	
 func resetR0Stats():
@@ -70,6 +75,7 @@ func resetR0Stats():
 	mushroomData.resetData()
 	ritualData.resetData()
 	sigilData.resetData()
+	spinSpeed = 0
 
 func resetR1Stats():
 	curEmotionBuff = 0
@@ -86,6 +92,8 @@ func resetPermStats():
 	ifsecondboot = true
 	iffirstvoid = true
 	iffirstpack = true
+	musicvol = -6.0
+	sfxvol = -6.0
 	
 func getScientific(val):
 	if(val > 1000):
@@ -119,3 +127,5 @@ func load_as_normal():
 	ifsecondboot = loader.ifsecondboot
 	iffirstvoid = loader.iffirstvoid
 	iffirstpack = loader.iffirstpack
+	musicvol = loader.musicvol
+	sfxvol = loader.sfxvol

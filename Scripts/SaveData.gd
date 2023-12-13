@@ -18,6 +18,8 @@ extends Resource
 @export var ifsecondboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
+@export var musicvol : float
+@export var sfxvol : float
 var save_path = "user://stats.tres"
 func load_stats():
 	if ResourceLoader.exists(save_path):
@@ -39,6 +41,8 @@ func _init():
 	ifsecondboot = false
 	iffirstvoid = true
 	iffirstpack = true
+	musicvol = -6.0
+	sfxvol = -6.0
 
 
 func save_stats(data):

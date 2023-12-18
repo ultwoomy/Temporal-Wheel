@@ -1,0 +1,64 @@
+extends Node
+
+
+## Components
+@export var currentMush : AnimatedSprite2D
+@export var desc : Label
+@export var left : Button
+@export var right : Button
+
+
+## Variables
+var currentFrame : int
+
+
+## Functions
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	currentMush.frame = 0
+	desc.size = Vector2(216,90)
+	desc.position = Vector2(90,350)
+	currentFrame = 0
+	_setdesc()
+	
+	# Listeners
+	left.pressed.connect(self._left)
+	right.pressed.connect(self._right)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+
+func _left():
+	if(currentFrame <= 0):
+		currentFrame = 3
+	else:
+		currentFrame -= 1
+	_setdesc()
+	currentMush.frame = currentFrame
+
+
+func _right():
+	if(currentFrame >= 3):
+		currentFrame = 0
+	else:
+		currentFrame += 1
+	_setdesc()
+	currentMush.frame = currentFrame
+
+
+func _setdesc():
+	var descriptions: Array[String] = [
+		"Lamp Shroom\nLights up your day.\nGives you momentum.",
+		"Rot Shroom\nThey are tight knit friends.\nGives you rotations.",
+		"Wine Shroom\nA lot of fun at parties.\nGives you a momentum bonus.",
+		"Twin Shroom\nWhispers to you.\nGives you a identity bonus.",
+	]
+	
+	# Check to see if currentFrame is in bounds.
+	if (currentFrame >= 0 && currentFrame < descriptions.size()):
+		desc.text = descriptions[currentFrame]
+	else:
+		desc.text = ""

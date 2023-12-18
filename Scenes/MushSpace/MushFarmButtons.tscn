@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bm0ka5n0co0sb"]
+
+[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmButtons.gd" id="1_60p74"]
+
+[node name="FarmButtons" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_60p74")
+
+[node name="PlantButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 440.0
+offset_right = 245.0
+offset_bottom = 490.0
+text = "Plant"
+
+[node name="HarvestButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 495.0
+offset_right = 245.0
+offset_bottom = 545.0
+text = "Harvest"
+
+[node name="DeleteButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 550.0
+offset_right = 245.0
+offset_bottom = 600.0
+text = "Delete"

@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyk2uirm08knf"]
+
+[ext_resource type="Texture2D" uid="uid://bjr4hvvmbbjm8" path="res://Sprites/WheelSpace/greenrect.png" id="1_qoms6"]
+
+[node name="LevelInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="CurrentLevel" type="Label" parent="."]
+layout_mode = 2
+offset_left = 206.0
+offset_top = 50.0
+offset_right = 347.0
+offset_bottom = 76.0
+text = "Level: "
+
+[node name="XpBar" type="Sprite2D" parent="."]
+self_modulate = Color(0.505882, 0.313726, 0.145098, 1)
+position = Vector2(280, 80)
+scale = Vector2(1.5, 1)
+texture = ExtResource("1_qoms6")
+
+[node name="XpBarProgress" type="Sprite2D" parent="."]
+position = Vector2(280, 80)
+scale = Vector2(1.5, 1)
+texture = ExtResource("1_qoms6")

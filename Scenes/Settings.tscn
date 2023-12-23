@@ -117,6 +117,7 @@ texture_focused = ExtResource("2_iba5r")
 script = ExtResource("3_i3nnn")
 
 [node name="Volume" type="Button" parent="." node_paths=PackedStringArray("mslider", "sslider")]
+layout_mode = 0
 offset_left = 600.0
 offset_top = 350.0
 offset_right = 724.0

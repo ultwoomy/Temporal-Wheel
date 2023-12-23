@@ -111,7 +111,10 @@ func reset():
 		text.text = "We're out lmao."
 		button.hide()
 	else :
-		text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		button.text = "Buy"
-		failbought = false
-
+		if(GVars.hellChallengeNerf == 0):
+			text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
+			button.text = "Buy"
+			failbought = false
+		else: 
+			text.text = "Oop"
+	

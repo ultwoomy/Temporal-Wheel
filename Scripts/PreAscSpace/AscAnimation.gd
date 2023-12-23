@@ -8,7 +8,7 @@ var eSeq = false
 var frames = 0.00
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_wheel_sprite(GVars.density - 1)
+	update_wheel_sprite(GVars.spinData.density - 1)
 	back.pressed.connect(self._wheel_scene)
 	forward.text = "Proceed"
 	forward.pressed.connect(self._end_sequence)

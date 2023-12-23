@@ -27,7 +27,7 @@ func _ready():
 	button4.pressed.connect(self._button_pressed4)
 	if(!GVars.ifheaven):
 		button3.disabled = true
-	if(!GVars.ifhell):
+	if(GVars.ifhell):
 		button4.disabled = true
 
 
@@ -39,7 +39,7 @@ func _button_pressed2():
 	get_tree().change_scene_to_file("res://Scenes/VoidSpaceStop.tscn")
 	
 func _button_pressed3():
-	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
+	get_tree().change_scene_to_file("res://Scenes/HellSpace.tscn")
 	
 func _button_pressed4():
-	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
+	get_tree().change_scene_to_file("res://Scenes/HellSpace.tscn")

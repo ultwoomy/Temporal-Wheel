@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dw0r2bbqgf17s"]
+[gd_scene load_steps=28 format=3 uid="uid://dw0r2bbqgf17s"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dhbmhx6q20m8s" path="res://Sprites/MushSpace/mush_int/tile001.png" id="16_7abjx"]
 [ext_resource type="PackedScene" uid="uid://cyk2uirm08knf" path="res://Scenes/MushSpace/MushLevelInfo.tscn" id="16_w5v43"]
 [ext_resource type="Texture2D" uid="uid://0cyy1vlw0jt3" path="res://Sprites/MushSpace/mush_int/tile002.png" id="17_1kx05"]
+[ext_resource type="PackedScene" uid="uid://dxfkfqi78y4b" path="res://Scenes/MushSpace/MushStatsPanel.tscn" id="17_tp034"]
 [ext_resource type="Texture2D" uid="uid://cfnivew40265t" path="res://Sprites/MushSpace/mush_back/tile000.png" id="18_qh8f7"]
 [ext_resource type="Texture2D" uid="uid://dvkqb4ocue88v" path="res://Sprites/MushSpace/mush_back/tile001.png" id="19_nsp4i"]
 [ext_resource type="Texture2D" uid="uid://jek5ca32hi06" path="res://Sprites/MushSpace/mush_back/tile002.png" id="20_0jlj8"]
@@ -94,12 +95,11 @@ grow_vertical = 2
 theme = SubResource("Theme_wedbe")
 script = ExtResource("3_ixaxr")
 
-[node name="Container" type="Container" parent="." node_paths=PackedStringArray("plot3")]
+[node name="Container" type="Container" parent="."]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
 script = ExtResource("4_84kn6")
-plot3 = NodePath("../MushInfoPanel/CurrentMush")
 
 [node name="MushInfoPanel" parent="." instance=ExtResource("5_8ah1m")]
 
@@ -130,16 +130,5 @@ back = NodePath(".")
 
 [node name="Level" parent="." instance=ExtResource("16_w5v43")]
 
-[node name="StatsPanel" type="Sprite2D" parent="."]
-self_modulate = Color(0.368627, 0.0941176, 0.0352941, 0.67451)
+[node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]
 position = Vector2(500, 120)
-scale = Vector2(2, 2.4)
-texture = ExtResource("14_s4quj")
-
-[node name="StatsDisp" type="Label" parent="StatsPanel"]
-offset_left = -48.0
-offset_top = -48.0
-offset_right = 48.0
-offset_bottom = 49.0
-scale = Vector2(0.5, 0.417)
-theme = SubResource("Theme_wedbe")

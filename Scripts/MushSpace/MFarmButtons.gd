@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 	pass
 
 
+#
+# WIP: HAVE GAME SCENE STORE WHICH MUSHROOM IS TO BE PLANTED/HARVESTED
+#
 func _plant():
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] == 0):
@@ -39,7 +42,10 @@ func _harvest():
 			GVars.mushroomData.timeLeft[n] = 0
 			_update_sprites()
 
-
+#
+# WIP: HAVE A SIGNAL THAT SHROOMS HAVE BEEN HARVESTED SO THAT XP CAN GET CHECKED
+# (...) CHECK MMain.gd FOR _check_xp() FUNCTION!
+#
 func _harvest_shroom(val):
 	var Ebuff = 1
 	var EexpBuff = 1

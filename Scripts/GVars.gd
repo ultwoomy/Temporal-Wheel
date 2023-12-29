@@ -9,8 +9,8 @@ extends Node
 @export_group("R1stats")
 @export var spinBotStats : Spinbot
 @export var curEmotionBuff : int
-@export var Aspinbuff : float
 @export_group("R2stats")
+@export var Aspinbuff : float
 @export var hellChallengeNerf : int
 @export var inContract : bool
 @export var ifhell : bool
@@ -79,13 +79,13 @@ func resetR0Stats():
 
 func resetR1Stats():
 	curEmotionBuff = 0
-	Aspinbuff = 1
 	
 func resetR2Stats():
 	inContract = false
 	hellChallengeNerf = 0
 	ifhell = false
 	ifheaven = false
+	Aspinbuff = 1
 	
 func resetPermStats():
 	iffirstboot = true

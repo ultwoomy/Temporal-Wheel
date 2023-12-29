@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://df3oabxh0jgho"
-path="res://.godot/imported/MKD30.wav-d8e033a447d58a3102c4abecb10e4650.sample"
+uid="uid://dffgh24a78n8q"
+path="res://.godot/imported/dam.wav-02e2271dfd73347506c685ff1be4b7e0.sample"
 
 [deps]
 
-source_file="res://Sound/MKD/MKD30.wav"
-dest_files=["res://.godot/imported/MKD30.wav-d8e033a447d58a3102c4abecb10e4650.sample"]
+source_file="res://Sound/SFX/dam.wav"
+dest_files=["res://.godot/imported/dam.wav-02e2271dfd73347506c685ff1be4b7e0.sample"]
 
 [params]
 

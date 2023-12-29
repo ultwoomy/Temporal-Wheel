@@ -3,21 +3,22 @@ class_name SoundManager
 var curtrack = 0
 var pos = 0
 var tracks = []
+var sfx = []
 var musicbox = AudioStreamPlayer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	tracks.append(preload("res://Sound/MKD/MKD10.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD20.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD30.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD40.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD50.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD60.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD70.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD80.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD90.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD100.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD110.wav"))
-	tracks.append(preload("res://Sound/MKD/MKD120.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD10.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD20.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD30.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD40.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD50.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD60.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD70.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD80.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD90.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD100.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD110.wav"))
+	tracks.append(preload("res://Sound/Music/MKD/MKD120.wav"))
 	add_child(musicbox)
 	musicbox.stream = tracks[0]
 	musicbox.finished.connect(reset)

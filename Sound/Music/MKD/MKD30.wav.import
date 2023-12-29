@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://c7rlnmqfmko4o"
-path="res://.godot/imported/BOSSHOP140.wav-de60671cb51e2d274d550eccea34a910.sample"
+uid="uid://df3oabxh0jgho"
+path="res://.godot/imported/MKD30.wav-a8245917cd0342f584e8c1d51eedf67d.sample"
 
 [deps]
 
-source_file="res://Sound/BOSSHOP140.wav"
-dest_files=["res://.godot/imported/BOSSHOP140.wav-de60671cb51e2d274d550eccea34a910.sample"]
+source_file="res://Sound/Music/MKD/MKD30.wav"
+dest_files=["res://.godot/imported/MKD30.wav-a8245917cd0342f584e8c1d51eedf67d.sample"]
 
 [params]
 

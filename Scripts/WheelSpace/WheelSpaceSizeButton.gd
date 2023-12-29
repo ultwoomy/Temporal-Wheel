@@ -26,10 +26,16 @@ func _button_pressed():
 		ifsucc = false
 		GVars.spinData.sizeToggle = false
 		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
+		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
+		self.add_child(sf)	
+		sf.get_child(0).init(load("res://Sound/SFX/nono.wav"))
 	else :
 		ifsucc = true
 		GVars.spinData.sizeToggle = true
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
+		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
+		self.add_child(sf)	
+		sf.get_child(0).init(load("res://Sound/SFX/yes.wav"))
 	GVars.save_prog()
 	
 func suc_loop():

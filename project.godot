@@ -19,6 +19,7 @@ config/icon="res://Sprites/kbity.png"
 [autoload]
 
 GVars="*res://Scripts/GVars.gd"
+EventManager="*res://Scripts/EventManager.gd"
 
 [display]
 

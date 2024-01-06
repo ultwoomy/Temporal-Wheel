@@ -2,7 +2,6 @@
 # It is a singleton that all scripts/classes can access if using signals.
 # Causes coupling (tons of connections like a web), however it is fine in this case.
 extends Node
-class_name EventManager
 
 # This is how the EventManager.gd works:
 #	1. A signal is made in EventManager.gd
@@ -23,4 +22,7 @@ signal reset_automators
 signal scene_change
 
 # MushSpace
-
+# (!) L.B: If things get too big, should probably make another script to hold and categorize signals to be used in this script.
+signal mushroom_frame_changed(index: int)
+signal mushroom_planted
+signal mushroom_harvested

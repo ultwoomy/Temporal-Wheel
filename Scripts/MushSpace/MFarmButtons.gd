@@ -5,10 +5,12 @@ extends Node
 @export var harvest : Button
 @export var remove : Button
 
+var currentFrame : int
 
 ## Functions
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventManager.mushroom_frame_changed.connect(_on_mushroom_frame_changed)
 	plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
 	remove.pressed.connect(_remove)
@@ -19,34 +21,27 @@ func _process(delta: float) -> void:
 	pass
 
 
-#
-# WIP: HAVE GAME SCENE STORE WHICH MUSHROOM IS TO BE PLANTED/HARVESTED
-#
-func _plant():
+func _plant() -> void:
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] == 0):
-			GVars.mushroomData.current[n] = curFrame + 1
+			GVars.mushroomData.current[n] = currentFrame + 1
 			if(GVars.sigilData.curSigilBuff == 2):
-				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 10 + GVars.mushroomData.level * 8
+				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 10 + GVars.mushroomData.level * 8
 			else:
-				GVars.mushroomData.timeLeft[n] = (curFrame + 1) * 15 + GVars.mushroomData.level * 10
-			_update_sprites()
-			return
+				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 + GVars.mushroomData.level * 10
+			EventManager.mushroom_planted.emit()
 
 
-func _harvest():
+func _harvest() -> void:
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] != 0) and (GVars.mushroomData.timeLeft[n] <= 0):
 			_harvest_shroom(GVars.mushroomData.current[n])
 			GVars.mushroomData.current[n] = 0
 			GVars.mushroomData.timeLeft[n] = 0
-			_update_sprites()
+			EventManager.mushroom_planted.emit()
 
-#
-# WIP: HAVE A SIGNAL THAT SHROOMS HAVE BEEN HARVESTED SO THAT XP CAN GET CHECKED
-# (...) CHECK MMain.gd FOR _check_xp() FUNCTION!
-#
-func _harvest_shroom(val):
+
+func _harvest_shroom(val) -> void:
 	var Ebuff = 1
 	var EexpBuff = 1
 	if(GVars.curEmotionBuff == 3):
@@ -67,8 +62,20 @@ func _harvest_shroom(val):
 	_check_xp()
 
 
-func _remove():
+func _remove() -> void:
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] != 0):
 			GVars.mushroomData.current[n] = 0
 			GVars.mushroomData.timeLeft[n] = 0
+
+
+# Should probably just use a signal for this one.
+func _check_xp():
+	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):
+		GVars.mushroomData.level += 1
+		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
+		GVars.mushroomData.xpThresh *= GVars.mushroomData.xpThreshMult
+
+
+func _on_mushroom_frame_changed(index) -> void:
+	currentFrame = index

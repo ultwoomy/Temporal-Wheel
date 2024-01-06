@@ -34,8 +34,4 @@ func _ready():
 
 
 
-func _check_xp():
-	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):
-		GVars.mushroomData.level += 1
-		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
-		GVars.mushroomData.xpThresh *= GVars.mushroomData.xpThreshMult
+

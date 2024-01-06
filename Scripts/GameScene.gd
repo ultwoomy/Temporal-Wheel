@@ -2,9 +2,7 @@
 extends Node
 class_name GameScene
 
-var automators: Array[AutomatorData]
-
-var event_manager: EventManager
+var automators : Array[AutomatorData]
 
 var emoBuff : float = 1
 
@@ -23,9 +21,8 @@ func _ready() -> void:
 	#	- Will use the event_manager like "wheel_spun".
 #	load_resources()
 
-	create_event_manager()
-	event_manager.wheel_spun.connect(on_wheel_spun)
-	event_manager.reset_automators.connect(clear_automators)
+	EventManager.wheel_spun.connect(on_wheel_spun)
+	EventManager.reset_automators.connect(clear_automators)
 	create_automators()
 
 
@@ -54,13 +51,14 @@ func on_wheel_spun() -> void:
 #	return null
 
 
-func create_event_manager() -> void:
-	if(get_tree().root.get_node_or_null("EventManager")):
-		event_manager = get_window().get_node("EventManager")
-	else:
-		event_manager = EventManager.new()
-		event_manager.name = "EventManager"
-		get_window().add_child.call_deferred(event_manager)
+# L.B: Yeah, I don't know what I was thinking; just make EventManager an autoload.
+#func create_event_manager() -> void:
+#	if(get_tree().root.get_node_or_null("EventManager")):
+#		event_manager = get_window().get_node("EventManager")
+#	else:
+#		event_manager = EventManager.new()
+#		event_manager.name = "EventManager"
+#		get_window().add_child.call_deferred(event_manager)
 
 
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.

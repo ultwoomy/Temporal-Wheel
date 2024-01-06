@@ -1,4 +1,5 @@
 extends Node
+class_name MMushInfoPanel
 
 
 ## Components
@@ -10,6 +11,7 @@ extends Node
 
 ## Variables
 var currentFrame : int
+
 
 
 ## Functions
@@ -31,25 +33,27 @@ func _process(_delta: float) -> void:
 	pass
 
 
-func _left():
+func _left() -> void:
 	if(currentFrame <= 0):
 		currentFrame = 3
 	else:
 		currentFrame -= 1
 	_setdesc()
 	currentMush.frame = currentFrame
+	EventManager.mushroom_frame_changed.emit(currentFrame)
 
 
-func _right():
+func _right() -> void:
 	if(currentFrame >= 3):
 		currentFrame = 0
 	else:
 		currentFrame += 1
 	_setdesc()
 	currentMush.frame = currentFrame
+	EventManager.mushroom_frame_changed.emit(currentFrame)
 
 
-func _setdesc():
+func _setdesc() -> void:
 	var descriptions: Array[String] = [
 		"Lamp Shroom\nLights up your day.\nGives you momentum.",
 		"Rot Shroom\nThey are tight knit friends.\nGives you rotations.",

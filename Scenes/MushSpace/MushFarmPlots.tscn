@@ -60,8 +60,16 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("5_xryxw")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
-[node name="FarmPlots" type="Node2D"]
+[node name="FarmPlots" type="Node2D" node_paths=PackedStringArray("plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4")]
 script = ExtResource("1_h0q7a")
+plot1 = NodePath("Plot1")
+plot2 = NodePath("Plot2")
+plot3 = NodePath("Plot3")
+plot4 = NodePath("Plot4")
+disp1 = NodePath("TimeLeftDisp1")
+disp2 = NodePath("TimeLeftDisp2")
+disp3 = NodePath("TimeLeftDisp3")
+disp4 = NodePath("TimeLeftDisp4")
 
 [node name="Plot1" type="AnimatedSprite2D" parent="."]
 position = Vector2(519, 397)

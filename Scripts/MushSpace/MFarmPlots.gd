@@ -15,6 +15,9 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_update_sprites()
+	
+	EventManager.mushroom_planted.connect(_update_sprites)
+	EventManager.mushroom_harvested.connect(_update_sprites)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,15 +26,14 @@ func _process(delta: float) -> void:
 
 
 func _update_sprites():
-	owner.hide()
-#	plot1.hide()
-#	plot2.hide()
-#	plot3.hide()
-#	plot4.hide()
-#	disp1.hide()
-#	disp2.hide()
-#	disp3.hide()
-#	disp4.hide()
+	plot1.hide()
+	plot2.hide()
+	plot3.hide()
+	plot4.hide()
+	disp1.hide()
+	disp2.hide()
+	disp3.hide()
+	disp4.hide()
 
 #	xpbar.scale.x = GVars.mushroomData.xp / GVars.mushroomData.xpThresh * 1.5
 #	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))

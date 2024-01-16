@@ -30,8 +30,3 @@ func _ready():
 			GVars.mushroomData.timeLeft[n] = 0
 	GVars.mushroomData.pendingRots = 0
 
-
-
-
-
-

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=18 format=3 uid="uid://dp6jl75bx4qcp"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_676fp"]
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsHardReset.gd" id="6_5t2xk"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_vivg8"]
 [ext_resource type="Script" path="res://Scripts/Settings/Save.gd" id="8_rg3j3"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsExitGame.gd" id="9_c8atx"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsCheat.gd" id="10_vlmff"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsVolume.gd" id="11_apqex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -17,6 +20,12 @@ bg_color = Color(0.294118, 0.152941, 0.211765, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
 bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb68f"]
+bg_color = Color(1, 0.282353, 0.560784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1j0p"]
+bg_color = Color(0.678431, 0, 0.360784, 1)
 
 [sub_resource type="Theme" id="Theme_8klss"]
 default_font = ExtResource("2_mcq1j")
@@ -40,6 +49,8 @@ Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
 Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("1_676fp")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_gb68f")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_m1j0p")
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -49,18 +60,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_8klss")
-
-[node name="Back" type="TextureButton" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("1_bifml")
-texture_pressed = ExtResource("2_iba5r")
-texture_hover = ExtResource("2_iba5r")
-texture_disabled = ExtResource("1_bifml")
-texture_focused = ExtResource("2_iba5r")
-script = ExtResource("3_i3nnn")
 
 [node name="HardReset" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
 layout_mode = 0
@@ -88,3 +87,63 @@ offset_top = 150.0
 offset_right = 724.0
 offset_bottom = 256.0
 script = ExtResource("8_rg3j3")
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 350.0
+offset_right = 324.0
+offset_bottom = 456.0
+script = ExtResource("9_c8atx")
+
+[node name="CheatsLine" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 500.0
+offset_right = 650.0
+offset_bottom = 528.0
+script = ExtResource("10_vlmff")
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_bifml")
+texture_pressed = ExtResource("2_iba5r")
+texture_hover = ExtResource("2_iba5r")
+texture_disabled = ExtResource("1_bifml")
+texture_focused = ExtResource("2_iba5r")
+script = ExtResource("3_i3nnn")
+
+[node name="Volume" type="Button" parent="." node_paths=PackedStringArray("mslider", "sslider")]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 350.0
+offset_right = 724.0
+offset_bottom = 456.0
+script = ExtResource("11_apqex")
+mslider = NodePath("VolSlider")
+sslider = NodePath("SfxSlider")
+
+[node name="VolSlider" type="VSlider" parent="Volume"]
+layout_mode = 0
+offset_left = -13.0
+offset_right = 7.0
+offset_bottom = 101.0
+min_value = -32.0
+max_value = 0.0
+step = 0.05
+value = -6.0
+
+[node name="SfxSlider" type="VSlider" parent="Volume"]
+layout_mode = 0
+offset_left = 193.0
+offset_right = 213.0
+offset_bottom = 101.0
+min_value = -32.0
+max_value = 0.0
+
+[connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]
+[connection signal="value_changed" from="Volume/VolSlider" to="Volume" method="_on_slide_music"]
+[connection signal="value_changed" from="Volume/SfxSlider" to="Volume" method="_on_slide_sfx"]

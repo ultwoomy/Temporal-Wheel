@@ -8,11 +8,12 @@ var eSeq = false
 var frames = 0.00
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_wheel_sprite(GVars.density - 1)
+	update_wheel_sprite(GVars.spinData.density - 1)
 	back.pressed.connect(self._wheel_scene)
 	forward.text = "Proceed"
 	forward.pressed.connect(self._end_sequence)
 	var dis = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\nNext Presence: " + str(GVars.getScientific(GVars.mushroomData.ascBuff) + GVars.getScientific(GVars.ritualData.ascBuff))
+	dis += "\n\nThe highest presence\nvalue is kept."
 	if(GVars.sigilData.curSigilBuff == 4):
 		dis += "\n\nYou have worn the\nface of myraid emotion."
 	statDisplay.text = dis

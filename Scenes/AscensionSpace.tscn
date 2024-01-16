@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://2m32epwoimoi"]
+[gd_scene load_steps=17 format=3 uid="uid://2m32epwoimoi"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_supup"]
 [ext_resource type="Texture2D" uid="uid://bo20xfgwhr2bf" path="res://Sprites/Ascension/asc_back/tile000.png" id="1_tllrj"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://das71kk4d7xxj" path="res://Sprites/Ascension/asc_back/tile004.png" id="5_04exf"]
 [ext_resource type="Script" path="res://Scripts/AscSpace/Amain.gd" id="8_2fh3s"]
 [ext_resource type="Texture2D" uid="uid://c4yc6q3pu5phl" path="res://Sprites/Ascension/asc_back/Aswallow.png" id="8_veqme"]
+[ext_resource type="Texture2D" uid="uid://cfk14j6sx4yav" path="res://Sprites/Ascension/asc_back/asc_contract.png" id="10_gej3s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -63,6 +64,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_veqme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gej3s")
 }],
 "loop": true,
 "name": &"default",

@@ -5,7 +5,7 @@ var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png"
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
 var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
 					, "Lose rotations per spin, but get\nthe wheel to spit out\na lot of momentum in scale\nwith its hunger."
-					, "Double mushroom growth rate."
+					, "Gain a small amount of\nmushroom exp each spin."
 					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff))
 					, "Gain a small amount of rust\nper spin"
 					, "Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.ritualData.rotBuff)) + ". Perpetual!"
@@ -22,7 +22,7 @@ func setIdleText():
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
-	if(numOfCandles > 0) and (GVars.curSigilBuff == 5):
+	if(numOfCandles > 0) and (GVars.sigilData.curSigilBuff == 5):
 		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5

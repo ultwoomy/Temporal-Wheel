@@ -26,9 +26,9 @@ func _button_pressed():
 	if(failbought):
 		reset()
 	else :
-		if((GVars.spin > GVars.sigilData.costSpin) && (GVars.rotations > GVars.sigilData.costRot)):
-			GVars.spin -= GVars.sigilData.costSpin
-			GVars.rotations -= GVars.sigilData.costRot
+		if((GVars.spinData.spin > GVars.sigilData.costSpin) && (GVars.spinData.rotations > GVars.sigilData.costRot)):
+			GVars.spinData.spin -= GVars.sigilData.costSpin
+			GVars.spinData.rotations -= GVars.sigilData.costRot
 			GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 			GVars.sigilData.costRot *= GVars.sigilData.costRotScale
 			var curSigil = 0
@@ -107,11 +107,14 @@ func _button_pressed():
 			failbought = true
 		
 func reset():
-	if(GVars.sigilData.numberOfSigils[4]):
+	if(GVars.sigilData.numberOfSigils[5]):
 		text.text = "We're out lmao."
 		button.hide()
 	else :
-		text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		button.text = "Buy"
-		failbought = false
-
+		if(GVars.hellChallengeNerf == 0):
+			text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
+			button.text = "Buy"
+			failbought = false
+		else: 
+			text.text = "Oop"
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=33 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="1_nd2e7"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_rmgjs"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bcte3ctqjjdpd" path="res://Sprites/Sigils/sigil03.png" id="13_m76yw"]
 [ext_resource type="Texture2D" uid="uid://y8g1idx3il2b" path="res://Sprites/Sigils/sigil04.png" id="14_1s67n"]
 [ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="17_2jcya"]
+[ext_resource type="Texture2D" uid="uid://7cw64cpkjgv3" path="res://Sprites/Sigils/sigil06.png" id="18_6ti8t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -169,7 +170,7 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("10_np0fv")
 
-[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "text", "selection", "upgrademenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil05sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "sigil05button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
+[node name="Menu" type="Container" parent="." node_paths=PackedStringArray("inspect", "augment", "upgrade", "automate", "text", "selection", "upgrademenu", "automationmenu", "sigil01sprite", "sigil02sprite", "sigil03sprite", "sigil04sprite", "sigil05sprite", "sigil06sprite", "sigil01button", "sigil02button", "sigil03button", "sigil04button", "sigil05button", "sigil06button", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -177,19 +178,23 @@ script = ExtResource("9_7yayj")
 inspect = NodePath("Inspect")
 augment = NodePath("Augment")
 upgrade = NodePath("Upgrade")
+automate = NodePath("Automate")
 text = NodePath("../Dia")
 selection = NodePath("Selection")
 upgrademenu = NodePath("UpgradeMenu")
+automationmenu = NodePath("AutomationMenu")
 sigil01sprite = NodePath("Selection/Sigil1")
 sigil02sprite = NodePath("Selection/Sigil2")
 sigil03sprite = NodePath("Selection/Sigil3")
 sigil04sprite = NodePath("Selection/Sigil4")
 sigil05sprite = NodePath("Selection/Sigil5")
+sigil06sprite = NodePath("Selection/Sigil6")
 sigil01button = NodePath("Selection/Sigil1/Sigil01Button")
 sigil02button = NodePath("Selection/Sigil2/Sigil02Button")
 sigil03button = NodePath("Selection/Sigil3/Sigil03Button")
 sigil04button = NodePath("Selection/Sigil4/Sigil04Button")
 sigil05button = NodePath("Selection/Sigil5/Sigil05Button")
+sigil06button = NodePath("Selection/Sigil6/Sigil06Button")
 upgrade1 = NodePath("UpgradeMenu/Up1Button")
 upgrade2 = NodePath("UpgradeMenu/Up2Button")
 upgrade3 = NodePath("UpgradeMenu/Up3Button")
@@ -210,6 +215,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Upgrade" type="Button" parent="Menu"]
+layout_mode = 2
+
+[node name="Automate" type="Button" parent="Menu"]
 layout_mode = 2
 
 [node name="Selection" type="Sprite2D" parent="Menu"]
@@ -271,6 +279,18 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("17_2jcya")
 
 [node name="Sigil05Button" type="Button" parent="Menu/Selection/Sigil5"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="Sigil6" type="Sprite2D" parent="Menu/Selection"]
+position = Vector2(34.75, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("18_6ti8t")
+
+[node name="Sigil06Button" type="Button" parent="Menu/Selection/Sigil6"]
 modulate = Color(1, 1, 1, 0.0392157)
 offset_left = -150.0
 offset_top = -150.0
@@ -354,3 +374,9 @@ layout_mode = 0
 offset_top = -190.0
 offset_right = 300.0
 offset_bottom = -40.0
+
+[node name="AutomationMenu" type="Sprite2D" parent="Menu"]
+self_modulate = Color(0.0941176, 0.0117647, 0, 1)
+position = Vector2(744, 308)
+scale = Vector2(4, 4)
+texture = ExtResource("3_a44lj")

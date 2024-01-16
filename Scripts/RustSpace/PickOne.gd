@@ -2,19 +2,23 @@ extends Node
 @export var inspect : Button
 @export var augment : Button
 @export var upgrade : Button
+@export var automate : Button
 @export var text : Label
 @export var selection : Sprite2D
 @export var upgrademenu : Sprite2D
+@export var automationmenu : Sprite2D
 @export var sigil01sprite : Sprite2D
 @export var sigil02sprite : Sprite2D
 @export var sigil03sprite : Sprite2D
 @export var sigil04sprite : Sprite2D
 @export var sigil05sprite : Sprite2D
+@export var sigil06sprite : Sprite2D
 @export var sigil01button : Button
 @export var sigil02button : Button
 @export var sigil03button : Button
 @export var sigil04button : Button
 @export var sigil05button : Button
+@export var sigil06button : Button
 @export var upgrade1 : Button
 @export var upgrade2 : Button
 @export var upgrade3 : Button
@@ -32,6 +36,7 @@ var ifinmen = false
 var ifbuff = false
 var inmenu = false
 var ifupscreen = false
+var ifautomascreen = false
 var line = 0
 var mode = 0
 # Called when the node enters the scene tree for the first time.
@@ -44,10 +49,18 @@ func _ready():
 	augment.position = Vector2(100,150)
 	upgrade.size = Vector2(400,50)
 	upgrade.position = Vector2(100,200)
+	automate.size = Vector2(400,50)
+	automate.position = Vector2(100,250)
 	inspect.text = "Inspect"
 	augment.text = "Augment"
 	upgrade.text = "Upgrade"
+	automate.text = "Automate"
 	upgrademenu.hide()
+	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+		automate.show()
+	else:
+		automate.hide()
+	automationmenu.hide()
 	upgrade1.size = Vector2(350,150)
 	upgrade1.position = Vector2(15,-50)
 	upgrade2.size = Vector2(350,150)
@@ -69,7 +82,7 @@ func _ready():
 		upgrade4.text = "Increase Hunger By Percentage\nOf Momentum Needed For\nNext Size"
 	elif(GVars.curEmotionBuff == 3):
 		#warmth
-		upgrade4.text = "Increase Mushroom Experience Gain"
+		upgrade4.text = "Increase Mushroom\nExperience Gain"
 	elif(GVars.curEmotionBuff == 4):
 		#wrath
 		upgrade4.text = "Increase Effect Of Rust\nUpgrades"
@@ -88,15 +101,19 @@ func _ready():
 	inspect.pressed.connect(self._inspect)
 	augment.pressed.connect(self._augment)
 	upgrade.pressed.connect(self._upgrade)
+	automate.pressed.connect(self._automate)
 	if(!GVars.sigilData.numberOfSigils[0]):
 		inspect.hide()
 		augment.hide()
 		upgrade.hide()
+		automate.hide()
+		text.text = "No shirt, no sigil, no service."
 	sigil01button.pressed.connect(self._01Sigil)
 	sigil02button.pressed.connect(self._02Sigil)
 	sigil03button.pressed.connect(self._03Sigil)
 	sigil04button.pressed.connect(self._04Sigil)
 	sigil05button.pressed.connect(self._05Sigil)
+	sigil06button.pressed.connect(self._06Sigil)
 	next.pressed.connect(self._nextline)
 	selection.hide()
 	updateDisplays()
@@ -142,25 +159,48 @@ func dispSigils():
 	else:
 		sigil04sprite.hide()
 		sigil04button.hide()
-	if(GVars.numberOfSigils[4]):
+	if(GVars.sigilData.numberOfSigils[4]):
 		sigil05sprite.show()
 		sigil05button.show()
 	else:
 		sigil05sprite.hide()
 		sigil05button.hide()
+	if(GVars.sigilData.numberOfSigils[5]):
+		sigil06sprite.show()
+		sigil06button.show()
+	else:
+		sigil06sprite.hide()
+		sigil06button.hide()
 	upgrademenu.hide()
+	automationmenu.hide()
 	resetWindowVars()
 
 func _upgrade():
 	if(ifupscreen == false):
 		upgrademenu.show()
 		selection.hide()
+		automationmenu.hide()
 		resetWindowVars()
 		ifupscreen = true
+		ifautomascreen = false
 		inmenu = true
 	else:
 		upgrademenu.hide()
 		ifupscreen = false
+		inmenu = false
+
+func _automate():
+	if(ifautomascreen == false):
+		automationmenu.show()
+		selection.hide()
+		upgrademenu.hide()
+		resetWindowVars()
+		ifautomascreen = true
+		ifupscreen = false
+		inmenu = true
+	else:
+		automationmenu.hide()
+		ifautomascreen = false
 		inmenu = false
 
 func _01Sigil():
@@ -173,6 +213,8 @@ func _04Sigil():
 	manageChoice(4)
 func _05Sigil():
 	manageChoice(5)
+func _06Sigil():
+	manageChoice(6)
 	
 func resetWindowVars():
 	inmenu = false
@@ -187,6 +229,8 @@ func resetChoice():
 	inspect.show()
 	augment.show()
 	upgrade.show()
+	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+		automate.show()
 	next.hide()
 	
 func updateDisplays():
@@ -243,6 +287,7 @@ func manageChoice(n):
 	inspect.hide()
 	augment.hide()
 	upgrade.hide()
+	automate.hide()
 	next.show()
 	text.show()
 	if(ifinspect):
@@ -261,6 +306,12 @@ func manageChoice(n):
 		elif(n == 5):
 			text.text = "A relic from hell, the\nritual."
 			mode = 5
+		elif(n == 6) and !GVars.ifhell:
+			text.text = "Oh hey, it's the sigil of a\nblue baby."
+			mode = 6
+		elif(n == 6):
+			text.text = "Oh hey, it's the sigil of \nliteral Satan."
+			mode = 25
 	if(!ifinspect):
 		if(n == 1):
 			text.text = "Now it's a rust magnet."
@@ -277,6 +328,12 @@ func manageChoice(n):
 		elif(n == 5):
 			text.text = "This one's easy, I can just\nreplace one of these\ncandles with one of mine."
 			mode = 17
+		elif(n == 6) and !GVars.ifhell:
+			text.text = "There's a powerful contract\netched into this sigil."
+			mode = 18
+		elif(n == 6):
+			text.text = "Surprise surprise! It's more\ncontracts!"
+			mode = 26
 func _nextline():
 	GVars._dialouge(text,0,0.04)
 	if(mode == 1):
@@ -356,6 +413,22 @@ func _nextline():
 		elif(line == 5):
 			text.text = ""
 			resetChoice()
+	elif(mode == 6):
+		if(line == 0):
+			text.text = "It's representative of the\nservants of Divine."
+			line += 1
+		elif(line == 1):
+			text.text = "You could probably use this\nto get into heaven."
+			line += 1
+		elif(line == 2):
+			text.text = "...actually there's no perm\nfor that in here."
+			line += 1
+		elif(line == 3):
+			text.text = "Huh, guess it's useless then."
+			line += 1
+		elif(line == 4):
+			text.text = ""
+			resetChoice()
 	elif(mode == 13):
 		if(line == 0):
 			text.text = "You should get more rust\nfrom that wheel now."
@@ -365,7 +438,7 @@ func _nextline():
 			resetChoice()
 	elif(mode == 14):
 		if(line == 0):
-			text.text = "The warm grow should make\nshrooms grow faster."
+			text.text = "The warm glow should make\nshrooms grow twice as\nfast."
 			line += 1
 		elif(line == 1):
 			text.text = "Which makes no sense since\nthey like dim lighting."
@@ -382,7 +455,7 @@ func _nextline():
 			text.text = "Oops."
 			line += 1
 		elif(line == 2):
-			text.text = "It seems to be sucking in\nmatter at an increased\nrate."
+			text.text = "It seems to be sucking in\nmomentum at an increased\nrate."
 			line += 1
 		elif(line == 3):
 			text.text = "I barely touched it I swear."
@@ -415,12 +488,84 @@ func _nextline():
 		elif(line == 1):
 			resetDisplay(5)
 			resetChoice()
+	elif(mode == 18):
+		if(line == 0):
+			text.text = "I can start this contract\nfor you, but be warned."
+			packback.frame = 4
+			line += 1
+		elif(line == 1):
+			text.text = "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now."
+			line += 1
+		elif(line == 2):
+			text.text = "It will invert the effect\nof your current emotion\nturning it into a debuff."
+			line += 1
+			packback.frame = 2
+		elif(line == 3):
+			if(GVars.curEmotionBuff == 1):
+				#fear
+				text.text = "Rotations will divide\nyour wheel's spin speed."
+			elif(GVars.curEmotionBuff == 2):
+				#cold
+				text.text = "The effect of size is\nsquare rooted."
+			elif(GVars.curEmotionBuff == 3):
+				#warmth
+				text.text = "The effects of mushrooms\nare greatly decreased."
+			elif(GVars.curEmotionBuff == 4):
+				#wrath
+				text.text = "You will get a max of 1\nrust per rust drop."
+			else:
+				text.text = "Which is no nerf at all\nLol, nice one."
+			line += 1
+		elif(line == 4):
+			text.text = "This will persist until\nyou regain this sigil."
+			line += 1
+		elif(line == 5):
+			text.text = "If you don't want to\ndo this yet, it's ok\nto just leave."
+			line += 1
+		elif(line == 6):
+			text.text = "Alright, good luck."
+			packback.frame = 1
+			line += 1
+		elif(line == 7):
+			resetDisplay(6)
+			resetChoice()
+	elif(mode == 25):
+		if(line == 0):
+			text.text = "You really pick up a lot\nof weird things don't you."
+			line += 1
+		elif(line == 1):
+			text.text = "I'm out of the loop with\nhistory.\nI fear my knowledge can't\nkeep up."
+			line += 1
+		elif(line == 2):
+			text.text = "How about you tell me the\nlatest whenever you visit."
+			line += 1
+		elif(line == 3):
+			resetChoice()
+	elif(mode == 26):
+		if(line == 0):
+			text.text = "Be warned though, these\ncontracts mean business."
+			line += 1
+		elif(line == 1):
+			text.text = "These will be harder than\nanything else the blue\nguy's cooked up for you."
+			line += 1
+		elif(line == 2):
+			text.text = "But I(the developer) am not\nthere yet, so."
+			line += 1
+		elif(line == 3):
+			text.text = "WHO SAID THAT!?"
+			line += 1
+		elif(line == 4):
+			resetDisplay(0)
+			resetChoice()
 	else:
 		text.text = ""
 		resetChoice()
 
 
 func resetDisplay(n: int):
+	if(n == 6) and !GVars.ifhell:
+		GVars.sigilData.curSigilBuff = n
+		get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
 	GVars.sigilData.curSigilBuff = n
 	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
 	sigilDisplay.show()

@@ -12,7 +12,7 @@ class_name SigilData
 func resetData() -> void:
 	costSpin = 300
 	costRot = 10
-	costSpinScale = 1.2
+	costSpinScale = 1.24
 	costRotScale = 3
 	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
 	curSigilBuff = 0

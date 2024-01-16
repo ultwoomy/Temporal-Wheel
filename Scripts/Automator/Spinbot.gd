@@ -17,7 +17,9 @@ func _ready() -> void:
 	_automate()
 
 func initialize():
-	if(GVars.curEmotionBuff == 1):
+	if(GVars.hellChallengeNerf == 1):
+		emoBuffSpeed = 1.2 + ((log(GVars.rotations + 1)/85 - 1) * log(GVars.rotations + 1)/log(2))
+	elif(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations)/log(2))
 	else:
 		emoBuffSpeed = 1
@@ -37,7 +39,10 @@ func _process(_delta: float) -> void:
 func calculateOneRot():
 	var changerot = 0.0
 	if(GVars.spin > 0) and (shouldSpin):
-		changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
+		if(GVars.hellChallengeNerf == 1):
+			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
+		else:
+			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		angle += changerot
 		if(angle > 2*PI):
 			var temp = float(angle/(2*PI))
@@ -93,8 +98,9 @@ func _automate() -> void:
 	_automate()
 
 func _check_scene(ifwheel) -> void:
+	if(GVars.curEmotionBuff == 1):
+		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
 	if(ifwheel == null):
 		shouldSpin = true
-		print("maybespin")
 		return
 	shouldSpin = !ifwheel

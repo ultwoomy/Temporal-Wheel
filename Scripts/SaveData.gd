@@ -1,73 +1,48 @@
 extends Resource
 @export_group("R0stats")
-@export var spin : float
-@export var spinPerClick : float
-@export var size : float
-@export var sizeToggle : float
-@export var sucPerTick : float
-@export var sucTresh : float
-@export var curSucSize : float
-@export var sizeRecord : float
-@export var density : float
-@export var sucPerTDens : float
-@export var densTresh : float
-@export var curSucDens : float
-@export var wheelphase : int
-@export var rotations : float
-
+@export var spinData : SpinData
 @export var rustData : RustData
-
 @export var mushroomData : MushroomData
-
 @export var ritualData : RitualData
-
 @export var sigilData : SigilData
-
 @export_group("R1stats")
-@export var ifhell : bool
-@export var ifheaven : bool
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
+@export_group("R2stats")
+@export var inContract : bool
+@export var hellChallengeNerf : int
+@export var ifhell : bool
+@export var ifheaven : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
+@export var ifsecondboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
+@export var musicvol : float
+@export var sfxvol : float
 var save_path = "user://stats.tres"
 func load_stats():
 	if ResourceLoader.exists(save_path):
 		return load(save_path)
 	return null
 func _init():
-	spin = 0
-	spinPerClick = 1
-	size = 1
-	sizeToggle = false
-	sucPerTick = 1
-	sucTresh = 10
-	curSucSize = 0
-	sizeRecord = 1
-	density = 1
-	sucPerTDens = 1
-	densTresh = 2
-	curSucDens = 0
-	wheelphase = 1
-	rotations = 0
+	spinData = SpinData.new()
 	rustData = RustData.new()
-	
 	mushroomData = MushroomData.new()
-	
 	ritualData = RitualData.new()
-	
 	Aspinbuff = 1
 	curEmotionBuff = 0
-	
 	sigilData = SigilData.new()
-	
+	inContract = false
+	hellChallengeNerf = 0
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true
+	ifsecondboot = false
 	iffirstvoid = true
 	iffirstpack = true
+	musicvol = -6.0
+	sfxvol = -6.0
 
 
 func save_stats(data):

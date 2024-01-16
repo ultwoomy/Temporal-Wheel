@@ -4,6 +4,8 @@ class_name AutomatorData
 enum Automators {
 	Spinbot,
 	Mushroombot,
+	Rustbot,
+	Voidbot,
 }
 
 

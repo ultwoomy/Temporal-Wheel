@@ -8,12 +8,12 @@ extends AnimatedSprite2D
 @export var awaken : Button
 var line
 var frames = 0.00
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(GVars.curEmotionBuff < 5):
 		frame = GVars.curEmotionBuff
-	if(GVars.sigilData.curSigilBuff == 6):
-		frame = 6
 	else:
 		frame = 0
 	_hide_all()
@@ -25,44 +25,38 @@ func _ready():
 	awaken.pressed.connect(self._awaken)
 	frames = 0.00
 	await get_tree().create_timer(2.5).timeout
-	if(GVars.sigilData.curSigilBuff == 6) and !GVars.ifhell:
-		dia.text = "The waves reach up\nto catch you."
-		GVars._dialouge(dia,0,0.05)
-		dia.text += "\n\nYou feel yourself\nslipping away"
-		await get_tree().create_timer(5).timeout
-		awaken.show()
-	else:
-		dia.text = "You find yourself\nat an endless ocean."
-		GVars._dialouge(dia,0,0.05)
-		dia.text += "\n\nIt calls to you."
-		dia.text += "\n\nYou feel..."
-		await get_tree().create_timer(5).timeout
-		if(GVars.sigilData.curSigilBuff == 4):
-			if(GVars.hellChallengeNerf != 1):
-				fear.show()
-			if(GVars.hellChallengeNerf != 2):
-				cold.show()
-			if(GVars.hellChallengeNerf != 3):
-				warmth.show()
-			if(GVars.hellChallengeNerf != 4):
-				wrath.show()
-		complacent.show()
+	dia.text = "You find yourself\nat an endless ocean."
+	GVars._dialouge(dia,0,0.05)
+	dia.text += "\n\nIt calls to you."
+	dia.text += "\n\nYou feel..."
+	await get_tree().create_timer(5).timeout
+	if(GVars.sigilData.curSigilBuff == 4):
+		fear.show()
+		cold.show()
+		warmth.show()
+		wrath.show()
+	complacent.show()
+
 
 func _butF():
 	_button_generic(1,"feel afraid.\n\nYou try to fly away.\nYou do not escape.")
-	
+
+
 func _butC():
-	_button_generic(2,"feel cold.\n\nYou can't move as\nwater creeps up your\nlimbs, swallowing you.")
+	_button_generic(2,"feel cold.\n\nYou can't move as water\nCreeps up your limbs\nswallowing you whole.")
 
 func _butW():
-	_button_generic(3,"feel warm.\n\nYou willingly embrace\nthe waves.\nYou are crushed.")
-	
+	_button_generic(3,"feel warm.\n\nYou willingly embrace the\nwaves.\nYou are crushed.")
+
+
 func _butWrath():
 	_button_generic(4,"feel wrath.\n\nYou strike at the sea\nwith all your might.\nIt's not enough.")
-	
+
+
 func _butComp():
 	_button_generic(0,"feel nothing.\n\nYou sink willingly\ninto the deep.")
-	
+
+
 func _button_generic(switchEmotion,text):
 	_hide_all()
 	dia.text = dia.text.left(dia.text.length() - 7)
@@ -74,21 +68,16 @@ func _button_generic(switchEmotion,text):
 	GVars.curEmotionBuff = switchEmotion
 	awaken.show()
 
+
 func _awaken():
-	if(GVars.sigilData.curSigilBuff == 6) and !GVars.ifhell:
-		GVars.resetR0Stats()
-		GVars.inContract = true
-		GVars.hellChallengeNerf = GVars.curEmotionBuff
-		GVars.resetR1Stats()
-		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
-	elif(GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff > GVars.Aspinbuff):
-		GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
+	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()
 	GVars.resetR0Stats()
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
-	
+
+
 func _hide_all():
 	fear.hide()
 	cold.hide()
@@ -96,6 +85,8 @@ func _hide_all():
 	wrath.hide()
 	complacent.hide()
 	awaken.hide()
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if(frames < 200):

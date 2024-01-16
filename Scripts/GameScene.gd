@@ -2,11 +2,7 @@
 extends Node
 class_name GameScene
 
-var automators: Array[AutomatorData]
-
-var event_manager: EventManager
-
-var sound_manager: SoundManager
+var automators : Array[AutomatorData]
 
 var emoBuff : float = 1
 
@@ -15,7 +11,7 @@ var emoBuff : float = 1
 # Its inheriters should call this function with super._ready().
 # Otherwise, this _ready function will get replaced and will be unable to run its functions.
 func _ready() -> void:
-	#run_tests()
+	run_tests()
 	if(GVars.curEmotionBuff == 4):
 		emoBuff = GVars.rustData.fourth
 	# L.B:
@@ -25,10 +21,8 @@ func _ready() -> void:
 	#	- Will use the event_manager like "wheel_spun".
 #	load_resources()
 
-	create_event_manager()
-	create_sound_manager()
-	event_manager.wheel_spun.connect(on_wheel_spun)
-	event_manager.reset_automators.connect(clear_automators)
+	EventManager.wheel_spun.connect(on_wheel_spun)
+	EventManager.reset_automators.connect(clear_automators)
 	create_automators()
 
 
@@ -43,14 +37,8 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	var sizePow = 1
-	var sizeDiv = 1
-	if(GVars.hellChallengeNerf == 2):
-		sizePow = 0.5
-		sizeDiv = GVars.spinData.sizeRecord
-	elif(GVars.curEmotionBuff == 2):
-		sizePow = 2
-	GVars.spinData.spin += GVars.spinData.spinPerClick * pow(GVars.spinData.size,sizePow)/sizeDiv * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	
+	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:
@@ -63,21 +51,15 @@ func on_wheel_spun() -> void:
 #	return null
 
 
-func create_event_manager() -> void:
-	if(get_tree().root.get_node_or_null("EventManager")):
-		event_manager = get_window().get_node("EventManager")
-	else:
-		event_manager = EventManager.new()
-		event_manager.name = "EventManager"
-		get_window().add_child.call_deferred(event_manager)
+# L.B: Yeah, I don't know what I was thinking; just make EventManager an autoload.
+#func create_event_manager() -> void:
+#	if(get_tree().root.get_node_or_null("EventManager")):
+#		event_manager = get_window().get_node("EventManager")
+#	else:
+#		event_manager = EventManager.new()
+#		event_manager.name = "EventManager"
+#		get_window().add_child.call_deferred(event_manager)
 
-func create_sound_manager() -> void:
-	if(get_tree().root.get_node_or_null("SoundManager")):
-		sound_manager = get_window().get_node("SoundManager")
-	else:
-		sound_manager = SoundManager.new()
-		sound_manager.name = "SoundManager"
-		get_window().add_child.call_deferred(sound_manager)
 
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.
 # Creates automators using the "AutomatorData" that is in "automators".

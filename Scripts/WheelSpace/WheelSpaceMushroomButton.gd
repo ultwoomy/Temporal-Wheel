@@ -25,6 +25,4 @@ func _process(_delta: float) -> void:
 # ...Usually, "_" prefixes mean that this function should get overwritten by its inheriters.
 #YU: Naming convention inconsistent, probably will fix slowly
 func mushScene():
-	var event_manager = get_tree().get_root().find_child("EventManager", true, false)
-	event_manager.emit_signal("scene_change",false)
-	get_tree().change_scene_to_file("res://Scenes/MushSpace.tscn")
+	get_tree().change_scene_to_file("res://Scenes/MushSpace/MushSpace.tscn")

@@ -1,0 +1,120 @@
+[gd_scene load_steps=13 format=3 uid="uid://c4tjf6bsqkmci"]
+
+[ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="1_gyh2b"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmPlots.gd" id="1_h0q7a"]
+[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="2_rjw54"]
+[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="3_eiavh"]
+[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="4_tr6vb"]
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="5_xryxw"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="6_orvqo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gyh2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_rjw54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_eiavh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tr6vb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_wedbe"]
+default_font = ExtResource("6_orvqo")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("5_xryxw")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[node name="FarmPlots" type="Node2D"]
+script = ExtResource("1_h0q7a")
+
+[node name="Plot1" type="AnimatedSprite2D" parent="."]
+position = Vector2(519, 397)
+sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp1" type="Label" parent="."]
+offset_left = 494.0
+offset_top = 278.0
+offset_right = 534.0
+offset_bottom = 306.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Plot2" type="AnimatedSprite2D" parent="."]
+position = Vector2(854, 375)
+sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp2" type="Label" parent="."]
+offset_left = 832.0
+offset_top = 262.0
+offset_right = 872.0
+offset_bottom = 290.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Plot3" type="AnimatedSprite2D" parent="."]
+position = Vector2(571, 517)
+sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp3" type="Label" parent="."]
+offset_left = 543.0
+offset_top = 398.0
+offset_right = 590.0
+offset_bottom = 426.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Plot4" type="AnimatedSprite2D" parent="."]
+position = Vector2(805, 500)
+sprite_frames = SubResource("SpriteFrames_1p1e4")
+offset = Vector2(0, -40)
+
+[node name="TimeLeftDisp4" type="Label" parent="."]
+offset_left = 784.0
+offset_top = 387.0
+offset_right = 824.0
+offset_bottom = 412.0
+theme = SubResource("Theme_wedbe")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cl3et1epnfgxj"]
+[gd_scene load_steps=16 format=3 uid="uid://cl3et1epnfgxj"]
 
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="1_nwr3y"]
 [ext_resource type="Texture2D" uid="uid://bjsrvfoih3dcs" path="res://Sprites/HellSpace/hell_int.png" id="2_vud2j"]
@@ -7,6 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://dykkcmaxnss2h" path="res://Sprites/HellSpace/Arrows/hell_right.png" id="5_edx5n"]
 [ext_resource type="Texture2D" uid="uid://dhx2b4j0s0u2k" path="res://Sprites/HellSpace/Arrows/hell_right_hover.png" id="6_000st"]
 [ext_resource type="Script" path="res://Scripts/HellSpace/Right.gd" id="7_e7d88"]
+[ext_resource type="Texture2D" uid="uid://4kj47j0y7yex" path="res://Sprites/HellSpace/Zunda/Poses/zunda_finger_gun.png" id="8_wlt4q"]
+[ext_resource type="Texture2D" uid="uid://q3l0ur4m4600" path="res://Sprites/HellSpace/Zunda/Poses/zunda_hand_on_hips.png" id="9_c1by3"]
+[ext_resource type="Texture2D" uid="uid://nhfgfh07qmta" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_eugh.png" id="10_it3et"]
+[ext_resource type="Texture2D" uid="uid://ccy7e7jjkbk1f" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral2.png" id="11_y7knd"]
+[ext_resource type="Texture2D" uid="uid://dojma0m1dqtfs" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral.png" id="12_0m8rq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u03bk"]
 animations = [{
@@ -19,6 +24,37 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_dfdm6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l7hy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_wlt4q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c1by3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdh50"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_it3et")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_y7knd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0m8rq")
 }],
 "loop": true,
 "name": &"default",
@@ -54,7 +90,11 @@ script = ExtResource("7_e7d88")
 backdrop = NodePath("../Background")
 
 [node name="ZundaBody" type="AnimatedSprite2D" parent="."]
+position = Vector2(239, 348)
+sprite_frames = SubResource("SpriteFrames_l7hy6")
 
 [node name="ZundaFace" type="AnimatedSprite2D" parent="."]
+position = Vector2(236, 353)
+sprite_frames = SubResource("SpriteFrames_wdh50")
 
 [connection signal="pressed" from="Right" to="Right" method="_on_pressed"]

@@ -40,7 +40,7 @@ func _left() -> void:
 		currentFrame -= 1
 	_setdesc()
 	currentMush.frame = currentFrame
-	EventManager.mushroom_frame_changed.emit(currentFrame)
+	get_window().get_node("EventManager").mushroom_frame_changed.emit(currentFrame)
 
 
 func _right() -> void:
@@ -50,7 +50,7 @@ func _right() -> void:
 		currentFrame += 1
 	_setdesc()
 	currentMush.frame = currentFrame
-	EventManager.mushroom_frame_changed.emit(currentFrame)
+	get_window().get_node("EventManager").mushroom_frame_changed.emit(currentFrame)
 
 
 func _setdesc() -> void:

@@ -16,12 +16,12 @@ extends Node
 func _ready() -> void:
 	_update_sprites()
 	
-	EventManager.mushroom_planted.connect(_update_sprites)
-	EventManager.mushroom_harvested.connect(_update_sprites)
+	get_window().get_node("EventManager").mushroom_planted.connect(_update_sprites)
+	get_window().get_node("EventManager").mushroom_harvested.connect(_update_sprites)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

@@ -10,14 +10,14 @@ var currentFrame : int
 ## Functions
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	EventManager.mushroom_frame_changed.connect(_on_mushroom_frame_changed)
+	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
 	plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
 	remove.pressed.connect(_remove)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -29,7 +29,7 @@ func _plant() -> void:
 				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 10 + GVars.mushroomData.level * 8
 			else:
 				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 + GVars.mushroomData.level * 10
-			EventManager.mushroom_planted.emit()
+			get_window().get_node("EventManager").mushroom_planted.emit()
 
 
 func _harvest() -> void:
@@ -38,7 +38,7 @@ func _harvest() -> void:
 			_harvest_shroom(GVars.mushroomData.current[n])
 			GVars.mushroomData.current[n] = 0
 			GVars.mushroomData.timeLeft[n] = 0
-			EventManager.mushroom_planted.emit()
+			get_window().get_node("EventManager").mushroom_planted.emit()
 
 
 func _harvest_shroom(val) -> void:

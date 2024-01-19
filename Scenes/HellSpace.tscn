@@ -75,7 +75,7 @@ position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u03bk")
 
-[node name="Right" type="TextureButton" parent="." node_paths=PackedStringArray("backdrop")]
+[node name="Right" type="TextureButton" parent="." node_paths=PackedStringArray("backdrop", "zunda1", "zunda2")]
 layout_mode = 0
 offset_left = 914.0
 offset_top = 363.0
@@ -88,13 +88,17 @@ texture_disabled = ExtResource("5_edx5n")
 texture_focused = ExtResource("6_000st")
 script = ExtResource("7_e7d88")
 backdrop = NodePath("../Background")
+zunda1 = NodePath("../ZundaBody")
+zunda2 = NodePath("../ZundaFace")
 
 [node name="ZundaBody" type="AnimatedSprite2D" parent="."]
-position = Vector2(239, 348)
+position = Vector2(205, 378)
+scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_l7hy6")
 
 [node name="ZundaFace" type="AnimatedSprite2D" parent="."]
-position = Vector2(236, 353)
+position = Vector2(203, 376)
+scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_wdh50")
 
 [connection signal="pressed" from="Right" to="Right" method="_on_pressed"]

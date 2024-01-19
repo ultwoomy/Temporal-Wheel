@@ -119,29 +119,12 @@ grow_vertical = 2
 theme = SubResource("Theme_wedbe")
 script = ExtResource("3_tatml")
 
-[node name="Container" type="Container" parent="." node_paths=PackedStringArray("left", "right", "plant", "remove", "plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4", "harvest", "currentMush", "desc", "xpbar", "leveldisp", "statsdisp")]
+[node name="Container" type="Container" parent="." node_paths=PackedStringArray("currentMush")]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
 script = ExtResource("3_15p2a")
-left = NodePath("../Left")
-right = NodePath("../Right")
-plant = NodePath("../Plant")
-remove = NodePath("../Delete")
-plot1 = NodePath("../Node2D/Plot1")
-plot2 = NodePath("../Node2D/Plot2")
-plot3 = NodePath("../Node2D/Plot3")
-plot4 = NodePath("../Node2D/Plot4")
-disp1 = NodePath("../Node2D/TimeLeftDisp1")
-disp2 = NodePath("../Node2D/TimeLeftDisp2")
-disp3 = NodePath("../Node2D/TimeLeftDisp3")
-disp4 = NodePath("../Node2D/TimeLeftDisp4")
-harvest = NodePath("../Harvest")
 currentMush = NodePath("MushPanel/CurrentMush")
-desc = NodePath("../Label")
-xpbar = NodePath("../Xp Bar Prog")
-leveldisp = NodePath("../Current Level")
-statsdisp = NodePath("../Stats Panel/StatsDisp")
 
 [node name="Sprite2D" type="Sprite2D" parent="Container"]
 self_modulate = Color(0.415686, 0.215686, 0.113725, 1)

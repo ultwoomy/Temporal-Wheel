@@ -130,3 +130,7 @@ func load_as_normal():
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol
+
+func unlock_all_sigils():
+	for n in GVars.sigilData.numberOfSigils.size():
+		GVars.sigilData.numberOfSigils[n] = true

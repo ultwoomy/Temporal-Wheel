@@ -24,6 +24,8 @@ extends Node
 func _ready():
 	if(GVars.mushroomData.pendingRots < 0):
 		GVars.mushroomData.pendingRots = 0
+	if(GVars.sigilData.curSigilBuff == 2):
+		GVars.mushroomData.pendingRots *= 1.5
 	for n in GVars.mushroomData.current.size():
 		GVars.mushroomData.timeLeft[n] -= GVars.mushroomData.pendingRots
 		if(GVars.mushroomData.timeLeft[n] <= 0):

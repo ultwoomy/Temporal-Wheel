@@ -2,10 +2,14 @@ extends Node
 @export var text : Label
 @export var button : Button
 @export var tutScreen : Container
+
 var line = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(GVars.iffirstboot):
+		get_tree().paused = true
+		tutScreen.show()
+	elif(GVars.ifsecondboot):
 		get_tree().paused = true
 		tutScreen.show()
 	else :

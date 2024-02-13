@@ -30,6 +30,7 @@ func _plant() -> void:
 			else:
 				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 + GVars.mushroomData.level * 10
 			get_window().get_node("EventManager").mushroom_planted.emit()
+			break
 
 
 func _harvest() -> void:

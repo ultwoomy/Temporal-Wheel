@@ -14,6 +14,7 @@ extends Node
 @export var inContract : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
+@export var ifsecondboot : bool
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 @export var musicvol : float
@@ -62,6 +63,7 @@ func save_prog():
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
+	loader.ifsecondboot = ifsecondboot
 	loader.iffirstvoid = iffirstvoid
 	loader.iffirstpack = iffirstpack
 	loader.hellChallengeNerf = hellChallengeNerf
@@ -94,6 +96,7 @@ func resetR2Stats():
 	
 func resetPermStats():
 	iffirstboot = true
+	ifsecondboot = false
 	iffirstvoid = true
 	iffirstpack = true
 	
@@ -124,6 +127,7 @@ func load_as_normal():
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstboot
+	ifsecondboot = loader.ifsecondboot
 	iffirstvoid = loader.iffirstvoid
 	iffirstpack = loader.iffirstpack
 	hellChallengeNerf = loader.hellChallengeNerf

@@ -14,7 +14,7 @@ extends Node
 @export var inContract : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
-@export var ifsecondboot : bool
+@export var ifsecondboot : int
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 @export var musicvol : float
@@ -91,12 +91,12 @@ func resetR1Stats():
 func resetR2Stats():
 	ifhell = false
 	ifheaven = false
-	hellChallengeNerf = 0
+	hellChallengeNerf = -1
 	inContract = false
 	
 func resetPermStats():
 	iffirstboot = true
-	ifsecondboot = false
+	ifsecondboot = 0
 	iffirstvoid = true
 	iffirstpack = true
 	

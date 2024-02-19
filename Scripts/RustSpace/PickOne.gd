@@ -97,9 +97,18 @@ var packscript = ["That's my sigil.",
 				  "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now.",
 				  "It will invert the effect\nof your current emotion\nturning it into a debuff.",
 				  "What exactly that is...\nEh, you'll find out.",
-				  "This will persist until\nyou regain this sigil.",
+				  "This will persist until\nyou regain this sigil\nand augment it again.",
 				  "If you don't want to\ndo this yet, it's ok\nto just leave.",
-				  "Alright, good luck."]
+				  "Alright, good luck.",
+				
+				  "There's a powerful contract\netched into this sigil.",
+				  "I can start this contract\nfor you, but...",
+				  "You've already finished it\nsomehow. Huh.",
+				  "Well good for you, you've\nbeen updated.",
+				  "Go ahead and try entering\nhell now.",
+				
+				  "I can draw out the power\nof the blue babies and\nmake you immortal!!",
+				  "It's not implemented yet so\nI don't have to explain\nshit."]
 				
 var endofline = [false,false,false,true,
 				 false,false,true,
@@ -112,7 +121,9 @@ var endofline = [false,false,false,true,
 				 false,false,false,false,true,
 				 false,false,false,true,
 				 false,false,true,
-				 false,false,false,false,false,false,false,true]
+				 false,false,false,false,false,false,false,true,
+				 false,false,false,false,true,
+				 false,true]
 				
 var emote = [2,2,2,3,
 			 2,2,2,
@@ -125,9 +136,11 @@ var emote = [2,2,2,3,
 			 2,2,4,4,2,
 			 2,4,5,2,
 			 4,2,5,
-			 2,2,4,2,2,2,2,1]
+			 2,2,4,2,2,2,2,1,
+			 2,2,4,2,1,
+			 3,0]
 				
-var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,0]
+var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,0]
 var convoStart = false
 var pos = 0
 func nextLin(m):
@@ -183,7 +196,7 @@ func _ready():
 	upgrade1.text = "Increase Spin Per Click"
 	upgrade2.text = "Increase Hunger Per Tick"
 	upgrade3.text = "Increase Rust Per Drop"
-	if(GVars.curEmotionBuff == 0):
+	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
 		upgrade4.hide()
 	elif(GVars.curEmotionBuff == 1):
 		#fear
@@ -431,8 +444,19 @@ func manageChoice(n):
 			nextLin(10)
 			sigilToActivate = 5
 		elif(n == 6):
-			nextLin(11)
-			sigilToActivate = 6
+			if(GVars.hellChallengeNerf < 0):
+				if(!GVars.ifhell):
+					nextLin(11)
+					sigilToActivate = 6
+				else:
+					nextLin(13)
+					sigilToActivate = 6
+			else:
+				nextLin(12)
+				sigilToActivate = 6
+				GVars.ifhell = true
+				GVars.inContract = false
+				GVars.hellChallengeNerf = -1
 
 
 func resetDisplay(n: int):

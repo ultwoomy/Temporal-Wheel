@@ -1,6 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://cl3et1epnfgxj"]
+[gd_scene load_steps=28 format=3 uid="uid://cl3et1epnfgxj"]
 
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_57gd3"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="1_nwr3y"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_6sag1"]
 [ext_resource type="Texture2D" uid="uid://bjsrvfoih3dcs" path="res://Sprites/HellSpace/hell_int.png" id="2_vud2j"]
 [ext_resource type="Texture2D" uid="uid://b3j3v63emaa12" path="res://Sprites/HellSpace/hell_box.png" id="3_lagvo"]
 [ext_resource type="Texture2D" uid="uid://da5qw8iyvke6c" path="res://Sprites/HellSpace/hell_door_barred.png" id="4_dfdm6"]
@@ -12,6 +14,50 @@
 [ext_resource type="Texture2D" uid="uid://nhfgfh07qmta" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_eugh.png" id="10_it3et"]
 [ext_resource type="Texture2D" uid="uid://ccy7e7jjkbk1f" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral2.png" id="11_y7knd"]
 [ext_resource type="Texture2D" uid="uid://dojma0m1dqtfs" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral.png" id="12_0m8rq"]
+[ext_resource type="Texture2D" uid="uid://c0xdh8mi58kco" path="res://Sprites/HellSpace/helltextbox.png" id="15_svovp"]
+[ext_resource type="Texture2D" uid="uid://do36jh0aesw82" path="res://Sprites/HellSpace/Arrows/hell_back1.png" id="16_ixgfe"]
+[ext_resource type="Texture2D" uid="uid://6cf72xlfuciu" path="res://Sprites/HellSpace/Arrows/hell_back2.png" id="17_20k74"]
+[ext_resource type="Script" path="res://Scenes/HellSpaceBack.gd" id="18_mb4ff"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb68f"]
+bg_color = Color(1, 0.282353, 0.560784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1j0p"]
+bg_color = Color(0.678431, 0, 0.360784, 1)
+
+[sub_resource type="Theme" id="Theme_w4q50"]
+default_font = ExtResource("2_6sag1")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_57gd3")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_gb68f")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_m1j0p")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u03bk"]
 animations = [{
@@ -68,6 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_w4q50")
 script = ExtResource("1_nwr3y")
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
@@ -75,7 +122,7 @@ position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u03bk")
 
-[node name="Right" type="TextureButton" parent="." node_paths=PackedStringArray("backdrop", "zunda1", "zunda2")]
+[node name="Right" type="TextureButton" parent="." node_paths=PackedStringArray("backdrop", "zunda1", "zunda2", "textbox", "text")]
 layout_mode = 0
 offset_left = 914.0
 offset_top = 363.0
@@ -90,15 +137,59 @@ script = ExtResource("7_e7d88")
 backdrop = NodePath("../Background")
 zunda1 = NodePath("../ZundaBody")
 zunda2 = NodePath("../ZundaFace")
+textbox = NodePath("../Textbox")
+text = NodePath("../Dialouge")
 
 [node name="ZundaBody" type="AnimatedSprite2D" parent="."]
-position = Vector2(205, 378)
-scale = Vector2(1.75, 1.75)
+position = Vector2(500, 400)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_l7hy6")
 
 [node name="ZundaFace" type="AnimatedSprite2D" parent="."]
-position = Vector2(203, 376)
-scale = Vector2(1.75, 1.75)
+position = Vector2(500, 400)
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_wdh50")
+
+[node name="Textbox" type="Sprite2D" parent="."]
+position = Vector2(500, 465)
+scale = Vector2(3.5, 1.044)
+texture = ExtResource("15_svovp")
+
+[node name="Dialouge" type="Label" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 335.0
+offset_right = 969.0
+offset_bottom = 574.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 58
+text = "End of current content go away"
+
+[node name="Label" type="Label" parent="Dialouge"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 65.0
+offset_right = 356.0
+offset_bottom = 260.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 21
+text = "Future planned content:
+ Zundamon
+ Contracts
+ Balance
+ Automation
+ Story"
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 299.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("16_ixgfe")
+texture_pressed = ExtResource("17_20k74")
+texture_hover = ExtResource("17_20k74")
+texture_disabled = ExtResource("16_ixgfe")
+texture_focused = ExtResource("17_20k74")
+script = ExtResource("18_mb4ff")
 
 [connection signal="pressed" from="Right" to="Right" method="_on_pressed"]

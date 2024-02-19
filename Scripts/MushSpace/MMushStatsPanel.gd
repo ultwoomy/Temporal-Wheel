@@ -7,6 +7,7 @@ extends Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_window().get_node("EventManager").mushroom_planted.connect(_update_stats)
 	_update_stats()
 
 

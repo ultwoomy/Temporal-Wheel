@@ -11,7 +11,7 @@ var emoBuff : float = 1
 # Its inheriters should call this function with super._ready().
 # Otherwise, this _ready function will get replaced and will be unable to run its functions.
 func _ready() -> void:
-	run_tests()
+	#run_tests()
 	if(GVars.curEmotionBuff == 4):
 		emoBuff = GVars.rustData.fourth
 	# L.B:

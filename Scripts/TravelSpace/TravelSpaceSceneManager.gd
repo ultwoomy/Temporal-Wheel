@@ -27,7 +27,7 @@ func _ready():
 	button4.pressed.connect(self._button_pressed4)
 	if(!GVars.ifheaven):
 		button3.disabled = true
-	if(GVars.ifhell):
+	if(!GVars.ifhell):
 		button4.disabled = true
 
 

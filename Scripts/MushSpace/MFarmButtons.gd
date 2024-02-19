@@ -51,7 +51,7 @@ func _harvest_shroom(val) -> void:
 		Ebuff = log(GVars.spinData.rotations)/log(5) + 0.5
 		EexpBuff = GVars.rustData.fourth
 	if(val == 1):
-		GVars.spinData.spin += GVars.spinPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff
+		GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff
 		GVars.mushroomData.xp += 25 * EexpBuff
 	elif(val == 2):
 		GVars.spinData.rotations += (1 + GVars.mushroomData.level)/2 * (3 + Ebuff)/4 * 5

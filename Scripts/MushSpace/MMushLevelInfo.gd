@@ -8,6 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_window().get_node("EventManager").mushroom_planted.connect(_update_xp_bar)
 	_update_xp_bar()
 
 

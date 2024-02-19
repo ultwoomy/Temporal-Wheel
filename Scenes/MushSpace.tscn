@@ -187,7 +187,6 @@ offset_left = 90.0
 offset_top = 350.0
 offset_right = 306.0
 offset_bottom = 440.0
-theme_override_font_sizes/font_size = 18
 text = "ihjlkjfnkjz"
 
 [node name="Plant" type="Button" parent="."]

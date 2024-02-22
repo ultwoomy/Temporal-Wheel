@@ -27,7 +27,7 @@ func _wheel_scene():
 
 func _on_slide_music(_value_changed):
 	GVars.musicvol = mslider.value
-	var musicbox = get_tree().root.get_node("SoundManager").get_child(0)
+	var musicbox = get_tree().root.get_node("SoundManage").get_child(0)
 	if(GVars.musicvol == -32):
 		musicbox.stream_paused = true
 	else:

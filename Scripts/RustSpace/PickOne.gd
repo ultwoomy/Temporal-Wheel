@@ -39,6 +39,130 @@ var ifupscreen = false
 var ifautomascreen = false
 var line = 0
 var mode = 0
+var sigilToActivate = 0
+var packscript = ["That's my sigil.",
+				  "All sigils are kind of like...\npermissions of sorts.",
+				  "All this one does is let you\ntalk to me.",
+				  "...Stop looking disappointed\nit's a high honor!",
+				
+				  "A lovely candle.",
+				  "It's sufficient to light any\nspace.",
+				  "You'll likely be able to see\nthings back home you \ncouldn't before",
+				
+				  "Looks like a portal or\nsomething.",
+				  "Not sure exactly what it does\nbut.",
+				  "It's attached itself to your\nwheel",
+				  "Clicking on the wheel should\ntell you more.",
+				
+				  "A vague memory of a face.",
+				  "It's honestly kind of creepy\nthat you have this.",
+				  "Wearing this will amplify an\nemotion of your choice\nto a considerable degree.",
+				  "To the point where it persists\nafter death.",
+				  "...You'd have to wear it\nthough.\nEw.",
+				
+				  "A relic from hell, the\nritual.",
+				  "It represents a deal with\nthe devil, though the\ndevil happens to be dead.",
+				  "So it's peculiar that this\nis working at all.",
+				  "Maybe a new one spawned in.",
+				
+				  "Oh hey, it's the sigil of a\nblue baby.",
+				  "Those things are the\nservants of Divine.",
+				  "You could probably use this\nto get into heaven!",
+				  "...actually there's no perm\nfor that in here.\nGuess it's useless then.",
+				
+				  "Now it's a rust magnet.",
+				  "You should get more rust\nfrom that wheel now.",
+				
+				  "I've increased the strength\n of the light.",
+				  "The warm glow should make\nshrooms grow twice as\nfast.",
+				  "Which makes no sense since\nthey like dim lighting.",
+				
+				  "I don't think I know enough\nto touch this.",
+				  "Lemme just uh.",
+				  "Oops.",
+				  "It seems to be sucking in\nmomentum at an increased\nrate.",
+				  "I barely touched it I swear.",
+				
+				  "I'm not entirely sure what\nyou want me to do with this.",
+				  "You're going to wear that?\nReally?.",
+				  "...",
+				  "It uh, looks good on you\nI think?",
+				
+				  "This one's easy, I can just\nreplace one of these\ncandles with one of mine.",
+				  "Now the first candle you\nLight is free.",
+				  "I'm not giving you any more.",
+				
+				  "There's a powerful contract\netched into this sigil.",
+				  "I can start this contract\nfor you, but be warned.",
+				  "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now.",
+				  "It will invert the effect\nof your current emotion\nturning it into a debuff.",
+				  "What exactly that is...\nEh, you'll find out.",
+				  "This will persist until\nyou regain this sigil\nand augment it again.",
+				  "If you don't want to\ndo this yet, it's ok\nto just leave.",
+				  "Alright, good luck.",
+				
+				  "There's a powerful contract\netched into this sigil.",
+				  "I can start this contract\nfor you, but...",
+				  "You've already finished it\nsomehow. Huh.",
+				  "Well good for you, you've\nbeen updated.",
+				  "Go ahead and try entering\nhell now.",
+				
+				  "I can draw out the power\nof the blue babies and\nmake you immortal!!",
+				  "It's not implemented yet so\nI don't have to explain\nshit."]
+				
+var endofline = [false,false,false,true,
+				 false,false,true,
+				 false,false,false,true,
+				 false,false,false,false,true,
+				 false,false,false,true,
+				 false,false,false,true,
+				 false,true,
+				 false,false,true,
+				 false,false,false,false,true,
+				 false,false,false,true,
+				 false,false,true,
+				 false,false,false,false,false,false,false,true,
+				 false,false,false,false,true,
+				 false,true]
+				
+var emote = [2,2,2,3,
+			 2,2,2,
+			 4,2,2,2,
+			 2,4,2,4,5,
+			 2,2,2,2,
+			 2,2,2,2,
+			 2,2,
+			 2,2,3,
+			 2,2,4,4,2,
+			 2,4,5,2,
+			 4,2,5,
+			 2,2,4,2,2,2,2,1,
+			 2,2,4,2,1,
+			 3,0]
+				
+var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,0]
+var convoStart = false
+var pos = 0
+func nextLin(m):
+	GVars._dialouge(text,0,0.04)
+	if !convoStart:
+		pos = convoNo[m]
+		text.text = packscript[pos]
+		packback.frame = emote[pos]
+func nextLine():
+	GVars._dialouge(text,0,0.04)
+	if endofline[pos]:
+		pos = 0
+		text.text = ""
+		packback.frame = 2
+		resetChoice()
+		if(sigilToActivate != 0):
+			resetDisplay(sigilToActivate)
+			sigilToActivate = 0
+	else: 
+		pos += 1
+		text.text = packscript[pos]
+		packback.frame = emote[pos]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rDisplay.position = Vector2(-190,0)
@@ -72,7 +196,7 @@ func _ready():
 	upgrade1.text = "Increase Spin Per Click"
 	upgrade2.text = "Increase Hunger Per Tick"
 	upgrade3.text = "Increase Rust Per Drop"
-	if(GVars.curEmotionBuff == 0):
+	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
 		upgrade4.hide()
 	elif(GVars.curEmotionBuff == 1):
 		#fear
@@ -114,7 +238,7 @@ func _ready():
 	sigil04button.pressed.connect(self._04Sigil)
 	sigil05button.pressed.connect(self._05Sigil)
 	sigil06button.pressed.connect(self._06Sigil)
-	next.pressed.connect(self._nextline)
+	next.pressed.connect(self.nextLine)
 	selection.hide()
 	updateDisplays()
 func _inspect():
@@ -292,277 +416,51 @@ func manageChoice(n):
 	text.show()
 	if(ifinspect):
 		if(n == 1):
-			text.text = "That's my sigil."
-			mode = 1
+			nextLin(0)
 		elif(n == 2):
-			text.text = "A lovely candle."
-			mode = 2
+			nextLin(1)
 		elif(n == 3):
-			text.text = "Looks like a portal or\nsomething."
-			mode = 3
+			nextLin(2)
 		elif(n == 4):
-			text.text = "A vague memory of a face."
-			mode = 4
+			nextLin(3)
 		elif(n == 5):
-			text.text = "A relic from hell, the\nritual."
-			mode = 5
-		elif(n == 6) and !GVars.ifhell:
-			text.text = "Oh hey, it's the sigil of a\nblue baby."
-			mode = 6
+			nextLin(4)
 		elif(n == 6):
-			text.text = "Oh hey, it's the sigil of \nliteral Satan."
-			mode = 25
+			nextLin(5)
 	if(!ifinspect):
 		if(n == 1):
-			text.text = "Now it's a rust magnet."
-			mode = 13
+			nextLin(6)
+			sigilToActivate = 1
 		elif(n == 2):
-			text.text = "I've increased the strength\n of the light."
-			mode = 14
+			nextLin(7)
+			sigilToActivate = 2
 		elif(n == 3):
-			text.text = "I don't think I know enough\nto touch this."
-			mode = 15
+			nextLin(8)
+			sigilToActivate = 3
 		elif(n == 4):
-			text.text = "I'm not entirely sure what\nyou want me to do with this."
-			mode = 16
+			nextLin(9)
+			sigilToActivate = 4
 		elif(n == 5):
-			text.text = "This one's easy, I can just\nreplace one of these\ncandles with one of mine."
-			mode = 17
-		elif(n == 6) and !GVars.ifhell:
-			text.text = "There's a powerful contract\netched into this sigil."
-			mode = 18
+			nextLin(10)
+			sigilToActivate = 5
 		elif(n == 6):
-			text.text = "Surprise surprise! It's more\ncontracts!"
-			mode = 26
-func _nextline():
-	GVars._dialouge(text,0,0.04)
-	if(mode == 1):
-		if(line == 0):
-			text.text = "All sigils are kind of like...\npermissions of sorts."
-			line += 1
-		elif(line == 1):
-			text.text = "All this one does is let you\ntalk to me."
-			line += 1
-		elif(line == 2):
-			text.text = "...Stop looking disappointed\nit's a high honor!"
-			packback.frame = 3
-			line += 1
-		elif(line == 3):
-			text.text = ""
-			resetChoice()
-	elif(mode == 2):
-		if(line == 0):
-			text.text = "It's sufficient to light any\nspace."
-			line += 1
-		elif(line == 1):
-			text.text = "You'll likely be able to see\nthings back home you \ncouldn't before"
-			line += 1
-		elif(line == 2):
-			text.text = ""
-			resetChoice()
-	elif(mode == 3):
-		if(line == 0):
-			text.text = "Not sure exactly what it does\nbut."
-			packback.frame = 2
-			line += 1
-		elif(line == 1):
-			text.text = "It's attached itself to your\nwheel"
-			line += 1
-		elif(line == 2):
-			text.text = "Clicking on the wheel should\ntell you more."
-			line += 1
-		elif(line == 3):
-			text.text = ""
-			resetChoice()
-	elif(mode == 4):
-		if(line == 0):
-			text.text = "It's honestly kind of creepy\nthat you have this."
-			packback.frame = 5
-			line += 1
-		elif(line == 1):
-			text.text = "Wearing this will amplify an\nemotion of your choice\nto a ridiculous degree."
-			packback.frame = 2
-			line += 1
-		elif(line == 2):
-			text.text = "To the point where it persists\nafter death."
-			line += 1
-		elif(line == 3):
-			text.text = "...You'd have to wear it\nthough.\nEw."
-			line += 1
-		elif(line == 4):
-			text.text = ""
-			resetChoice()
-	elif(mode == 5):
-		if(line == 0):
-			text.text = "It represents a deal with\nthe devil, though the\ndevil happens to be dead."
-			packback.frame = 5
-			line += 1
-		elif(line == 1):
-			text.text = "So it's peculiar that this\nis working at all."
-			packback.frame = 2
-			line += 1
-		elif(line == 2):
-			text.text = "Maybe a new one spawned in."
-			line += 1
-		elif(line == 3):
-			text.text = "Each deal has a cost,\nbut the price seems\npretty low for you."
-			line += 1
-		elif(line == 4):
-			text.text = "You got lucky."
-			line += 1
-		elif(line == 5):
-			text.text = ""
-			resetChoice()
-	elif(mode == 6):
-		if(line == 0):
-			text.text = "It's representative of the\nservants of Divine."
-			line += 1
-		elif(line == 1):
-			text.text = "You could probably use this\nto get into heaven."
-			line += 1
-		elif(line == 2):
-			text.text = "...actually there's no perm\nfor that in here."
-			line += 1
-		elif(line == 3):
-			text.text = "Huh, guess it's useless then."
-			line += 1
-		elif(line == 4):
-			text.text = ""
-			resetChoice()
-	elif(mode == 13):
-		if(line == 0):
-			text.text = "You should get more rust\nfrom that wheel now."
-			line += 1
-		elif(line == 1):
-			resetDisplay(1)
-			resetChoice()
-	elif(mode == 14):
-		if(line == 0):
-			text.text = "The warm glow should make\nshrooms grow twice as\nfast."
-			line += 1
-		elif(line == 1):
-			text.text = "Which makes no sense since\nthey like dim lighting."
-			packback.frame = 3
-			line += 1
-		elif(line == 2):
-			resetDisplay(2)
-			resetChoice()
-	elif(mode == 15):
-		if(line == 0):
-			text.text = "Lemme just uh."
-			line += 1
-		elif(line == 1):
-			text.text = "Oops."
-			line += 1
-		elif(line == 2):
-			text.text = "It seems to be sucking in\nmomentum at an increased\nrate."
-			line += 1
-		elif(line == 3):
-			text.text = "I barely touched it I swear."
-			packback.frame = 4
-			line += 1
-		elif(line == 4):
-			resetDisplay(3)
-			resetChoice()
-	elif(mode == 16):
-		if(line == 0):
-			text.text = "You're going to wear that?\nReally?."
-			packback.frame = 4
-			line += 1
-		elif(line == 1):
-			text.text = "..."
-			packback.frame = 5
-			line += 1
-		elif(line == 2):
-			text.text = "It uh, looks good on you\nI think?"
-			packback.frame = 2
-			line += 1
-		elif(line == 3):
-			resetDisplay(4)
-			resetChoice()
-	elif(mode == 17):
-		if(line == 0):
-			text.text = "Now the first candle you\nLight is free."
-			packback.frame = 4
-			line += 1
-		elif(line == 1):
-			resetDisplay(5)
-			resetChoice()
-	elif(mode == 18):
-		if(line == 0):
-			text.text = "I can start this contract\nfor you, but be warned."
-			packback.frame = 4
-			line += 1
-		elif(line == 1):
-			text.text = "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now."
-			line += 1
-		elif(line == 2):
-			text.text = "It will invert the effect\nof your current emotion\nturning it into a debuff."
-			line += 1
-			packback.frame = 2
-		elif(line == 3):
-			if(GVars.curEmotionBuff == 1):
-				#fear
-				text.text = "Rotations will divide\nyour wheel's spin speed."
-			elif(GVars.curEmotionBuff == 2):
-				#cold
-				text.text = "The effect of size is\nsquare rooted."
-			elif(GVars.curEmotionBuff == 3):
-				#warmth
-				text.text = "The effects of mushrooms\nare greatly decreased."
-			elif(GVars.curEmotionBuff == 4):
-				#wrath
-				text.text = "You will get a max of 1\nrust per rust drop."
+			if(GVars.hellChallengeNerf < 0):
+				if(!GVars.ifhell):
+					nextLin(11)
+					sigilToActivate = 6
+				else:
+					nextLin(13)
+					sigilToActivate = 6
 			else:
-				text.text = "Which is no nerf at all\nLol, nice one."
-			line += 1
-		elif(line == 4):
-			text.text = "This will persist until\nyou regain this sigil."
-			line += 1
-		elif(line == 5):
-			text.text = "If you don't want to\ndo this yet, it's ok\nto just leave."
-			line += 1
-		elif(line == 6):
-			text.text = "Alright, good luck."
-			packback.frame = 1
-			line += 1
-		elif(line == 7):
-			resetDisplay(6)
-			resetChoice()
-	elif(mode == 25):
-		if(line == 0):
-			text.text = "You really pick up a lot\nof weird things don't you."
-			line += 1
-		elif(line == 1):
-			text.text = "I'm out of the loop with\nhistory.\nI fear my knowledge can't\nkeep up."
-			line += 1
-		elif(line == 2):
-			text.text = "How about you tell me the\nlatest whenever you visit."
-			line += 1
-		elif(line == 3):
-			resetChoice()
-	elif(mode == 26):
-		if(line == 0):
-			text.text = "Be warned though, these\ncontracts mean business."
-			line += 1
-		elif(line == 1):
-			text.text = "These will be harder than\nanything else the blue\nguy's cooked up for you."
-			line += 1
-		elif(line == 2):
-			text.text = "But I(the developer) am not\nthere yet, so."
-			line += 1
-		elif(line == 3):
-			text.text = "WHO SAID THAT!?"
-			line += 1
-		elif(line == 4):
-			resetDisplay(0)
-			resetChoice()
-	else:
-		text.text = ""
-		resetChoice()
+				nextLin(12)
+				sigilToActivate = 6
+				GVars.ifhell = true
+				GVars.inContract = false
+				GVars.hellChallengeNerf = -1
 
 
 func resetDisplay(n: int):
+	sigilToActivate = 0
 	if(n == 6) and !GVars.ifhell:
 		GVars.sigilData.curSigilBuff = n
 		get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")

@@ -4,29 +4,15 @@
 
 [resource]
 script = ExtResource("1_ba8r7")
-spin = 0.0
-spinPerClick = 0.0
-size = 0.0
-sucPerTick = 0.0
-sucTresh = 0.0
-curSucSize = 0.0
-sizeRecord = 0.0
-density = 0.0
-sucPerTDens = 0.0
-densTresh = 0.0
-curSucDens = 0.0
-wheelphase = 0
-rotations = 0.0
-sigilCostSpin = 0.0
-sigilCostRot = 0.0
-sigilCostSpinScale = 0.0
-sigilCostRotScale = 0.0
-numberOfSigils = Array[bool]([])
-curSigilBuff = 0
-ifhell = false
-ifheaven = false
 Aspinbuff = 0.0
 curEmotionBuff = 0.0
+inContract = false
+hellChallengeNerf = 0
+ifhell = false
+ifheaven = false
 iffirstboot = false
+ifsecondboot = false
 iffirstvoid = false
 iffirstpack = false
+musicvol = 0.0
+sfxvol = 0.0

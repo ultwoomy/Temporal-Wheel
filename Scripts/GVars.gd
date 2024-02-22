@@ -1,37 +1,24 @@
 extends Node
 @export_group("R0stats")
-@export var spin : float
-@export var spinPerClick : float
-@export var size : float
-@export var sizeToggle : bool
-@export var sucPerTick : float
-@export var sucTresh : float
-@export var curSucSize : float
-@export var sizeRecord : float
-@export var density : float
-@export var sucPerTDens : float
-@export var densTresh : float
-@export var curSucDens : float
-@export var wheelphase : int
-@export var rotations : float
-
+@export var spinData : SpinData
 @export var rustData : RustData
-
 @export var mushroomData : MushroomData
-
 @export var ritualData : RitualData
-
 @export var sigilData : SigilData
-
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
 @export var ifhell : bool
 @export var ifheaven : bool
+@export var hellChallengeNerf : int
+@export var inContract : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
+@export var ifsecondboot : int
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
+@export var musicvol : float
+@export var sfxvol : float
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
@@ -55,23 +42,12 @@ func create_data():
 		ritualData = RitualData.new()
 	if (!sigilData):
 		sigilData = SigilData.new()
+	if (!spinData):
+		spinData = SpinData.new()
 
 
 func save_prog():
-	loader.spin = spin
-	loader.spinPerClick = spinPerClick
-	loader.size = size
-	loader.sizeToggle = sizeToggle
-	loader.sucPerTick = sucPerTick
-	loader.sucTresh = sucTresh
-	loader.curSucSize = curSucSize
-	loader.sizeRecord = sizeRecord
-	loader.density = density
-	loader.sucPerTDens = sucPerTDens
-	loader.densTresh = densTresh
-	loader.curSucDens = curSucDens
-	loader.wheelphase = wheelphase
-	loader.rotations = rotations
+	loader.spinData = spinData
 	
 	loader.rustData = rustData
 	
@@ -87,25 +63,17 @@ func save_prog():
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
+	loader.ifsecondboot = ifsecondboot
 	loader.iffirstvoid = iffirstvoid
 	loader.iffirstpack = iffirstpack
+	loader.hellChallengeNerf = hellChallengeNerf
+	loader.inContract = inContract
+	loader.musicvol = musicvol
+	loader.sfxvol = sfxvol
 	loader.save_stats(loader)
 	
 func resetR0Stats():
-	spin = 0
-	spinPerClick = 1
-	size = 1
-	sizeToggle = false
-	sucPerTick = 5
-	sucTresh = 15
-	curSucSize = 0
-	sizeRecord = 1
-	density = 1
-	sucPerTDens = 1
-	densTresh = 2
-	curSucDens = 0
-	wheelphase = 1
-	rotations = 0
+	spinData.resetData()
 	
 	rustData.resetData()
 	
@@ -123,11 +91,16 @@ func resetR1Stats():
 func resetR2Stats():
 	ifhell = false
 	ifheaven = false
+	hellChallengeNerf = -1
+	inContract = false
 	
 func resetPermStats():
 	iffirstboot = true
+	ifsecondboot = 0
 	iffirstvoid = true
 	iffirstpack = true
+	musicvol = -6.0
+	sfxvol = -6.0
 	
 func getScientific(val):
 	if(val > 1000):
@@ -146,19 +119,7 @@ func _dialouge(lbl,charat,time):
 		
 func load_as_normal():
 	loader = loader.load_stats()
-	spin = loader.spin
-	spinPerClick = loader.spinPerClick
-	size = loader.size
-	sucPerTick = loader.sucPerTick
-	sucTresh = loader.sucTresh
-	curSucSize = loader.curSucSize
-	sizeRecord = loader.sizeRecord
-	density = loader.density
-	sucPerTDens = loader.sucPerTDens
-	densTresh = loader.densTresh
-	curSucDens = loader.curSucDens
-	wheelphase = loader.wheelphase
-	rotations = loader.rotations
+	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
 	ritualData = loader.ritualData
@@ -168,5 +129,14 @@ func load_as_normal():
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
 	iffirstboot = loader.iffirstboot
+	ifsecondboot = loader.ifsecondboot
 	iffirstvoid = loader.iffirstvoid
 	iffirstpack = loader.iffirstpack
+	hellChallengeNerf = loader.hellChallengeNerf
+	inContract = loader.inContract
+	musicvol = loader.musicvol
+	sfxvol = loader.sfxvol
+
+func unlock_all_sigils():
+	for n in GVars.sigilData.numberOfSigils.size():
+		GVars.sigilData.numberOfSigils[n] = true

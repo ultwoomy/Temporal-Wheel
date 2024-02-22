@@ -33,7 +33,8 @@ func _process(_delta):
 		musicbox.stream_paused = true
 	if musicbox.stream_paused and GVars.spinData.spin > 0:
 		musicbox.stream_paused = false
-	if(GVars.spinSpeed != curtrack):
+	'''
+	if(GVars.spinData.spinSpeed != curtrack):
 		musicbox.pitch_scale = float(GVars.spinData.density) / 10 + 0.7
 		if((GVars.spinSpeed >= curtrack + 10) or (GVars.spinSpeed <= curtrack - 10)) and GVars.spinSpeed < 111:
 			curtrack = GVars.spinSpeed
@@ -84,6 +85,7 @@ func _process(_delta):
 				pos = 11*musicbox.get_playback_position()/12
 				musicbox.stream = tracks[11]
 				musicbox.play(pos)
+				'''
 
 func reset():
 	musicbox.play(0.0)

@@ -94,7 +94,6 @@ func calculateOneRot():
 			rotation -= changerot
 			angle -= changerot
 		else:
-			GVars.spinSpeed = int(pow(changerot * 1000,0.6))
 			rotation += changerot
 			angle += changerot
 		if(angle < -2*PI):

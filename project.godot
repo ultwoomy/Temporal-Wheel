@@ -20,6 +20,7 @@ config/icon="res://Sprites/kbity.png"
 
 GVars="*res://Scripts/GVars.gd"
 EventManager="*res://Scripts/EventManager.gd"
+SoundManage="*res://Scripts/SoundManager.gd"
 
 [display]
 

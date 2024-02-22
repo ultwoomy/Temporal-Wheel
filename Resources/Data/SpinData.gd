@@ -15,6 +15,7 @@ class_name SpinData
 @export var curSucDens : float
 @export var wheelphase : int
 @export var rotations : float
+@export var spinSpeed : float
 
 func resetData() -> void:
 	spin = 0
@@ -31,3 +32,4 @@ func resetData() -> void:
 	curSucDens = 0
 	wheelphase = 1
 	rotations = 0
+	spinSpeed = 0

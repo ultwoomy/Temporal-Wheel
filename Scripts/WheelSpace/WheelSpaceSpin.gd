@@ -5,7 +5,6 @@ extends Node
 
 var fmat = preload("res://Scripts/FormatNo.gd")
 
-
 func _ready():
 	save_loop()
 	spin_update_loop()
@@ -26,6 +25,7 @@ func _button_pressed():
 	# L.B: Can also use get_tree().root.get_node(...) I believe.
 	var event_manager: EventManager = get_window().get_node("EventManager")
 	event_manager.wheel_spun.emit()
+	
 	
 	
 #	GVars.spin += GVars.spinPerClick * GVars.size * GVars.density * GVars.Rincreasespin * GVars.Sspinbuff

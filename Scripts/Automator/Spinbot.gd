@@ -38,45 +38,45 @@ func _process(_delta: float) -> void:
 		
 func calculateOneRot():
 	var changerot = 0.0
-	if(GVars.spin > 0) and (shouldSpin):
+	if(GVars.spinData.spin > 0) and (shouldSpin):
 		if(GVars.hellChallengeNerf == 1):
-			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
+			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
 		else:
-			changerot = (log(GVars.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
+			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		angle += changerot
 		if(angle > 2*PI):
 			var temp = float(angle/(2*PI))
-			GVars.rotations += temp
+			GVars.spinData.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
 				GVars.mushroomData.pendingRots += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 
 func updateDivisor():
-	GVars.wheelphase = int(GVars.density)
-	if(GVars.wheelphase == 1):
+	GVars.spinData.wheelphase = int(GVars.spinData.density)
+	if(GVars.spinData.wheelphase == 1):
 		speedDivisor = 1000
-	elif(GVars.wheelphase == 2):
+	elif(GVars.spinData.wheelphase == 2):
 		speedDivisor = 700
-	elif(GVars.wheelphase == 3):
+	elif(GVars.spinData.wheelphase == 3):
 		speedDivisor = 600
-	elif(GVars.wheelphase == 4):
+	elif(GVars.spinData.wheelphase == 4):
 		speedDivisor = 500
-	elif(GVars.wheelphase == 5):
+	elif(GVars.spinData.wheelphase == 5):
 		speedDivisor = 400
-	elif(GVars.wheelphase == 6):
+	elif(GVars.spinData.wheelphase == 6):
 		speedDivisor = 350
-	elif(GVars.wheelphase == 7):
+	elif(GVars.spinData.wheelphase == 7):
 		speedDivisor = 300
-	elif(GVars.wheelphase == 8):
+	elif(GVars.spinData.wheelphase == 8):
 		speedDivisor = 250
-	elif(GVars.wheelphase == 9):
+	elif(GVars.spinData.wheelphase == 9):
 		speedDivisor = 200
-	elif(GVars.wheelphase == 10):
+	elif(GVars.spinData.wheelphase == 10):
 		speedDivisor = 150
-	elif(GVars.wheelphase == 11):
+	elif(GVars.spinData.wheelphase == 11):
 		speedDivisor = 100
-	elif(GVars.wheelphase == 12):
+	elif(GVars.spinData.wheelphase == 12):
 		speedDivisor = 80
 	else:
 		speedDivisor = 80

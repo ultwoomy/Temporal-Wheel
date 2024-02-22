@@ -15,7 +15,7 @@ extends Resource
 @export var ifheaven : bool
 @export_group("PermStats")
 @export var iffirstboot : bool
-@export var ifsecondboot : bool
+@export var ifsecondboot : int
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 @export var musicvol : float
@@ -34,11 +34,11 @@ func _init():
 	curEmotionBuff = 0
 	sigilData = SigilData.new()
 	inContract = false
-	hellChallengeNerf = 0
+	hellChallengeNerf = -1
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true
-	ifsecondboot = false
+	ifsecondboot = 0
 	iffirstvoid = true
 	iffirstpack = true
 	musicvol = -6.0

@@ -18,7 +18,7 @@ func _ready():
 func _button_pressed():
 	presses += 1.0
 	if(presses > 4):
-		GVars.hellChallengeNerf = 0
+		GVars.hellChallengeNerf = -1
 		GVars.inContract = false
 		presses = 0
 		hide()

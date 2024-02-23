@@ -99,8 +99,8 @@ func resetPermStats():
 	ifsecondboot = 0
 	iffirstvoid = true
 	iffirstpack = true
-	musicvol = -6.0
-	sfxvol = -6.0
+	musicvol = -12.0
+	sfxvol = -12.0
 	
 func getScientific(val):
 	if(val > 1000):

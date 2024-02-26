@@ -1,4 +1,6 @@
 extends Node
+
+
 @export var text : Label
 @export var button : Button
 @export var sigilDisplay : AnimatedSprite2D
@@ -11,6 +13,8 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Emptiness!\nExtremely ironic name!\nFull of emoticon!",
 				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
 				  "Token Hell!\nAccess a wonderful new realm!\nDo you smell smoke?"]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stupids = 0
@@ -20,6 +24,7 @@ func _ready():
 	button.position = Vector2(850,380)
 	reset()
 	button.pressed.connect(self._button_pressed)
+
 
 func _button_pressed():
 	GVars._dialouge(text,0,0.02)
@@ -105,7 +110,8 @@ func _button_pressed():
 				stupids += 1
 			button.text = "Oh"
 			failbought = true
-		
+
+
 func reset():
 	if(GVars.sigilData.numberOfSigils[5]):
 		text.text = "We're out lmao."

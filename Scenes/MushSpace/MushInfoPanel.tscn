@@ -82,12 +82,8 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("10_e2ajo")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
-[node name="MushInfoPanel" type="Node" node_paths=PackedStringArray("currentMush", "desc", "left", "right")]
+[node name="MushInfoPanel" type="Node"]
 script = ExtResource("1_6hwsa")
-currentMush = NodePath("CurrentMush")
-desc = NodePath("MushDescription")
-left = NodePath("LeftArrow")
-right = NodePath("RightArrow")
 
 [node name="PanelBackground" type="Sprite2D" parent="."]
 self_modulate = Color(0.509804, 0.34902, 0.168627, 1)

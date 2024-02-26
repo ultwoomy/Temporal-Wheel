@@ -9,6 +9,28 @@ class_name SigilData
 @export var curSigilBuff : int
 
 
+###################### WIP WIP WIP WIP WIP
+# L.B: Used to better legibility on sigils.
+enum Sigils {
+	PACKSMITH,
+	CANDLE,
+	ASCENSION,
+	EMPTINESS,
+	RITUAL,
+	HELL,
+}
+
+
+var activeSigils : Dictionary = {
+	packsmith = false,
+	candle = false,
+	ascension = false,
+	emptiness = false,
+	ritual = false,
+	hell = false,
+}
+#####################
+
 func resetData() -> void:
 	costSpin = 300
 	costRot = 10
@@ -16,3 +38,7 @@ func resetData() -> void:
 	costRotScale = 3
 	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
 	curSigilBuff = 0
+	
+	for key in activeSigils:
+		key = false
+

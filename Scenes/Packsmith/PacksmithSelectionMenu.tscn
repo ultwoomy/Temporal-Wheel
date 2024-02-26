@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://dxsc031p4uo1q"]
+
+[ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithSelectionMenu.gd" id="1_hr1x8"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="1_iy60v"]
+[ext_resource type="Texture2D" uid="uid://bn1a7pk136bjx" path="res://Sprites/Sigils/sigil01.png" id="2_rby4q"]
+[ext_resource type="Texture2D" uid="uid://dmit8kja5co48" path="res://Sprites/Sigils/sigil02.png" id="3_rv3ni"]
+[ext_resource type="Texture2D" uid="uid://bcte3ctqjjdpd" path="res://Sprites/Sigils/sigil03.png" id="4_aksje"]
+[ext_resource type="Texture2D" uid="uid://y8g1idx3il2b" path="res://Sprites/Sigils/sigil04.png" id="5_usfxm"]
+[ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="6_qdkkt"]
+[ext_resource type="Texture2D" uid="uid://7cw64cpkjgv3" path="res://Sprites/Sigils/sigil06.png" id="7_lvhqd"]
+
+[node name="SelectionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hr1x8")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+self_modulate = Color(0.0313726, 0, 0, 1)
+position = Vector2(744, 308)
+scale = Vector2(4, 4)
+texture = ExtResource("1_iy60v")
+
+[node name="PacksmithSigilSprite" type="Sprite2D" parent="."]
+position = Vector2(605, 169)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_rby4q")
+
+[node name="Sigil01Button" type="Button" parent="PacksmithSigilSprite"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="CandleSigilSprite" type="Sprite2D" parent="."]
+position = Vector2(744, 169)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_rv3ni")
+
+[node name="Sigil02Button" type="Button" parent="CandleSigilSprite"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="AscensionSigilSprite" type="Sprite2D" parent="."]
+position = Vector2(883, 169)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_aksje")
+
+[node name="Sigil03Button" type="Button" parent="AscensionSigilSprite"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="EmptinessSigilSprite" type="Sprite2D" parent="."]
+position = Vector2(605, 308)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_usfxm")
+
+[node name="Sigil04Button" type="Button" parent="EmptinessSigilSprite"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="RitualSigilSprite" type="Sprite2D" parent="."]
+position = Vector2(744, 308)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("6_qdkkt")
+
+[node name="Sigil05Button" type="Button" parent="RitualSigilSprite"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0
+
+[node name="HellSigilSprite" type="Sprite2D" parent="."]
+position = Vector2(883, 308)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_lvhqd")
+
+[node name="Sigil06Button" type="Button" parent="HellSigilSprite"]
+modulate = Color(1, 1, 1, 0.0392157)
+offset_left = -150.0
+offset_top = -150.0
+offset_right = 149.0
+offset_bottom = 149.0

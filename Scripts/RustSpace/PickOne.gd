@@ -1,4 +1,6 @@
 extends Node
+
+
 @export var inspect : Button
 @export var augment : Button
 @export var upgrade : Button
@@ -31,6 +33,8 @@ extends Node
 @export var sigilDisplay : AnimatedSprite2D
 @export var next : Button
 @export var packback :AnimatedSprite2D
+
+
 var ifinspect = false
 var ifinmen = false
 var ifbuff = false
@@ -143,12 +147,16 @@ var emote = [2,2,2,3,
 var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,0]
 var convoStart = false
 var pos = 0
+
+
 func nextLin(m):
 	GVars._dialouge(text,0,0.04)
 	if !convoStart:
 		pos = convoNo[m]
 		text.text = packscript[pos]
 		packback.frame = emote[pos]
+
+
 func nextLine():
 	GVars._dialouge(text,0,0.04)
 	if endofline[pos]:
@@ -163,6 +171,8 @@ func nextLine():
 		pos += 1
 		text.text = packscript[pos]
 		packback.frame = emote[pos]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rDisplay.position = Vector2(-190,0)
@@ -241,6 +251,8 @@ func _ready():
 	next.pressed.connect(self.nextLine)
 	selection.hide()
 	updateDisplays()
+
+
 func _inspect():
 	ifinspect = true
 	if(ifinmen == false):
@@ -252,6 +264,7 @@ func _inspect():
 		ifinmen = false
 		inmenu = false
 
+
 func _augment():
 	ifinspect = false
 	if(ifbuff == false):
@@ -262,6 +275,7 @@ func _augment():
 		selection.hide()
 		ifbuff = false
 		inmenu = false
+
 
 func dispSigils():
 	selection.show()
@@ -299,6 +313,7 @@ func dispSigils():
 	automationmenu.hide()
 	resetWindowVars()
 
+
 func _upgrade():
 	if(ifupscreen == false):
 		upgrademenu.show()
@@ -312,6 +327,7 @@ func _upgrade():
 		upgrademenu.hide()
 		ifupscreen = false
 		inmenu = false
+
 
 func _automate():
 	if(ifautomascreen == false):

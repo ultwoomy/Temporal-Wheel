@@ -1,4 +1,6 @@
 extends Container
+
+
 @export var text : Label
 @export var button : Button
 @export var sigilbut : Button
@@ -9,6 +11,8 @@ extends Container
 @export var ritualShop : Container
 var layersin = 0
 var line = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sigilshop.hide()
@@ -30,7 +34,8 @@ func _ready():
 	sigilbut.pressed.connect(self.opensigilshop)
 	goback.pressed.connect(self._go_back)
 	GVars._dialouge(text,0,0.02)
-	
+
+
 func _go_back():
 	if(layersin == 1):
 		busstop.set_texture(load("res://Sprites/VoidSpace/bus_stop.png"))
@@ -46,6 +51,7 @@ func _go_back():
 		var event_manager = get_tree().get_root().find_child("EventManager", true, false)
 		event_manager.emit_signal("scene_change",true)
 		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
+
 
 func _button_pressed():
 	GVars._dialouge(text,0,0.03)
@@ -68,7 +74,8 @@ func _button_pressed():
 		GVars.iffirstvoid = false
 		get_tree().paused = false
 	line += 1
-	
+
+
 func opensigilshop():
 	busstop.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
 	busstop.scale = Vector2(5,5)
@@ -78,7 +85,8 @@ func opensigilshop():
 	ritualEnter.hide()
 	ritualShop.hide()
 	sigilshop.show()
-	
+
+
 func openRitual():
 	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
 	busstop.scale = Vector2(6,6)

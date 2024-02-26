@@ -1,11 +1,19 @@
 extends Node
+
+
+## Components
 @export var packback : AnimatedSprite2D
 @export var sigilDisplay : AnimatedSprite2D
 @export var next : Button
 @export var back : Button
 @export var text : Label
 @export var menu : Container
+
+
+## Global Variables
 var line = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	packback.frame = 2
@@ -31,6 +39,7 @@ func _ready():
 			next.text = "Perhaps this will\nchange your mind"
 	else:
 		menu.show()
+
 
 func button_pressed():
 	GVars._dialouge(text,0,0.04)
@@ -80,7 +89,7 @@ func button_pressed():
 		text.text = ""
 		menu.show()
 		next.hide()
-		
+
 
 func back_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/RustSpaceOutside.tscn")

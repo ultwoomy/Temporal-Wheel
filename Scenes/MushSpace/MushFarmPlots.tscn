@@ -60,69 +60,69 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("5_xryxw")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
-[node name="FarmPlots" type="Node2D" node_paths=PackedStringArray("plot1", "plot2", "plot3", "plot4", "disp1", "disp2", "disp3", "disp4")]
+[node name="FarmPlots" type="Node2D"]
 script = ExtResource("1_h0q7a")
-plot1 = NodePath("Plot1")
-plot2 = NodePath("Plot2")
-plot3 = NodePath("Plot3")
-plot4 = NodePath("Plot4")
-disp1 = NodePath("TimeLeftDisp1")
-disp2 = NodePath("TimeLeftDisp2")
-disp3 = NodePath("TimeLeftDisp3")
-disp4 = NodePath("TimeLeftDisp4")
 
-[node name="Plot1" type="AnimatedSprite2D" parent="."]
+[node name="Plot1" type="Node2D" parent="."]
 position = Vector2(519, 397)
+
+[node name="MushroomSprite1" type="AnimatedSprite2D" parent="Plot1"]
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp1" type="Label" parent="."]
-offset_left = 494.0
-offset_top = 278.0
-offset_right = 534.0
-offset_bottom = 306.0
+[node name="TimeLeftDisp1" type="Label" parent="Plot1"]
+offset_left = -25.0
+offset_top = -119.0
+offset_right = 15.0
+offset_bottom = -91.0
 theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Plot2" type="AnimatedSprite2D" parent="."]
+[node name="Plot2" type="Node2D" parent="."]
 position = Vector2(854, 375)
+
+[node name="MushroomSprite2" type="AnimatedSprite2D" parent="Plot2"]
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp2" type="Label" parent="."]
-offset_left = 832.0
-offset_top = 262.0
-offset_right = 872.0
-offset_bottom = 290.0
+[node name="TimeLeftDisp2" type="Label" parent="Plot2"]
+offset_left = -22.0
+offset_top = -113.0
+offset_right = 18.0
+offset_bottom = -85.0
 theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Plot3" type="AnimatedSprite2D" parent="."]
+[node name="Plot3" type="Node2D" parent="."]
 position = Vector2(571, 517)
+
+[node name="MushroomSprite3" type="AnimatedSprite2D" parent="Plot3"]
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp3" type="Label" parent="."]
-offset_left = 543.0
-offset_top = 398.0
-offset_right = 590.0
-offset_bottom = 426.0
+[node name="TimeLeftDisp3" type="Label" parent="Plot3"]
+offset_left = -28.0
+offset_top = -119.0
+offset_right = 19.0
+offset_bottom = -91.0
 theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
-[node name="Plot4" type="AnimatedSprite2D" parent="."]
+[node name="Plot4" type="Node2D" parent="."]
 position = Vector2(805, 500)
+
+[node name="MushroomSprite4" type="AnimatedSprite2D" parent="Plot4"]
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp4" type="Label" parent="."]
-offset_left = 784.0
-offset_top = 387.0
-offset_right = 824.0
-offset_bottom = 412.0
+[node name="TimeLeftDisp4" type="Label" parent="Plot4"]
+offset_left = -21.0
+offset_top = -113.0
+offset_right = 19.0
+offset_bottom = -88.0
 theme = SubResource("Theme_wedbe")
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1

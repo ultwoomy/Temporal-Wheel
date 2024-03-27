@@ -200,7 +200,7 @@ layout_mode = 2
 [node name="Automate" type="Button" parent="MenuUI"]
 layout_mode = 2
 
-[node name="Selection" parent="MenuUI" instance=ExtResource("13_2lk1p")]
+[node name="SelectionMenu" parent="MenuUI" instance=ExtResource("13_2lk1p")]
 layout_mode = 2
 
 [node name="NextButton" type="Button" parent="MenuUI"]

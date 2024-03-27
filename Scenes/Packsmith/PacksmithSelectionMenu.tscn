@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxsc031p4uo1q"]
+[gd_scene load_steps=10 format=3 uid="uid://dxsc031p4uo1q"]
 
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithSelectionMenu.gd" id="1_hr1x8"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="1_iy60v"]
 [ext_resource type="Texture2D" uid="uid://bn1a7pk136bjx" path="res://Sprites/Sigils/sigil01.png" id="2_rby4q"]
+[ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithSelectionMenuSigil.gd" id="3_dbjbc"]
 [ext_resource type="Texture2D" uid="uid://dmit8kja5co48" path="res://Sprites/Sigils/sigil02.png" id="3_rv3ni"]
 [ext_resource type="Texture2D" uid="uid://bcte3ctqjjdpd" path="res://Sprites/Sigils/sigil03.png" id="4_aksje"]
 [ext_resource type="Texture2D" uid="uid://y8g1idx3il2b" path="res://Sprites/Sigils/sigil04.png" id="5_usfxm"]
@@ -22,74 +23,119 @@ position = Vector2(744, 308)
 scale = Vector2(4, 4)
 texture = ExtResource("1_iy60v")
 
-[node name="PacksmithSigilSprite" type="Sprite2D" parent="."]
-position = Vector2(605, 169)
+[node name="PacksmithSigil" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 545.0
+offset_top = 109.0
+offset_right = 665.0
+offset_bottom = 229.0
+script = ExtResource("3_dbjbc")
+
+[node name="SigilSprite" type="Sprite2D" parent="PacksmithSigil"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_rby4q")
+centered = false
 
-[node name="Sigil01Button" type="Button" parent="PacksmithSigilSprite"]
+[node name="SigilButton" type="Button" parent="PacksmithSigil"]
 modulate = Color(1, 1, 1, 0.0392157)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 149.0
-offset_bottom = 149.0
+offset_right = 120.0
+offset_bottom = 120.0
 
-[node name="CandleSigilSprite" type="Sprite2D" parent="."]
-position = Vector2(744, 169)
+[node name="CandleSigil" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 684.0
+offset_top = 109.0
+offset_right = 804.0
+offset_bottom = 229.0
+script = ExtResource("3_dbjbc")
+sigil = 1
+
+[node name="SigilSprite" type="Sprite2D" parent="CandleSigil"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_rv3ni")
+centered = false
 
-[node name="Sigil02Button" type="Button" parent="CandleSigilSprite"]
+[node name="SigilButton" type="Button" parent="CandleSigil"]
 modulate = Color(1, 1, 1, 0.0392157)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 149.0
-offset_bottom = 149.0
+offset_right = 120.0
+offset_bottom = 120.0
 
-[node name="AscensionSigilSprite" type="Sprite2D" parent="."]
-position = Vector2(883, 169)
+[node name="AscensionSigil" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 823.0
+offset_top = 109.0
+offset_right = 943.0
+offset_bottom = 229.0
+script = ExtResource("3_dbjbc")
+sigil = 2
+
+[node name="SigilSprite" type="Sprite2D" parent="AscensionSigil"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_aksje")
+centered = false
 
-[node name="Sigil03Button" type="Button" parent="AscensionSigilSprite"]
+[node name="SigilButton" type="Button" parent="AscensionSigil"]
 modulate = Color(1, 1, 1, 0.0392157)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 149.0
-offset_bottom = 149.0
+offset_right = 120.0
+offset_bottom = 120.0
 
-[node name="EmptinessSigilSprite" type="Sprite2D" parent="."]
-position = Vector2(605, 308)
+[node name="EmptinessSigil" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 545.0
+offset_top = 248.0
+offset_right = 665.0
+offset_bottom = 368.0
+script = ExtResource("3_dbjbc")
+sigil = 3
+
+[node name="SigilSprite" type="Sprite2D" parent="EmptinessSigil"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_usfxm")
+centered = false
 
-[node name="Sigil04Button" type="Button" parent="EmptinessSigilSprite"]
+[node name="SigilButton" type="Button" parent="EmptinessSigil"]
 modulate = Color(1, 1, 1, 0.0392157)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 149.0
-offset_bottom = 149.0
+offset_right = 120.0
+offset_bottom = 120.0
 
-[node name="RitualSigilSprite" type="Sprite2D" parent="."]
-position = Vector2(744, 308)
+[node name="RitualSigil" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 684.0
+offset_top = 248.0
+offset_right = 804.0
+offset_bottom = 368.0
+script = ExtResource("3_dbjbc")
+sigil = 4
+
+[node name="SigilSprite" type="Sprite2D" parent="RitualSigil"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("6_qdkkt")
+centered = false
 
-[node name="Sigil05Button" type="Button" parent="RitualSigilSprite"]
+[node name="SigilButton" type="Button" parent="RitualSigil"]
 modulate = Color(1, 1, 1, 0.0392157)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 149.0
-offset_bottom = 149.0
+offset_right = 120.0
+offset_bottom = 120.0
 
-[node name="HellSigilSprite" type="Sprite2D" parent="."]
-position = Vector2(883, 308)
+[node name="HellSigil" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 823.0
+offset_top = 248.0
+offset_right = 943.0
+offset_bottom = 368.0
+script = ExtResource("3_dbjbc")
+sigil = 5
+
+[node name="SigilSprite" type="Sprite2D" parent="HellSigil"]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("7_lvhqd")
+centered = false
 
-[node name="Sigil06Button" type="Button" parent="HellSigilSprite"]
+[node name="SigilButton" type="Button" parent="HellSigil"]
 modulate = Color(1, 1, 1, 0.0392157)
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 149.0
-offset_bottom = 149.0
+offset_right = 120.0
+offset_bottom = 120.0

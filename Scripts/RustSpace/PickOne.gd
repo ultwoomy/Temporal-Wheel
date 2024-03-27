@@ -6,7 +6,7 @@ extends Node
 @export var upgrade : Button
 @export var automate : Button
 @export var text : Label
-@export var selection : Sprite2D
+@onready var selection : SelectionMenu = $SelectionMenu
 @export var upgrademenu : Sprite2D
 @export var automationmenu : Sprite2D
 @export var sigil01sprite : Sprite2D
@@ -35,7 +35,7 @@ extends Node
 @export var packback :AnimatedSprite2D
 
 
-var ifinspect = false
+var inspecting: bool = false
 var ifinmen = false
 var ifbuff = false
 var inmenu = false
@@ -242,19 +242,18 @@ func _ready():
 		upgrade.hide()
 		automate.hide()
 		text.text = "No shirt, no sigil, no service."
-	sigil01button.pressed.connect(self._01Sigil)
-	sigil02button.pressed.connect(self._02Sigil)
-	sigil03button.pressed.connect(self._03Sigil)
-	sigil04button.pressed.connect(self._04Sigil)
-	sigil05button.pressed.connect(self._05Sigil)
-	sigil06button.pressed.connect(self._06Sigil)
+	
+	### PacksmithSelectionMenu's buttons.
+	selection.sigil_button_pressed.connect(_on_sigil_button_pressed)
+	###
+	
 	next.pressed.connect(self.nextLine)
 	selection.hide()
 	updateDisplays()
 
 
 func _inspect():
-	ifinspect = true
+	inspecting = true
 	if(ifinmen == false):
 		dispSigils()
 		ifinmen = true
@@ -266,7 +265,7 @@ func _inspect():
 
 
 func _augment():
-	ifinspect = false
+	inspecting = false
 	if(ifbuff == false):
 		dispSigils()
 		ifbuff = true
@@ -276,39 +275,42 @@ func _augment():
 		ifbuff = false
 		inmenu = false
 
-
+### WIP: How will I move this to PacksmithSelectionMenu?
 func dispSigils():
 	selection.show()
-	if(GVars.sigilData.numberOfSigils[1]):
-		sigil02sprite.show()
-		sigil02button.show()
-	else:
-		sigil02sprite.hide()
-		sigil02button.hide()
-	if(GVars.sigilData.numberOfSigils[2]):
-		sigil03sprite.show()
-		sigil03button.show()
-	else:
-		sigil03sprite.hide()
-		sigil03button.hide()
-	if(GVars.sigilData.numberOfSigils[3]):
-		sigil04sprite.show()
-		sigil04button.show()
-	else:
-		sigil04sprite.hide()
-		sigil04button.hide()
-	if(GVars.sigilData.numberOfSigils[4]):
-		sigil05sprite.show()
-		sigil05button.show()
-	else:
-		sigil05sprite.hide()
-		sigil05button.hide()
-	if(GVars.sigilData.numberOfSigils[5]):
-		sigil06sprite.show()
-		sigil06button.show()
-	else:
-		sigil06sprite.hide()
-		sigil06button.hide()
+	
+	selection.display_sigils()
+#	if(GVars.sigilData.numberOfSigils[1]):
+#		sigil02sprite.show()
+#		sigil02button.show()
+#	else:
+#		sigil02sprite.hide()
+#		sigil02button.hide()
+#	if(GVars.sigilData.numberOfSigils[2]):
+#		sigil03sprite.show()
+#		sigil03button.show()
+#	else:
+#		sigil03sprite.hide()
+#		sigil03button.hide()
+#	if(GVars.sigilData.numberOfSigils[3]):
+#		sigil04sprite.show()
+#		sigil04button.show()
+#	else:
+#		sigil04sprite.hide()
+#		sigil04button.hide()
+#	if(GVars.sigilData.numberOfSigils[4]):
+#		sigil05sprite.show()
+#		sigil05button.show()
+#	else:
+#		sigil05sprite.hide()
+#		sigil05button.hide()
+#	if(GVars.sigilData.numberOfSigils[5]):
+#		sigil06sprite.show()
+#		sigil06button.show()
+#	else:
+#		sigil06sprite.hide()
+#		sigil06button.hide()
+	
 	upgrademenu.hide()
 	automationmenu.hide()
 	resetWindowVars()
@@ -343,24 +345,30 @@ func _automate():
 		ifautomascreen = false
 		inmenu = false
 
-func _01Sigil():
-	manageChoice(1)
-func _02Sigil():
-	manageChoice(2)
-func _03Sigil():
-	manageChoice(3)
-func _04Sigil():
-	manageChoice(4)
-func _05Sigil():
-	manageChoice(5)
-func _06Sigil():
-	manageChoice(6)
-	
+
+func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
+	match sigil:
+		SigilData.Sigils.PACKSMITH:
+			manageChoice(1)
+		SigilData.Sigils.CANDLE:
+			manageChoice(2)
+		SigilData.Sigils.ASCENSION:
+			manageChoice(3)
+		SigilData.Sigils.EMPTINESS:
+			manageChoice(4)
+		SigilData.Sigils.RITUAL:
+			manageChoice(5)
+		SigilData.Sigils.HELL:
+			manageChoice(6)
+
+
 func resetWindowVars():
 	inmenu = false
 	ifupscreen = false
 	ifbuff = false
 	ifinmen = false
+
+
 func resetChoice():
 	text.text = ""
 	packback.frame = 2
@@ -372,7 +380,8 @@ func resetChoice():
 	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
 		automate.show()
 	next.hide()
-	
+
+
 func updateDisplays():
 	if(GVars.curEmotionBuff == 4):
 		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
@@ -385,18 +394,24 @@ func updateDisplays():
 		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
 	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
+
+
 func _up01():
 	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
 		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
 		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
 		GVars.rustData.increaseSpin += 1
 		updateDisplays()
+
+
 func _up02():
 	if(GVars.rustData.rust >= GVars.rustData.increaseHungerCost):
 		GVars.rustData.rust -= GVars.rustData.increaseHungerCost
 		GVars.rustData.increaseHungerCost *= GVars.rustData.increaseHungerScaling
 		GVars.rustData.increaseHunger += 1
 		updateDisplays()
+
+
 func _up03():
 	if(GVars.rustData.rust >= GVars.rustData.increaseRustCost):
 		GVars.rustData.rust -= GVars.rustData.increaseRustCost
@@ -404,6 +419,8 @@ func _up03():
 		GVars.rustData.increaseRust += 1
 		GVars.rustData.perThresh += 1
 		updateDisplays()
+
+
 func _up04():
 	if(GVars.rustData.rust >= GVars.rustData.fourthCost):
 		GVars.rustData.rust -= GVars.rustData.fourthCost
@@ -421,6 +438,8 @@ func _up04():
 		#wrath
 			GVars.rustData.fourth *= 1.2
 		updateDisplays()
+
+
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)
 	selection.hide()
@@ -430,7 +449,7 @@ func manageChoice(n):
 	automate.hide()
 	next.show()
 	text.show()
-	if(ifinspect):
+	if(inspecting):
 		if(n == 1):
 			nextLin(0)
 		elif(n == 2):
@@ -443,7 +462,7 @@ func manageChoice(n):
 			nextLin(4)
 		elif(n == 6):
 			nextLin(5)
-	if(!ifinspect):
+	if(!inspecting):
 		if(n == 1):
 			nextLin(6)
 			sigilToActivate = 1

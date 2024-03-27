@@ -1,52 +1,72 @@
 extends Control
+class_name SelectionMenu
 
 
-## Components
-@onready var sigilButton01: Button = $PacksmithSigilSprite/Sigil01Button	# Packsmith Sigil
-@onready var sigilButton02: Button = $CandleSigilSprite/Sigil02Button		# Candle Sigil
-@onready var sigilButton03: Button = $AscensionSigilSprite/Sigil03Button	# Ascension Sigil
-@onready var sigilButton04: Button = $EmptinessSigilSprite/Sigil04Button	# Emptiness Sigil
-@onready var sigilButton05: Button = $RitualSigilSprite/Sigil05Button		# Ritual Sigil
-@onready var sigilButton06: Button = $HellSigilSprite/Sigil06Button			# Hell Sigil
-
-
-## Signals
+#@ Signals
 signal sigil_button_pressed(sigil: SigilData.Sigils)
 
 
-## Global Variables
-@onready var buttons: Array[Button] = [
-	sigilButton01,
-	sigilButton02,
-	sigilButton03,
-	sigilButton04,
-	sigilButton05,
-	sigilButton06,
+#@ Components
+@onready var packsmithSigil : SelectionMenuSigil = $PacksmithSigil
+@onready var candleSigil 	: SelectionMenuSigil = $CandleSigil
+@onready var ascensionSigil : SelectionMenuSigil = $AscensionSigil
+@onready var emptinessSigil : SelectionMenuSigil = $EmptinessSigil
+@onready var ritualSigil 	: SelectionMenuSigil = $RitualSigil
+@onready var hellSigil 		: SelectionMenuSigil = $HellSigil
+
+
+#@ Global Variables
+@onready var sigils: Array[SelectionMenuSigil] = [
+	packsmithSigil,
+	candleSigil,
+	ascensionSigil,
+	emptinessSigil,
+	ritualSigil,
+	hellSigil,
 ]
 
 
 ## Functions
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for button in buttons:
-		if button:
-			if not button.pressed.is_connected(on_sigil_button_pressed):
-				button.pressed.connect(on_sigil_button_pressed.bind(button))
+	set_up_sigils()
 
 
-func on_sigil_button_pressed(pressedButton: Button) -> void:
-	# L.B: pressedButton is the button that was pressed. This function is able to get it from the signal call due to the Callable bind() method.
-	#	- Based on the button that was pressed, emit the sigil_button_pressed with the correct parameter.
-	match pressedButton:
-		sigilButton01:
-			sigil_button_pressed.emit(SigilData.Sigils.PACKSMITH)
-		sigilButton02:
-			sigil_button_pressed.emit(SigilData.Sigils.CANDLE)
-		sigilButton03:
-			sigil_button_pressed.emit(SigilData.Sigils.ASCENSION)
-		sigilButton04:
-			sigil_button_pressed.emit(SigilData.Sigils.EMPTINESS)
-		sigilButton05:
-			sigil_button_pressed.emit(SigilData.Sigils.RITUAL)
-		sigilButton06:
-			sigil_button_pressed.emit(SigilData.Sigils.HELL)
+func set_up_sigils() -> void:
+	for sigil in sigils:
+		if sigil:
+			# Check to see if the button is not already connected.
+			if not sigil.button.pressed.is_connected(emit_signal_on_sigil_button_pressed):
+				# Passes the assigned sigil into the function using the sigil.sigil variable.
+				# The sigil.sigil is an export variable that you assign to sigil instances.
+				sigil.button.pressed.connect(emit_signal_on_sigil_button_pressed.bind(sigil.sigil))
+
+
+# Display the correct sigils based on 
+func display_sigils() -> void:
+	# Copied and pasted code w/ modifications to get the same declared variable.
+	if(GVars.sigilData.numberOfSigils[1]):
+		candleSigil.show()
+	else:
+		candleSigil.hide()
+	if(GVars.sigilData.numberOfSigils[2]):
+		ascensionSigil.show()
+	else:
+		ascensionSigil.hide()
+	if(GVars.sigilData.numberOfSigils[3]):
+		emptinessSigil.show()
+	else:
+		emptinessSigil.hide()
+	if(GVars.sigilData.numberOfSigils[4]):
+		ritualSigil.show()
+	else:
+		ritualSigil.hide()
+	if(GVars.sigilData.numberOfSigils[5]):
+		hellSigil.show()
+	else:
+		hellSigil.hide()
+
+
+# Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.
+func emit_signal_on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
+	sigil_button_pressed.emit(sigil)

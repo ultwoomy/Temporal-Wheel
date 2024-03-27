@@ -10,7 +10,7 @@ class_name SigilData
 
 
 ###################### WIP WIP WIP WIP WIP
-# L.B: Used to better legibility on sigils.
+# L.B: Use for better legibility on what sigil is being used in code.
 enum Sigils {
 	PACKSMITH,
 	CANDLE,

@@ -37,8 +37,12 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	
-	GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	if(GVars.hellChallengeNerf == 2):
+		GVars.spinData.spin += pow(GVars.spinData.size,0.5)/GVars.spinData.size * GVars.spinData.spinPerClick  * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	elif(GVars.curEmotionBuff == 2):
+		GVars.spinData.spin += pow(GVars.spinData.size,2) * GVars.spinData.spinPerClick * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	else:
+		GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
 #func save_resources() -> void:

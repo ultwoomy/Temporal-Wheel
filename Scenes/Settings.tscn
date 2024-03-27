@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=16 format=3 uid="uid://dp6jl75bx4qcp"]
 
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_eix20"]
@@ -9,7 +9,16 @@
 [ext_resource type="Script" path="res://Scripts/Settings/Save.gd" id="8_rg3j3"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsExitGame.gd" id="9_c8atx"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsCheat.gd" id="10_vlmff"]
+[ext_resource type="Texture2D" uid="uid://coeni6iyq3w6i" path="res://Sprites/Settings/credit1.png" id="11_8aye3"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsVolume.gd" id="11_apqex"]
+[ext_resource type="Texture2D" uid="uid://cdwfydyu7lfmr" path="res://Sprites/Settings/credit2.png" id="12_xep8x"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsSwitchToCredits.gd" id="13_j55f1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i5pe"]
+bg_color = Color(0.913725, 0.407843, 0.545098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hlkh"]
+bg_color = Color(0.835294, 0.470588, 0.580392, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -90,6 +99,8 @@ layout_mode = 0
 offset_left = -13.0
 offset_right = 7.0
 offset_bottom = 101.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3i5pe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2hlkh")
 min_value = -24.0
 max_value = 0.0
 step = 0.05
@@ -100,8 +111,22 @@ layout_mode = 0
 offset_left = 193.0
 offset_right = 213.0
 offset_bottom = 101.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3i5pe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2hlkh")
 min_value = -24.0
 max_value = 0.0
+
+[node name="Credits" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 905.0
+offset_right = 1005.0
+offset_bottom = 100.0
+texture_normal = ExtResource("11_8aye3")
+texture_pressed = ExtResource("12_xep8x")
+texture_hover = ExtResource("12_xep8x")
+texture_disabled = ExtResource("11_8aye3")
+texture_focused = ExtResource("12_xep8x")
+script = ExtResource("13_j55f1")
 
 [connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]
 [connection signal="value_changed" from="Volume/VolSlider" to="Volume" method="_on_slide_music"]

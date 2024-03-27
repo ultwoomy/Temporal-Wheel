@@ -34,31 +34,51 @@ func _ready():
 	dia.text += "\n\nYou feel..."
 	await get_tree().create_timer(5).timeout
 	if(GVars.sigilData.curSigilBuff == 4):
-		fear.show()
-		cold.show()
-		warmth.show()
-		wrath.show()
-	if(GVars.sigilData.curSigilBuff == 6):
+		if!(GVars.hellChallengeNerf == 1):
+			fear.show()
+		if!(GVars.hellChallengeNerf == 2):
+			cold.show()
+		if!(GVars.hellChallengeNerf == 3):
+			warmth.show()
+		if!(GVars.hellChallengeNerf == 4):
+			wrath.show()
+	if(GVars.sigilData.curSigilBuff == 6) and (!GVars.ifhell):
 		if(GVars.curEmotionBuff == 0):
 			challenge.show()
 			challenge.text = "Incongruent"
 			challNumber = 0
-		if(GVars.curEmotionBuff == 1):
+		elif(GVars.curEmotionBuff == 1):
 			challenge.show()
 			challenge.text = "Brave"
 			challNumber = 1
-		if(GVars.curEmotionBuff == 2):
+		elif(GVars.curEmotionBuff == 2):
 			challenge.show()
 			challenge.text = "Sharp"
 			challNumber = 2
-		if(GVars.curEmotionBuff == 3):
+		elif(GVars.curEmotionBuff == 3):
 			challenge.text = "Aware"
 			challenge.show()
 			challNumber = 3
-		if(GVars.curEmotionBuff == 4):
+		elif(GVars.curEmotionBuff == 4):
 			challenge.show()
 			challenge.text = "Calm"
 			challNumber = 4
+	if(GVars.hellChallengeLayer2 == 10) and GVars.hellChallengeNerf < 0:
+		challenge.show()
+		challenge.text = "Sandy"
+		challNumber = 0
+	elif(GVars.hellChallengeLayer2 == 11) and GVars.hellChallengeNerf < 0:
+		challenge.show()
+		challenge.text = "Bittersweet"
+		challNumber = 1
+	elif(GVars.hellChallengeLayer2 == 12) and GVars.hellChallengeNerf < 0:
+		challenge.show()
+		challenge.text = "Starved"
+		challNumber = 2
+	elif(GVars.hellChallengeLayer2 == 13) and GVars.hellChallengeNerf < 0:
+		challenge.show()
+		challenge.text = "Fabulous"
+		challNumber = 3
 	complacent.show()
 
 
@@ -93,7 +113,13 @@ func _button_generic(switchEmotion,text):
 		GVars.hellChallengeNerf = challNumber
 		GVars.inContract = true
 		switchEmotion = 0
-	GVars.curEmotionBuff = switchEmotion
+		GVars.curEmotionBuff = switchEmotion
+	elif(switchEmotion == 199):
+		GVars.hellChallengeLayer2 = challNumber - 10
+		GVars.inContract = true
+		switchEmotion = 0
+	else:
+		GVars.curEmotionBuff = switchEmotion
 	awaken.show()
 
 func _butCha():
@@ -107,8 +133,16 @@ func _butCha():
 		_button_generic(99,"feel aware.\n\nAs if you've snapped out\na tired trance.\nIt will be different this time.")
 	elif(challNumber == 4):
 		_button_generic(99,"feel calm.\n\nYou shove your way through\nthe deep.\nIt will be different this time.")
+	elif(challNumber == 10) and GVars.hellChallengeLayer2 < 0:
+		_button_generic(199,"feel sandy.\n\nIt's course and gritty and\ngets everywhere.")
+	elif(challNumber == 11) and GVars.hellChallengeLayer2 < 0:
+		_button_generic(199,"feel bittersweet.\n\nThe world is so beautiful\nyou want to cry.")
+	elif(challNumber == 12) and GVars.hellChallengeLayer2 < 0:
+		_button_generic(199,"feel starved.\n\nIt's eating you up on the\ninside.")
+	elif(challNumber == 13) and GVars.hellChallengeLayer2 < 0:
+		_button_generic(199,"feel fabulous.\n\nIt's time to slay, in one\nway or another.")
 	else:
-		_button_generic(99,"Not good.\n\nError in the code.\nAbort, abort.")
+		_button_generic(199,"Not good.\n\nError in the code.\nAbort, abort.")
 
 func _awaken():
 	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
@@ -118,8 +152,12 @@ func _awaken():
 	GVars.resetR0Stats()
 	if(GVars.ifsecondboot == 0):
 		GVars.ifsecondboot = 1
-	if(GVars.ifsecondboot == 2):
+	elif(GVars.ifsecondboot == 2):
 		GVars.ifsecondboot = 3
+	elif(GVars.ifsecondboot == 4):
+		GVars.ifsecondboot = 5
+	if(GVars.hellChallengeLayer2 >= 0):
+		GVars.resetR1Stats()
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
 

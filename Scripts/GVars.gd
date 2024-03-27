@@ -11,14 +11,18 @@ extends Node
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var hellChallengeNerf : int
+@export var hellChallengeLayer2 : int
 @export var inContract : bool
+@export var soulsData : SoulsData
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : int
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
+@export var iffirsthell : bool
 @export var musicvol : float
 @export var sfxvol : float
+@export var versNo : int
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
@@ -44,6 +48,8 @@ func create_data():
 		sigilData = SigilData.new()
 	if (!spinData):
 		spinData = SpinData.new()
+	if(!soulsData):
+		soulsData = SoulsData.new()
 
 
 func save_prog():
@@ -60,16 +66,21 @@ func save_prog():
 	
 	loader.sigilData = sigilData
 	
+	loader.soulsData = soulsData
+	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
 	loader.iffirstboot = iffirstboot
 	loader.ifsecondboot = ifsecondboot
 	loader.iffirstvoid = iffirstvoid
 	loader.iffirstpack = iffirstpack
+	loader.iffirsthell = iffirsthell
 	loader.hellChallengeNerf = hellChallengeNerf
+	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.inContract = inContract
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
+	loader.versNo = versNo
 	loader.save_stats(loader)
 	
 func resetR0Stats():
@@ -82,25 +93,30 @@ func resetR0Stats():
 	ritualData.resetData()
 	
 	sigilData.resetData()
+	
 
 
 func resetR1Stats():
 	curEmotionBuff = 0
 	Aspinbuff = 1
+	ifhell = false
+	hellChallengeNerf = -1
 	
 func resetR2Stats():
-	ifhell = false
 	ifheaven = false
-	hellChallengeNerf = -1
 	inContract = false
+	hellChallengeLayer2 = -1
+	soulsData.resetData()
 	
 func resetPermStats():
 	iffirstboot = true
 	ifsecondboot = 0
 	iffirstvoid = true
 	iffirstpack = true
+	iffirsthell = true
 	musicvol = -12.0
 	sfxvol = -12.0
+	versNo = 1
 	
 func getScientific(val):
 	if(val > 1000):
@@ -119,6 +135,18 @@ func _dialouge(lbl,charat,time):
 		
 func load_as_normal():
 	loader = loader.load_stats()
+	if(loader.versNo == 0):
+		iffirsthell = true
+		versNo = loader.versNo + 1
+		soulsData = SoulsData.new()
+		hellChallengeLayer2 = -1
+	elif(loader.versNo == 1):
+		soulsData = SoulsData.new()
+	else:
+		iffirsthell = loader.iffirsthell
+		versNo = loader.versNo
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

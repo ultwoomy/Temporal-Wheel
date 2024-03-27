@@ -14,5 +14,5 @@ func resetData() -> void:
 	costRot = 10
 	costSpinScale = 1.24
 	costRotScale = 3
-	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
+	numberOfSigils = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 	curSigilBuff = 0

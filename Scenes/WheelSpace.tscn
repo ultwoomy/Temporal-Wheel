@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=39 format=3 uid="uid://buu1sadwadteo"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://da7ojbspruc6b" path="res://Sprites/WheelSpace/settings buttons/tile001.png" id="27_t10mo"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/SettingsTravel.gd" id="28_ob0gv"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="29_womxx"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="30_gc4fl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dil3"]
 atlas = ExtResource("10_nni4m")
@@ -312,5 +313,25 @@ texture = ExtResource("7_kph8u")
 offset = Vector2(50, 105)
 
 [node name="ResetCounter" type="Button" parent="ExitContract"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="ExitContractHigher" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 10.0
+offset_right = 600.0
+offset_bottom = 80.0
+script = ExtResource("30_gc4fl")
+button = NodePath("ResetCounter")
+image = NodePath("ResetDisp")
+
+[node name="ResetDisp" type="Sprite2D" parent="ExitContractHigher"]
+position = Vector2(0, -75)
+scale = Vector2(2, 1)
+texture = ExtResource("7_kph8u")
+offset = Vector2(50, 105)
+
+[node name="ResetCounter" type="Button" parent="ExitContractHigher"]
 layout_mode = 2
 text = "Toggle Grow"

@@ -104,11 +104,16 @@ var packscript = ["That's my sigil.",
 				  "There's a powerful contract\netched into this sigil.",
 				  "I can start this contract\nfor you, but...",
 				  "You've already finished it\nsomehow. Huh.",
-				  "Well good for you, you've\nbeen updated.",
+				  "Well good for you.",
 				  "Go ahead and try entering\nhell now.",
 				
 				  "I can draw out the power\nof the blue babies and\nmake you immortal!!",
-				  "It's not implemented yet so\nI don't have to explain\nshit."]
+				  "It's not implemented yet so\nI don't have to explain\nshit.",
+				
+				  "There's a powerful contract\netched into this sigil.",
+				  "I can start this contract\nfor...",
+				  "What you already did one?\nWell it's certainly not the\none etched here.",
+				  "Have you tried going back\nto where you activated it?"]
 				
 var endofline = [false,false,false,true,
 				 false,false,true,
@@ -123,7 +128,8 @@ var endofline = [false,false,false,true,
 				 false,false,true,
 				 false,false,false,false,false,false,false,true,
 				 false,false,false,false,true,
-				 false,true]
+				 false,true,
+				 false,false,false,true]
 				
 var emote = [2,2,2,3,
 			 2,2,2,
@@ -138,9 +144,10 @@ var emote = [2,2,2,3,
 			 4,2,5,
 			 2,2,4,2,2,2,2,1,
 			 2,2,4,2,1,
-			 3,0]
+			 3,0,
+			 2,2,4,2]
 				
-var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,0]
+var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,56,0]
 var convoStart = false
 var pos = 0
 func nextLin(m):
@@ -196,7 +203,7 @@ func _ready():
 	upgrade1.text = "Increase Spin Per Click"
 	upgrade2.text = "Increase Hunger Per Tick"
 	upgrade3.text = "Increase Rust Per Drop"
-	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
+	if(GVars.curEmotionBuff < 1) or (GVars.curEmotionBuff > 4):
 		upgrade4.hide()
 	elif(GVars.curEmotionBuff == 1):
 		#fear
@@ -415,34 +422,11 @@ func manageChoice(n):
 	next.show()
 	text.show()
 	if(ifinspect):
-		if(n == 1):
-			nextLin(0)
-		elif(n == 2):
-			nextLin(1)
-		elif(n == 3):
-			nextLin(2)
-		elif(n == 4):
-			nextLin(3)
-		elif(n == 5):
-			nextLin(4)
-		elif(n == 6):
-			nextLin(5)
+		nextLin(n - 1)
 	if(!ifinspect):
-		if(n == 1):
-			nextLin(6)
-			sigilToActivate = 1
-		elif(n == 2):
-			nextLin(7)
-			sigilToActivate = 2
-		elif(n == 3):
-			nextLin(8)
-			sigilToActivate = 3
-		elif(n == 4):
-			nextLin(9)
-			sigilToActivate = 4
-		elif(n == 5):
-			nextLin(10)
-			sigilToActivate = 5
+		if(n < 6):
+			nextLin(n + 5)
+			sigilToActivate = n
 		elif(n == 6):
 			if(GVars.hellChallengeNerf < 0):
 				if(!GVars.ifhell):
@@ -452,11 +436,15 @@ func manageChoice(n):
 					nextLin(13)
 					sigilToActivate = 6
 			else:
-				nextLin(12)
-				sigilToActivate = 6
-				GVars.ifhell = true
-				GVars.inContract = false
-				GVars.hellChallengeNerf = -1
+				if(!GVars.ifhell):
+					nextLin(12)
+					sigilToActivate = 6
+					GVars.ifhell = true
+					GVars.inContract = false
+					GVars.hellChallengeNerf = -1
+				else:
+					nextLin(14)
+					sigilToActivate = 6
 
 
 func resetDisplay(n: int):

@@ -71,7 +71,8 @@ func save_prog():
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
 	loader.save_stats(loader)
-	
+
+
 func resetR0Stats():
 	spinData.resetData()
 	
@@ -87,13 +88,15 @@ func resetR0Stats():
 func resetR1Stats():
 	curEmotionBuff = 0
 	Aspinbuff = 1
-	
+
+
 func resetR2Stats():
 	ifhell = false
 	ifheaven = false
 	hellChallengeNerf = -1
 	inContract = false
-	
+
+
 func resetPermStats():
 	iffirstboot = true
 	ifsecondboot = 0
@@ -101,13 +104,15 @@ func resetPermStats():
 	iffirstpack = true
 	musicvol = -6.0
 	sfxvol = -6.0
-	
+
+
 func getScientific(val):
 	if(val > 1000):
 		return fmat.scientific(val,2)
 	else :
 		return snapped(val,0.01)
-	
+
+
 func _dialouge(lbl,charat,time):
 	if(is_instance_valid(lbl)):
 		chars = charat
@@ -116,7 +121,8 @@ func _dialouge(lbl,charat,time):
 			chars += 1
 			await get_tree().create_timer(time).timeout
 			_dialouge(lbl,chars,time)
-		
+
+
 func load_as_normal():
 	loader = loader.load_stats()
 	spinData = loader.spinData

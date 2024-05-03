@@ -1,46 +1,39 @@
 extends Node
+class_name PacksmithMenu
 
 
-@export var inspect : Button
-@export var augment : Button
-@export var upgrade : Button
-@export var automate : Button
-@export var text : Label
+#@ Export Variables
+@export var inspectButton : Button
+@export var augmentButton : Button
+@export var upgradeButton : Button
+@export var automateButton : Button
+@export var text : Label  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
 @onready var selection : SelectionMenu = $SelectionMenu
-@export var upgrademenu : Sprite2D
-@export var automationmenu : Sprite2D
-@export var sigil01sprite : Sprite2D
-@export var sigil02sprite : Sprite2D
-@export var sigil03sprite : Sprite2D
-@export var sigil04sprite : Sprite2D
-@export var sigil05sprite : Sprite2D
-@export var sigil06sprite : Sprite2D
-@export var sigil01button : Button
-@export var sigil02button : Button
-@export var sigil03button : Button
-@export var sigil04button : Button
-@export var sigil05button : Button
-@export var sigil06button : Button
-@export var upgrade1 : Button
-@export var upgrade2 : Button
-@export var upgrade3 : Button
-@export var upgrade4 : Button
-@export var up1text : Label
-@export var up2text : Label
-@export var up3text : Label
-@export var up4text : Label
-@export var rDisplay : Label
-@export var sigilDisplay : AnimatedSprite2D
+@export var upgradeMenu : UpgradeMenu
+@export var automationMenu : Sprite2D
+
+#@export var upgrade1 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var upgrade2 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var upgrade3 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var upgrade4 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up1text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up2text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up3text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up4text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var rDisplay : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+@export var sigilDisplay : AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
 @export var next : Button
-@export var packback :AnimatedSprite2D
+@export var packback :AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
 
 
-var inspecting: bool = false
-var ifinmen = false
-var ifbuff = false
-var inmenu = false
-var ifupscreen = false
-var ifautomascreen = false
+var currentState : PacksmithMenuState = PickState.new(self)  # We start in the pick state menu, and give it a reference to this node/script.
+
+var inspecting	: bool = false
+var ifinmen 	: bool = false
+var augmenting	: bool = false
+#var inmenu = false  # L.B: What is the point of this?
+var upgrading	: bool = false
+var automating	: bool = false
 var line = 0
 var mode = 0
 var sigilToActivate = 0
@@ -113,7 +106,6 @@ var packscript = ["That's my sigil.",
 				
 				  "I can draw out the power\nof the blue babies and\nmake you immortal!!",
 				  "It's not implemented yet so\nI don't have to explain\nshit."]
-				
 var endofline = [false,false,false,true,
 				 false,false,true,
 				 false,false,false,true,
@@ -128,7 +120,6 @@ var endofline = [false,false,false,true,
 				 false,false,false,false,false,false,false,true,
 				 false,false,false,false,true,
 				 false,true]
-				
 var emote = [2,2,2,3,
 			 2,2,2,
 			 4,2,2,2,
@@ -175,72 +166,75 @@ func nextLine():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rDisplay.position = Vector2(-190,0)
-	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
-	inspect.size = Vector2(400,50)
-	inspect.position = Vector2(100,100)
-	augment.size = Vector2(400,50)
-	augment.position = Vector2(100,150)
-	upgrade.size = Vector2(400,50)
-	upgrade.position = Vector2(100,200)
-	automate.size = Vector2(400,50)
-	automate.position = Vector2(100,250)
-	inspect.text = "Inspect"
-	augment.text = "Augment"
-	upgrade.text = "Upgrade"
-	automate.text = "Automate"
-	upgrademenu.hide()
+	# Run current state's enter, since it is the first state which isn't ran in changeState().
+	currentState._enter()
+	
+#	rDisplay.position = Vector2(-190,0)
+#	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
+	inspectButton.size = Vector2(400,50)
+	inspectButton.position = Vector2(100,100)
+	augmentButton.size = Vector2(400,50)
+	augmentButton.position = Vector2(100,150)
+	upgradeButton.size = Vector2(400,50)
+	upgradeButton.position = Vector2(100,200)
+	automateButton.size = Vector2(400,50)
+	automateButton.position = Vector2(100,250)
+	inspectButton.text = "Inspect"
+	augmentButton.text = "Augment"
+	upgradeButton.text = "Upgrade"
+	automateButton.text = "Automate"
+	upgradeMenu.hide()
 	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
-		automate.show()
+		automateButton.show()
 	else:
-		automate.hide()
-	automationmenu.hide()
-	upgrade1.size = Vector2(350,150)
-	upgrade1.position = Vector2(15,-50)
-	upgrade2.size = Vector2(350,150)
-	upgrade2.position = Vector2(-50,-50)
-	upgrade3.size = Vector2(350,150)
-	upgrade3.position = Vector2(-50,35)
-	upgrade4.size = Vector2(350,150)
-	upgrade4.position = Vector2(15,35)
-	upgrade1.text = "Increase Spin Per Click"
-	upgrade2.text = "Increase Hunger Per Tick"
-	upgrade3.text = "Increase Rust Per Drop"
-	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
-		upgrade4.hide()
-	elif(GVars.curEmotionBuff == 1):
-		#fear
-		upgrade4.text = "Increase Wheel Spin Rate Per\nRotation"
-	elif(GVars.curEmotionBuff == 2):
-		#cold
-		upgrade4.text = "Increase Hunger By Percentage\nOf Momentum Needed For\nNext Size"
-	elif(GVars.curEmotionBuff == 3):
-		#warmth
-		upgrade4.text = "Increase Mushroom\nExperience Gain"
-	elif(GVars.curEmotionBuff == 4):
-		#wrath
-		upgrade4.text = "Increase Effect Of Rust\nUpgrades"
-	up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
-	up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
-	up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
-	up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-	upgrade1.pressed.connect(self._up01)
-	upgrade2.pressed.connect(self._up02)
-	upgrade3.pressed.connect(self._up03)
-	upgrade4.pressed.connect(self._up04)
+		automateButton.hide()
+	automationMenu.hide()
+#	upgrade1.size = Vector2(350,150)
+#	upgrade1.position = Vector2(15,-50)
+#	upgrade2.size = Vector2(350,150)
+#	upgrade2.position = Vector2(-50,-50)
+#	upgrade3.size = Vector2(350,150)
+#	upgrade3.position = Vector2(-50,35)
+#	upgrade4.size = Vector2(350,150)
+#	upgrade4.position = Vector2(15,35)
+#	upgrade1.text = "Increase Spin Per Click"
+#	upgrade2.text = "Increase Hunger Per Tick"
+#	upgrade3.text = "Increase Rust Per Drop"
+#	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
+#		upgrade4.hide()
+#	elif(GVars.curEmotionBuff == 1):
+#		#fear
+#		upgrade4.text = "Increase Wheel Spin Rate Per\nRotation"
+#	elif(GVars.curEmotionBuff == 2):
+#		#cold
+#		upgrade4.text = "Increase Hunger By Percentage\nOf Momentum Needed For\nNext Size"
+#	elif(GVars.curEmotionBuff == 3):
+#		#warmth
+#		upgrade4.text = "Increase Mushroom\nExperience Gain"
+#	elif(GVars.curEmotionBuff == 4):
+#		#wrath
+#		upgrade4.text = "Increase Effect Of Rust\nUpgrades"
+#	up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
+#	up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
+#	up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
+#	up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
+#	upgrade1.pressed.connect(self._up01)
+#	upgrade2.pressed.connect(self._up02)
+#	upgrade3.pressed.connect(self._up03)
+#	upgrade4.pressed.connect(self._up04)
 	next.size = Vector2(100,100)
 	next.position = Vector2(390,420)
 	next.text = "Next"
 	next.hide()
-	inspect.pressed.connect(self._inspect)
-	augment.pressed.connect(self._augment)
-	upgrade.pressed.connect(self._upgrade)
-	automate.pressed.connect(self._automate)
+#	inspectButton.pressed.connect(self._inspect)
+	augmentButton.pressed.connect(self._augment)
+	upgradeButton.pressed.connect(self._upgrade)
+	automateButton.pressed.connect(self._automate)
 	if(!GVars.sigilData.numberOfSigils[0]):
-		inspect.hide()
-		augment.hide()
-		upgrade.hide()
-		automate.hide()
+		inspectButton.hide()
+		augmentButton.hide()
+		upgradeButton.hide()
+		automateButton.hide()
 		text.text = "No shirt, no sigil, no service."
 	
 	### PacksmithSelectionMenu's buttons.
@@ -249,101 +243,90 @@ func _ready():
 	
 	next.pressed.connect(self.nextLine)
 	selection.hide()
-	updateDisplays()
+#	updateDisplays()
 
 
-func _inspect():
-	inspecting = true
-	if(ifinmen == false):
-		dispSigils()
-		ifinmen = true
-		inmenu = true
-	else:
-		selection.hide()
-		ifinmen = false
-		inmenu = false
+func _process(delta: float) -> void:
+	# currentState's _update() function should be called every frame to act like _process().
+	if currentState:
+		currentState._update(delta)
+
+
+#@ Public Methods
+func changeState(newState : PacksmithMenuState) -> void:
+	# Call currentState's exit function before changing it.
+	if currentState:
+		currentState._exit()
+	
+	# Change currentState to newState w/ the same init variables, and call its enter function.
+	currentState = newState
+	currentState._enter()
+
+
+#func _inspect():
+#	inspecting = true
+#	# If inspect button is pressed, then show the contents.
+#	if(ifinmen == false):
+#		dispSigils()
+#		ifinmen = true
+##		inmenu = true
+#	# If the button is pressed again, then hide the content.
+#	else:
+#		selection.hide()
+#		ifinmen = false
+##		inmenu = false
 
 
 func _augment():
 	inspecting = false
-	if(ifbuff == false):
+	if(augmenting == false):
 		dispSigils()
-		ifbuff = true
-		inmenu = true
+		augmenting = true
+#		inmenu = true
 	else:
 		selection.hide()
-		ifbuff = false
-		inmenu = false
+		augmenting = false
+#		inmenu = false
 
-### WIP: How will I move this to PacksmithSelectionMenu?
+
 func dispSigils():
 	selection.show()
 	
 	selection.display_sigils()
-#	if(GVars.sigilData.numberOfSigils[1]):
-#		sigil02sprite.show()
-#		sigil02button.show()
-#	else:
-#		sigil02sprite.hide()
-#		sigil02button.hide()
-#	if(GVars.sigilData.numberOfSigils[2]):
-#		sigil03sprite.show()
-#		sigil03button.show()
-#	else:
-#		sigil03sprite.hide()
-#		sigil03button.hide()
-#	if(GVars.sigilData.numberOfSigils[3]):
-#		sigil04sprite.show()
-#		sigil04button.show()
-#	else:
-#		sigil04sprite.hide()
-#		sigil04button.hide()
-#	if(GVars.sigilData.numberOfSigils[4]):
-#		sigil05sprite.show()
-#		sigil05button.show()
-#	else:
-#		sigil05sprite.hide()
-#		sigil05button.hide()
-#	if(GVars.sigilData.numberOfSigils[5]):
-#		sigil06sprite.show()
-#		sigil06button.show()
-#	else:
-#		sigil06sprite.hide()
-#		sigil06button.hide()
 	
-	upgrademenu.hide()
-	automationmenu.hide()
+	upgradeMenu.hide()
+	automationMenu.hide()
 	resetWindowVars()
 
 
 func _upgrade():
-	if(ifupscreen == false):
-		upgrademenu.show()
+	if(upgrading == false):
+		upgradeMenu.show()
 		selection.hide()
-		automationmenu.hide()
+		automationMenu.hide()
 		resetWindowVars()
-		ifupscreen = true
-		ifautomascreen = false
-		inmenu = true
+		upgrading = true
+		automating = false
+#		inmenu = true
 	else:
-		upgrademenu.hide()
-		ifupscreen = false
-		inmenu = false
+		upgradeMenu.hide()
+		upgrading = false
+#		inmenu = false
 
 
 func _automate():
-	if(ifautomascreen == false):
-		automationmenu.show()
+	if(automating == false):
+		automationMenu.show()
 		selection.hide()
-		upgrademenu.hide()
+		upgradeMenu.hide()
 		resetWindowVars()
-		ifautomascreen = true
-		ifupscreen = false
-		inmenu = true
+		automating = true
+		upgrading = false
+#		inmenu = true
 	else:
-		automationmenu.hide()
-		ifautomascreen = false
-		inmenu = false
+		automationMenu.hide()
+		automating = false
+#		inmenu = false
 
 
 func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
@@ -363,9 +346,9 @@ func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
 
 
 func resetWindowVars():
-	inmenu = false
-	ifupscreen = false
-	ifbuff = false
+#	inmenu = false
+	upgrading = false
+	augmenting = false
 	ifinmen = false
 
 
@@ -374,79 +357,79 @@ func resetChoice():
 	packback.frame = 2
 	line = 0
 	resetWindowVars()
-	inspect.show()
-	augment.show()
-	upgrade.show()
+	inspectButton.show()
+	augmentButton.show()
+	upgradeButton.show()
 	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
-		automate.show()
+		automateButton.show()
 	next.hide()
 
 
-func updateDisplays():
-	if(GVars.curEmotionBuff == 4):
-		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
-		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger * GVars.rustData.fourth))
-		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust * GVars.rustData.fourth))
-		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-	else:
-		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
-		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
-		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
-		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
+#func updateDisplays():
+#	if(GVars.curEmotionBuff == 4):
+#		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
+#		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger * GVars.rustData.fourth))
+#		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust * GVars.rustData.fourth))
+#		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
+#	else:
+#		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
+#		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
+#		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
+#		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
+#	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
 
 
-func _up01():
-	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
-		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
-		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
-		GVars.rustData.increaseSpin += 1
-		updateDisplays()
-
-
-func _up02():
-	if(GVars.rustData.rust >= GVars.rustData.increaseHungerCost):
-		GVars.rustData.rust -= GVars.rustData.increaseHungerCost
-		GVars.rustData.increaseHungerCost *= GVars.rustData.increaseHungerScaling
-		GVars.rustData.increaseHunger += 1
-		updateDisplays()
-
-
-func _up03():
-	if(GVars.rustData.rust >= GVars.rustData.increaseRustCost):
-		GVars.rustData.rust -= GVars.rustData.increaseRustCost
-		GVars.rustData.increaseRustCost *= GVars.rustData.increaseRustScaling
-		GVars.rustData.increaseRust += 1
-		GVars.rustData.perThresh += 1
-		updateDisplays()
-
-
-func _up04():
-	if(GVars.rustData.rust >= GVars.rustData.fourthCost):
-		GVars.rustData.rust -= GVars.rustData.fourthCost
-		GVars.rustData.fourthCost *= GVars.rustData.fourthScaling
-		if(GVars.curEmotionBuff == 1):
-		#fear
-			GVars.rustData.fourth += 0.03
-		elif(GVars.curEmotionBuff == 2):
-		#cold
-			GVars.rustData.fourth += 0.02
-		elif(GVars.curEmotionBuff == 3):
-		#warmth
-			GVars.rustData.fourth *= 1.5
-		elif(GVars.curEmotionBuff == 4):
-		#wrath
-			GVars.rustData.fourth *= 1.2
-		updateDisplays()
+#func _up01():
+#	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
+#		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
+#		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
+#		GVars.rustData.increaseSpin += 1
+#		updateDisplays()
+#
+#
+#func _up02():
+#	if(GVars.rustData.rust >= GVars.rustData.increaseHungerCost):
+#		GVars.rustData.rust -= GVars.rustData.increaseHungerCost
+#		GVars.rustData.increaseHungerCost *= GVars.rustData.increaseHungerScaling
+#		GVars.rustData.increaseHunger += 1
+#		updateDisplays()
+#
+#
+#func _up03():
+#	if(GVars.rustData.rust >= GVars.rustData.increaseRustCost):
+#		GVars.rustData.rust -= GVars.rustData.increaseRustCost
+#		GVars.rustData.increaseRustCost *= GVars.rustData.increaseRustScaling
+#		GVars.rustData.increaseRust += 1
+#		GVars.rustData.perThresh += 1
+#		updateDisplays()
+#
+#
+#func _up04():
+#	if(GVars.rustData.rust >= GVars.rustData.fourthCost):
+#		GVars.rustData.rust -= GVars.rustData.fourthCost
+#		GVars.rustData.fourthCost *= GVars.rustData.fourthScaling
+#		if(GVars.curEmotionBuff == 1):
+#		#fear
+#			GVars.rustData.fourth += 0.03
+#		elif(GVars.curEmotionBuff == 2):
+#		#cold
+#			GVars.rustData.fourth += 0.02
+#		elif(GVars.curEmotionBuff == 3):
+#		#warmth
+#			GVars.rustData.fourth *= 1.5
+#		elif(GVars.curEmotionBuff == 4):
+#		#wrath
+#			GVars.rustData.fourth *= 1.2
+#		updateDisplays()
 
 
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)
 	selection.hide()
-	inspect.hide()
-	augment.hide()
-	upgrade.hide()
-	automate.hide()
+	inspectButton.hide()
+	augmentButton.hide()
+	upgradeButton.hide()
+	automateButton.hide()
 	next.show()
 	text.show()
 	if(inspecting):

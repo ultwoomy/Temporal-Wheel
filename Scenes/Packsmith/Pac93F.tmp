@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=28 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
@@ -13,7 +13,6 @@
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/PickOne.gd" id="12_6ckpj"]
 [ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
-[ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -166,18 +165,27 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("11_bvjjd")
 
-[node name="PacksmithMenu" type="Container" parent="." node_paths=PackedStringArray("inspectButton", "augmentButton", "upgradeButton", "automateButton", "text", "upgradeMenu", "automationMenu", "sigilDisplay", "next", "packback")]
+[node name="PacksmithMenu" type="Container" parent="." node_paths=PackedStringArray("inspectButton", "augment", "upgrade", "automate", "text", "upgrademenu", "automationmenu", "upgrade1", "upgrade2", "upgrade3", "upgrade4", "up1text", "up2text", "up3text", "up4text", "rDisplay", "sigilDisplay", "next", "packback")]
 layout_mode = 0
 script = ExtResource("12_6ckpj")
 inspectButton = NodePath("Inspect")
-augmentButton = NodePath("Augment")
-upgradeButton = NodePath("Upgrade")
-automateButton = NodePath("Automate")
+augment = NodePath("Augment")
+upgrade = NodePath("Upgrade")
+automate = NodePath("Automate")
 text = NodePath("../Dia")
-upgradeMenu = NodePath("UpgradeMenu")
-automationMenu = NodePath("AutomationMenu")
+upgrademenu = NodePath("UpgradeMenu")
+automationmenu = NodePath("AutomationMenu")
+upgrade1 = NodePath("UpgradeMenu/Up1Button")
+upgrade2 = NodePath("UpgradeMenu/Up2Button")
+upgrade3 = NodePath("UpgradeMenu/Up3Button")
+upgrade4 = NodePath("UpgradeMenu/Up4Button")
+up1text = NodePath("UpgradeMenu/Up1Button/Up1Label")
+up2text = NodePath("UpgradeMenu/Up2Button/Up2Label")
+up3text = NodePath("UpgradeMenu/Up3Button/Up3Label")
+up4text = NodePath("UpgradeMenu/Up4Button/Up4Label")
+rDisplay = NodePath("UpgradeMenu/Up1Button/RustDisplay")
 sigilDisplay = NodePath("../SigilDisplay")
-next = NodePath("../NextButton")
+next = NodePath("NextButton")
 packback = NodePath("../PacksmithBack")
 
 [node name="Inspect" type="Button" parent="PacksmithMenu"]
@@ -199,10 +207,83 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
 
-[node name="UpgradeMenu" parent="PacksmithMenu" instance=ExtResource("14_is4hy")]
-layout_mode = 2
+[node name="UpgradeMenu" type="Sprite2D" parent="PacksmithMenu"]
+visible = false
+self_modulate = Color(0.0313726, 0, 0, 1)
+position = Vector2(744, 308)
+scale = Vector2(4, 4)
+texture = ExtResource("7_eqmr3")
+
+[node name="Up1Button" type="Button" parent="PacksmithMenu/UpgradeMenu"]
+offset_left = 3.0
+offset_top = -45.25
+offset_right = 302.0
+offset_bottom = 253.75
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up1Label" type="Label" parent="PacksmithMenu/UpgradeMenu/Up1Button"]
+layout_mode = 0
+offset_top = 320.0
+offset_right = 300.0
+offset_bottom = 470.0
+
+[node name="RustDisplay" type="Label" parent="PacksmithMenu/UpgradeMenu/Up1Button"]
+layout_mode = 0
+offset_left = -160.0
+offset_top = 20.0
+offset_right = -75.0
+offset_bottom = 93.0
+horizontal_alignment = 1
+
+[node name="Up2Button" type="Button" parent="PacksmithMenu/UpgradeMenu"]
+offset_left = -47.5
+offset_top = -44.5
+offset_right = 251.5
+offset_bottom = 254.5
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up2Label" type="Label" parent="PacksmithMenu/UpgradeMenu/Up2Button"]
+layout_mode = 0
+offset_top = 320.0
+offset_right = 300.0
+offset_bottom = 470.0
+
+[node name="Up3Button" type="Button" parent="PacksmithMenu/UpgradeMenu"]
+offset_left = -46.25
+offset_top = 18.0
+offset_right = 252.75
+offset_bottom = 317.0
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up3Label" type="Label" parent="PacksmithMenu/UpgradeMenu/Up3Button"]
+layout_mode = 0
+offset_top = -190.0
+offset_right = 300.0
+offset_bottom = -40.0
+
+[node name="Up4Button" type="Button" parent="PacksmithMenu/UpgradeMenu"]
+offset_left = -46.25
+offset_top = 18.0
+offset_right = 252.75
+offset_bottom = 317.0
+scale = Vector2(0.1, 0.1)
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up4Label" type="Label" parent="PacksmithMenu/UpgradeMenu/Up4Button"]
+layout_mode = 0
+offset_top = -190.0
+offset_right = 300.0
+offset_bottom = -40.0
 
 [node name="AutomationMenu" type="Sprite2D" parent="PacksmithMenu"]
+visible = false
 self_modulate = Color(0.0941176, 0.0117647, 0, 1)
 position = Vector2(744, 308)
 scale = Vector2(4, 4)

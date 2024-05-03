@@ -1,6 +1,7 @@
 extends Resource
 class_name SigilData
 
+
 @export var costSpin : float
 @export var costRot : float
 @export var costSpinScale : float
@@ -30,6 +31,7 @@ var activeSigils : Dictionary = {
 	hell = false,
 }
 #####################
+
 
 func resetData() -> void:
 	costSpin = 300

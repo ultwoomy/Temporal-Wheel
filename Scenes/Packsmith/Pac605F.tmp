@@ -166,19 +166,19 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("11_bvjjd")
 
-[node name="PacksmithMenu" type="Container" parent="." node_paths=PackedStringArray("inspectButton", "augmentButton", "upgradeButton", "automateButton", "text", "upgradeMenu", "automationMenu", "sigilDisplay", "next", "packback")]
+[node name="PacksmithMenu" type="Container" parent="."]
 layout_mode = 0
 script = ExtResource("12_6ckpj")
-inspectButton = NodePath("Inspect")
-augmentButton = NodePath("Augment")
-upgradeButton = NodePath("Upgrade")
-automateButton = NodePath("Automate")
-text = NodePath("../Dia")
-upgradeMenu = NodePath("UpgradeMenu")
-automationMenu = NodePath("AutomationMenu")
-sigilDisplay = NodePath("../SigilDisplay")
-next = NodePath("../NextButton")
-packback = NodePath("../PacksmithBack")
+inspectButton = null
+augmentButton = null
+upgradeButton = null
+automateButton = null
+text = null
+upgrademenu = null
+automationmenu = null
+sigilDisplay = null
+next = null
+packback = null
 
 [node name="Inspect" type="Button" parent="PacksmithMenu"]
 layout_mode = 2

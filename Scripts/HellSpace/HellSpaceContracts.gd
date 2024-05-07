@@ -5,6 +5,7 @@ extends Control
 @export var exit : TextureButton
 @export var enterContract : Button
 @export var soulupgrade : Button
+@export var soulcount : Sprite2D
 var panel = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +16,7 @@ func _ready():
 	exit.hide()
 	enterContract.hide()
 	soulupgrade.hide()
+	soulcount.hide()
 
 func _on_e_contract_page_pressed():
 	position = Vector2(0,0)
@@ -22,8 +24,12 @@ func _on_e_contract_page_pressed():
 	left.show()
 	right.show()
 	exit.show()
+	soulcount.show()
 	enterContract.show()
 	openCButton.hide()
+	soulcount.show()
+	print("f")
+	switchPanel()
 
 func toTheLeft():
 	panel -= 1
@@ -40,36 +46,25 @@ func toTheRight():
 func switchPanel():
 	moveOut(false)
 	if(panel == 0):
-		get_parent().get_node("ContractPage").show()
-		get_parent().get_node("ContractPage").position = Vector2(0,0)
-		if(checkDone()):
-			get_parent().get_node("ContractPage").get_node("Control").get_node("ContractDesc").text = "Chance of double shroom\nOr double dollar\nCost: " + str(GVars.soulsData.doubleShroomChanceCost) + "\nCurrently: " + str(GVars.soulsData.doubleShroomChance) + "%"
-			enterContract.hide()
-			soulupgrade.show()
+		panelGeneric("Chance of double shroom\nOr double dollar\nCost: " + str(GVars.soulsData.doubleShroomChanceCost) + "\nCurrently: " + str(GVars.soulsData.doubleShroomChance) + "%", "ContractPage")
 	elif(panel == 1):
-		get_parent().get_node("ContractPage2").show()
-		get_parent().get_node("ContractPage2").position = Vector2(0,0)
-		if(checkDone()):
-			get_parent().get_node("ContractPage").get_node("Control").get_node("ContractDesc").text = "Chance of double rotations\nCost: " + str(GVars.soulsData.doubleRotChanceCost) + "\nCurrently: " + str(GVars.soulsData.doubleRotChance) + "%"
-			enterContract.hide()
-			soulupgrade.show()
+		panelGeneric("Chance of double rotations\nCost: " + str(GVars.soulsData.doubleRotChanceCost) + "\nCurrently: " + str(GVars.soulsData.doubleRotChance) + "%", "ContractPage2")
 	elif(panel == 2):
-		get_parent().get_node("ContractPage3").show()
-		get_parent().get_node("ContractPage3").position = Vector2(0,0)
-		if(checkDone()):
-			get_parent().get_node("ContractPage").get_node("Control").get_node("ContractDesc").text = "Increase base momentum\nBased on momentum\nCost: " + str(GVars.soulsData.spinBaseBuffCost) + "\nCurrently: log(" + str(GVars.soulsData.spinBaseBuff) + ")"
-			enterContract.hide()
-			soulupgrade.show()
+		panelGeneric("Increase base momentum\nBased on momentum\nCost: " + str(GVars.soulsData.spinBaseBuffCost) + "\nCurrently: log(" + str(GVars.soulsData.spinBaseBuff) + ")", "ContractPage3")
 	elif(panel == 3):
-		get_parent().get_node("ContractPage4").show()
-		get_parent().get_node("ContractPage4").position = Vector2(0,0)
-		if(checkDone()):
-			get_parent().get_node("ContractPage").get_node("Control").get_node("ContractDesc").text = "Chance of void rust\nOr double rust\nCost: " + str(GVars.soulsData.voidRustChanceCost) + "\nCurrently: " + str(GVars.soulsData.voidRustChance) + "%"
-			enterContract.hide()
-			soulupgrade.show()
+		panelGeneric("Chance of void rust\nOr double rust\nCost: " + str(GVars.soulsData.voidRustChanceCost) + "\nCurrently: " + str(GVars.soulsData.voidRustChance) + "%", "ContractPage4")
+			
+func panelGeneric(descText, page):
+	get_parent().get_node(page).show()
+	get_parent().get_node(page).position = Vector2(0,0)
+	if(checkDone()):
+		get_parent().get_node(page).get_node("Control").get_node("ContractDesc").text = descText
+		enterContract.hide()
+		soulupgrade.show()
 		
 func beginContract():
 	GVars.hellChallengeLayer2 = panel
+	GVars.hellChallengeInit = true
 	get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
 		
 func _on_exit_pressed():
@@ -85,6 +80,7 @@ func moveOut(ifexit):
 		exit.hide()
 		enterContract.hide()
 		soulupgrade.hide()
+		soulcount.hide()
 		get_parent().get_node("ContractPage2").hide()
 		get_parent().get_node("ContractPage3").hide()
 		get_parent().get_node("ContractPage4").hide()
@@ -95,6 +91,7 @@ func moveOut(ifexit):
 		exit.show()
 		enterContract.show()
 		soulupgrade.hide()
+		soulcount.show()
 		get_parent().get_node("ContractPage2").hide()
 		get_parent().get_node("ContractPage3").hide()
 		get_parent().get_node("ContractPage4").hide()
@@ -102,25 +99,13 @@ func moveOut(ifexit):
 
 func checkDone():
 	if(panel == 0):
-		if GVars.soulsData.doubleShroomChanceEnabled:
-			return true
-		else:
-			return false
+		return GVars.soulsData.doubleShroomChanceEnabled
 	elif(panel == 1):
-		if GVars.soulsData.doubleRotChanceEnabled:
-			return true
-		else:
-			return false
+		return GVars.soulsData.doubleRotChanceEnabled
 	elif(panel == 2):
-		if GVars.soulsData.spinBaseBuffEnabled:
-			return true
-		else:
-			return false
+		return GVars.soulsData.spinBaseBuffEnabled
 	elif(panel == 3):
-		if GVars.soulsData.voidRustChanceEnabled:
-			return true
-		else:
-			return false
+		return GVars.soulsData.voidRustChanceEnabled
 	
 func _process(_delta):
 	get_node("Control").get_node("ContractSigil").rotation += 0.002

@@ -98,18 +98,17 @@ func calculateOneRot():
 			angle += changerot
 		if(angle < -2*PI):
 			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff -= (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 10))
+				GVars.ritualData.ascBuff += 3 * (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
 			if(GVars.ritualData.candlesLit[3]):
-				GVars.rustData.rust -= 0.1
+				GVars.rustData.rust += 0.3
 			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff -= (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
+				GVars.ritualData.rotBuff += 3 * (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			var temp = float(angle/(2*PI))
 			GVars.spinData.rotations += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
-			GVars.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
 				GVars.ritualData.ascBuff += (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))

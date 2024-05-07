@@ -45,26 +45,6 @@ func on_wheel_spun() -> void:
 		GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 
-#func save_resources() -> void:
-#	ResourceSaver.save(SAVE_AUTOMATORS_PATH, )
-
-
-#func load_resources() -> Resource:
-#	if ResourceLoader.exists(SAVE_AUTOMATORS_PATH):
-#		return load(SAVE_AUTOMATORS_PATH)
-#	return null
-
-
-# L.B: Yeah, I don't know what I was thinking; just make EventManager an autoload.
-#func create_event_manager() -> void:
-#	if(get_tree().root.get_node_or_null("EventManager")):
-#		event_manager = get_window().get_node("EventManager")
-#	else:
-#		event_manager = EventManager.new()
-#		event_manager.name = "EventManager"
-#		get_window().add_child.call_deferred(event_manager)
-
-
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.
 # Creates automators using the "AutomatorData" that is in "automators".
 func create_automators() -> void:

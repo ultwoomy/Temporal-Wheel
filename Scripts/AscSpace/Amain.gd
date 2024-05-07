@@ -14,6 +14,8 @@ var challNumber = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#Changes background depending on current emote, irrespective of challenge
+	#TODO: Add changes depending on challenge
 	if(GVars.curEmotionBuff < 5):
 		frame = GVars.curEmotionBuff
 	else:
@@ -33,6 +35,8 @@ func _ready():
 	dia.text += "\n\nIt calls to you."
 	dia.text += "\n\nYou feel..."
 	await get_tree().create_timer(5).timeout
+	#If face is active, show emotion
+	#Cannot stack emotion with challenge of the same type
 	if(GVars.sigilData.curSigilBuff == 4):
 		if!(GVars.hellChallengeNerf == 1):
 			fear.show()
@@ -42,6 +46,8 @@ func _ready():
 			warmth.show()
 		if!(GVars.hellChallengeNerf == 4):
 			wrath.show()
+	#If hell sigil is active and hell is not unlocked, show challenge options based on emote buff
+	#Nothing prepared for no emote buff, shouldn't be easy or possible to get
 	if(GVars.sigilData.curSigilBuff == 6) and (!GVars.ifhell):
 		if(GVars.curEmotionBuff == 0):
 			challenge.show()
@@ -63,22 +69,29 @@ func _ready():
 			challenge.show()
 			challenge.text = "Calm"
 			challNumber = 4
-	if(GVars.hellChallengeLayer2 == 10) and GVars.hellChallengeNerf < 0:
+	#If a second layer challenge is activated and there is no first layer challenge
+	#Show the unfinished meme challenges
+	#Does not actually start them until until exiting screen, is currently abusable by exiting the game during this cutscene
+	if(GVars.hellChallengeLayer2 == 0) and GVars.hellChallengeNerf < 0 and GVars.hellChallengeInit:
 		challenge.show()
 		challenge.text = "Sandy"
-		challNumber = 0
-	elif(GVars.hellChallengeLayer2 == 11) and GVars.hellChallengeNerf < 0:
+		GVars.hellChallengeInit = false
+		challNumber = 10
+	elif(GVars.hellChallengeLayer2 == 1) and GVars.hellChallengeNerf < 0 and GVars.hellChallengeInit:
 		challenge.show()
 		challenge.text = "Bittersweet"
-		challNumber = 1
-	elif(GVars.hellChallengeLayer2 == 12) and GVars.hellChallengeNerf < 0:
+		GVars.hellChallengeInit = false
+		challNumber = 11
+	elif(GVars.hellChallengeLayer2 == 2) and GVars.hellChallengeNerf < 0 and GVars.hellChallengeInit:
 		challenge.show()
 		challenge.text = "Starved"
-		challNumber = 2
-	elif(GVars.hellChallengeLayer2 == 13) and GVars.hellChallengeNerf < 0:
+		GVars.hellChallengeInit = false
+		challNumber = 12
+	elif(GVars.hellChallengeLayer2 == 3) and GVars.hellChallengeNerf < 0 and GVars.hellChallengeInit:
 		challenge.show()
 		challenge.text = "Fabulous"
-		challNumber = 3
+		GVars.hellChallengeInit = false
+		challNumber = 13
 	complacent.show()
 
 
@@ -109,13 +122,14 @@ func _button_generic(switchEmotion,text):
 	dia.text += text
 	GVars._dialouge(dia,62,0.05)
 	await get_tree().create_timer(5).timeout
+	#99 is placeholder number for layer 1 challenge, 199 for layer 2
 	if(switchEmotion == 99):
 		GVars.hellChallengeNerf = challNumber
 		GVars.inContract = true
 		switchEmotion = 0
-		GVars.curEmotionBuff = switchEmotion
+		GVars.curEmotionBuff = 0
 	elif(switchEmotion == 199):
-		GVars.hellChallengeLayer2 = challNumber - 10
+		GVars.hellChallengeLayer2 = challNumber
 		GVars.inContract = true
 		switchEmotion = 0
 	else:
@@ -123,6 +137,9 @@ func _button_generic(switchEmotion,text):
 	awaken.show()
 
 func _butCha():
+	#numbers 0 - 4 are for layer 1 challenges
+	#numbers 10 - 13 are for layer 2 challenges
+	#kinda awkward that in the case of something breaking it basically resets the game
 	if(challNumber == 0):
 		_button_generic(99,"feel incongruent.\n\nYou've made a terrible mistake.\nIt will be different this time.")
 	elif(challNumber == 1):
@@ -133,16 +150,16 @@ func _butCha():
 		_button_generic(99,"feel aware.\n\nAs if you've snapped out\na tired trance.\nIt will be different this time.")
 	elif(challNumber == 4):
 		_button_generic(99,"feel calm.\n\nYou shove your way through\nthe deep.\nIt will be different this time.")
-	elif(challNumber == 10) and GVars.hellChallengeLayer2 < 0:
+	elif(challNumber == 10):
 		_button_generic(199,"feel sandy.\n\nIt's course and gritty and\ngets everywhere.")
-	elif(challNumber == 11) and GVars.hellChallengeLayer2 < 0:
+	elif(challNumber == 11):
 		_button_generic(199,"feel bittersweet.\n\nThe world is so beautiful\nyou want to cry.")
-	elif(challNumber == 12) and GVars.hellChallengeLayer2 < 0:
+	elif(challNumber == 12):
 		_button_generic(199,"feel starved.\n\nIt's eating you up on the\ninside.")
-	elif(challNumber == 13) and GVars.hellChallengeLayer2 < 0:
+	elif(challNumber == 13):
 		_button_generic(199,"feel fabulous.\n\nIt's time to slay, in one\nway or another.")
 	else:
-		_button_generic(199,"Not good.\n\nError in the code.\nAbort, abort.")
+		_button_generic(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")
 
 func _awaken():
 	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
@@ -150,18 +167,19 @@ func _awaken():
 	if (event_manager):
 		event_manager.reset_automators.emit()
 	GVars.resetR0Stats()
-	if(GVars.ifsecondboot == 0):
-		GVars.ifsecondboot = 1
-	elif(GVars.ifsecondboot == 2):
-		GVars.ifsecondboot = 3
-	elif(GVars.ifsecondboot == 4):
-		GVars.ifsecondboot = 5
-	if(GVars.hellChallengeLayer2 >= 0):
+	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
+	#Stops at 5 since it runs out of dialouge then
+	if(GVars.ifsecondboot < 5):
+		GVars.ifsecondboot += 1
+	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
+	if(GVars.hellChallengeLayer2 >= 0) and GVars.hellChallengeInit:
 		GVars.resetR1Stats()
+		GVars.hellChallengeInit = false
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
 
 func _hide_all():
+	#just hides all buttons
 	fear.hide()
 	cold.hide()
 	warmth.hide()
@@ -173,9 +191,11 @@ func _hide_all():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	#advances the background animation
 	if(frames < 200):
 		frames += 1
 		modulate = Color(frames/200,frames/200,frames/200)
+	#both if commands seperate 2 different animations which stop upon reaching a certain amount of frames
 	if(frames > 300) and (frames < 2400):
 		frames += 1
 		scale = Vector2(float(frames)/300,float(frames)/300)

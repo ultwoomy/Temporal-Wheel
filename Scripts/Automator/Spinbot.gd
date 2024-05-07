@@ -8,7 +8,7 @@ var shouldSpin = true
 var event_manager: EventManager
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Upon creation, enable the automator.
+	# Upon creation, enable the automator assumes there's supposed to be one.
 	event_manager = get_tree().get_root().find_child("EventManager", true, false)
 	event_manager.scene_change.connect(_check_scene)
 	enabled = true
@@ -17,6 +17,7 @@ func _ready() -> void:
 	_automate()
 
 func initialize():
+	#Mirrors the rotation speed calculations of the wheel, not a very good method at all
 	if(GVars.hellChallengeNerf == 1):
 		emoBuffSpeed = 1.2 + ((log(GVars.rotations + 1)/85 - 1) * log(GVars.rotations + 1)/log(2))
 	elif(GVars.curEmotionBuff == 1):

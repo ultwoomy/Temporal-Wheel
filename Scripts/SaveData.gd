@@ -13,6 +13,7 @@ extends Resource
 @export var souls : float
 @export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
+@export var hellChallengeInit : bool
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var soulsData : SoulsData
@@ -29,19 +30,29 @@ var save_path = "user://stats.tres"
 func load_stats():
 	if ResourceLoader.exists(save_path):
 		return load(save_path)
-	return null
+	else:
+		_init()
+		save_stats(self)
+	return load(save_path)
 func _init():
 	spinData = SpinData.new()
+	spinData.resetData()
 	rustData = RustData.new()
+	rustData.resetData()
 	mushroomData = MushroomData.new()
+	mushroomData.resetData()
 	ritualData = RitualData.new()
+	ritualData.resetData()
 	Aspinbuff = 1
 	curEmotionBuff = 0
 	sigilData = SigilData.new()
+	sigilData.resetData()
 	soulsData = SoulsData.new()
+	soulsData.resetData()
 	inContract = false
 	hellChallengeNerf = -1
 	hellChallengeLayer2 = -1
+	hellChallengeInit = false
 	ifhell = false
 	ifheaven = false
 	iffirstboot = true

@@ -13,6 +13,7 @@ var line = 0
 func _ready():
 	sigilshop.hide()
 	if(GVars.iffirstvoid):
+		#only shows the dialouge box if its the players first time coming here
 		get_tree().paused = true
 		show()
 	else :
@@ -32,6 +33,9 @@ func _ready():
 	GVars._dialouge(text,0,0.02)
 	
 func _go_back():
+	#checks where the back button is supposed to send the player
+	#layersin represents whether the player has opened up one of the functions
+	#probably could have been seperate scenes as well, but this is how it works rn
 	if(layersin == 1):
 		busstop.set_texture(load("res://Sprites/VoidSpace/bus_stop.png"))
 		busstop.scale = Vector2(2,2)
@@ -49,6 +53,7 @@ func _go_back():
 
 func _button_pressed():
 	GVars._dialouge(text,0,0.03)
+	#too short for me to make it an array or anything better than a series of if statements tbh
 	if(line == 0):
 		self.get_node("Bunnies").frame = 2
 		text.text = "This is where the business \nhappens."
@@ -76,8 +81,8 @@ func opensigilshop():
 	layersin = 1
 	sigilbut.hide()
 	ritualEnter.hide()
-	ritualShop.hide()
 	sigilshop.show()
+	ritualShop.hide()
 	
 func openRitual():
 	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
@@ -88,3 +93,4 @@ func openRitual():
 	ritualEnter.hide()
 	sigilshop.hide()
 	ritualShop.show()
+	

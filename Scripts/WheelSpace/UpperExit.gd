@@ -3,7 +3,7 @@ extends Container
 @export var image : Sprite2D
 var presses = 0.0
 func _ready():
-	if (GVars.inContract and GVars.hellChallengeLayer2 >= 0):
+	if (GVars.inContract and GVars.hellChallengeLayer2 > 0):
 		show()
 	else:
 		hide()
@@ -20,7 +20,9 @@ func _button_pressed():
 	if(presses > 4):
 		GVars.hellChallengeNerf = -1
 		GVars.hellChallengeLayer2 = -1
+		GVars.ifhell = true
 		GVars.inContract = false
+		GVars.hellChallengeInit = true
 		presses = 0
 		hide()
 	if(presses > 0):

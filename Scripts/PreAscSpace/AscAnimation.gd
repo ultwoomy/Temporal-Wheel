@@ -42,5 +42,6 @@ func _wheel_scene():
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
 func _end_sequence():
+	#hides every ui element before playing reset animation
 	everythingelse.hide()
 	eSeq = true

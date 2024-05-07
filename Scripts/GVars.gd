@@ -12,6 +12,7 @@ extends Node
 @export var ifheaven : bool
 @export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
+@export var hellChallengeInit : bool
 @export var inContract : bool
 @export var soulsData : SoulsData
 @export_group("PermStats")
@@ -77,6 +78,7 @@ func save_prog():
 	loader.iffirsthell = iffirsthell
 	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
+	loader.hellChallengeInit = hellChallengeInit
 	loader.inContract = inContract
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
@@ -106,6 +108,7 @@ func resetR2Stats():
 	ifheaven = false
 	inContract = false
 	hellChallengeLayer2 = -1
+	hellChallengeInit = false
 	soulsData.resetData()
 	
 func resetPermStats():
@@ -116,7 +119,7 @@ func resetPermStats():
 	iffirsthell = true
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 1
+	versNo = 2
 	
 func getScientific(val):
 	if(val > 1000):
@@ -139,14 +142,21 @@ func load_as_normal():
 		iffirsthell = true
 		versNo = loader.versNo + 1
 		soulsData = SoulsData.new()
+		soulsData.resetData()
 		hellChallengeLayer2 = -1
-	elif(loader.versNo == 1):
+	if(loader.versNo <= 1):
 		soulsData = SoulsData.new()
+		soulsData.resetData()
+		versNo = loader.versNo + 1
+	if(loader.versNo <= 2):
+		hellChallengeInit = false
+		versNo = loader.versNo + 1
 	else:
 		iffirsthell = loader.iffirsthell
 		versNo = loader.versNo
 		soulsData = loader.soulsData
 		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

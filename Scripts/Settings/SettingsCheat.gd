@@ -13,5 +13,16 @@ func _on_text_submitted(inputtext):
 	if(inputtext == "freecrap"):
 		GVars.spinData.spin = 1000000000000
 		GVars.spinData.rotations = 1000000
+		clear()
 	if(inputtext == "brilliantlightningrush"):
-		GVars.rustData.rut = 1000000000
+		GVars.rustData.rust = 1000000000
+		clear()
+	if(inputtext == "finishr2contracts"):
+		GVars.soulsData.spinBaseBuffEnabled = true
+		GVars.soulsData.voidRustChanceEnabled = true
+		GVars.soulsData.doubleRotChanceEnabled = true
+		GVars.soulsData.doubleShroomChanceEnabled = true
+		clear()
+	if(inputtext == "resethelltext"):
+		GVars.iffirsthell = true
+		clear()

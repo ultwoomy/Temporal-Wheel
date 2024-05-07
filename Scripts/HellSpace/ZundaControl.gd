@@ -6,8 +6,8 @@ extends AnimatedSprite2D
 @export var nextButton : Button
 @export var openCPage : Button
 var line = 0
-var dialouge = ["Hey! It's me Goku!",
-				"And I rule over hell!",
+var dialouge = ["Welcome you cat thing, to the underground.",
+				"The place I rule over, hell.",
 				"No idea how you got here, but while you're here.",
 				"Listen, I need some help.",
 				"As the ruler of hell, I'm supposed to process\nsouls and stuff.",
@@ -20,10 +20,10 @@ var dialouge = ["Hey! It's me Goku!",
 				"What are you supposed to do with those?\nYou can just spend them at my shop.",
 				"So in the end it all goes to me. How's that\n for queen of hell?",
 				"Oh and, before I forget, this isn't a baby\ncontract like the one you just did.",
-				"This will reset your identity bonus. And\nyour hell permission.",
-				"You'll have to talk to the Packsmith again\nto unlock this place.",
-				"Then get back here again again and that's it.",
-				"Do things!"]
+				"This will reset your identity bonus. And\nyour ability to get here too.",
+				"You'll have to do that whole thing again\nto unlock this place.",
+				"For your trouble, I'll give you new sigils.",
+				"Try not to get them stolen by rabbits."]
 				
 var spritebody = [1,1,1,1,1,1,0,1,1,0,1,0,1,1,1,1,1,1]
 var spriteface = [1,2,1,2,0,2,1,0,1,2,1,2,1,2,1,2,1,2]

@@ -440,7 +440,6 @@ func manageChoice(n):
 					nextLin(12)
 					sigilToActivate = 6
 					GVars.ifhell = true
-					GVars.inContract = false
 					GVars.hellChallengeNerf = -1
 				else:
 					nextLin(14)

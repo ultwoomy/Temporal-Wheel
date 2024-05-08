@@ -1,7 +1,5 @@
 extends PacksmithMenuState
-class_name InspectState
-# This state is transitioned into when the Inspect button from PacksmithMenu is pressed.
-# Causes the selection menu to be shown, and then hidden when state is exited.
+class_name AugmentState
 
 
 #@ Virtual Methods
@@ -9,7 +7,6 @@ func _enter() -> void:
 	# Connect signals from PacksmithMenu class. Look at PacksmithMenuState.gd for more info.
 	super._enter()
 	
-	# Show the inspect selection menu.
 	packsmithMenu.selectionMenu.show()
 	packsmithMenu.selectionMenu.display_sigils()
 	
@@ -29,10 +26,10 @@ func _exit() -> void:
 func _onButtonPressed(button: Button) -> void:
 	match button:
 		packsmithMenu.inspectButton:
-			# Clicking on inspect button again when already in inspect state will cancel show().
-			packsmithMenu.changeState(PickState.new(packsmithMenu))
+			packsmithMenu.changeState(InspectState.new(packsmithMenu))
 		packsmithMenu.augmentButton:
-			packsmithMenu.changeState(AugmentState.new(packsmithMenu))
+			# Clicking on augment button again when already in augment state will cancel show().
+			packsmithMenu.changeState(PickState.new(packsmithMenu))
 		packsmithMenu.upgradeButton:
 			packsmithMenu.changeState(UpgradeState.new(packsmithMenu))
 		packsmithMenu.automateButton:
@@ -45,17 +42,32 @@ func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
 	
 	match sigil:
 		SigilData.Sigils.PACKSMITH:
-			new_state.set_dialogue_line(0)
+			new_state.set_dialogue_line(6)
 		SigilData.Sigils.CANDLE:
-			new_state.set_dialogue_line(1)
+			new_state.set_dialogue_line(7)
 		SigilData.Sigils.ASCENSION:
-			new_state.set_dialogue_line(2)
+			new_state.set_dialogue_line(8)
 		SigilData.Sigils.EMPTINESS:
-			new_state.set_dialogue_line(3)
+			new_state.set_dialogue_line(9)
 		SigilData.Sigils.RITUAL:
-			new_state.set_dialogue_line(4)
+			new_state.set_dialogue_line(10)
 		SigilData.Sigils.HELL:
-			new_state.set_dialogue_line(5)
+			new_state.set_dialogue_line(11)
+			# L.B: Reminder for later for the correct dialogue line.
+#			elif(n == 6):
+#			if(GVars.hellChallengeNerf < 0):
+#				if(!GVars.ifhell):
+#					nextLin(11)
+#					sigilToActivate = 6
+#				else:
+#					nextLin(13)
+#					sigilToActivate = 6
+#			else:
+#				nextLin(12)
+#				sigilToActivate = 6
+#				GVars.ifhell = true
+#				GVars.inContract = false
+#				GVars.hellChallengeNerf = -1
 	
 	# Then change state to the new_state with the variables intact.
 	packsmithMenu.changeState(new_state)

@@ -1,5 +1,5 @@
 extends PacksmithMenuState
-class_name PickState
+class_name AutomateState
 
 
 #@ Virtual Methods
@@ -26,4 +26,5 @@ func _onButtonPressed(button: Button) -> void:
 		packsmithMenu.upgradeButton:
 			packsmithMenu.changeState(UpgradeState.new(packsmithMenu))
 		packsmithMenu.automateButton:
-			packsmithMenu.changeState(AutomateState.new(packsmithMenu))
+			# Clicking on automate button again when already in automate state will cancel show().
+			packsmithMenu.changeState(PickState.new(packsmithMenu))

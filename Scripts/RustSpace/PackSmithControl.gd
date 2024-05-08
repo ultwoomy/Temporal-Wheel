@@ -7,7 +7,7 @@ extends Node
 @export var next : Button
 @export var back : Button
 @export var text : Label
-@export var menu : Container
+@export var menu : PacksmithMenu
 
 
 ## Global Variables

@@ -6,23 +6,31 @@ class_name UpgradeState
 
 #@ Virtual Methods
 func _enter() -> void:
-	# Show the inspect selection menu.
-#	packsmithMenu.upgrade.show()
-#	packsmithMenu.upgrade.display_sigils()
+	# Connect signals from PacksmithMenu class. Look at PacksmithMenuState.gd for more info.
+	super._enter()
 	
-	# Listen for any signals.
-	if not packsmithMenu.inspectButton.pressed.is_connected(_onInspectButtonPressed):
-		packsmithMenu.inspectButton.pressed.connect(_onInspectButtonPressed)
+	# Show the inspect selection menu.
+	packsmithMenu.upgradeMenu.show()
+#	packsmithMenu.upgradeMenu.display_sigils()
 
 
-func _update(delta: float) -> void:
+func _update(_delta: float) -> void:
 	pass
 
 
 func _exit() -> void:
-	packsmithMenu.selection.hide()
+	packsmithMenu.upgradeMenu.hide()
 
 
 #@ Private Methods
-func _onInspectButtonPressed() -> void:
-	packsmithMenu.changeState(PickState.new(packsmithMenu))
+func _onButtonPressed(button: Button) -> void:
+	match button:
+		packsmithMenu.inspectButton:
+			packsmithMenu.changeState(InspectState.new(packsmithMenu))
+		packsmithMenu.augmentButton:
+			packsmithMenu.changeState(AugmentState.new(packsmithMenu))
+		packsmithMenu.upgradeButton:
+			# Clicking on upgrade button again when already in upgrade state will cancel show().
+			packsmithMenu.changeState(PickState.new(packsmithMenu))
+		packsmithMenu.automateButton:
+			packsmithMenu.changeState(AutomateState.new(packsmithMenu))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=29 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="9_i3m1l"]
 [ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="10_sia5t"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
-[ext_resource type="Script" path="res://Scripts/RustSpace/PacksmithMenu.gd" id="12_wd63o"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/PickOne.gd" id="12_6ckpj"]
 [ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
 [ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
 
@@ -93,12 +93,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ickp"]
-bg_color = Color(0.386719, 0.0351563, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfcd8"]
-bg_color = Color(0.0507813, 0, 0, 1)
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gecd"]
 texture = ExtResource("8_gghju")
 
@@ -120,7 +114,7 @@ grow_vertical = 2
 theme = SubResource("Theme_5gkbs")
 script = ExtResource("3_it381")
 
-[node name="PacksmithBackground" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("packback", "sigilDisplay", "next", "back", "text", "menu")]
+[node name="PacksmithBack" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("packback", "sigilDisplay", "next", "back", "text", "menu")]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
@@ -129,26 +123,21 @@ packback = NodePath(".")
 sigilDisplay = NodePath("../SigilDisplay")
 next = NodePath("../NextButton")
 back = NodePath("../Back")
-text = NodePath("../Dialogue")
+text = NodePath("../Dia")
 menu = NodePath("../PacksmithMenu")
 
-[node name="TextBox" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 75.0
-offset_top = 41.0
-offset_right = 525.0
-offset_bottom = 559.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1ickp")
+[node name="TextBoxSprite" type="Sprite2D" parent="."]
+modulate = Color(0.505882, 0.0470588, 0, 1)
+position = Vector2(300, 300)
+scale = Vector2(4.5, 5.18)
+texture = ExtResource("7_eqmr3")
 
-[node name="Center" type="Panel" parent="TextBox"]
-layout_mode = 0
-offset_left = 22.49
-offset_top = 25.9
-offset_right = 427.49
-offset_bottom = 491.9
-theme_override_styles/panel = SubResource("StyleBoxFlat_vfcd8")
+[node name="TextBoxCenterSprite" type="Sprite2D" parent="TextBoxSprite"]
+modulate = Color(0.137255, 0, 0, 1)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("7_eqmr3")
 
-[node name="Dialogue" type="Label" parent="."]
+[node name="Dia" type="Label" parent="."]
 layout_mode = 0
 offset_left = 103.0
 offset_top = 71.0
@@ -177,57 +166,40 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("11_bvjjd")
 
-[node name="PacksmithMenu" type="Control" parent="." node_paths=PackedStringArray("text", "next", "packback")]
-anchors_preset = 0
-script = ExtResource("12_wd63o")
-text = NodePath("../Dialogue")
-next = NodePath("NextButton")
-packback = NodePath("../PacksmithBackground")
-
-[node name="InspectButton" type="Button" parent="PacksmithMenu"]
+[node name="PacksmithMenu" type="Container" parent="." node_paths=PackedStringArray("inspectButton", "augmentButton", "upgradeButton", "automateButton", "text", "automationMenu", "sigilDisplay", "next", "packback")]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 500.0
-offset_bottom = 150.0
-text = "Inspect"
+script = ExtResource("12_6ckpj")
+inspectButton = NodePath("Inspect")
+augmentButton = NodePath("Augment")
+upgradeButton = NodePath("Upgrade")
+automateButton = NodePath("Automate")
+text = NodePath("../Dia")
+automationMenu = NodePath("AutomationMenu")
+sigilDisplay = NodePath("../SigilDisplay")
+next = NodePath("../NextButton")
+packback = NodePath("../PacksmithBack")
 
-[node name="AugmentButton" type="Button" parent="PacksmithMenu"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 150.0
-offset_right = 500.0
-offset_bottom = 200.0
-text = "Augment"
+[node name="Inspect" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
 
-[node name="UpgradeButton" type="Button" parent="PacksmithMenu"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 200.0
-offset_right = 500.0
-offset_bottom = 250.0
-text = "Upgrade"
+[node name="Augment" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
 
-[node name="AutomateButton" type="Button" parent="PacksmithMenu"]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 250.0
-offset_right = 500.0
-offset_bottom = 300.0
-text = "Automate"
+[node name="Upgrade" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
+
+[node name="Automate" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
 
 [node name="SelectionMenu" parent="PacksmithMenu" instance=ExtResource("13_2lk1p")]
+layout_mode = 2
 
 [node name="NextButton" type="Button" parent="PacksmithMenu"]
-layout_mode = 0
-offset_left = 390.0
-offset_top = 419.0
-offset_right = 490.0
-offset_bottom = 519.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 15
-text = "Next"
 
 [node name="UpgradeMenu" parent="PacksmithMenu" instance=ExtResource("14_is4hy")]
+layout_mode = 2
 
 [node name="AutomationMenu" type="Sprite2D" parent="PacksmithMenu"]
 self_modulate = Color(0.0941176, 0.0117647, 0, 1)

@@ -7,10 +7,12 @@ class_name UpgradeMenu
 @onready var upgradeButton2 : Button = $Up2Button
 @onready var upgradeButton3 : Button = $Up3Button
 @onready var upgradeButton4 : Button = $Up4Button
+
 @onready var upgradeText1 : Label = $Up1Button/Up1Label
 @onready var upgradeText2 : Label = $Up2Button/Up2Label
 @onready var upgradeText3 : Label = $Up3Button/Up3Label
 @onready var upgradeText4 : Label = $Up4Button/Up4Label
+
 @onready var rustDisplay : Label = $RustDisplay
 
 
@@ -20,17 +22,18 @@ func _ready() -> void:
 	rustDisplay.position = Vector2(-190,0)
 	rustDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
 	
-	upgradeButton1.size = Vector2(350,150)
-	upgradeButton1.position = Vector2(15,-50)
-	upgradeButton2.size = Vector2(350,150)
-	upgradeButton2.position = Vector2(-50,-50)
-	upgradeButton3.size = Vector2(350,150)
-	upgradeButton3.position = Vector2(-50,35)
-	upgradeButton4.size = Vector2(350,150)
-	upgradeButton4.position = Vector2(15,35)
+#	upgradeButton1.size = Vector2(350,150)
+#	upgradeButton1.position = Vector2(15,-50)
+#	upgradeButton2.size = Vector2(350,150)
+#	upgradeButton2.position = Vector2(-50,-50)
+#	upgradeButton3.size = Vector2(350,150)
+#	upgradeButton3.position = Vector2(-50,35)
+#	upgradeButton4.size = Vector2(350,150)
+#	upgradeButton4.position = Vector2(15,35)
 	upgradeText1.text = "Increase Spin Per Click"
 	upgradeText2.text = "Increase Hunger Per Tick"
 	upgradeText3.text = "Increase Rust Per Drop"
+	
 	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
 		upgradeButton4.hide()
 	elif(GVars.curEmotionBuff == 1):
@@ -45,10 +48,12 @@ func _ready() -> void:
 	elif(GVars.curEmotionBuff == 4):
 		#wrath
 		upgradeButton4.text = "Increase Effect Of Rust\nUpgrades"
+	
 	upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
 	upgradeText2.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
 	upgradeText3.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 	upgradeText4.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
+	
 	upgradeButton1.pressed.connect(self._up01)
 	upgradeButton2.pressed.connect(self._up02)
 	upgradeButton3.pressed.connect(self._up03)
@@ -58,7 +63,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

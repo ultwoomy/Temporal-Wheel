@@ -1,31 +1,11 @@
-extends Node
+extends Control
 class_name PacksmithMenu
 
 
 #@ Export Variables
-@export var inspectButton : Button
-@export var augmentButton : Button
-@export var upgradeButton : Button
-@export var automateButton : Button
-@export var text : Label  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
-@onready var selection : SelectionMenu = $SelectionMenu
-@export var upgradeMenu : UpgradeMenu
-@export var automationMenu : Sprite2D
-
-#@export var upgrade1 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var upgrade2 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var upgrade3 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var upgrade4 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var up1text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var up2text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var up3text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var up4text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-#@export var rDisplay : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
-@export var sigilDisplay : AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
-@export var next : Button
-@export var packback :AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
 
 
+#@ Public Variables
 var currentState : PacksmithMenuState = PickState.new(self)  # We start in the pick state menu, and give it a reference to this node/script.
 
 var inspecting	: bool = false
@@ -134,36 +114,39 @@ var emote = [2,2,2,3,
 			 2,2,4,2,2,2,2,1,
 			 2,2,4,2,1,
 			 3,0]
-				
+			
 var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,0]
 var convoStart = false
 var pos = 0
 
 
-func nextLin(m):
-	GVars._dialouge(text,0,0.04)
-	if !convoStart:
-		pos = convoNo[m]
-		text.text = packscript[pos]
-		packback.frame = emote[pos]
+#@ Onready Variables
+@onready var inspectButton : Button = $InspectButton
+@onready var augmentButton : Button = $AugmentButton
+@onready var upgradeButton : Button = $UpgradeButton
+@onready var automateButton : Button = $AutomateButton
+@export var text : Label  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
+
+@onready var selectionMenu : SelectionMenu = $SelectionMenu
+@onready var upgradeMenu : UpgradeMenu = $UpgradeMenu
+
+@onready var automationMenu : Sprite2D = $AutomationMenu
+
+#@export var upgrade1 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var upgrade2 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var upgrade3 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var upgrade4 : Button  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up1text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up2text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up3text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var up4text : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var rDisplay : Label  # L.B - WIP: Remove from Packsmith, put into Upgrade Menu
+#@export var sigilDisplay : AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
+@export var next : Button
+@export var packback :AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
 
 
-func nextLine():
-	GVars._dialouge(text,0,0.04)
-	if endofline[pos]:
-		pos = 0
-		text.text = ""
-		packback.frame = 2
-		resetChoice()
-		if(sigilToActivate != 0):
-			resetDisplay(sigilToActivate)
-			sigilToActivate = 0
-	else: 
-		pos += 1
-		text.text = packscript[pos]
-		packback.frame = emote[pos]
-
-
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Run current state's enter, since it is the first state which isn't ran in changeState().
@@ -171,24 +154,27 @@ func _ready():
 	
 #	rDisplay.position = Vector2(-190,0)
 #	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
-	inspectButton.size = Vector2(400,50)
-	inspectButton.position = Vector2(100,100)
-	augmentButton.size = Vector2(400,50)
-	augmentButton.position = Vector2(100,150)
-	upgradeButton.size = Vector2(400,50)
-	upgradeButton.position = Vector2(100,200)
-	automateButton.size = Vector2(400,50)
-	automateButton.position = Vector2(100,250)
-	inspectButton.text = "Inspect"
-	augmentButton.text = "Augment"
-	upgradeButton.text = "Upgrade"
-	automateButton.text = "Automate"
+#	inspectButton.size = Vector2(400,50)
+#	inspectButton.position = Vector2(100,100)
+#	augmentButton.size = Vector2(400,50)
+#	augmentButton.position = Vector2(100,150)
+#	upgradeButton.size = Vector2(400,50)
+#	upgradeButton.position = Vector2(100,200)
+#	automateButton.size = Vector2(400,50)
+#	automateButton.position = Vector2(100,250)
+	
+#	inspectButton.text = "Inspect"
+#	augmentButton.text = "Augment"
+#	upgradeButton.text = "Upgrade"
+#	automateButton.text = "Automate"
+	
 	upgradeMenu.hide()
-	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+	if (GVars.hellChallengeNerf > 0) or (GVars.ifhell):
 		automateButton.show()
 	else:
 		automateButton.hide()
 	automationMenu.hide()
+	
 #	upgrade1.size = Vector2(350,150)
 #	upgrade1.position = Vector2(15,-50)
 #	upgrade2.size = Vector2(350,150)
@@ -222,14 +208,17 @@ func _ready():
 #	upgrade2.pressed.connect(self._up02)
 #	upgrade3.pressed.connect(self._up03)
 #	upgrade4.pressed.connect(self._up04)
-	next.size = Vector2(100,100)
-	next.position = Vector2(390,420)
-	next.text = "Next"
+
+#	next.size = Vector2(100,100)
+#	next.position = Vector2(390,420)
+#	next.text = "Next"
 	next.hide()
+	
 #	inspectButton.pressed.connect(self._inspect)
-	augmentButton.pressed.connect(self._augment)
-	upgradeButton.pressed.connect(self._upgrade)
-	automateButton.pressed.connect(self._automate)
+#	augmentButton.pressed.connect(self._augment)
+#	upgradeButton.pressed.connect(self._upgrade)
+#	automateButton.pressed.connect(self._automate)
+	
 	if(!GVars.sigilData.numberOfSigils[0]):
 		inspectButton.hide()
 		augmentButton.hide()
@@ -238,11 +227,11 @@ func _ready():
 		text.text = "No shirt, no sigil, no service."
 	
 	### PacksmithSelectionMenu's buttons.
-	selection.sigil_button_pressed.connect(_on_sigil_button_pressed)
+#	selectionMenu.sigil_button_pressed.connect(_on_sigil_button_pressed)
 	###
 	
 	next.pressed.connect(self.nextLine)
-	selection.hide()
+	selectionMenu.hide()
 #	updateDisplays()
 
 
@@ -263,6 +252,30 @@ func changeState(newState : PacksmithMenuState) -> void:
 	currentState._enter()
 
 
+func nextLin(m):
+	GVars._dialouge(text,0,0.04)
+	if convoStart:  # L.B: This is always false!
+		pos = convoNo[m]
+		text.text = packscript[pos]
+		packback.frame = emote[pos]
+
+
+func nextLine():
+	GVars._dialouge(text,0,0.04)
+	if endofline[pos]:
+		pos = 0
+		text.text = ""
+		packback.frame = 2
+		resetChoice()
+		if(sigilToActivate != 0):
+			resetDisplay(sigilToActivate)
+			sigilToActivate = 0
+	else: 
+		pos += 1
+		text.text = packscript[pos]
+		packback.frame = emote[pos]
+
+
 #func _inspect():
 #	inspecting = true
 #	# If inspect button is pressed, then show the contents.
@@ -277,86 +290,86 @@ func changeState(newState : PacksmithMenuState) -> void:
 ##		inmenu = false
 
 
-func _augment():
-	inspecting = false
-	if(augmenting == false):
-		dispSigils()
-		augmenting = true
-#		inmenu = true
-	else:
-		selection.hide()
-		augmenting = false
-#		inmenu = false
+#func _augment():
+#	inspecting = false
+#	if(augmenting == false):
+#		dispSigils()
+#		augmenting = true
+##		inmenu = true
+#	else:
+#		selectionMenu.hide()
+#		augmenting = false
+##		inmenu = false
 
 
-func dispSigils():
-	selection.show()
-	
-	selection.display_sigils()
-	
-	upgradeMenu.hide()
-	automationMenu.hide()
-	resetWindowVars()
+#func dispSigils():
+#	selectionMenu.show()
+#
+#	selectionMenu.display_sigils()
+#
+#	upgradeMenu.hide()
+#	automationMenu.hide()
+#	resetWindowVars()
 
 
-func _upgrade():
-	if(upgrading == false):
-		upgradeMenu.show()
-		selection.hide()
-		automationMenu.hide()
-		resetWindowVars()
-		upgrading = true
-		automating = false
-#		inmenu = true
-	else:
-		upgradeMenu.hide()
-		upgrading = false
-#		inmenu = false
+#func _upgrade():
+#	if(upgrading == false):
+#		upgradeMenu.show()
+#		selectionMenu.hide()
+#		automationMenu.hide()
+#		resetWindowVars()
+#		upgrading = true
+#		automating = false
+##		inmenu = true
+#	else:
+#		upgradeMenu.hide()
+#		upgrading = false
+##		inmenu = false
 
 
-func _automate():
-	if(automating == false):
-		automationMenu.show()
-		selection.hide()
-		upgradeMenu.hide()
-		resetWindowVars()
-		automating = true
-		upgrading = false
-#		inmenu = true
-	else:
-		automationMenu.hide()
-		automating = false
-#		inmenu = false
+#func _automate():
+#	if(automating == false):
+#		automationMenu.show()
+#		selectionMenu.hide()
+#		upgradeMenu.hide()
+#		resetWindowVars()
+#		automating = true
+#		upgrading = false
+##		inmenu = true
+#	else:
+#		automationMenu.hide()
+#		automating = false
+##		inmenu = false
 
 
-func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
-	match sigil:
-		SigilData.Sigils.PACKSMITH:
-			manageChoice(1)
-		SigilData.Sigils.CANDLE:
-			manageChoice(2)
-		SigilData.Sigils.ASCENSION:
-			manageChoice(3)
-		SigilData.Sigils.EMPTINESS:
-			manageChoice(4)
-		SigilData.Sigils.RITUAL:
-			manageChoice(5)
-		SigilData.Sigils.HELL:
-			manageChoice(6)
+#func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
+#	match sigil:
+#		SigilData.Sigils.PACKSMITH:
+#			manageChoice(1)
+#		SigilData.Sigils.CANDLE:
+#			manageChoice(2)
+#		SigilData.Sigils.ASCENSION:
+#			manageChoice(3)
+#		SigilData.Sigils.EMPTINESS:
+#			manageChoice(4)
+#		SigilData.Sigils.RITUAL:
+#			manageChoice(5)
+#		SigilData.Sigils.HELL:
+#			manageChoice(6)
 
 
-func resetWindowVars():
+#func resetWindowVars():
 #	inmenu = false
-	upgrading = false
-	augmenting = false
-	ifinmen = false
+#	upgrading = false
+#	augmenting = false
+#	ifinmen = false
 
 
 func resetChoice():
 	text.text = ""
 	packback.frame = 2
 	line = 0
-	resetWindowVars()
+#	resetWindowVars()
 	inspectButton.show()
 	augmentButton.show()
 	upgradeButton.show()
@@ -365,116 +378,58 @@ func resetChoice():
 	next.hide()
 
 
-#func updateDisplays():
-#	if(GVars.curEmotionBuff == 4):
-#		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
-#		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger * GVars.rustData.fourth))
-#		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust * GVars.rustData.fourth))
-#		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-#	else:
-#		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
-#		up2text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
-#		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
-#		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-#	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
-
-
-#func _up01():
-#	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
-#		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
-#		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
-#		GVars.rustData.increaseSpin += 1
-#		updateDisplays()
-#
-#
-#func _up02():
-#	if(GVars.rustData.rust >= GVars.rustData.increaseHungerCost):
-#		GVars.rustData.rust -= GVars.rustData.increaseHungerCost
-#		GVars.rustData.increaseHungerCost *= GVars.rustData.increaseHungerScaling
-#		GVars.rustData.increaseHunger += 1
-#		updateDisplays()
-#
-#
-#func _up03():
-#	if(GVars.rustData.rust >= GVars.rustData.increaseRustCost):
-#		GVars.rustData.rust -= GVars.rustData.increaseRustCost
-#		GVars.rustData.increaseRustCost *= GVars.rustData.increaseRustScaling
-#		GVars.rustData.increaseRust += 1
-#		GVars.rustData.perThresh += 1
-#		updateDisplays()
-#
-#
-#func _up04():
-#	if(GVars.rustData.rust >= GVars.rustData.fourthCost):
-#		GVars.rustData.rust -= GVars.rustData.fourthCost
-#		GVars.rustData.fourthCost *= GVars.rustData.fourthScaling
-#		if(GVars.curEmotionBuff == 1):
-#		#fear
-#			GVars.rustData.fourth += 0.03
-#		elif(GVars.curEmotionBuff == 2):
-#		#cold
-#			GVars.rustData.fourth += 0.02
-#		elif(GVars.curEmotionBuff == 3):
-#		#warmth
-#			GVars.rustData.fourth *= 1.5
-#		elif(GVars.curEmotionBuff == 4):
-#		#wrath
-#			GVars.rustData.fourth *= 1.2
-#		updateDisplays()
-
-
-func manageChoice(n):
-	GVars._dialouge(text,0,0.04)
-	selection.hide()
-	inspectButton.hide()
-	augmentButton.hide()
-	upgradeButton.hide()
-	automateButton.hide()
-	next.show()
-	text.show()
-	if(inspecting):
-		if(n == 1):
-			nextLin(0)
-		elif(n == 2):
-			nextLin(1)
-		elif(n == 3):
-			nextLin(2)
-		elif(n == 4):
-			nextLin(3)
-		elif(n == 5):
-			nextLin(4)
-		elif(n == 6):
-			nextLin(5)
-	if(!inspecting):
-		if(n == 1):
-			nextLin(6)
-			sigilToActivate = 1
-		elif(n == 2):
-			nextLin(7)
-			sigilToActivate = 2
-		elif(n == 3):
-			nextLin(8)
-			sigilToActivate = 3
-		elif(n == 4):
-			nextLin(9)
-			sigilToActivate = 4
-		elif(n == 5):
-			nextLin(10)
-			sigilToActivate = 5
-		elif(n == 6):
-			if(GVars.hellChallengeNerf < 0):
-				if(!GVars.ifhell):
-					nextLin(11)
-					sigilToActivate = 6
-				else:
-					nextLin(13)
-					sigilToActivate = 6
-			else:
-				nextLin(12)
-				sigilToActivate = 6
-				GVars.ifhell = true
-				GVars.inContract = false
-				GVars.hellChallengeNerf = -1
+#func manageChoice(n):
+#	GVars._dialouge(text,0,0.04)
+#	selectionMenu.hide()
+#	inspectButton.hide()
+#	augmentButton.hide()
+#	upgradeButton.hide()
+#	automateButton.hide()
+#	next.show()
+#	text.show()
+#	if(inspecting):
+#		if(n == 1):
+#			nextLin(0)
+#		elif(n == 2):
+#			nextLin(1)
+#		elif(n == 3):
+#			nextLin(2)
+#		elif(n == 4):
+#			nextLin(3)
+#		elif(n == 5):
+#			nextLin(4)
+#		elif(n == 6):
+#			nextLin(5)
+#	if(!inspecting):
+#		if(n == 1):
+#			nextLin(6)
+#			sigilToActivate = 1
+#		elif(n == 2):
+#			nextLin(7)
+#			sigilToActivate = 2
+#		elif(n == 3):
+#			nextLin(8)
+#			sigilToActivate = 3
+#		elif(n == 4):
+#			nextLin(9)
+#			sigilToActivate = 4
+#		elif(n == 5):
+#			nextLin(10)
+#			sigilToActivate = 5
+#		elif(n == 6):
+#			if(GVars.hellChallengeNerf < 0):
+#				if(!GVars.ifhell):
+#					nextLin(11)
+#					sigilToActivate = 6
+#				else:
+#					nextLin(13)
+#					sigilToActivate = 6
+#			else:
+#				nextLin(12)
+#				sigilToActivate = 6
+#				GVars.ifhell = true
+#				GVars.inContract = false
+#				GVars.hellChallengeNerf = -1
 
 
 func resetDisplay(n: int):
@@ -483,8 +438,8 @@ func resetDisplay(n: int):
 		GVars.sigilData.curSigilBuff = n
 		get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
 	GVars.sigilData.curSigilBuff = n
-	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
-	sigilDisplay.show()
+#	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
+#	sigilDisplay.show()
 	
 
 

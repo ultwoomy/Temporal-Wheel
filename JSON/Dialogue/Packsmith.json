@@ -1,0 +1,260 @@
+{
+	"inspect": [
+		"packsmith": {
+			0: {
+				"TEXT":"That's my sigil.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"All sigils are kind of like...\npermissions of sorts.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"All this one does is let you\ntalk to me.",
+				"FACE":"NORMAL",
+			},
+			3: {
+				"TEXT":"...Stop looking disappointed\nit's a high honor!",
+				"FACE":"TALKING",
+			},
+		},
+		"candle": {
+			0: {
+				"TEXT":"A lovely candle.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"It's sufficient to light any\nspace.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"You'll likely be able to see\nthings back home you \ncouldn't before",
+				"FACE":"NORMAL",
+			}
+		},
+		"ascension": {
+			0: {
+				"TEXT":"Looks like a portal or\nsomething.",
+				"FACE":"EYEBROW",
+			},
+			1: {
+				"TEXT":"Not sure exactly what it does\nbut.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"It's attached itself to your\nwheel",
+				"FACE":"NORMAL",
+			},
+			3: {
+				"TEXT":"Clicking on the wheel should\ntell you more.",
+				"FACE":"NORMAL",
+			},
+		},
+		"emptiness": {
+			0: {
+				"TEXT":"A vague memory of a face.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"It's honestly kind of creepy\nthat you have this.",
+				"FACE":"EYEBROW",
+			},
+			2: {
+				"TEXT":"Wearing this will amplify an\nemotion of your choice\nto a considerable degree.",
+				"FACE":"NORMAL",
+			},
+			3: {
+				"TEXT":"To the point where it persists\nafter death.",
+				"FACE":"EYEBROW",
+			},
+			4: {
+				"TEXT":"...You'd have to wear it\nthough.\nEw.",
+				"FACE":"CONCERN",
+			}
+		},
+		"ritual": {
+			0: {
+				"TEXT":"A relic from hell, the\nritual.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"It represents a deal with\nthe devil, though the\ndevil happens to be dead.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"So it's peculiar that this\nis working at all.",
+				"FACE":"NORMAL",
+			},
+			3: {
+				"TEXT":"Maybe a new one spawned in.",
+				"FACE":"NORMAL",
+			},
+		},
+		"hell": {
+			0: {
+				"TEXT":"Oh hey, it's the sigil of a\nblue baby.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"Those things are the\nservants of Divine.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"You could probably use this\nto get into heaven!",
+				"FACE":"NORMAL",
+			},
+			3: {
+				"TEXT":"...actually there's no perm\nfor that in here.\nGuess it's useless then.",
+				"FACE":"NORMAL",
+			},
+		},
+	],
+	"augment": [
+		"packsmith": {
+			0: {
+				"TEXT":"Now it's a rust magnet.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"You should get more rust\nfrom that wheel now.",
+				"FACE":"NORMAL",
+			},
+		},
+		"candle": {
+			0: {
+				"TEXT":"I've increased the strength\n of the light.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"The warm glow should make\nshrooms grow twice as\nfast.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"Which makes no sense since\nthey like dim lighting.",
+				"FACE":"TALKING",
+			},
+		},
+		"ascension": {
+			0: {
+				"TEXT":"I don't think I know enough\nto touch this.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"Lemme just uh.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"Oops.",
+				"FACE":"EYEBROW",
+			},
+			3: {
+				"TEXT":"It seems to be sucking in\nmomentum at an increased\nrate.",
+				"FACE":"EYEBROW",
+			},
+			4: {
+				"TEXT":"I barely touched it I swear.",
+				"FACE":"NORMAL",
+			}
+		},
+		"emptiness": {
+			0: {
+				"TEXT":"I'm not entirely sure what\nyou want me to do with this.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"You're going to wear that?\nReally?.",
+				"FACE":"EYEBROW",
+			},
+			2: {
+				"TEXT":"...",
+				"FACE":"CONCERN",
+			},
+			3: {
+				"TEXT":"It uh, looks good on you\nI think?",
+				"FACE":"NORMAL",
+			},
+		},
+		"ritual": {
+			0: {
+				"TEXT":"This one's easy, I can just\nreplace one of these\ncandles with one of mine.",
+				"FACE":"EYEBROW",
+			},
+			1: {
+				"TEXT":"Now the first candle you\nLight is free.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"I'm not giving you any more.",
+				"FACE":"CONCERN",
+			},
+		},
+		"hell": {
+			0: {
+				"TEXT":"There's a powerful contract\netched into this sigil.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"I can start this contract\nfor you, but be warned.",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now.",
+				"FACE":"EYEBROW",
+			},
+			3: {
+				"TEXT":"It will invert the effect\nof your current emotion\nturning it into a debuff.",
+				"FACE":"NORMAL",
+			},
+			4: {
+				"TEXT":"What exactly that is...\nEh, you'll find out.",
+				"FACE":"NORMAL",
+			},
+			5: {
+				"TEXT":"This will persist until\nyou regain this sigil\nand augment it again.",
+				"FACE":"NORMAL",
+			},
+			6: {
+				"TEXT":"If you don't want to\ndo this yet, it's ok\nto just leave.",
+				"FACE":"NORMAL",
+			},
+			7: {
+				"TEXT":"Alright, good luck.",
+				"FACE":"PEEK",
+			},
+		},
+	],
+	"littlebeasty doesn't know how exactly to name this yet": [
+		"hell challenge beaten?": {
+			0: {
+				"TEXT":"There's a powerful contract\netched into this sigil.",
+				"FACE":"NORMAL",
+			},
+			1: {
+				"TEXT":"I can start this contract\nfor you, but...",
+				"FACE":"NORMAL",
+			},
+			2: {
+				"TEXT":"You've already finished it\nsomehow. Huh.",
+				"FACE":"EYEBROW",
+			},
+			3: {
+				"TEXT":"Well good for you, you've\nbeen updated.",
+				"FACE":"NORMAL",
+			},
+			4: {
+				"TEXT":"Go ahead and try entering\nhell now.",
+				"FACE":"PEEK",
+			},
+		},
+		"second": {
+			0: {
+				"TEXT":"I can draw out the power\nof the blue babies and\nmake you immortal!!",
+				"FACE":"TALKING",
+			},
+			1: {
+				"TEXT":"It's not implemented yet so\nI don't have to explain\nshit.",
+				"FACE":"ANGRY",
+			},
+		}
+	],
+}

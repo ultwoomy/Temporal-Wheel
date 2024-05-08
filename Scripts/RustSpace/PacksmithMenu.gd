@@ -100,18 +100,18 @@ var endofline = [false,false,false,true,
 				 false,false,false,false,false,false,false,true,
 				 false,false,false,false,true,
 				 false,true]
-var emote = [2,2,2,3,
-			 2,2,2,
-			 4,2,2,2,
-			 2,4,2,4,5,
-			 2,2,2,2,
-			 2,2,2,2,
-			 2,2,
-			 2,2,3,
-			 2,2,4,4,2,
-			 2,4,5,2,
-			 4,2,5,
-			 2,2,4,2,2,2,2,1,
+var emote = [2,2,2,3, # inspect packsmith sigil
+			 2,2,2, # inspect candle sigil
+			 4,2,2,2, # inspect ascension sigil
+			 2,4,2,4,5, # inspect emptiness sigil
+			 2,2,2,2, # inspect ritual sigil
+			 2,2,2,2, # inspect hell sigil
+			 2,2, # augment packsmith sigil
+			 2,2,3, # augment candle sigil
+			 2,2,4,4,2, # augment ascension sigil
+			 2,4,5,2, # augment emptiness sigil
+			 4,2,5, # augment ritual sigil
+			 2,2,4,2,2,2,2,1, # augment hell sigil(?)
 			 2,2,4,2,1,
 			 3,0]
 			

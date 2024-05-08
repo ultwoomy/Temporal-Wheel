@@ -124,6 +124,7 @@ script = ExtResource("3_it381")
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
+frame = 1
 script = ExtResource("6_2qgfk")
 packback = NodePath(".")
 sigilDisplay = NodePath("../SigilDisplay")

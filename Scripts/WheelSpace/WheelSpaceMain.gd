@@ -35,16 +35,16 @@ func updateDivisor():
 	var wheelphase_json: Dictionary = JSONReader.new().load_json_file("res://JSON/WheelPhases.json")
 	# (!) Hard-coded minimum and maximum for the range to match your previous code.
 	var wheelphaseRange: Array = range(1, 12) # Note: range takes steps and stops before the second arg; first arg is inclusive, second arg is exclusive.
-	if (GVars.spinData.wheelphase in wheelphaseRange):
+	if GVars.spinData.wheelphase in wheelphaseRange:
 		for count in wheelphaseRange: 
-			if (GVars.spinData.wheelphase == count):
+			if GVars.spinData.wheelphase == count:
 				# Use "count" as a way of finding a key in the JSON object "wheelphases".
 				#	- Since count is an integer and a key has to be a string, change count as an integer into a string.
 				#	- "wheelphases" is a JSON object that contains { "1":1000, "2":700, . . ., "other":80 }
 				var wheelphase_index: int = wheelphase_json.wheelphases.keys().find(str(count))
 				
 				# If the string of the integer "count" is not a key in "wheelphases", then wheelphase_index will be -1 and thus not in range.
-				if (wheelphase_index == -1):
+				if wheelphase_index == -1:
 					speedDivisor = wheelphase_json.wheelphases.other
 				else:
 					# If the string of the integer "count" is a key within "wheelphases", then you can find that key and its value at index "wheelphase_index".

@@ -1,6 +1,7 @@
 extends Resource
 class_name JSONReader
 
+
 # L.B: Here are some notes on how this exactly works. Should be simple enough to understand.
 # Load a .json file from the path provided and return the contents of it (parsed .json files are dictionaries).
 func load_json_file(filePath: String) -> Dictionary:

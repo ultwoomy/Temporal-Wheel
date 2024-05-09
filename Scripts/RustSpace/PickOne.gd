@@ -74,7 +74,7 @@ var packscript = ["That's my sigil.",
 				  "You should get more rust\nfrom that wheel now.",
 				
 				  "I've increased the strength\n of the light.",
-				  "The warm glow should make\nshrooms grow twice as\nfast.",
+				  "The warm glow should make\nshrooms grow faster.",
 				  "Which makes no sense since\nthey like dim lighting.",
 				
 				  "I don't think I know enough\nto touch this.",

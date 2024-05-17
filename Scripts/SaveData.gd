@@ -5,6 +5,7 @@ extends Resource
 @export var mushroomData : MushroomData
 @export var ritualData : RitualData
 @export var sigilData : SigilData
+@export var dollarData : DollarData
 @export_group("R1stats")
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
@@ -26,6 +27,7 @@ extends Resource
 @export var musicvol : float
 @export var sfxvol : float
 @export var versNo : int
+@export var ratmail : int
 var save_path = "user://stats.tres"
 func load_stats():
 	if ResourceLoader.exists(save_path):
@@ -49,6 +51,8 @@ func _init():
 	sigilData.resetData()
 	soulsData = SoulsData.new()
 	soulsData.resetData()
+	dollarData = DollarData.new()
+	dollarData.resetData()
 	inContract = false
 	hellChallengeNerf = -1
 	hellChallengeLayer2 = -1
@@ -64,6 +68,7 @@ func _init():
 	musicvol = -6.0
 	sfxvol = -6.0
 	versNo = 0
+	ratmail = 0
 
 
 func save_stats(data):

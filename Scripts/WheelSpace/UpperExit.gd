@@ -3,7 +3,7 @@ extends Container
 @export var image : Sprite2D
 var presses = 0.0
 func _ready():
-	if (GVars.inContract and GVars.hellChallengeLayer2 > 0):
+	if (GVars.inContract and GVars.hellChallengeLayer2 >= 0):
 		show()
 	else:
 		hide()

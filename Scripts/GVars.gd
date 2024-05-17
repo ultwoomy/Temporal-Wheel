@@ -5,6 +5,7 @@ extends Node
 @export var mushroomData : MushroomData
 @export var ritualData : RitualData
 @export var sigilData : SigilData
+@export var dollarData : DollarData
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -24,17 +25,18 @@ extends Node
 @export var musicvol : float
 @export var sfxvol : float
 @export var versNo : int
+@export var ratmail : int
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 
 
 func _init():
-#	create_data() # L.B: Needed for reset.
-#	resetR0Stats()
-#	resetR1Stats()
-#	resetPermStats()
-#	save_prog()
+	#create_data() # L.B: Needed for reset.
+	#resetR0Stats()
+	#resetR1Stats()
+	#resetPermStats()
+	#save_prog()
 	load_as_normal()
 
 
@@ -51,23 +53,20 @@ func create_data():
 		spinData = SpinData.new()
 	if(!soulsData):
 		soulsData = SoulsData.new()
+	if(!dollarData):
+		dollarData = DollarData.new()
 
 
 func save_prog():
 	loader.spinData = spinData
-	
 	loader.rustData = rustData
-	
 	loader.mushroomData = mushroomData
-	
 	loader.ritualData = ritualData
-	
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
-	
 	loader.sigilData = sigilData
-	
 	loader.soulsData = soulsData
+	loader.dollarData = dollarData
 	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
@@ -83,18 +82,16 @@ func save_prog():
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
 	loader.versNo = versNo
+	loader.ratmail = ratmail
 	loader.save_stats(loader)
 	
 func resetR0Stats():
 	spinData.resetData()
-	
 	rustData.resetData()
-	
 	mushroomData.resetData()
-	
 	ritualData.resetData()
-	
 	sigilData.resetData()
+	dollarData.resetData()
 	
 
 
@@ -119,7 +116,8 @@ func resetPermStats():
 	iffirsthell = true
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 2
+	versNo = 5
+	ratmail = 0
 	
 func getScientific(val):
 	if(val > 1000):
@@ -138,25 +136,33 @@ func _dialouge(lbl,charat,time):
 		
 func load_as_normal():
 	loader = loader.load_stats()
-	if(loader.versNo == 0):
+	versNo = loader.versNo
+	if(versNo == 0):
 		iffirsthell = true
-		versNo = loader.versNo + 1
+		versNo = versNo + 1
 		soulsData = SoulsData.new()
 		soulsData.resetData()
 		hellChallengeLayer2 = -1
-	if(loader.versNo <= 1):
+	if(versNo <= 1):
 		soulsData = SoulsData.new()
 		soulsData.resetData()
-		versNo = loader.versNo + 1
-	if(loader.versNo <= 2):
+		versNo = versNo + 1
+	if(versNo <= 2):
 		hellChallengeInit = false
-		versNo = loader.versNo + 1
+		versNo = versNo + 1
+	if(versNo <= 3):
+		ratmail = 0
+		versNo = versNo + 1
+	if(versNo <= 4):
+		dollarData = DollarData.new()
+		dollarData.resetData()
+		versNo = versNo + 1
 	else:
 		iffirsthell = loader.iffirsthell
-		versNo = loader.versNo
 		soulsData = loader.soulsData
 		hellChallengeLayer2 = loader.hellChallengeLayer2
 		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

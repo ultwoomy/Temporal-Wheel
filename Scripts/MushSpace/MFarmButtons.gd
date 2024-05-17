@@ -22,13 +22,16 @@ func _process(_delta: float) -> void:
 
 
 func _plant() -> void:
+	var post10scaling = 1
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] == 0):
 			GVars.mushroomData.current[n] = currentFrame + 1
+			if(GVars.mushroomData.level > 10):
+				post10scaling = GVars.mushroomData.level - 10 + 3
 			if(GVars.curEmotionBuff == 3):
-				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 20 + GVars.mushroomData.level * 15
+				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 20 * post10scaling + GVars.mushroomData.level * 15 * post10scaling
 			else:
-				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 + GVars.mushroomData.level * 10
+				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
 			get_window().get_node("EventManager").mushroom_planted.emit()
 			break
 

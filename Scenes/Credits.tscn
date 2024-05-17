@@ -16,8 +16,8 @@ theme = ExtResource("1_doi50")
 
 [node name="Back" type="TextureButton" parent="."]
 layout_mode = 0
-offset_right = 299.0
-offset_bottom = 299.0
+offset_right = 100.0
+offset_bottom = 102.0
 texture_normal = ExtResource("2_rpwy7")
 texture_pressed = ExtResource("3_0kt1e")
 texture_hover = ExtResource("3_0kt1e")

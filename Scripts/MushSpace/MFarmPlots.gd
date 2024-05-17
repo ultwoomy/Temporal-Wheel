@@ -40,12 +40,15 @@ func _update_sprites():
 #	statsdisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff))
 	var timeBasedOnType = 0
 	var timeBasedOnLevel = 0
+	var post10scaling = 1
+	if(GVars.mushroomData.level > 10):
+		post10scaling = GVars.mushroomData.level - 10 + 3
 	if(GVars.curEmotionBuff == 3):
-		timeBasedOnType = 20
-		timeBasedOnLevel = 15
+		timeBasedOnType = 20 * post10scaling
+		timeBasedOnLevel = 15 * post10scaling
 	else:
-		timeBasedOnType = 15
-		timeBasedOnLevel = 10
+		timeBasedOnType = 15 * post10scaling
+		timeBasedOnLevel = 10 * post10scaling
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] != 0):
 			if(n == 0):

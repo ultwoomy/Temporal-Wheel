@@ -38,6 +38,8 @@ func _button_pressed():
 
 func spin_update_loop():
 	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinData.spinPerClick))
+	if(GVars.hellChallengeLayer2 == 0):
+		GVars.spinData.spinPerClick = 1.5/log(GVars.spinData.spin + 1)
 	await get_tree().create_timer(0.1).timeout
 	spin_update_loop()
 

@@ -109,6 +109,13 @@ func calculateOneRot():
 			angle = fmod(angle,(2*PI))
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
+			if(GVars.ritualData.candlesLit[1]):
+				if(GVars.mushroomData.level < 10):
+					GVars.mushroomData.xp += 3 * GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
+				else:
+					GVars.mushroomData.xp += 3 * GVars.mushroomData.xpThresh/(pow(1.86,GVars.mushroomData.level))
+			if(GVars.spinData.rotations < 0):
+				turnOffCandles()
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
 				GVars.ritualData.ascBuff += (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
@@ -118,20 +125,25 @@ func calculateOneRot():
 				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			var temp = float(angle/(2*PI))
 			GVars.spinData.rotations += temp
-			if(GVars.sigilData.numberOfSigils[1]):
-				GVars.mushroomData.pendingRots += temp * sigaugbuf
-				if(GVars.ritualData.candlesLit[1]):
+			GVars.mushroomData.pendingRots += temp
+			if(GVars.ritualData.candlesLit[1]):
+				if(GVars.mushroomData.level < 10):
 					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
+				else:
+					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(pow(1.86,GVars.mushroomData.level))
 			GVars.rustData.threshProgress += temp
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			angle = fmod(angle,(2*PI))
+			if(GVars.spinData.rotations < 0):
+				turnOffCandles()
 			return true
 	return false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#GVars.spinData.density = 9
 	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
 	densityButton.densUp.connect(updateDivisor)
@@ -145,4 +157,7 @@ func _ready():
 		numOfCandles = 5
 	updateDivisor()
 
-
+func turnOffCandles():
+	for n in GVars.ritualData.candlesLit.size():
+		if(GVars.ritualData.candlesLit[n]):
+			GVars.ritualData.candlesLit[n] = false

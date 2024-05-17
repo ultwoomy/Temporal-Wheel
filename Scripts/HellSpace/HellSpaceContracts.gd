@@ -28,7 +28,6 @@ func _on_e_contract_page_pressed():
 	enterContract.show()
 	openCButton.hide()
 	soulcount.show()
-	print("f")
 	switchPanel()
 
 func toTheLeft():

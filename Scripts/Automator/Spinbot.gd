@@ -52,6 +52,7 @@ func calculateOneRot():
 				GVars.mushroomData.pendingRots += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
+			_automate()
 
 func updateDivisor():
 	GVars.spinData.wheelphase = int(GVars.spinData.density)
@@ -93,10 +94,8 @@ func _automate() -> void:
 	event_manager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.wheel_spun.emit()
-	await get_tree().create_timer(automator_data.cooldown).timeout
 	updateDivisor()
 	initialize()
-	_automate()
 
 func _check_scene(ifwheel) -> void:
 	if(GVars.curEmotionBuff == 1):

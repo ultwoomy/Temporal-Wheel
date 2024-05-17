@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=17 format=3 uid="uid://dp6jl75bx4qcp"]
 
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_eix20"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsVolume.gd" id="11_apqex"]
 [ext_resource type="Texture2D" uid="uid://cdwfydyu7lfmr" path="res://Sprites/Settings/credit2.png" id="12_xep8x"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsSwitchToCredits.gd" id="13_j55f1"]
+[ext_resource type="Script" path="res://Scripts/SettingsHelpMenu.gd" id="14_lqd5j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i5pe"]
 bg_color = Color(0.913725, 0.407843, 0.545098, 1)
@@ -127,6 +128,23 @@ texture_hover = ExtResource("12_xep8x")
 texture_disabled = ExtResource("11_8aye3")
 texture_focused = ExtResource("12_xep8x")
 script = ExtResource("13_j55f1")
+
+[node name="Halp" type="Panel" parent="." node_paths=PackedStringArray("text")]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 68.0
+offset_right = 850.0
+offset_bottom = 568.0
+script = ExtResource("14_lqd5j")
+text = NodePath("Label")
+
+[node name="Label" type="Label" parent="Halp"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 60.0
+offset_right = 607.0
+offset_bottom = 440.0
+autowrap_mode = 2
 
 [connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]
 [connection signal="value_changed" from="Volume/VolSlider" to="Volume" method="_on_slide_music"]

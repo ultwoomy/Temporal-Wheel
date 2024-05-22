@@ -9,13 +9,28 @@ var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
 					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff))
 					, "Gain a small amount of rust\nper spin"
 					, "Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.ritualData.rotBuff)) + ". Perpetual!"
-					, "Powers the kbity creation\nmachine!!!!!"]
+					, "Powers the kbity creation\nmachine! It's broken??????"
+					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + " momentum and " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "\nrotations to create kbity!\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
 	setCandleSprites()
 	setIdleText()
+	GVars.kbityData.kbityProgSpin += GVars.kbityData.kbityAddSpin
+	GVars.kbityData.kbityAddSpin = 0
+	GVars.kbityData.kbityProgRot += GVars.kbityData.kbityAddRot
+	GVars.kbityData.kbityAddRot = 0
+	if(GVars.kbityData.kbityProgSpin > GVars.kbityData.kbityThreshSpin):
+		GVars.kbityData.kbitySpinCheck = true
+	if(GVars.kbityData.kbityProgRot > GVars.kbityData.kbityThreshRot):
+		GVars.kbityData.kbityRotCheck = true
+	if GVars.kbityData.kbitySpinCheck and GVars.kbityData.kbityRotCheck:
+		GVars.kbityData.kbityThreshSpin *= 10000
+		GVars.kbityData.kbityProgRot *= 6
+		GVars.kbityData.kbityLevel += 1
+		emit_signal("kbity_up")
 	text.position = Vector2(500,400)
+	text.size = Vector2(400,200)
 
 func setIdleText():
 	var numOfCandles = 0.0
@@ -88,4 +103,7 @@ func _on_candle_5_mouse_entered():
 	setDescText(5)
 
 func _on_candle_6_mouse_entered():
-	setDescText(6)
+	if not GVars.hellChallengeLayer2 == 1:
+		setDescText(6)
+	else:
+		setDescText(7)

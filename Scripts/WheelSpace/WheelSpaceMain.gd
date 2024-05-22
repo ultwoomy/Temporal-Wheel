@@ -103,7 +103,7 @@ func calculateOneRot():
 				GVars.rustData.rust += 0.3
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff += 3 * (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
-			var temp = float(angle/(2*PI))
+			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff
 			GVars.spinData.rotations += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
@@ -123,9 +123,11 @@ func calculateOneRot():
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
-			var temp = float(angle/(2*PI))
+			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff
 			GVars.spinData.rotations += temp
 			GVars.mushroomData.pendingRots += temp
+			if(GVars.ritualData.candlesLit[5]):
+				GVars.kbityData.kbityAddRot += temp
 			if(GVars.ritualData.candlesLit[1]):
 				if(GVars.mushroomData.level < 10):
 					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
@@ -143,7 +145,6 @@ func calculateOneRot():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#GVars.spinData.density = 9
 	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
 	densityButton.densUp.connect(updateDivisor)

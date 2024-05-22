@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://2yfli2s10pul"]
+
+[ext_resource type="Texture2D" uid="uid://m1wpitcmfghy" path="res://Sprites/RustSpace/Atlas/atlas/tile000.png" id="1_og85v"]
+[ext_resource type="Texture2D" uid="uid://ce177b0bktnep" path="res://Sprites/RustSpace/Atlas/atlas/tile001.png" id="2_564tb"]
+[ext_resource type="Texture2D" uid="uid://77tehl1hugc7" path="res://Sprites/RustSpace/Atlas/atlas/tile002.png" id="3_rcpd7"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/Atlas/AtlasMain.gd" id="4_qfl8t"]
+[ext_resource type="Texture2D" uid="uid://bfat1iaj370pj" path="res://Sprites/RustSpace/Atlas/atlas_back/tile000.png" id="5_80l7b"]
+[ext_resource type="Texture2D" uid="uid://dthlib0l5xbvi" path="res://Sprites/RustSpace/Atlas/atlas_back/tile002.png" id="6_sgdkv"]
+[ext_resource type="Texture2D" uid="uid://c2ytf7d2xsn6a" path="res://Sprites/RustSpace/Atlas/atlas_back/tile001.png" id="7_hs7fn"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/Atlas/AtlasBack.gd" id="8_pm8yq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dmjsi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_og85v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_564tb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rcpd7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Atlas" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Atlas" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 300)
+sprite_frames = SubResource("SpriteFrames_dmjsi")
+frame = 1
+frame_progress = 0.677887
+script = ExtResource("4_qfl8t")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 653.0
+offset_top = 204.0
+offset_right = 988.0
+offset_bottom = 230.0
+text = "Yes it is I, the unreleased content. Go away."
+
+[node name="Go Back" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 879.0
+offset_top = 56.0
+offset_right = 1178.0
+offset_bottom = 355.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("5_80l7b")
+texture_pressed = ExtResource("6_sgdkv")
+texture_hover = ExtResource("7_hs7fn")
+texture_disabled = ExtResource("5_80l7b")
+texture_focused = ExtResource("7_hs7fn")
+script = ExtResource("8_pm8yq")
+
+[connection signal="pressed" from="Go Back" to="Go Back" method="_on_pressed"]

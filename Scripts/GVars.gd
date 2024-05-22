@@ -6,6 +6,8 @@ extends Node
 @export var ritualData : RitualData
 @export var sigilData : SigilData
 @export var dollarData : DollarData
+@export var atlasData : AtlasData
+@export var kbityData : KbityData
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -22,6 +24,11 @@ extends Node
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 @export var iffirsthell : bool
+@export var iffirstatlas : bool
+@export var altsigilsand : bool
+@export var altsigilcity : bool
+@export var altsigilnight : bool
+@export var altsigiltwins : bool
 @export var musicvol : float
 @export var sfxvol : float
 @export var versNo : int
@@ -55,6 +62,10 @@ func create_data():
 		soulsData = SoulsData.new()
 	if(!dollarData):
 		dollarData = DollarData.new()
+	if(!atlasData):
+		atlasData = AtlasData.new()
+	if(!kbityData):
+		kbityData = KbityData.new()
 
 
 func save_prog():
@@ -67,6 +78,8 @@ func save_prog():
 	loader.sigilData = sigilData
 	loader.soulsData = soulsData
 	loader.dollarData = dollarData
+	loader.atlasData = atlasData
+	loader.kbityData = kbityData
 	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
@@ -75,9 +88,14 @@ func save_prog():
 	loader.iffirstvoid = iffirstvoid
 	loader.iffirstpack = iffirstpack
 	loader.iffirsthell = iffirsthell
+	loader.iffirstatlas = iffirstatlas
 	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
+	loader.altsigilsand = altsigilsand
+	loader.altsigilcity = altsigilcity
+	loader.altsigilnight = altsigilnight
+	loader.altsigiltwins = altsigiltwins
 	loader.inContract = inContract
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
@@ -107,6 +125,8 @@ func resetR2Stats():
 	hellChallengeLayer2 = -1
 	hellChallengeInit = false
 	soulsData.resetData()
+	kbityData.resetData()
+	atlasData.resetData()
 	
 func resetPermStats():
 	iffirstboot = true
@@ -114,9 +134,14 @@ func resetPermStats():
 	iffirstvoid = true
 	iffirstpack = true
 	iffirsthell = true
+	iffirstatlas = true
+	altsigilsand = false
+	altsigilcity = false
+	altsigilnight = false
+	altsigiltwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 5
+	versNo = 8
 	ratmail = 0
 	
 func getScientific(val):
@@ -157,11 +182,33 @@ func load_as_normal():
 		dollarData = DollarData.new()
 		dollarData.resetData()
 		versNo = versNo + 1
+	if(versNo <= 5):
+		iffirstatlas = true
+		atlasData = AtlasData.new()
+		atlasData.resetData()
+		versNo = versNo + 1
+	if(versNo <= 6):
+		altsigilsand = false
+		altsigilcity = false
+		altsigilnight = false
+		altsigiltwins = false
+	if(versNo <= 7):
+		kbityData = KbityData.new()
+		kbityData.resetData()
+		versNo = versNo + 1
 	else:
 		iffirsthell = loader.iffirsthell
 		soulsData = loader.soulsData
+		dollarData = loader.dollarData
 		hellChallengeLayer2 = loader.hellChallengeLayer2
 		hellChallengeInit = loader.hellChallengeInit
+		altsigilsand = loader.altsigilsand
+		altsigilcity = loader.altsigilcity
+		altsigilnight = loader.altsigilnight
+		altsigiltwins = loader.altsigiltwins
+		iffirstatlas = loader.iffirstatlas
+		atlasData = loader.atlasData
+		kbityData = loader.kbityData
 		ratmail = loader.ratmail
 	spinData = loader.spinData
 	rustData = loader.rustData

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3cwx5qjxmdup"]
+[gd_scene load_steps=15 format=3 uid="uid://b3cwx5qjxmdup"]
 
 [ext_resource type="Texture2D" uid="uid://cr2gx5g5yrq4q" path="res://Sprites/RustSpace/rusthome_outside.png" id="1_2jcfw"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/RustSpaceOutsideButtons.gd" id="1_pv3pn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cmqobk7x265a6" path="res://Sprites/RustSpace/back_rust/back_rust2.png" id="6_eu6dj"]
 [ext_resource type="Texture2D" uid="uid://cif2yvh3nf0hs" path="res://Sprites/RustSpace/back_rust/back_rust3.png" id="7_gnir7"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/RustSpaceOutsideBack.gd" id="8_af4j0"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/EnterAtlas.gd" id="9_dgskt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvkyr"]
 bg_color = Color(0, 0, 0, 1)
@@ -61,3 +62,14 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_koago")
 theme_override_styles/focus = SubResource("StyleBoxTexture_p6fey")
 script = ExtResource("8_af4j0")
 button = NodePath(".")
+
+[node name="Atlas" type="Button" parent="."]
+layout_mode = 0
+offset_left = 263.0
+offset_top = 99.0
+offset_right = 313.0
+offset_bottom = 149.0
+text = "Atlas"
+script = ExtResource("9_dgskt")
+
+[connection signal="pressed" from="Atlas" to="Atlas" method="_button_pressed"]

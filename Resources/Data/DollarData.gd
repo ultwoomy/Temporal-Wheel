@@ -10,6 +10,7 @@ class_name DollarData
 @export var dollarRustCost : float
 @export var dollarRustScaling : float
 @export var dollarRustAmt : float
+@export var dollarTotal : float
 
 @export var ascBuffPerDollarCost : float
 @export var ascBuffPerDollarScaling : float
@@ -38,6 +39,7 @@ func resetData() -> void:
 	#multiplicative scaling
 	dollarRustScaling = 5
 	dollarRustAmt = 0
+	dollarTotal = 0
 	
 	ascBuffPerDollarCost = 2
 	#additive scaling

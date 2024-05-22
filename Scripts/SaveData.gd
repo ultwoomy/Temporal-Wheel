@@ -15,15 +15,24 @@ extends Resource
 @export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
+@export var kbityProgSpin : float
+@export var kbityProgRot : float
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var soulsData : SoulsData
+@export var kbityData : KbityData
+@export var atlasData : AtlasData
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : int
 @export var iffirstvoid : bool
 @export var iffirstpack : bool
 @export var iffirsthell : bool
+@export var iffirstatlas : bool
+@export var altsigilsand : bool
+@export var altsigilcity : bool
+@export var altsigilnight : bool
+@export var altsigiltwins : bool
 @export var musicvol : float
 @export var sfxvol : float
 @export var versNo : int
@@ -53,6 +62,10 @@ func _init():
 	soulsData.resetData()
 	dollarData = DollarData.new()
 	dollarData.resetData()
+	atlasData = AtlasData.new()
+	atlasData.resetData()
+	kbityData = KbityData.new()
+	kbityData.resetData()
 	inContract = false
 	hellChallengeNerf = -1
 	hellChallengeLayer2 = -1
@@ -64,6 +77,13 @@ func _init():
 	iffirstvoid = true
 	iffirstpack = true
 	iffirsthell = true
+	iffirstatlas = true
+	kbityProgSpin = 0
+	kbityProgRot = 0
+	altsigilsand = false
+	altsigilcity = false
+	altsigilnight = false
+	altsigiltwins = false
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0

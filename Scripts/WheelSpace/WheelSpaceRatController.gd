@@ -17,7 +17,8 @@ func _ready():
 	cheese.disabled = true
 	baseYpos = rat.position.y
 	#If the value of ratmail is less than the current reset value (which goes 2,4,6,etc), deploy the rat
-	if(GVars.ratmail < GVars.ifsecondboot):
+	#The second value is whenever i want to put the next letter
+	if(GVars.ratmail < GVars.ifsecondboot) and GVars.ifsecondboot == 2:
 		active = true
 	else:
 		active = false

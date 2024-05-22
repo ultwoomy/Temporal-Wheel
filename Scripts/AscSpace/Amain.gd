@@ -129,8 +129,9 @@ func _button_generic(switchEmotion,text):
 		switchEmotion = 0
 		GVars.curEmotionBuff = 0
 	elif(switchEmotion == 199):
-		GVars.hellChallengeLayer2 = challNumber
+		GVars.hellChallengeLayer2 = challNumber - 10
 		GVars.inContract = true
+		GVars.hellChallengeInit = true
 		switchEmotion = 0
 	else:
 		GVars.curEmotionBuff = switchEmotion
@@ -166,13 +167,16 @@ func _awaken():
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()
+	GVars.create_data()
 	GVars.resetR0Stats()
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
 	#Stops at 5 since it runs out of dialouge then
-	if(GVars.ifsecondboot < 5):
+	if(GVars.ifsecondboot < 7):
 		GVars.ifsecondboot += 1
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
+	print(str(GVars.hellChallengeInit))
 	if(GVars.hellChallengeLayer2 >= 0) and GVars.hellChallengeInit:
+		print("WAYO")
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")

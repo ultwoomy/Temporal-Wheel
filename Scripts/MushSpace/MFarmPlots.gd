@@ -44,8 +44,8 @@ func _update_sprites():
 	if(GVars.mushroomData.level > 10):
 		post10scaling = GVars.mushroomData.level - 10 + 3
 	if(GVars.curEmotionBuff == 3):
-		timeBasedOnType = 20 * post10scaling
-		timeBasedOnLevel = 15 * post10scaling
+		timeBasedOnType = 30 * post10scaling
+		timeBasedOnLevel = 5 * post10scaling
 	else:
 		timeBasedOnType = 15 * post10scaling
 		timeBasedOnLevel = 10 * post10scaling

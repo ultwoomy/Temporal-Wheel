@@ -38,15 +38,36 @@ var bunscript = ["Welcome to your new job!",
 				 "But like with a less\ninteresting accent.",
 				 "I bartered for your sigils\nback by offering your\nmushroom farm as collateral.",
 				 "Buy them back anytime.",
-				 "Buh bye!"]
+				 "Buh bye!",
+				
+				 "Funny story.",
+				 "So there was this giant nasty looking pillar of eyes and other stuff.",
+				 "And it swept by the area absorbing all your stuff.",
+				 "Giggling to itself the entire time.",
+				 "Kinda rude right?",
+				 "Don't worry, I saved the sigils like always.",
+				 "See you when you come by to buy them!",
+				 "Buh bye!",
+				
+				 "Sooooooooo.",
+				 "Nothing actually happened to your things this time.",
+				 "I still took the sigils and everything else.",
+				 "I have no excuse.",
+				 "I feel terrible about this and am reflecting on my actions.",
+				 "I'm not giving them back though.",
+				 "Buh bye!",]
 				
 var bunspritelist = [2,0,1,1,1,3,2,0,2,
 					 2,1,2,0,0,2,0,2,
 					 2,1,0,3,0,0,2,
-					 3,1,3,0,2,0,2]
+					 3,1,3,0,2,0,2,
+					 2,0,0,0,1,2,1,2,
+					 0,0,0,0,0,0,2]
 var whenend = [false,false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,true,
+			   false,false,false,false,false,false,true,
+			   false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,true]
 			
 func nextLine():
@@ -56,22 +77,15 @@ func nextLine():
 	firstmessage = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#GVars.ifsecondboot = 9
 	firstmessage = true
-	if(GVars.iffirstboot):
-		get_tree().paused = true
-		tutScreen.show()
-	elif(GVars.ifsecondboot == 1):
-		get_tree().paused = true
-		tutScreen.show()
-	elif(GVars.ifsecondboot == 3):
-		get_tree().paused = true
-		tutScreen.show()
-	elif(GVars.ifsecondboot == 5):
+	if (GVars.iffirstboot or GVars.ifsecondboot % 2 == 1) and GVars.ifsecondboot <= 9:
 		get_tree().paused = true
 		tutScreen.show()
 	else :
 		tutScreen.hide()
 	text.position = Vector2(300,300)
+	text.size = Vector2(400,300)
 	text.text = "Hellos!"
 	GVars._dialouge(text,0,0.02)
 	button.size = Vector2(100,100)
@@ -86,17 +100,9 @@ func _button_pressed():
 		tutScreen.hide()
 		GVars.iffirstboot = false
 		get_tree().paused = false
-	elif(whenend[line]) and (GVars.ifsecondboot == 1):
+	elif whenend[line] and GVars.ifsecondboot % 2 == 1:
 		tutScreen.hide()
-		GVars.ifsecondboot = 2
-		get_tree().paused = false
-	elif(whenend[line]) and (GVars.ifsecondboot == 3):
-		tutScreen.hide()
-		GVars.ifsecondboot = 4
-		get_tree().paused = false
-	elif(whenend[line]) and (GVars.ifsecondboot == 5):
-		tutScreen.hide()
-		GVars.ifsecondboot = 6
+		GVars.ifsecondboot += 1
 		get_tree().paused = false
 	elif GVars.iffirstboot and firstmessage:
 		line = -1
@@ -109,6 +115,12 @@ func _button_pressed():
 		nextLine()
 	elif GVars.ifsecondboot == 5 and firstmessage:
 		line = 23
+		nextLine()
+	elif GVars.ifsecondboot == 7 and firstmessage:
+		line = 30
+		nextLine()
+	elif GVars.ifsecondboot == 9 and firstmessage:
+		line = 38
 		nextLine()
 	else:
 		nextLine()

@@ -144,6 +144,7 @@ sprite_frames = SubResource("SpriteFrames_lmjuv")
 [node name="DialougeBox" type="Label" parent="TutorialBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="TutorialBox"]
 layout_mode = 2
@@ -183,6 +184,7 @@ texture = ExtResource("10_23qhp")
 [node name="Sigiltext" type="Label" parent="SigilShop"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
 
 [node name="BuySigil" type="Button" parent="SigilShop"]
 layout_mode = 2
@@ -214,6 +216,7 @@ texture = ExtResource("14_ikg7b")
 [node name="Sigiltext" type="Label" parent="RitualShop"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
 
 [node name="Ritual" type="Sprite2D" parent="RitualShop"]
 position = Vector2(720, 200)

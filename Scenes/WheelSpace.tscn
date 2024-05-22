@@ -371,6 +371,7 @@ sprite_frames = SubResource("SpriteFrames_05j8j")
 [node name="DialougeBox" type="Label" parent="TutorialBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="TutorialBox"]
 layout_mode = 2

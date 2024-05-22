@@ -328,7 +328,7 @@ offset_right = 150.0
 offset_bottom = 250.0
 theme = ExtResource("1_pm7qv")
 text = "Sigil costs are greatly modified
-Sigils no longer reset on reset
+The Kbity engine rumbles
 Unlocks the Undercity as an
 alternative sigil to the ritual"
 horizontal_alignment = 1

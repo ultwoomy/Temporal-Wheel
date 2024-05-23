@@ -167,8 +167,8 @@ func _awaken():
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()
-	GVars.create_data()
 	GVars.resetR0Stats()
+	GVars.atlasData.hasReset = false
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
 	#Stops at 5 since it runs out of dialouge then
 	if(GVars.ifsecondboot < 7):

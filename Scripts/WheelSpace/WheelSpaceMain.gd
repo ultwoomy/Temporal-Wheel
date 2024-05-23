@@ -6,6 +6,7 @@ var emoBuffSpeed = 1
 var numOfCandles = 0.0
 var fourthRustBuff = 1
 var sigaugbuf = 1
+var effectiveDensity = GVars.spinData.density
 @export var densityButton : Container
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
@@ -19,7 +20,7 @@ func update_wheel_sprite(frameno):
 		emoBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
-	GVars.spinData.wheelphase = int(GVars.spinData.density)
+	GVars.spinData.wheelphase = effectiveDensity
 	if(frameno > 11):
 		self.get_node("Centerpiece").frame = 11
 	else :
@@ -27,7 +28,11 @@ func update_wheel_sprite(frameno):
 
 
 func updateDivisor():
-	GVars.spinData.wheelphase = int(GVars.spinData.density)
+	if(GVars.atlasData.dumpRustMilestone > 1):
+		effectiveDensity = int(GVars.spinData.density) + GVars.atlasData.dumpRustMilestone/4 + 1
+	else:
+		effectiveDensity = int(GVars.spinData.density)
+	GVars.spinData.wheelphase = effectiveDensity
 	update_wheel_sprite(GVars.spinData.wheelphase-1)
 	
 	
@@ -60,7 +65,10 @@ func _process(_delta):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
 		if(GVars.curEmotionBuff == 4):
-			emoBuff = log(GVars.spinData.rotations + 1) + 1
+			if(GVars.atlasData.dumpRustMilestone > 3):
+				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(4) * (GVars.atlasData.dumpRustMilestone + 1)
+			else:
+				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(4)
 		if(GVars.hellChallengeNerf == 4):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
 			GVars.rustData.rust += 1
@@ -83,6 +91,7 @@ func _process(_delta):
 			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
 			self.add_child(rus)	
 	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
+
 func calculateOneRot():
 	var changerot = 0.
 	if(GVars.spinData.spin > 0):
@@ -102,7 +111,7 @@ func calculateOneRot():
 			if(GVars.ritualData.candlesLit[3]):
 				GVars.rustData.rust += 0.3
 			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += 3 * (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
+				GVars.ritualData.rotBuff += 3 * (log(GVars.spinData.rotations) * effectiveDensity)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff
 			GVars.spinData.rotations += temp
 			GVars.rustData.threshProgress += temp
@@ -122,7 +131,7 @@ func calculateOneRot():
 			if(GVars.ritualData.candlesLit[3]):
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
+				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * effectiveDensity)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff
 			GVars.spinData.rotations += temp
 			GVars.mushroomData.pendingRots += temp

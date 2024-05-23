@@ -110,8 +110,6 @@ func resetR0Stats():
 	ritualData.resetData()
 	sigilData.resetData()
 	dollarData.resetData()
-	
-
 
 func resetR1Stats():
 	curEmotionBuff = 0
@@ -141,7 +139,7 @@ func resetPermStats():
 	altsigiltwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 8
+	versNo = 9
 	ratmail = 0
 	
 func getScientific(val):
@@ -171,45 +169,102 @@ func load_as_normal():
 	if(versNo <= 1):
 		soulsData = SoulsData.new()
 		soulsData.resetData()
+		iffirsthell = loader.iffirsthell
+		hellChallengeLayer2 = loader.hellChallengeLayer2
 		versNo = versNo + 1
 	if(versNo <= 2):
 		hellChallengeInit = false
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
 		versNo = versNo + 1
 	if(versNo <= 3):
 		ratmail = 0
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
 		versNo = versNo + 1
 	if(versNo <= 4):
 		dollarData = DollarData.new()
 		dollarData.resetData()
 		versNo = versNo + 1
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
 	if(versNo <= 5):
 		iffirstatlas = true
 		atlasData = AtlasData.new()
 		atlasData.resetData()
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
+		dollarData = loader.dollarData
 		versNo = versNo + 1
 	if(versNo <= 6):
 		altsigilsand = false
 		altsigilcity = false
 		altsigilnight = false
 		altsigiltwins = false
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
+		dollarData = loader.dollarData
+		iffirstatlas = loader.iffirstatlas
+		atlasData = loader.atlasData
+		versNo = versNo + 1
 	if(versNo <= 7):
 		kbityData = KbityData.new()
 		kbityData.resetData()
-		versNo = versNo + 1
-	else:
 		iffirsthell = loader.iffirsthell
 		soulsData = loader.soulsData
-		dollarData = loader.dollarData
 		hellChallengeLayer2 = loader.hellChallengeLayer2
 		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
+		dollarData = loader.dollarData
+		iffirstatlas = loader.iffirstatlas
+		atlasData = loader.atlasData
 		altsigilsand = loader.altsigilsand
 		altsigilcity = loader.altsigilcity
 		altsigilnight = loader.altsigilnight
 		altsigiltwins = loader.altsigiltwins
+		versNo = versNo + 1
+	if(versNo <= 8):
+		atlasData = AtlasData.new()
+		atlasData.resetData()
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
+		dollarData = loader.dollarData
+		iffirstatlas = loader.iffirstatlas
+		altsigilsand = loader.altsigilsand
+		altsigilcity = loader.altsigilcity
+		altsigilnight = loader.altsigilnight
+		altsigiltwins = loader.altsigiltwins
+		kbityData = loader.kbityData
+		versNo = versNo + 1
+	else:
+		iffirsthell = loader.iffirsthell
+		soulsData = loader.soulsData
+		hellChallengeLayer2 = loader.hellChallengeLayer2
+		hellChallengeInit = loader.hellChallengeInit
+		ratmail = loader.ratmail
+		dollarData = loader.dollarData
 		iffirstatlas = loader.iffirstatlas
 		atlasData = loader.atlasData
+		altsigilsand = loader.altsigilsand
+		altsigilcity = loader.altsigilcity
+		altsigilnight = loader.altsigilnight
+		altsigiltwins = loader.altsigiltwins
 		kbityData = loader.kbityData
-		ratmail = loader.ratmail
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

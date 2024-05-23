@@ -5,6 +5,7 @@ class_name AtlasData
 @export var dumpRustThresh : float
 @export var dumpRustScaling : float
 @export var dumpRustMilestone : int
+@export var hasReset : bool
 #shrugged = hell naw, terrible book
 
 func resetData() -> void:
@@ -13,3 +14,4 @@ func resetData() -> void:
 	#multiplicative scaling
 	dumpRustScaling = 5
 	dumpRustMilestone = 0
+	hasReset = false

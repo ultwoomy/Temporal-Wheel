@@ -3,6 +3,8 @@ extends CharacterBody2D
 @export var forward : Button
 @export var statDisplay : Label
 @export var everythingelse : Control
+@export var panel : Panel
+signal confirm
 var rotSpeed = 0.001
 var eSeq = false
 var frames = 0.00
@@ -10,6 +12,7 @@ var frames = 0.00
 func _ready():
 	update_wheel_sprite(GVars.spinData.density - 1)
 	back.pressed.connect(self._wheel_scene)
+	connect("confirm",panel.ask)
 	forward.text = "Proceed"
 	forward.pressed.connect(self._end_sequence)
 	var dis = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\nNext Presence: " + str(GVars.getScientific(GVars.mushroomData.ascBuff) + GVars.getScientific(GVars.ritualData.ascBuff))
@@ -44,4 +47,13 @@ func _wheel_scene():
 func _end_sequence():
 	#hides every ui element before playing reset animation
 	everythingelse.hide()
+	if not GVars.sigilData.curSigilBuff == 4 and GVars.sigilData.numberOfSigils[3]:
+		emit_signal("confirm")
+	else:
+		eSeq = true
+		
+func confirmTrue():
 	eSeq = true
+
+func confirmFalse():
+	everythingelse.show()

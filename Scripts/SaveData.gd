@@ -87,7 +87,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 0
+	versNo = 9
 	ratmail = 0
 
 

@@ -407,10 +407,10 @@ func _up04():
 			GVars.rustData.fourth += 0.02
 		elif(GVars.curEmotionBuff == 3):
 		#warmth
-			GVars.rustData.fourth *= 1.5
+			GVars.rustData.fourth *= 1.6
 		elif(GVars.curEmotionBuff == 4):
 		#wrath
-			GVars.rustData.fourth *= 1.2
+			GVars.rustData.fourth *= 1.4
 		updateDisplays()
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)

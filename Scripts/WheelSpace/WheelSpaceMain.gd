@@ -32,7 +32,7 @@ func updateDivisor():
 	
 	
 	# L.B: Utilizes my JSONReader class to load in a .json file intentionally written for this specific function.
-	var wheelphase_json: Dictionary = JSONReader.new().load_json_file("res://JSON/WheelPhases.json")
+	var wheelphase_json: Dictionary = JSONReader.new().loadJSONFile("res://JSON/WheelPhases.json")
 	# (!) Hard-coded minimum and maximum for the range to match your previous code.
 	var wheelphaseRange: Array = range(1, 12) # Note: range takes steps and stops before the second arg; first arg is inclusive, second arg is exclusive.
 	if GVars.spinData.wheelphase in wheelphaseRange:

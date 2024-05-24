@@ -120,6 +120,10 @@ var convoStart = false
 var pos = 0
 
 
+#@ Private Variable
+var dialogueHandler : DialogueHandler = DialogueHandler.new()
+
+
 #@ Onready Variables
 @onready var inspectButton : Button = $InspectButton
 @onready var augmentButton : Button = $AugmentButton
@@ -233,6 +237,9 @@ func _ready():
 	next.pressed.connect(self.nextLine)
 	selectionMenu.hide()
 #	updateDisplays()
+	
+	dialogueHandler.dialogueFilePath = "res://JSON/Dialogue/Packsmith/PacksmithInspect.json"
+	print("dialogueHandler.getDialogueData(\"packsmith\") = ", dialogueHandler.getDialogueData("packsmith"))
 
 
 func _process(delta: float) -> void:
@@ -262,7 +269,7 @@ func nextLin(m):
 
 func nextLine():
 	GVars._dialouge(text,0,0.04)
-	if endofline[pos]:
+	if endofline[pos]: # L.B: This lets dialogue know when to stop.
 		pos = 0
 		text.text = ""
 		packback.frame = 2

@@ -1,0 +1,109 @@
+{
+	"packsmith": [
+		{
+			"TEXT": "That's my sigil.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "All sigils are kind of like...\npermissions of sorts.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "All this one does is let you\ntalk to me.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "...Stop looking disappointed\nit's a high honor!",
+			"FACE": "TALKING"
+		}
+	],
+	"candle": [
+		{
+			"TEXT": "A lovely candle.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "It's sufficient to light any\nspace.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "You'll likely be able to see\nthings back home you \ncouldn't before",
+			"FACE": "NORMAL"
+		}
+	],
+	"ascension": [
+		{
+			"TEXT": "Looks like a portal or\nsomething.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "Not sure exactly what it does\nbut.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "It's attached itself to your\nwheel",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Clicking on the wheel should\ntell you more.",
+			"FACE": "NORMAL"
+		}
+	],
+	"emptiness": [
+		{
+			"TEXT": "A vague memory of a face.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "It's honestly kind of creepy\nthat you have this.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "Wearing this will amplify an\nemotion of your choice\nto a considerable degree.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "To the point where it persists\nafter death.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "...You'd have to wear it\nthough.\nEw.",
+			"FACE": "CONCERN"
+		}
+	],
+	"ritual": [
+		{
+			"TEXT": "A relic from hell, the\nritual.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "It represents a deal with\nthe devil, though the\ndevil happens to be dead.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "So it's peculiar that this\nis working at all.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Maybe a new one spawned in.",
+			"FACE": "NORMAL"
+		}
+	],
+	"hell": [
+		{
+			"TEXT": "Oh hey, it's the sigil of a\nblue baby.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Those things are the\nservants of Divine.",
+			"FACE": "NORMAL"},
+		{
+			"TEXT": "You could probably use this\nto get into heaven!",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "...actually there's no perm\nfor that in here.\nGuess it's useless then.",
+			"FACE": "NORMAL"
+		}
+	]
+}

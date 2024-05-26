@@ -124,12 +124,13 @@ script = ExtResource("3_it381")
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
+frame = 1
 script = ExtResource("6_2qgfk")
 packback = NodePath(".")
 sigilDisplay = NodePath("../SigilDisplay")
 next = NodePath("../NextButton")
 back = NodePath("../Back")
-text = NodePath("../Dialogue")
+text = NodePath("../DialogueText")
 menu = NodePath("../PacksmithMenu")
 
 [node name="TextBox" type="Panel" parent="."]
@@ -148,7 +149,7 @@ offset_right = 427.49
 offset_bottom = 491.9
 theme_override_styles/panel = SubResource("StyleBoxFlat_vfcd8")
 
-[node name="Dialogue" type="Label" parent="."]
+[node name="DialogueText" type="Label" parent="."]
 layout_mode = 0
 offset_left = 103.0
 offset_top = 71.0
@@ -177,11 +178,10 @@ position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("11_bvjjd")
 
-[node name="PacksmithMenu" type="Control" parent="." node_paths=PackedStringArray("text", "next", "packback")]
+[node name="PacksmithMenu" type="Control" parent="." node_paths=PackedStringArray("dialogueText", "packback")]
 anchors_preset = 0
 script = ExtResource("12_wd63o")
-text = NodePath("../Dialogue")
-next = NodePath("NextButton")
+dialogueText = NodePath("../DialogueText")
 packback = NodePath("../PacksmithBackground")
 
 [node name="InspectButton" type="Button" parent="PacksmithMenu"]
@@ -216,8 +216,6 @@ offset_right = 500.0
 offset_bottom = 300.0
 text = "Automate"
 
-[node name="SelectionMenu" parent="PacksmithMenu" instance=ExtResource("13_2lk1p")]
-
 [node name="NextButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
 offset_left = 390.0
@@ -226,6 +224,8 @@ offset_right = 490.0
 offset_bottom = 519.0
 theme_override_font_sizes/font_size = 15
 text = "Next"
+
+[node name="SelectionMenu" parent="PacksmithMenu" instance=ExtResource("13_2lk1p")]
 
 [node name="UpgradeMenu" parent="PacksmithMenu" instance=ExtResource("14_is4hy")]
 

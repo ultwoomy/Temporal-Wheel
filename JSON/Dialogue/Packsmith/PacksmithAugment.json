@@ -1,0 +1,146 @@
+{
+	"packsmith": [
+		{
+			"TEXT": "Now it's a rust magnet.", 
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "You should get more rust\nfrom that wheel now.",
+			"FACE": "NORMAL"
+		}
+	],
+	"candle": [
+		{
+			"TEXT": "I've increased the strength\n of the light.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "The warm glow should make\nshrooms grow twice as\nfast.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Which makes no sense since\nthey like dim lighting.",
+			"FACE": "TALKING"
+		}
+	],
+	"ascension": [
+		{
+			"TEXT": "I don't think I know enough\nto touch this.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Lemme just uh.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Oops.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "It seems to be sucking in\nmomentum at an increased\nrate.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "I barely touched it I swear.",
+			"FACE": "NORMAL"
+		}
+	],
+	"emptiness": [
+		{
+			"TEXT": "I'm not entirely sure what\nyou want me to do with this.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "You're going to wear that?\nReally?.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "...",
+			"FACE": "CONCERN"
+		},
+		{
+			"TEXT": "It uh, looks good on you\nI think?",
+			"FACE": "NORMAL"
+		}
+	],
+	"ritual": [
+		{
+			"TEXT": "This one's easy, I can just\nreplace one of these\ncandles with one of mine.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "Now the first candle you\nLight is free.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "I'm not giving you any more.",
+			"FACE": "CONCERN"
+		}
+	],
+	"hell": [
+		{
+			"TEXT": "There's a powerful contract\netched into this sigil.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "I can start this contract\nfor you, but be warned.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "It will invert the effect\nof your current emotion\nturning it into a debuff.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "What exactly that is...\nEh, you'll find out.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "This will persist until\nyou regain this sigil\nand augment it again.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "If you don't want to\ndo this yet, it's ok\nto just leave.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Alright, good luck.",
+			"FACE": "PEEK"
+		}
+	],
+	"unknown1": [
+		{
+			"TEXT": "There's a powerful contract\netched into this sigil.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "I can start this contract\nfor you, but...",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "You've already finished it\nsomehow. Huh.",
+			"FACE": "EYEBROW"
+		},
+		{
+			"TEXT": "Well good for you, you've\nbeen updated.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Go ahead and try entering\nhell now.",
+			"FACE": "PEEK"
+		}
+	],
+	"unknown2": [
+		{
+			"TEXT": "I can draw out the power\nof the blue babies and\nmake you immortal!!",
+			"FACE": "TALKING"
+		},
+		{
+			"TEXT": "It's not implemented yet so\nI don't have to explain\nshit.",
+			"FACE": "ANGRY"
+		}
+	]
+}

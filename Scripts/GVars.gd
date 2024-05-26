@@ -113,6 +113,7 @@ func getScientific(val):
 		return snapped(val,0.01)
 
 
+# TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
 func _dialouge(lbl,charat,time):
 	if(is_instance_valid(lbl)):
 		chars = charat

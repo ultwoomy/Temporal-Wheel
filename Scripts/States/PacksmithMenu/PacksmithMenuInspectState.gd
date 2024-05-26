@@ -40,22 +40,27 @@ func _onButtonPressed(button: Button) -> void:
 
 
 func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
-	# Create a new TalkState state to have values passed to it.
-	var new_state: TalkState = TalkState.new(packsmithMenu)
+	# Change _dialogueHandler to have dialogue be about augmenting sigils.
+	packsmithMenu._dialogueHandler.dialogueFilePath = "res://JSON/Dialogue/Packsmith/PacksmithInspect.json"
 	
+	# Ask for a particular topic from _dialogueHandler that will be said.
+	var dialogue : Array[Dictionary]
 	match sigil:
 		SigilData.Sigils.PACKSMITH:
-			new_state.set_dialogue_line(0)
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("packsmith")
 		SigilData.Sigils.CANDLE:
-			new_state.set_dialogue_line(1)
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("candle")
 		SigilData.Sigils.ASCENSION:
-			new_state.set_dialogue_line(2)
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ascension")
 		SigilData.Sigils.EMPTINESS:
-			new_state.set_dialogue_line(3)
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("emptiness")
 		SigilData.Sigils.RITUAL:
-			new_state.set_dialogue_line(4)
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ritual")
 		SigilData.Sigils.HELL:
-			new_state.set_dialogue_line(5)
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
+	
+	# Get a new TalkState using the correct dialogue.
+	var newState : TalkState = TalkState.new(packsmithMenu, dialogue) 
 	
 	# Then change state to the new_state with the variables intact.
-	packsmithMenu.changeState(new_state)
+	packsmithMenu.changeState(newState)

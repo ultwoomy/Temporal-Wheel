@@ -14,7 +14,6 @@ var _dialogueJSON : Dictionary
 
 
 #@ Public Methods
-
 # L.B: Dialogue JSONs should have a KEY with its VALUE assigned to an array of dictionaries.
 # I am thus classifying this as "DialogueData", which this method is getting.
 # 	- KEY: topic of conversation; name of the dialogue, need to know it to access the dialogue lines.
@@ -44,6 +43,20 @@ func getDialogueData(key: String) -> Array[Dictionary]:
 		return []
 
 
+func getTextFromDialogue(dialogue: Dictionary) -> String:
+	if "TEXT" in dialogue:
+		return dialogue["TEXT"]
+	else:
+		printerr("ERROR: Provided dictionary does not have a key for text! Unable to get dialogue text.")
+		return ""
+
+
+func getFaceFromDialogue(dialogue: Dictionary) -> String:
+	if "FACE" in dialogue:
+		return dialogue["FACE"]
+	else:
+		printerr("ERROR: Provided dictionary does not have a key for face! Unable to get dialogue face.")
+		return ""
 
 
 #@ Private Methods

@@ -51,16 +51,22 @@ func normalBoot():
 
 
 func _on_dump_pressed():
-	GVars.atlasData.dumpRustProg += GVars.rustData.rust
-	GVars.rustData.rust = 0
+	if(GVars.atlasData.dumpRustMilestone <= 5):
+		GVars.atlasData.dumpRustProg += GVars.rustData.rust
+		GVars.rustData.rust = 0
 	if(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
 		GVars.atlasData.dumpRustProg -= GVars.atlasData.dumpRustThresh
-		GVars.atlasData.dumpRustThresh *= GVars.atlasData.dumpRustScaling
-		GVars.atlasData.dumpRustMilestone += 1
+		if GVars.atlasData.dumpRustMilestone < 10:
+			GVars.atlasData.dumpRustThresh *= GVars.atlasData.dumpRustScaling
+			GVars.atlasData.dumpRustMilestone += 1
+		else:
+			GVars.atlasData.dumpRustThresh *= GVars.atlasData.dumpRustScaling * 3
+			GVars.atlasData.dumpRustMilestone += 1
 		if GVars.atlasData.dumpRustMilestone == 1:
 			GVars._dialouge(text,0,0.01)
 			text.text = "To our happy feeding\n       I grant you\n Greater rust power."
 			frame = 1
+			reset.show()
 		elif GVars.atlasData.dumpRustMilestone == 2:
 			GVars._dialouge(text,0,0.01)
 			text.text = "By spin\n   Your rust grows\n    I will grow your spin for you."
@@ -87,7 +93,9 @@ func updatePanel():
 		panel.get_child(0).text += "\n\nYou gain " + str(GVars.atlasData.dumpRustMilestone/4 + 1) + " free density"
 	if(GVars.atlasData.dumpRustMilestone > 3):
 		panel.get_child(0).text += "\n\nYou gain a " + str(GVars.atlasData.dumpRustMilestone + 1) + " rust multiplier when the current emotion is wrath"
-	if(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
+	if(GVars.atlasData.dumpRustMilestone >= 5):
+		dump.text = "You've reached the softcap for this update."
+	elif(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
 		dump.text = "Press me for the\nnext milestone"
 	else:
 		dump.text = "Dump rust\nValue to next milestone: " + str(GVars.getScientific(GVars.atlasData.dumpRustThresh - GVars.atlasData.dumpRustProg))

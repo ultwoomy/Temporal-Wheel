@@ -19,7 +19,9 @@ class_name RustData
 @export var threshProgress : float
 @export var threshMult : float
 
-
+func _init():
+	resetData()
+	
 func resetData() -> void:
 	rust = 0
 	increaseSpin = 1

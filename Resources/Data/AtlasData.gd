@@ -8,9 +8,12 @@ class_name AtlasData
 @export var hasReset : bool
 #shrugged = hell naw, terrible book
 
+func _init():
+	resetData()
+	
 func resetData() -> void:
 	dumpRustProg = 0
-	dumpRustThresh = 1000
+	dumpRustThresh = 200
 	#multiplicative scaling
 	dumpRustScaling = 5
 	dumpRustMilestone = 0

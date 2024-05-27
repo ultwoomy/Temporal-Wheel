@@ -87,9 +87,8 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 9
+	versNo = 10
 	ratmail = 0
-
 
 func save_stats(data):
 	ResourceSaver.save(data,save_path)

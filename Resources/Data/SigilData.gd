@@ -8,7 +8,9 @@ class_name SigilData
 @export var numberOfSigils : Array[bool]
 @export var curSigilBuff : int
 
-
+func _init():
+	resetData()
+	
 func resetData() -> void:
 	costSpin = 300
 	costRot = 10

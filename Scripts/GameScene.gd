@@ -37,6 +37,12 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
+	var temp = calcClick()
+	if(GVars.ritualData.candlesLit[5]):
+		GVars.kbityData.kbityAddSpin += temp
+	GVars.spinData.spin += temp
+
+func calcClick() -> float:
 	var temp
 	var densityPower = GVars.spinData.density
 	if(GVars.atlasData.dumpRustMilestone > 1):
@@ -47,9 +53,7 @@ func on_wheel_spun() -> void:
 		temp = pow(GVars.spinData.size,GVars.spinData.density + 1) * GVars.spinData.spinPerClick * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 	else:
 		temp = GVars.spinData.spinPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
-	if(GVars.ritualData.candlesLit[5]):
-		GVars.kbityData.kbityAddSpin += temp
-	GVars.spinData.spin += temp
+	return temp
 
 
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.

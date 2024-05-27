@@ -25,6 +25,8 @@ class_name DollarData
 @export var insuranceAmtSpinUp : float
 @export var insuranceAmtRotUp : float
 
+func _init():
+	resetData()
 
 func resetData() -> void:
 	dollarSpinCost = 10000

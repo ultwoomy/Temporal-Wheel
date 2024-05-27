@@ -89,6 +89,7 @@ func _process(_delta):
 			GVars.rustData.thresh *= GVars.rustData.threshMult
 			var rus = RUST_PART.instantiate()
 			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
+			print(str(GVars.rustData.perThresh * emoBuff * fourthRustBuff))
 			self.add_child(rus)	
 	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 
@@ -97,6 +98,9 @@ func calculateOneRot():
 	if(GVars.spinData.spin > 0):
 		if(GVars.hellChallengeNerf == 1):
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
+		elif(GVars.hellChallengeLayer2 == 0):
+			if(GVars.spinData.rotations > 100):
+				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff / (GVars.rotations/100 + 1)
 		else:
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		if(GVars.ritualData.candlesLit[0]):

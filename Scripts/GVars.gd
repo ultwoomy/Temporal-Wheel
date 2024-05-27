@@ -139,7 +139,7 @@ func resetPermStats():
 	altsigiltwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 9
+	versNo = 10
 	ratmail = 0
 	
 func getScientific(val):
@@ -160,111 +160,17 @@ func _dialouge(lbl,charat,time):
 func load_as_normal():
 	loader = loader.load_stats()
 	versNo = loader.versNo
-	if(versNo == 0):
-		iffirsthell = true
-		versNo = versNo + 1
-		soulsData = SoulsData.new()
-		soulsData.resetData()
-		hellChallengeLayer2 = -1
-	if(versNo <= 1):
-		soulsData = SoulsData.new()
-		soulsData.resetData()
-		iffirsthell = loader.iffirsthell
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		versNo = versNo + 1
-	if(versNo <= 2):
-		hellChallengeInit = false
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		versNo = versNo + 1
-	if(versNo <= 3):
-		ratmail = 0
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		versNo = versNo + 1
-	if(versNo <= 4):
-		dollarData = DollarData.new()
-		dollarData.resetData()
-		versNo = versNo + 1
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		ratmail = loader.ratmail
-	if(versNo <= 5):
-		iffirstatlas = true
-		atlasData = AtlasData.new()
-		atlasData.resetData()
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		ratmail = loader.ratmail
-		dollarData = loader.dollarData
-		versNo = versNo + 1
-	if(versNo <= 6):
-		altsigilsand = false
-		altsigilcity = false
-		altsigilnight = false
-		altsigiltwins = false
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		ratmail = loader.ratmail
-		dollarData = loader.dollarData
-		iffirstatlas = loader.iffirstatlas
-		atlasData = loader.atlasData
-		versNo = versNo + 1
-	if(versNo <= 7):
-		kbityData = KbityData.new()
-		kbityData.resetData()
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		ratmail = loader.ratmail
-		dollarData = loader.dollarData
-		iffirstatlas = loader.iffirstatlas
-		atlasData = loader.atlasData
-		altsigilsand = loader.altsigilsand
-		altsigilcity = loader.altsigilcity
-		altsigilnight = loader.altsigilnight
-		altsigiltwins = loader.altsigiltwins
-		versNo = versNo + 1
 	if(versNo <= 8):
-		atlasData = AtlasData.new()
-		atlasData.resetData()
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		ratmail = loader.ratmail
-		dollarData = loader.dollarData
-		iffirstatlas = loader.iffirstatlas
-		altsigilsand = loader.altsigilsand
-		altsigilcity = loader.altsigilcity
-		altsigilnight = loader.altsigilnight
-		altsigiltwins = loader.altsigiltwins
-		kbityData = loader.kbityData
-		versNo = versNo + 1
-	else:
-		iffirsthell = loader.iffirsthell
-		soulsData = loader.soulsData
-		hellChallengeLayer2 = loader.hellChallengeLayer2
-		hellChallengeInit = loader.hellChallengeInit
-		ratmail = loader.ratmail
-		dollarData = loader.dollarData
-		iffirstatlas = loader.iffirstatlas
-		atlasData = loader.atlasData
-		altsigilsand = loader.altsigilsand
-		altsigilcity = loader.altsigilcity
-		altsigilnight = loader.altsigilnight
-		altsigiltwins = loader.altsigiltwins
-		kbityData = loader.kbityData
+		create_data() # L.B: Needed for reset.
+		resetR0Stats()
+		resetR1Stats()
+		resetPermStats()
+		save_prog()
+		return
+	if(versNo <= 9):
+		loader.atlasData.resetData()
+		versNo += 1
+	versNo = loader.versNo
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -282,6 +188,19 @@ func load_as_normal():
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol
+	iffirsthell = loader.iffirsthell
+	soulsData = loader.soulsData
+	hellChallengeLayer2 = loader.hellChallengeLayer2
+	hellChallengeInit = loader.hellChallengeInit
+	ratmail = loader.ratmail
+	dollarData = loader.dollarData
+	iffirstatlas = loader.iffirstatlas
+	altsigilsand = loader.altsigilsand
+	altsigilcity = loader.altsigilcity
+	altsigilnight = loader.altsigilnight
+	altsigiltwins = loader.altsigiltwins
+	kbityData = loader.kbityData
+	atlasData = loader.atlasData
 
 func unlock_all_sigils():
 	for n in GVars.sigilData.numberOfSigils.size():

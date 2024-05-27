@@ -25,6 +25,9 @@ class_name SoulsData
 @export var doubleShroomChanceScaling : float
 @export var doubleShroomChanceEnabled : bool
 
+func _init():
+	resetData()
+	
 func resetData() -> void:
 	souls = 0
 	voidRust = 0

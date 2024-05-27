@@ -13,7 +13,9 @@ class_name KbityData
 #represents multiplicative scaling
 @export var kbityRotBuff : float
 
-
+func _init():
+	resetData()
+	
 func resetData() -> void:
 	kbityProgSpin = 0
 	kbityProgRot = 0

@@ -11,7 +11,9 @@ class_name MushroomData
 @export var spinBuff : float
 @export var ascBuff : float
 
-
+func _init():
+	resetData()
+	
 func resetData() -> void:
 	level = 1
 	xp = 0

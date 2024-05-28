@@ -19,20 +19,7 @@ class_name UpgradeMenu
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	rustDisplay.position = Vector2(-190,0)
 	rustDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
-	
-#	upgradeButton1.size = Vector2(350,150)
-#	upgradeButton1.position = Vector2(15,-50)
-#	upgradeButton2.size = Vector2(350,150)
-#	upgradeButton2.position = Vector2(-50,-50)
-#	upgradeButton3.size = Vector2(350,150)
-#	upgradeButton3.position = Vector2(-50,35)
-#	upgradeButton4.size = Vector2(350,150)
-#	upgradeButton4.position = Vector2(15,35)
-	upgradeText1.text = "Increase Spin Per Click"
-	upgradeText2.text = "Increase Hunger Per Tick"
-	upgradeText3.text = "Increase Rust Per Drop"
 	
 	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
 		upgradeButton4.hide()

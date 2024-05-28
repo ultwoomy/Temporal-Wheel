@@ -1,0 +1,49 @@
+{
+	"introduction": [
+		{
+			"TEXT": "Huh. Where'd you even get \nthat hammer sigil?",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Forget it. Since you have my \nsigil I guess I'll offer my \nservices.",
+			"FACE": "NORMAL",
+			"BUTTON_TEXT": "What\nservices?"
+		},
+		{
+			"TEXT": "Blacksmithing. I specialize in \nsigils though. I'll be able\ngive you a little backButtonground\non them.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "I know a bit of strengthening\ntoo, so I can give you buffs\nto your production.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Lastly, rust is a currency.\nEven though I live in a place\nsurrounded by rust, I can't\nleave this room.",
+			"FACE": "TALKING"
+		},
+		{
+			"TEXT": "The irony is cruel.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Bring me some and I'll buff\nsome more things.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "You can just grab some from\nthe ground outside and-",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Unless you don't uh have\narms.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "In any case some will get\nshaken off the wheel\nas it spins.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "It will happen less often\nas time goes on though.\nBe warned.",
+			"FACE": "NORMAL"
+		}
+	]
+}

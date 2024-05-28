@@ -74,6 +74,7 @@ layout_mode = 0
 offset_top = 127.0
 offset_right = 120.0
 offset_bottom = 187.0
+text = "Increase Spin Per Click"
 
 [node name="Up2Button" type="Button" parent="."]
 layout_mode = 0
@@ -89,6 +90,7 @@ layout_mode = 0
 offset_top = 127.0
 offset_right = 120.0
 offset_bottom = 187.0
+text = "Increase Hunger Per Tick"
 
 [node name="Up3Button" type="Button" parent="."]
 layout_mode = 0
@@ -104,6 +106,7 @@ layout_mode = 0
 offset_top = -67.0
 offset_right = 120.0
 offset_bottom = -7.0
+text = "Increase Rust Per Drop"
 
 [node name="Up4Button" type="Button" parent="."]
 layout_mode = 0

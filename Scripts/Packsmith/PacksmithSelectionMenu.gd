@@ -26,12 +26,13 @@ signal sigil_button_pressed(sigil: SigilData.Sigils)
 ]
 
 
-## Functions
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_up_sigils()
 
 
+#@ Public Methods
 func set_up_sigils() -> void:
 	for sigil in sigils:
 		if sigil:
@@ -45,23 +46,23 @@ func set_up_sigils() -> void:
 # Display the correct sigils based on 
 func display_sigils() -> void:
 	# Copied and pasted code w/ modifications to get the same declared variable.
-	if(GVars.sigilData.numberOfSigils[1]):
+	if GVars.sigilData.numberOfSigils[1]:
 		candleSigil.show()
 	else:
 		candleSigil.hide()
-	if(GVars.sigilData.numberOfSigils[2]):
+	if GVars.sigilData.numberOfSigils[2]:
 		ascensionSigil.show()
 	else:
 		ascensionSigil.hide()
-	if(GVars.sigilData.numberOfSigils[3]):
+	if GVars.sigilData.numberOfSigils[3]:
 		emptinessSigil.show()
 	else:
 		emptinessSigil.hide()
-	if(GVars.sigilData.numberOfSigils[4]):
+	if GVars.sigilData.numberOfSigils[4]:
 		ritualSigil.show()
 	else:
 		ritualSigil.hide()
-	if(GVars.sigilData.numberOfSigils[5]):
+	if GVars.sigilData.numberOfSigils[5]:
 		hellSigil.show()
 	else:
 		hellSigil.hide()

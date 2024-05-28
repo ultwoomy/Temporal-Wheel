@@ -1,11 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=30 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
-[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_it381"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/PacksmithGameScene.gd" id="3_1dtdh"]
 [ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="4_fgp7f"]
 [ext_resource type="Texture2D" uid="uid://bm6i3qh08rmsl" path="res://Sprites/RustSpace/pack_concern.png" id="5_v31bx"]
-[ext_resource type="Script" path="res://Scripts/RustSpace/PackSmithControl.gd" id="6_2qgfk"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="7_eqmr3"]
 [ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="8_gghju"]
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="9_i3m1l"]
@@ -118,22 +117,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_5gkbs")
-script = ExtResource("3_it381")
+script = ExtResource("3_1dtdh")
 
-[node name="PacksmithBackground" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("packback", "sigilDisplay", "next", "back", "text", "menu")]
+[node name="PacksmithBackground" type="AnimatedSprite2D" parent="."]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
 frame = 1
-script = ExtResource("6_2qgfk")
-packback = NodePath(".")
-sigilDisplay = NodePath("../SigilDisplay")
-next = NodePath("../NextButton")
-back = NodePath("../Back")
-text = NodePath("../DialogueText")
-menu = NodePath("../PacksmithMenu")
 
-[node name="TextBox" type="Panel" parent="."]
+[node name="TextBoxBackground" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 75.0
 offset_top = 41.0
@@ -141,7 +133,7 @@ offset_right = 525.0
 offset_bottom = 559.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ickp")
 
-[node name="Center" type="Panel" parent="TextBox"]
+[node name="CenterPiece" type="Panel" parent="TextBoxBackground"]
 layout_mode = 0
 offset_left = 22.49
 offset_top = 25.9
@@ -158,11 +150,14 @@ offset_bottom = 470.0
 
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 355.0
+offset_top = 410.0
+offset_right = 455.0
+offset_bottom = 510.0
 theme_override_font_sizes/font_size = 15
+text = "Next"
 
-[node name="Back" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 29.0
 offset_top = 395.0

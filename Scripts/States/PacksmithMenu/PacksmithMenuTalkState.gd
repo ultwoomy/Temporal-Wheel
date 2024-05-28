@@ -68,7 +68,6 @@ func _nextLine() -> void:
 func _resetChoice():
 	packsmithMenu.dialogueText.text = ""
 	packsmithMenu.packback.frame = 2
-	packsmithMenu.line = 0
 #	resetWindowVars()
 	packsmithMenu.inspectButton.show()
 	packsmithMenu.augmentButton.show()

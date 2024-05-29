@@ -106,7 +106,8 @@ func save_prog():
 	loader.versNo = versNo
 	loader.ratmail = ratmail
 	loader.save_stats(loader)
-	
+
+
 func resetR0Stats():
 	spinData.resetData()
 	rustData.resetData()
@@ -152,7 +153,9 @@ func getScientific(val):
 		return fmat.scientific(val,2)
 	else :
 		return snapped(val,0.01)
-	
+
+
+# TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
 func _dialouge(lbl,charat,time):
 	if(is_instance_valid(lbl)):
 		chars = charat
@@ -161,7 +164,8 @@ func _dialouge(lbl,charat,time):
 			chars += 1
 			await get_tree().create_timer(time).timeout
 			_dialouge(lbl,chars,time)
-		
+
+
 func load_as_normal():
 	loader = loader.load_stats()
 	versNo = loader.versNo

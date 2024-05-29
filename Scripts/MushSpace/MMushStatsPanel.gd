@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 ## Components
-@export var statsDisp : Label
+@onready var statsDisp : Label = $StatsDisp
 
 
 # Called when the node enters the scene tree for the first time.

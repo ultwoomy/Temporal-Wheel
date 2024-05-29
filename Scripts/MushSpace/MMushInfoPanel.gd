@@ -3,10 +3,10 @@ class_name MMushInfoPanel
 
 
 ## Components
-@export var currentMush : AnimatedSprite2D
-@export var desc : Label
-@export var left : Button
-@export var right : Button
+@onready var currentMush : AnimatedSprite2D = $CurrentMush
+@onready var desc : Label = $MushDescription
+@onready var left : Button = $LeftArrow
+@onready var right : Button = $RightArrow
 
 
 ## Variables

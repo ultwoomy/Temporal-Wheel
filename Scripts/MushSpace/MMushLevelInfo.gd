@@ -2,8 +2,8 @@ extends Control
 
 
 ## Components
-@export var xpBarProgress : Sprite2D  # L.B: I don't know whether this should be XpBar or XpBarProgress.
-@export var leveldisp : Label
+@onready var xpBarProgress : Sprite2D = $XpBarProgress
+@onready var leveldisp : Label = $CurrentLevel
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,14 +1,14 @@
 extends Node
 
 ## Components
-@export var plot1 : AnimatedSprite2D
-@export var plot2 : AnimatedSprite2D
-@export var plot3 : AnimatedSprite2D
-@export var plot4 : AnimatedSprite2D
-@export var disp1 : Label
-@export var disp2 : Label
-@export var disp3 : Label
-@export var disp4 : Label
+@onready var plot1 : AnimatedSprite2D = $Plot1/MushroomSprite1
+@onready var plot2 : AnimatedSprite2D = $Plot2/MushroomSprite2
+@onready var plot3 : AnimatedSprite2D = $Plot3/MushroomSprite3
+@onready var plot4 : AnimatedSprite2D = $Plot4/MushroomSprite4
+@onready var disp1 : Label = $Plot1/TimeLeftDisp1
+@onready var disp2 : Label = $Plot2/TimeLeftDisp2
+@onready var disp3 : Label = $Plot3/TimeLeftDisp3
+@onready var disp4 : Label = $Plot4/TimeLeftDisp4
 
 
 ## Functions

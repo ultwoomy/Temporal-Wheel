@@ -1,4 +1,6 @@
 extends Container
+
+
 @export var text : Label
 @export var button : Button
 @export var sigilbut : Button
@@ -10,6 +12,8 @@ extends Container
 signal kbity_up
 var layersin = 0
 var line = 0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sigilshop.hide()
@@ -54,6 +58,7 @@ func _go_back():
 		event_manager.emit_signal("scene_change",true)
 		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
+
 func _button_pressed():
 	GVars._dialouge(text,0,0.03)
 	#too short for me to make it an array or anything better than a series of if statements tbh
@@ -94,7 +99,8 @@ func _button_pressed():
 		GVars.iffirstvoid = false
 		get_tree().paused = false
 	line += 1
-	
+
+
 func opensigilshop():
 	busstop.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
 	busstop.scale = Vector2(5,5)

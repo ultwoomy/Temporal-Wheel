@@ -37,12 +37,11 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("2_6e33v")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
-[node name="StatsPanel" type="Sprite2D" node_paths=PackedStringArray("statsDisp")]
+[node name="StatsPanel" type="Sprite2D"]
 self_modulate = Color(0.368627, 0.0941176, 0.0352941, 0.67451)
 scale = Vector2(2, 2.4)
 texture = ExtResource("1_qehra")
 script = ExtResource("2_wndg1")
-statsDisp = NodePath("StatsDisp")
 
 [node name="StatsDisp" type="Label" parent="."]
 offset_left = -48.0

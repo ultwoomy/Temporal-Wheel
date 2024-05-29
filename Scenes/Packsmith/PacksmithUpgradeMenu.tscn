@@ -1,0 +1,124 @@
+[gd_scene load_steps=9 format=3 uid="uid://b7kfqqace81yq"]
+
+[ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithUpgradeMenu.gd" id="1_4om2l"]
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="2_hsvaj"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="3_mmwm4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g2dns"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_5gkbs"]
+default_font = ExtResource("3_mmwm4")
+default_font_size = 25
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("2_hsvaj")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[node name="UpgradeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4om2l")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 108.0
+offset_right = 944.0
+offset_bottom = 508.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_g2dns")
+
+[node name="RustDisplay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 692.0
+offset_top = 135.0
+offset_right = 726.0
+offset_bottom = 166.0
+horizontal_alignment = 1
+
+[node name="Up1Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 128.0
+offset_right = 876.0
+offset_bottom = 248.0
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up1Label" type="Label" parent="Up1Button"]
+layout_mode = 0
+offset_top = 127.0
+offset_right = 120.0
+offset_bottom = 187.0
+text = "Increase Spin Per Click"
+
+[node name="Up2Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 554.0
+offset_top = 128.0
+offset_right = 674.0
+offset_bottom = 248.0
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up2Label" type="Label" parent="Up2Button"]
+layout_mode = 0
+offset_top = 127.0
+offset_right = 120.0
+offset_bottom = 187.0
+text = "Increase Hunger Per Tick"
+
+[node name="Up3Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 554.0
+offset_top = 379.0
+offset_right = 674.0
+offset_bottom = 499.0
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up3Label" type="Label" parent="Up3Button"]
+layout_mode = 0
+offset_top = -67.0
+offset_right = 120.0
+offset_bottom = -7.0
+text = "Increase Rust Per Drop"
+
+[node name="Up4Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 379.0
+offset_right = 876.0
+offset_bottom = 499.0
+theme = SubResource("Theme_5gkbs")
+theme_override_font_sizes/font_size = 25
+
+[node name="Up4Label" type="Label" parent="Up4Button"]
+layout_mode = 0
+offset_top = -67.0
+offset_right = 120.0
+offset_bottom = -7.0

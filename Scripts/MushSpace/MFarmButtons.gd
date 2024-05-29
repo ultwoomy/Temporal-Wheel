@@ -1,9 +1,9 @@
 extends Node
 
 ## Components
-@export var plant : Button
-@export var harvest : Button
-@export var remove : Button
+@onready var plant : Button = $PlantButton
+@onready var harvest : Button = $HarvestButton
+@onready var remove : Button = $DeleteButton
 
 var currentFrame : int
 

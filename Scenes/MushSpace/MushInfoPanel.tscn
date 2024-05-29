@@ -49,12 +49,40 @@ texture = ExtResource("8_bttiw")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ju6m2"]
 texture = ExtResource("9_y16vs")
 
-[node name="MushInfoPanel" type="Node" node_paths=PackedStringArray("currentMush", "desc", "left", "right")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_qbri3"]
+default_font = ExtResource("11_krj8t")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("10_e2ajo")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[node name="MushInfoPanel" type="Node"]
 script = ExtResource("1_6hwsa")
-currentMush = NodePath("CurrentMush")
-desc = NodePath("MushDescription")
-left = NodePath("LeftArrow")
-right = NodePath("RightArrow")
 
 [node name="PanelBackground" type="Sprite2D" parent="."]
 self_modulate = Color(0.509804, 0.34902, 0.168627, 1)

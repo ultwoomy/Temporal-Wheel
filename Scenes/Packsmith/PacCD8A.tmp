@@ -1,0 +1,199 @@
+[gd_scene load_steps=29 format=3 uid="uid://bxl1u18lcp2y8"]
+
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_it381"]
+[ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="4_fgp7f"]
+[ext_resource type="Texture2D" uid="uid://bm6i3qh08rmsl" path="res://Sprites/RustSpace/pack_concern.png" id="5_v31bx"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/PackSmithControl.gd" id="6_2qgfk"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="7_eqmr3"]
+[ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="8_gghju"]
+[ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="9_i3m1l"]
+[ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="10_sia5t"]
+[ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/PickOne.gd" id="12_6ckpj"]
+[ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
+[ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_5gkbs"]
+default_font = ExtResource("2_48aai")
+default_font_size = 25
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_xywfy")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyque"]
+atlas = ExtResource("4_fgp7f")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vedsf"]
+atlas = ExtResource("4_fgp7f")
+region = Rect2(500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xptxp"]
+atlas = ExtResource("4_fgp7f")
+region = Rect2(1000, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd87e"]
+atlas = ExtResource("4_fgp7f")
+region = Rect2(1500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khtqg"]
+atlas = ExtResource("4_fgp7f")
+region = Rect2(2000, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fvof8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyque")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vedsf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xptxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd87e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khtqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v31bx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gecd"]
+texture = ExtResource("8_gghju")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73tow"]
+texture = ExtResource("9_i3m1l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vq5mo"]
+texture = ExtResource("10_sia5t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3y61m"]
+
+[node name="Packsmith" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5gkbs")
+script = ExtResource("3_it381")
+
+[node name="PacksmithBack" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("packback", "sigilDisplay", "next", "back", "text", "menu")]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fvof8")
+script = ExtResource("6_2qgfk")
+packback = NodePath(".")
+sigilDisplay = NodePath("../SigilDisplay")
+next = NodePath("../NextButton")
+back = NodePath("../Back")
+text = NodePath("../Dia")
+menu = NodePath("../PacksmithMenu")
+
+[node name="TextBoxSprite" type="Sprite2D" parent="."]
+modulate = Color(0.505882, 0.0470588, 0, 1)
+position = Vector2(300, 300)
+scale = Vector2(4.5, 5.18)
+texture = ExtResource("7_eqmr3")
+
+[node name="TextBoxCenterSprite" type="Sprite2D" parent="TextBoxSprite"]
+modulate = Color(0.137255, 0, 0, 1)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("7_eqmr3")
+
+[node name="Dia" type="Label" parent="."]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 71.0
+offset_right = 506.0
+offset_bottom = 470.0
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 15
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 395.0
+offset_right = 279.0
+offset_bottom = 545.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_8gecd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_73tow")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vq5mo")
+theme_override_styles/focus = SubResource("StyleBoxTexture_3y61m")
+
+[node name="SigilDisplay" type="AnimatedSprite2D" parent="."]
+position = Vector2(651, 482)
+scale = Vector2(0.2, 0.2)
+sprite_frames = ExtResource("11_bvjjd")
+
+[node name="PacksmithMenu" type="Container" parent="."]
+layout_mode = 0
+script = ExtResource("12_6ckpj")
+
+[node name="Inspect" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
+
+[node name="Augment" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
+
+[node name="Upgrade" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
+
+[node name="Automate" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
+
+[node name="SelectionMenu" parent="PacksmithMenu" instance=ExtResource("13_2lk1p")]
+layout_mode = 2
+
+[node name="NextButton" type="Button" parent="PacksmithMenu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+
+[node name="UpgradeMenu" parent="PacksmithMenu" instance=ExtResource("14_is4hy")]
+layout_mode = 2
+
+[node name="AutomationMenu" type="Sprite2D" parent="PacksmithMenu"]
+self_modulate = Color(0.0941176, 0.0117647, 0, 1)
+position = Vector2(744, 308)
+scale = Vector2(4, 4)
+texture = ExtResource("7_eqmr3")

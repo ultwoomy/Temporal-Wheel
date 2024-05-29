@@ -66,7 +66,7 @@ func updateDisplays():
 		upgradeText2.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
 		upgradeText3.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 		upgradeText4.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-	rustDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
+	rustDisplay.text = "Rust\n" + str(GVars.getScientific(GVars.rustData.rust))
 
 
 #@ Private Methods

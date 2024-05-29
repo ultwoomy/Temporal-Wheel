@@ -4,8 +4,8 @@ class_name PacksmithGameScene
 
 #@ Enumerators
 enum Emotes {  # L.B: Have this enumerator be in the sprite for Packsmith. Please just create a sprite for Packsmith w/o the background.
-	UNKNOWN1,
-	UNKNOWN2,
+	HIDDEN,
+	HIDDENEYEBROW,
 	NORMAL,
 	TALKING,
 	EYEBROW,

@@ -1,6 +1,6 @@
 [gd_scene load_steps=53 format=3 uid="uid://buu1sadwadteo"]
 
-[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
+[ext_resource type="Theme" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_ro1bm"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpin.gd" id="3_wlyuf"]

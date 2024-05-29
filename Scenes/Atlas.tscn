@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://2yfli2s10pul"]
+[gd_scene load_steps=11 format=3 uid="uid://b30pn0fw1kiod"]
 
-[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_e34c2"]
+[ext_resource type="Theme" path="res://Scenes/GlobalTheme.theme" id="1_e34c2"]
 [ext_resource type="Texture2D" uid="uid://m1wpitcmfghy" path="res://Sprites/RustSpace/Atlas/atlas/tile000.png" id="1_og85v"]
 [ext_resource type="Texture2D" uid="uid://ce177b0bktnep" path="res://Sprites/RustSpace/Atlas/atlas/tile001.png" id="2_564tb"]
 [ext_resource type="Texture2D" uid="uid://77tehl1hugc7" path="res://Sprites/RustSpace/Atlas/atlas/tile002.png" id="3_rcpd7"]

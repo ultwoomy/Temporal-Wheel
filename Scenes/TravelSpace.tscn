@@ -1,6 +1,6 @@
 [gd_scene load_steps=38 format=3 uid="uid://cuk5evkb4ykl3"]
 
-[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_aryn6"]
+[ext_resource type="Theme" path="res://Scenes/GlobalTheme.theme" id="1_aryn6"]
 [ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceSceneManager.gd" id="3_i3hd7"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_m7pqi"]
 [ext_resource type="Texture2D" uid="uid://cjrponoa23g0e" path="res://Sprites/Spaces/Rust/rust_space.png" id="4_5gufq"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cdnwl6prbhesh"]
+[gd_scene load_steps=22 format=3 uid="uid://cyt64ilku1qh0"]
 
 [ext_resource type="Script" path="res://Scripts/MushSpace/MMushInfoPanel.gd" id="1_6hwsa"]
 [ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_x1146"]
@@ -9,7 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="7_ej7he"]
 [ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="8_bttiw"]
 [ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="9_y16vs"]
-[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="10_upobs"]
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="10_e2ajo"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="11_krj8t"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ljwbl"]
 size = Vector2(200, 200)
@@ -121,6 +122,6 @@ offset_left = 90.0
 offset_top = 350.0
 offset_right = 306.0
 offset_bottom = 440.0
-theme = ExtResource("10_upobs")
+theme = SubResource("Theme_qbri3")
 theme_override_font_sizes/font_size = 18
 text = "ihjlkjfnkjz"

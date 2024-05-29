@@ -181,34 +181,34 @@ packback = NodePath("../PacksmithBackground")
 
 [node name="InspectButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 500.0
-offset_bottom = 150.0
+offset_left = 97.0
+offset_top = 67.0
+offset_right = 503.0
+offset_bottom = 117.0
 text = "Inspect"
 
 [node name="AugmentButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 150.0
-offset_right = 500.0
-offset_bottom = 200.0
+offset_left = 97.0
+offset_top = 117.0
+offset_right = 503.0
+offset_bottom = 167.0
 text = "Augment"
 
 [node name="UpgradeButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 200.0
-offset_right = 500.0
-offset_bottom = 250.0
+offset_left = 97.0
+offset_top = 167.0
+offset_right = 503.0
+offset_bottom = 217.0
 text = "Upgrade"
 
 [node name="AutomateButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 100.0
-offset_top = 250.0
-offset_right = 500.0
-offset_bottom = 300.0
+offset_left = 97.0
+offset_top = 217.0
+offset_right = 503.0
+offset_bottom = 267.0
 text = "Automate"
 
 [node name="NextButton" type="Button" parent="PacksmithMenu"]

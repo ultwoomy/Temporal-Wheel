@@ -13,8 +13,8 @@ func _init():
 	
 func resetData() -> void:
 	dumpRustProg = 0
-	dumpRustThresh = 200
+	dumpRustThresh = 300
 	#multiplicative scaling
-	dumpRustScaling = 5
+	dumpRustScaling = 4
 	dumpRustMilestone = 0
 	hasReset = false

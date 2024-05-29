@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=53 format=3 uid="uid://buu1sadwadteo"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
@@ -36,6 +36,13 @@
 [ext_resource type="Texture2D" uid="uid://bmehjccofi42l" path="res://Sprites/WheelSpace/ratsheet/tile000.png" id="31_v1xy8"]
 [ext_resource type="Texture2D" uid="uid://c47lgwvkugbwk" path="res://Sprites/WheelSpace/ratsheet/tile002.png" id="32_dymao"]
 [ext_resource type="Texture2D" uid="uid://bcux2wxa2ourq" path="res://Sprites/WheelSpace/ratsheet/tile001.png" id="33_5bl1q"]
+[ext_resource type="Texture2D" uid="uid://r0bdyjhn2kk7" path="res://Sprites/WheelSpace/backpackButtons/backpack_closed.png" id="37_g7bip"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceBackpack.gd" id="37_qraw7"]
+[ext_resource type="Texture2D" uid="uid://cwchmr65j57xn" path="res://Sprites/WheelSpace/backpackButtons/backpack_open.png" id="38_syl40"]
+[ext_resource type="Texture2D" uid="uid://ccjdnh17knlps" path="res://Sprites/WheelSpace/ratsheet/bow.png" id="40_ahn5w"]
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="41_pjs5q"]
+[ext_resource type="Texture2D" uid="uid://cy8kyp7t10fin" path="res://Sprites/WheelSpace/backpackButtons/rotations.png" id="42_rnjrj"]
+[ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="43_xm45b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eyet1"]
 animations = [{
@@ -312,6 +319,11 @@ texture_hover = ExtResource("25_usu66")
 texture_disabled = ExtResource("25_usu66")
 texture_focused = ExtResource("25_usu66")
 
+[node name="Bow" type="TextureButton" parent="RatController"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="TravelCont" type="Container" parent="." node_paths=PackedStringArray("button")]
 layout_mode = 0
 offset_left = 50.0
@@ -344,6 +356,21 @@ texture_hover = ExtResource("27_t10mo")
 texture_disabled = ExtResource("26_vcmby")
 texture_focused = ExtResource("26_vcmby")
 script = ExtResource("28_ob0gv")
+
+[node name="Backpack" type="TextureButton" parent="." node_paths=PackedStringArray("back")]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 20.0
+offset_right = 1134.0
+offset_bottom = 319.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("37_g7bip")
+texture_pressed = ExtResource("38_syl40")
+texture_hover = ExtResource("38_syl40")
+texture_disabled = ExtResource("37_g7bip")
+texture_focused = ExtResource("38_syl40")
+script = ExtResource("37_qraw7")
+back = NodePath("../BackpackPanel")
 
 [node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
 process_mode = 3
@@ -427,6 +454,55 @@ offset = Vector2(50, 105)
 layout_mode = 2
 text = "Toggle Grow"
 
+[node name="BackpackPanel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 250.0
+offset_top = 150.0
+offset_right = 750.0
+offset_bottom = 550.0
+
+[node name="Cheese" type="TextureButton" parent="BackpackPanel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 9.0
+offset_right = 115.0
+offset_bottom = 109.0
+texture_normal = ExtResource("25_usu66")
+texture_pressed = ExtResource("25_usu66")
+texture_hover = ExtResource("25_usu66")
+texture_disabled = ExtResource("25_usu66")
+texture_focused = ExtResource("25_usu66")
+
+[node name="Ribbon" type="TextureButton" parent="BackpackPanel"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 12.0
+offset_right = 439.0
+offset_bottom = 311.0
+scale = Vector2(0.333, 0.333)
+texture_normal = ExtResource("40_ahn5w")
+texture_pressed = ExtResource("40_ahn5w")
+texture_hover = ExtResource("40_ahn5w")
+texture_disabled = ExtResource("40_ahn5w")
+texture_focused = ExtResource("40_ahn5w")
+
+[node name="Momentum" type="Sprite2D" parent="BackpackPanel"]
+position = Vector2(60, 180)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("41_pjs5q")
+
+[node name="Rotations" type="Sprite2D" parent="BackpackPanel"]
+position = Vector2(180, 180)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("42_rnjrj")
+
+[node name="Rust" type="Sprite2D" parent="BackpackPanel"]
+position = Vector2(300, 180)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("43_xm45b")
+
 [connection signal="pressed" from="RatController/Rat" to="RatController" method="_on_rat_pressed"]
 [connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]
 [connection signal="pressed" from="RatController/Cheese" to="RatController" method="_on_cheese_pressed"]
+[connection signal="pressed" from="Backpack" to="Backpack" method="_on_pressed"]

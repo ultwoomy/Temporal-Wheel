@@ -6,8 +6,6 @@ extends Node
 @export var ritualData : RitualData
 @export var sigilData : SigilData
 @export var dollarData : DollarData
-@export var atlasData : AtlasData
-@export var kbityData : KbityData
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -18,6 +16,9 @@ extends Node
 @export var hellChallengeInit : bool
 @export var inContract : bool
 @export var soulsData : SoulsData
+@export var atlasData : AtlasData
+@export var kbityData : KbityData
+@export var backpackData : BackpackData
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : int
@@ -66,6 +67,8 @@ func create_data():
 		atlasData = AtlasData.new()
 	if(!kbityData):
 		kbityData = KbityData.new()
+	if(!backpackData):
+		backpackData = BackpackData.new()
 
 
 func save_prog():
@@ -80,6 +83,7 @@ func save_prog():
 	loader.dollarData = dollarData
 	loader.atlasData = atlasData
 	loader.kbityData = kbityData
+	loader.backpackData = backpackData
 	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
@@ -125,6 +129,7 @@ func resetR2Stats():
 	soulsData.resetData()
 	kbityData.resetData()
 	atlasData.resetData()
+	backpackData.resetData()
 	
 func resetPermStats():
 	iffirstboot = true
@@ -139,7 +144,7 @@ func resetPermStats():
 	altsigiltwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 10
+	versNo = 11
 	ratmail = 0
 	
 func getScientific(val):
@@ -170,7 +175,13 @@ func load_as_normal():
 	if(versNo <= 9):
 		loader.atlasData.resetData()
 		versNo += 1
-	versNo = loader.versNo
+	if(versNo <= 10):
+		backpackData = BackpackData.new()
+		loader.backpackData = backpackData
+		if loader.ifsecondboot >= 2:
+			loader.ifsecondboot = 2
+			loader.ratmail = 0
+		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -201,6 +212,7 @@ func load_as_normal():
 	altsigiltwins = loader.altsigiltwins
 	kbityData = loader.kbityData
 	atlasData = loader.atlasData
+	backpackData = loader.backpackData
 
 func unlock_all_sigils():
 	for n in GVars.sigilData.numberOfSigils.size():

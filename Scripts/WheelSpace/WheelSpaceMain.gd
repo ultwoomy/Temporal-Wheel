@@ -100,7 +100,7 @@ func calculateOneRot():
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
 		elif(GVars.hellChallengeLayer2 == 0):
 			if(GVars.spinData.rotations > 100):
-				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff / (GVars.rotations/100 + 1)
+				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff / ((GVars.rotations + 300)/400)
 		else:
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		if(GVars.ritualData.candlesLit[0]):

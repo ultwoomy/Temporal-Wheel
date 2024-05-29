@@ -233,8 +233,8 @@ offset_top = 150.0
 offset_right = 150.0
 offset_bottom = 250.0
 theme = ExtResource("1_pm7qv")
-text = "The more rust you have
-The more the wheel rusts
+text = "You no longer gain resources
+Rust can purchase all resource
 Unlocks the Twins as an
 alternate sigil to the Packsmith"
 horizontal_alignment = 1
@@ -280,10 +280,10 @@ offset_top = 150.0
 offset_right = 150.0
 offset_bottom = 250.0
 theme = ExtResource("1_pm7qv")
-text = "Grow is always on
-Hunger always grows
+text = "Zunda is hungry!
+Meet her growing list of demands
 Unlocks Zunda of the Night
-as an alternative to emotion"
+as an alternative to emptiness"
 horizontal_alignment = 1
 
 [node name="ContractPage2" type="Control" parent="ContractHolder"]
@@ -380,8 +380,8 @@ offset_top = 150.0
 offset_right = 150.0
 offset_bottom = 250.0
 theme = ExtResource("1_pm7qv")
-text = "The more momentum you have
-The less momentum you get
+text = "The more you have
+The less you get
 Unlocks the sand dollar as an
 alternate sigil to the candle"
 horizontal_alignment = 1

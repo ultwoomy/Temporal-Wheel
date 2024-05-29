@@ -22,6 +22,7 @@ extends Resource
 @export var soulsData : SoulsData
 @export var kbityData : KbityData
 @export var atlasData : AtlasData
+@export var backpackData : BackpackData
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : int
@@ -66,6 +67,7 @@ func _init():
 	atlasData.resetData()
 	kbityData = KbityData.new()
 	kbityData.resetData()
+	backpackData = BackpackData.new()
 	inContract = false
 	hellChallengeNerf = -1
 	hellChallengeLayer2 = -1
@@ -87,7 +89,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 10
+	versNo = 11
 	ratmail = 0
 
 func save_stats(data):

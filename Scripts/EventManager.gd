@@ -9,13 +9,11 @@ extends Node
 
 #	2. The signal is connected by one or more scripts. Say we have two such scripts called "connector"
 #		- Ex. Both "connector" scripts would have:
-#				var event_manager: EventManager = get_tree().root.get_node("EventManager")
-#				event_manager.wheel_spun.connect("some_method_in_the_connector_script")
+#				EventManager.wheel_spun.connect("some_method_in_the_connector_script")
 
 #	3. The signal is emitted in one or more scripts. Say we have one such script called "emitter".
 #		- Ex. The "emitter" script would have:
-#				var event_manager: EventManager = owner.get_node("EventManager")
-#				event_manager.wheel_spun.emit()
+#				EventManager.wheel_spun.emit()
 
 signal wheel_spun
 signal reset_automators

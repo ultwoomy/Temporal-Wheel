@@ -1,22 +1,38 @@
 extends Automator
 class_name Spinbot
+
+
+#@ Public Variables
 var angle = 0.0
 var speedDivisor = 0.0
 var numOfCandles = 0.0
 var emoBuffSpeed = 0.0
 var shouldSpin = true
-var event_manager: EventManager
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Listen for signals.
+	if not EventManager.scene_change.is_connected(_checkScene):
+		EventManager.scene_change.connect(_checkScene)
+	
 	# Upon creation, enable the automator.
-	event_manager = get_tree().get_root().find_child("EventManager", true, false)
-	event_manager.scene_change.connect(_check_scene)
 	enabled = true
 	updateDivisor()
 	initialize()
 	_automate()
 
-func initialize():
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if (!enabled):
+		return
+	calculateOneRot()
+
+
+#@ Public Methods
+func initialize() -> void:
 	if(GVars.hellChallengeNerf == 1):
 		emoBuffSpeed = 1.2 + ((log(GVars.rotations + 1)/85 - 1) * log(GVars.rotations + 1)/log(2))
 	elif(GVars.curEmotionBuff == 1):
@@ -30,21 +46,16 @@ func initialize():
 	if(numOfCandles > 5):
 		numOfCandles = 5
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if (!enabled):
-		return
-	calculateOneRot()
-		
-func calculateOneRot():
+
+func calculateOneRot() -> void:
 	var changerot = 0.0
-	if(GVars.spinData.spin > 0) and (shouldSpin):
+	if (GVars.spinData.spin > 0) and (shouldSpin):
 		if(GVars.hellChallengeNerf == 1):
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
 		else:
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		angle += changerot
-		if(angle > 2*PI):
+		if (angle > 2*PI):
 			var temp = float(angle/(2*PI))
 			GVars.spinData.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
@@ -52,52 +63,52 @@ func calculateOneRot():
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
 
-func updateDivisor():
-	GVars.spinData.wheelphase = int(GVars.spinData.density)
-	if(GVars.spinData.wheelphase == 1):
+
+func updateDivisor() -> void:
+	# WIP: Use WheelPhases.json instead of this else-if.
+	GVars.spinData.wheelPhase = int(GVars.spinData.density)
+	if(GVars.spinData.wheelPhase == 1):
 		speedDivisor = 1000
-	elif(GVars.spinData.wheelphase == 2):
+	elif(GVars.spinData.wheelPhase == 2):
 		speedDivisor = 700
-	elif(GVars.spinData.wheelphase == 3):
+	elif(GVars.spinData.wheelPhase == 3):
 		speedDivisor = 600
-	elif(GVars.spinData.wheelphase == 4):
+	elif(GVars.spinData.wheelPhase == 4):
 		speedDivisor = 500
-	elif(GVars.spinData.wheelphase == 5):
+	elif(GVars.spinData.wheelPhase == 5):
 		speedDivisor = 400
-	elif(GVars.spinData.wheelphase == 6):
+	elif(GVars.spinData.wheelPhase == 6):
 		speedDivisor = 350
-	elif(GVars.spinData.wheelphase == 7):
+	elif(GVars.spinData.wheelPhase == 7):
 		speedDivisor = 300
-	elif(GVars.spinData.wheelphase == 8):
+	elif(GVars.spinData.wheelPhase == 8):
 		speedDivisor = 250
-	elif(GVars.spinData.wheelphase == 9):
+	elif(GVars.spinData.wheelPhase == 9):
 		speedDivisor = 200
-	elif(GVars.spinData.wheelphase == 10):
+	elif(GVars.spinData.wheelPhase == 10):
 		speedDivisor = 150
-	elif(GVars.spinData.wheelphase == 11):
+	elif(GVars.spinData.wheelPhase == 11):
 		speedDivisor = 100
-	elif(GVars.spinData.wheelphase == 12):
+	elif(GVars.spinData.wheelPhase == 12):
 		speedDivisor = 80
 	else:
 		speedDivisor = 80
-#func _init(_automator_data: AutomatorData) -> void:
-#	super._init(_automator_data)
 
 
+#@ Private Methods
 func _automate() -> void:
 	# Must be enabled to continue _automate.
-	if (!enabled):
+	if not enabled:
 		return
-	# Find any node (preferably "EventManager") with the name "EventManager".
-	event_manager = get_tree().get_root().find_child("EventManager", true, false)
-	if (event_manager):
-		event_manager.wheel_spun.emit()
+	
+	EventManager.wheel_spun.emit()
 	await get_tree().create_timer(automator_data.cooldown).timeout
 	updateDivisor()
 	initialize()
 	_automate()
 
-func _check_scene(ifwheel) -> void:
+
+func _checkScene(ifwheel) -> void:
 	if(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.rotations + 1)/log(2))
 	if(ifwheel == null):

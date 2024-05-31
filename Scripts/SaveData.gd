@@ -1,4 +1,8 @@
 extends Resource
+# Note: ResourceSaver only saves exported variables, probably because Resources use exported variables
+#	when creating a resource.
+
+
 @export_group("R0stats")
 @export var spinData : SpinData
 @export var rustData : RustData
@@ -21,10 +25,14 @@ extends Resource
 @export var musicvol : float
 @export var sfxvol : float
 var save_path = "user://stats.tres"
+
+
 func load_stats():
 	if ResourceLoader.exists(save_path):
 		return load(save_path)
 	return null
+
+
 func _init():
 	spinData = SpinData.new()
 	rustData = RustData.new()
@@ -46,5 +54,5 @@ func _init():
 
 
 func save_stats(data):
-	ResourceSaver.save(data,save_path)
-	
+	if ResourceSaver.save(data, save_path):
+		printerr("ERROR: Failed to save!")

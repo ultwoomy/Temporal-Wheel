@@ -6,8 +6,8 @@ var automators : Array[AutomatorData]
 
 var emoBuff : float = 1
 
-#const SAVE_AUTOMATORS_PATH: String = "user://saveautomators.tres"
 
+#@ Virtual Methods
 # Its inheriters should call this function with super._ready().
 # Otherwise, this _ready function will get replaced and will be unable to run its functions.
 func _ready() -> void:
@@ -21,11 +21,12 @@ func _ready() -> void:
 	#	- Will use the event_manager like "wheel_spun".
 #	load_resources()
 	
-	get_tree().get_root().get_node("EventManager").wheel_spun.connect(on_wheel_spun)
-	get_tree().get_root().get_node("EventManager").reset_automators.connect(clear_automators)
+	EventManager.wheel_spun.connect(on_wheel_spun)
+	EventManager.reset_automators.connect(clear_automators)
 	create_automators()
 
 
+#@ Public Methods
 func run_tests() -> void:
 	var automator_data: AutomatorData = load("res://Resources/Automator/Spinbot.tres")
 	add_automator(automator_data)
@@ -37,7 +38,6 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	
 	GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 
 

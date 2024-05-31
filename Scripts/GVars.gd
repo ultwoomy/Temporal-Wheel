@@ -1,4 +1,6 @@
 extends Node
+
+
 @export_group("R0stats")
 @export var spinData : SpinData
 @export var rustData : RustData
@@ -19,13 +21,15 @@ extends Node
 @export var iffirstpack : bool
 @export var musicvol : float
 @export var sfxvol : float
+
+
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 
 
 func _init():
-#	create_data() # L.B: Needed for reset.
+	create_data() # L.B: Needed for reset.
 #	resetR0Stats()
 #	resetR1Stats()
 #	resetPermStats()
@@ -34,31 +38,27 @@ func _init():
 
 
 func create_data():
-	if (!rustData):
+	if not rustData:
 		rustData = RustData.new()
-	if (!mushroomData):
+	if not mushroomData:
 		mushroomData = MushroomData.new()
-	if (!ritualData):
+	if not ritualData:
 		ritualData = RitualData.new()
-	if (!sigilData):
+	if not sigilData:
 		sigilData = SigilData.new()
-	if (!spinData):
+	if not spinData:
 		spinData = SpinData.new()
 
 
 func save_prog():
 	loader.spinData = spinData
-	
 	loader.rustData = rustData
-	
 	loader.mushroomData = mushroomData
-	
 	loader.ritualData = ritualData
+	loader.sigilData = sigilData
 	
 	loader.Aspinbuff = Aspinbuff
 	loader.curEmotionBuff = curEmotionBuff
-	
-	loader.sigilData = sigilData
 	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
@@ -75,13 +75,9 @@ func save_prog():
 
 func resetR0Stats():
 	spinData.resetData()
-	
 	rustData.resetData()
-	
 	mushroomData.resetData()
-	
 	ritualData.resetData()
-	
 	sigilData.resetData()
 
 
@@ -143,6 +139,7 @@ func load_as_normal():
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol
+
 
 func unlock_all_sigils():
 	for n in GVars.sigilData.numberOfSigils.size():

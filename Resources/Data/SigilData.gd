@@ -2,6 +2,7 @@ extends Resource
 class_name SigilData
 
 
+#@ Export Variables
 @export var costSpin : float
 @export var costRot : float
 @export var costSpinScale : float

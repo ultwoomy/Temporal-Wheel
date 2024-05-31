@@ -1,6 +1,8 @@
 extends Resource
 class_name AutomatorData
 
+
+#@ Enumerators
 enum Automators {
 	Spinbot,
 	Mushroombot,
@@ -9,6 +11,7 @@ enum Automators {
 }
 
 
+#@ Export Variables
 @export var name: String
 @export var automator: Automators
 @export var level: int = 1			# default value

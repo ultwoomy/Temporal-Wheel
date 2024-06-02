@@ -80,7 +80,7 @@ func _resetChoice():
 func _resetDisplay(n: int):
 	packsmithMenu.sigilToActivate = 0
 	if(n == 6) and !GVars.ifhell:
-		GVars.sigilData.curSigilBuff = n
+		GVars.sigilData.curSigilBuff = n  # L.B: (?) Probably remove this.
 		packsmithMenu.get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
 	GVars.sigilData.curSigilBuff = n
 #	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1

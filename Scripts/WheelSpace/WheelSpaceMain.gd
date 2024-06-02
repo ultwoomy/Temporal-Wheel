@@ -15,7 +15,7 @@ const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 
 #@ Public Variables
 var angle = 0
-var speedDivisor = 0
+var speedDivisor = 1
 var emoBuffSpeed = 1
 var numOfCandles = 0.0
 var fourthRustBuff = 1
@@ -88,16 +88,21 @@ func _process(_delta):
 func calculateOneRot() -> bool:
 	var changerot = 0.
 	if(GVars.spinData.spin > 0):
+		# COMPLETED IN WheelSpinner.gd
 		if(GVars.hellChallengeNerf == 1):
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
 		else:
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
+		
+		# COMPLETED IN WheelSpinner.gd
 		if(GVars.ritualData.candlesLit[0]):
 			wheel.rotation -= changerot
 			angle -= changerot
 		else:
 			wheel.rotation += changerot
 			angle += changerot
+		
+		
 		if(angle < -2*PI):
 			if(GVars.ritualData.candlesLit[2]):
 				GVars.ritualData.ascBuff -= (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 10))
@@ -105,13 +110,18 @@ func calculateOneRot() -> bool:
 				GVars.rustData.rust -= 0.1
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff -= (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
+			
 			var temp = float(angle/(2*PI))
 			GVars.spinData.rotations += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
+			
+			# COMPLETED IN WheelSpinner.gd
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
+			
 			GVars.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
+		
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
 				GVars.ritualData.ascBuff += (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
@@ -119,6 +129,7 @@ func calculateOneRot() -> bool:
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
+			
 			var temp = float(angle/(2*PI))
 			GVars.spinData.rotations += temp
 			if(GVars.sigilData.numberOfSigils[1]):
@@ -126,8 +137,11 @@ func calculateOneRot() -> bool:
 				if(GVars.ritualData.candlesLit[1]):
 					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
 			GVars.rustData.threshProgress += temp
+			
+			# COMPLETED IN WheelSpinner.gd
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
+			
 			angle = fmod(angle,(2*PI))
 			return true
 	return false
@@ -138,15 +152,21 @@ TODO:
 	Frame already changes, moved to WheelSpaceWheel.gd.
 	
 func updateWheelSprite(frameno):
+	# COMPLETED IN Buffs.gd
 	if(GVars.sigilData.curSigilBuff == 2):
 		candleAugmentBuffModifier = 2
+	
+	# COMPLETED IN WheelSpinner.gd
 	if(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	elif(GVars.hellChallengeNerf == 1):
 		emoBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
+	
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
-	GVars.spinData.wheelphase = int(GVars.spinData.density)
+	
+	
+	GVars.spinData.wheelPhase = int(GVars.spinData.density)
 	if(frameno > 11):
 		wheel.centerpiece.frame = 11
 	else :
@@ -157,26 +177,12 @@ func updateDivisor() -> void:
 	GVars.spinData.wheelPhase = int(GVars.spinData.density)
 #	updateWheelSprite(GVars.spinData.wheelphase-1)
 	
-	
 	# L.B: Utilizes my JSONReader class to load in a .json file intentionally written for this specific function.
-	var wheelPhaseJSON: Dictionary = JSONReader.new().loadJSONFile("res://JSON/WheelPhases.json")
-	# (!) Hard-coded minimum and maximum for the range to match your previous code.
-	var wheelPhaseRange: Array = range(1, 12) # Note: range takes steps and stops before the second arg; first arg is inclusive, second arg is exclusive.
-	if GVars.spinData.wheelPhase in wheelPhaseRange:
-		for count in wheelPhaseRange: 
-			if GVars.spinData.wheelPhase == count:
-				# Use "count" as a way of finding a key in the JSON object "wheelphases".
-				#	- Since count is an integer and a key has to be a string, change count as an integer into a string.
-				#	- "wheelphases" is a JSON object that contains { "1":1000, "2":700, . . ., "other":80 }
-				var wheelphase_index: int = wheelPhaseJSON.wheelphases.keys().find(str(count))
-				
-				# If the string of the integer "count" is not a key in "wheelphases", then wheelphase_index will be -1 and thus not in range.
-				if wheelphase_index == -1:
-					speedDivisor = wheelPhaseJSON.wheelphases.other
-				else:
-					# If the string of the integer "count" is a key within "wheelphases", then you can find that key and its value at index "wheelphase_index".
-					# You can do it another way as well:
-					#	- speedDivisor = wheelphase_json.wheelphases[str(count)]
-					speedDivisor = wheelPhaseJSON.wheelphases.values()[wheelphase_index]
+	var wheelPhaseJSON : Dictionary = JSONReader.new().loadJSONFile("res://JSON/WheelPhases.json")
+	var wheelPhaseIndexOffset : int = GVars.spinData.wheelPhase - 1
+	if wheelPhaseIndexOffset >= wheelPhaseJSON["rotationSpeedDivisor"].size():
+		speedDivisor = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseJSON["rotationSpeedDivisor"].size()]
+	elif wheelPhaseIndexOffset < 0:
+		speedDivisor = wheelPhaseJSON["rotationSpeedDivisor"][0]
 	else:
-		speedDivisor = wheelPhaseJSON.wheelphases.other
+		speedDivisor = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseIndexOffset]

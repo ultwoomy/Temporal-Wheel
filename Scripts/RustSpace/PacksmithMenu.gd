@@ -4,8 +4,8 @@ class_name PacksmithMenu
 
 #@ Enumerators
 enum Emotes {
-	UNKNOWN1,
-	UNKNOWN2,
+	PEEK,
+	PEEKEYEBROW,
 	NORMAL,
 	TALKING,
 	EYEBROW,
@@ -18,8 +18,6 @@ enum Emotes {
 
 #@ Public Variables
 var currentState : PacksmithMenuState = PickState.new(self)  # We start in the pick state menu, and give it a reference to this node/script.
-
-var sigilToActivate = 0  # L.B: What is this?
 
 
 
@@ -49,9 +47,9 @@ var _dialogueHandler : DialogueHandler = DialogueHandler.new()  # Ignore warning
 func _ready():
 	# Run current state's enter, since it is the first state which isn't ran in changeState().
 	currentState._enter()
-	
-	
 	upgradeMenu.hide()
+	
+	
 	
 	if (GVars.hellChallengeNerf > 0) or (GVars.ifhell):
 		automateButton.show()
@@ -87,5 +85,3 @@ func changeState(newState : PacksmithMenuState) -> void:
 	# Change currentState to newState w/ the same init variables, and call its enter function.
 	currentState = newState
 	currentState._enter()
-
-

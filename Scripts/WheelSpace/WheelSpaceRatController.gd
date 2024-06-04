@@ -4,6 +4,7 @@ extends Control
 @export var lettertext : Label
 @export var exit : Button
 @export var cheese : TextureButton
+@export var bow: TextureButton
 var frame := 0.0
 var active = true
 var cheesepressed = false
@@ -14,11 +15,15 @@ var baseYpos = 0
 func _ready():
 	letter.hide()
 	cheese.hide()
+	bow.hide()
 	cheese.disabled = true
+	bow.disabled = true
 	baseYpos = rat.position.y
 	#if the player exits before accepting the cheese, activate it anyways
 	if GVars.ratmail >= 2 and not GVars.backpackData.cheese:
 		GVars.backpackData.cheese = true
+	if GVars.ratmail >= 4 and not GVars.backpackData.ribbon:
+		GVars.backpackData.ribbon = true
 	#If the value of ratmail is less than the current reset value (which goes 2,4,6,etc), deploy the rat
 	#The second value is whenever i want to put the next letter
 	if(GVars.ratmail < GVars.ifsecondboot) and GVars.ifsecondboot <= 4:
@@ -77,6 +82,7 @@ func _on_rat_pressed():
 						   Enclosed is a bow, you may do with it as you like.\n
 						   Sincerest sincerities,\n
 						   Rat"
+		bow.show()
 	else:
 		lettertext.text = "Woawoagh\nuwagh\nwowow\n\n- The Developer"
 	letter.show()
@@ -94,3 +100,8 @@ func _on_cheese_pressed():
 		cheesepressed = true
 		frame = 0
 		GVars.backpackData.cheese = true
+
+
+func _on_bow_pressed():
+	GVars.backpackData.bow = true
+	bow.hide()

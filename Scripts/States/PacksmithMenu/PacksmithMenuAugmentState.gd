@@ -1,6 +1,6 @@
 extends PacksmithMenuState
 class_name AugmentState
-
+signal changedAugment
 
 #@ Virtual Methods
 func _enter() -> void:
@@ -45,31 +45,37 @@ func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
 	match sigil:
 		SigilData.Sigils.PACKSMITH:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("packsmith")
+			GVars.sigilData.curSigilBuff = 0
+			emit_signal("changedAugment")
 		SigilData.Sigils.CANDLE:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("candle")
+			GVars.sigilData.curSigilBuff = 1
+			emit_signal("changedAugment")
 		SigilData.Sigils.ASCENSION:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ascension")
+			GVars.sigilData.curSigilBuff = 2
+			emit_signal("changedAugment")
 		SigilData.Sigils.EMPTINESS:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("emptiness")
+			GVars.sigilData.curSigilBuff = 3
+			emit_signal("changedAugment")
 		SigilData.Sigils.RITUAL:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ritual")
+			GVars.sigilData.curSigilBuff = 4
+			emit_signal("changedAugment")
 		SigilData.Sigils.HELL:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
-			# L.B: Reminder for later for the correct dialogue line.
-#			elif(n == 6):
-#			if(GVars.hellChallengeNerf < 0):
-#				if(!GVars.ifhell):
-#					nextLin(11)
-#					sigilToActivate = 6
-#				else:
-#					nextLin(13)
-#					sigilToActivate = 6
-#			else:
-#				nextLin(12)
-#				sigilToActivate = 6
-#				GVars.ifhell = true
-#				GVars.inContract = false
-#				GVars.hellChallengeNerf = -1
+			if(GVars.hellChallengeNerf < 0):
+				if(!GVars.ifhell):
+					dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
+				else:
+					dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellalt")
+			else:
+				dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellcomplete")
+				GVars.ifhell = true
+				GVars.inContract = false
+				GVars.hellChallengeNerf = -1
+			GVars.sigilData.curSigilBuff = 5
+			emit_signal("changedAugment")
 	
 	# Get a new TalkState using the correct dialogue.
 	var newState : TalkState = TalkState.new(packsmithMenu, dialogue) 

@@ -20,8 +20,8 @@ class_name UpgradeMenu
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rustDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
-	
-	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
+	print(str(GVars.curEmotionBuff))
+	if(GVars.curEmotionBuff <= 0) or (GVars.curEmotionBuff > 4):
 		upgradeButton4.hide()
 	elif(GVars.curEmotionBuff == 1):
 		#fear

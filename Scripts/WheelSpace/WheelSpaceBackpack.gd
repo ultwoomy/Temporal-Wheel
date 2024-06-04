@@ -9,6 +9,7 @@ func _ready():
 	if GVars.backpackData.cheese:
 		show()
 		back.hide()
+	show()
 
 
 func _on_pressed():

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cr2gx5g5yrq4q" path="res://Sprites/RustSpace/rusthome_outside.png" id="1_2jcfw"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/RustSpaceOutsideButtons.gd" id="1_pv3pn"]
-[ext_resource type="Theme" path="res://Scenes/GlobalTheme.theme" id="1_ujrbo"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_ujrbo"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_nh6nf"]
 [ext_resource type="Texture2D" uid="uid://domdcir7ttm4h" path="res://Sprites/RustSpace/back_rust/back_rust.png" id="5_jsaej"]
 [ext_resource type="Texture2D" uid="uid://cmqobk7x265a6" path="res://Sprites/RustSpace/back_rust/back_rust2.png" id="6_eu6dj"]

@@ -17,7 +17,7 @@ func _ready():
 	forward.pressed.connect(self._end_sequence)
 	var dis = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\nNext Presence: " + str(GVars.getScientific(GVars.mushroomData.ascBuff) + GVars.getScientific(GVars.ritualData.ascBuff))
 	dis += "\n\nThe highest presence\nvalue is kept."
-	if(GVars.sigilData.curSigilBuff == 4):
+	if(GVars.sigilData.curSigilBuff == 3):
 		dis += "\n\nYou have worn the\nface of myraid emotion."
 	statDisplay.text = dis
 
@@ -47,7 +47,7 @@ func _wheel_scene():
 func _end_sequence():
 	#hides every ui element before playing reset animation
 	everythingelse.hide()
-	if not GVars.sigilData.curSigilBuff == 4 and GVars.sigilData.numberOfSigils[3]:
+	if not GVars.sigilData.curSigilBuff == 3 and GVars.sigilData.numberOfSigils[3]:
 		emit_signal("confirm")
 	else:
 		eSeq = true

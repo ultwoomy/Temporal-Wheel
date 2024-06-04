@@ -46,7 +46,7 @@ func suc_loop():
 		rustUpBuff = rustUpBuff * GVars.rustData.fourth
 	if(GVars.curEmotionBuff == 2):
 		Ebuff = (GVars.rustData.fourth - 1) * GVars.spinData.sucTresh
-	if(GVars.sigilData.curSigilBuff == 3):
+	if(GVars.sigilData.curSigilBuff == 2):
 		suc = GVars.spinData.sucPerTick * rustUpBuff * GVars.spinData.sizeRecord + Ebuff
 	else:
 		suc = GVars.spinData.sucPerTick * rustUpBuff + Ebuff

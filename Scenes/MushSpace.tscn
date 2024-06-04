@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=3 uid="uid://dw0r2bbqgf17s"]
 
-[ext_resource type="Theme" path="res://Scenes/GlobalTheme.theme" id="1_2u5k0"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_2u5k0"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_27x6k"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_lw4ws"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MMain.gd" id="3_15p2a"]

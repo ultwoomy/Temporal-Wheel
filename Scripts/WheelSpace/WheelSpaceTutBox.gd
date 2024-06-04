@@ -77,7 +77,8 @@ func nextLine():
 	firstmessage = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#GVars.ifsecondboot = 9
+	if GVars.ifsecondboot > 9 and GVars.ifsecondboot % 2 == 1:
+		GVars.ifsecondboot += 1
 	firstmessage = true
 	if (GVars.iffirstboot or GVars.ifsecondboot % 2 == 1) and GVars.ifsecondboot <= 9:
 		get_tree().paused = true

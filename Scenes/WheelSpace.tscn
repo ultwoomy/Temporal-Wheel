@@ -1,12 +1,15 @@
-[gd_scene load_steps=53 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=63 format=3 uid="uid://buu1sadwadteo"]
 
-[ext_resource type="Theme" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
+[ext_resource type="Texture2D" uid="uid://bqsm8hfoejatb" path="res://Sprites/WheelSpace/Sky/day.png" id="3_feow6"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_ro1bm"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpin.gd" id="3_wlyuf"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="4_2qlpx"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="4_3lf5g"]
 [ext_resource type="Texture2D" uid="uid://cx41yp0f1ckr4" path="res://Sprites/WheelSpace/mush_ext_sheet/tile000.png" id="4_6nxsv"]
+[ext_resource type="Texture2D" uid="uid://cysiy4xi7xnjj" path="res://Sprites/WheelSpace/Sky/night.png" id="4_22n4m"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/Back.gd" id="5_3nrj6"]
 [ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="5_eh2pp"]
 [ext_resource type="Texture2D" uid="uid://q4k5bjlld7su" path="res://Sprites/WheelSpace/mush_ext_sheet/tile001.png" id="5_uc6mm"]
 [ext_resource type="Texture2D" uid="uid://td637bbgri78" path="res://Sprites/WheelSpace/mush_ext_sheet/tile002.png" id="6_00pdw"]
@@ -39,10 +42,43 @@
 [ext_resource type="Texture2D" uid="uid://r0bdyjhn2kk7" path="res://Sprites/WheelSpace/backpackButtons/backpack_closed.png" id="37_g7bip"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceBackpack.gd" id="37_qraw7"]
 [ext_resource type="Texture2D" uid="uid://cwchmr65j57xn" path="res://Sprites/WheelSpace/backpackButtons/backpack_open.png" id="38_syl40"]
+[ext_resource type="Texture2D" uid="uid://btsdyf15q58f8" path="res://Sprites/WheelSpace/Zundamon/zun_wip.png" id="39_edvc5"]
 [ext_resource type="Texture2D" uid="uid://ccjdnh17knlps" path="res://Sprites/WheelSpace/ratsheet/bow.png" id="40_ahn5w"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceBackpackPanel.gd" id="40_fllc7"]
+[ext_resource type="Texture2D" uid="uid://c0naj6ala7avn" path="res://Sprites/WheelSpace/Zundamon/zun_sit.png" id="40_py5vo"]
+[ext_resource type="Texture2D" uid="uid://d1sgp4e2mvs7g" path="res://Sprites/WheelSpace/Zundamon/zun_nom.png" id="41_e2pp2"]
 [ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="41_pjs5q"]
 [ext_resource type="Texture2D" uid="uid://cy8kyp7t10fin" path="res://Sprites/WheelSpace/backpackButtons/rotations.png" id="42_rnjrj"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceZunda.gd" id="42_t31if"]
 [ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="43_xm45b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68d5r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_feow6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_22n4m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tw6m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("40_py5vo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_e2pp2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eyet1"]
 animations = [{
@@ -110,6 +146,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_fqwvi")
 script = ExtResource("3_ro1bm")
+
+[node name="Back" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.635294)
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_68d5r")
+script = ExtResource("5_3nrj6")
 
 [node name="Ground" type="Sprite2D" parent="."]
 self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
@@ -223,6 +266,24 @@ theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 script = ExtResource("15_xbhsq")
 
+[node name="Zunda" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 470)
+sprite_frames = SubResource("SpriteFrames_1tw6m")
+frame_progress = 0.201388
+script = ExtResource("42_t31if")
+
+[node name="TextureButton" type="TextureButton" parent="Zunda"]
+offset_left = -15.0
+offset_top = -140.0
+offset_right = 85.0
+offset_bottom = -60.0
+texture_normal = ExtResource("39_edvc5")
+texture_pressed = ExtResource("39_edvc5")
+texture_hover = ExtResource("39_edvc5")
+texture_disabled = ExtResource("39_edvc5")
+texture_focused = ExtResource("39_edvc5")
+ignore_texture_size = true
+
 [node name="SpinDisplay" type="Label" parent="."]
 layout_mode = 2
 offset_left = 400.0
@@ -237,16 +298,16 @@ script = ExtResource("14_74yq1")
 
 [node name="RotsDisplay" type="Label" parent="."]
 layout_mode = 0
-offset_left = 400.0
+offset_left = 300.0
 offset_top = 500.0
-offset_right = 600.0
+offset_right = 700.0
 offset_bottom = 550.0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("17_333p7")
 
-[node name="RatController" type="Control" parent="." node_paths=PackedStringArray("rat", "letter", "lettertext", "exit", "cheese")]
+[node name="RatController" type="Control" parent="." node_paths=PackedStringArray("rat", "letter", "lettertext", "exit", "cheese", "bow")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -256,6 +317,7 @@ letter = NodePath("Letter")
 lettertext = NodePath("Letter/Label")
 exit = NodePath("Letter/Exit")
 cheese = NodePath("Cheese")
+bow = NodePath("Bow")
 
 [node name="Rat" type="TextureButton" parent="RatController"]
 layout_mode = 0
@@ -293,7 +355,7 @@ offset_left = -100.0
 offset_top = -130.0
 offset_right = 100.0
 offset_bottom = 170.0
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 text = "I hope this letter finds you in good health. 
 
 I just recently moved in next door, and am keen to greet my old neighbors. 
@@ -321,8 +383,12 @@ texture_focused = ExtResource("25_usu66")
 
 [node name="Bow" type="TextureButton" parent="RatController"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 140.0
+offset_top = 400.0
+offset_right = 439.0
+offset_bottom = 699.0
+scale = Vector2(0.333, 0.333)
+texture_normal = ExtResource("40_ahn5w")
 
 [node name="TravelCont" type="Container" parent="." node_paths=PackedStringArray("button")]
 layout_mode = 0
@@ -461,6 +527,7 @@ offset_left = 250.0
 offset_top = 150.0
 offset_right = 750.0
 offset_bottom = 550.0
+script = ExtResource("40_fllc7")
 
 [node name="Cheese" type="TextureButton" parent="BackpackPanel"]
 layout_mode = 0
@@ -492,17 +559,104 @@ position = Vector2(60, 180)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("41_pjs5q")
 
+[node name="MomentumLabel" type="Label" parent="BackpackPanel"]
+offset_left = 90.0
+offset_top = 170.0
+offset_right = 440.0
+offset_bottom = 210.0
+text = "fdfsdfsdfdf"
+
 [node name="Rotations" type="Sprite2D" parent="BackpackPanel"]
-position = Vector2(180, 180)
+position = Vector2(60, 240)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("42_rnjrj")
 
+[node name="RotationLabel" type="Label" parent="BackpackPanel"]
+offset_left = 90.0
+offset_top = 230.0
+offset_right = 440.0
+offset_bottom = 270.0
+text = "fdfsdfsdfdf"
+
 [node name="Rust" type="Sprite2D" parent="BackpackPanel"]
-position = Vector2(300, 180)
+position = Vector2(60, 300)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("43_xm45b")
+
+[node name="RustLabel" type="Label" parent="BackpackPanel"]
+offset_left = 90.0
+offset_top = 290.0
+offset_right = 440.0
+offset_bottom = 330.0
+text = "fdfsdfsdfdf"
+
+[node name="ChoicePanel" type="Panel" parent="BackpackPanel"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 400.0
+offset_bottom = 300.0
+
+[node name="Self" type="Button" parent="BackpackPanel/ChoicePanel"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 90.0
+offset_right = 110.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 10
+text = "Me"
+
+[node name="Packsmith" type="Button" parent="BackpackPanel/ChoicePanel"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 90.0
+offset_right = 170.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 6
+text = "Packsmith"
+
+[node name="Fae" type="Button" parent="BackpackPanel/ChoicePanel"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 90.0
+offset_right = 230.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 8
+text = "Fae
+(Bunny)"
+
+[node name="Zunda" type="Button" parent="BackpackPanel/ChoicePanel"]
+offset_left = 70.0
+offset_top = 140.0
+offset_right = 110.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 10
+text = "Zunda"
+
+[node name="Label" type="Label" parent="BackpackPanel/ChoicePanel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 300.0
+offset_bottom = 63.0
+text = "Who should use this item?"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="RatController/Rat" to="RatController" method="_on_rat_pressed"]
 [connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]
 [connection signal="pressed" from="RatController/Cheese" to="RatController" method="_on_cheese_pressed"]
+[connection signal="pressed" from="RatController/Cheese" to="BackpackPanel" method="_on_rat_cheese_pressed"]
+[connection signal="pressed" from="RatController/Bow" to="RatController" method="_on_bow_pressed"]
+[connection signal="pressed" from="RatController/Bow" to="BackpackPanel" method="_on_real_bow_pressed"]
 [connection signal="pressed" from="Backpack" to="Backpack" method="_on_pressed"]
+[connection signal="pressed" from="Backpack" to="BackpackPanel" method="_on_backpack_pressed"]
+[connection signal="mouse_entered" from="BackpackPanel/Cheese" to="BackpackPanel" method="_on_cheese_focus_entered"]
+[connection signal="mouse_exited" from="BackpackPanel/Cheese" to="BackpackPanel" method="_on_cheese_focus_exited"]
+[connection signal="pressed" from="BackpackPanel/Cheese" to="BackpackPanel" method="_on_cheese_pressed"]
+[connection signal="mouse_entered" from="BackpackPanel/Ribbon" to="BackpackPanel" method="_on_ribbon_focus_entered"]
+[connection signal="mouse_exited" from="BackpackPanel/Ribbon" to="BackpackPanel" method="_on_ribbon_focus_exited"]
+[connection signal="pressed" from="BackpackPanel/Ribbon" to="BackpackPanel" method="_on_ribbon_pressed"]
+[connection signal="pressed" from="BackpackPanel/ChoicePanel/Self" to="BackpackPanel" method="_on_self_pressed"]
+[connection signal="pressed" from="BackpackPanel/ChoicePanel/Packsmith" to="BackpackPanel" method="_on_packsmith_pressed"]
+[connection signal="pressed" from="BackpackPanel/ChoicePanel/Fae" to="BackpackPanel" method="_on_fae_pressed"]
+[connection signal="pressed" from="BackpackPanel/ChoicePanel/Zunda" to="BackpackPanel" method="_on_zunda_pressed"]

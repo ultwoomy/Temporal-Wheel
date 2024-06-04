@@ -37,7 +37,7 @@ func _ready():
 	await get_tree().create_timer(5).timeout
 	#If face is active, show emotion
 	#Cannot stack emotion with challenge of the same type
-	if(GVars.sigilData.curSigilBuff == 4):
+	if(GVars.sigilData.curSigilBuff == 3):
 		if!(GVars.hellChallengeNerf == 1):
 			fear.show()
 		if!(GVars.hellChallengeNerf == 2):
@@ -48,7 +48,7 @@ func _ready():
 			wrath.show()
 	#If hell sigil is active and hell is not unlocked, show challenge options based on emote buff
 	#Nothing prepared for no emote buff, shouldn't be easy or possible to get
-	if(GVars.sigilData.curSigilBuff == 6) and (!GVars.ifhell):
+	if(GVars.sigilData.curSigilBuff == 5) and (!GVars.ifhell):
 		if(GVars.curEmotionBuff == 0):
 			challenge.show()
 			challenge.text = "Incongruent"
@@ -170,9 +170,7 @@ func _awaken():
 	GVars.resetR0Stats()
 	GVars.atlasData.hasReset = false
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
-	#Stops at 5 since it runs out of dialouge then
-	if(GVars.ifsecondboot < 7):
-		GVars.ifsecondboot += 1
+	GVars.ifsecondboot += 1
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
 	print(str(GVars.hellChallengeInit))
 	if(GVars.hellChallengeLayer2 >= 0) and GVars.hellChallengeInit:

@@ -56,7 +56,7 @@ func _init():
 	ritualData = RitualData.new()
 	ritualData.resetData()
 	Aspinbuff = 1
-	curEmotionBuff = 0
+	curEmotionBuff = -1
 	sigilData = SigilData.new()
 	sigilData.resetData()
 	soulsData = SoulsData.new()

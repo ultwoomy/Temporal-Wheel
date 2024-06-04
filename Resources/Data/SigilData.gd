@@ -37,7 +37,7 @@ func resetData() -> void:
 	costSpinScale = 1.24
 	costRotScale = 3
 	numberOfSigils = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
-	curSigilBuff = 0
+	curSigilBuff = -1
 	
 	for key in activeSigils:
 		key = false

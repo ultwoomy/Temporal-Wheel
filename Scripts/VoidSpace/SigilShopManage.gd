@@ -13,7 +13,7 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!",
 				  "Emptiness!\nExtremely ironic name!\nFull of emoticon!",
 				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
-				  "Token Hell!\nAccess a wonderful new realm!\nDo you smell smoke?"]
+				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?"]
 
 
 # Called when the node enters the scene tree for the first time.

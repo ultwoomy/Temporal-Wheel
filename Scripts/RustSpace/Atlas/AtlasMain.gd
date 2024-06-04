@@ -47,11 +47,12 @@ func normalBoot():
 		reset.text = "Reset spins needed till next rust drop\nCurrently: " + str(GVars.getScientific(GVars.rustData.thresh)) + " rotations per drop\nYou can only reset once per run."
 	else:
 		reset.text = "You have already reset."
+		reset.disabled = true
 	text.text = "Today\n           you bring\n     More?"
 
 
 func _on_dump_pressed():
-	if(GVars.atlasData.dumpRustMilestone <= 5):
+	if(GVars.atlasData.dumpRustMilestone <= 10):
 		GVars.atlasData.dumpRustProg += GVars.rustData.rust
 		GVars.rustData.rust = 0
 	if(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
@@ -105,3 +106,4 @@ func _on_reset_scaling_pressed():
 	reset.text = "You have already reset."
 	GVars.atlasData.hasReset = true
 	GVars.rustData.thresh = 1
+	reset.disabled = true

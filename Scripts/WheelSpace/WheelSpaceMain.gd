@@ -12,7 +12,7 @@ const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
 
 func update_wheel_sprite(frameno):
-	if(GVars.sigilData.curSigilBuff == 2):
+	if(GVars.sigilData.curSigilBuff == 1):
 		sigaugbuf = 2
 	if(GVars.curEmotionBuff == 1):
 		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
@@ -76,7 +76,7 @@ func _process(_delta):
 			var rus = RUST_PART.instantiate()
 			rus.get_child(0).init(1)
 			self.add_child(rus)	
-		elif(GVars.sigilData.curSigilBuff == 1):
+		elif(GVars.sigilData.curSigilBuff == 0):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
 			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
 			GVars.rustData.thresh *= GVars.rustData.threshMult
@@ -100,7 +100,9 @@ func calculateOneRot():
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
 		elif(GVars.hellChallengeLayer2 == 0):
 			if(GVars.spinData.rotations > 100):
-				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff / ((GVars.rotations + 300)/400)
+				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff / ((GVars.spinData.rotations + 300)/400)
+			else:
+				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		else:
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		if(GVars.ritualData.candlesLit[0]):
@@ -165,7 +167,7 @@ func _ready():
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
-	if(numOfCandles > 0) and (GVars.sigilData.curSigilBuff == 5):
+	if(numOfCandles > 0) and (GVars.sigilData.curSigilBuff == 4):
 		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5

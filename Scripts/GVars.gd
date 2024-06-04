@@ -117,7 +117,7 @@ func resetR0Stats():
 	dollarData.resetData()
 
 func resetR1Stats():
-	curEmotionBuff = 0
+	curEmotionBuff = -1
 	Aspinbuff = 1
 	ifhell = false
 	hellChallengeNerf = -1

@@ -87,6 +87,10 @@
 		{
 			"TEXT": "Maybe a new one spawned in.",
 			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "The price to be paid is the\nspin speed of your wheel,\nso don't light too many candles.",
+			"FACE": "EYEBROW"
 		}
 	],
 	"hell": [

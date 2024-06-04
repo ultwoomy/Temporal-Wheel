@@ -26,6 +26,7 @@ func _button_pressed():
 		GVars.ifhell = true
 		GVars.inContract = false
 		GVars.hellChallengeInit = true
+		GVars.spinData.spinPerClick = 1
 		presses = 0
 		hide()
 	if(presses > 0):

@@ -7,14 +7,18 @@ extends Node
 signal wheelSpun
 
 
-#@ Virtual Methods
-func _process(delta: float) -> void:
-	rotateWheel()
+#@ Constants
+const FULL_ROTATION_DEGREES : float = 2*PI
 
 
 #@ Public Variables
 var automators : Array[AutomatorData]  # Probably move to its own global script
 var wheelRotation : float = 0.0  # Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
+
+
+#@ Virtual Methods
+func _process(delta: float) -> void:
+	rotateWheel()
 
 
 #@ Public Methods
@@ -24,9 +28,8 @@ func spinWheel() -> void:
 
 func rotateWheel() -> void:
 	# Reset rotation
-	if abs(wheelRotation) > (2*PI):
-		wheelRotation = fmod(wheelRotation,(2*PI))
-		spinWheel()  # Should I really have this func be called "spinWheel()"?
+	if abs(wheelRotation) > FULL_ROTATION_DEGREES:
+		_completeRotation()
 	
 	# No spins then no rotating the wheel.
 	if GVars.spinData.spin <= 0:
@@ -110,3 +113,16 @@ func _getRotationSpeedDivisor() -> float:
 	else:
 		value = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseIndexOffset]
 	return value
+
+
+func _completeRotation() -> void:
+	# Gain spin.
+	spinWheel()  # Should I really have this func be called "spinWheel()"?
+	
+	# Gain rotation. Make progress towards getting rust.
+	var amount : float = float(wheelRotation / FULL_ROTATION_DEGREES)  # Usually a value of 1, since rotation resets at 2*PI.
+	GVars.spinData.rotations += amount
+	GVars.rustData.threshProgress += amount
+	
+	# Reset rotation.
+	wheelRotation = fmod(wheelRotation, FULL_ROTATION_DEGREES)

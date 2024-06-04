@@ -116,10 +116,12 @@ func calculateOneRot() -> bool:
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff -= (log(GVars.rotations) * GVars.density)/(GVars.ritualData.rotBuff * (GVars.rotations * 100))
 			
-			var temp = float(angle/(2*PI))
-			GVars.spinData.rotations += temp
-			GVars.rustData.threshProgress += temp
-			angle = fmod(angle,(2*PI))
+			# COMPLETED IN WheelSpinner.gd
+#			var temp = float(angle/(2*PI))
+#			GVars.spinData.rotations += temp
+#			GVars.rustData.threshProgress += temp
+			# COMPLETED IN WheelSpinner.gd
+#			angle = fmod(angle,(2*PI))
 			
 			# COMPLETED IN WheelSpinner.gd
 			if(GVars.curEmotionBuff == 1):
@@ -135,20 +137,24 @@ func calculateOneRot() -> bool:
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * GVars.spinData.density)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
 			
+			# COMPLETED IN WheelSpinner.gd
 			var temp = float(angle/(2*PI))
-			GVars.spinData.rotations += temp
+#			GVars.spinData.rotations += temp
+#			GVars.rustData.threshProgress += temp
+			# COMPLETED IN WheelSpinner.gd
+#			angle = fmod(angle,(2*PI))
+			
 			if(GVars.sigilData.numberOfSigils[1]):
 				GVars.mushroomData.pendingRots += temp * candleAugmentBuffModifier
 				if(GVars.ritualData.candlesLit[1]):
 					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
-			GVars.rustData.threshProgress += temp
+			
 			
 			# COMPLETED IN WheelSpinner.gd
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			
-			# COMPLETED IN WheelSpinner.gd
-			angle = fmod(angle,(2*PI))
+			
 			return true
 	return false
 

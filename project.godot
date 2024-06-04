@@ -22,6 +22,7 @@ GVars="*res://Scripts/GVars.gd"
 EventManager="*res://Scripts/EventManager.gd"
 SoundManage="*res://Scripts/SoundManager.gd"
 WheelSpinner="*res://Scripts/WheelSpinner.gd"
+MushroomGrower="*res://Scripts/MushroomGrower.gd"
 
 [display]
 

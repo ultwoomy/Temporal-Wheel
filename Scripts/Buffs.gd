@@ -4,13 +4,16 @@ extends Node
 
 
 #@ Global Variables
+var rustGainModifier : float = 1.0
 var mushroomPendingRotationModifier : float = 1.0
+var wheelRotationGainModifier : float = 1.0
 
 
 #@ Public Methods
 func augmentSigilBuffs() -> void:
-	if GVars.sigilData.curSigilBuff == 1:
-		pass
+	if GVars.sigilData.curSigilBuff == 1:  # Packsmith sigil
+		# Rust gain doubled.
+		rustGainModifier *= 2.0
 	elif GVars.sigilData.curSigilBuff == 2:  # Candle sigil
 		# Mushrooms grow twice as fast.
 		mushroomPendingRotationModifier *= 2.0
@@ -26,4 +29,20 @@ func augmentSigilBuffs() -> void:
 		printerr("ERROR: Sigil buff not implemented!")
 		return
 
+
+func applyEmotionBuffs() -> void:
+	if GVars.curEmotionBuff == 1:  # 
+		# Increase rotation gain.
+		wheelRotationGainModifier *= 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
+	elif GVars.curEmotionBuff == 2:  # 
+		pass
+	elif GVars.curEmotionBuff == 3:  # 
+		pass
+	elif GVars.curEmotionBuff == 4:  # 
+		# Increase rust gain.
+		rustGainModifier *= GVars.rustData.fourth
+	elif GVars.curEmotionBuff == 5:  # 
+		pass
+	else:
+		return
 #@ Private Methods

@@ -15,7 +15,10 @@ signal wheelPhaseChanged
 @export var sucTresh : float
 @export var curSucSize : float
 @export var sizeRecord : float
-@export var density : float
+@export var density : float :
+	set(value):
+		density = value
+		wheelPhase = int(value)  # L.B: Setting density also sets wheelPhase.
 @export var sucPerTDens : float
 @export var densTresh : float
 @export var curSucDens : float

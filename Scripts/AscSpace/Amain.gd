@@ -96,6 +96,7 @@ func _button_generic(switchEmotion,text):
 	GVars.curEmotionBuff = switchEmotion
 	awaken.show()
 
+
 func _butCha():
 	if(challNumber == 0):
 		_button_generic(99,"feel incongruent.\n\nYou've made a terrible mistake.\nIt will be different this time.")

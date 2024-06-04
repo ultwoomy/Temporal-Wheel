@@ -34,7 +34,7 @@ var candleAugmentBuffModifier = 1
 func _ready():
 	# Connect signals
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
-	densityButton.densUp.connect(updateDivisor)
+#	densityButton.densUp.connect(updateDivisor)
 	oneClick.connect(growButton.suc_loop)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	
@@ -49,7 +49,7 @@ func _ready():
 		numOfCandles -= 1
 	if (numOfCandles > 5):
 		numOfCandles = 5
-	updateDivisor()
+#	updateDivisor()
 
 
 func _process(_delta):
@@ -94,16 +94,21 @@ func calculateOneRot() -> bool:
 		else:
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
 		
+		
 		# COMPLETED IN WheelSpinner.gd
-		if(GVars.ritualData.candlesLit[0]):
-			wheel.rotation -= changerot
-			angle -= changerot
-		else:
-			wheel.rotation += changerot
-			angle += changerot
+#		if(GVars.ritualData.candlesLit[0]):
+#			wheel.rotation -= changerot
+#			angle -= changerot
+#		else:
+#			wheel.rotation += changerot
+#			angle += changerot
+		
+		# CHANGES ADDED TO MAKE USE OF WheelSpinner.gd
+		wheel.rotation = WheelSpinner.wheelRotation
+		angle = WheelSpinner.wheelRotation
 		
 		
-		if(angle < -2*PI):
+		if(angle < -2*PI):  # Activated by candle that causes wheel to be spun backwards.
 			if(GVars.ritualData.candlesLit[2]):
 				GVars.ritualData.ascBuff -= (log(GVars.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.rotations * 10))
 			if(GVars.ritualData.candlesLit[3]):
@@ -120,7 +125,7 @@ func calculateOneRot() -> bool:
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			
-			GVars.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
+			GVars.spinData.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 		
 		if(angle > 2*PI):
 			if(GVars.ritualData.candlesLit[2]):
@@ -142,6 +147,7 @@ func calculateOneRot() -> bool:
 			if(GVars.curEmotionBuff == 1):
 				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			
+			# COMPLETED IN WheelSpinner.gd
 			angle = fmod(angle,(2*PI))
 			return true
 	return false
@@ -162,18 +168,20 @@ func updateWheelSprite(frameno):
 	elif(GVars.hellChallengeNerf == 1):
 		emoBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	
+	# COMPLETED IN Buffs.gd
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
 	
-	
+	# COMPLETED IN WheelSpaceWheel.gd
 	GVars.spinData.wheelPhase = int(GVars.spinData.density)
 	if(frameno > 11):
 		wheel.centerpiece.frame = 11
 	else :
 		wheel.centerpiece.frame = frameno
 '
-
+'
 func updateDivisor() -> void:
+	# COMPLETED IN GVars.spinData IN density VARIABLE.
 	GVars.spinData.wheelPhase = int(GVars.spinData.density)
 #	updateWheelSprite(GVars.spinData.wheelphase-1)
 	
@@ -186,3 +194,4 @@ func updateDivisor() -> void:
 		speedDivisor = wheelPhaseJSON["rotationSpeedDivisor"][0]
 	else:
 		speedDivisor = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseIndexOffset]
+'

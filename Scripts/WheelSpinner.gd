@@ -7,9 +7,14 @@ extends Node
 signal wheelSpun
 
 
+#@ Virtual Methods
+func _process(delta: float) -> void:
+	rotateWheel()
+
+
 #@ Public Variables
 var automators : Array[AutomatorData]  # Probably move to its own global script
-var wheelRotation : float = 0.0  # Needed so that the Player doesn't have to be in WheelSpace scene.
+var wheelRotation : float = 0.0  # Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
 
 
 #@ Public Methods
@@ -18,24 +23,27 @@ func spinWheel() -> void:
 
 
 func rotateWheel() -> void:
+	# Reset rotation
+	if abs(wheelRotation) > (2*PI):
+		wheelRotation = fmod(wheelRotation,(2*PI))
+		spinWheel()  # Should I really have this func be called "spinWheel()"?
+	
 	# No spins then no rotating the wheel.
 	if GVars.spinData.spin <= 0:
 		return
 	
-	# Rotate wheel in a direction based on the candles lit(?)
+	# Rotate wheel in a direction based on the candle lit(?)
 	if GVars.ritualData.candlesLit[0]:
 		# The angle of the wheel doesn't matter except for the sprite itself.
 		wheelRotation -= getWheelRotationAmount()
 	else:
 		wheelRotation += getWheelRotationAmount()
 
-
+'
+# COMPLETED IN GVars.spinData IN density VARIABLE.
 func updateDivisor() -> void:
 	GVars.spinData.wheelPhase = int(GVars.spinData.density)
-	
-	# Probably move this in WheelSpaceWheel(?)
-	var rotationSpeedDivisor : float = _getRotationSpeedDivisor()
-
+'
 
 # Probably move this in WheelSpaceWheel(?), or a script that is global.
 func getWheelRotationAmount() -> float:
@@ -61,7 +69,7 @@ func getWheelRotationAmount() -> float:
 		emotionBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
 		value /= emotionBuffSpeed
 	# Increase amount by rot buff.
-	value *= GVars.ritualData.rotBuf
+	value *= GVars.ritualData.rotBuff
 	return value
 
 
@@ -86,7 +94,6 @@ func _calculateSpinGain() -> float:
 		# Note: This is the same as "value *= GVars.rustData.fourth", but was written similar to this in previous code.
 		var emotionBuffMultiplier: float = GVars.rustData.fourth
 		value *= emotionBuffMultiplier
-	
 	return value
 
 
@@ -96,8 +103,8 @@ func _getRotationSpeedDivisor() -> float:
 	var wheelPhaseJSON : Dictionary = JSONReader.new().loadJSONFile("res://JSON/WheelPhases.json")
 	var wheelPhaseIndexOffset : int = GVars.spinData.wheelPhase - 1
 	
-	if wheelPhaseIndexOffset >= wheelPhaseJSON["wheelPhases"].size():
-		value = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseJSON["wheelPhases"].size() - 1]
+	if wheelPhaseIndexOffset >= wheelPhaseJSON["rotationSpeedDivisor"].size():
+		value = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseJSON["rotationSpeedDivisor"].size() - 1]
 	elif wheelPhaseIndexOffset < 0:
 		value = wheelPhaseJSON["rotationSpeedDivisor"][0]
 	else:

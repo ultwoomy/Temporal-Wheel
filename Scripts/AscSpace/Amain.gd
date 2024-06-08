@@ -112,7 +112,7 @@ func _butCha():
 		_button_generic(99,"Not good.\n\nError in the code.\nAbort, abort.")
 
 func _awaken():
-	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
+	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff  # TODO: Replace this with a global variable in Buffs.gd
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()

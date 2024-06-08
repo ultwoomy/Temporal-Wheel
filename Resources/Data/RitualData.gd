@@ -13,6 +13,7 @@ func _init() -> void:
 	rotBuff = 1
 
 
+#@ Public Methods
 func resetData() -> void:
 	candlesLit = [false,false,false,false,false,false]
 	ascBuff = 1

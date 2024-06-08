@@ -4,16 +4,28 @@ extends Node
 
 
 #@ Signals
-signal wheelSpun
+signal wheelRotationCompleted
 
 
 #@ Constants
-const FULL_ROTATION_DEGREES : float = 2*PI
+const FULL_ROTATION_RADIANS : float = 2*PI
 
 
 #@ Public Variables
 var automators : Array[AutomatorData]  # Probably move to its own global script
-var wheelRotation : float = 0.0  # Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
+
+# Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
+# wheelRotation keeps track of the value, but doesn't do anything itself.
+var wheelRotation : float = 0.0
+
+
+#@ Private Variables
+var _sign : int = 1 :
+	set(value):  # Make sure value is either -1 or 1.
+		if value < -1:
+			_sign = -1
+		else:
+			_sign = 1
 
 
 #@ Virtual Methods
@@ -28,19 +40,20 @@ func spinWheel() -> void:
 
 func rotateWheel() -> void:
 	# Reset rotation
-	if abs(wheelRotation) > FULL_ROTATION_DEGREES:
+	if abs(wheelRotation) > FULL_ROTATION_RADIANS:
 		_completeRotation()
 	
 	# No spins then no rotating the wheel.
 	if GVars.spinData.spin <= 0:
 		return
 	
-	# Rotate wheel in a direction based on the candle lit(?)
 	if GVars.ritualData.candlesLit[0]:
-		# The angle of the wheel doesn't matter except for the sprite itself.
-		wheelRotation -= getWheelRotationAmount()
+		_sign = -1
 	else:
-		wheelRotation += getWheelRotationAmount()
+		_sign = 1
+	
+	# Rotate wheel in a direction based on the candle lit(?).
+	wheelRotation += getWheelRotationAmount() * _sign
 
 '
 # COMPLETED IN GVars.spinData IN density VARIABLE.
@@ -54,14 +67,15 @@ func getWheelRotationAmount() -> float:
 	# Divide by the speed divisor, which is based off the wheel phase.
 	value /= _getRotationSpeedDivisor()
 	# Reduce amount by the amount of lit candles .
-	# (!) WIP: Have a global script that keeps track of buffs, and a script that keeps track of debuffs
 	var numOfLitCandles : int = 0
 	for boolean in GVars.ritualData.candlesLit:
 		if boolean:
 			numOfLitCandles += 1
 	value *= 1 - (0.2 * numOfLitCandles)
-	# Reduce/Increase amount based on the emotion buff from ascension.
-	# (?) There must be something I can do with buff/debuff calculations.
+	# Increase amount from global buffs, such as emotionBuff.
+	value *= GlobalBuffs.wheelRotationGainModifier
+	' CODE REPLACED BY PREVIOUS LINE.
+	
 	var emotionBuffSpeed : float = 1.0
 	if GVars.curEmotionBuff == 1:
 		# Increase
@@ -71,6 +85,7 @@ func getWheelRotationAmount() -> float:
 		# Decrease
 		emotionBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
 		value /= emotionBuffSpeed
+	'
 	# Increase amount by rot buff.
 	value *= GVars.ritualData.rotBuff
 	return value
@@ -115,14 +130,40 @@ func _getRotationSpeedDivisor() -> float:
 	return value
 
 
+# When the wheel completely turns a full circle, it runs a couple of things.
 func _completeRotation() -> void:
 	# Gain spin.
 	spinWheel()  # Should I really have this func be called "spinWheel()"?
 	
-	# Gain rotation. Make progress towards getting rust.
-	var amount : float = float(wheelRotation / FULL_ROTATION_DEGREES)  # Usually a value of 1, since rotation resets at 2*PI.
+	# Candle #3(?) is lit.
+	if GVars.ritualData.candlesLit[2]:
+		var numerator : float = log(GVars.spinData.rotations) * GVars.Aspinbuff
+		var denominator : float
+		if _sign == -1:
+			denominator = GVars.ritualData.ascBuff * GVars.spinData.rotations * 10
+		else:
+			denominator = GVars.ritualData.ascBuff * GVars.spinData.rotations * 5
+		GVars.ritualData.ascBuff += numerator / denominator * _sign
+	
+	# Candle #4(?) is lit.
+	if GVars.ritualData.candlesLit[3]:
+		GVars.rustData.rust += 0.1 * _sign
+	
+	# Candle #5(?) is lit.
+	if GVars.ritualData.candlesLit[4]:
+		var numerator : float = log(GVars.spinData.rotations) * GVars.spinData.density
+		var denominator : float = GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100)
+		GVars.ritualData.rotBuff += numerator / denominator * _sign
+	
+	# Gain rotation.
+	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
 	GVars.spinData.rotations += amount
+	
+	# Make progress towards getting rust. Should this be elsewhere via signalling?
 	GVars.rustData.threshProgress += amount
 	
+	# Signal rotation completed. Note: Some other scripts will need wheelRotation, so don't change wheelRotation before signalling.
+	wheelRotationCompleted.emit()
+	
 	# Reset rotation.
-	wheelRotation = fmod(wheelRotation, FULL_ROTATION_DEGREES)
+	wheelRotation = fmod(wheelRotation, FULL_ROTATION_RADIANS)

@@ -32,25 +32,7 @@ func _ready():
 		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 
 
-#@ Private Methods
-func _button_pressed():
-	if ifsucc:
-		ifsucc = false
-		GVars.spinData.sizeToggle = false
-		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.get_child(0).init(load("res://Sound/SFX/nono.wav"))
-	else :
-		ifsucc = true
-		GVars.spinData.sizeToggle = true
-		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.get_child(0).init(load("res://Sound/SFX/yes.wav"))
-	GVars.save_prog()
-
-
+#@ Public Methods
 func suc_loop():
 	# Local Variables.
 	var suc = 0.0;
@@ -77,3 +59,22 @@ func suc_loop():
 				GVars.spinData.curSucSize = 0
 				GVars.spinData.sucTresh *= 3
 	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2
+
+
+#@ Private Methods
+func _button_pressed():
+	if ifsucc:
+		ifsucc = false
+		GVars.spinData.sizeToggle = false
+		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
+		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
+		self.add_child(sf)	
+		sf.get_child(0).init(load("res://Sound/SFX/nono.wav"))
+	else :
+		ifsucc = true
+		GVars.spinData.sizeToggle = true
+		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
+		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
+		self.add_child(sf)	
+		sf.get_child(0).init(load("res://Sound/SFX/yes.wav"))
+	GVars.save_prog()

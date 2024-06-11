@@ -47,6 +47,7 @@ func rotateWheel() -> void:
 	if GVars.spinData.spin <= 0:
 		return
 	
+	# Get the direction that the wheel should be rotating towards. Counter-clockwise is negative.
 	if GVars.ritualData.candlesLit[0]:
 		_sign = -1
 	else:
@@ -54,6 +55,11 @@ func rotateWheel() -> void:
 	
 	# Rotate wheel in a direction based on the candle lit(?).
 	wheelRotation += getWheelRotationAmount() * _sign
+	
+	# Gain rust progress and possibly rust.
+	GVars.rustData.threshProgress -= _calculateThreshProgress()
+	GVars.rustData.thresh *= _calculateThresh()
+	GVars.rustData.rust += _calculateRust()
 
 '
 # COMPLETED IN GVars.spinData IN density VARIABLE.
@@ -63,71 +69,71 @@ func updateDivisor() -> void:
 
 # Probably move this in WheelSpaceWheel(?), or a script that is global.
 func getWheelRotationAmount() -> float:
-	var value : float = log(GVars.spinData.spin)/log(2)
+	var result : float = log(GVars.spinData.spin)/log(2)
 	# Divide by the speed divisor, which is based off the wheel phase.
-	value /= _getRotationSpeedDivisor()
+	result /= _getRotationSpeedDivisor()
 	# Reduce amount by the amount of lit candles .
 	var numOfLitCandles : int = 0
 	for boolean in GVars.ritualData.candlesLit:
 		if boolean:
 			numOfLitCandles += 1
-	value *= 1 - (0.2 * numOfLitCandles)
+	result *= 1 - (0.2 * numOfLitCandles)
 	# Increase amount from global buffs, such as emotionBuff.
-	value *= GlobalBuffs.wheelRotationGainModifier
+	result *= GlobalBuffs.wheelRotationGainModifier
 	' CODE REPLACED BY PREVIOUS LINE.
 	
 	var emotionBuffSpeed : float = 1.0
 	if GVars.curEmotionBuff == 1:
 		# Increase
 		emotionBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
-		value *= emotionBuffSpeed
+		result *= emotionBuffSpeed
 	elif GVars.hellChallengeNerf == 1:
 		# Decrease
 		emotionBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
-		value /= emotionBuffSpeed
+		result /= emotionBuffSpeed
 	'
 	# Increase amount by rot buff.
-	value *= GVars.ritualData.rotBuff
-	return value
-
+	result *= GVars.ritualData.rotBuff
+	return result
 
 
 #@ Private Methods
 func _calculateSpinGain() -> float:
-	# Base value Player gets from spinning the wheel with a click.
-	var value : float = GVars.spinData.spinPerClick
-	# Multiply the value by the size of the wheel.
-	value *= GVars.spinData.size
-	# Multiply the value by the density of the wheel.
-	value *= GVars.spinData.density
-	# Multiply the value by the rust purchasable upgrade, increase spin.
-	value *= GVars.rustData.increaseSpin
-	# Multiply the value by the buffs granted by growing mushrooms.
-	value *= GVars.mushroomData.spinBuff
-	# Multiply the value by the buff granted by ascension(?).
-	value *= GVars.Aspinbuff
+	# Base result Player gets from spinning the wheel with a click.
+	var result : float = GVars.spinData.spinPerClick
+	# Multiply the result by the size of the wheel.
+	result *= GVars.spinData.size
+	# Multiply the result by the density of the wheel.
+	result *= GVars.spinData.density
+	# Multiply the result by the rust purchasable upgrade, increase spin.
+	result *= GVars.rustData.increaseSpin
 	
-	# Multiply the value by the buff granted by emotion(?) from ascension(?).
+	## BUFFS, should probably be in Buffs.gd.
+	# Multiply the result by the buffs granted by growing mushrooms.
+	result *= GVars.mushroomData.spinBuff
+	# Multiply the result by the buff granted by ascension(?).
+	result *= GVars.Aspinbuff
+	# Multiply the result by the buff granted by emotion(?) from ascension(?).
 	if GVars.curEmotionBuff == 4:
-		# Note: This is the same as "value *= GVars.rustData.fourth", but was written similar to this in previous code.
+		# Note: This is the same as "result *= GVars.rustData.fourth", but was written similar to this in previous code.
 		var emotionBuffMultiplier: float = GVars.rustData.fourth
-		value *= emotionBuffMultiplier
-	return value
+		result *= emotionBuffMultiplier
+	return result
 
 
 # L.B: Utilizes my JSONReader class to load in a .json file intentionally written for this specific function.
 func _getRotationSpeedDivisor() -> float:
-	var value : float
+	var result : float
 	var wheelPhaseJSON : Dictionary = JSONReader.new().loadJSONFile("res://JSON/WheelPhases.json")
 	var wheelPhaseIndexOffset : int = GVars.spinData.wheelPhase - 1
 	
 	if wheelPhaseIndexOffset >= wheelPhaseJSON["rotationSpeedDivisor"].size():
-		value = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseJSON["rotationSpeedDivisor"].size() - 1]
+		result = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseJSON["rotationSpeedDivisor"].size() - 1]
 	elif wheelPhaseIndexOffset < 0:
-		value = wheelPhaseJSON["rotationSpeedDivisor"][0]
+		result = wheelPhaseJSON["rotationSpeedDivisor"][0]
 	else:
-		value = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseIndexOffset]
-	return value
+		result = wheelPhaseJSON["rotationSpeedDivisor"][wheelPhaseIndexOffset]
+	return result
 
 
 # When the wheel completely turns a full circle, it runs a couple of things.
@@ -159,7 +165,7 @@ func _completeRotation() -> void:
 	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
 	GVars.spinData.rotations += amount
 	
-	# Make progress towards getting rust. Should this be elsewhere via signalling?
+	# Make progress towards getting rust.
 	GVars.rustData.threshProgress += amount
 	
 	# Signal rotation completed. Note: Some other scripts will need wheelRotation, so don't change wheelRotation before signalling.
@@ -167,3 +173,29 @@ func _completeRotation() -> void:
 	
 	# Reset rotation.
 	wheelRotation = fmod(wheelRotation, FULL_ROTATION_RADIANS)
+
+
+func _calculateThreshProgress() -> float:
+	var result : float = GVars.rustData.thresh
+	return result
+
+
+func _calculateThresh() -> float:
+	var result : float = GVars.rustData.threshMult  # L.B: Why have a variable for thresh Multiplier in rustData?
+	return result
+
+
+func _calculateRust() -> float:
+	# Base value for if there is a challenge.
+	var result : float = 1.0
+	
+	# No calculations needed if doing the correct challenge.
+	if GVars.hellChallengeNerf == 4:
+		return result
+	
+	# Base value if there is not a challenge.
+	result *= GVars.rustData.perThresh
+	
+	# Multiply value by any buff.
+	result *= GlobalBuffs.rustGainModifier
+	return result

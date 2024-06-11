@@ -4,6 +4,7 @@ extends Node
 
 
 #@ Global Variables
+var spinGainModifier : float = 1.0
 var rustGainModifier : float = 1.0
 var mushroomPendingRotationModifier : float = 1.0
 var wheelRotationGainModifier : float = 1.0
@@ -40,6 +41,9 @@ func applyEmotionBuffs() -> void:
 		pass
 	elif GVars.curEmotionBuff == 4:  # 
 		# Increase rust gain.
+		# Base emotion buff.
+		rustGainModifier *= log(GVars.spinData.rotations + 1) + 1
+		# Packsmith upgrade which only works if curEmotionBuff == 4.
 		rustGainModifier *= GVars.rustData.fourth
 	elif GVars.curEmotionBuff == 5:  # 
 		pass

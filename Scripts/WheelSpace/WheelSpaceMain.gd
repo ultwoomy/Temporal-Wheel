@@ -6,19 +6,18 @@ class_name WheelSpaceMain
 
 
 #@ Constants
-const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 
 
 #@ Export Variables
 
 
 #@ Public Variables
-var angle = 0
-var speedDivisor = 1
-var emoBuffSpeed = 1
-var numOfCandles = 0.0
-var fourthRustBuff = 1
-var candleAugmentBuffModifier = 1
+var angle : float = 0.0
+var speedDivisor : float = 1.0
+var emoBuffSpeed : float = 1.0
+var numOfCandles : int = 0
+var fourthRustBuff : float = 1.0
+var candleAugmentBuffModifier : float = 1.0
 
 
 #@ Onready Variables
@@ -36,7 +35,7 @@ func _ready():
 #	densityButton.densUp.connect(updateDivisor)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	
-	wheel.scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
+	wheel.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
 	
 	numOfCandles = 0.0
@@ -56,26 +55,38 @@ func _process(_delta):
 	
 	# Rust related.
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
-		if(GVars.curEmotionBuff == 4):
-			emoBuff = log(GVars.spinData.rotations + 1) + 1
+		# COMPLETED IN GlobalBuffs.gd
+#		if(GVars.curEmotionBuff == 4):
+#			emoBuff = log(GVars.spinData.rotations + 1) + 1
+		
+#		# COMPLETED IN GlobalBuffs.gd & WheelSpinner.gd
+#		if(GVars.curEmotionBuff == 4):
+#			fourthRustBuff = GVars.rustData.fourth
+
 		if(GVars.hellChallengeNerf == 4):
-			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += 1
-			GVars.rustData.thresh *= GVars.rustData.threshMult
+#			GVars.rustData.threshProgress -= GVars.rustData.thresh
+#			GVars.rustData.rust += 1
+#			GVars.rustData.thresh *= GVars.rustData.threshMult
+			
 			var rus = RUST_PART.instantiate()
 			rus.get_child(0).init(1)
 			self.add_child(rus)	
 		elif(GVars.sigilData.curSigilBuff == 1):
-			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
-			GVars.rustData.thresh *= GVars.rustData.threshMult
+			# COMPLETED IN GlobalBuffs.gd & WheelSpinner.gd
+#			GVars.rustData.threshProgress -= GVars.rustData.thresh
+#			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
+#			GVars.rustData.thresh *= GVars.rustData.threshMult
+			
 			var rus = RUST_PART.instantiate()
 			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff)
 			self.add_child(rus)
 		else:
-			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff
-			GVars.rustData.thresh *= GVars.rustData.threshMult
+			# COMPLETED IN GlobalBuffs.gd & WheelSpinner.gd
+#			GVars.rustData.threshProgress -= GVars.rustData.thresh
+#			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff
+#			GVars.rustData.thresh *= GVars.rustData.threshMult
+			
+			#
 			var rus = RUST_PART.instantiate()
 			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
 			self.add_child(rus)	
@@ -165,7 +176,7 @@ TODO:
 	Frame already changes, moved to WheelSpaceWheel.gd.
 	
 func updateWheelSprite(frameno):
-	# COMPLETED IN Buffs.gd
+	# COMPLETED IN GlobalBuffs.gd
 	if(GVars.sigilData.curSigilBuff == 2):
 		candleAugmentBuffModifier = 2
 	
@@ -175,7 +186,7 @@ func updateWheelSprite(frameno):
 	elif(GVars.hellChallengeNerf == 1):
 		emoBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	
-	# COMPLETED IN Buffs.gd
+	# COMPLETED IN GlobalBuffs.gd
 	if(GVars.curEmotionBuff == 4):
 		fourthRustBuff = GVars.rustData.fourth
 	

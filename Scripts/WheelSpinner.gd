@@ -5,6 +5,7 @@ extends Node
 
 #@ Signals
 signal wheelRotationCompleted
+signal rustProgressed(rustPerThresh : float)
 
 
 #@ Constants
@@ -56,11 +57,15 @@ func rotateWheel() -> void:
 	# Rotate wheel in a direction based on the candle lit(?).
 	wheelRotation += getWheelRotationAmount() * _sign
 	
-	# Gain rust progress and possibly rust.
-	GVars.rustData.threshProgress -= _calculateThreshProgress()
-	GVars.rustData.thresh *= _calculateThresh()
-	GVars.rustData.rust += _calculateRust()
-
+	# Gain rust progress and possibly rust when wheel is rotating.
+	var rustCalculation : float = _calculateRust()
+	if GVars.rustData.threshProgress > GVars.rustData.thresh:
+		GVars.rustData.threshProgress -= _calculateThreshProgress()
+		GVars.rustData.rust += rustCalculation
+		GVars.rustData.thresh *= _calculateThresh()
+		
+		# Signal rust progression.
+		rustProgressed.emit(rustCalculation)
 '
 # COMPLETED IN GVars.spinData IN density VARIABLE.
 func updateDivisor() -> void:
@@ -165,7 +170,7 @@ func _completeRotation() -> void:
 	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
 	GVars.spinData.rotations += amount
 	
-	# Make progress towards getting rust.
+	# Make rust progress for rotateWheel().
 	GVars.rustData.threshProgress += amount
 	
 	# Signal rotation completed. Note: Some other scripts will need wheelRotation, so don't change wheelRotation before signalling.
@@ -181,7 +186,7 @@ func _calculateThreshProgress() -> float:
 
 
 func _calculateThresh() -> float:
-	var result : float = GVars.rustData.threshMult  # L.B: Why have a variable for thresh Multiplier in rustData?
+	var result : float = GVars.rustData.threshMult
 	return result
 
 
@@ -198,4 +203,5 @@ func _calculateRust() -> float:
 	
 	# Multiply value by any buff.
 	result *= GlobalBuffs.rustGainModifier
+	
 	return result

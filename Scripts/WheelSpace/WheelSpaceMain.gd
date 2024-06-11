@@ -64,33 +64,40 @@ func _process(_delta):
 #			fourthRustBuff = GVars.rustData.fourth
 
 		if(GVars.hellChallengeNerf == 4):
+			# COMPLETED IN GlobalBuffs.gd & WheelSpinner.gd
 #			GVars.rustData.threshProgress -= GVars.rustData.thresh
 #			GVars.rustData.rust += 1
 #			GVars.rustData.thresh *= GVars.rustData.threshMult
 			
-			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(1)
-			self.add_child(rus)	
+			# COMPLETED IN RustEmitter.gd/WheelSpace scene/WheelSpaceWheel.gd
+#			var rus = RUST_PART.instantiate()
+#			rus.get_child(0).init(1)
+#			self.add_child(rus)	
+			pass
 		elif(GVars.sigilData.curSigilBuff == 1):
 			# COMPLETED IN GlobalBuffs.gd & WheelSpinner.gd
 #			GVars.rustData.threshProgress -= GVars.rustData.thresh
 #			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
 #			GVars.rustData.thresh *= GVars.rustData.threshMult
 			
-			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff)
-			self.add_child(rus)
+			# COMPLETED IN RustEmitter.gd/WheelSpace scene/WheelSpaceWheel.gd
+#			var rus = RUST_PART.instantiate()
+#			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff)
+#			self.add_child(rus)
+			pass
 		else:
 			# COMPLETED IN GlobalBuffs.gd & WheelSpinner.gd
 #			GVars.rustData.threshProgress -= GVars.rustData.thresh
 #			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff
 #			GVars.rustData.thresh *= GVars.rustData.threshMult
 			
-			#
-			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
-			self.add_child(rus)	
-	wheel.scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
+			# COMPLETED IN RustEmitter.gd/WheelSpace scene/WheelSpaceWheel.gd
+#			var rus = RUST_PART.instantiate()
+#			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
+#			self.add_child(rus)
+			pass
+	# COMPLETED IN WheelSpaceWheel.gd
+#	wheel.scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 
 
 #@ Public Methods

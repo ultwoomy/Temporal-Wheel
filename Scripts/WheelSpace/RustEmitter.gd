@@ -22,24 +22,25 @@ func _process(_delta : float) -> void:
 #@ Public Methods
 # Should be called when rust has been gained.
 func emit() -> void:
-	particle.restart()
+	if not particle.emitting:
+		particle.restart()
 
 
-func init(Rperthresh = GVars.rustData.perThresh):
-	if(Rperthresh > 100000):
+func changeParticleOnRust(rustPerThresh : float = GVars.rustData.perThresh) -> void:
+	if(rustPerThresh > 100000):
 		particle.process_material.scale_min = 6.0
 		particle.amount = 1
-	elif(Rperthresh > 10000):
+	elif(rustPerThresh > 10000):
 		particle.process_material.scale_min = 5.0
-		particle.amount = int(Rperthresh/10000)
-	elif(Rperthresh > 1000):
+		particle.amount = int(rustPerThresh/10000)
+	elif(rustPerThresh > 1000):
 		particle.process_material.scale_min = 4.0
-		particle.amount = int(Rperthresh/1000)
-	elif(Rperthresh > 100):
+		particle.amount = int(rustPerThresh/1000)
+	elif(rustPerThresh > 100):
 		particle.process_material.scale_min = 3.0
-		particle.amount = int(Rperthresh/100)
-	elif(Rperthresh > 10):
+		particle.amount = int(rustPerThresh/100)
+	elif(rustPerThresh > 10):
 		particle.process_material.scale_min = 2.0
-		particle.amount = int(Rperthresh/10)
-	else :
-		particle.amount = int(Rperthresh)
+		particle.amount = int(rustPerThresh/10)
+	else:
+		particle.amount = int(rustPerThresh)

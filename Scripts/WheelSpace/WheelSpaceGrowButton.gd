@@ -32,7 +32,7 @@ func _ready():
 	growDisplay.text = str(GVars.spinData.size)
 	
 	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2
-	if(ifsucc):
+	if ifsucc:
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 	else :
 		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))

@@ -69,11 +69,7 @@ func rotateWheel() -> void:
 		
 		# Signal rust progression.
 		rustProgressed.emit(rustCalculation)
-'
-# COMPLETED IN GVars.spinData IN density VARIABLE.
-func updateDivisor() -> void:
-	GVars.spinData.wheelPhase = int(GVars.spinData.density)
-'
+
 
 # Probably move this in WheelSpaceWheel(?), or a script that is global.
 func getWheelRotationAmount() -> float:
@@ -88,18 +84,7 @@ func getWheelRotationAmount() -> float:
 	result *= 1 - (0.2 * numOfLitCandles)
 	# Increase amount from global buffs, such as emotionBuff.
 	result *= GlobalBuffs.wheelRotationGainModifier
-	' CODE REPLACED BY PREVIOUS LINE.
-	
-	var emotionBuffSpeed : float = 1.0
-	if GVars.curEmotionBuff == 1:
-		# Increase
-		emotionBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
-		result *= emotionBuffSpeed
-	elif GVars.hellChallengeNerf == 1:
-		# Decrease
-		emotionBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
-		result /= emotionBuffSpeed
-	'
+
 	# Increase amount by rot buff.
 	result *= GVars.ritualData.rotBuff
 	return result

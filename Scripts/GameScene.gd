@@ -2,8 +2,9 @@
 extends Node
 class_name GameScene
 
-var automators : Array[AutomatorData]
 
+#@ Public Variables
+var automators : Array[AutomatorData]  # L.B: Probably remove this.
 var emoBuff : float = 1
 
 

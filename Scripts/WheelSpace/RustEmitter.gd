@@ -13,9 +13,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta : float) -> void:
-	# OLD CODE: Originally created an instance, played the effect, then deleted itself afterwards.
-#	if not particle.emitting:
-#		queue_free()
 	pass
 
 

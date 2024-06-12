@@ -1,10 +1,16 @@
 extends TextureButton
+
+
+#@ Public Variable
 var dismush = preload("res://Sprites/WheelSpace/mush_ext_sheet/tile002.png")
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if(GVars.sigilData.numberOfSigils[1]):
-		disabled = false
+	if GVars.sigilData.numberOfSigils:
+		if GVars.sigilData.numberOfSigils[1]:
+			disabled = false
 	else:
 		disabled = true
 		texture_hover = dismush
@@ -21,6 +27,7 @@ func _process(_delta: float) -> void:
 	pass
 
 
+#@ Public Methods
 # L.B: Odd how inconsistent the function names are for changing scenes.
 # ...Usually, "_" prefixes mean that this function should get overwritten by its inheriters.
 #YU: Naming convention inconsistent, probably will fix slowly

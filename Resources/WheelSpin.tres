@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://c8p6uotagyg0n"]
 
-[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpin.gd" id="1_ysfgy"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinButton.gd" id="1_ysfgy"]
 [ext_resource type="Script" path="res://Scripts/SaveData.gd" id="2_vsdxb"]
 
 [resource]

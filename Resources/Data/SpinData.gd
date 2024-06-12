@@ -1,6 +1,12 @@
 extends Resource
 class_name SpinData
 
+
+#@ Signals
+signal wheelPhaseChanged
+
+
+#@ Export Variables
 @export var spin : float
 @export var spinPerClick : float
 @export var size : float
@@ -9,17 +15,24 @@ class_name SpinData
 @export var sucTresh : float
 @export var curSucSize : float
 @export var sizeRecord : float
-@export var density : float
+@export var density : float :
+	set(value):
+		density = value
+		wheelPhase = int(value)  # L.B: Setting density also sets wheelPhase.
 @export var sucPerTDens : float
 @export var densTresh : float
 @export var curSucDens : float
-@export var wheelphase : int
+@export var wheelPhase : int :
+	set(value):
+		wheelPhase = value
+		wheelPhaseChanged.emit()
 @export var rotations : float
 @export var spinSpeed : float
 
 func _init():
 	resetData()
 	
+
 func resetData() -> void:
 	spin = 0
 	spinPerClick = 1
@@ -33,6 +46,6 @@ func resetData() -> void:
 	sucPerTDens = 1
 	densTresh = 2
 	curSucDens = 0
-	wheelphase = 1
+	wheelPhase = 1
 	rotations = 0
 	spinSpeed = 0

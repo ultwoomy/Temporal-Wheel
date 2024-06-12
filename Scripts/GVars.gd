@@ -1,4 +1,6 @@
 extends Node
+
+
 @export_group("R0stats")
 @export var spinData : SpinData
 @export var rustData : RustData
@@ -49,15 +51,15 @@ func _init():
 
 
 func create_data():
-	if (!rustData):
+	if not rustData:
 		rustData = RustData.new()
-	if (!mushroomData):
+	if not mushroomData:
 		mushroomData = MushroomData.new()
-	if (!ritualData):
+	if not ritualData:
 		ritualData = RitualData.new()
-	if (!sigilData):
+	if not sigilData:
 		sigilData = SigilData.new()
-	if (!spinData):
+	if not spinData:
 		spinData = SpinData.new()
 	if(!soulsData):
 		soulsData = SoulsData.new()
@@ -84,6 +86,10 @@ func save_prog():
 	loader.atlasData = atlasData
 	loader.kbityData = kbityData
 	loader.backpackData = backpackData
+	#loader.sigilData = sigilData
+	
+	#loader.Aspinbuff = Aspinbuff
+	#loader.curEmotionBuff = curEmotionBuff
 	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
@@ -217,6 +223,7 @@ func load_as_normal():
 	kbityData = loader.kbityData
 	atlasData = loader.atlasData
 	backpackData = loader.backpackData
+
 
 func unlock_all_sigils():
 	for n in GVars.sigilData.numberOfSigils.size():

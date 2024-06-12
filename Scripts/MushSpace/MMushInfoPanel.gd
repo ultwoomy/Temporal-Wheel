@@ -2,19 +2,18 @@ extends Node
 class_name MMushInfoPanel
 
 
-## Components
+#@ Global Variables
+var currentFrame : int
+
+
+#@ Onready Variables
 @onready var currentMush : AnimatedSprite2D = $CurrentMush
 @onready var desc : Label = $MushDescription
 @onready var left : Button = $LeftArrow
 @onready var right : Button = $RightArrow
 
 
-## Variables
-var currentFrame : int
-
-
-
-## Functions
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	currentMush.frame = 0
@@ -33,6 +32,7 @@ func _process(_delta: float) -> void:
 	pass
 
 
+#@ Private Methods
 func _left() -> void:
 	if(currentFrame <= 0):
 		currentFrame = 3

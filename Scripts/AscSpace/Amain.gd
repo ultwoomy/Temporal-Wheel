@@ -137,6 +137,7 @@ func _button_generic(switchEmotion,text):
 		GVars.curEmotionBuff = switchEmotion
 	awaken.show()
 
+
 func _butCha():
 	#numbers 0 - 4 are for layer 1 challenges
 	#numbers 10 - 13 are for layer 2 challenges
@@ -163,7 +164,7 @@ func _butCha():
 		_button_generic(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")
 
 func _awaken():
-	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff
+	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff  # TODO: Replace this with a global variable in Buffs.gd
 	var event_manager: EventManager = get_tree().get_root().find_child("EventManager", true, false)
 	if (event_manager):
 		event_manager.reset_automators.emit()

@@ -11,6 +11,7 @@ func _init() -> void:
 	resetData()
 
 
+#@ Public Methods
 func resetData() -> void:
 	candlesLit = [false,false,false,false,false,false]
 	ascBuff = 1

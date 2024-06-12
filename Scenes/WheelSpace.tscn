@@ -1,10 +1,7 @@
-[gd_scene load_steps=63 format=3 uid="uid://buu1sadwadteo"]
+[gd_scene load_steps=43 format=3 uid="uid://csj1yqrbq5fn3"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_fqwvi"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
-[ext_resource type="Texture2D" uid="uid://bqsm8hfoejatb" path="res://Sprites/WheelSpace/Sky/day.png" id="3_feow6"]
-[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_ro1bm"]
-[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpin.gd" id="3_wlyuf"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="4_2qlpx"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="4_3lf5g"]
 [ext_resource type="Texture2D" uid="uid://cx41yp0f1ckr4" path="res://Sprites/WheelSpace/mush_ext_sheet/tile000.png" id="4_6nxsv"]
@@ -13,17 +10,19 @@
 [ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="5_eh2pp"]
 [ext_resource type="Texture2D" uid="uid://q4k5bjlld7su" path="res://Sprites/WheelSpace/mush_ext_sheet/tile001.png" id="5_uc6mm"]
 [ext_resource type="Texture2D" uid="uid://td637bbgri78" path="res://Sprites/WheelSpace/mush_ext_sheet/tile002.png" id="6_00pdw"]
-[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSizeButton.gd" id="6_86y4n"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMushroomButton.gd" id="7_2e481"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_kph8u"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRatController.gd" id="8_d0mpf"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensButton.gd" id="8_fdt8y"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTravel.gd" id="9_m22ci"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinButton.gd" id="9_qhmjp"]
+[ext_resource type="Script" path="res://Scenes/WheelSpaceWheel.gd" id="10_msxti"]
 [ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="10_nni4m"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTutBox.gd" id="10_wwwx1"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceChangePreAscButton.gd" id="11_reugq"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="11_xt61f"]
-[ext_resource type="Texture2D" uid="uid://bjex0cifjs7ei" path="res://Sprites/WheelSpace/ratsheet/ratletter.png" id="12_so2xr"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowButton.gd" id="12_pgv0a"]
+[ext_resource type="PackedScene" uid="uid://dtdgsst1q4xqc" path="res://Scenes/RustEmitter.tscn" id="13_101ar"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowDisplay.gd" id="13_l10x1"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinDisplay.gd" id="14_74yq1"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensDisplay.gd" id="15_xbhsq"]
@@ -144,8 +143,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_fqwvi")
-script = ExtResource("3_ro1bm")
+theme = SubResource("Theme_hyv8k")
+script = ExtResource("4_3lf5g")
 
 [node name="Back" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.635294)
@@ -179,7 +178,7 @@ offset_left = 750.0
 offset_top = 100.0
 offset_right = 850.0
 offset_bottom = 150.0
-script = ExtResource("3_wlyuf")
+script = ExtResource("9_qhmjp")
 spinPerCDisplay = NodePath("SpinPClickDiplay")
 button = NodePath("SpinUp")
 
@@ -190,10 +189,9 @@ layout_mode = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 
-[node name="Wheel" type="CharacterBody2D" parent="." node_paths=PackedStringArray("densityButton")]
+[node name="Wheel" type="CharacterBody2D" parent="."]
 position = Vector2(500, 300)
-script = ExtResource("4_3lf5g")
-densityButton = NodePath("../DensButton")
+script = ExtResource("10_msxti")
 
 [node name="Centerpiece" type="AnimatedSprite2D" parent="Wheel"]
 sprite_frames = ExtResource("5_eh2pp")
@@ -213,13 +211,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_reugq")
 
+[node name="RustEmitter" parent="Wheel" instance=ExtResource("13_101ar")]
+
 [node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image", "spinbody")]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 250.0
 offset_right = 950.0
 offset_bottom = 350.0
-script = ExtResource("6_86y4n")
+script = ExtResource("12_pgv0a")
 growDisplay = NodePath("GrowDisplay")
 button = NodePath("GrowToggle")
 image = NodePath("GrowRectDisp")
@@ -240,16 +240,13 @@ theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 script = ExtResource("13_l10x1")
 
-[node name="DensButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
+[node name="DensButton" type="Container" parent="."]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 400.0
 offset_right = 950.0
 offset_bottom = 500.0
 script = ExtResource("8_fdt8y")
-growDisplay = NodePath("DensDisplay")
-button = NodePath("DensToggle")
-image = NodePath("DensRectDisp")
 
 [node name="DensRectDisp" type="Sprite2D" parent="DensButton"]
 scale = Vector2(2, 1)
@@ -440,6 +437,7 @@ back = NodePath("../BackpackPanel")
 
 [node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
 process_mode = 3
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

@@ -1,190 +1,50 @@
-extends CharacterBody2D
-var angle = 0
-var speedDivisor = 0
-var emoBuff = 1
-var emoBuffSpeed = 1
-var numOfCandles = 0.0
-var fourthRustBuff = 1
-var sigaugbuf = 1
-var effectiveDensity = GVars.spinData.density
-var rng = RandomNumberGenerator.new()
-@export var densityButton : Container
-const RUST_PART = preload("res://Scenes/RustEmit.tscn")
-signal oneClick
-
-func update_wheel_sprite(frameno):
-	if(GVars.sigilData.curSigilBuff == 1):
-		sigaugbuf = 2
-	if(GVars.curEmotionBuff == 1):
-		emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
-	elif(GVars.hellChallengeNerf == 1):
-		emoBuffSpeed = 1.2 + ((log(GVars.spinData.rotations + 1)/85 - 1) * log(GVars.spinData.rotations + 1)/log(2))
-	if(GVars.curEmotionBuff == 4):
-		fourthRustBuff = GVars.rustData.fourth
-	GVars.spinData.wheelphase = effectiveDensity
-	if(frameno > 11):
-		self.get_node("Centerpiece").frame = 11
-	else :
-		self.get_node("Centerpiece").frame = frameno
+extends GameScene
+class_name WheelSpaceMain
 
 
-func updateDivisor():
-	if(GVars.atlasData.dumpRustMilestone > 1):
-		effectiveDensity = int(GVars.spinData.density) + GVars.atlasData.dumpRustMilestone/4 + 1
-	else:
-		effectiveDensity = int(GVars.spinData.density)
-	GVars.spinData.wheelphase = effectiveDensity
-	update_wheel_sprite(GVars.spinData.wheelphase-1)
-	
-	
-	# L.B: Utilizes my JSONReader class to load in a .json file intentionally written for this specific function.
-	var wheelphase_json: Dictionary = JSONReader.new().loadJSONFile("res://JSON/WheelPhases.json")
-	# (!) Hard-coded minimum and maximum for the range to match your previous code.
-	var wheelphaseRange: Array = range(1, 12) # Note: range takes steps and stops before the second arg; first arg is inclusive, second arg is exclusive.
-	if GVars.spinData.wheelphase in wheelphaseRange:
-		for count in wheelphaseRange: 
-			if GVars.spinData.wheelphase == count:
-				# Use "count" as a way of finding a key in the JSON object "wheelphases".
-				#	- Since count is an integer and a key has to be a string, change count as an integer into a string.
-				#	- "wheelphases" is a JSON object that contains { "1":1000, "2":700, . . ., "other":80 }
-				var wheelphase_index: int = wheelphase_json.wheelphases.keys().find(str(count))
-				
-				# If the string of the integer "count" is not a key in "wheelphases", then wheelphase_index will be -1 and thus not in range.
-				if wheelphase_index == -1:
-					speedDivisor = wheelphase_json.wheelphases.other
-				else:
-					# If the string of the integer "count" is a key within "wheelphases", then you can find that key and its value at index "wheelphase_index".
-					# You can do it another way as well:
-					#	- speedDivisor = wheelphase_json.wheelphases[str(count)]
-					speedDivisor = wheelphase_json.wheelphases.values()[wheelphase_index]
-	else:
-		speedDivisor = wheelphase_json.wheelphases.other
+#@ Signals
 
 
-func _process(_delta):
-	if(calculateOneRot()):
-		emit_signal("oneClick")
-	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
-		var soulsRustBuff = 1
-		if GVars.soulsData.voidRustChanceEnabled and rng.randf_range(0.0, 100.0) < GVars.soulsData.voidRustChance:
-			soulsRustBuff = 2
-		else:
-			soulsRustBuff = 1
-		if(GVars.curEmotionBuff == 4):
-			if(GVars.atlasData.dumpRustMilestone > 3):
-				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(10) * (GVars.atlasData.dumpRustMilestone + 1)
-			else:
-				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(10)
-		if(GVars.hellChallengeNerf == 4):
-			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += 1
-			GVars.rustData.thresh *= GVars.rustData.threshMult
-			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(1)
-			self.add_child(rus)	
-		elif(GVars.sigilData.curSigilBuff == 0):
-			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff * soulsRustBuff
-			GVars.rustData.thresh *= GVars.rustData.threshMult
-			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff * soulsRustBuff)
-			self.add_child(rus)
-		else:
-			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff * soulsRustBuff
-			GVars.rustData.thresh *= GVars.rustData.threshMult
-			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff * soulsRustBuff)
-			self.add_child(rus)	
-	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
-
-func calculateOneRot():
-	var changerot = 0.0
-	var soulsRotBuff = 1
-	if(GVars.spinData.spin > 0):
-		if(GVars.hellChallengeNerf == 1):
-			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
-		elif(GVars.hellChallengeLayer2 == 0):
-			if(GVars.spinData.rotations > 100):
-				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff / ((GVars.spinData.rotations + 300)/400)
-			else:
-				changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
-		else:
-			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) * emoBuffSpeed * GVars.ritualData.rotBuff
-		if(GVars.ritualData.candlesLit[0]):
-			rotation -= changerot
-			angle -= changerot
-		else:
-			rotation += changerot
-			angle += changerot
-		if(angle < -2*PI):
-			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff += 3 * (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
-			if(GVars.ritualData.candlesLit[3]):
-				GVars.rustData.rust += 0.3
-			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += 3 * (log(GVars.spinData.rotations) * effectiveDensity)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
-			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff
-			GVars.spinData.rotations += temp
-			GVars.rustData.threshProgress += temp
-			angle = fmod(angle,(2*PI))
-			if(GVars.curEmotionBuff == 1):
-				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
-			if(GVars.ritualData.candlesLit[1]):
-				if(GVars.mushroomData.level < 10):
-					GVars.mushroomData.xp += 3 * GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
-				else:
-					GVars.mushroomData.xp += 3 * GVars.mushroomData.xpThresh/(pow(1.86,GVars.mushroomData.level))
-			if(GVars.spinData.rotations < 0):
-				turnOffCandles()
-		if(angle > 2*PI):
-			if GVars.soulsData.doubleRotChanceEnabled and rng.randf_range(0.0, 100.0) < GVars.soulsData.doubleRotChance:
-				soulsRotBuff = 2
-			else:
-				soulsRotBuff = 1
-			print(str(soulsRotBuff))
-			if(GVars.ritualData.candlesLit[2]):
-				GVars.ritualData.ascBuff += (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
-			if(GVars.ritualData.candlesLit[3]):
-				GVars.rustData.rust += 0.1
-			if(GVars.ritualData.candlesLit[4]):
-				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * effectiveDensity)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
-			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff * soulsRotBuff
-			GVars.spinData.rotations += temp
-			GVars.mushroomData.pendingRots += temp
-			if(GVars.ritualData.candlesLit[5]):
-				GVars.kbityData.kbityAddRot += temp
-			if(GVars.ritualData.candlesLit[1]):
-				if(GVars.mushroomData.level < 10):
-					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)
-				else:
-					GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(pow(1.86,GVars.mushroomData.level))
-			GVars.rustData.threshProgress += temp
-			if(GVars.curEmotionBuff == 1):
-				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
-			angle = fmod(angle,(2*PI))
-			if(GVars.spinData.rotations < 0):
-				turnOffCandles()
-			return true
-	return false
+#@ Constants
 
 
+#@ Export Variables
+
+
+#@ Public Variables
+var angle : float = 0.0
+var speedDivisor : float = 1.0
+var emoBuffSpeed : float = 1.0
+var numOfCandles : int = 0
+var fourthRustBuff : float = 1.0
+var candleAugmentBuffModifier : float = 1.0
+
+
+#@ Onready Variables
+@onready var wheel : WheelSpaceWheel = $Wheel
+@onready var spinButton : WheelSpaceSpinButton = $SpinButton
+@onready var growButton : WheelSpaceGrowButton = $GrowButton
+@onready var densityButton : WheelSpaceDensityButton = $DensButton
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
+	# Connect signals
+	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
+	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
+	
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
-	densityButton.densUp.connect(updateDivisor)
+	
 	numOfCandles = 0.0
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
 	if(numOfCandles > 0) and (GVars.sigilData.curSigilBuff == 4):
 		numOfCandles -= 1
-	if(numOfCandles > 5):
+	if (numOfCandles > 5):
 		numOfCandles = 5
-	updateDivisor()
 
-func turnOffCandles():
-	for n in GVars.ritualData.candlesLit.size():
-		if(GVars.ritualData.candlesLit[n]):
-			GVars.ritualData.candlesLit[n] = false
+
+func _process(_delta):
+	pass

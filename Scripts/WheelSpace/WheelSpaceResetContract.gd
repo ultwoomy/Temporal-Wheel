@@ -1,7 +1,16 @@
 extends Container
+
+
+#@ Export Variables
 @export var button : Button
 @export var image : Sprite2D
+
+
+#@ Public Variables
 var presses = 0.0
+
+
+#@ Virtual Methods
 func _ready():
 	if GVars.hellChallengeNerf >= 0:
 		show()
@@ -10,12 +19,14 @@ func _ready():
 	button.text = "Exit Contract"
 	button.size = Vector2(200,25)
 	button.expand_icon = true
-	button.pressed.connect(self._button_pressed)
+	button.pressed.connect(self._buttonPressed)
 	image.scale.x = 0
 	image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 
+
+#@ Private Methods
 #Yu: Removed loop, now triggers on button press instead of every 2 seconds.
-func _button_pressed():
+func _buttonPressed():
 	presses += 1.0
 	if(presses > 4):
 		GVars.hellChallengeNerf = -1

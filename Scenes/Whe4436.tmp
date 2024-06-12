@@ -1,0 +1,345 @@
+[gd_scene load_steps=42 format=3 uid="uid://csj1yqrbq5fn3"]
+
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_glr4n"]
+[ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="3_1n6fv"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="4_2qlpx"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="4_3lf5g"]
+[ext_resource type="Texture2D" uid="uid://cx41yp0f1ckr4" path="res://Sprites/WheelSpace/mush_ext_sheet/tile000.png" id="4_6nxsv"]
+[ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="5_eh2pp"]
+[ext_resource type="Texture2D" uid="uid://q4k5bjlld7su" path="res://Sprites/WheelSpace/mush_ext_sheet/tile001.png" id="5_uc6mm"]
+[ext_resource type="Texture2D" uid="uid://td637bbgri78" path="res://Sprites/WheelSpace/mush_ext_sheet/tile002.png" id="6_00pdw"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMushroomButton.gd" id="7_2e481"]
+[ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_kph8u"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensButton.gd" id="8_fdt8y"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTravel.gd" id="9_m22ci"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinButton.gd" id="9_qhmjp"]
+[ext_resource type="Script" path="res://Scenes/WheelSpaceWheel.gd" id="10_msxti"]
+[ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="10_nni4m"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTutBox.gd" id="10_wwwx1"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceChangePreAscButton.gd" id="11_reugq"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="11_xt61f"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowButton.gd" id="12_pgv0a"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowDisplay.gd" id="13_l10x1"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinDisplay.gd" id="14_74yq1"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensDisplay.gd" id="15_xbhsq"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRotsDisplay.gd" id="17_333p7"]
+[ext_resource type="Texture2D" uid="uid://dbxedep3ucns5" path="res://Sprites/WheelSpace/spinbot.png" id="24_50bes"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/SpinbotShow.gd" id="25_hnqpy"]
+[ext_resource type="Texture2D" uid="uid://dbqifpea6l5v3" path="res://Sprites/WheelSpace/settings buttons/tile000.png" id="26_vcmby"]
+[ext_resource type="Texture2D" uid="uid://da7ojbspruc6b" path="res://Sprites/WheelSpace/settings buttons/tile001.png" id="27_t10mo"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/SettingsTravel.gd" id="28_ob0gv"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="29_womxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_hyv8k"]
+default_font = ExtResource("4_2qlpx")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_glr4n")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dil3"]
+atlas = ExtResource("10_nni4m")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruuii"]
+atlas = ExtResource("10_nni4m")
+region = Rect2(500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6eep"]
+atlas = ExtResource("10_nni4m")
+region = Rect2(1000, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu7eo"]
+atlas = ExtResource("10_nni4m")
+region = Rect2(1500, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05j8j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dil3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruuii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6eep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu7eo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1qs7"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s6ay"]
+bg_color = Color(0.780392, 0.482353, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
+
+[node name="WheelSpace" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hyv8k")
+script = ExtResource("4_3lf5g")
+
+[node name="Ground" type="Sprite2D" parent="."]
+self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
+position = Vector2(498, 541)
+texture = ExtResource("3_1n6fv")
+
+[node name="MushroomButton" type="TextureButton" parent="Ground"]
+offset_left = -406.5
+offset_top = -228.5
+offset_right = -107.5
+offset_bottom = 70.5
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("4_6nxsv")
+texture_pressed = ExtResource("5_uc6mm")
+texture_hover = ExtResource("5_uc6mm")
+texture_disabled = ExtResource("6_00pdw")
+texture_focused = ExtResource("5_uc6mm")
+script = ExtResource("7_2e481")
+
+[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 850.0
+offset_bottom = 150.0
+script = ExtResource("9_qhmjp")
+spinPerCDisplay = NodePath("SpinPClickDiplay")
+button = NodePath("SpinUp")
+
+[node name="SpinUp" type="Button" parent="SpinButton"]
+layout_mode = 2
+
+[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="Wheel" type="CharacterBody2D" parent="."]
+position = Vector2(500, 300)
+script = ExtResource("10_msxti")
+
+[node name="Centerpiece" type="AnimatedSprite2D" parent="Wheel"]
+sprite_frames = ExtResource("5_eh2pp")
+
+[node name="PreAscTransfer" type="Button" parent="Wheel"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -110.0
+offset_right = 110.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_reugq")
+
+[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image", "spinbody")]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 250.0
+offset_right = 950.0
+offset_bottom = 350.0
+script = ExtResource("12_pgv0a")
+growDisplay = NodePath("GrowDisplay")
+button = NodePath("GrowToggle")
+image = NodePath("GrowRectDisp")
+spinbody = NodePath("../Wheel")
+
+[node name="GrowRectDisp" type="Sprite2D" parent="GrowButton"]
+scale = Vector2(2, 1)
+texture = ExtResource("7_kph8u")
+offset = Vector2(50, 105)
+
+[node name="GrowToggle" type="Button" parent="GrowButton"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="GrowDisplay" type="Label" parent="GrowButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+script = ExtResource("13_l10x1")
+
+[node name="DensButton" type="Container" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 400.0
+offset_right = 950.0
+offset_bottom = 500.0
+script = ExtResource("8_fdt8y")
+
+[node name="DensRectDisp" type="Sprite2D" parent="DensButton"]
+scale = Vector2(2, 1)
+texture = ExtResource("7_kph8u")
+offset = Vector2(50, 105)
+
+[node name="DensToggle" type="Button" parent="DensButton"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="DensDisplay" type="Label" parent="DensButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+script = ExtResource("15_xbhsq")
+
+[node name="SpinDisplay" type="Label" parent="."]
+layout_mode = 2
+offset_left = 400.0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("4_2qlpx")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("14_74yq1")
+
+[node name="RotsDisplay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 500.0
+offset_right = 600.0
+offset_bottom = 550.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("17_333p7")
+
+[node name="TravelCont" type="Container" parent="." node_paths=PackedStringArray("button")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("9_m22ci")
+button = NodePath("TravelBut")
+
+[node name="TravelBut" type="Button" parent="TravelCont"]
+layout_mode = 2
+text = "Travel"
+
+[node name="Spinbot" type="Sprite2D" parent="."]
+position = Vector2(68, 536)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("24_50bes")
+script = ExtResource("25_hnqpy")
+
+[node name="Settings" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 910.0
+offset_top = 20.0
+offset_right = 1209.0
+offset_bottom = 319.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("26_vcmby")
+texture_pressed = ExtResource("27_t10mo")
+texture_hover = ExtResource("27_t10mo")
+texture_disabled = ExtResource("26_vcmby")
+texture_focused = ExtResource("26_vcmby")
+script = ExtResource("28_ob0gv")
+
+[node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
+process_mode = 3
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_wwwx1")
+text = NodePath("DialougeBox")
+button = NodePath("NextButton")
+tutScreen = NodePath(".")
+
+[node name="Mask" type="Sprite2D" parent="TutorialBox"]
+modulate = Color(1, 1, 1, 0.580392)
+self_modulate = Color(1, 1, 1, 0.47451)
+show_behind_parent = true
+position = Vector2(500, 300)
+scale = Vector2(10, 6)
+texture = ExtResource("11_xt61f")
+
+[node name="Bunnies" type="AnimatedSprite2D" parent="TutorialBox"]
+position = Vector2(500, 250)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_05j8j")
+
+[node name="DialougeBox" type="Label" parent="TutorialBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+
+[node name="NextButton" type="Button" parent="TutorialBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
+
+[node name="ExitContract" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 200.0
+script = ExtResource("29_womxx")
+button = NodePath("ResetCounter")
+image = NodePath("ResetDisp")
+
+[node name="ResetDisp" type="Sprite2D" parent="ExitContract"]
+position = Vector2(0, -75)
+scale = Vector2(2, 1)
+texture = ExtResource("7_kph8u")
+offset = Vector2(50, 105)
+
+[node name="ResetCounter" type="Button" parent="ExitContract"]
+layout_mode = 2
+text = "Toggle Grow"

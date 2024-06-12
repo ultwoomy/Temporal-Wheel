@@ -120,8 +120,9 @@ func calculateOneRot() -> bool:
 #			angle += changerot
 		
 		# CHANGES ADDED TO MAKE USE OF WheelSpinner.gd
-		wheel.rotation = WheelSpinner.wheelRotation
-		angle = WheelSpinner.wheelRotation
+		# MOVED TO WheelSpaceWheel.gd
+#		wheel.rotation = WheelSpinner.wheelRotation
+#		angle = WheelSpinner.wheelRotation
 		
 		
 		if(angle < -2*PI):  # Activated by candle that causes wheel to be spun backwards.
@@ -144,8 +145,9 @@ func calculateOneRot() -> bool:
 #			if(GVars.curEmotionBuff == 1):
 #				emoBuffSpeed = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 			
-			GVars.spinData.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
-		
+#			GVars.spinData.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
+			pass
+			
 		if(angle > 2*PI):
 			# COMPLETED IN WheelSpinner.gd
 #			if GVars.ritualData.candlesLit[2]:

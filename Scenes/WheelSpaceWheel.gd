@@ -3,7 +3,6 @@ class_name WheelSpaceWheel
 
 
 #@ Constants
-const RUST_PART = preload("res://Scenes/RustEmitter.tscn")
 
 
 #@ Global Variables
@@ -16,10 +15,17 @@ const RUST_PART = preload("res://Scenes/RustEmitter.tscn")
 func _ready() -> void:
 	# Connect signals.
 	WheelSpinner.rustProgressed.connect(_onRustProgressed)
+	
+	# Scale the wheel based on the given size.
+	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)
 
 
 func _process(delta: float) -> void:
-	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
+	# Scale the wheel based on the given size.
+	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)
+	
+	# Rotates the wheel.
+	self.rotation = WheelSpinner.wheelRotation
 
 
 #@ Public Methods
@@ -34,13 +40,6 @@ func updateWheelSprite() -> void:
 		centerpiece.frame = 0
 	else:
 		centerpiece.frame = frameNumber
-
-
-# Creates rust instance which should occur when rust is gained.
-func createRustInstance() -> void:
-	var rus = RUST_PART.instantiate()
-	rus.get_child(0).init(1)
-	self.add_child(rus)	
 
 
 #@ Private Methods

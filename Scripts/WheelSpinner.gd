@@ -35,8 +35,11 @@ func _process(delta: float) -> void:
 
 
 #@ Public Methods
-func spinWheel() -> void:
-	GVars.spinData.spin += _calculateSpinGain()
+func spinWheel(reverse: bool = false) -> void:
+	if not reverse:
+		GVars.spinData.spin += _calculateSpinGain()
+	else:
+		GVars.spinData.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 
 
 func rotateWheel() -> void:

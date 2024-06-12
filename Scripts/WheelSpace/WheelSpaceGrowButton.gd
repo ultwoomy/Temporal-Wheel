@@ -17,6 +17,12 @@ var ifsucc = false
 func _ready():
 	#Yu: Every time one rotation finishes, succ will trigger once. Changed from once per second.
 	#    Threshold and threshold multiplier for size reduced accordingly
+	
+	# Connecting Signals.
+	button.pressed.connect(self._buttonPressed)
+	WheelSpinner.wheelRotationCompleted.connect(self.suc_loop)
+	
+	
 	if(GVars.spinData.sizeToggle):
 		ifsucc = true
 	
@@ -24,7 +30,7 @@ func _ready():
 	button.size = Vector2(200,100)
 	button.expand_icon = true
 	growDisplay.text = str(GVars.spinData.size)
-	button.pressed.connect(self._button_pressed)
+	
 	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2
 	if(ifsucc):
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
@@ -62,7 +68,7 @@ func suc_loop():
 
 
 #@ Private Methods
-func _button_pressed():
+func _buttonPressed():
 	if ifsucc:
 		ifsucc = false
 		GVars.spinData.sizeToggle = false

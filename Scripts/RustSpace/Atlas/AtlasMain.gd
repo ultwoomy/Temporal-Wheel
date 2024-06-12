@@ -52,7 +52,7 @@ func normalBoot():
 
 
 func _on_dump_pressed():
-	if(GVars.atlasData.dumpRustMilestone <= 10):
+	if(GVars.atlasData.dumpRustMilestone <= 13):
 		GVars.atlasData.dumpRustProg += GVars.rustData.rust
 		GVars.rustData.rust = 0
 	if(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
@@ -76,6 +76,10 @@ func _on_dump_pressed():
 			GVars._dialouge(text,0,0.01)
 			text.text = "Your anger is much\n   much\n      much\n         too weak\nI will help you."
 			frame = 2
+		elif GVars.atlasData.dumpRustMilestone == 7:
+			GVars._dialouge(text,0,0.01)
+			text.text = "Clicking and clicking and\n       clicking. It must be\n           tiresome.\n I will save you the effort."
+			frame = 1
 		else:
 			GVars._dialouge(text,0,0.01)
 			text.text = "You are blessed."
@@ -94,7 +98,9 @@ func updatePanel():
 		panel.get_child(0).text += "\n\nYou gain " + str(GVars.atlasData.dumpRustMilestone/4 + 1) + " free density"
 	if(GVars.atlasData.dumpRustMilestone > 3):
 		panel.get_child(0).text += "\n\nYou gain a " + str(GVars.atlasData.dumpRustMilestone + 1) + " rust multiplier when the current emotion is wrath"
-	if(GVars.atlasData.dumpRustMilestone >= 5):
+	if(GVars.atlasData.dumpRustMilestone > 6):
+		panel.get_child(0).text += "\n\nReduce initial sigil cost by" + str(GVars.atlasData.dumpRustMilestone * 5) + "momentum"
+	if(GVars.atlasData.dumpRustMilestone >= 13):
 		dump.text = "You've reached the softcap for this update."
 	elif(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
 		dump.text = "Press me for the\nnext milestone"

@@ -7,6 +7,7 @@ var numOfCandles = 0.0
 var fourthRustBuff = 1
 var sigaugbuf = 1
 var effectiveDensity = GVars.spinData.density
+var rng = RandomNumberGenerator.new()
 @export var densityButton : Container
 const RUST_PART = preload("res://Scenes/RustEmit.tscn")
 signal oneClick
@@ -64,11 +65,16 @@ func _process(_delta):
 	if(calculateOneRot()):
 		emit_signal("oneClick")
 	if(GVars.rustData.threshProgress > GVars.rustData.thresh):
+		var soulsRustBuff = 1
+		if GVars.soulsData.voidRustChanceEnabled and rng.randf_range(0.0, 100.0) < GVars.soulsData.voidRustChance:
+			soulsRustBuff = 2
+		else:
+			soulsRustBuff = 1
 		if(GVars.curEmotionBuff == 4):
 			if(GVars.atlasData.dumpRustMilestone > 3):
-				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(4) * (GVars.atlasData.dumpRustMilestone + 1)
+				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(10) * (GVars.atlasData.dumpRustMilestone + 1)
 			else:
-				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(4)
+				emoBuff = (log(GVars.spinData.rotations + 1) + 1)/log(10)
 		if(GVars.hellChallengeNerf == 4):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
 			GVars.rustData.rust += 1
@@ -78,23 +84,23 @@ func _process(_delta):
 			self.add_child(rus)	
 		elif(GVars.sigilData.curSigilBuff == 0):
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff
+			GVars.rustData.rust += GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff * soulsRustBuff
 			GVars.rustData.thresh *= GVars.rustData.threshMult
 			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff)
+			rus.get_child(0).init(GVars.rustData.perThresh * 2 * emoBuff * fourthRustBuff * soulsRustBuff)
 			self.add_child(rus)
 		else:
 			GVars.rustData.threshProgress -= GVars.rustData.thresh
-			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff
+			GVars.rustData.rust += GVars.rustData.perThresh * emoBuff * fourthRustBuff * soulsRustBuff
 			GVars.rustData.thresh *= GVars.rustData.threshMult
 			var rus = RUST_PART.instantiate()
-			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff)
-			print(str(GVars.rustData.perThresh * emoBuff * fourthRustBuff))
+			rus.get_child(0).init(GVars.rustData.perThresh * emoBuff * fourthRustBuff * soulsRustBuff)
 			self.add_child(rus)	
 	scale = Vector2(0.5 + log(GVars.spinData.size)/5,0.5 + log(GVars.spinData.size)/5)
 
 func calculateOneRot():
-	var changerot = 0.
+	var changerot = 0.0
+	var soulsRotBuff = 1
 	if(GVars.spinData.spin > 0):
 		if(GVars.hellChallengeNerf == 1):
 			changerot = (log(GVars.spinData.spin)/log(2))/speedDivisor * (1-(0.2*numOfCandles)) / emoBuffSpeed * GVars.ritualData.rotBuff
@@ -132,13 +138,18 @@ func calculateOneRot():
 			if(GVars.spinData.rotations < 0):
 				turnOffCandles()
 		if(angle > 2*PI):
+			if GVars.soulsData.doubleRotChanceEnabled and rng.randf_range(0.0, 100.0) < GVars.soulsData.doubleRotChance:
+				soulsRotBuff = 2
+			else:
+				soulsRotBuff = 1
+			print(str(soulsRotBuff))
 			if(GVars.ritualData.candlesLit[2]):
 				GVars.ritualData.ascBuff += (log(GVars.spinData.rotations) * GVars.Aspinbuff)/(GVars.ritualData.ascBuff * (GVars.spinData.rotations * 5))
 			if(GVars.ritualData.candlesLit[3]):
 				GVars.rustData.rust += 0.1
 			if(GVars.ritualData.candlesLit[4]):
 				GVars.ritualData.rotBuff += (log(GVars.spinData.rotations) * effectiveDensity)/(GVars.ritualData.rotBuff * (GVars.spinData.rotations * 100))
-			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff
+			var temp = float(angle/(2*PI)) * (GVars.kbityData.kbityLevel + 1) * GVars.kbityData.kbityRotBuff * soulsRotBuff
 			GVars.spinData.rotations += temp
 			GVars.mushroomData.pendingRots += temp
 			if(GVars.ritualData.candlesLit[5]):

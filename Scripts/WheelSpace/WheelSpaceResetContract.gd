@@ -20,6 +20,9 @@ func _button_pressed():
 	if(presses > 4):
 		GVars.hellChallengeNerf = -1
 		GVars.inContract = false
+		GVars.spinData.spin = 0
+		GVars.spinData.rotations = 0
+		GVars.spinData.spinPerClick = 1
 		presses = 0
 		hide()
 	if(presses > 0):

@@ -3,9 +3,6 @@ extends Container
 @export var image : Sprite2D
 var presses = 0.0
 func _ready():
-	if GVars.hellChallengeLayer2 >= 0 and not GVars.inContract:
-		GVars.hellChallengeLayer2 = -1
-		GVars.spinData.spinPerClick = 1
 	if (GVars.hellChallengeLayer2 >= 0):
 		show()
 	else:

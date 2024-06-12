@@ -6,6 +6,7 @@ extends Node
 @onready var remove : Button = $DeleteButton
 
 var currentFrame : int
+var rng = RandomNumberGenerator.new()
 
 ## Functions
 # Called when the node enters the scene tree for the first time.
@@ -48,6 +49,11 @@ func _harvest() -> void:
 func _harvest_shroom(val) -> void:
 	var Ebuff = 1
 	var EexpBuff = 1
+	var soulsShroomBuff = 1
+	if GVars.soulsData.doubleShroomChanceEnabled and rng.randf_range(0.0, 100.0) < GVars.soulsData.doubleShroomChance:
+		soulsShroomBuff = 2
+	else:
+		soulsShroomBuff = 1
 	if(GVars.hellChallengeNerf == 3):
 		Ebuff = 1/(log(GVars.spinData.rotations)/log(5) + 0.5)
 	elif(GVars.curEmotionBuff == 3):

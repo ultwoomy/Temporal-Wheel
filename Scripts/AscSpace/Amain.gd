@@ -38,18 +38,18 @@ func _ready():
 	#If face is active, show emotion
 	#Cannot stack emotion with challenge of the same type
 	if(GVars.sigilData.curSigilBuff == 3):
-		if!(GVars.hellChallengeNerf == 1):
+		if!(GVars.hellChallengeNerf == 0):
 			fear.show()
-		if!(GVars.hellChallengeNerf == 2):
+		if!(GVars.hellChallengeNerf == 1):
 			cold.show()
-		if!(GVars.hellChallengeNerf == 3):
+		if!(GVars.hellChallengeNerf == 2):
 			warmth.show()
-		if!(GVars.hellChallengeNerf == 4):
+		if!(GVars.hellChallengeNerf == 3):
 			wrath.show()
 	#If hell sigil is active and hell is not unlocked, show challenge options based on emote buff
 	#Nothing prepared for no emote buff, shouldn't be easy or possible to get
 	if(GVars.sigilData.curSigilBuff == 5) and (!GVars.ifhell):
-		if(GVars.curEmotionBuff == 0):
+		if(GVars.curEmotionBuff <= 0):
 			challenge.show()
 			challenge.text = "Incongruent"
 			challNumber = 0
@@ -177,6 +177,7 @@ func _awaken():
 		print("WAYO")
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
+	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
 	get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
 
 

@@ -3,7 +3,6 @@ extends AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(str(GVars.ifsecondboot) + "boot")
 	if GVars.ifsecondboot % 4 == 3 or GVars.ifsecondboot % 4 == 0:
 		frame = 0
 	else:

@@ -10,6 +10,7 @@ func _ready():
 	connect("failed",body.confirmFalse)
 	if not GVars.ifhell and GVars.sigilData.curSigilBuff == 5:
 		get_child(0).text = "You are about to enter a hell challenge corresponding to you current emotion buff. Are you prepared?"
+		
 
 
 func ask():

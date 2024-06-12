@@ -48,7 +48,7 @@ func calcClick() -> float:
 	if(GVars.atlasData.dumpRustMilestone > 1):
 		densityPower += GVars.atlasData.dumpRustMilestone/4 + 1
 	if(GVars.hellChallengeNerf == 2):
-		temp = pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 1)/2 * GVars.spinData.spinPerClick  * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+		temp = pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2 * GVars.spinData.spinPerClick  * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 	elif(GVars.curEmotionBuff == 2):
 		temp = pow(GVars.spinData.size,GVars.spinData.density + 1) * GVars.spinData.spinPerClick * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 	else:

@@ -474,6 +474,7 @@ Contract"
 [connection signal="pressed" from="ContractHolder/Exit" to="ContractHolder/ContractPage" method="_on_exit_pressed"]
 [connection signal="pressed" from="ContractHolder/LeftArrow" to="ContractHolder/ContractPage" method="toTheLeft"]
 [connection signal="pressed" from="ContractHolder/LeftArrow2" to="ContractHolder/ContractPage" method="toTheRight"]
+[connection signal="pressed" from="ContractHolder/SoulBuy" to="ContractHolder/ContractPage" method="_on_soul_buy_pressed"]
 [connection signal="pressed" from="ContractHolder/SoulBuy" to="ContractHolder/SoulCount/Nsouls" method="_on_soul_buy_pressed"]
 [connection signal="pressed" from="ContractHolder/EContractPage" to="ContractHolder/ContractPage" method="_on_e_contract_page_pressed"]
 [connection signal="pressed" from="ContractHolder/EnterContract" to="ContractHolder/ContractPage" method="beginContract"]

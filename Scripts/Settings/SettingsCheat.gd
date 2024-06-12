@@ -26,3 +26,18 @@ func _on_text_submitted(inputtext):
 	if(inputtext == "resethelltext"):
 		GVars.iffirsthell = true
 		clear()
+	if(inputtext == "givemesouls"):
+		GVars.soulsData.voidRustChanceEnabled = true
+		GVars.soulsData.doubleShroomChanceEnabled = true
+		GVars.soulsData.doubleRotChanceEnabled = true
+		GVars.soulsData.spinBaseBuffEnabled = true
+		GVars.soulsData.souls += 200
+		GVars.ifhell = true
+		clear()
+	if(inputtext == "hellmewhy"):
+		GVars.ifhell = true
+		clear()
+	if(inputtext == "impoor"):
+		GVars.spinData.spin = 0
+		GVars.spinData.rotations = 0
+		clear()

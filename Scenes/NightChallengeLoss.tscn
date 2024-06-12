@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://b3mtwns5akbki"]
+
+[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="1_c453g"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_n0cmi"]
+[ext_resource type="Texture2D" uid="uid://oe8apfieaysy" path="res://Sprites/NightLoss/zunda_grab/tile000.png" id="2_51lhn"]
+[ext_resource type="Texture2D" uid="uid://fqj8she8x0ya" path="res://Sprites/NightLoss/zunda_grab/tile001.png" id="3_5ksk0"]
+[ext_resource type="Texture2D" uid="uid://cnudp8mk18l82" path="res://Sprites/NightLoss/zunda_grab/tile002.png" id="4_s0kay"]
+[ext_resource type="Texture2D" uid="uid://dw4biic77y15" path="res://Sprites/NightLoss/zunda_grab/tile003.png" id="5_0g8iu"]
+[ext_resource type="Texture2D" uid="uid://dv8f3m8g8s7og" path="res://Sprites/NightLoss/text_back.png" id="6_gytus"]
+[ext_resource type="Script" path="res://Scripts/NightLoss/NLossMain.gd" id="7_thvbc"]
+[ext_resource type="FontFile" uid="uid://dv814ipqb8npq" path="res://Fonts/xolonium/xolonium-fonts-4.1/ttf/Xolonium-Regular.ttf" id="9_bnbt7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bgc55"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_51lhn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5ksk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s0kay")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0g8iu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_n0cmi")
+script = ExtResource("1_c453g")
+
+[node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("frontscreen", "frontscreenLabel")]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_bgc55")
+script = ExtResource("7_thvbc")
+frontscreen = NodePath("../Blackscreen")
+frontscreenLabel = NodePath("../Blackscreen/Label")
+
+[node name="Blackscreen" type="Sprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+texture = ExtResource("6_gytus")
+
+[node name="Label" type="Label" parent="Blackscreen"]
+offset_left = -125.0
+offset_top = -90.0
+offset_right = 375.0
+offset_bottom = 260.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("1_n0cmi")
+theme_override_font_sizes/font_size = 20
+text = "Hey you"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Next" type="Button" parent="Blackscreen"]
+offset_left = -15.0
+offset_top = 65.5
+offset_right = 45.0
+offset_bottom = 105.5
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("9_bnbt7")
+text = "Next"

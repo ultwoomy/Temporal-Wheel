@@ -18,7 +18,6 @@ func _ready():
 		cheese.show()
 	if GVars.backpackData.ribbon:
 		ribbon.show()
-	print(str(GVars.iffirsthell))
 	if GVars.iffirsthell:
 		choicePanel.get_child(3).hide()
 

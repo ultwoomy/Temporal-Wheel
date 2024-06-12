@@ -74,6 +74,7 @@ func _on_rat_pressed():
 						Sincerest sincerities,\n
 						Rat"
 		cheese.show()
+		cheese.disabled = false
 	elif GVars.ratmail == 4:
 		#if second reset, give a bow
 		lettertext.text = "I greet you once again.\n
@@ -83,6 +84,7 @@ func _on_rat_pressed():
 						   Sincerest sincerities,\n
 						   Rat"
 		bow.show()
+		bow.disabled = false
 	else:
 		lettertext.text = "Woawoagh\nuwagh\nwowow\n\n- The Developer"
 	letter.show()
@@ -103,5 +105,5 @@ func _on_cheese_pressed():
 
 
 func _on_bow_pressed():
-	GVars.backpackData.bow = true
+	GVars.backpackData.ribbon = true
 	bow.hide()

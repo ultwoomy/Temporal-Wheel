@@ -39,27 +39,23 @@ func run_tests() -> void:
 
 
 func on_wheel_spun() -> void:
-	GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	var temp = calcClick()
+	if(GVars.ritualData.candlesLit[5]):
+		GVars.kbityData.kbityAddSpin += temp
+	GVars.spinData.spin += temp
 
-
-#func save_resources() -> void:
-#	ResourceSaver.save(SAVE_AUTOMATORS_PATH, )
-
-
-#func load_resources() -> Resource:
-#	if ResourceLoader.exists(SAVE_AUTOMATORS_PATH):
-#		return load(SAVE_AUTOMATORS_PATH)
-#	return null
-
-
-# L.B: Yeah, I don't know what I was thinking; just make EventManager an autoload.
-#func create_event_manager() -> void:
-#	if(get_tree().root.get_node_or_null("EventManager")):
-#		event_manager = get_window().get_node("EventManager")
-#	else:
-#		event_manager = EventManager.new()
-#		event_manager.name = "EventManager"
-#		get_window().add_child.call_deferred(event_manager)
+func calcClick() -> float:
+	var temp
+	var densityPower = GVars.spinData.density
+	if(GVars.atlasData.dumpRustMilestone > 1):
+		densityPower += GVars.atlasData.dumpRustMilestone/4 + 1
+	if(GVars.hellChallengeNerf == 2):
+		temp = pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2 * GVars.spinData.spinPerClick  * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	elif(GVars.curEmotionBuff == 2):
+		temp = pow(GVars.spinData.size,GVars.spinData.density + 1) * GVars.spinData.spinPerClick * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	else:
+		temp = GVars.spinData.spinPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+	return temp
 
 
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.

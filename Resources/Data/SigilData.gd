@@ -11,7 +11,6 @@ class_name SigilData
 @export var curSigilBuff : int
 
 
-###################### WIP WIP WIP WIP WIP
 # L.B: Use for better legibility on what sigil is being used in code.
 enum Sigils {
 	PACKSMITH,
@@ -31,7 +30,6 @@ var activeSigils : Dictionary = {
 	ritual = false,
 	hell = false,
 }
-#####################
 
 
 func resetData() -> void:
@@ -39,9 +37,11 @@ func resetData() -> void:
 	costRot = 10
 	costSpinScale = 1.24
 	costRotScale = 3
-	numberOfSigils = [false,false,false,false,false,false,false,false,false,false]
-	curSigilBuff = 0
+	numberOfSigils = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+	curSigilBuff = -1
 	
 	for key in activeSigils:
 		key = false
 
+func _init():
+	resetData()

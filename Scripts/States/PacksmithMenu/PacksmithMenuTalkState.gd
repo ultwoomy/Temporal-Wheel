@@ -1,7 +1,6 @@
 extends PacksmithMenuState
 class_name TalkState
 
-
 #@ Enumerators
 
 
@@ -41,12 +40,10 @@ func _update(_delta : float) -> void:
 
 
 func _exit() -> void:
+	print("eg")
 	packsmithMenu.dialogueText.text = ""
 	packsmithMenu.packback.frame = packsmithMenu.Emotes.NORMAL
 	_resetChoice()
-	if(packsmithMenu.sigilToActivate != 0):
-		_resetDisplay(packsmithMenu.sigilToActivate)
-		packsmithMenu.sigilToActivate = 0
 
 
 #@ Private Methods
@@ -59,7 +56,7 @@ func _nextLine() -> void:
 	# Display dialogue.
 	packsmithMenu.dialogueText.text = packsmithMenu._dialogueHandler.getTextFromDialogue(_dialogue[_dialogueLine])
 	packsmithMenu.packback.frame = packsmithMenu.Emotes[packsmithMenu._dialogueHandler.getFaceFromDialogue(_dialogue[_dialogueLine])]
-	GVars._dialouge(packsmithMenu.dialogueText, 0, 0.04)
+	GVars._dialouge(packsmithMenu.dialogueText, 0, 0.03)
 	
 	# Increment counter.
 	_dialogueLine += 1
@@ -75,13 +72,3 @@ func _resetChoice():
 	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
 		packsmithMenu.automateButton.show()
 	packsmithMenu.nextButton.hide()
-
-
-func _resetDisplay(n: int):
-	packsmithMenu.sigilToActivate = 0
-	if(n == 6) and !GVars.ifhell:
-		GVars.sigilData.curSigilBuff = n  # L.B: (?) Probably remove this.
-		packsmithMenu.get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
-	GVars.sigilData.curSigilBuff = n
-#	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
-#	sigilDisplay.show()

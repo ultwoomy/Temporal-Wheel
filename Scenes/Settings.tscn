@@ -1,56 +1,25 @@
-[gd_scene load_steps=18 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=17 format=3 uid="uid://dp6jl75bx4qcp"]
 
-[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_676fp"]
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_eix20"]
 [ext_resource type="Texture2D" uid="uid://c3e86eqmu3tfa" path="res://Sprites/Settings/back_settings/tile001.png" id="2_iba5r"]
-[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_mcq1j"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsBack.gd" id="3_i3nnn"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsHardReset.gd" id="6_5t2xk"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_vivg8"]
 [ext_resource type="Script" path="res://Scripts/Settings/Save.gd" id="8_rg3j3"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsExitGame.gd" id="9_c8atx"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsCheat.gd" id="10_vlmff"]
+[ext_resource type="Texture2D" uid="uid://coeni6iyq3w6i" path="res://Sprites/Settings/credit1.png" id="11_8aye3"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsVolume.gd" id="11_apqex"]
+[ext_resource type="Texture2D" uid="uid://cdwfydyu7lfmr" path="res://Sprites/Settings/credit2.png" id="12_xep8x"]
+[ext_resource type="Script" path="res://Scripts/Settings/SettingsSwitchToCredits.gd" id="13_j55f1"]
+[ext_resource type="Script" path="res://Scripts/SettingsHelpMenu.gd" id="14_lqd5j"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
-bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i5pe"]
+bg_color = Color(0.913725, 0.407843, 0.545098, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
-bg_color = Color(0.294118, 0.152941, 0.211765, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
-bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gb68f"]
-bg_color = Color(1, 0.282353, 0.560784, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1j0p"]
-bg_color = Color(0.678431, 0, 0.360784, 1)
-
-[sub_resource type="Theme" id="Theme_8klss"]
-default_font = ExtResource("2_mcq1j")
-default_font_size = 16
-/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
-/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
-Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
-Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
-Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
-Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
-Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/constants/outline_size = 1
-Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
-Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
-Button/styles/normal = ExtResource("1_676fp")
-Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
-VSlider/styles/grabber_area = SubResource("StyleBoxFlat_gb68f")
-VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_m1j0p")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hlkh"]
+bg_color = Color(0.835294, 0.470588, 0.580392, 1)
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -59,7 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_8klss")
+theme = ExtResource("1_eix20")
 
 [node name="HardReset" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
 layout_mode = 0
@@ -131,7 +100,9 @@ layout_mode = 0
 offset_left = -13.0
 offset_right = 7.0
 offset_bottom = 101.0
-min_value = -32.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3i5pe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2hlkh")
+min_value = -24.0
 max_value = 0.0
 step = 0.05
 value = -6.0
@@ -141,8 +112,39 @@ layout_mode = 0
 offset_left = 193.0
 offset_right = 213.0
 offset_bottom = 101.0
-min_value = -32.0
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_3i5pe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2hlkh")
+min_value = -24.0
 max_value = 0.0
+
+[node name="Credits" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 905.0
+offset_right = 1005.0
+offset_bottom = 100.0
+texture_normal = ExtResource("11_8aye3")
+texture_pressed = ExtResource("12_xep8x")
+texture_hover = ExtResource("12_xep8x")
+texture_disabled = ExtResource("11_8aye3")
+texture_focused = ExtResource("12_xep8x")
+script = ExtResource("13_j55f1")
+
+[node name="Halp" type="Panel" parent="." node_paths=PackedStringArray("text")]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 68.0
+offset_right = 850.0
+offset_bottom = 568.0
+script = ExtResource("14_lqd5j")
+text = NodePath("Label")
+
+[node name="Label" type="Label" parent="Halp"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 60.0
+offset_right = 607.0
+offset_bottom = 440.0
+autowrap_mode = 2
 
 [connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]
 [connection signal="value_changed" from="Volume/VolSlider" to="Volume" method="_on_slide_music"]

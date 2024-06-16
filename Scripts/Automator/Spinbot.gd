@@ -62,6 +62,7 @@ func calculateOneRot() -> void:
 				GVars.mushroomData.pendingRots += temp
 			GVars.rustData.threshProgress += temp
 			angle = fmod(angle,(2*PI))
+			_automate()
 
 
 func updateDivisor() -> void:
@@ -105,7 +106,6 @@ func _automate() -> void:
 	await get_tree().create_timer(automator_data.cooldown).timeout
 	updateDivisor()
 	initialize()
-	_automate()
 
 
 func _checkScene(ifwheel) -> void:

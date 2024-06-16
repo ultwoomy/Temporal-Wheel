@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn1sd5huu0fv4"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_doi50"]
+[ext_resource type="Texture2D" uid="uid://dexolb3j1fmoc" path="res://Sprites/Credits/sadarrow.png" id="2_rpwy7"]
+[ext_resource type="Texture2D" uid="uid://clhkisiobvtn1" path="res://Sprites/Credits/happyarrow.png" id="3_0kt1e"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceBack.gd" id="4_ne0og"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_doi50")
+
+[node name="Back" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 102.0
+texture_normal = ExtResource("2_rpwy7")
+texture_pressed = ExtResource("3_0kt1e")
+texture_hover = ExtResource("3_0kt1e")
+texture_disabled = ExtResource("2_rpwy7")
+texture_focused = ExtResource("3_0kt1e")
+script = ExtResource("4_ne0og")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 118.0
+offset_right = 1137.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 26
+text = "Zundamon - NEUTRINO - VOICEVOX
+
+Zundamon, Homeless Edition - ぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬぬ
+(https://www.youtube.com/@N_u)
+
+Zundamon, Night - Caitromen (https://www.youtube.com/@caitromen)"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdnwl6prbhesh"]
+[gd_scene load_steps=22 format=3 uid="uid://cyt64ilku1qh0"]
 
 [ext_resource type="Script" path="res://Scripts/MushSpace/MMushInfoPanel.gd" id="1_6hwsa"]
 [ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_x1146"]

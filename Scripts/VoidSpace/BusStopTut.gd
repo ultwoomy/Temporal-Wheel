@@ -9,6 +9,7 @@ extends Container
 @export var goback : Button
 @export var sigilshop : Container
 @export var ritualShop : Container
+signal kbity_up
 var layersin = 0
 var line = 0
 
@@ -17,12 +18,14 @@ var line = 0
 func _ready():
 	sigilshop.hide()
 	if(GVars.iffirstvoid):
+		#only shows the dialouge box if its the players first time coming here
 		get_tree().paused = true
 		show()
 	else :
 		hide()
 	text.position = Vector2(300,300)
 	text.text = "Welcome to the bus stop!"
+	text.size = Vector2(400,200)
 	button.size = Vector2(100,100)
 	button.position = Vector2(650,400)
 	button.text = "Next"
@@ -34,9 +37,12 @@ func _ready():
 	sigilbut.pressed.connect(self.opensigilshop)
 	goback.pressed.connect(self._go_back)
 	GVars._dialouge(text,0,0.02)
-
-
+	self.kbity_up.connect(self.kbityTime)
+	
 func _go_back():
+	#checks where the back button is supposed to send the player
+	#layersin represents whether the player has opened up one of the functions
+	#probably could have been seperate scenes as well, but this is how it works rn
 	if(layersin == 1):
 		busstop.set_texture(load("res://Sprites/VoidSpace/bus_stop.png"))
 		busstop.scale = Vector2(2,2)
@@ -55,6 +61,7 @@ func _go_back():
 
 func _button_pressed():
 	GVars._dialouge(text,0,0.03)
+	#too short for me to make it an array or anything better than a series of if statements tbh
 	if(line == 0):
 		self.get_node("Bunnies").frame = 2
 		text.text = "This is where the business \nhappens."
@@ -69,6 +76,24 @@ func _button_pressed():
 	elif(line == 4):
 		self.get_node("Bunnies").frame = 1
 		text.text = "But I need those so come to\nme every time you have enough\nto trade, yes?"
+	elif(line == 10):
+		self.get_node("Bunnies").frame = 3
+		text.text = "You... I can't believe you actually did it."
+	elif(line == 11):
+		self.get_node("Bunnies").frame = 3
+		text.text = "You've created another kbity cat. How's time supposed to function now?"
+	elif(line == 12):
+		self.get_node("Bunnies").frame = 1
+		text.text = "I mean yeah I was the one who helped you do it but the prices were absurd on purpose."
+	elif(line == 13):
+		self.get_node("Bunnies").frame = 1
+		text.text = "It's probably fine though. It doesn't have a soul or a part of a soul like you and me."
+	elif(line == 14):
+		self.get_node("Bunnies").frame = 2
+		text.text = "Maybe you'll get more time every time you get time? Won't that be fun!"
+	elif(line == 15):
+		self.get_node("Bunnies").frame = 2
+		text.text = "And it'll never go away so no need to worry about losing it upon resetting."
 	else:
 		hide()
 		GVars.iffirstvoid = false
@@ -83,10 +108,9 @@ func opensigilshop():
 	layersin = 1
 	sigilbut.hide()
 	ritualEnter.hide()
-	ritualShop.hide()
 	sigilshop.show()
-
-
+	ritualShop.hide()
+	
 func openRitual():
 	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
 	busstop.scale = Vector2(6,6)
@@ -96,3 +120,9 @@ func openRitual():
 	ritualEnter.hide()
 	sigilshop.hide()
 	ritualShop.show()
+	
+func kbityTime():
+	if(GVars.kbityData.kbityLevel == 1):
+		get_tree().paused = true
+		line = 10
+		show()

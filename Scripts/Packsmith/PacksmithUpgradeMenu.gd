@@ -20,8 +20,8 @@ class_name UpgradeMenu
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	rustDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
-	
-	if(GVars.curEmotionBuff < 0) or (GVars.curEmotionBuff > 4):
+	print(str(GVars.curEmotionBuff))
+	if(GVars.curEmotionBuff <= 0) or (GVars.curEmotionBuff > 4):
 		upgradeButton4.hide()
 	elif(GVars.curEmotionBuff == 1):
 		#fear
@@ -66,7 +66,7 @@ func updateDisplays():
 		upgradeText2.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
 		upgradeText3.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 		upgradeText4.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
-	rustDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
+	rustDisplay.text = "Rust\n" + str(GVars.getScientific(GVars.rustData.rust))
 
 
 #@ Private Methods

@@ -29,6 +29,9 @@ signal wheelPhaseChanged
 @export var rotations : float
 @export var spinSpeed : float
 
+func _init():
+	resetData()
+	
 
 func resetData() -> void:
 	spin = 0

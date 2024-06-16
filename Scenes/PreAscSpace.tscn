@@ -1,46 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmisluqb7535f"]
+[gd_scene load_steps=14 format=3 uid="uid://cmisluqb7535f"]
 
-[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_qic1f"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_7w417"]
 [ext_resource type="Script" path="res://Scripts/PreAscSpace/AscAnimation.gd" id="1_u6ohl"]
 [ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="2_3imnd"]
-[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_m4wwv"]
 [ext_resource type="Texture2D" uid="uid://dkcytmtordbgn" path="res://Sprites/PreAscSpace/asc_back_arrow/tile000.png" id="3_4sepa"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_6qeso"]
 [ext_resource type="Texture2D" uid="uid://dtsmxd7bku6v" path="res://Sprites/PreAscSpace/asc_back_arrow/tile001.png" id="4_kvlq3"]
 [ext_resource type="Texture2D" uid="uid://dpbsrfwggb380" path="res://Sprites/PreAscSpace/asc_back_arrow/tile002.png" id="5_51c8d"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="8_wglw0"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
-bg_color = Color(0.266667, 0.137255, 0.192157, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
-bg_color = Color(0.294118, 0.152941, 0.211765, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
-bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
-
-[sub_resource type="Theme" id="Theme_mld1t"]
-default_font = ExtResource("2_m4wwv")
-default_font_size = 20
-/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
-/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
-Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
-Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
-Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
-Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
-Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
-Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
-Button/constants/outline_size = 1
-Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
-Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
-Button/styles/normal = ExtResource("1_qic1f")
-Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+[ext_resource type="Script" path="res://Scripts/PreAscSpace/Confirmation.gd" id="9_ggjnw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ub66e"]
 texture = ExtResource("3_4sepa")
@@ -54,23 +22,24 @@ texture = ExtResource("5_51c8d")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3eid"]
 texture = ExtResource("4_kvlq3")
 
-[node name="Control" type="Control"]
+[node name="Control3" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_mld1t")
+theme = ExtResource("1_7w417")
 script = ExtResource("3_6qeso")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("back", "forward", "statDisplay", "everythingelse")]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("back", "forward", "statDisplay", "everythingelse", "panel")]
 position = Vector2(500, 300)
 script = ExtResource("1_u6ohl")
 back = NodePath("../Control/Back")
 forward = NodePath("../Control/Ascend")
 statDisplay = NodePath("../Control/Stat Display")
 everythingelse = NodePath("../Control")
+panel = NodePath("../Confirmation")
 
 [node name="Centerpiece" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = ExtResource("2_3imnd")
@@ -121,3 +90,42 @@ self_modulate = Color(1, 0.501961, 1, 0.286275)
 position = Vector2(874.5, 300)
 scale = Vector2(2.79, 6.04)
 texture = ExtResource("8_wglw0")
+
+[node name="Confirmation" type="Panel" parent="." node_paths=PackedStringArray("body")]
+layout_mode = 0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = 1063.0
+offset_bottom = 652.0
+script = ExtResource("9_ggjnw")
+body = NodePath("../CharacterBody2D")
+
+[node name="Label" type="Label" parent="Confirmation"]
+layout_mode = 0
+offset_left = 377.0
+offset_top = 150.0
+offset_right = 652.0
+offset_bottom = 300.0
+text = "You haven't augmented the face, are you sure you want to continue? It'll give a very powerful buff if you go back and augment it."
+autowrap_mode = 2
+
+[node name="Yes" type="Button" parent="Confirmation"]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 400.0
+offset_right = 427.0
+offset_bottom = 500.0
+theme_override_colors/font_color = Color(0, 0.941176, 0, 1)
+text = "Yes"
+
+[node name="No" type="Button" parent="Confirmation"]
+layout_mode = 0
+offset_left = 577.0
+offset_top = 400.0
+offset_right = 677.0
+offset_bottom = 500.0
+theme_override_colors/font_color = Color(0.886275, 0, 0, 1)
+text = "No"
+
+[connection signal="pressed" from="Confirmation/Yes" to="Confirmation" method="_on_yes_pressed"]
+[connection signal="pressed" from="Confirmation/No" to="Confirmation" method="_on_no_pressed"]

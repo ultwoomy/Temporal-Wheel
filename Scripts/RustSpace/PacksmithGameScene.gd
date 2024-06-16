@@ -4,8 +4,8 @@ class_name PacksmithGameScene
 
 #@ Enumerators
 enum Emotes {  # L.B: Have this enumerator be in the sprite for Packsmith. Please just create a sprite for Packsmith w/o the background.
-	UNKNOWN1,
-	UNKNOWN2,
+	HIDDEN,
+	HIDDENEYEBROW,
 	NORMAL,
 	TALKING,
 	EYEBROW,
@@ -45,12 +45,7 @@ func _ready():
 	backButton.pressed.connect(self._onBackButtonPressed)
 	
 	# Displays the sigil on the anvil that is currently augmented.
-	if GVars.sigilData.curSigilBuff != 0:
-		sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
-		sigilDisplay.show()
-	else:
-		sigilDisplay.frame = 0
-		sigilDisplay.hide()
+	_setSigilDisplay()
 	
 	# Introduce Packsmith if haven't yet.
 	if GVars.iffirstpack:
@@ -60,9 +55,19 @@ func _ready():
 
 
 #@ Public Methods
-
+#Doing it by frame for now since I tried using signals and it didn't really work for some reason
+func _process(_delta):
+	_setSigilDisplay()
 
 #@ Private Methods
+func _setSigilDisplay():
+	if GVars.sigilData.curSigilBuff >= 0:
+		sigilDisplay.frame = GVars.sigilData.curSigilBuff
+		sigilDisplay.show()
+	else:
+		sigilDisplay.frame = 0
+		sigilDisplay.hide()
+		
 func _introduce() -> void:
 	# Visuals.
 	packsmithBackground.frame = 1
@@ -106,6 +111,7 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 		dialogueText.text = ""
 		menu.show()
 		nextButton.hide()
+		GVars.iffirstpack = false
 
 
 func _onBackButtonPressed():

@@ -6,6 +6,7 @@ extends Node
 @onready var remove : Button = $DeleteButton
 
 var currentFrame : int
+var rng = RandomNumberGenerator.new()
 
 ## Functions
 # Called when the node enters the scene tree for the first time.
@@ -22,13 +23,16 @@ func _process(_delta: float) -> void:
 
 
 func _plant() -> void:
+	var post10scaling = 1
 	for n in GVars.mushroomData.current.size():
 		if(GVars.mushroomData.current[n] == 0):
 			GVars.mushroomData.current[n] = currentFrame + 1
+			if(GVars.mushroomData.level > 10):
+				post10scaling = GVars.mushroomData.level - 8
 			if(GVars.curEmotionBuff == 3):
-				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 20 + GVars.mushroomData.level * 15
+				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 30 * post10scaling + GVars.mushroomData.level * 5 * post10scaling
 			else:
-				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 + GVars.mushroomData.level * 10
+				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
 			get_window().get_node("EventManager").mushroom_planted.emit()
 			break
 
@@ -45,6 +49,11 @@ func _harvest() -> void:
 func _harvest_shroom(val) -> void:
 	var Ebuff = 1
 	var EexpBuff = 1
+	var soulsShroomBuff = 1
+	if GVars.soulsData.doubleShroomChanceEnabled and rng.randf_range(0.0, 100.0) < GVars.soulsData.doubleShroomChance:
+		soulsShroomBuff = 2
+	else:
+		soulsShroomBuff = 1
 	if(GVars.hellChallengeNerf == 3):
 		Ebuff = 1/(log(GVars.spinData.rotations)/log(5) + 0.5)
 	elif(GVars.curEmotionBuff == 3):

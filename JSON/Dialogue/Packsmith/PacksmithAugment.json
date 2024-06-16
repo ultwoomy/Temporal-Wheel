@@ -103,7 +103,11 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "If you don't want to\ndo this yet, it's ok\nto just leave.",
+			"TEXT": "The contract will begin\nonce you are born again.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "If you don't want to\ndo this yet, just augment\nsomething else before\na reset.",
 			"FACE": "NORMAL"
 		},
 		{
@@ -111,7 +115,7 @@
 			"FACE": "PEEK"
 		}
 	],
-	"unknown1": [
+	"hellcomplete": [
 		{
 			"TEXT": "There's a powerful contract\netched into this sigil.",
 			"FACE": "NORMAL"
@@ -133,13 +137,13 @@
 			"FACE": "PEEK"
 		}
 	],
-	"unknown2": [
+	"hellalt": [
 		{
 			"TEXT": "I can draw out the power\nof the blue babies and\nmake you immortal!!",
 			"FACE": "TALKING"
 		},
 		{
-			"TEXT": "It's not implemented yet so\nI don't have to explain\nshit.",
+			"TEXT": "It's not implemented yet so\nI don't have to explain\nnuthin.",
 			"FACE": "ANGRY"
 		}
 	]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b30pn0fw1kiod"]
+[gd_scene load_steps=11 format=3 uid="uid://b30pn0fw1kiod"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_e34c2"]
 [ext_resource type="Texture2D" uid="uid://m1wpitcmfghy" path="res://Sprites/RustSpace/Atlas/atlas/tile000.png" id="1_og85v"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bfat1iaj370pj" path="res://Sprites/RustSpace/Atlas/atlas_back/tile000.png" id="5_80l7b"]
 [ext_resource type="Texture2D" uid="uid://dthlib0l5xbvi" path="res://Sprites/RustSpace/Atlas/atlas_back/tile002.png" id="6_sgdkv"]
 [ext_resource type="Texture2D" uid="uid://c2ytf7d2xsn6a" path="res://Sprites/RustSpace/Atlas/atlas_back/tile001.png" id="7_hs7fn"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/Atlas/AtlasBack.gd" id="8_pm8yq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dmjsi"]
 animations = [{
@@ -40,7 +41,7 @@ script = ExtResource("4_qfl8t")
 position = Vector2(500, 300)
 sprite_frames = SubResource("SpriteFrames_dmjsi")
 
-[node name="Label" type="Label" parent="."]
+[node name="TextLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 653.0
 offset_top = 204.0
@@ -48,14 +49,6 @@ offset_right = 960.0
 offset_bottom = 355.0
 text = "Yes it is I, the unreleased content. Go away."
 autowrap_mode = 2
-
-[node name="NextButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 822.0
-offset_top = 399.0
-offset_right = 892.0
-offset_bottom = 469.0
-text = "Next"
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -69,6 +62,15 @@ texture_pressed = ExtResource("6_sgdkv")
 texture_hover = ExtResource("7_hs7fn")
 texture_disabled = ExtResource("5_80l7b")
 texture_focused = ExtResource("7_hs7fn")
+script = ExtResource("8_pm8yq")
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 822.0
+offset_top = 399.0
+offset_right = 892.0
+offset_bottom = 469.0
+text = "Next"
 
 [node name="DumpButton" type="Button" parent="."]
 layout_mode = 0
@@ -78,7 +80,21 @@ offset_right = 712.0
 offset_bottom = 523.0
 text = "Pit"
 
-[node name="ResetButton" type="Button" parent="."]
+[node name="MilestonePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 600.0
+
+[node name="TextLabel" type="Label" parent="MilestonePanel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 18.0
+offset_right = 277.0
+offset_bottom = 536.0
+theme_override_font_sizes/font_size = 20
+autowrap_mode = 2
+
+[node name="ResetScalingButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 366.0
 offset_top = 32.0
@@ -88,21 +104,6 @@ text = "You can only reset once per run
 And that reset is currently in 
 (If you see this text, something has gone wrong"
 
-[node name="MilestonePanel" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 336.0
-offset_bottom = 600.0
-
-[node name="Label" type="Label" parent="MilestonePanel"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 18.0
-offset_right = 277.0
-offset_bottom = 536.0
-theme_override_font_sizes/font_size = 20
-autowrap_mode = 2
-
-[connection signal="pressed" from="NextButton" to="." method="_onNextButtonPressed"]
-[connection signal="pressed" from="BackButton" to="." method="_onBackButtonPressed"]
-[connection signal="pressed" from="DumpButton" to="." method="_onDumpButtonPressed"]
-[connection signal="pressed" from="ResetButton" to="." method="_onResetButtonPressed"]
+[connection signal="pressed" from="NextButton" to="AtlasSprite" method="_on_next_pressed"]
+[connection signal="pressed" from="DumpButton" to="AtlasSprite" method="_on_dump_pressed"]
+[connection signal="pressed" from="ResetScalingButton" to="AtlasSprite" method="_on_reset_scaling_pressed"]

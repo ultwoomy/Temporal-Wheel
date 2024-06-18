@@ -1,7 +1,16 @@
 extends Container
+
+
+#@ Export Variables
 @export var button : Button
 @export var image : Sprite2D
+
+
+#@ Public Variables
 var presses = 0.0
+
+
+#@ Virtual Methods
 func _ready():
 	button.text = "Hard Reset"
 	button.size = Vector2(200,100)
@@ -9,6 +18,7 @@ func _ready():
 	button.pressed.connect(self._button_pressed)
 	image.scale.x = 0
 	image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
+
 
 #Yu: Removed loop, now triggers on button press instead of every 2 seconds.
 func _button_pressed():

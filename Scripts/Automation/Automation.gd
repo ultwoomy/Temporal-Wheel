@@ -4,7 +4,6 @@ extends Node
 
 #@ Public Variables
 var automators : Array[Automator]
-var enabled : bool = false
 
 
 #@ Virtual Methods
@@ -27,7 +26,8 @@ func automate() -> void:
 	
 	# If there are any automators, make them execute.
 	for automator in automators:
-		automator.execute()
+		if automator.enabled:
+			automator.execute()
 
 
 # Add an automator to the array using AutomatorData.

@@ -38,7 +38,8 @@ func _ready():
 	goback.pressed.connect(self._go_back)
 	GVars._dialouge(text,0,0.02)
 	self.kbity_up.connect(self.kbityTime)
-	
+
+
 func _go_back():
 	#checks where the back button is supposed to send the player
 	#layersin represents whether the player has opened up one of the functions
@@ -56,7 +57,7 @@ func _go_back():
 	else :
 		var event_manager = get_tree().get_root().find_child("EventManager", true, false)
 		event_manager.emit_signal("scene_change",true)
-		get_tree().change_scene_to_file("res://Scenes/WheelSpace.tscn")
+		get_tree().change_scene_to_file("res://Scenes/WheelSpace/WheelSpace.tscn")
 
 
 func _button_pressed():

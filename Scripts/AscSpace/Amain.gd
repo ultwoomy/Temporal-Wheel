@@ -171,7 +171,7 @@ func _awaken():
 	GVars.resetR0Stats()
 	GVars.atlasData.hasReset = false
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
-	GVars.ifsecondboot += 1
+	GVars.ifSecondBoot += 1
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
 	print(str(GVars.hellChallengeInit))
 	if(GVars.hellChallengeLayer2 >= 0) and GVars.hellChallengeInit:

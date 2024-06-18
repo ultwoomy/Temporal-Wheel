@@ -77,10 +77,10 @@ func nextLine():
 	firstmessage = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GVars.ifsecondboot > 9 and GVars.ifsecondboot % 2 == 1:
-		GVars.ifsecondboot += 1
+	if GVars.ifSecondBoot > 9 and GVars.ifSecondBoot % 2 == 1:
+		GVars.ifSecondBoot += 1
 	firstmessage = true
-	if (GVars.iffirstboot or GVars.ifsecondboot % 2 == 1) and GVars.ifsecondboot <= 9:
+	if (GVars.ifFirstBoot or GVars.ifSecondBoot % 2 == 1) and GVars.ifSecondBoot <= 9:
 		get_tree().paused = true
 		tutScreen.show()
 	else :
@@ -97,30 +97,30 @@ func _ready():
 
 func _button_pressed():
 	GVars._dialouge(text,0,0.02)
-	if(whenend[line]) and (GVars.iffirstboot):
+	if(whenend[line]) and (GVars.ifFirstBoot):
 		tutScreen.hide()
-		GVars.iffirstboot = false
+		GVars.ifFirstBoot = false
 		get_tree().paused = false
-	elif whenend[line] and GVars.ifsecondboot % 2 == 1:
+	elif whenend[line] and GVars.ifSecondBoot % 2 == 1:
 		tutScreen.hide()
-		GVars.ifsecondboot += 1
+		GVars.ifSecondBoot += 1
 		get_tree().paused = false
-	elif GVars.iffirstboot and firstmessage:
+	elif GVars.ifFirstBoot and firstmessage:
 		line = -1
 		nextLine()
-	elif GVars.ifsecondboot == 1 and firstmessage:
+	elif GVars.ifSecondBoot == 1 and firstmessage:
 		line = 8
 		nextLine()
-	elif GVars.ifsecondboot == 3 and firstmessage:
+	elif GVars.ifSecondBoot == 3 and firstmessage:
 		line = 16
 		nextLine()
-	elif GVars.ifsecondboot == 5 and firstmessage:
+	elif GVars.ifSecondBoot == 5 and firstmessage:
 		line = 23
 		nextLine()
-	elif GVars.ifsecondboot == 7 and firstmessage:
+	elif GVars.ifSecondBoot == 7 and firstmessage:
 		line = 30
 		nextLine()
-	elif GVars.ifsecondboot == 9 and firstmessage:
+	elif GVars.ifSecondBoot == 9 and firstmessage:
 		line = 38
 		nextLine()
 	else:

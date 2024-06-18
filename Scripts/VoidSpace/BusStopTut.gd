@@ -25,7 +25,7 @@ var line = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sigilshop.hide()
-	if(GVars.iffirstvoid):
+	if(GVars.ifFirstVoid):
 		#only shows the dialouge box if its the players first time coming here
 		get_tree().paused = true
 		show()
@@ -134,7 +134,7 @@ func _buttonPressed():
 		text.text = "And it'll never go away so no need to worry about losing it upon resetting."
 	else:
 		hide()
-		GVars.iffirstvoid = false
+		GVars.ifFirstVoid = false
 		get_tree().paused = false
 	line += 1
 

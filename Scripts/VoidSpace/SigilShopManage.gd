@@ -45,10 +45,10 @@ func _button_pressed():
 			GVars.rustData.rust -= 20
 			checkCurrentSigil()
 		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[2]:
-			if not GVars.altsigilsand and GVars.mushroomData.level >= 6:
+			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
 				GVars.mushroomData.level -= 5
 				checkCurrentSigil()
-			elif GVars.altsigilsand and GVars.dollarData.dollarTotal >= 5:
+			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
 				GVars.dollarTotal -= 5
 				checkCurrentSigil()
 		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[3] and GVars.spinData.size > 4:
@@ -95,7 +95,7 @@ func reset():
 		elif curSigil == 1:
 			text.text = "Here for a sigil?\nIt'll cost ya:\n20 rust"
 		elif curSigil == 2:
-			if not GVars.altsigilsand:
+			if not GVars.altSigilSand:
 				text.text = "Here for a sigil?\nIt'll cost ya:\n5 mush levels\nYou'll need 6."
 			else:
 				text.text = "Here for a sigil?\nIt'll cost ya:\n5 sand dollars"

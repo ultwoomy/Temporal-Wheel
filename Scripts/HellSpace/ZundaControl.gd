@@ -39,7 +39,7 @@ func _on_next_pressed():
 		zundaface.frame = spriteface[line]
 	else:
 		skip_opener()
-		GVars.iffirsthell = false
+		GVars.ifFirstHell = false
 		
 func skip_opener():
 		openCPage.show()
@@ -52,7 +52,7 @@ func skip_opener():
 
 
 func _on_right_pressed():
-	if GVars.iffirsthell:
+	if GVars.ifFirstHell:
 		openCPage.hide()
 		GVars._dialouge(text,0,0.02)
 		text.text = dialouge[0]

@@ -1,4 +1,5 @@
 extends Node
+# Global script.
 
 
 @export_group("R0stats")
@@ -8,6 +9,7 @@ extends Node
 @export var ritualData : RitualData
 @export var sigilData : SigilData
 @export var dollarData : DollarData
+
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -21,26 +23,31 @@ extends Node
 @export var atlasData : AtlasData
 @export var kbityData : KbityData
 @export var backpackData : BackpackData
+
 @export_group("PermStats")
-@export var iffirstboot : bool
-@export var ifsecondboot : int
-@export var iffirstvoid : bool
-@export var iffirstpack : bool
-@export var iffirsthell : bool
-@export var iffirstatlas : bool
-@export var altsigilsand : bool
-@export var altsigilcity : bool
-@export var altsigilnight : bool
-@export var altsigiltwins : bool
+@export var ifFirstBoot : bool
+@export var ifSecondBoot : int
+@export var ifFirstVoid : bool
+@export var ifFirstPack : bool
+@export var ifFirstHell : bool
+@export var ifFirstAtlas : bool
+@export var altSigilSand : bool
+@export var altSigilCity : bool
+@export var altSigilNight : bool
+@export var altSigilTwins : bool
 @export var musicvol : float
 @export var sfxvol : float
 @export var versNo : int
 @export var ratmail : int
+
+
+#@ Public Variables
 var chars = 0
 var loader = preload("res://Resources/SaveData.tres")
 var fmat = preload("res://Scripts/FormatNo.gd")
 
 
+#@ Virtual Methods
 func _init():
 	#create_data() # L.B: Needed for reset.
 	#resetR0Stats()
@@ -50,6 +57,7 @@ func _init():
 	load_as_normal()
 
 
+#@ Public Methods
 func create_data():
 	if not rustData:
 		rustData = RustData.new()
@@ -93,19 +101,19 @@ func save_prog():
 	
 	loader.ifhell = ifhell
 	loader.ifheaven = ifheaven
-	loader.iffirstboot = iffirstboot
-	loader.ifsecondboot = ifsecondboot
-	loader.iffirstvoid = iffirstvoid
-	loader.iffirstpack = iffirstpack
-	loader.iffirsthell = iffirsthell
-	loader.iffirstatlas = iffirstatlas
+	loader.ifFirstBoot = ifFirstBoot
+	loader.ifSecondBoot = ifSecondBoot
+	loader.ifFirstVoid = ifFirstVoid
+	loader.ifFirstPack = ifFirstPack
+	loader.ifFirstHell = ifFirstHell
+	loader.ifFirstAtlas = ifFirstAtlas
 	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
-	loader.altsigilsand = altsigilsand
-	loader.altsigilcity = altsigilcity
-	loader.altsigilnight = altsigilnight
-	loader.altsigiltwins = altsigiltwins
+	loader.altSigilSand = altSigilSand
+	loader.altSigilCity = altSigilCity
+	loader.altSigilNight = altSigilNight
+	loader.altSigilTwins = altSigilTwins
 	loader.inContract = inContract
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
@@ -139,16 +147,16 @@ func resetR2Stats():
 	backpackData.resetData()
 	
 func resetPermStats():
-	iffirstboot = true
-	ifsecondboot = 0
-	iffirstvoid = true
-	iffirstpack = true
-	iffirsthell = true
-	iffirstatlas = true
-	altsigilsand = false
-	altsigilcity = false
-	altsigilnight = false
-	altsigiltwins = false
+	ifFirstBoot = true
+	ifSecondBoot = 0
+	ifFirstVoid = true
+	ifFirstPack = true
+	ifFirstHell = true
+	ifFirstAtlas = true
+	altSigilSand = false
+	altSigilCity = false
+	altSigilNight = false
+	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
 	versNo = 11
@@ -188,8 +196,8 @@ func load_as_normal():
 	if(versNo <= 10):
 		backpackData = BackpackData.new()
 		loader.backpackData = backpackData
-		if loader.ifsecondboot >= 2:
-			loader.ifsecondboot = 2
+		if loader.ifSecondBoot >= 2:
+			loader.ifSecondBoot = 2
 			loader.ratmail = 0
 		versNo += 1
 	spinData = loader.spinData
@@ -201,25 +209,25 @@ func load_as_normal():
 	sigilData = loader.sigilData
 	ifhell = loader.ifhell
 	ifheaven = loader.ifheaven
-	iffirstboot = loader.iffirstboot
-	ifsecondboot = loader.ifsecondboot
-	iffirstvoid = loader.iffirstvoid
-	iffirstpack = loader.iffirstpack
+	ifFirstBoot = loader.ifFirstBoot
+	ifSecondBoot = loader.ifSecondBoot
+	ifFirstVoid = loader.ifFirstVoid
+	ifFirstPack = loader.ifFirstPack
 	hellChallengeNerf = loader.hellChallengeNerf
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol
-	iffirsthell = loader.iffirsthell
+	ifFirstHell = loader.ifFirstHell
 	soulsData = loader.soulsData
 	hellChallengeLayer2 = loader.hellChallengeLayer2
 	hellChallengeInit = loader.hellChallengeInit
 	ratmail = loader.ratmail
 	dollarData = loader.dollarData
-	iffirstatlas = loader.iffirstatlas
-	altsigilsand = loader.altsigilsand
-	altsigilcity = loader.altsigilcity
-	altsigilnight = loader.altsigilnight
-	altsigiltwins = loader.altsigiltwins
+	ifFirstAtlas = loader.ifFirstAtlas
+	altSigilSand = loader.altSigilSand
+	altSigilCity = loader.altSigilCity
+	altSigilNight = loader.altSigilNight
+	altSigilTwins = loader.altSigilTwins
 	kbityData = loader.kbityData
 	atlasData = loader.atlasData
 	backpackData = loader.backpackData

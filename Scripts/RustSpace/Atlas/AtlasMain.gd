@@ -16,7 +16,7 @@ var currentLine = 0
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GVars.iffirstatlas:
+	if GVars.ifFirstAtlas:
 		frame = 0
 		GVars._dialouge(text,0,0.01)
 		text.text = "Finally\n         Yes finally\n    You \n       Keeper of Time\n           You've come to me."
@@ -38,7 +38,7 @@ var sprite = [0,2,1,0,2]
 func _on_next_pressed():
 	if(currentLine >= lines.size()):
 		normalBoot()
-		GVars.iffirstatlas = false
+		GVars.ifFirstAtlas = false
 	else:
 		GVars._dialouge(text,0,0.01)
 		text.text = lines[currentLine]

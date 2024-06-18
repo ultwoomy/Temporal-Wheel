@@ -48,7 +48,7 @@ func _ready():
 	_setSigilDisplay()
 	
 	# Introduce Packsmith if haven't yet.
-	if GVars.iffirstpack:
+	if GVars.ifFirstPack:
 		_introduce()
 	else:
 		menu.show()
@@ -113,7 +113,7 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 		dialogueText.text = ""
 		menu.show()
 		nextButton.hide()
-		GVars.iffirstpack = false
+		GVars.ifFirstPack = false
 
 
 func _onBackButtonPressed():

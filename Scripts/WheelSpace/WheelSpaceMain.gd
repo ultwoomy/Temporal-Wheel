@@ -25,6 +25,7 @@ var candleAugmentBuffModifier : float = 1.0
 @onready var spinButton : WheelSpaceSpinButton = $SpinButton
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
+@onready var backpack : BackpackPanel = $BackpackPanel
 
 
 #@ Virtual Methods
@@ -44,7 +45,16 @@ func _ready():
 		numOfCandles -= 1
 	if (numOfCandles > 5):
 		numOfCandles = 5
+		
+	backpack.hide()		
 
 
 func _process(_delta):
 	pass
+
+
+func _on_backpack_button_pressed():
+	if backpack.is_visible_in_tree():
+		backpack.hide()
+	else:
+		backpack.show()

@@ -9,4 +9,4 @@ func _ready():
 
 func setScene():
 	EventManager.scene_change.emit()
-	get_tree().change_scene_to_file("res://Scenes/Settings.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.SETTINGS)

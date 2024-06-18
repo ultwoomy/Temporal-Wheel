@@ -15,15 +15,15 @@ func _ready():
 	button.text = "Hard Reset"
 	button.size = Vector2(200,100)
 	button.expand_icon = true
-	button.pressed.connect(self._button_pressed)
+	button.pressed.connect(self._buttonPressed)
 	image.scale.x = 0
 	image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 
 
 #Yu: Removed loop, now triggers on button press instead of every 2 seconds.
-func _button_pressed():
+func _buttonPressed():
 	presses += 1.0
-	if(presses > 9):
+	if presses > 9:
 		GVars.create_data()
 		GVars.resetR0Stats()
 		GVars.resetR1Stats()
@@ -31,6 +31,6 @@ func _button_pressed():
 		GVars.resetPermStats()
 		button.text = "Game Reset!"
 		presses = 0
-	if(presses > 0):
+	if presses > 0:
 		button.text = "Hard Reset\nPress 10 times to\nconfirm"
 	image.scale.x = presses/5

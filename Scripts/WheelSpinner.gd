@@ -13,8 +13,6 @@ const FULL_ROTATION_RADIANS : float = 2*PI
 
 
 #@ Public Variables
-var automators : Array[AutomatorData]  # Probably move to its own global script
-
 # Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
 # wheelRotation keeps track of the value, but doesn't do anything itself.
 var wheelRotation : float = 0.0

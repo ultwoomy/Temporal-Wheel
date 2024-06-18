@@ -4,7 +4,6 @@ class_name GameScene
 
 
 #@ Public Variables
-var automators : Array[AutomatorData]  # L.B: Probably remove this.
 var emoBuff : float = 1
 
 
@@ -23,16 +22,9 @@ func _ready() -> void:
 #	load_resources()
 	
 	EventManager.wheel_spun.connect(on_wheel_spun)
-	EventManager.reset_automators.connect(clear_automators)
-#	create_automators()
 
 
 #@ Public Methods
-func run_tests() -> void:
-	var automator_data: AutomatorData = load("res://Resources/Automator/Spinbot.tres")
-	add_automator(automator_data)
-
-
 #func load_new_scene(scene_path: String) -> void:
 #	save_resources()
 #	get_tree().change_scene_to_file(scene_path)
@@ -57,44 +49,3 @@ func calcClick() -> float:
 	else:
 		temp = GVars.spinData.spinPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 	return temp
-
-'
-### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.
-# Creates automators using the "AutomatorData" that is in "automators".
-func create_automators() -> void:
-	# GameScenes will only create the automators it contains in its array.
-	for automator_data in automators:
-		# Check if automator already exists.
-		if (get_tree().root.get_node_or_null(automator_data.name)):
-			continue
-		
-		# If does not exist, make a new one.
-		match(automator_data.automator):
-			AutomatorData.Automators.Spinbot:
-				var spinbot: Spinbot = Spinbot.new(automator_data)
-				spinbot.name = automator_data.name
-				# Add to the root of the tree, so that creating a new scene does not delete the automator.
-				get_window().add_child.call_deferred(spinbot)
-			
-			AutomatorData.Automators.Mushroombot:
-				# WIP
-				pass
-			
-			_:
-				printerr("ERROR: Unknown automator assigned in ", automator_data, "!")
-				return
-'
-
-# Add automator to the array if not already in it.
-func add_automator(automator: AutomatorData) -> void:
-	if automator in automators:
-		return
-	automators.append(automator)
-
-
-func clear_automators() -> void:
-	for automator_data in automators:
-		if (get_tree().root.get_node_or_null(automator_data.name)):
-			get_tree().root.get_node_or_null(automator_data.name).queue_free()
-	automators.clear()
-	

@@ -16,7 +16,6 @@ extends Node
 #				EventManager.wheel_spun.emit()
 
 signal wheel_spun
-signal reset_automators
 signal scene_change
 
 # MushSpace

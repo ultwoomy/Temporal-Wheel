@@ -4,7 +4,8 @@ class_name Automator
 
 
 #@ Public Variables
-var enabled : bool
+var enabled : bool  # If enabled, then the Automator can execute.
+var cooldown : float  # If not <= 0 then Automator can not execute.
 
 
 #@ Virtual Methods

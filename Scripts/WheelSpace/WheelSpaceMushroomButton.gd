@@ -29,4 +29,4 @@ func _process(_delta: float) -> void:
 
 #@ Public Methods
 func mushScene():
-	SceneHandler.changeSceneToPacked(SceneHandler.MUSHSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.MUSHSPACE)

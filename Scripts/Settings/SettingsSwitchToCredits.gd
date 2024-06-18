@@ -9,4 +9,4 @@ func _ready():
 
 #@ Private Methods
 func _wheelScene():
-	SceneHandler.changeSceneToPacked(SceneHandler.CREDITS)
+	SceneHandler.changeSceneToFilePath(SceneHandler.CREDITS)

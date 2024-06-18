@@ -1,5 +1,9 @@
 extends TextureButton
 
 
+func _ready() -> void:
+	pressed.connect(self._on_pressed)
+
+
 func _on_pressed():
-	SceneHandler.changeSceneToPacked(SceneHandler.RUSTSPACE_OUTSIDE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)

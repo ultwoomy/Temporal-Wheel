@@ -113,6 +113,7 @@ text = "You can only reset once per run
 And that reset is currently in 
 (If you see this text, something has gone wrong"
 
+[connection signal="pressed" from="Go Back" to="Go Back" method="_on_pressed"]
 [connection signal="pressed" from="Next" to="Atlas" method="_on_next_pressed"]
 [connection signal="pressed" from="Dump" to="Atlas" method="_on_dump_pressed"]
 [connection signal="pressed" from="ResetScaling" to="Atlas" method="_on_reset_scaling_pressed"]

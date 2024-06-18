@@ -18,4 +18,4 @@ func _process(_delta: float) -> void:
 #@ Public Methods
 func changeToPreAsc():
 	if GVars.sigilData.numberOfSigils[2]:
-		SceneHandler.changeSceneToPacked(SceneHandler.PRE_ASCENSIONSPACE)
+		SceneHandler.changeSceneToFilePath(SceneHandler.PRE_ASCENSIONSPACE)

@@ -71,3 +71,5 @@ offset_right = 313.0
 offset_bottom = 149.0
 text = "Atlas"
 script = ExtResource("9_dgskt")
+
+[connection signal="pressed" from="Atlas" to="Atlas" method="_button_pressed"]

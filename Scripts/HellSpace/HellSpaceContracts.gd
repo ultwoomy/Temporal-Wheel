@@ -89,7 +89,7 @@ func panelGeneric(descText, page):
 func beginContract():
 	GVars.hellChallengeLayer2 = panel
 	GVars.hellChallengeInit = true
-	SceneHandler.changeSceneToPacked(SceneHandler.ASCENSIONSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
 
 
 func _on_exit_pressed():

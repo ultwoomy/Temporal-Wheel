@@ -33,16 +33,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _button_pressed():
-	SceneHandler.changeSceneToPacked(SceneHandler.RUSTSPACE_OUTSIDE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)
 
 
 func _button_pressed2():
-	SceneHandler.changeSceneToPacked(SceneHandler.VOIDSPACE_STOP)
+	SceneHandler.changeSceneToFilePath(SceneHandler.VOIDSPACE_STOP)
 
 
 func _button_pressed3():
-	SceneHandler.changeSceneToPacked(SceneHandler.HELLSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.HELLSPACE)
 
 
 func _button_pressed4():
-	SceneHandler.changeSceneToPacked(SceneHandler.HELLSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.HELLSPACE)

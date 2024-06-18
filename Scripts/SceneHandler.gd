@@ -7,26 +7,31 @@ signal sceneChanged
 
 
 #@ Constants
-const WHEELSPACE : PackedScene = preload("res://Scenes/WheelSpace/WheelSpace.tscn")
-const SETTINGS : PackedScene = preload("res://Scenes/Settings.tscn")
-const CREDITS : PackedScene = preload("res://Scenes/Credits.tscn")
-const TRAVELSPACE : PackedScene = preload("res://Scenes/TravelSpace.tscn")
-const ASCENSIONSPACE : PackedScene = preload("res://Scenes/AscensionSpace.tscn")
-const RUSTSPACE_OUTSIDE : PackedScene = preload("res://Scenes/RustSpaceOutside.tscn")
-const PACKSMITH : PackedScene = preload("res://Scenes/Packsmith/Packsmith.tscn")
-const ATLAS : PackedScene = preload("res://Scenes/Atlas.tscn")
-const VOIDSPACE_STOP : PackedScene = preload("res://Scenes/VoidSpaceStop.tscn")
-const HELLSPACE : PackedScene = preload("res://Scenes/HellSpace.tscn")
-const MUSHSPACE : PackedScene = preload("res://Scenes/MushSpace/MushSpace.tscn")
-const PRE_ASCENSIONSPACE : PackedScene = preload("res://Scenes/PreAscSpace.tscn")
+const WHEELSPACE : String = "res://Scenes/WheelSpace/WheelSpace.tscn"
+const SETTINGS : String = "res://Scenes/Settings.tscn"
+const CREDITS : String = "res://Scenes/Credits.tscn"
+const TRAVELSPACE : String = "res://Scenes/TravelSpace.tscn"
+const ASCENSIONSPACE : String = "res://Scenes/AscensionSpace.tscn"
+const RUSTSPACE_OUTSIDE : String = "res://Scenes/RustSpaceOutside.tscn"
+const PACKSMITH : String = "res://Scenes/Packsmith/Packsmith.tscn"
+const ATLAS : String = "res://Scenes/Atlas.tscn"
+const VOIDSPACE_STOP : String = "res://Scenes/VoidSpaceStop.tscn"
+const HELLSPACE : String = "res://Scenes/HellSpace.tscn"
+const MUSHSPACE : String = "res://Scenes/MushSpace/MushSpace.tscn"
+const PRE_ASCENSIONSPACE : String = "res://Scenes/PreAscSpace.tscn"
 
 
 #@ Public Methods
-func changeSceneToPacked(packedScene : PackedScene) -> void:
+func changeSceneToFilePath(filePath : String) -> void:
 	# Get scene tree and error checks if it can get it.
 	var sceneTree : SceneTree = get_tree()
 	if not sceneTree:
 		printerr("ERROR: Unable to get scene tree and change scene!")
+		return
+	
+	var packedScene : PackedScene = load(filePath)
+	if not packedScene:
+		printerr("ERROR: Unable to get a PackedScene from file path, \"", filePath, "\"! Unable to change scene!")
 		return
 	
 	# Changes the scene (deferred) and sees if there was any error in doing so.

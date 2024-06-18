@@ -41,7 +41,7 @@ func _process(_delta):
 		if(frames < 750):
 			frames += 1
 		else:
-			SceneHandler.changeSceneToPacked(SceneHandler.ASCENSIONSPACE)
+			SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
 		scale = Vector2(pow(1 + rotSpeed*frames/30,2),pow(1 + rotSpeed*frames/30,2))
 		if(frames > 650):
 			modulate = Color((1-(frames-650)/100),(1-(frames-650)/100),(1-(frames-650)/100))
@@ -65,7 +65,7 @@ func confirmFalse():
 
 #@ Private Methods
 func _wheelScene():
-	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 
 func _end_sequence():

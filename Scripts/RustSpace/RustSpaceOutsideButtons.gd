@@ -16,4 +16,4 @@ func _ready():
 
 #@ Private Methods
 func _buttonPressed():
-	SceneHandler.changeSceneToPacked(SceneHandler.PACKSMITH)
+	SceneHandler.changeSceneToFilePath(SceneHandler.PACKSMITH)

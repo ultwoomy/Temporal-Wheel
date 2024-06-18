@@ -478,7 +478,7 @@ func resetDisplay(n: int):
 	sigilToActivate = 0
 	if(n == 6) and !GVars.ifhell:
 		GVars.sigilData.curSigilBuff = n
-		SceneHandler.changeSceneToPacked(SceneHandler.ASCENSIONSPACE)
+		SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
 	GVars.sigilData.curSigilBuff = n
 	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
 	sigilDisplay.show()

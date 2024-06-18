@@ -117,4 +117,4 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 
 
 func _onBackButtonPressed():
-	SceneHandler.changeSceneToPacked(SceneHandler.RUSTSPACE_OUTSIDE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)

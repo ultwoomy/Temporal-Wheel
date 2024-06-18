@@ -1,10 +1,19 @@
 extends AnimatedSprite2D
+
+
+#@ Export Variables
 @export var text : Label
 @export var next : Button
 @export var dump : Button
 @export var panel : Panel
 @export var reset : Button
+
+
+#@ Public Variables
 var currentLine = 0
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GVars.iffirstatlas:
@@ -23,6 +32,9 @@ var lines = ["I hold up the sky\n      I devour the ground\n            I am Atl
 			 "You will feed me\n                 And I will feed you\n     And we will both grow and grow.",
 			 "She will not forget you.\nYou are blessed\nYou are blessed\nYou are blessed\nYou are blessed"]
 var sprite = [0,2,1,0,2]
+
+
+#@ Private Methods
 func _on_next_pressed():
 	if(currentLine >= lines.size()):
 		normalBoot()
@@ -32,7 +44,8 @@ func _on_next_pressed():
 		text.text = lines[currentLine]
 		frame = sprite[currentLine]
 		currentLine += 1
-		
+
+
 func normalBoot():
 	next.hide()
 	dump.show()
@@ -89,7 +102,8 @@ func _on_dump_pressed():
 		text.text = "Joyful!\n    But not enough\n           Not enough."
 		frame = 2
 	updatePanel()
-		
+
+
 func updatePanel():
 	panel.get_child(0).text = "Milestones: " + str(GVars.atlasData.dumpRustMilestone)
 	if(GVars.atlasData.dumpRustMilestone > 0):

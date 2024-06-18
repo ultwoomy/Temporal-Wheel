@@ -7,8 +7,10 @@ func _ready():
 	hide()
 	if GVars.curEmotionBuff == 4 or not GVars.iffirstatlas:
 		show()
+	
+	pressed.connect(self._buttonPressed)
 
 
 #@ Private Methods
-func _button_pressed():
-	SceneHandler.changeSceneToPacked(SceneHandler.ATLAS)
+func _buttonPressed():
+	SceneHandler.changeSceneToFilePath(SceneHandler.ATLAS)

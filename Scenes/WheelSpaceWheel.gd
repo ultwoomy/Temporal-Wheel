@@ -6,6 +6,8 @@ class_name WheelSpaceWheel
 
 #@ Global Variables
 
+
+#@ Onready Variables
 @onready var centerpiece : AnimatedSprite2D = $Centerpiece
 @onready var ascensionButton : Button = $PreAscTransfer
 @onready var rustEmitter : Node2D = $RustEmitter

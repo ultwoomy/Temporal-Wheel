@@ -94,7 +94,7 @@ func _goBack():
 			ritualEnter.show()
 			ritualShop.hide()
 	else :
-		SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
+		SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 
 func _buttonPressed():

@@ -19,4 +19,4 @@ func _ready():
 
 #@ Private Methods
 func _buttonPressed():
-	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)

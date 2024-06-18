@@ -13,4 +13,4 @@ func _ready():
 
 #@ Private Methods
 func _wheelScene():
-	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
+	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)

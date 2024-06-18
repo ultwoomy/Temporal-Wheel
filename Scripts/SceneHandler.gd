@@ -11,6 +11,14 @@ const WHEELSPACE : PackedScene = preload("res://Scenes/WheelSpace/WheelSpace.tsc
 const SETTINGS : PackedScene = preload("res://Scenes/Settings.tscn")
 const CREDITS : PackedScene = preload("res://Scenes/Credits.tscn")
 const TRAVELSPACE : PackedScene = preload("res://Scenes/TravelSpace.tscn")
+const ASCENSIONSPACE : PackedScene = preload("res://Scenes/AscensionSpace.tscn")
+const RUSTSPACE_OUTSIDE : PackedScene = preload("res://Scenes/RustSpaceOutside.tscn")
+const PACKSMITH : PackedScene = preload("res://Scenes/Packsmith/Packsmith.tscn")
+const ATLAS : PackedScene = preload("res://Scenes/Atlas.tscn")
+const VOIDSPACE_STOP : PackedScene = preload("res://Scenes/VoidSpaceStop.tscn")
+const HELLSPACE : PackedScene = preload("res://Scenes/HellSpace.tscn")
+const MUSHSPACE : PackedScene = preload("res://Scenes/MushSpace/MushSpace.tscn")
+const PRE_ASCENSIONSPACE : PackedScene = preload("res://Scenes/PreAscSpace.tscn")
 
 
 #@ Public Methods

@@ -1,17 +1,28 @@
 extends CharacterBody2D
+
+#@ Signals
+signal confirm
+
+
+#@ Exported Variables
 @export var back : Button
 @export var forward : Button
 @export var statDisplay : Label
 @export var everythingelse : Control
 @export var panel : Panel
-signal confirm
+
+
+#@ Public Variables
 var rotSpeed = 0.001
 var eSeq = false
 var frames = 0.00
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_wheel_sprite(GVars.spinData.density - 1)
-	back.pressed.connect(self._wheel_scene)
+	back.pressed.connect(self._wheelScene)
 	connect("confirm",panel.ask)
 	forward.text = "Proceed"
 	forward.pressed.connect(self._end_sequence)
@@ -21,11 +32,7 @@ func _ready():
 		dis += "\n\nYou have worn the\nface of myraid emotion."
 	statDisplay.text = dis
 
-func update_wheel_sprite(frameno):
-	if(frameno > 11):
-		self.get_node("Centerpiece").frame = 11
-	else :
-		self.get_node("Centerpiece").frame = frameno
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	rotation += rotSpeed
@@ -33,14 +40,31 @@ func _process(_delta):
 		rotSpeed += 0.0005
 		if(frames < 750):
 			frames += 1
-		else: 
-			get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
+		else:
+			SceneHandler.changeSceneToPacked(SceneHandler.ASCENSIONSPACE)
 		scale = Vector2(pow(1 + rotSpeed*frames/30,2),pow(1 + rotSpeed*frames/30,2))
 		if(frames > 650):
 			modulate = Color((1-(frames-650)/100),(1-(frames-650)/100),(1-(frames-650)/100))
 
 
-func _wheel_scene():
+#@ Public Methods
+func update_wheel_sprite(frameno):
+	if(frameno > 11):
+		self.get_node("Centerpiece").frame = 11
+	else :
+		self.get_node("Centerpiece").frame = frameno
+
+
+func confirmTrue():
+	eSeq = true
+
+
+func confirmFalse():
+	everythingelse.show()
+
+
+#@ Private Methods
+func _wheelScene():
 	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
 
 
@@ -48,12 +72,6 @@ func _end_sequence():
 	#hides every ui element before playing reset animation
 	everythingelse.hide()
 	if not GVars.sigilData.curSigilBuff == 3 and GVars.sigilData.numberOfSigils[3]:
-		emit_signal("confirm")
+		confirm.emit()
 	else:
 		eSeq = true
-		
-func confirmTrue():
-	eSeq = true
-
-func confirmFalse():
-	everythingelse.show()

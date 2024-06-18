@@ -28,8 +28,5 @@ func _process(_delta: float) -> void:
 
 
 #@ Public Methods
-# L.B: Odd how inconsistent the function names are for changing scenes.
-# ...Usually, "_" prefixes mean that this function should get overwritten by its inheriters.
-#YU: Naming convention inconsistent, probably will fix slowly
 func mushScene():
-	get_tree().change_scene_to_file("res://Scenes/MushSpace/MushSpace.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.MUSHSPACE)

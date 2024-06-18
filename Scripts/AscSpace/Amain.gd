@@ -179,7 +179,7 @@ func _awaken():
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
 	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
-	get_tree().change_scene_to_file("res://Scenes/WheelSpace/WheelSpace.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
 
 
 func _hide_all():

@@ -33,13 +33,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/RustSpaceOutside.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.RUSTSPACE_OUTSIDE)
+
 
 func _button_pressed2():
-	get_tree().change_scene_to_file("res://Scenes/VoidSpaceStop.tscn")
-	
+	SceneHandler.changeSceneToPacked(SceneHandler.VOIDSPACE_STOP)
+
+
 func _button_pressed3():
-	get_tree().change_scene_to_file("res://Scenes/HellSpace.tscn")
-	
+	SceneHandler.changeSceneToPacked(SceneHandler.HELLSPACE)
+
+
 func _button_pressed4():
-	get_tree().change_scene_to_file("res://Scenes/HellSpace.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.HELLSPACE)

@@ -59,6 +59,7 @@ func _ready():
 func _process(_delta):
 	_setSigilDisplay()
 
+
 #@ Private Methods
 func _setSigilDisplay():
 	if GVars.sigilData.curSigilBuff >= 0:
@@ -67,7 +68,8 @@ func _setSigilDisplay():
 	else:
 		sigilDisplay.frame = 0
 		sigilDisplay.hide()
-		
+
+
 func _introduce() -> void:
 	# Visuals.
 	packsmithBackground.frame = 1
@@ -115,4 +117,4 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 
 
 func _onBackButtonPressed():
-	get_tree().change_scene_to_file("res://Scenes/RustSpaceOutside.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.RUSTSPACE_OUTSIDE)

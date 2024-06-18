@@ -53,7 +53,8 @@ func _process(_delta):
 	pass
 
 
-func _on_backpack_button_pressed():
+#@ Private Methods
+func _onBackpackButtonPressed():
 	if backpack.is_visible_in_tree():
 		backpack.hide()
 	else:

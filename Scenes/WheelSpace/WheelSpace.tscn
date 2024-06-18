@@ -511,5 +511,5 @@ offset_bottom = 500.0
 [connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]
 [connection signal="pressed" from="RatController/Cheese" to="RatController" method="_on_cheese_pressed"]
 [connection signal="pressed" from="RatController/Bow" to="RatController" method="_on_bow_pressed"]
-[connection signal="pressed" from="BackpackButton" to="." method="_on_backpack_button_pressed"]
-[connection signal="pressed" from="BackpackButton" to="BackpackPanel" method="_on_backpack_pressed"]
+[connection signal="pressed" from="BackpackButton" to="." method="_onBackpackButtonPressed"]
+[connection signal="pressed" from="BackpackButton" to="BackpackPanel" method="_onBackpackPressed"]

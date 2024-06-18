@@ -17,4 +17,3 @@ func _double_check():
 		show()
 	else:
 		hide()
-

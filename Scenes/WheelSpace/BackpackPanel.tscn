@@ -130,13 +130,13 @@ text = "Who should use this item?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="mouse_entered" from="Cheese" to="." method="_on_cheese_focus_entered"]
-[connection signal="mouse_exited" from="Cheese" to="." method="_on_cheese_focus_exited"]
-[connection signal="pressed" from="Cheese" to="." method="_on_cheese_pressed"]
-[connection signal="mouse_entered" from="Ribbon" to="." method="_on_ribbon_focus_entered"]
-[connection signal="mouse_exited" from="Ribbon" to="." method="_on_ribbon_focus_exited"]
-[connection signal="pressed" from="Ribbon" to="." method="_on_ribbon_pressed"]
-[connection signal="pressed" from="ChoicePanel/Self" to="." method="_on_self_pressed"]
-[connection signal="pressed" from="ChoicePanel/Packsmith" to="." method="_on_packsmith_pressed"]
-[connection signal="pressed" from="ChoicePanel/Fae" to="." method="_on_fae_pressed"]
-[connection signal="pressed" from="ChoicePanel/Zunda" to="." method="_on_zunda_pressed"]
+[connection signal="mouse_entered" from="Cheese" to="." method="_onCheeseFocusEntered"]
+[connection signal="mouse_exited" from="Cheese" to="." method="_onCheeseFocusExited"]
+[connection signal="pressed" from="Cheese" to="." method="_onCheesePressed"]
+[connection signal="mouse_entered" from="Ribbon" to="." method="_onRibbonFocusEntered"]
+[connection signal="mouse_exited" from="Ribbon" to="." method="_onRibbonFocusExited"]
+[connection signal="pressed" from="Ribbon" to="." method="_onRibbonPressed"]
+[connection signal="pressed" from="ChoicePanel/Self" to="." method="_onSelfPressed"]
+[connection signal="pressed" from="ChoicePanel/Packsmith" to="." method="_onPacksmithPressed"]
+[connection signal="pressed" from="ChoicePanel/Fae" to="." method="_onFaePressed"]
+[connection signal="pressed" from="ChoicePanel/Zunda" to="." method="_onZundaPressed"]

@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 	EventManager.wheel_spun.connect(on_wheel_spun)
 	EventManager.reset_automators.connect(clear_automators)
-	create_automators()
+#	create_automators()
 
 
 #@ Public Methods
@@ -44,6 +44,7 @@ func on_wheel_spun() -> void:
 		GVars.kbityData.kbityAddSpin += temp
 	GVars.spinData.spin += temp
 
+
 func calcClick() -> float:
 	var temp
 	var densityPower = GVars.spinData.density
@@ -57,7 +58,7 @@ func calcClick() -> float:
 		temp = GVars.spinData.spinPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 	return temp
 
-
+'
 ### AUTOMATORS, should probably create a "AutomatorManager" script instead of this.
 # Creates automators using the "AutomatorData" that is in "automators".
 func create_automators() -> void:
@@ -82,7 +83,7 @@ func create_automators() -> void:
 			_:
 				printerr("ERROR: Unknown automator assigned in ", automator_data, "!")
 				return
-
+'
 
 # Add automator to the array if not already in it.
 func add_automator(automator: AutomatorData) -> void:

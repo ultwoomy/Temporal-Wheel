@@ -1,16 +1,23 @@
 extends Control
+
+
+#@ Export Variables
 @export var rat : TextureButton
 @export var letter : Control
 @export var lettertext : Label
 @export var exit : Button
 @export var cheese : TextureButton
 @export var bow: TextureButton
+
+#@ Public Variables
 var frame := 0.0
 var active = true
 var cheesepressed = false
 var flipout = false
 var baseYpos = 0
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	letter.hide()
@@ -58,6 +65,7 @@ func _process(_delta):
 		set_process(false)
 
 
+#@ Private Methods
 func _on_rat_pressed():
 	#immediately flip the rat
 	rat.disabled = true

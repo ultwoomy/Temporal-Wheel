@@ -22,9 +22,13 @@ var candleAugmentBuffModifier : float = 1.0
 
 #@ Onready Variables
 @onready var wheel : WheelSpaceWheel = $Wheel
+@onready var backpackPanel : BackpackPanel = $BackpackPanel
+
 @onready var spinButton : WheelSpaceSpinButton = $SpinButton
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
+@onready var settingsButton : BaseButton = $SettingsButton
+@onready var backpackButton : BaseButton = $BackpackButton
 
 
 #@ Virtual Methods
@@ -32,9 +36,12 @@ var candleAugmentBuffModifier : float = 1.0
 func _ready():
 	# Connect signals
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
+	backpackButton.pressed.connect(_onBackpackButtonPressed)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
+	
+	backpackPanel.hide()
 	
 	numOfCandles = 0.0
 	for n in GVars.ritualData.candlesLit.size():
@@ -48,3 +55,15 @@ func _ready():
 
 func _process(_delta):
 	pass
+
+
+#@ Private Methods
+func _onSettingsButtonPressed() -> void:
+	pass
+
+
+func _onBackpackButtonPressed() -> void:
+	if backpackPanel.visible:  # Hide backpackPanel.
+		backpackPanel.visible = false
+	else:  # Show backpackPanel.
+		backpackPanel.visible = true

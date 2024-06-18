@@ -1,0 +1,512 @@
+[gd_scene load_steps=57 format=3 uid="uid://csj1yqrbq5fn3"]
+
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
+[ext_resource type="Texture2D" uid="uid://cysiy4xi7xnjj" path="res://Sprites/WheelSpace/Sky/night.png" id="2_ty02u"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/Back.gd" id="3_7r1my"]
+[ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="4_m45rb"]
+[ext_resource type="Texture2D" uid="uid://cx41yp0f1ckr4" path="res://Sprites/WheelSpace/mush_ext_sheet/tile000.png" id="5_nsne1"]
+[ext_resource type="Texture2D" uid="uid://q4k5bjlld7su" path="res://Sprites/WheelSpace/mush_ext_sheet/tile001.png" id="6_i1g62"]
+[ext_resource type="Texture2D" uid="uid://td637bbgri78" path="res://Sprites/WheelSpace/mush_ext_sheet/tile002.png" id="7_03kpd"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMushroomButton.gd" id="8_04bms"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinButton.gd" id="9_orr02"]
+[ext_resource type="Script" path="res://Scenes/WheelSpaceWheel.gd" id="10_p6xcq"]
+[ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="11_71lrk"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceChangePreAscButton.gd" id="12_sl12n"]
+[ext_resource type="PackedScene" uid="uid://dtdgsst1q4xqc" path="res://Scenes/RustEmitter.tscn" id="13_8qh4t"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowButton.gd" id="14_4hb3c"]
+[ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="15_skhdp"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowDisplay.gd" id="16_ry1on"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensButton.gd" id="17_53q2w"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensDisplay.gd" id="18_gtfj1"]
+[ext_resource type="Texture2D" uid="uid://c0naj6ala7avn" path="res://Sprites/WheelSpace/Zundamon/zun_sit.png" id="19_aq2kl"]
+[ext_resource type="Texture2D" uid="uid://d1sgp4e2mvs7g" path="res://Sprites/WheelSpace/Zundamon/zun_nom.png" id="20_lpp0p"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceZunda.gd" id="21_bjtkx"]
+[ext_resource type="Texture2D" uid="uid://btsdyf15q58f8" path="res://Sprites/WheelSpace/Zundamon/zun_wip.png" id="22_xu23q"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="23_wtwgm"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinDisplay.gd" id="24_1u5ml"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRotsDisplay.gd" id="25_uhppk"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRatController.gd" id="26_45hgb"]
+[ext_resource type="Texture2D" uid="uid://bmehjccofi42l" path="res://Sprites/WheelSpace/ratsheet/tile000.png" id="27_2vyi3"]
+[ext_resource type="Texture2D" uid="uid://c47lgwvkugbwk" path="res://Sprites/WheelSpace/ratsheet/tile002.png" id="28_j606s"]
+[ext_resource type="Texture2D" uid="uid://bcux2wxa2ourq" path="res://Sprites/WheelSpace/ratsheet/tile001.png" id="29_4rtsi"]
+[ext_resource type="Texture2D" uid="uid://ddvy1ujm5r1we" path="res://Sprites/WheelSpace/ratsheet/cheese.png" id="30_7k2lb"]
+[ext_resource type="Texture2D" uid="uid://ccjdnh17knlps" path="res://Sprites/WheelSpace/ratsheet/bow.png" id="31_gdw33"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTravel.gd" id="32_mutxo"]
+[ext_resource type="Texture2D" uid="uid://dbxedep3ucns5" path="res://Sprites/WheelSpace/spinbot.png" id="33_l2up4"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/SpinbotShow.gd" id="34_ksfch"]
+[ext_resource type="Texture2D" uid="uid://dbqifpea6l5v3" path="res://Sprites/WheelSpace/settings buttons/tile000.png" id="35_op35j"]
+[ext_resource type="Texture2D" uid="uid://da7ojbspruc6b" path="res://Sprites/WheelSpace/settings buttons/tile001.png" id="36_pjqq4"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/SettingsTravel.gd" id="37_t2f46"]
+[ext_resource type="Texture2D" uid="uid://r0bdyjhn2kk7" path="res://Sprites/WheelSpace/backpackButtons/backpack_closed.png" id="38_21m8y"]
+[ext_resource type="Texture2D" uid="uid://cwchmr65j57xn" path="res://Sprites/WheelSpace/backpackButtons/backpack_open.png" id="39_fs3l2"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTutBox.gd" id="41_wpbdt"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="42_y8i0o"]
+[ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="43_lvq84"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="44_kqfr3"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="45_3mkif"]
+[ext_resource type="PackedScene" uid="uid://3wjowbw55at0" path="res://Scenes/WheelSpace/BackpackPanel.tscn" id="46_o6krw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68d5r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ty02u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1tw6m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_aq2kl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_lpp0p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eyet1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dil3"]
+atlas = ExtResource("43_lvq84")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ruuii"]
+atlas = ExtResource("43_lvq84")
+region = Rect2(500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6eep"]
+atlas = ExtResource("43_lvq84")
+region = Rect2(1000, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gu7eo"]
+atlas = ExtResource("43_lvq84")
+region = Rect2(1500, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_05j8j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dil3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ruuii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6eep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gu7eo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1qs7"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s6ay"]
+bg_color = Color(0.780392, 0.482353, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
+
+[node name="WheelSpace" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_daddu")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.635294)
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_68d5r")
+script = ExtResource("3_7r1my")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
+position = Vector2(498, 541)
+texture = ExtResource("4_m45rb")
+
+[node name="MushroomButton" type="TextureButton" parent="Foreground"]
+offset_left = -406.5
+offset_top = -228.5
+offset_right = -107.5
+offset_bottom = 70.5
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("5_nsne1")
+texture_pressed = ExtResource("6_i1g62")
+texture_hover = ExtResource("6_i1g62")
+texture_disabled = ExtResource("7_03kpd")
+texture_focused = ExtResource("6_i1g62")
+script = ExtResource("8_04bms")
+
+[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 850.0
+offset_bottom = 150.0
+script = ExtResource("9_orr02")
+spinPerCDisplay = NodePath("SpinPClickDiplay")
+button = NodePath("SpinUp")
+
+[node name="SpinUp" type="Button" parent="SpinButton"]
+layout_mode = 2
+
+[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+
+[node name="Wheel" type="CharacterBody2D" parent="."]
+position = Vector2(500, 300)
+script = ExtResource("10_p6xcq")
+
+[node name="Centerpiece" type="AnimatedSprite2D" parent="Wheel"]
+sprite_frames = ExtResource("11_71lrk")
+
+[node name="PreAscTransfer" type="Button" parent="Wheel"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -110.0
+offset_right = 110.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_sl12n")
+
+[node name="RustEmitter" parent="Wheel" instance=ExtResource("13_8qh4t")]
+
+[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image", "spinbody")]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 250.0
+offset_right = 950.0
+offset_bottom = 350.0
+script = ExtResource("14_4hb3c")
+growDisplay = NodePath("GrowDisplay")
+button = NodePath("GrowToggle")
+image = NodePath("GrowRectDisp")
+spinbody = NodePath("../Wheel")
+
+[node name="GrowRectDisp" type="Sprite2D" parent="GrowButton"]
+scale = Vector2(2, 1)
+texture = ExtResource("15_skhdp")
+offset = Vector2(50, 105)
+
+[node name="GrowToggle" type="Button" parent="GrowButton"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="GrowDisplay" type="Label" parent="GrowButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+script = ExtResource("16_ry1on")
+
+[node name="DensButton" type="Container" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 400.0
+offset_right = 950.0
+offset_bottom = 500.0
+script = ExtResource("17_53q2w")
+
+[node name="DensRectDisp" type="Sprite2D" parent="DensButton"]
+scale = Vector2(2, 1)
+texture = ExtResource("15_skhdp")
+offset = Vector2(50, 105)
+
+[node name="DensToggle" type="Button" parent="DensButton"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="DensDisplay" type="Label" parent="DensButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+vertical_alignment = 1
+script = ExtResource("18_gtfj1")
+
+[node name="Zunda" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 470)
+sprite_frames = SubResource("SpriteFrames_1tw6m")
+frame_progress = 0.201388
+script = ExtResource("21_bjtkx")
+
+[node name="TextureButton" type="TextureButton" parent="Zunda"]
+offset_left = -15.0
+offset_top = -140.0
+offset_right = 85.0
+offset_bottom = -60.0
+texture_normal = ExtResource("22_xu23q")
+texture_pressed = ExtResource("22_xu23q")
+texture_hover = ExtResource("22_xu23q")
+texture_disabled = ExtResource("22_xu23q")
+texture_focused = ExtResource("22_xu23q")
+ignore_texture_size = true
+
+[node name="SpinDisplay" type="Label" parent="."]
+layout_mode = 2
+offset_left = 400.0
+offset_top = 40.0
+offset_right = 600.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("23_wtwgm")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("24_1u5ml")
+
+[node name="RotsDisplay" type="Label" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 500.0
+offset_right = 700.0
+offset_bottom = 550.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("25_uhppk")
+
+[node name="RatController" type="Control" parent="." node_paths=PackedStringArray("rat", "letter", "lettertext", "exit", "cheese", "bow")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("26_45hgb")
+rat = NodePath("Rat")
+letter = NodePath("Letter")
+lettertext = NodePath("Letter/Label")
+exit = NodePath("Letter/Exit")
+cheese = NodePath("Cheese")
+bow = NodePath("Bow")
+
+[node name="Rat" type="TextureButton" parent="RatController"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 450.0
+offset_bottom = 550.0
+texture_normal = ExtResource("27_2vyi3")
+texture_pressed = ExtResource("28_j606s")
+texture_hover = ExtResource("29_4rtsi")
+texture_disabled = ExtResource("28_j606s")
+texture_focused = ExtResource("28_j606s")
+
+[node name="Letter" type="Control" parent="RatController"]
+anchors_preset = 0
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 540.0
+offset_bottom = 340.0
+
+[node name="Back" type="AnimatedSprite2D" parent="RatController/Letter"]
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_eyet1")
+
+[node name="Exit" type="Button" parent="RatController/Letter"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 180.0
+offset_right = 170.0
+offset_bottom = 240.0
+text = "Toss it"
+
+[node name="Label" type="Label" parent="RatController/Letter"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -130.0
+offset_right = 100.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 14
+text = "I hope this letter finds you in good health. 
+
+I just recently moved in next door, and am keen to greet my old neighbors. 
+
+Enclosed within this letter is a full cheese.
+
+I hope it is... tasty.
+
+	Sincerest sincerities,
+		Rat"
+autowrap_mode = 2
+
+[node name="Cheese" type="TextureButton" parent="RatController"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 500.0
+offset_right = 300.0
+offset_bottom = 600.0
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("30_7k2lb")
+texture_pressed = ExtResource("30_7k2lb")
+texture_hover = ExtResource("30_7k2lb")
+texture_disabled = ExtResource("30_7k2lb")
+texture_focused = ExtResource("30_7k2lb")
+
+[node name="Bow" type="TextureButton" parent="RatController"]
+layout_mode = 0
+offset_left = 140.0
+offset_top = 400.0
+offset_right = 439.0
+offset_bottom = 699.0
+scale = Vector2(0.333, 0.333)
+texture_normal = ExtResource("31_gdw33")
+
+[node name="TravelCont" type="Container" parent="." node_paths=PackedStringArray("button")]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 150.0
+offset_bottom = 150.0
+script = ExtResource("32_mutxo")
+button = NodePath("TravelBut")
+
+[node name="TravelBut" type="Button" parent="TravelCont"]
+layout_mode = 2
+text = "Travel"
+
+[node name="Spinbot" type="Sprite2D" parent="."]
+position = Vector2(68, 536)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("33_l2up4")
+script = ExtResource("34_ksfch")
+
+[node name="SettingsButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 910.0
+offset_top = 20.0
+offset_right = 1209.0
+offset_bottom = 319.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("35_op35j")
+texture_pressed = ExtResource("36_pjqq4")
+texture_hover = ExtResource("36_pjqq4")
+texture_disabled = ExtResource("35_op35j")
+texture_focused = ExtResource("35_op35j")
+script = ExtResource("37_t2f46")
+
+[node name="BackpackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 20.0
+offset_right = 1134.0
+offset_bottom = 319.0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("38_21m8y")
+texture_pressed = ExtResource("39_fs3l2")
+texture_hover = ExtResource("39_fs3l2")
+texture_disabled = ExtResource("38_21m8y")
+texture_focused = ExtResource("39_fs3l2")
+
+[node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
+process_mode = 3
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("41_wpbdt")
+text = NodePath("DialougeBox")
+button = NodePath("NextButton")
+tutScreen = NodePath(".")
+
+[node name="Mask" type="Sprite2D" parent="TutorialBox"]
+modulate = Color(1, 1, 1, 0.580392)
+self_modulate = Color(1, 1, 1, 0.47451)
+show_behind_parent = true
+position = Vector2(500, 300)
+scale = Vector2(10, 6)
+texture = ExtResource("42_y8i0o")
+
+[node name="Bunnies" type="AnimatedSprite2D" parent="TutorialBox"]
+position = Vector2(500, 250)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_05j8j")
+
+[node name="DialougeBox" type="Label" parent="TutorialBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="TutorialBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
+
+[node name="ExitContract" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 200.0
+script = ExtResource("44_kqfr3")
+button = NodePath("ResetCounter")
+image = NodePath("ResetDisp")
+
+[node name="ResetDisp" type="Sprite2D" parent="ExitContract"]
+position = Vector2(0, -75)
+scale = Vector2(2, 1)
+texture = ExtResource("15_skhdp")
+offset = Vector2(50, 105)
+
+[node name="ResetCounter" type="Button" parent="ExitContract"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="ExitContractHigher" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 10.0
+offset_right = 600.0
+offset_bottom = 80.0
+script = ExtResource("45_3mkif")
+button = NodePath("ResetCounter")
+image = NodePath("ResetDisp")
+
+[node name="ResetDisp" type="Sprite2D" parent="ExitContractHigher"]
+position = Vector2(0, -75)
+scale = Vector2(2, 1)
+texture = ExtResource("15_skhdp")
+offset = Vector2(50, 105)
+
+[node name="ResetCounter" type="Button" parent="ExitContractHigher"]
+layout_mode = 2
+text = "Toggle Grow"
+
+[node name="BackpackPanel" parent="." instance=ExtResource("46_o6krw")]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 750.0
+offset_bottom = 500.0
+
+[connection signal="pressed" from="RatController/Rat" to="RatController" method="_on_rat_pressed"]
+[connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]
+[connection signal="pressed" from="RatController/Cheese" to="RatController" method="_on_cheese_pressed"]
+[connection signal="pressed" from="RatController/Bow" to="RatController" method="_on_bow_pressed"]
+[connection signal="pressed" from="BackpackButton" to="BackpackButton" method="_on_pressed"]

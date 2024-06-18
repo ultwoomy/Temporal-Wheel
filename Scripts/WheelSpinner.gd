@@ -30,7 +30,7 @@ var _sign : int = 1 :
 
 
 #@ Virtual Methods
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	rotateWheel()
 
 

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Temporal Wheel"
-run/main_scene="res://Scenes/WheelSpace.tscn"
+run/main_scene="res://Scenes/WheelSpace/WheelSpace.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 run/max_fps=60
 config/icon="res://Sprites/kbity.png"
@@ -24,6 +24,7 @@ SoundManage="*res://Scripts/SoundManager.gd"
 WheelSpinner="*res://Scripts/WheelSpinner.gd"
 MushroomGrower="*res://Scripts/MushroomGrower.gd"
 GlobalBuffs="*res://Scripts/GlobalBuffs.gd"
+Automation="*res://Scripts/Automation/Automation.gd"
 
 [display]
 

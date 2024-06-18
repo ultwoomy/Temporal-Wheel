@@ -1,13 +1,20 @@
 extends Panel
+class_name BackpackPanel
 
+#@ Public Variables
+var itemSelected : int
+
+
+#@ Onready Variables
 @onready var momentumLabel : Label = $MomentumLabel
 @onready var rotationLabel : Label = $RotationLabel
 @onready var rustLabel : Label = $RustLabel
 @onready var cheese : TextureButton = $Cheese
 @onready var ribbon : TextureButton = $Ribbon
 @onready var choicePanel : Panel = $ChoicePanel
-var itemSelected : int
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	itemSelected = 0
@@ -22,6 +29,7 @@ func _ready():
 		choicePanel.get_child(3).hide()
 
 
+#@ Private Methods
 func _on_backpack_pressed():
 	momentumLabel.text = str(GVars.getScientific(GVars.spinData.spin))
 	rotationLabel.text = str(GVars.getScientific(GVars.spinData.rotations))

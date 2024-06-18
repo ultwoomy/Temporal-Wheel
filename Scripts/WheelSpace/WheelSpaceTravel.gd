@@ -16,5 +16,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _buttonPressed():
-	EventManager.scene_change.emit()
-	get_tree().change_scene_to_file("res://Scenes/TravelSpace.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.TRAVELSPACE)

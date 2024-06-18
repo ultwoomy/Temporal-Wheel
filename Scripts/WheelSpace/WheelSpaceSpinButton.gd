@@ -27,7 +27,6 @@ func _ready():
 	button.expand_icon = true
 	button.pressed.connect(self._buttonPressed)
 	await get_tree().create_timer(0.1).timeout
-	EventManager.scene_change.emit()
 
 
 # L.B: Probably just use a signal in a different script so all things can add to spin.

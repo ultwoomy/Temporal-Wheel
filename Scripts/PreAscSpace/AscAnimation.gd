@@ -39,10 +39,10 @@ func _process(_delta):
 		if(frames > 650):
 			modulate = Color((1-(frames-650)/100),(1-(frames-650)/100),(1-(frames-650)/100))
 
+
 func _wheel_scene():
-	var event_manager = get_tree().get_root().find_child("EventManager", true, false)
-	event_manager.emit_signal("scene_change",true)
-	get_tree().change_scene_to_file("res://Scenes/WheelSpace/WheelSpace.tscn")
+	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
+
 
 func _end_sequence():
 	#hides every ui element before playing reset animation

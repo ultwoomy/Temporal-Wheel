@@ -1,12 +1,22 @@
 extends Node
+
+
+#@ Export Variables
 @export var button : Button
 
+
+#@ Global Variables
+
+
+#@ Onready Variables
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	button.pressed.connect(self._button_pressed)
+	button.pressed.connect(self._buttonPressed)
 
-func _button_pressed():
-	var event_manager = get_tree().get_root().find_child("EventManager", true, false)
-	event_manager.emit_signal("scene_change",true)
-	get_tree().change_scene_to_file("res://Scenes/WheelSpace/WheelSpace.tscn")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+#@ Private Methods
+func _buttonPressed():
+	SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)

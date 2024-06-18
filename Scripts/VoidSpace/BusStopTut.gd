@@ -1,6 +1,11 @@
 extends Container
 
 
+#@ Signals
+signal kbity_up
+
+
+#@ Export Variables
 @export var text : Label
 @export var button : Button
 @export var sigilbut : Button
@@ -9,11 +14,14 @@ extends Container
 @export var goback : Button
 @export var sigilshop : Container
 @export var ritualShop : Container
-signal kbity_up
+
+
+#@ Public Variables
 var layersin = 0
 var line = 0
 
 
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sigilshop.hide()
@@ -30,17 +38,48 @@ func _ready():
 	button.position = Vector2(650,400)
 	button.text = "Next"
 	button.expand_icon = true
-	button.pressed.connect(self._button_pressed)
+	button.pressed.connect(self._buttonPressed)
 	sigilbut.size = Vector2(100,100)
 	sigilbut.position = Vector2(300,200)
 	sigilbut.text = "Sigil"
-	sigilbut.pressed.connect(self.opensigilshop)
-	goback.pressed.connect(self._go_back)
+	sigilbut.pressed.connect(self.openSigilShop)
+	goback.pressed.connect(self._goBack)
 	GVars._dialouge(text,0,0.02)
 	self.kbity_up.connect(self.kbityTime)
 
 
-func _go_back():
+#@ Public Methods
+func openSigilShop():
+	busstop.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
+	busstop.scale = Vector2(5,5)
+	busstop.position = Vector2(600,250)
+	layersin = 1
+	sigilbut.hide()
+	ritualEnter.hide()
+	sigilshop.show()
+	ritualShop.hide()
+
+
+func openRitual():
+	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
+	busstop.scale = Vector2(6,6)
+	busstop.position = Vector2(400,230)
+	layersin = 1
+	sigilbut.hide()
+	ritualEnter.hide()
+	sigilshop.hide()
+	ritualShop.show()
+
+
+func kbityTime():
+	if(GVars.kbityData.kbityLevel == 1):
+		get_tree().paused = true
+		line = 10
+		show()
+
+
+#@ Private Methods
+func _goBack():
 	#checks where the back button is supposed to send the player
 	#layersin represents whether the player has opened up one of the functions
 	#probably could have been seperate scenes as well, but this is how it works rn
@@ -55,12 +94,10 @@ func _go_back():
 			ritualEnter.show()
 			ritualShop.hide()
 	else :
-		var event_manager = get_tree().get_root().find_child("EventManager", true, false)
-		event_manager.emit_signal("scene_change",true)
-		get_tree().change_scene_to_file("res://Scenes/WheelSpace/WheelSpace.tscn")
+		SceneHandler.changeSceneToPacked(SceneHandler.WHEELSPACE)
 
 
-func _button_pressed():
+func _buttonPressed():
 	GVars._dialouge(text,0,0.03)
 	#too short for me to make it an array or anything better than a series of if statements tbh
 	if(line == 0):
@@ -102,28 +139,4 @@ func _button_pressed():
 	line += 1
 
 
-func opensigilshop():
-	busstop.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
-	busstop.scale = Vector2(5,5)
-	busstop.position = Vector2(600,250)
-	layersin = 1
-	sigilbut.hide()
-	ritualEnter.hide()
-	sigilshop.show()
-	ritualShop.hide()
-	
-func openRitual():
-	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
-	busstop.scale = Vector2(6,6)
-	busstop.position = Vector2(400,230)
-	layersin = 1
-	sigilbut.hide()
-	ritualEnter.hide()
-	sigilshop.hide()
-	ritualShop.show()
-	
-func kbityTime():
-	if(GVars.kbityData.kbityLevel == 1):
-		get_tree().paused = true
-		line = 10
-		show()
+

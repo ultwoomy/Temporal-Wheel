@@ -9,6 +9,4 @@ func _ready():
 
 #@ Private Methods
 func _wheelScene():
-	var event_manager = get_tree().get_root().find_child("EventManager", true, false)
-	event_manager.emit_signal("scene_change",true)
 	SceneHandler.changeSceneToPacked(SceneHandler.CREDITS)

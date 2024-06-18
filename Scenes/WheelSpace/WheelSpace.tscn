@@ -1,5 +1,6 @@
-[gd_scene load_steps=57 format=3 uid="uid://csj1yqrbq5fn3"]
+[gd_scene load_steps=58 format=3 uid="uid://ce8dqgnx70qx0"]
 
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
 [ext_resource type="Texture2D" uid="uid://cysiy4xi7xnjj" path="res://Sprites/WheelSpace/Sky/night.png" id="2_ty02u"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/Back.gd" id="3_7r1my"]
@@ -12,8 +13,8 @@
 [ext_resource type="Script" path="res://Scenes/WheelSpaceWheel.gd" id="10_p6xcq"]
 [ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="11_71lrk"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceChangePreAscButton.gd" id="12_sl12n"]
-[ext_resource type="PackedScene" uid="uid://dtdgsst1q4xqc" path="res://Scenes/RustEmitter.tscn" id="13_8qh4t"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowButton.gd" id="14_4hb3c"]
+[ext_resource type="PackedScene" uid="uid://corsgw1t3khv0" path="res://Scenes/RustEmitter.tscn" id="14_iqbu0"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="15_skhdp"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowDisplay.gd" id="16_ry1on"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensButton.gd" id="17_53q2w"]
@@ -126,6 +127,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_6ihys")
 script = ExtResource("1_daddu")
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
@@ -193,7 +195,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_sl12n")
 
-[node name="RustEmitter" parent="Wheel" instance=ExtResource("13_8qh4t")]
+[node name="RustEmitter" parent="Wheel" instance=ExtResource("14_iqbu0")]
 
 [node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image", "spinbody")]
 layout_mode = 0
@@ -509,3 +511,5 @@ offset_bottom = 500.0
 [connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]
 [connection signal="pressed" from="RatController/Cheese" to="RatController" method="_on_cheese_pressed"]
 [connection signal="pressed" from="RatController/Bow" to="RatController" method="_on_bow_pressed"]
+[connection signal="pressed" from="BackpackButton" to="." method="_on_backpack_button_pressed"]
+[connection signal="pressed" from="BackpackButton" to="BackpackPanel" method="_on_backpack_pressed"]

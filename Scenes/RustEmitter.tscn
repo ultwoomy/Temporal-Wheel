@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtdgsst1q4xqc"]
+[gd_scene load_steps=4 format=3 uid="uid://corsgw1t3khv0"]
 
 [ext_resource type="Script" path="res://Scripts/WheelSpace/RustEmitter.gd" id="1_tuuqr"]
 [ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_rhpsc"]

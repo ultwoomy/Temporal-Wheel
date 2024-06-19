@@ -16,9 +16,7 @@ func _ready() -> void:
 		texture_hover = dismush
 		texture_pressed = dismush
 		texture_focused = dismush
-	# L.B: Reminder - the "pressed" function is emitted when button is pressed.
-	# ...Copied and pasted from WheelSpaceSpin.gd.
-	# ...Probably just use _on_pressed instead; one of its signals.
+	
 	pressed.connect(self.mushScene)
 
 

@@ -1,8 +1,13 @@
 extends Node
+
+
+#@ Export Variables
 @export var text : Label
 @export var button : Button
 @export var tutScreen : Container
 
+
+#@ Public Variables
 var line = 0
 var firstmessage = true
 var bunscript = ["Welcome to your new job!",
@@ -69,12 +74,9 @@ var whenend = [false,false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,true]
-			
-func nextLine():
-	line += 1
-	text.text = bunscript[line]
-	self.get_node("Bunnies").frame = bunspritelist[line]
-	firstmessage = false
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if GVars.ifSecondBoot > 9 and GVars.ifSecondBoot % 2 == 1:
@@ -95,6 +97,16 @@ func _ready():
 	button.expand_icon = true
 	button.pressed.connect(self._button_pressed)
 
+
+#@ Public Methods
+func nextLine():
+	line += 1
+	text.text = bunscript[line]
+	self.get_node("Bunnies").frame = bunspritelist[line]
+	firstmessage = false
+
+
+#@ Private Methods
 func _button_pressed():
 	GVars._dialouge(text,0,0.02)
 	if(whenend[line]) and (GVars.ifFirstBoot):

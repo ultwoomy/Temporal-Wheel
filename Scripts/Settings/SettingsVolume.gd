@@ -1,19 +1,27 @@
 extends Button
+
+
+#@ Export Variables
 @export var mslider : VSlider
 @export var sslider : VSlider
+
+
+#@ Public Variables
 var show = false
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	text = "Volume"
-	size = Vector2(200,100)
-	pressed.connect(self._wheel_scene)
+	pressed.connect(self._wheelScene)
 	mslider.hide()
 	sslider.hide()
 	mslider.value = GVars.musicvol
 	sslider.value = GVars.sfxvol
-	
-func _wheel_scene():
-	if(!show):
+
+
+func _wheelScene():
+	if not show:
 		mslider.show()
 		sslider.show()
 		text = "Volume\nMusic|SFX"

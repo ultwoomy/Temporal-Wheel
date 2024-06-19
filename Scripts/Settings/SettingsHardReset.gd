@@ -12,9 +12,7 @@ var presses = 0.0
 
 #@ Virtual Methods
 func _ready():
-	button.text = "Hard Reset"
 	button.size = Vector2(200,100)
-	button.expand_icon = true
 	button.pressed.connect(self._buttonPressed)
 	image.scale.x = 0
 	image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))

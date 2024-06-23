@@ -58,7 +58,7 @@ func _ready():
 
 
 #@ Public Methods
-# COMPLETED IN VoidSpaceMenuSigilState.gd
+# COMPLETED IN VS_MenuSigilState.gd
 func openSigilShop():
 	busstop.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
 	busstop.scale = Vector2(5,5)
@@ -72,6 +72,7 @@ func openSigilShop():
 	ritualShop.hide()
 
 
+# COMPLETED IN VS_MenuRitualState.gd
 func openRitual():
 	busstop.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
 	busstop.scale = Vector2(6,6)
@@ -85,6 +86,7 @@ func openRitual():
 	ritualShop.show()
 
 
+# L.B: Don't know what to do with this quite yet.
 func kbityTime():
 	if(GVars.kbityData.kbityLevel == 1):
 		get_tree().paused = true

@@ -23,6 +23,10 @@ func _ready() -> void:
 	# Initialize and set state.
 	var initialState : VS_MenuState = VS_MenuPickState.new(self)
 	changeState(initialState)
+	
+	# Either hides or shows ritual button.
+	unlockRitualButton()
+#	ritualButton.show()  # Testing purposes.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,3 +41,10 @@ func changeState(newState : VS_MenuState) -> void:
 		currentState._exit()
 	currentState = newState
 	currentState._enter()
+
+
+func unlockRitualButton() -> void:
+	if(GVars.sigilData.numberOfSigils[4]):
+		ritualButton.show()
+	else:
+		ritualButton.hide()

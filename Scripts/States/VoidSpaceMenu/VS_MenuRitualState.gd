@@ -6,13 +6,12 @@ class_name VS_MenuRitualState
 func _enter() -> void:
 	super._enter()
 	
-	# Open the sigil shop.
-	voidSpace.busStopBackground.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
-	voidSpace.busStopBackground.scale = Vector2(5,5)
-	voidSpace.busStopBackground.position = Vector2(600,250)
+	# Open the ritual shop.
+	voidSpace.busStopBackground.set_texture(load("res://Sprites/VoidSpace/bunny_zoom_2.png"))
+	voidSpace.busStopBackground.scale = Vector2(6, 6)
+	voidSpace.busStopBackground.position = Vector2(400, 230)
 	
-	voidSpace.sigilButton.hide()
-	voidSpace.sigilShop.show()
+	voidSpace.ritualShop.show()
 
 
 func _update(_delta: float) -> void:
@@ -20,8 +19,7 @@ func _update(_delta: float) -> void:
 
 
 func _exit() -> void:
-	voidSpace.sigilButton.show()
-	voidSpace.sigilShop.hide()
+	voidSpace.ritualShop.hide()
 	
 	#@ Disconnect signals.
 	# Allows backButton to function differently depending on states.

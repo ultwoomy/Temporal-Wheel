@@ -8,10 +8,9 @@ func _enter() -> void:
 	
 	# Open the sigil shop.
 	voidSpace.busStopBackground.set_texture(load("res://Sprites/VoidSpace/sigil_bunny_zoom.png"))
-	voidSpace.busStopBackground.scale = Vector2(5,5)
-	voidSpace.busStopBackground.position = Vector2(600,250)
+	voidSpace.busStopBackground.scale = Vector2(5, 5)
+	voidSpace.busStopBackground.position = Vector2(600, 250)
 	
-	voidSpace.sigilButton.hide()
 	voidSpace.sigilShop.show()
 
 
@@ -20,7 +19,6 @@ func _update(_delta: float) -> void:
 
 
 func _exit() -> void:
-	voidSpace.sigilButton.show()
 	voidSpace.sigilShop.hide()
 	
 	#@ Disconnect signals.

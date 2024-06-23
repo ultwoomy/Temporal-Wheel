@@ -117,19 +117,13 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
 theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
 
-[node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("sigilbut", "ritualEnter", "busstop", "goback", "sigilshop", "ritualShop")]
+[node name="TutorialBox" type="Container" parent="."]
 process_mode = 3
 visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_lvpo8")
-sigilbut = NodePath("../SigilButton")
-ritualEnter = NodePath("../RitualButton")
-busstop = NodePath("../BusStopBackground")
-goback = NodePath("../BackButton")
-sigilshop = NodePath("../SigilShop")
-ritualShop = NodePath("../RitualShop")
 
 [node name="Mask" type="Sprite2D" parent="TutorialBox"]
 modulate = Color(1, 1, 1, 0.580392)

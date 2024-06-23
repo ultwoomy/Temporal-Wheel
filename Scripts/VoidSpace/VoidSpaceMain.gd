@@ -24,6 +24,10 @@ func _ready() -> void:
 	var initialState : VS_MenuState = VS_MenuPickState.new(self)
 	changeState(initialState)
 	
+	# Hide the shops.
+	sigilShop.hide()
+	ritualShop.hide()
+	
 	# Either hides or shows ritual button.
 	unlockRitualButton()
 #	ritualButton.show()  # Testing purposes.

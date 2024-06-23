@@ -1,5 +1,5 @@
-extends PacksmithMenuState
-class_name UpgradeState
+extends PS_MenuState
+class_name PS_MenuUpgradeState
 # This state is transitioned into when the Inspect button from PacksmithMenu is pressed.
 # Causes the selection menu to be shown, and then hidden when state is exited.
 
@@ -26,11 +26,11 @@ func _exit() -> void:
 func _onButtonPressed(button: Button) -> void:
 	match button:
 		packsmithMenu.inspectButton:
-			packsmithMenu.changeState(InspectState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuInspectState.new(packsmithMenu))
 		packsmithMenu.augmentButton:
-			packsmithMenu.changeState(AugmentState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAugmentState.new(packsmithMenu))
 		packsmithMenu.upgradeButton:
 			# Clicking on upgrade button again when already in upgrade state will cancel show().
-			packsmithMenu.changeState(PickState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuPickState.new(packsmithMenu))
 		packsmithMenu.automateButton:
-			packsmithMenu.changeState(AutomateState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))

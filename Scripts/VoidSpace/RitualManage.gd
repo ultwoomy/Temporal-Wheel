@@ -1,5 +1,11 @@
 extends Container
+
+
+#@ Export Variables
 @export var text : Label
+
+
+#@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
 var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png")
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
@@ -13,6 +19,9 @@ var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
 					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + " momentum and " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "\nrotations to create kbity!\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."
 					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "rotations\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."
 					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + "momentum\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum."]
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
@@ -34,6 +43,8 @@ func _ready():
 	text.position = Vector2(500,400)
 	text.size = Vector2(400,200)
 
+
+#@ Public Methods
 func setIdleText():
 	var numOfCandles = 0.0
 	for n in GVars.ritualData.candlesLit.size():
@@ -45,7 +56,8 @@ func setIdleText():
 		numOfCandles = 5
 	effectsDesc[0] = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (numOfCandles * 0.2))
 	text.text = effectsDesc[0]
-	
+
+
 func setCandleSprites():
 	for n in GVars.ritualData.candlesLit.size():
 		var path = "Ritual/Candle" + str(n + 1)
@@ -55,9 +67,11 @@ func setCandleSprites():
 		else: 
 			get_node(path).texture_normal = disabledSprite
 			get_node(path).texture_focused = disabledSprite
-	
+
+
 func setDescText(n):
 	text.text = effectsDesc[n]
+
 
 func getPath(cand):
 	var path = "Ritual/Candle" + str(cand)
@@ -70,7 +84,9 @@ func getPath(cand):
 		get_node(path).texture_focused = enabledSprite
 		GVars.ritualData.candlesLit[cand - 1] = true
 	setIdleText()
-		
+
+
+#@ Private Methods
 func _on_candle_1_pressed():
 	getPath(1)
 

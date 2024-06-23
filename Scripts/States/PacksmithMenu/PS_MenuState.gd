@@ -1,5 +1,5 @@
 extends State
-class_name PacksmithMenuState
+class_name PS_MenuState
 
 
 #@ Constants

@@ -21,6 +21,7 @@ extends Node
 @export var atlasData : AtlasData
 @export var kbityData : KbityData
 @export var backpackData : BackpackData
+@export var automatorVarsData : AutomatorVarsData
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : int
@@ -71,6 +72,8 @@ func create_data():
 		kbityData = KbityData.new()
 	if(!backpackData):
 		backpackData = BackpackData.new()
+	if not automatorVarsData:
+		automatorVarsData = AutomatorVarsData.new()
 
 
 func save_prog():
@@ -192,6 +195,10 @@ func load_as_normal():
 			loader.ifsecondboot = 2
 			loader.ratmail = 0
 		versNo += 1
+	if(versNo <= 11):
+		automatorVarsData = AutomatorVarsData.new()
+		loader.automatorVarsData = automatorVarsData
+		loader.altsigilnight = false
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -223,6 +230,7 @@ func load_as_normal():
 	kbityData = loader.kbityData
 	atlasData = loader.atlasData
 	backpackData = loader.backpackData
+	automatorVarsData = loader.automatorVarsData
 
 
 func unlock_all_sigils():

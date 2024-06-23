@@ -13,3 +13,6 @@ func _execute() -> void:
 	
 	# When executed, spins the wheel.
 	WheelSpinner.spinWheel()
+
+func getType() -> String:
+	return "Spinbot"

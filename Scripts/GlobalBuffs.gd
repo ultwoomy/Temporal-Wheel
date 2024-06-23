@@ -16,8 +16,8 @@ func augmentSigilBuffs() -> void:
 		# Rust gain doubled.
 		rustGainModifier *= 2.0
 	elif GVars.sigilData.curSigilBuff == 2:  # Candle sigil
-		# Mushrooms grow twice as fast.
-		mushroomPendingRotationModifier *= 2.0
+		# Mushrooms grow 1.5x as fast.
+		mushroomPendingRotationModifier *= 1.5
 	elif GVars.sigilData.curSigilBuff == 3:
 		pass
 	elif GVars.sigilData.curSigilBuff == 4:

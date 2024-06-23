@@ -27,6 +27,7 @@ extends Resource
 @export var kbityData : KbityData
 @export var atlasData : AtlasData
 @export var backpackData : BackpackData
+@export var automatorVarsData : AutomatorVarsData
 @export_group("PermStats")
 @export var iffirstboot : bool
 @export var ifsecondboot : int
@@ -74,6 +75,7 @@ func _init():
 	kbityData = KbityData.new()
 	kbityData.resetData()
 	backpackData = BackpackData.new()
+	automatorVarsData = AutomatorVarsData.new()
 	inContract = false
 	hellChallengeNerf = -1
 	hellChallengeLayer2 = -1

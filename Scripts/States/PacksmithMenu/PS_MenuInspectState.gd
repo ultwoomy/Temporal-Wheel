@@ -1,5 +1,5 @@
-extends PacksmithMenuState
-class_name InspectState
+extends PS_MenuState
+class_name PS_MenuInspectState
 # This state is transitioned into when the Inspect button from PacksmithMenu is pressed.
 # Causes the selection menu to be shown, and then hidden when state is exited.
 
@@ -30,13 +30,13 @@ func _onButtonPressed(button: Button) -> void:
 	match button:
 		packsmithMenu.inspectButton:
 			# Clicking on inspect button again when already in inspect state will cancel show().
-			packsmithMenu.changeState(PickState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuPickState.new(packsmithMenu))
 		packsmithMenu.augmentButton:
-			packsmithMenu.changeState(AugmentState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAugmentState.new(packsmithMenu))
 		packsmithMenu.upgradeButton:
-			packsmithMenu.changeState(UpgradeState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuUpgradeState.new(packsmithMenu))
 		packsmithMenu.automateButton:
-			packsmithMenu.changeState(AutomateState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))
 
 
 func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
@@ -60,7 +60,7 @@ func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
 	
 	# Get a new TalkState using the correct dialogue.
-	var newState : TalkState = TalkState.new(packsmithMenu, dialogue) 
+	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogue) 
 	
 	# Then change state to the new_state with the variables intact.
 	packsmithMenu.changeState(newState)

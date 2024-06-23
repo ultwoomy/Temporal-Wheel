@@ -1,5 +1,5 @@
-extends PacksmithMenuState
-class_name PickState
+extends PS_MenuState
+class_name PS_MenuPickState
 
 
 #@ Virtual Methods
@@ -20,10 +20,10 @@ func _exit() -> void:
 func _onButtonPressed(button: Button) -> void:
 	match button:
 		packsmithMenu.inspectButton:
-			packsmithMenu.changeState(InspectState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuInspectState.new(packsmithMenu))
 		packsmithMenu.augmentButton:
-			packsmithMenu.changeState(AugmentState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAugmentState.new(packsmithMenu))
 		packsmithMenu.upgradeButton:
-			packsmithMenu.changeState(UpgradeState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuUpgradeState.new(packsmithMenu))
 		packsmithMenu.automateButton:
-			packsmithMenu.changeState(AutomateState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))

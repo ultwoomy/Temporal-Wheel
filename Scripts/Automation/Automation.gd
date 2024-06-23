@@ -27,7 +27,7 @@ func automate() -> void:
 	# If there are any automators, make them execute.
 	for automator in automators:
 		if automator.enabled and (automator.cooldown <= 0):
-			automator.execute()
+			automator._execute()
 
 
 # Add an automator to the array using AutomatorData.

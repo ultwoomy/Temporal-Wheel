@@ -1,5 +1,5 @@
-extends PacksmithMenuState
-class_name TalkState
+extends PS_MenuState
+class_name PS_MenuTalkState
 
 #@ Enumerators
 
@@ -50,7 +50,7 @@ func _exit() -> void:
 func _nextLine() -> void:
 	# Check to see if _dialogueLine is out of bounds. If it is, dialogue is complete.
 	if (_dialogueLine < 0) or (_dialogueLine >= _dialogue.size()):
-		packsmithMenu.changeState(PickState.new(packsmithMenu))
+		packsmithMenu.changeState(PS_MenuPickState.new(packsmithMenu))
 		return
 	
 	# Display dialogue.

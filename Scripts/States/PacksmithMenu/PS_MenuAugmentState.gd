@@ -1,6 +1,10 @@
-extends PacksmithMenuState
-class_name AugmentState
+extends PS_MenuState
+class_name PS_MenuAugmentState
+
+
+#@ Signals
 signal changedAugment
+
 
 #@ Virtual Methods
 func _enter() -> void:
@@ -26,14 +30,14 @@ func _exit() -> void:
 func _onButtonPressed(button: Button) -> void:
 	match button:
 		packsmithMenu.inspectButton:
-			packsmithMenu.changeState(InspectState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuInspectState.new(packsmithMenu))
 		packsmithMenu.augmentButton:
 			# Clicking on augment button again when already in augment state will cancel show().
-			packsmithMenu.changeState(PickState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuPickState.new(packsmithMenu))
 		packsmithMenu.upgradeButton:
-			packsmithMenu.changeState(UpgradeState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuUpgradeState.new(packsmithMenu))
 		packsmithMenu.automateButton:
-			packsmithMenu.changeState(AutomateState.new(packsmithMenu))
+			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))
 
 
 func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
@@ -78,7 +82,7 @@ func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
 			emit_signal("changedAugment")
 	
 	# Get a new TalkState using the correct dialogue.
-	var newState : TalkState = TalkState.new(packsmithMenu, dialogue) 
+	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogue) 
 	
 	# Then change state to the new_state with the variables intact.
 	packsmithMenu.changeState(newState)

@@ -17,7 +17,7 @@ enum Emotes {
 
 
 #@ Public Variables
-var currentState : PacksmithMenuState = PickState.new(self)  # We start in the pick state menu, and give it a reference to this node/script.
+var currentState : PS_MenuState = PS_MenuPickState.new(self)  # We start in the pick state menu, and give it a reference to this node/script.
 
 
 
@@ -36,7 +36,7 @@ var _dialogueHandler : DialogueHandler = DialogueHandler.new()  # Ignore warning
 @onready var selectionMenu : SelectionMenu = $SelectionMenu
 @onready var upgradeMenu : UpgradeMenu = $UpgradeMenu
 
-@onready var automationMenu : Sprite2D = $AutomationMenu
+@onready var automationMenu : AutomationMenu = $AutomationMenu
 
 
 @export var packback : AnimatedSprite2D  # L.B - WIP: Remove from Packsmith (OUTSIDE PacksmithMenu)
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 
 
 #@ Public Methods
-func changeState(newState : PacksmithMenuState) -> void:
+func changeState(newState : PS_MenuState) -> void:
 	# Call currentState's exit function before changing it.
 	if currentState:
 		currentState._exit()

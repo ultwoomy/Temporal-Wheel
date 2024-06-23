@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithGameScene.gd" id="3_dpe5n"]
 [ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="4_fgp7f"]
 [ext_resource type="Texture2D" uid="uid://bm6i3qh08rmsl" path="res://Sprites/RustSpace/pack_concern.png" id="5_v31bx"]
-[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="7_eqmr3"]
 [ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="8_gghju"]
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="9_i3m1l"]
 [ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="10_sia5t"]
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithMenu.gd" id="10_trrmv"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
 [ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
+[ext_resource type="PackedScene" uid="uid://by7i3len3apkx" path="res://Scenes/AutomationMenu.tscn" id="13_18xu6"]
 [ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
@@ -150,10 +150,10 @@ offset_bottom = 470.0
 
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 355.0
-offset_top = 410.0
-offset_right = 455.0
-offset_bottom = 510.0
+offset_left = 398.0
+offset_top = 428.0
+offset_right = 498.0
+offset_bottom = 528.0
 theme_override_font_sizes/font_size = 15
 text = "Next"
 
@@ -213,10 +213,10 @@ text = "Automate"
 
 [node name="NextButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 390.0
-offset_top = 419.0
-offset_right = 490.0
-offset_bottom = 519.0
+offset_left = 400.0
+offset_top = 428.0
+offset_right = 500.0
+offset_bottom = 528.0
 theme_override_font_sizes/font_size = 15
 text = "Next"
 
@@ -224,8 +224,5 @@ text = "Next"
 
 [node name="UpgradeMenu" parent="PacksmithMenu" instance=ExtResource("14_is4hy")]
 
-[node name="AutomationMenu" type="Sprite2D" parent="PacksmithMenu"]
-self_modulate = Color(0.0941176, 0.0117647, 0, 1)
-position = Vector2(744, 308)
-scale = Vector2(4, 4)
-texture = ExtResource("7_eqmr3")
+[node name="AutomationMenu" parent="PacksmithMenu" instance=ExtResource("13_18xu6")]
+layout_mode = 1

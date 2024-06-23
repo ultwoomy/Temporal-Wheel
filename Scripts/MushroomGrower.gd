@@ -18,6 +18,7 @@ func _onWheelRotationCompleted() -> void:
 	var basePendingRotationValue : float = WheelSpinner.wheelRotation / WheelSpinner.FULL_ROTATION_RADIANS  # Usually just a value of 1.
 	
 	if(GVars.sigilData.numberOfSigils[1]):
+		print(str(basePendingRotationValue * GlobalBuffs.mushroomPendingRotationModifier))
 		GVars.mushroomData.pendingRots += basePendingRotationValue * GlobalBuffs.mushroomPendingRotationModifier
 		if(GVars.ritualData.candlesLit[1]):
 			GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)

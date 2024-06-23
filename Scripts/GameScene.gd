@@ -21,7 +21,7 @@ func _ready() -> void:
 	#	- Will use the event_manager like "wheel_spun".
 #	load_resources()
 	
-	EventManager.wheel_spun.connect(on_wheel_spun)
+	WheelSpinner.wheelRotationCompleted.connect(on_wheel_spun)
 
 
 #@ Public Methods
@@ -34,7 +34,6 @@ func on_wheel_spun() -> void:
 	var temp = calcClick()
 	if(GVars.ritualData.candlesLit[5]):
 		GVars.kbityData.kbityAddSpin += temp
-	GVars.spinData.spin += temp
 
 
 func calcClick() -> float:

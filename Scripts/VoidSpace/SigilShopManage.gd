@@ -1,12 +1,13 @@
-extends Node
+extends Container
 
 
-@export var text : Label
-@export var button : Button
-@export var sigilDisplay : AnimatedSprite2D
+#@ Export Variables
+
+
+#@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
 var failbought
-var stupids
+var stupids : int = 0
 var altprice = 0
 var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!",
 				  "A warm candle!\nLights up your entire universe!",
@@ -16,25 +17,34 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?"]
 
 
+#@ Onready Variables
+@onready var sigilLabel : Label = $SigilLabel
+@onready var buyButton : Button = $BuyButton
+@onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
+
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(str(GVars.hellChallengeLayer2))
-	stupids = 0
 	sigilDisplay.hide()
-	text.position = Vector2(500,300)
-	text.size = Vector2(400,200)
-	button.size = Vector2(100,100)
-	button.position = Vector2(850,380)
+	sigilLabel.position = Vector2(500,300)
+	sigilLabel.size = Vector2(400,200)
+	buyButton.size = Vector2(100,100)
+	buyButton.position = Vector2(850,380)
 	reset()
-	button.pressed.connect(self._button_pressed)
+	
+	# Connect signals.
+	buyButton.pressed.connect(self._onButtonPressed)
 
 
-func _button_pressed():
-	GVars._dialouge(text,0,0.02)
-	if(failbought):
+#@ Private Methods
+func _onButtonPressed():
+	GVars._dialouge(sigilLabel, 0, 0.02)
+	if failbought:
 		reset()
-	else :
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) && (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
+	else:
+		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
 			GVars.spinData.spin -= GVars.sigilData.costSpin
 			GVars.spinData.rotations -= GVars.sigilData.costRot
 			checkCurrentSigil()
@@ -61,114 +71,116 @@ func _button_pressed():
 			checkCurrentSigil()
 		else :
 			checkStupid()
-			
+
+
 func checkCurrentSigil():
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
-	var curSigil = 0
+	var curSigil : int = 0
 	while GVars.sigilData.numberOfSigils[curSigil]:
 		curSigil += 1
 	if(curSigil <= 5):
-		text.text = sigilText[curSigil]
+		sigilLabel.text = sigilText[curSigil]
 	else :
-		text.text = "Use it well!"
+		sigilLabel.text = "Use it well!"
 	GVars.sigilData.numberOfSigils[curSigil] = true
-	button.text = "Thx"
+	buyButton.text = "Thx"
 	sigilDisplay.show()
 	sigilDisplay.frame = curSigil
 	failbought = true
-		
+
+
 func reset():
 	if(GVars.sigilData.numberOfSigils[5]):
-		text.text = "We're out lmao."
-		button.hide()
+		sigilLabel.text = "We're out lmao."
+		buyButton.hide()
 	elif not GVars.hellChallengeLayer2 == 1 :
-		text.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		button.text = "Buy"
+		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
+		buyButton.text = "Buy"
 		failbought = false
 	else:
 		var curSigil = 0
 		while GVars.sigilData.numberOfSigils[curSigil]:
 			curSigil += 1
 		if curSigil == 0:
-			text.text = "Here for a sigil?\nIt'll cost ya:\n1000 momentum"
+			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n1000 momentum"
 		elif curSigil == 1:
-			text.text = "Here for a sigil?\nIt'll cost ya:\n20 rust"
+			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n20 rust"
 		elif curSigil == 2:
 			if not GVars.altSigilSand:
-				text.text = "Here for a sigil?\nIt'll cost ya:\n5 mush levels\nYou'll need 6."
+				sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n5 mush levels\nYou'll need 6."
 			else:
-				text.text = "Here for a sigil?\nIt'll cost ya:\n5 sand dollars"
+				sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n5 sand dollars"
 		elif curSigil == 3:
-			text.text = "Here for a sigil?\nIt'll cost ya:\n4 size\nYou'll need 5."
+			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n4 size\nYou'll need 5."
 		elif curSigil == 4:
-			text.text = "Here for a sigil?\nIt'll cost ya:\n6 identity\nYou'll need 7"
+			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n6 identity\nYou'll need 7"
 		elif curSigil == 5:
 			altprice = 100
-			text.text = "Here for a sigil?\nFully charge the kbity machine and I'll give it to you"
-		button.text = "Buy"
+			sigilLabel.text = "Here for a sigil?\nFully charge the kbity machine and I'll give it to you"
+		buyButton.text = "Buy"
 		failbought = false
-		
+
+
 func checkStupid():
 	if(stupids == 0):
-		text.text = "You can't afford that stupid."
+		sigilLabel.text = "You can't afford that stupid."
 		stupids += 1
 	elif(stupids == 1):
-		text.text = "Guess what? You can't afford that."
+		sigilLabel.text = "Guess what? You can't afford that."
 		stupids += 1
 	elif(stupids == 2):
-		text.text = "Yup. Still broke."
+		sigilLabel.text = "Yup. Still broke."
 		stupids += 1
 	elif(stupids == 3):
-		text.text = "Not much has changed."
+		sigilLabel.text = "Not much has changed."
 		stupids += 1
 	elif(stupids == 4):
-		text.text = "You still can't afford that."
+		sigilLabel.text = "You still can't afford that."
 		stupids += 1
 	elif(stupids == 5):
-		text.text = "And you're still stupid."
+		sigilLabel.text = "And you're still stupid."
 		stupids += 1
 	elif(stupids == 6):
-		text.text = "Kidding! You can afford that now!"
+		sigilLabel.text = "Kidding! You can afford that now!"
 		stupids += 1
 	elif(stupids == 7):
-		text.text = "Not really."
+		sigilLabel.text = "Not really."
 		stupids += 1
 	elif(stupids == 8):
-		text.text = "But one day you will."
+		sigilLabel.text = "But one day you will."
 		stupids += 1
 	elif(stupids == 9):
-		text.text = "Maybe."
+		sigilLabel.text = "Maybe."
 		stupids += 1
 	elif(stupids == 10):
-		text.text = "Do you like secrets?"
+		sigilLabel.text = "Do you like secrets?"
 		stupids += 1
 	elif(stupids == 15):
-		text.text = "I think you like secrets."
+		sigilLabel.text = "I think you like secrets."
 		stupids += 1
 	elif(stupids == 20):
-		text.text = "You must have a lot of free time."
+		sigilLabel.text = "You must have a lot of free time."
 		stupids += 1
 	elif(stupids == 21):
-		text.text = "Good for you. It doesn't last."
+		sigilLabel.text = "Good for you. It doesn't last."
 		stupids += 1
 	elif(stupids == 22):
-		text.text = "Unless you literally make time."
+		sigilLabel.text = "Unless you literally make time."
 		stupids += 1
 	elif(stupids == 23):
-		text.text = "Now I'm the stupid one."
+		sigilLabel.text = "Now I'm the stupid one."
 		stupids += 1
 	elif(stupids == 24):
-		text.text = "This doesn't make you less broke."
+		sigilLabel.text = "This doesn't make you less broke."
 		stupids += 1
 	elif(stupids == 25):
-		text.text = "Just vaguely annoying."
+		sigilLabel.text = "Just vaguely annoying."
 		stupids += 1
 	elif(stupids == 30):
-		text.text = "I'm going to stop you here."
+		sigilLabel.text = "I'm going to stop you here."
 	else:
-		text.text = "I like secrets!"
+		sigilLabel.text = "I like secrets!"
 		stupids += 1
-	button.text = "Oh"
+	buyButton.text = "Oh"
 	failbought = true
-	

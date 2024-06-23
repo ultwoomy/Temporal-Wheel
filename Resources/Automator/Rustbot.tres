@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AutomatorData" load_steps=2 format=3 uid="uid://cu1gtdo8dwdwj"]
+
+[ext_resource type="Script" path="res://Resources/Automator/AutomatorData.gd" id="1_fp0qa"]
+
+[resource]
+script = ExtResource("1_fp0qa")
+name = "Mushbot"
+automator = 1
+level = 1
+amount = 1
+cooldown = 1.0

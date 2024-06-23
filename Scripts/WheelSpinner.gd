@@ -89,13 +89,17 @@ func getWheelRotationAmount() -> float:
 	result *= GVars.ritualData.rotBuff
 	return result
 
-
 #@ Private Methods
 func _calculateSpinGain() -> float:
 	# Base result Player gets from spinning the wheel with a click.
 	var result : float = GVars.spinData.spinPerClick
 	# Multiply the result by the size of the wheel.
-	result *= GVars.spinData.size
+	if GVars.hellChallengeNerf == 2:
+		result *= pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2
+	elif GVars.curEmotionBuff == 2:
+		result *= pow(GVars.spinData.size,GVars.spinData.density + 1)
+	else:
+		result *= GVars.spinData.size
 	# Multiply the result by the density of the wheel.
 	result *= GVars.spinData.density
 	# Multiply the result by the rust purchasable upgrade, increase spin.
@@ -109,8 +113,7 @@ func _calculateSpinGain() -> float:
 	# Multiply the result by the buff granted by emotion(?) from ascension(?).
 	if GVars.curEmotionBuff == 4:
 		# Note: This is the same as "result *= GVars.rustData.fourth", but was written similar to this in previous code.
-		var emotionBuffMultiplier: float = GVars.rustData.fourth
-		result *= emotionBuffMultiplier
+		result *= GVars.rustData.fourth
 	return result
 
 
@@ -132,7 +135,7 @@ func _getRotationSpeedDivisor() -> float:
 # When the wheel completely turns a full circle, it runs a couple of things.
 func _completeRotation() -> void:
 	# Gain spin.
-	spinWheel()  # Should I really have this func be called "spinWheel()"?
+	#spinWheel()  # Should I really have this func be called "spinWheel()"?
 	
 	# Candle #3(?) is lit.
 	if GVars.ritualData.candlesLit[2]:

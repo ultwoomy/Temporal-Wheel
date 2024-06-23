@@ -180,7 +180,7 @@ script = ExtResource("12_sl12n")
 
 [node name="RustEmitter" parent="Wheel" instance=ExtResource("14_iqbu0")]
 
-[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image", "spinbody")]
+[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 250.0
@@ -190,7 +190,6 @@ script = ExtResource("14_4hb3c")
 growDisplay = NodePath("GrowDisplay")
 button = NodePath("GrowToggle")
 image = NodePath("GrowRectDisp")
-spinbody = NodePath("")
 
 [node name="GrowRectDisp" type="Sprite2D" parent="GrowButton"]
 scale = Vector2(2, 1)
@@ -311,6 +310,7 @@ text = "Travel"
 expand_icon = true
 
 [node name="MushroomButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 90.0
 offset_top = 311.5
 offset_right = 389.0

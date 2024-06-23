@@ -35,6 +35,10 @@ var candleAugmentBuffModifier : float = 1.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Connect signals
+#	var d = AutomatorData.new()
+#	d.setAutomator("Spinbot")
+#	Automation.addAutomatorFromData(d)
+	
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText)

@@ -13,3 +13,5 @@ var cooldown : float  # If not <= 0 then Automator can not execute.
 func _execute() -> void:
 	pass
 
+func getType() -> String:
+	return "None"

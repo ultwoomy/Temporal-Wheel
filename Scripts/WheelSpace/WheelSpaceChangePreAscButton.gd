@@ -18,4 +18,4 @@ func _process(_delta: float) -> void:
 #@ Public Methods
 func changeToPreAsc():
 	if GVars.sigilData.numberOfSigils[2]:
-		get_tree().change_scene_to_file("res://Scenes/PreAscSpace.tscn")
+		SceneHandler.changeSceneToFilePath(SceneHandler.PRE_ASCENSIONSPACE)

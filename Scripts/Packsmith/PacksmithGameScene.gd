@@ -48,7 +48,7 @@ func _ready():
 	_setSigilDisplay()
 	
 	# Introduce Packsmith if haven't yet.
-	if GVars.iffirstpack:
+	if GVars.ifFirstPack:
 		_introduce()
 	else:
 		menu.show()
@@ -59,6 +59,7 @@ func _ready():
 func _process(_delta):
 	_setSigilDisplay()
 
+
 #@ Private Methods
 func _setSigilDisplay():
 	if GVars.sigilData.curSigilBuff >= 0:
@@ -67,7 +68,8 @@ func _setSigilDisplay():
 	else:
 		sigilDisplay.frame = 0
 		sigilDisplay.hide()
-		
+
+
 func _introduce() -> void:
 	# Visuals.
 	packsmithBackground.frame = 1
@@ -111,8 +113,8 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 		dialogueText.text = ""
 		menu.show()
 		nextButton.hide()
-		GVars.iffirstpack = false
+		GVars.ifFirstPack = false
 
 
 func _onBackButtonPressed():
-	get_tree().change_scene_to_file("res://Scenes/RustSpaceOutside.tscn")
+	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)

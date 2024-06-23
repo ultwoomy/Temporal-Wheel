@@ -1,4 +1,6 @@
 extends Node
+
+
 @export var inspect : Button
 @export var augment : Button
 @export var upgrade : Button
@@ -150,12 +152,16 @@ var emote = [2,2,2,3,
 var convoNo = [0,4,7,11,16,20,24,26,29,34,38,41,49,54,56,0]
 var convoStart = false
 var pos = 0
+
+
 func nextLin(m):
 	GVars._dialouge(text,0,0.04)
 	if !convoStart:
 		pos = convoNo[m]
 		text.text = packscript[pos]
 		packback.frame = emote[pos]
+
+
 func nextLine():
 	GVars._dialouge(text,0,0.04)
 	if endofline[pos]:
@@ -170,6 +176,8 @@ func nextLine():
 		pos += 1
 		text.text = packscript[pos]
 		packback.frame = emote[pos]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rDisplay.position = Vector2(-190,0)
@@ -248,6 +256,8 @@ func _ready():
 	next.pressed.connect(self.nextLine)
 	selection.hide()
 	updateDisplays()
+
+
 func _inspect():
 	ifinspect = true
 	if(ifinmen == false):
@@ -259,6 +269,7 @@ func _inspect():
 		ifinmen = false
 		inmenu = false
 
+
 func _augment():
 	ifinspect = false
 	if(ifbuff == false):
@@ -269,6 +280,7 @@ func _augment():
 		selection.hide()
 		ifbuff = false
 		inmenu = false
+
 
 func dispSigils():
 	selection.show()
@@ -306,6 +318,7 @@ func dispSigils():
 	automationmenu.hide()
 	resetWindowVars()
 
+
 func _upgrade():
 	if(ifupscreen == false):
 		upgrademenu.show()
@@ -319,6 +332,7 @@ func _upgrade():
 		upgrademenu.hide()
 		ifupscreen = false
 		inmenu = false
+
 
 func _automate():
 	if(ifautomascreen == false):
@@ -346,12 +360,15 @@ func _05Sigil():
 	manageChoice(5)
 func _06Sigil():
 	manageChoice(6)
-	
+
+
 func resetWindowVars():
 	inmenu = false
 	ifupscreen = false
 	ifbuff = false
 	ifinmen = false
+
+
 func resetChoice():
 	text.text = ""
 	packback.frame = 2
@@ -363,7 +380,8 @@ func resetChoice():
 	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
 		automate.show()
 	next.hide()
-	
+
+
 func updateDisplays():
 	if(GVars.curEmotionBuff == 4):
 		up1text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
@@ -376,18 +394,24 @@ func updateDisplays():
 		up3text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 		up4text.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
 	rDisplay.text = str(GVars.getScientific(GVars.rustData.rust))
+
+
 func _up01():
 	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
 		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
 		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
 		GVars.rustData.increaseSpin += 1
 		updateDisplays()
+
+
 func _up02():
 	if(GVars.rustData.rust >= GVars.rustData.increaseHungerCost):
 		GVars.rustData.rust -= GVars.rustData.increaseHungerCost
 		GVars.rustData.increaseHungerCost *= GVars.rustData.increaseHungerScaling
 		GVars.rustData.increaseHunger += 1
 		updateDisplays()
+
+
 func _up03():
 	if(GVars.rustData.rust >= GVars.rustData.increaseRustCost):
 		GVars.rustData.rust -= GVars.rustData.increaseRustCost
@@ -395,6 +419,8 @@ func _up03():
 		GVars.rustData.increaseRust += 1
 		GVars.rustData.perThresh += 1
 		updateDisplays()
+
+
 func _up04():
 	if(GVars.rustData.rust >= GVars.rustData.fourthCost):
 		GVars.rustData.rust -= GVars.rustData.fourthCost
@@ -412,6 +438,8 @@ func _up04():
 		#wrath
 			GVars.rustData.fourth *= 1.4
 		updateDisplays()
+
+
 func manageChoice(n):
 	GVars._dialouge(text,0,0.04)
 	selection.hide()
@@ -450,7 +478,7 @@ func resetDisplay(n: int):
 	sigilToActivate = 0
 	if(n == 6) and !GVars.ifhell:
 		GVars.sigilData.curSigilBuff = n
-		get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
+		SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
 	GVars.sigilData.curSigilBuff = n
 	sigilDisplay.frame = GVars.sigilData.curSigilBuff - 1
 	sigilDisplay.show()

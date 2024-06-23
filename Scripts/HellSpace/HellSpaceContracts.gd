@@ -1,4 +1,7 @@
 extends Control
+
+
+#@ Export Variables
 @export var openCButton : Button
 @export var left : TextureButton
 @export var right : TextureButton
@@ -6,8 +9,13 @@ extends Control
 @export var enterContract : Button
 @export var soulupgrade : Button
 @export var soulcount : Sprite2D
+
+
+#@ Public Variables
 var panel = 0
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
@@ -18,6 +26,8 @@ func _ready():
 	soulupgrade.hide()
 	soulcount.hide()
 
+
+#@ Private Methods
 func _on_e_contract_page_pressed():
 	position = Vector2(0,0)
 	show()
@@ -30,22 +40,26 @@ func _on_e_contract_page_pressed():
 	soulcount.show()
 	switchPanel()
 
+
 func toTheLeft():
 	panel -= 1
 	if(panel < 0):
 		panel = 3
 	switchPanel()
-	
+
+
 func toTheRight():
 	panel += 1
 	if(panel > 3):
 		panel = 0
 	switchPanel()
-	
+
+
 func switchPanel():
 	moveOut(false)
 	setFinishedText()
-		
+
+
 func setFinishedText():
 	if(panel == 0):
 		panelGeneric("Chance of double shroom\nOr double dollar\nCost: " + str(GVars.soulsData.doubleShroomChanceCost) + "\nCurrently: " + str(GVars.soulsData.doubleShroomChance) + "%", "ContractPage")
@@ -55,7 +69,8 @@ func setFinishedText():
 		panelGeneric("Increase base momentum\nBased on momentum\nCost: " + str(GVars.soulsData.spinBaseBuffCost) + "\nCurrently: log(10-" + str(GVars.soulsData.spinBaseBuff) + ")", "ContractPage3")
 	elif(panel == 3):
 		panelGeneric("Chance of void rust\nOr double rust\nCost: " + str(GVars.soulsData.voidRustChanceCost) + "\nCurrently: " + str(GVars.soulsData.voidRustChance) + "%", "ContractPage4")
-			
+
+
 func panelGeneric(descText, page):
 	get_parent().get_node(page).show()
 	get_parent().get_node(page).position = Vector2(0,0)
@@ -69,12 +84,14 @@ func panelGeneric(descText, page):
 		else:
 			soulupgrade.disabled = false
 			soulupgrade.text = "Upgrade"
-		
+
+
 func beginContract():
 	GVars.hellChallengeLayer2 = panel
 	GVars.hellChallengeInit = true
-	get_tree().change_scene_to_file("res://Scenes/AscensionSpace.tscn")
-		
+	SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
+
+
 func _on_exit_pressed():
 	panel = 0
 	moveOut(true)

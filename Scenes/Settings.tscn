@@ -1,18 +1,15 @@
-[gd_scene load_steps=17 format=3 uid="uid://dp6jl75bx4qcp"]
+[gd_scene load_steps=14 format=3 uid="uid://dp6jl75bx4qcp"]
 
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="1_bifml"]
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_eix20"]
+[ext_resource type="Script" path="res://Scripts/Settings/Settings.gd" id="2_1mp74"]
 [ext_resource type="Texture2D" uid="uid://c3e86eqmu3tfa" path="res://Sprites/Settings/back_settings/tile001.png" id="2_iba5r"]
-[ext_resource type="Script" path="res://Scripts/Settings/SettingsBack.gd" id="3_i3nnn"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsHardReset.gd" id="6_5t2xk"]
 [ext_resource type="Texture2D" uid="uid://q0rp1opwpynt" path="res://Sprites/WheelSpace/redrect.png" id="7_vivg8"]
-[ext_resource type="Script" path="res://Scripts/Settings/Save.gd" id="8_rg3j3"]
-[ext_resource type="Script" path="res://Scripts/Settings/SettingsExitGame.gd" id="9_c8atx"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsCheat.gd" id="10_vlmff"]
 [ext_resource type="Texture2D" uid="uid://coeni6iyq3w6i" path="res://Sprites/Settings/credit1.png" id="11_8aye3"]
 [ext_resource type="Script" path="res://Scripts/Settings/SettingsVolume.gd" id="11_apqex"]
 [ext_resource type="Texture2D" uid="uid://cdwfydyu7lfmr" path="res://Sprites/Settings/credit2.png" id="12_xep8x"]
-[ext_resource type="Script" path="res://Scripts/Settings/SettingsSwitchToCredits.gd" id="13_j55f1"]
 [ext_resource type="Script" path="res://Scripts/SettingsHelpMenu.gd" id="14_lqd5j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i5pe"]
@@ -29,6 +26,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_eix20")
+script = ExtResource("2_1mp74")
 
 [node name="HardReset" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
 layout_mode = 0
@@ -47,23 +45,24 @@ offset = Vector2(50, 105)
 
 [node name="ResetCounter" type="Button" parent="HardReset"]
 layout_mode = 2
-text = "Toggle Grow"
+text = "Hard Reset"
+expand_icon = true
 
-[node name="Save" type="Button" parent="."]
+[node name="SaveButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 600.0
 offset_top = 150.0
-offset_right = 724.0
-offset_bottom = 256.0
-script = ExtResource("8_rg3j3")
+offset_right = 800.0
+offset_bottom = 250.0
+text = "Save"
 
-[node name="Exit" type="Button" parent="."]
+[node name="QuitButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 350.0
-offset_right = 324.0
-offset_bottom = 456.0
-script = ExtResource("9_c8atx")
+offset_right = 400.0
+offset_bottom = 450.0
+text = "Quit		"
 
 [node name="CheatsLine" type="LineEdit" parent="."]
 layout_mode = 0
@@ -73,7 +72,7 @@ offset_right = 650.0
 offset_bottom = 528.0
 script = ExtResource("10_vlmff")
 
-[node name="Back" type="TextureButton" parent="."]
+[node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 2
 offset_right = 500.0
 offset_bottom = 300.0
@@ -83,14 +82,14 @@ texture_pressed = ExtResource("2_iba5r")
 texture_hover = ExtResource("2_iba5r")
 texture_disabled = ExtResource("1_bifml")
 texture_focused = ExtResource("2_iba5r")
-script = ExtResource("3_i3nnn")
 
 [node name="Volume" type="Button" parent="." node_paths=PackedStringArray("mslider", "sslider")]
 layout_mode = 0
 offset_left = 600.0
 offset_top = 350.0
-offset_right = 724.0
+offset_right = 800.0
 offset_bottom = 456.0
+text = "Volume"
 script = ExtResource("11_apqex")
 mslider = NodePath("VolSlider")
 sslider = NodePath("SfxSlider")
@@ -117,7 +116,7 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_2hlkh")
 min_value = -24.0
 max_value = 0.0
 
-[node name="Credits" type="TextureButton" parent="."]
+[node name="CreditsButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 905.0
 offset_right = 1005.0
@@ -127,7 +126,6 @@ texture_pressed = ExtResource("12_xep8x")
 texture_hover = ExtResource("12_xep8x")
 texture_disabled = ExtResource("11_8aye3")
 texture_focused = ExtResource("12_xep8x")
-script = ExtResource("13_j55f1")
 
 [node name="Halp" type="Panel" parent="." node_paths=PackedStringArray("text")]
 layout_mode = 0
@@ -146,6 +144,10 @@ offset_right = 607.0
 offset_bottom = 440.0
 autowrap_mode = 2
 
+[connection signal="pressed" from="SaveButton" to="." method="_saveButtonPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_onQuitButtonPressed"]
 [connection signal="text_submitted" from="CheatsLine" to="CheatsLine" method="_on_text_submitted"]
+[connection signal="pressed" from="BackButton" to="." method="_onBackButtonPressed"]
 [connection signal="value_changed" from="Volume/VolSlider" to="Volume" method="_on_slide_music"]
 [connection signal="value_changed" from="Volume/SfxSlider" to="Volume" method="_on_slide_sfx"]
+[connection signal="pressed" from="CreditsButton" to="." method="_onCreditsButtonPressed"]

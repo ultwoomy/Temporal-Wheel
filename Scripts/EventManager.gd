@@ -16,7 +16,6 @@ extends Node
 #				EventManager.wheel_spun.emit()
 
 signal wheel_spun
-signal scene_change
 
 # MushSpace
 # (!) L.B: If things get too big, should probably make another script to hold and categorize signals to be used in this script.

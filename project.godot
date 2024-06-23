@@ -25,6 +25,7 @@ WheelSpinner="*res://Scripts/WheelSpinner.gd"
 MushroomGrower="*res://Scripts/MushroomGrower.gd"
 GlobalBuffs="*res://Scripts/GlobalBuffs.gd"
 Automation="*res://Scripts/Automation/Automation.gd"
+SceneHandler="*res://Scripts/SceneHandler.gd"
 
 [display]
 

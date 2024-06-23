@@ -6,6 +6,8 @@ class_name WheelSpaceWheel
 
 #@ Global Variables
 
+
+#@ Onready Variables
 @onready var centerpiece : AnimatedSprite2D = $Centerpiece
 @onready var ascensionButton : Button = $PreAscTransfer
 @onready var rustEmitter : Node2D = $RustEmitter
@@ -20,7 +22,7 @@ func _ready() -> void:
 	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Scale the wheel based on the given size.
 	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)
 	

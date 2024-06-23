@@ -33,7 +33,7 @@ func _ready():
 		GVars.backpackData.ribbon = true
 	#If the value of ratmail is less than the current reset value (which goes 2,4,6,etc), deploy the rat
 	#The second value is whenever i want to put the next letter
-	if(GVars.ratmail < GVars.ifsecondboot) and GVars.ifsecondboot <= 4:
+	if(GVars.ratmail < GVars.ifSecondBoot) and GVars.ifSecondBoot <= 4:
 		active = true
 	else:
 		active = false
@@ -71,7 +71,7 @@ func _on_rat_pressed():
 	rat.disabled = true
 	flipout = true
 	frame = 0
-	GVars.ratmail = GVars.ifsecondboot
+	GVars.ratmail = GVars.ifSecondBoot
 	#check the ratmail value, display letter text depending on output
 	if GVars.ratmail == 2:
 		#if first reset, show the cheese

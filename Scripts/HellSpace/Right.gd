@@ -18,7 +18,7 @@ func _ready():
 
 func _on_pressed():
 	backdrop.frame = 2
-	if GVars.iffirsthell:
+	if GVars.ifFirstHell:
 		hide()
 		backdrop.frame = 1
 		zunda1.show()

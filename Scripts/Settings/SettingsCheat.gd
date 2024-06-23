@@ -24,7 +24,7 @@ func _on_text_submitted(inputtext):
 		GVars.soulsData.doubleShroomChanceEnabled = true
 		clear()
 	if(inputtext == "resethelltext"):
-		GVars.iffirsthell = true
+		GVars.ifFirstHell = true
 		clear()
 	if(inputtext == "givemesouls"):
 		GVars.soulsData.voidRustChanceEnabled = true

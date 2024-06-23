@@ -15,9 +15,7 @@ func _ready() -> void:
 		texture_hover = dismush
 		texture_pressed = dismush
 		texture_focused = dismush
-	# L.B: Reminder - the "pressed" function is emitted when button is pressed.
-	# ...Copied and pasted from WheelSpaceSpin.gd.
-	# ...Probably just use _on_pressed instead; one of its signals.
+	
 	pressed.connect(self.mushScene)
 
 
@@ -27,8 +25,5 @@ func _process(_delta: float) -> void:
 
 
 #@ Public Methods
-# L.B: Odd how inconsistent the function names are for changing scenes.
-# ...Usually, "_" prefixes mean that this function should get overwritten by its inheriters.
-#YU: Naming convention inconsistent, probably will fix slowly
 func mushScene():
-	get_tree().change_scene_to_file("res://Scenes/MushSpace/MushSpace.tscn")
+	SceneHandler.changeSceneToFilePath(SceneHandler.MUSHSPACE)

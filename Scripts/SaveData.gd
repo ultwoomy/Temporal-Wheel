@@ -29,16 +29,16 @@ extends Resource
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
 @export_group("PermStats")
-@export var iffirstboot : bool
-@export var ifsecondboot : int
-@export var iffirstvoid : bool
-@export var iffirstpack : bool
-@export var iffirsthell : bool
-@export var iffirstatlas : bool
-@export var altsigilsand : bool
-@export var altsigilcity : bool
-@export var altsigilnight : bool
-@export var altsigiltwins : bool
+@export var ifFirstBoot : bool
+@export var ifSecondBoot : int
+@export var ifFirstVoid : bool
+@export var ifFirstPack : bool
+@export var ifFirstHell : bool
+@export var ifFirstAtlas : bool
+@export var altSigilSand : bool
+@export var altSigilCity : bool
+@export var altSigilNight : bool
+@export var altSigilTwins : bool
 @export var musicvol : float
 @export var sfxvol : float
 @export var versNo : int
@@ -82,18 +82,18 @@ func _init():
 	hellChallengeInit = false
 	ifhell = false
 	ifheaven = false
-	iffirstboot = true
-	ifsecondboot = 0
-	iffirstvoid = true
-	iffirstpack = true
-	iffirsthell = true
-	iffirstatlas = true
+	ifFirstBoot = true
+	ifSecondBoot = 0
+	ifFirstVoid = true
+	ifFirstPack = true
+	ifFirstHell = true
+	ifFirstAtlas = true
 	kbityProgSpin = 0
 	kbityProgRot = 0
-	altsigilsand = false
-	altsigilcity = false
-	altsigilnight = false
-	altsigiltwins = false
+	altSigilSand = false
+	altSigilCity = false
+	altSigilNight = false
+	altSigilTwins = false
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0

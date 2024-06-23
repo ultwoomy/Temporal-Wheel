@@ -7,7 +7,7 @@ extends Container
 #@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
 var failbought
-var stupids
+var stupids : int = 0
 var altprice = 0
 var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!",
 				  "A warm candle!\nLights up your entire universe!",
@@ -27,23 +27,24 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(str(GVars.hellChallengeLayer2))
-	stupids = 0
 	sigilDisplay.hide()
 	sigilLabel.position = Vector2(500,300)
 	sigilLabel.size = Vector2(400,200)
 	buyButton.size = Vector2(100,100)
 	buyButton.position = Vector2(850,380)
 	reset()
-	buyButton.pressed.connect(self._buttonPressed)
+	
+	# Connect signals.
+	buyButton.pressed.connect(self._onButtonPressed)
 
 
 #@ Private Methods
-func _buttonPressed():
+func _onButtonPressed():
 	GVars._dialouge(sigilLabel, 0, 0.02)
 	if failbought:
 		reset()
 	else:
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) && (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
+		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
 			GVars.spinData.spin -= GVars.sigilData.costSpin
 			GVars.spinData.rotations -= GVars.sigilData.costRot
 			checkCurrentSigil()
@@ -75,7 +76,7 @@ func _buttonPressed():
 func checkCurrentSigil():
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
-	var curSigil = 0
+	var curSigil : int = 0
 	while GVars.sigilData.numberOfSigils[curSigil]:
 		curSigil += 1
 	if(curSigil <= 5):

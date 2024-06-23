@@ -166,8 +166,8 @@ script = ExtResource("10_f5fk2")
 [node name="MaskSigil" type="Sprite2D" parent="SigilShop"]
 modulate = Color(0, 0, 0, 0.690196)
 self_modulate = Color(0, 0, 0, 0.690196)
-position = Vector2(714.75, 297)
-scale = Vector2(6.385, 6.46)
+position = Vector2(697.75, 300)
+scale = Vector2(6.045, 6)
 texture = ExtResource("10_v3y1n")
 
 [node name="DialogueBox" type="Sprite2D" parent="SigilShop"]
@@ -199,8 +199,8 @@ text = NodePath("SigilLabel")
 [node name="MaskSigil" type="Sprite2D" parent="RitualShop"]
 modulate = Color(0, 0, 0, 0.690196)
 self_modulate = Color(0, 0, 0, 0.690196)
-position = Vector2(714.75, 297)
-scale = Vector2(6.385, 6.46)
+position = Vector2(697.75, 300)
+scale = Vector2(6.045, 6)
 texture = ExtResource("10_v3y1n")
 
 [node name="DialogueBox" type="Sprite2D" parent="RitualShop"]

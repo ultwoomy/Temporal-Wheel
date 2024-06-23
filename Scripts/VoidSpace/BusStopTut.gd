@@ -9,7 +9,6 @@ signal kbity_up
 
 
 #@ Public Variables
-var layersin = 0
 var line = 0
 
 
@@ -21,9 +20,6 @@ var line = 0
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# COMPLETED IN VoidSpaceMenuPickState.gd
-#	sigilshop.hide()
-	
 	# Only shows the dialouge box if its the players first time coming here
 	if GVars.ifFirstVoid:
 		get_tree().paused = true
@@ -41,11 +37,6 @@ func _ready():
 	nextButton.expand_icon = true
 	nextButton.pressed.connect(self._buttonPressed)
 	
-#	sigilbut.size = Vector2(100,100)
-#	sigilbut.position = Vector2(300,200)
-#	sigilbut.text = "Sigil"
-#	sigilbut.pressed.connect(self.openSigilShop)
-	
 	GVars._dialouge(dialogueBox,0,0.02)
 	self.kbity_up.connect(self.kbityTime)
 
@@ -62,7 +53,7 @@ func kbityTime():
 #@ Private Methods
 func _buttonPressed():
 	GVars._dialouge(dialogueBox,0,0.03)
-	#too short for me to make it an array or anything better than a series of if statements tbh
+	# too short for me to make it an array or anything better than a series of if statements tbh
 	if(line == 0):
 		self.get_node("Bunnies").frame = 2
 		dialogueBox.text = "This is where the business \nhappens."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=59 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -37,8 +37,13 @@
 [ext_resource type="Texture2D" uid="uid://r0bdyjhn2kk7" path="res://Sprites/WheelSpace/backpackButtons/backpack_closed.png" id="38_21m8y"]
 [ext_resource type="Texture2D" uid="uid://cwchmr65j57xn" path="res://Sprites/WheelSpace/backpackButtons/backpack_open.png" id="39_fs3l2"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceTutBox.gd" id="41_wpbdt"]
+[ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="42_as70j"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="42_y8i0o"]
+[ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="43_eoec8"]
 [ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="43_lvq84"]
+[ext_resource type="Texture2D" uid="uid://c46lad23eshcr" path="res://Sprites/Automators/voidbot.png" id="43_o76ye"]
+[ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="44_8q2ll"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/VoidbotShow.gd" id="44_gayhw"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="44_kqfr3"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="45_3mkif"]
 [ext_resource type="PackedScene" uid="uid://3wjowbw55at0" path="res://Scenes/WheelSpace/BackpackPanel.tscn" id="46_o6krw"]
@@ -406,6 +411,86 @@ offset_bottom = 699.0
 scale = Vector2(0.333, 0.333)
 texture_normal = ExtResource("31_gdw33")
 
+[node name="Voidbot" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 11.0
+offset_right = 227.0
+offset_bottom = 207.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("43_o76ye")
+texture_pressed = ExtResource("43_o76ye")
+texture_hover = ExtResource("43_o76ye")
+texture_disabled = ExtResource("43_o76ye")
+texture_focused = ExtResource("43_o76ye")
+ignore_texture_size = true
+script = ExtResource("44_gayhw")
+
+[node name="RitualShop" type="Control" parent="Voidbot"]
+visible = false
+anchors_preset = 0
+offset_left = -60.0
+offset_right = -20.0
+offset_bottom = 40.0
+
+[node name="MaskSigil" type="Sprite2D" parent="Voidbot/RitualShop"]
+modulate = Color(0, 0, 0, 0.690196)
+self_modulate = Color(0, 0, 0, 0.690196)
+position = Vector2(720, 200)
+scale = Vector2(3.39, 3.39)
+texture = ExtResource("42_y8i0o")
+
+[node name="Ritual" type="Sprite2D" parent="Voidbot/RitualShop"]
+position = Vector2(720, 200)
+texture = ExtResource("42_as70j")
+
+[node name="Candle1" type="TextureButton" parent="Voidbot/RitualShop/Ritual"]
+offset_left = -25.0
+offset_top = -160.0
+offset_right = 25.0
+offset_bottom = -110.0
+texture_normal = ExtResource("43_eoec8")
+texture_hover = ExtResource("44_8q2ll")
+
+[node name="Candle2" type="TextureButton" parent="Voidbot/RitualShop/Ritual"]
+offset_left = 80.0
+offset_top = -110.0
+offset_right = 130.0
+offset_bottom = -60.0
+texture_normal = ExtResource("43_eoec8")
+texture_hover = ExtResource("44_8q2ll")
+
+[node name="Candle3" type="TextureButton" parent="Voidbot/RitualShop/Ritual"]
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 130.0
+offset_bottom = 110.0
+texture_normal = ExtResource("43_eoec8")
+texture_hover = ExtResource("44_8q2ll")
+
+[node name="Candle4" type="TextureButton" parent="Voidbot/RitualShop/Ritual"]
+offset_left = -25.0
+offset_top = 115.0
+offset_right = 25.0
+offset_bottom = 165.0
+texture_normal = ExtResource("43_eoec8")
+texture_hover = ExtResource("44_8q2ll")
+
+[node name="Candle5" type="TextureButton" parent="Voidbot/RitualShop/Ritual"]
+offset_left = -130.0
+offset_top = 60.0
+offset_right = -80.0
+offset_bottom = 110.0
+texture_normal = ExtResource("43_eoec8")
+texture_hover = ExtResource("44_8q2ll")
+
+[node name="BackpackPanel" parent="." instance=ExtResource("46_o6krw")]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 100.0
+offset_right = 750.0
+offset_bottom = 500.0
+
 [node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
 process_mode = 3
 visible = false
@@ -489,13 +574,6 @@ offset = Vector2(50, 105)
 layout_mode = 2
 text = "Toggle Grow"
 
-[node name="BackpackPanel" parent="." instance=ExtResource("46_o6krw")]
-layout_mode = 0
-offset_left = 250.0
-offset_top = 100.0
-offset_right = 750.0
-offset_bottom = 500.0
-
 [connection signal="pressed" from="SettingsButton" to="." method="_onSettingButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="." method="_onBackpackButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="BackpackPanel" method="_onBackpackPressed"]
@@ -504,3 +582,9 @@ offset_bottom = 500.0
 [connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]
 [connection signal="pressed" from="RatController/Cheese" to="RatController" method="_on_cheese_pressed"]
 [connection signal="pressed" from="RatController/Bow" to="RatController" method="_on_bow_pressed"]
+[connection signal="pressed" from="Voidbot" to="Voidbot" method="_on_pressed"]
+[connection signal="pressed" from="Voidbot/RitualShop/Ritual/Candle1" to="Voidbot" method="_on_candle_1_pressed"]
+[connection signal="pressed" from="Voidbot/RitualShop/Ritual/Candle2" to="Voidbot" method="_on_candle_2_pressed"]
+[connection signal="pressed" from="Voidbot/RitualShop/Ritual/Candle3" to="Voidbot" method="_on_candle_3_pressed"]
+[connection signal="pressed" from="Voidbot/RitualShop/Ritual/Candle4" to="Voidbot" method="_on_candle_4_pressed"]
+[connection signal="pressed" from="Voidbot/RitualShop/Ritual/Candle5" to="Voidbot" method="_on_candle_5_pressed"]

@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithMenu.gd" id="10_trrmv"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
 [ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
-[ext_resource type="PackedScene" uid="uid://by7i3len3apkx" path="res://Scenes/AutomationMenu.tscn" id="13_18xu6"]
+[ext_resource type="PackedScene" uid="uid://by7i3len3apkx" path="res://Scenes/Packsmith/AutomationMenu.tscn" id="13_18xu6"]
 [ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]

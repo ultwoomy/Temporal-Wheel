@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxfka1faewhiy"]
+
+[ext_resource type="Script" path="res://Scripts/Packsmith/AutomationSubMenus/PacksmithAutomationSpin.gd" id="1_874vl"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_d0rqi"]
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="1_obqy1"]
+[ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="2_ju66p"]
+[ext_resource type="Texture2D" uid="uid://pguk3tixx471" path="res://Sprites/Automators/spinbot.png" id="3_n2ljy"]
+[ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="5_pstpk"]
+[ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="6_xrgr8"]
+[ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="7_vwcx0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc0t4"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="AutomationSpinMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d0rqi")
+script = ExtResource("1_874vl")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 108.0
+offset_right = 940.0
+offset_bottom = 508.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lc0t4")
+
+[node name="Price" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 329.0
+offset_right = 384.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 15
+text = "Cost in       :
+Cost in       :"
+
+[node name="Momentum" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 12)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_obqy1")
+
+[node name="Rust" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ju66p")
+
+[node name="SpinbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 165.0
+scale = Vector2(2, 2)
+
+[node name="SpinbotSprite" type="Sprite2D" parent="Panel/SpinbotPanel"]
+position = Vector2(100, 48)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_n2ljy")
+
+[node name="Label" type="Label" parent="Panel/SpinbotPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 320.0
+offset_bottom = 209.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "An ancient object, older than time itself. It's only purpose is to spin around in cirlces. It is very happy with this. For a price, it will spin your wheel in circles for you."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Panel/SpinbotPanel"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 125.0
+offset_right = 200.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Buy"
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_pstpk")
+texture_pressed = ExtResource("6_xrgr8")
+texture_hover = ExtResource("6_xrgr8")
+texture_disabled = ExtResource("5_pstpk")
+texture_focused = ExtResource("7_vwcx0")
+
+[connection signal="pressed" from="Panel/SpinbotPanel/Button" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="Panel/TextureButton" to="." method="exit"]

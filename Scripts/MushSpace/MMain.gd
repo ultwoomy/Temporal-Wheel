@@ -5,6 +5,16 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	updateRots()
+	mushbotCheck()
+	if(GVars.mushroomData.level >= 10):
+		background.frame = 2
+
+func mushbotCheck():
+	if Automation.contains("Mushbot"):
+		WheelSpinner.wheelRotationCompleted.connect(updateRots)
+		
+func updateRots():
 	if(GVars.mushroomData.pendingRots < 0):
 		GVars.mushroomData.pendingRots = 0
 	if(GVars.sigilData.curSigilBuff == 1):
@@ -14,6 +24,3 @@ func _ready():
 		if(GVars.mushroomData.timeLeft[n] <= 0):
 			GVars.mushroomData.timeLeft[n] = 0
 	GVars.mushroomData.pendingRots = 0
-	if(GVars.mushroomData.level >= 10):
-		background.frame = 2
-

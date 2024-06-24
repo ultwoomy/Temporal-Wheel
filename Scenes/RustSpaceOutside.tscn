@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3cwx5qjxmdup"]
+[gd_scene load_steps=14 format=3 uid="uid://b3cwx5qjxmdup"]
 
 [ext_resource type="Texture2D" uid="uid://cr2gx5g5yrq4q" path="res://Sprites/RustSpace/rusthome_outside.png" id="1_2jcfw"]
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_ujrbo"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/RustSpaceMain.gd" id="2_p78a6"]
 [ext_resource type="Texture2D" uid="uid://domdcir7ttm4h" path="res://Sprites/RustSpace/back_rust/back_rust.png" id="5_jsaej"]
 [ext_resource type="Texture2D" uid="uid://cmqobk7x265a6" path="res://Sprites/RustSpace/back_rust/back_rust2.png" id="6_eu6dj"]
+[ext_resource type="Texture2D" uid="uid://nctb7gfsb5jy" path="res://Sprites/Automators/rustbot.png" id="7_867aj"]
 [ext_resource type="Texture2D" uid="uid://cif2yvh3nf0hs" path="res://Sprites/RustSpace/back_rust/back_rust3.png" id="7_gnir7"]
+[ext_resource type="Script" path="res://Scripts/RustSpace/RustbotShow.gd" id="8_2yc0t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvkyr"]
 bg_color = Color(0, 0, 0, 1)
@@ -65,6 +67,20 @@ offset_top = 99.0
 offset_right = 313.0
 offset_bottom = 149.0
 text = "Atlas"
+
+[node name="Rustbot" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 195.0
+offset_right = 325.0
+offset_bottom = 494.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_867aj")
+texture_pressed = ExtResource("7_867aj")
+texture_hover = ExtResource("7_867aj")
+texture_disabled = ExtResource("7_867aj")
+texture_focused = ExtResource("7_867aj")
+script = ExtResource("8_2yc0t")
 
 [connection signal="pressed" from="InsideButton" to="." method="_onInsideButtonPressed"]
 [connection signal="pressed" from="BackButton" to="." method="_onBackButtonPressed"]

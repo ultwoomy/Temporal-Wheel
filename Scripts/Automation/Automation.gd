@@ -10,6 +10,8 @@ var automators : Array[Automator]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	WheelSpinner.wheelRotationCompleted.connect(automate)
+	for x in GVars.automatorVarsData.automatorList:
+		initAutomatorData(x)
 
 
 #@ Public Methods
@@ -28,7 +30,16 @@ func contains(what : String) -> bool:
 		if x.getType() == what:
 			return true
 	return false
-
+	
+func updateActive() -> void:
+	for x in GVars.automatorVarsData.automatorList:
+		if not contains(x):
+			initAutomatorData(x)
+			
+func initAutomatorData(x) -> void:
+	var d = AutomatorData.new()
+	d.setAutomator(x)
+	Automation.addAutomatorFromData(d)
 
 # Add an automator to the array using AutomatorData.
 func addAutomatorFromData(automatorData : AutomatorData) -> void:

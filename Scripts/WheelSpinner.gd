@@ -22,7 +22,7 @@ var wheelRotation : float = 0.0
 #@ Private Variables
 var _sign : int = 1 :
 	set(value):  # Make sure value is either -1 or 1.
-		if value < -1:
+		if value <= -1:
 			_sign = -1
 		else:
 			_sign = 1

@@ -17,6 +17,7 @@ class_name WheelSpaceWheel
 func _ready() -> void:
 	# Connect signals.
 	WheelSpinner.rustProgressed.connect(_onRustProgressed)
+	updateWheelSprite()
 	
 	# Scale the wheel based on the given size.
 	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)

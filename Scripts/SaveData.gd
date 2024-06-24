@@ -97,7 +97,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 11
+	versNo = 12
 	ratmail = 0
 
 func save_stats(data):

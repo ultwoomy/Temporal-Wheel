@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://by7i3len3apkx"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_0xb2j"]
+[ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithAutomationMenu.gd" id="1_7p54v"]
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="3_m6cg0"]
+[ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="4_6wlgs"]
+[ext_resource type="Texture2D" uid="uid://nctb7gfsb5jy" path="res://Sprites/Automators/rustbot.png" id="5_714ro"]
+[ext_resource type="Texture2D" uid="uid://c46lad23eshcr" path="res://Sprites/Automators/voidbot.png" id="6_r1658"]
+[ext_resource type="Texture2D" uid="uid://dx3mg7u7a54ts" path="res://Sprites/Automators/mushbot.png" id="7_tv7p6"]
+[ext_resource type="Texture2D" uid="uid://pguk3tixx471" path="res://Sprites/Automators/spinbot.png" id="8_0k0xw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_of23j"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0xb2j")
+script = ExtResource("1_7p54v")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 108.0
+offset_right = 940.0
+offset_bottom = 508.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_of23j")
+
+[node name="Price" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 329.0
+offset_right = 384.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 15
+text = "Cost in       :
+Cost in       :"
+
+[node name="Momentum" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 12)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_m6cg0")
+
+[node name="Rust" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_6wlgs")
+
+[node name="RustbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(0.372549, 1, 0.364706, 1)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 165.0
+
+[node name="RustbotSprite" type="Sprite2D" parent="Panel/RustbotPanel"]
+position = Vector2(100, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_714ro")
+
+[node name="Button" type="Button" parent="Panel/RustbotPanel"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 125.0
+offset_right = 200.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Rustbot"
+
+[node name="VoidbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(1, 0.101961, 1, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_right = 400.0
+offset_bottom = 165.0
+
+[node name="RustbotSprite" type="Sprite2D" parent="Panel/VoidbotPanel"]
+position = Vector2(100, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_r1658")
+
+[node name="Button" type="Button" parent="Panel/VoidbotPanel"]
+layout_mode = 0
+offset_top = 125.0
+offset_right = 50.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(1, 0.490196, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0.729412, 0.984314, 1)
+theme_override_font_sizes/font_size = 10
+text = "Voidbot"
+
+[node name="MushbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_top = 165.0
+offset_right = 200.0
+offset_bottom = 330.0
+
+[node name="RustbotSprite" type="Sprite2D" parent="Panel/MushbotPanel"]
+position = Vector2(100, 45)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_tv7p6")
+
+[node name="Button" type="Button" parent="Panel/MushbotPanel"]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0.6, 0.517647, 1)
+theme_override_colors/font_outline_color = Color(1, 0.729412, 0.984314, 1)
+theme_override_font_sizes/font_size = 10
+text = "Mushbot"
+
+[node name="SpinbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 165.0
+offset_right = 400.0
+offset_bottom = 330.0
+
+[node name="RustbotSprite" type="Sprite2D" parent="Panel/SpinbotPanel"]
+position = Vector2(100, 48)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("8_0k0xw")
+
+[node name="Button" type="Button" parent="Panel/SpinbotPanel"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Spinbot
+"
+
+[connection signal="pressed" from="Panel/RustbotPanel/Button" to="." method="_on_rustbuy_pressed"]
+[connection signal="pressed" from="Panel/VoidbotPanel/Button" to="." method="_on_voidbuy_pressed"]
+[connection signal="pressed" from="Panel/MushbotPanel/Button" to="." method="_on_mushbuy_pressed"]
+[connection signal="pressed" from="Panel/SpinbotPanel/Button" to="." method="_on_spinbuy_pressed"]

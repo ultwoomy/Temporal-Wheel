@@ -6,6 +6,9 @@ class_name PS_MenuAutomateState
 func _enter() -> void:
 	# Connect signals from PacksmithMenu class. Look at PacksmithMenuState.gd for more info.
 	super._enter()
+	packsmithMenu.automationMenu.show()
+	
+	# Listen for when a sigil is pressed.
 
 
 func _update(_delta: float) -> void:
@@ -13,7 +16,7 @@ func _update(_delta: float) -> void:
 
 
 func _exit() -> void:
-	pass
+	packsmithMenu.automationMenu.hide()
 
 
 #@ Private Methods

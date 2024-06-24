@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://1863b6ndwp7b"]
+[gd_scene load_steps=30 format=3 uid="uid://1863b6ndwp7b"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
@@ -14,7 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://0cyy1vlw0jt3" path="res://Sprites/MushSpace/mush_int/tile002.png" id="17_1kx05"]
 [ext_resource type="PackedScene" uid="uid://dxfkfqi78y4b" path="res://Scenes/MushSpace/MushStatsPanel.tscn" id="17_tp034"]
 [ext_resource type="Texture2D" uid="uid://cfnivew40265t" path="res://Sprites/MushSpace/mush_back/tile000.png" id="18_qh8f7"]
+[ext_resource type="Texture2D" uid="uid://dx3mg7u7a54ts" path="res://Sprites/Automators/mushbot.png" id="18_vjtcm"]
 [ext_resource type="Texture2D" uid="uid://dvkqb4ocue88v" path="res://Sprites/MushSpace/mush_back/tile001.png" id="19_nsp4i"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushbotShow.gd" id="19_t7jjl"]
 [ext_resource type="Texture2D" uid="uid://jek5ca32hi06" path="res://Sprites/MushSpace/mush_back/tile002.png" id="20_0jlj8"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="21_dy18d"]
 
@@ -132,3 +134,17 @@ back = NodePath(".")
 
 [node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]
 position = Vector2(500, 120)
+
+[node name="Mushbot" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 284.0
+offset_right = 907.0
+offset_bottom = 583.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("18_vjtcm")
+texture_pressed = ExtResource("18_vjtcm")
+texture_hover = ExtResource("18_vjtcm")
+texture_disabled = ExtResource("18_vjtcm")
+texture_focused = ExtResource("18_vjtcm")
+script = ExtResource("19_t7jjl")

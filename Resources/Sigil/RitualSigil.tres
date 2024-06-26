@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://bb2l3hcj4yqyc"]
+
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_hk2ag"]
+[ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="2_nm8p7"]
+
+[resource]
+script = ExtResource("1_hk2ag")
+sigilName = "ritual"
+spriteTexture = ExtResource("2_nm8p7")
+sigilBuffIndex = 4

@@ -205,7 +205,7 @@ func load_as_normal():
 	if(versNo <= 11):
 		automatorVarsData = AutomatorVarsData.new()
 		loader.automatorVarsData = automatorVarsData
-		loader.altsigilnight = false
+		loader.altSigilNight = false
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

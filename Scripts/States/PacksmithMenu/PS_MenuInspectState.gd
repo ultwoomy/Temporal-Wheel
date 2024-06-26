@@ -11,10 +11,10 @@ func _enter() -> void:
 	
 	# Show the inspect selection menu.
 	packsmithMenu.selectionMenu.show()
-	packsmithMenu.selectionMenu.display_sigils()
+	packsmithMenu.selectionMenu.displaySigils()
 	
 	# Listen for when a sigil is pressed.
-	packsmithMenu.selectionMenu.sigil_button_pressed.connect(_on_sigil_button_pressed)
+	packsmithMenu.selectionMenu.sigilButtonPressed.connect(_onSigilButtonPressed)
 
 
 func _update(_delta: float) -> void:
@@ -39,13 +39,22 @@ func _onButtonPressed(button: Button) -> void:
 			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))
 
 
-func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
+func _onSigilButtonPressed(sigil: Sigil) -> void:
 	# Change _dialogueHandler to have dialogue be about augmenting sigils.
 	packsmithMenu._dialogueHandler.dialogueFilePath = "res://JSON/Dialogue/Packsmith/PacksmithInspect.json"
 	
+	# Error checking.
+	if not sigil:
+		printerr("ERROR: Sigil selected does not have a sigil resource attached! Unable to inspect sigil!")
+		return
+	if not sigil.sigilName:
+		printerr("ERROR: Sigil selected does not have a name! Unable to inspect sigil!")
+		return
+	
 	# Ask for a particular topic from _dialogueHandler that will be said.
-	var dialogue : Array[Dictionary]
-	match sigil:
+	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
+	' TODO: Remove later. Testing out changes to PacksmithSelectionMenuSigils.
+	match sigil.sigilName:
 		SigilData.Sigils.PACKSMITH:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("packsmith")
 		SigilData.Sigils.CANDLE:
@@ -58,6 +67,7 @@ func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ritual")
 		SigilData.Sigils.HELL:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
+	'
 	
 	# Get a new TalkState using the correct dialogue.
 	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogue) 

@@ -3,7 +3,7 @@ class_name PS_MenuAugmentState
 
 
 #@ Signals
-signal changedAugment
+signal augmentChanged
 
 
 #@ Virtual Methods
@@ -12,10 +12,10 @@ func _enter() -> void:
 	super._enter()
 	
 	packsmithMenu.selectionMenu.show()
-	packsmithMenu.selectionMenu.display_sigils()
+	packsmithMenu.selectionMenu.displaySigils()
 	
 	# Listen for when a sigil is pressed.
-	packsmithMenu.selectionMenu.sigil_button_pressed.connect(_on_sigil_button_pressed)
+	packsmithMenu.selectionMenu.sigilButtonPressed.connect(_onSigilButtonPressed)
 
 
 func _update(_delta: float) -> void:
@@ -40,46 +40,28 @@ func _onButtonPressed(button: Button) -> void:
 			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))
 
 
-func _on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
+func _onSigilButtonPressed(sigil: Sigil) -> void:
 	# Change _dialogueHandler to have dialogue be about augmenting sigils.
 	packsmithMenu._dialogueHandler.dialogueFilePath = "res://JSON/Dialogue/Packsmith/PacksmithAugment.json"
 	
 	# Ask for a particular topic from _dialogueHandler that will be said.
-	var dialogue : Array[Dictionary]
-	match sigil:
-		SigilData.Sigils.PACKSMITH:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("packsmith")
-			GVars.sigilData.curSigilBuff = 0
-			emit_signal("changedAugment")
-		SigilData.Sigils.CANDLE:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("candle")
-			GVars.sigilData.curSigilBuff = 1
-			emit_signal("changedAugment")
-		SigilData.Sigils.ASCENSION:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ascension")
-			GVars.sigilData.curSigilBuff = 2
-			emit_signal("changedAugment")
-		SigilData.Sigils.EMPTINESS:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("emptiness")
-			GVars.sigilData.curSigilBuff = 3
-			emit_signal("changedAugment")
-		SigilData.Sigils.RITUAL:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ritual")
-			GVars.sigilData.curSigilBuff = 4
-			emit_signal("changedAugment")
-		SigilData.Sigils.HELL:
-			if(GVars.hellChallengeNerf < 0):
-				if(!GVars.ifhell):
-					dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
-				else:
-					dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellalt")
+	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
+	GVars.sigilData.curSigilBuff = sigil.sigilBuffIndex
+	
+	# Exception. Maybe there is a cleaner way?
+	if sigil.sigilName == "hell":
+		if(GVars.hellChallengeNerf < 0):
+			if(!GVars.ifhell):
+				dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
 			else:
-				dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellcomplete")
-				GVars.ifhell = true
-				GVars.inContract = false
-				GVars.hellChallengeNerf = -1
-			GVars.sigilData.curSigilBuff = 5
-			emit_signal("changedAugment")
+				dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellalt")
+		else:
+			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellcomplete")
+			GVars.ifhell = true
+			GVars.inContract = false
+			GVars.hellChallengeNerf = -1
+		GVars.sigilData.curSigilBuff = 5
+	augmentChanged.emit()
 	
 	# Get a new TalkState using the correct dialogue.
 	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogue) 

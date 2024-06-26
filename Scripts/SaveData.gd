@@ -53,6 +53,8 @@ func load_stats():
 		_init()
 		save_stats(self)
 	return load(save_path)
+
+
 func _init():
 	spinData = SpinData.new()
 	spinData.resetData()

@@ -14,5 +14,7 @@ func _execute() -> void:
 	# When executed, spins the wheel.
 	WheelSpinner.spinWheel()
 
+
+#@ Public Methods
 func getType() -> String:
 	return "Spinbot"

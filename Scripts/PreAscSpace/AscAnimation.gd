@@ -71,7 +71,8 @@ func _wheelScene():
 func _end_sequence():
 	#hides every ui element before playing reset animation
 	everythingelse.hide()
-	if not GVars.sigilData.curSigilBuff == 3 and GVars.sigilData.numberOfSigils[3]:
+	const emptinessSigil : Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
+	if not GVars.sigilData.curSigilBuff == 3 and emptinessSigil in GVars.sigilData.acquiredSigils:
 		confirm.emit()
 	else:
 		eSeq = true

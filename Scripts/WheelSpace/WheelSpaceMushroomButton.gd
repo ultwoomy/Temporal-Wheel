@@ -8,7 +8,8 @@ var dismush = preload("res://Sprites/WheelSpace/mush_ext_sheet/tile002.png")
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if GVars.sigilData.numberOfSigils[1]:
+	const candleSigil : Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
+	if candleSigil in GVars.sigilData.acquiredSigils:
 		disabled = false
 	else:
 		disabled = true

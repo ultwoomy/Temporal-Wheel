@@ -15,10 +15,14 @@ func _execute() -> void:
 	_up03()
 	_up02()
 	_up01()
-	
+
+
+#@ Public Methods
 func getType() -> String:
 	return "Rustbot"
-	
+
+
+#@ Private Methods
 func _up01():
 	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
 		GVars.rustData.rust -= GVars.rustData.increaseSpinCost

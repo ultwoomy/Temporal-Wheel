@@ -213,7 +213,6 @@ text = "Sand"
 script = ExtResource("18_ia1cq")
 
 [node name="RitualShop" type="Container" parent="." node_paths=PackedStringArray("text")]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

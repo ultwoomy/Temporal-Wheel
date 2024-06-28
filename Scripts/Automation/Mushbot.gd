@@ -11,5 +11,7 @@ func _execute() -> void:
 	if not enabled:
 		return
 
+
+#@ Public Methods
 func getType() -> String:
 	return "Mushbot"

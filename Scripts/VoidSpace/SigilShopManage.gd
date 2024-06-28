@@ -16,6 +16,8 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
 				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?"]
 
+var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
+
 
 #@ Onready Variables
 @onready var sigilLabel : Label = $SigilLabel
@@ -46,6 +48,20 @@ func _onButtonPressed():
 	if failbought:
 		reset()
 	else:
+		# Local Variables
+		const packsmithSigil 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
+		const candleSigil 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
+		const ascensionSigil 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
+		const emptinessSigil 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
+		const ritualSigil 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
+		const hellSigil 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+		var acquiredPacksmithSigil 	: bool = GVars.sigilData.acquiredSigils.has(packsmithSigil)
+		var acquiredCandleSigil 	: bool = GVars.sigilData.acquiredSigils.has(candleSigil)
+		var acquiredAscensionSigil 	: bool = GVars.sigilData.acquiredSigils.has(ascensionSigil)
+		var acquiredEmptinessSigil 	: bool = GVars.sigilData.acquiredSigils.has(emptinessSigil)
+		var acquiredRitualSigil 	: bool = GVars.sigilData.acquiredSigils.has(ritualSigil)
+		var acquiredHellSigil 		: bool = GVars.sigilData.acquiredSigils.has(hellSigil)
+		
 		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
 			if GVars.hellChallengeLayer2 == 0:
 				if GVars.sand >= GVars.sandCost:
@@ -63,47 +79,48 @@ func _onButtonPressed():
 		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[1] and GVars.rustData.rust >= 20:
+		elif GVars.hellChallengeLayer2 == 1 and not acquiredCandleSigil and GVars.rustData.rust >= 20:
 			GVars.rustData.rust -= 20
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[2]:
+		elif GVars.hellChallengeLayer2 == 1 and not acquiredAscensionSigil:
 			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
 				GVars.mushroomData.level -= 5
 				checkCurrentSigil()
 			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
 				GVars.dollarTotal -= 5
 				checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[3] and GVars.spinData.size > 4:
+		elif GVars.hellChallengeLayer2 == 1 and not acquiredEmptinessSigil and GVars.spinData.size > 4:
 			GVars.spinData.size -= 4
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[4] and GVars.Aspinbuff >= 7:
+		elif GVars.hellChallengeLayer2 == 1 and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
 			GVars.Aspinbuff -= 6
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[5] and GVars.kbityData.kbityLevel > 0:
+		elif GVars.hellChallengeLayer2 == 1 and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
 			checkCurrentSigil()
-		else :
+		else:
 			checkStupid()
 
 
 func checkCurrentSigil():
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
-	var curSigil : int = 0
-	while GVars.sigilData.numberOfSigils[curSigil]:
-		curSigil += 1
-	if(curSigil <= 5):
-		sigilLabel.text = sigilText[curSigil]
-	else :
+	
+	# The size is used to keep track of what sigil to get from purchaseOrder.
+	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
+	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
+		GVars.sigilData.acquiredSigils.append(sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils])
+		sigilLabel.text = sigilText[indexFromAcquiredSigils]
+	else:
 		sigilLabel.text = "Use it well!"
-	GVars.sigilData.numberOfSigils[curSigil] = true
 	buyButton.text = "Thx"
 	sigilDisplay.show()
-	sigilDisplay.frame = curSigil
+	sigilDisplay.frame = indexFromAcquiredSigils
 	failbought = true
 
 
 func reset():
-	if(GVars.sigilData.numberOfSigils[5]):
+	const hellSigil : Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+	if hellSigil in GVars.sigilData.acquiredSigils:
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
 	elif not GVars.hellChallengeLayer2 == 1 :
@@ -113,25 +130,24 @@ func reset():
 		buyButton.text = "Buy"
 		failbought = false
 	else:
-		var curSigil = 0
-		while GVars.sigilData.numberOfSigils[curSigil]:
-			curSigil += 1
-		if curSigil == 0:
-			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n1000 momentum"
-		elif curSigil == 1:
-			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n20 rust"
-		elif curSigil == 2:
+		var numberOfAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
+		sigilLabel.text = "Here for a sigil?\nIt\'ll cost ya:\n"
+		if numberOfAcquiredSigils == 0:
+			sigilLabel.text += "1000 momentum"
+		elif numberOfAcquiredSigils == 1:
+			sigilLabel.text += "20 rust"
+		elif numberOfAcquiredSigils == 2:
 			if not GVars.altSigilSand:
-				sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n5 mush levels\nYou'll need 6."
+				sigilLabel.text += "5 mush levels\nYou\'ll need 6."
 			else:
-				sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n5 sand dollars"
-		elif curSigil == 3:
-			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n4 size\nYou'll need 5."
-		elif curSigil == 4:
-			sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n6 identity\nYou'll need 7"
-		elif curSigil == 5:
+				sigilLabel.text += "5 sand dollars"
+		elif numberOfAcquiredSigils == 3:
+			sigilLabel.text += "4 size\nYou\'ll need 5."
+		elif numberOfAcquiredSigils == 4:
+			sigilLabel.text += "6 identity\nYou\'ll need 7"
+		elif numberOfAcquiredSigils == 5:
 			altprice = 100
-			sigilLabel.text = "Here for a sigil?\nFully charge the kbity machine and I'll give it to you"
+			sigilLabel.text = "Here for a sigil?\nFully charge the kbity machine and I\'ll give it to you"
 		buyButton.text = "Buy"
 		failbought = false
 

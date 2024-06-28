@@ -3,71 +3,56 @@ class_name SelectionMenu
 
 
 #@ Signals
-signal sigil_button_pressed(sigil: SigilData.Sigils)
+signal sigilButtonPressed(sigil: Sigil)
 
 
-#@ Components
-@onready var packsmithSigil : SelectionMenuSigil = $PacksmithSigil
-@onready var candleSigil 	: SelectionMenuSigil = $CandleSigil
-@onready var ascensionSigil : SelectionMenuSigil = $AscensionSigil
-@onready var emptinessSigil : SelectionMenuSigil = $EmptinessSigil
-@onready var ritualSigil 	: SelectionMenuSigil = $RitualSigil
-@onready var hellSigil 		: SelectionMenuSigil = $HellSigil
+#@ Public Variables
+var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
 
 
-#@ Global Variables
-@onready var sigils: Array[SelectionMenuSigil] = [
-	packsmithSigil,
-	candleSigil,
-	ascensionSigil,
-	emptinessSigil,
-	ritualSigil,
-	hellSigil,
-]
+#@ Onready Variables
+@onready var smSigil01 : SelectionMenuSigil = $Sigil01
+@onready var smSigil02 : SelectionMenuSigil = $Sigil02
+@onready var smSigil03 : SelectionMenuSigil = $Sigil03
+@onready var smSigil04 : SelectionMenuSigil = $Sigil04
+@onready var smSigil05 : SelectionMenuSigil = $Sigil05
+@onready var smSigil06 : SelectionMenuSigil = $Sigil06
+@onready var smSigils : Array[SelectionMenuSigil] = [smSigil01, smSigil02, smSigil03, smSigil04, smSigil05, smSigil06]
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_up_sigils()
+	# Hide sigils.
+	for smSigil in smSigils:
+		smSigil.hide()
+	
+	setUpSigils()
 
 
 #@ Public Methods
-func set_up_sigils() -> void:
-	for sigil in sigils:
-		if sigil:
-			# Check to see if the button is not already connected.
-			if not sigil.button.pressed.is_connected(emit_signal_on_sigil_button_pressed):
-				# Passes the assigned sigil into the function using the sigil.sigil variable.
-				# The sigil.sigil is an export variable that you assign to sigil instances.
-				sigil.button.pressed.connect(emit_signal_on_sigil_button_pressed.bind(sigil.sigil))
+func setUpSigils() -> void:
+	var index : int = 0
+	for selectionMenuSigil in smSigils:
+		# Assign sigil resource to the sigil node.
+		selectionMenuSigil.setSigil(sigilPurchaseOrder.purchaseOrder[index])
+		
+		# Check to see if the button is not already connected.
+		if not selectionMenuSigil.button.pressed.is_connected(_emitSignalOnSigilButtonPressed):
+			# Passes the assigned sigil into the function using the sigil.sigil variable.
+			# The sigil.sigil is an export variable that you assign to sigil instances.
+			selectionMenuSigil.button.pressed.connect(_emitSignalOnSigilButtonPressed.bind(selectionMenuSigil.sigil))
+		index += 1
 
 
-# Display the correct sigils based on 
-func display_sigils() -> void:
-	# Copied and pasted code w/ modifications to get the same declared variable.
-	if GVars.sigilData.numberOfSigils[1]:
-		candleSigil.show()
-	else:
-		candleSigil.hide()
-	if GVars.sigilData.numberOfSigils[2]:
-		ascensionSigil.show()
-	else:
-		ascensionSigil.hide()
-	if GVars.sigilData.numberOfSigils[3]:
-		emptinessSigil.show()
-	else:
-		emptinessSigil.hide()
-	if GVars.sigilData.numberOfSigils[4]:
-		ritualSigil.show()
-	else:
-		ritualSigil.hide()
-	if GVars.sigilData.numberOfSigils[5]:
-		hellSigil.show()
-	else:
-		hellSigil.hide()
+# Display sigils if acquired.
+func displaySigils() -> void:
+	var index : int = 0
+	for sigil in GVars.sigilData.acquiredSigils:
+		smSigils[index].setSigil(sigil)
+		smSigils[index].show()
 
 
 # Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.
-func emit_signal_on_sigil_button_pressed(sigil: SigilData.Sigils) -> void:
-	sigil_button_pressed.emit(sigil)
+func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
+	sigilButtonPressed.emit(sigil)

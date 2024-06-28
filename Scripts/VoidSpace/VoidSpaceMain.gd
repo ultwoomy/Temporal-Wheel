@@ -51,7 +51,8 @@ func changeState(newState : VS_MenuState) -> void:
 
 
 func unlockRitualButton() -> void:
-	if(GVars.sigilData.numberOfSigils[4]):
+	const ritualSigil : Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
+	if ritualSigil in GVars.sigilData.acquiredSigils:
 		ritualButton.show()
 	else:
 		ritualButton.hide()

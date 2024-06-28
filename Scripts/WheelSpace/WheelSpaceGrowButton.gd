@@ -22,7 +22,6 @@ func _ready():
 	button.pressed.connect(self._buttonPressed)
 	WheelSpinner.wheelRotationCompleted.connect(self.suc_loop)
 	
-	
 	if(GVars.spinData.sizeToggle):
 		ifsucc = true
 	

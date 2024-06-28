@@ -7,3 +7,4 @@
 script = ExtResource("1_s61id")
 sigilName = "packsmith"
 spriteTexture = ExtResource("2_s76l5")
+sigilBuffIndex = 0

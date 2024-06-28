@@ -59,13 +59,13 @@ func _ready():
 	
 	nextButton.hide()
 	
-	if not GVars.sigilData.numberOfSigils[0]:
+	const packsmithSigil : Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
+	if not packsmithSigil in GVars.sigilData.acquiredSigils:
 		inspectButton.hide()
 		augmentButton.hide()
 		upgradeButton.hide()
 		automateButton.hide()
 		dialogueText.text = "No shirt, no sigil, no service."
-	
 	
 	selectionMenu.hide()
 

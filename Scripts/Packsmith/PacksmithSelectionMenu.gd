@@ -17,19 +17,23 @@ var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purcha
 @onready var smSigil04 : SelectionMenuSigil = $Sigil04
 @onready var smSigil05 : SelectionMenuSigil = $Sigil05
 @onready var smSigil06 : SelectionMenuSigil = $Sigil06
-@onready var sigils : Array[SelectionMenuSigil] = [smSigil01, smSigil02, smSigil03, smSigil04, smSigil05, smSigil06]
+@onready var smSigils : Array[SelectionMenuSigil] = [smSigil01, smSigil02, smSigil03, smSigil04, smSigil05, smSigil06]
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Hide sigils.
+	for smSigil in smSigils:
+		smSigil.hide()
+	
 	setUpSigils()
 
 
 #@ Public Methods
 func setUpSigils() -> void:
 	var index : int = 0
-	for selectionMenuSigil in sigils:
+	for selectionMenuSigil in smSigils:
 		# Assign sigil resource to the sigil node.
 		selectionMenuSigil.setSigil(sigilPurchaseOrder.purchaseOrder[index])
 		
@@ -44,16 +48,9 @@ func setUpSigils() -> void:
 # Display sigils if acquired.
 func displaySigils() -> void:
 	var index : int = 0
-	for boolean in GVars.sigilData.numberOfSigils:
-		# Stops loop if going out of bounds.
-		if index >= sigils.size():
-			return
-		
-		if boolean:
-			sigils[index].show()
-		else:
-			sigils[index].hide()
-		index += 1
+	for sigil in GVars.sigilData.acquiredSigils:
+		smSigils[index].setSigil(sigil)
+		smSigils[index].show()
 
 
 # Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.

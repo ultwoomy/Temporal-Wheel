@@ -241,5 +241,6 @@ func load_as_normal():
 
 
 func unlock_all_sigils():
-	for n in GVars.sigilData.numberOfSigils.size():
-		GVars.sigilData.numberOfSigils[n] = true
+	const sigilPurchaseOrder : SigilPurchaseOrder = preload("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
+	for sigil in sigilPurchaseOrder.purchaseOrder:
+		GVars.sigilData.acquiredSigils.append(sigil)

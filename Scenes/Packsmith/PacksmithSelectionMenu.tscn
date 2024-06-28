@@ -24,6 +24,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_iy60v")
 
 [node name="Sigil01" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_left = 545.0
 offset_top = 109.0
@@ -43,6 +44,7 @@ offset_right = 120.0
 offset_bottom = 120.0
 
 [node name="Sigil02" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_left = 684.0
 offset_top = 109.0
@@ -62,6 +64,7 @@ offset_right = 120.0
 offset_bottom = 120.0
 
 [node name="Sigil03" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 823.0
@@ -82,6 +85,7 @@ offset_right = 120.0
 offset_bottom = 120.0
 
 [node name="Sigil04" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 545.0
@@ -102,6 +106,7 @@ offset_right = 120.0
 offset_bottom = 120.0
 
 [node name="Sigil05" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 684.0
@@ -122,6 +127,7 @@ offset_right = 120.0
 offset_bottom = 120.0
 
 [node name="Sigil06" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 823.0

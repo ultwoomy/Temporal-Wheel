@@ -33,14 +33,17 @@ func _on_spinbuy_pressed():
 	add_child(instance)
 
 func buyAutomator(type) -> bool:
-	refreshPage()
 	if GVars.rustData.rust > GVars.automatorVarsData.globalAutomatorCostRust and GVars.spinData.spin > GVars.automatorVarsData.globalAutomatorCostSpin:
 		GVars.rustData.rust -= GVars.automatorVarsData.globalAutomatorCostRust
 		GVars.spinData.spin -= GVars.automatorVarsData.globalAutomatorCostSpin
 		GVars.automatorVarsData.globalAutomatorCostRust *= GVars.automatorVarsData.globalAutomatorScalingRust
 		GVars.automatorVarsData.globalAutomatorCostSpin = pow(GVars.automatorVarsData.globalAutomatorCostSpin, GVars.automatorVarsData.globalAutomatorScalingSpin)
-		GVars.automatorVarsData.automatorList.append(type)
+		var d = AutomatorData.new()
+		d.setAutomator(type)
+		Automation.addAutomatorFromData(d)
+		GVars.automatorVarsData.automatorList.append(d)
 		Automation.updateActive()
+		refreshPage()
 		return true
 	return false
 

@@ -11,7 +11,7 @@ var automators : Array[Automator]
 func _ready() -> void:
 	WheelSpinner.wheelRotationCompleted.connect(automate)
 	for x in GVars.automatorVarsData.automatorList:
-		initAutomatorData(x)
+		addAutomatorFromData(x)
 
 
 #@ Public Methods
@@ -33,10 +33,10 @@ func contains(what : String) -> bool:
 	
 func updateActive() -> void:
 	for x in GVars.automatorVarsData.automatorList:
-		if not contains(x):
-			initAutomatorData(x)
+		if not contains(x.name):
+			initAutomatorFromType(x.name)
 			
-func initAutomatorData(x) -> void:
+func initAutomatorFromType(x) -> void:
 	var d = AutomatorData.new()
 	d.setAutomator(x)
 	Automation.addAutomatorFromData(d)
@@ -64,3 +64,6 @@ func _createAutomatorFromData(automatorData : AutomatorData) -> Automator:
 			result = Rustbot.new()
 	result.enabled = true
 	return result
+	
+func clearAutomators():
+	automators.clear()

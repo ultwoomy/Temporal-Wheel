@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://nc3r8b15k1bk"]
+[gd_scene load_steps=36 format=3 uid="uid://nc3r8b15k1bk"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_7qe2c"]
 [ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="1_burux"]
@@ -17,17 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="16_af81a"]
 [ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="17_mss5q"]
 [ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="18_f5spc"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc7py"]
-texture = ExtResource("2_sapct")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e772k"]
-texture = ExtResource("3_pm404")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssjow"]
-texture = ExtResource("4_vh7tf")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbvxf"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/SandLabel.gd" id="18_ia1cq"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/KbityStats.gd" id="19_uwnsu"]
+[ext_resource type="Texture2D" uid="uid://crxtsuo1sx3bq" path="res://Sprites/VoidSpace/kbityclone/tile000.png" id="20_0k7tg"]
+[ext_resource type="Texture2D" uid="uid://b8vp12fm4mmjn" path="res://Sprites/VoidSpace/kbityclone/tile001.png" id="21_fbdlr"]
+[ext_resource type="Texture2D" uid="uid://cmnqksuo14u0w" path="res://Sprites/VoidSpace/kbityclone/tile002.png" id="22_kkg3o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dil3"]
 atlas = ExtResource("9_75xv6")
@@ -74,6 +68,34 @@ bg_color = Color(0.780392, 0.482353, 0.713726, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yfho"]
 bg_color = Color(1, 0.278431, 0.580392, 1)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_jao4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_0k7tg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fbdlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_kkg3o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc7py"]
+texture = ExtResource("2_sapct")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e772k"]
+texture = ExtResource("3_pm404")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssjow"]
+texture = ExtResource("4_vh7tf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbvxf"]
+
 [node name="VoidSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -105,17 +127,13 @@ offset_right = 470.0
 offset_bottom = 510.0
 text = "Ritual"
 
-[node name="BackButton" type="Button" parent="."]
+[node name="KbityCloneButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = -30.0
-offset_top = 221.0
-offset_right = 470.0
-offset_bottom = 521.0
-scale = Vector2(0.5, 0.5)
-theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
-theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
-theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
+offset_left = 750.0
+offset_top = 300.0
+offset_right = 850.0
+offset_bottom = 400.0
+text = "Kbity"
 
 [node name="TutorialBox" type="Container" parent="."]
 process_mode = 3
@@ -187,6 +205,12 @@ layout_mode = 2
 position = Vector2(231, 438)
 scale = Vector2(0.51, 0.5)
 sprite_frames = ExtResource("12_i8vqs")
+
+[node name="SandLabel" type="Label" parent="SigilShop"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Sand"
+script = ExtResource("18_ia1cq")
 
 [node name="RitualShop" type="Container" parent="." node_paths=PackedStringArray("text")]
 visible = false
@@ -265,6 +289,50 @@ offset_bottom = -60.0
 texture_normal = ExtResource("17_mss5q")
 texture_hover = ExtResource("18_f5spc")
 
+[node name="KbityShop" type="Panel" parent="." node_paths=PackedStringArray("kbityOpenButton", "kbitySprites", "descText")]
+layout_mode = 2
+offset_right = 600.0
+offset_bottom = 600.0
+script = ExtResource("19_uwnsu")
+kbityOpenButton = NodePath("../KbityCloneButton")
+kbitySprites = NodePath("AnimatedSprite2D")
+descText = NodePath("Stats")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="KbityShop"]
+position = Vector2(300, 200)
+sprite_frames = SubResource("SpriteFrames_jao4j")
+
+[node name="Label" type="Label" parent="KbityShop"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = 63.0
+text = "Kbity Clone"
+
+[node name="Stats" type="Label" parent="KbityShop"]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 300.0
+offset_right = 435.0
+offset_bottom = 458.0
+text = "Kbity Stats:
+Level:
+Effect: "
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 221.0
+offset_right = 470.0
+offset_bottom = 521.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
+theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
+
+[connection signal="pressed" from="KbityCloneButton" to="KbityShop" method="_on_kbity_clone_button_pressed"]
 [connection signal="mouse_entered" from="RitualShop/Ritual/Candle1" to="RitualShop" method="_on_candle_1_mouse_entered"]
 [connection signal="pressed" from="RitualShop/Ritual/Candle1" to="RitualShop" method="_on_candle_1_pressed"]
 [connection signal="mouse_entered" from="RitualShop/Ritual/Candle2" to="RitualShop" method="_on_candle_2_mouse_entered"]

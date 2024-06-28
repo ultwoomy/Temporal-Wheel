@@ -66,7 +66,8 @@ func rotateWheel() -> void:
 		GVars.rustData.threshProgress -= _calculateThreshProgress()
 		GVars.rustData.rust += rustCalculation
 		GVars.rustData.thresh *= _calculateThresh()
-		
+		if GVars.hellChallengeLayer2 == 0:
+			GVars.sand += 1
 		# Signal rust progression.
 		rustProgressed.emit(rustCalculation)
 
@@ -159,7 +160,7 @@ func _completeRotation() -> void:
 	
 	# Gain rotation.
 	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
-	GVars.spinData.rotations += amount
+	GVars.spinData.rotations += amount * (GVars.kbityData.kbityLevel + 2 / 2)
 	
 	# Make rust progress for rotateWheel().
 	GVars.rustData.threshProgress += amount

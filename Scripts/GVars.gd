@@ -9,7 +9,9 @@ extends Node
 @export var ritualData : RitualData
 @export var sigilData : SigilData
 @export var dollarData : DollarData
-
+@export var sand : float
+@export var sandCost : float
+@export var sandScaling : float
 @export_group("R1stats")
 @export var curEmotionBuff : int
 @export var Aspinbuff : float
@@ -49,11 +51,6 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 #@ Virtual Methods
 func _init():
-	#create_data() # L.B: Needed for reset.
-	#resetR0Stats()
-	#resetR1Stats()
-	#resetPermStats()
-	#save_prog()
 	load_as_normal()
 
 
@@ -97,6 +94,9 @@ func save_prog():
 	loader.kbityData = kbityData
 	loader.backpackData = backpackData
 	#loader.sigilData = sigilData
+	loader.sand = sand
+	loader.sandCost = sandCost
+	loader.sandScaling = sandScaling
 	
 	#loader.Aspinbuff = Aspinbuff
 	#loader.curEmotionBuff = curEmotionBuff
@@ -131,6 +131,9 @@ func resetR0Stats():
 	ritualData.resetData()
 	sigilData.resetData()
 	dollarData.resetData()
+	sand = 0
+	sandCost = 7
+	sandCost = 3
 
 func resetR1Stats():
 	curEmotionBuff = -1
@@ -147,6 +150,8 @@ func resetR2Stats():
 	kbityData.resetData()
 	atlasData.resetData()
 	backpackData.resetData()
+	Automation.clearAutomators()
+	automatorVarsData.resetData()
 	
 func resetPermStats():
 	ifFirstBoot = true
@@ -207,6 +212,10 @@ func load_as_normal():
 		loader.automatorVarsData = automatorVarsData
 		loader.altSigilNight = false
 		versNo += 1
+	if(versNo <= 12):
+		loader.sand = 0
+		loader.sandCost = 7
+		loader.sandScaling = 3
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -239,6 +248,9 @@ func load_as_normal():
 	atlasData = loader.atlasData
 	backpackData = loader.backpackData
 	automatorVarsData = loader.automatorVarsData
+	sand = loader.sand
+	sandCost = loader.sandCost
+	sandScaling = loader.sandScaling
 
 
 func unlock_all_sigils():

@@ -21,7 +21,7 @@ func _on_pressed():
 	setCandleSprites()
 	if get_child(0).is_visible():
 		get_child(0).hide()
-	else:
+	elif GVars.sigilData.numberOfSigils[5]:
 		get_child(0).show()
 		
 func getPath(cand):

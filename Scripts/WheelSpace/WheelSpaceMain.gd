@@ -38,7 +38,7 @@ func _ready() -> void:
 #	var d = AutomatorData.new()
 #	d.setAutomator("Spinbot")
 #	Automation.addAutomatorFromData(d)
-	
+	print(str(GVars.hellChallengeLayer2))
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText)

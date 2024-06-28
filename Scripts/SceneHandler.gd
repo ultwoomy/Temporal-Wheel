@@ -8,7 +8,7 @@ signal sceneChanged
 
 #@ Constants
 const WHEELSPACE : String = "res://Scenes/WheelSpace/WheelSpace.tscn"
-const SETTINGS : String = "res://Scenes/Settings.tscn"
+const SETTINGS : String = "res://Scenes/settings.tscn"
 const CREDITS : String = "res://Scenes/Credits.tscn"
 const TRAVELSPACE : String = "res://Scenes/TravelSpace.tscn"
 const ASCENSIONSPACE : String = "res://Scenes/AscensionSpace.tscn"

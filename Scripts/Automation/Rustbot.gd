@@ -8,8 +8,9 @@ class_name Rustbot
 #@ Virtual Methods
 func _execute() -> void:
 	# Automator has to be enabled to execute.
-	if not enabled:
+	if not enabled or not GVars.automatorVarsData.rustAutoBuyEnabled:
 		return
+	print("suc")
 	_up04()
 	_up03()
 	_up02()

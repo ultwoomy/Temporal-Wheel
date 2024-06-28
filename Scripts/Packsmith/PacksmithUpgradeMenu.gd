@@ -47,6 +47,8 @@ func _ready() -> void:
 	upgradeButton4.pressed.connect(self._up04)
 	
 	updateDisplays()
+	if Automation.contains("Rustbot"):
+		WheelSpinner.wheelRotationCompleted.connect(updateDisplays)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

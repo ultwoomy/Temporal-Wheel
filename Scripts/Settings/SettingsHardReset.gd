@@ -27,6 +27,7 @@ func _buttonPressed():
 		GVars.resetR1Stats()
 		GVars.resetR2Stats()
 		GVars.resetPermStats()
+		Automation.clearAutomators()
 		button.text = "Game Reset!"
 		presses = 0
 	if presses > 0:

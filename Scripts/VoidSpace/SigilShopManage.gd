@@ -21,6 +21,7 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 @onready var sigilLabel : Label = $SigilLabel
 @onready var buyButton : Button = $BuyButton
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
+@onready var sandLabel : Label = $SandLabel
 
 
 #@ Virtual Methods
@@ -32,6 +33,7 @@ func _ready():
 	sigilLabel.size = Vector2(400,200)
 	buyButton.size = Vector2(100,100)
 	buyButton.position = Vector2(850,380)
+	sandLabel.position = Vector2(750,225)
 	reset()
 	
 	# Connect signals.
@@ -45,9 +47,19 @@ func _onButtonPressed():
 		reset()
 	else:
 		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
-			GVars.spinData.spin -= GVars.sigilData.costSpin
-			GVars.spinData.rotations -= GVars.sigilData.costRot
-			checkCurrentSigil()
+			if GVars.hellChallengeLayer2 == 0:
+				if GVars.sand >= GVars.sandCost:
+					GVars.sand -= GVars.sandCost
+					GVars.sandCost += GVars.sandScaling
+					GVars.spinData.spin -= GVars.sigilData.costSpin
+					GVars.spinData.rotations -= GVars.sigilData.costRot
+					checkCurrentSigil()
+				else:
+					checkStupid()
+			else:
+				GVars.spinData.spin -= GVars.sigilData.costSpin
+				GVars.spinData.rotations -= GVars.sigilData.costRot
+				checkCurrentSigil()
 		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000
 			checkCurrentSigil()
@@ -96,6 +108,8 @@ func reset():
 		buyButton.hide()
 	elif not GVars.hellChallengeLayer2 == 1 :
 		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
+		if GVars.hellChallengeLayer2 == 0:
+			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
 		buyButton.text = "Buy"
 		failbought = false
 	else:

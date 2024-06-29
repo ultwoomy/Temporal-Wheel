@@ -35,7 +35,6 @@ var _dialogueHandler : DialogueHandler = DialogueHandler.new()  # Ignore warning
 
 @onready var selectionMenu : SelectionMenu = $SelectionMenu
 @onready var upgradeMenu : UpgradeMenu = $UpgradeMenu
-
 @onready var automationMenu : AutomationMenu = $AutomationMenu
 
 

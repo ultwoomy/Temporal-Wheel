@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_3en74")
-name = "Rustbot"
-automator = 2
+name = "Mushbot"
+automator = 1
 level = 1
 amount = 1
 cooldown = 1.0

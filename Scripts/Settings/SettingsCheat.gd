@@ -12,7 +12,7 @@ func _on_text_submitted(inputtext):
 		clear()
 	if(inputtext == "freecrap"):
 		GVars.spinData.spin = 1000000000000
-		GVars.spinData.rotations = 1000000
+		GVars.spinData.rotations = 10000000
 		clear()
 	if(inputtext == "brilliantlightningrush"):
 		GVars.rustData.rust = 1000000000

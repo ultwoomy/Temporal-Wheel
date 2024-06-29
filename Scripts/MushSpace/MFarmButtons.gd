@@ -15,8 +15,21 @@ func _ready() -> void:
 	plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
 	remove.pressed.connect(_remove)
+	mushbotCheck()
 
-
+func autoHarvest():
+	var replantOrder = [-1,-1,-1,-1]
+	for n in GVars.mushroomData.current.size():
+		replantOrder[n] = GVars.mushroomData.current[n]
+	_harvest()
+	for n in GVars.mushroomData.current.size():
+		if replantOrder[n] > 0:
+			_plantSpecific(replantOrder[n],n)
+			
+func mushbotCheck():
+	if Automation.contains("Mushbot"):
+		WheelSpinner.wheelRotationCompleted.connect(autoHarvest)
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
@@ -35,6 +48,18 @@ func _plant() -> void:
 				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
 			get_window().get_node("EventManager").mushroom_planted.emit()
 			break
+			
+func _plantSpecific(mushroomType,plotNo) -> void:
+	var post10scaling = 1
+	if(GVars.mushroomData.current[plotNo] == 0):
+		GVars.mushroomData.current[plotNo] = mushroomType
+		if(GVars.mushroomData.level > 10):
+			post10scaling = GVars.mushroomData.level - 8
+		if(GVars.curEmotionBuff == 3):
+			GVars.mushroomData.timeLeft[plotNo] = mushroomType * 30 * post10scaling + GVars.mushroomData.level * 5 * post10scaling
+		else:
+			GVars.mushroomData.timeLeft[plotNo] = mushroomType * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
+		get_window().get_node("EventManager").mushroom_planted.emit()
 
 
 func _harvest() -> void:

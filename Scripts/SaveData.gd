@@ -10,6 +10,9 @@ extends Resource
 @export var ritualData : RitualData
 @export var sigilData : SigilData
 @export var dollarData : DollarData
+@export var sand : float
+@export var sandCost : float
+@export var sandScaling : float
 @export_group("R1stats")
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
@@ -78,6 +81,9 @@ func _init():
 	kbityData.resetData()
 	backpackData = BackpackData.new()
 	automatorVarsData = AutomatorVarsData.new()
+	sand = 0
+	sandCost = 7
+	sandScaling = 3
 	inContract = false
 	hellChallengeNerf = -1
 	hellChallengeLayer2 = -1
@@ -99,7 +105,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 11
+	versNo = 12
 	ratmail = 0
 
 func save_stats(data):

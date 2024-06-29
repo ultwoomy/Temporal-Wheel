@@ -13,14 +13,18 @@ func _enter() -> void:
 	
 	voidSpace.sigilButton.show()
 	voidSpace.unlockRitualButton()
+	voidSpace.unlockKbityButton()
 	
 	# Connect signals as to wait for the Player to choose a menu to go into.
 	if not voidSpace.sigilButton.pressed.is_connected(voidSpace.changeState):
 		voidSpace.sigilButton.pressed.connect(voidSpace.changeState.bind(VS_MenuSigilState.new(voidSpace)))
 	if not voidSpace.ritualButton.pressed.is_connected(voidSpace.changeState):
 		voidSpace.ritualButton.pressed.connect(voidSpace.changeState.bind(VS_MenuRitualState.new(voidSpace)))
+	if not voidSpace.kbityButton.pressed.is_connected(voidSpace.changeState):
+		voidSpace.kbityButton.pressed.connect(voidSpace.changeState.bind(VS_MenuKbityState.new(voidSpace)))
 
 
 func _exit() -> void:
 	voidSpace.sigilButton.hide()
 	voidSpace.ritualButton.hide()
+	voidSpace.kbityButton.hide()

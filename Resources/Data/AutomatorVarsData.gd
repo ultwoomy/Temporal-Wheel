@@ -5,6 +5,8 @@ class_name AutomatorVarsData
 @export var globalAutomatorCostRust : float
 @export var globalAutomatorScalingSpin : float
 @export var globalAutomatorScalingRust : float
+@export var rustAutoBuyEnabled : bool
+@export var automatorList : Array[AutomatorData]
 
 func _init():
 	resetData()
@@ -16,3 +18,6 @@ func resetData() -> void:
 	globalAutomatorScalingSpin = 1.1
 	#multiplicative scaling
 	globalAutomatorScalingRust = 2.5
+	rustAutoBuyEnabled = true
+	automatorList.clear()
+	

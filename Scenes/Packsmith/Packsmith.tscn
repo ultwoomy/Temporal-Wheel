@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithMenu.gd" id="10_trrmv"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
 [ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
-[ext_resource type="PackedScene" path="res://Scenes/AutomationMenu.tscn" id="13_18xu6"]
+[ext_resource type="PackedScene" uid="uid://by7i3len3apkx" path="res://Scenes/Packsmith/AutomationMenu.tscn" id="13_18xu6"]
 [ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
@@ -150,9 +150,9 @@ offset_bottom = 470.0
 
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 398.0
+offset_left = 330.0
 offset_top = 428.0
-offset_right = 498.0
+offset_right = 430.0
 offset_bottom = 528.0
 theme_override_font_sizes/font_size = 15
 text = "Next"
@@ -213,10 +213,10 @@ text = "Automate"
 
 [node name="NextButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 400.0
-offset_top = 428.0
-offset_right = 500.0
-offset_bottom = 528.0
+offset_left = 331.0
+offset_top = 425.0
+offset_right = 431.0
+offset_bottom = 525.0
 theme_override_font_sizes/font_size = 15
 text = "Next"
 

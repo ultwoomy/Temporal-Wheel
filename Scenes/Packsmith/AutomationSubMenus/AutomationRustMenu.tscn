@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://dpd5ysfy1qwt6"]
+
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="1_e86qo"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_itek8"]
+[ext_resource type="Script" path="res://Scripts/Packsmith/AutomationSubMenus/PacksmithAutomationRust.gd" id="1_ntfd0"]
+[ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="2_312tf"]
+[ext_resource type="Texture2D" uid="uid://nctb7gfsb5jy" path="res://Sprites/Automators/rustbot.png" id="3_7hg7f"]
+[ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="5_i1y0j"]
+[ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="6_26y5s"]
+[ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="7_ehaqa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8wxn"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="AutomationRustMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_itek8")
+script = ExtResource("1_ntfd0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 108.0
+offset_right = 940.0
+offset_bottom = 508.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i8wxn")
+
+[node name="Price" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 329.0
+offset_right = 384.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 15
+text = "Cost in       :
+Cost in       :"
+
+[node name="Momentum" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 12)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_e86qo")
+
+[node name="Rust" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_312tf")
+
+[node name="RustbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(0.372549, 1, 0.364706, 1)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 165.0
+scale = Vector2(2, 2)
+
+[node name="RustbotSprite" type="Sprite2D" parent="Panel/RustbotPanel"]
+position = Vector2(100, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7hg7f")
+
+[node name="Label" type="Label" parent="Panel/RustbotPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 320.0
+offset_bottom = 160.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "A small green square, filled with anger at being so poorly drawn. It hates the packsmith, and has decided to benevolently give you alternatives to speaking with them for a one time price."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Panel/RustbotPanel"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 125.0
+offset_right = 200.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "Buy"
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_i1y0j")
+texture_pressed = ExtResource("6_26y5s")
+texture_hover = ExtResource("6_26y5s")
+texture_disabled = ExtResource("5_i1y0j")
+texture_focused = ExtResource("7_ehaqa")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 270.0
+offset_right = 270.0
+offset_bottom = 330.0
+text = "Turn automation on"
+
+[connection signal="pressed" from="Panel/RustbotPanel/Button" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="Panel/TextureButton" to="." method="exit"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_toggle_pressed"]

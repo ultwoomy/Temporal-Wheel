@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://bqkcrmlfn47m2"]
+
+[ext_resource type="Script" path="res://Scripts/Packsmith/AutomationSubMenus/PacksmithAutomationMush.gd" id="1_jkg0o"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_mrt6w"]
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="1_qbkbw"]
+[ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="2_qosds"]
+[ext_resource type="Texture2D" uid="uid://dx3mg7u7a54ts" path="res://Sprites/Automators/mushbot.png" id="4_jtk4a"]
+[ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="5_u2mts"]
+[ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="6_vs3d0"]
+[ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="7_q4pdw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc0t4"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="AutomationMushMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mrt6w")
+script = ExtResource("1_jkg0o")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 108.0
+offset_right = 940.0
+offset_bottom = 508.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_lc0t4")
+
+[node name="Price" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 329.0
+offset_right = 384.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 15
+text = "Cost in       :
+Cost in       :"
+
+[node name="Momentum" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 12)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_qbkbw")
+
+[node name="Rust" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_qosds")
+
+[node name="MushbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 165.0
+scale = Vector2(2, 2)
+
+[node name="MushbotSprite" type="Sprite2D" parent="Panel/MushbotPanel"]
+position = Vector2(100, 45)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_jtk4a")
+
+[node name="Label" type="Label" parent="Panel/MushbotPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 320.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "Agent of God, who came down to the mortal plane to spread the good word of mushroom growing. It has grown an interest in your activites, and has agreed to facilitate your growing given a small fee."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Panel/MushbotPanel"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 125.0
+offset_right = 200.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(1, 0.6, 0.517647, 1)
+theme_override_colors/font_outline_color = Color(1, 0.729412, 0.984314, 1)
+theme_override_font_sizes/font_size = 10
+text = "Buy"
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_u2mts")
+texture_pressed = ExtResource("6_vs3d0")
+texture_hover = ExtResource("6_vs3d0")
+texture_disabled = ExtResource("5_u2mts")
+texture_focused = ExtResource("7_q4pdw")
+
+[connection signal="pressed" from="Panel/MushbotPanel/Button" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="Panel/TextureButton" to="." method="exit"]

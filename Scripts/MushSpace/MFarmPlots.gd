@@ -15,6 +15,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_update_sprites()
+	mushbotCheck()
 	
 	get_window().get_node("EventManager").mushroom_planted.connect(_update_sprites)
 	get_window().get_node("EventManager").mushroom_harvested.connect(_update_sprites)
@@ -23,7 +24,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
+			
+func mushbotCheck():
+	if Automation.contains("Mushbot"):
+		WheelSpinner.wheelRotationCompleted.connect(_update_sprites)
 
 func _update_sprites():
 	plot1.hide()

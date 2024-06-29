@@ -40,13 +40,25 @@ grow_vertical = 2
 theme = ExtResource("1_n0cmi")
 script = ExtResource("1_c453g")
 
-[node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("frontscreen", "frontscreenLabel")]
+[node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("zundaSprites", "frontscreen", "frontscreenLabel", "zundaLabel", "nextButton", "frontScreenNext")]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bgc55")
 script = ExtResource("7_thvbc")
+zundaSprites = NodePath(".")
 frontscreen = NodePath("../Blackscreen")
 frontscreenLabel = NodePath("../Blackscreen/Label")
+zundaLabel = NodePath("Label")
+nextButton = NodePath("Button")
+frontScreenNext = NodePath("../Blackscreen/Next")
+
+[node name="Label" type="Label" parent="Zunda"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="Zunda"]
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="Blackscreen" type="Sprite2D" parent="."]
 position = Vector2(500, 300)

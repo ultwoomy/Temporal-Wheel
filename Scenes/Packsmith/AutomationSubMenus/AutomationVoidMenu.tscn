@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://ypr3q1n35lw2"]
+
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="1_2t5fq"]
+[ext_resource type="Script" path="res://Scripts/Packsmith/AutomationSubMenus/PacksmithAutomationVoid.gd" id="1_ogmrw"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_qt53r"]
+[ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="2_0ynhv"]
+[ext_resource type="Texture2D" uid="uid://c46lad23eshcr" path="res://Sprites/Automators/voidbot.png" id="3_qi142"]
+[ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="5_yxghb"]
+[ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="6_wk1hs"]
+[ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="7_yucbv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8wxn"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="AutomationVoidMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qt53r")
+script = ExtResource("1_ogmrw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 108.0
+offset_right = 940.0
+offset_bottom = 508.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i8wxn")
+
+[node name="Price" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 329.0
+offset_right = 384.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 15
+text = "Cost in       :
+Cost in       :"
+
+[node name="Momentum" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 12)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_2t5fq")
+
+[node name="Rust" type="Sprite2D" parent="Panel/Price"]
+position = Vector2(70, 32)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_0ynhv")
+
+[node name="VoidbotPanel" type="Panel" parent="Panel"]
+self_modulate = Color(1, 0.101961, 1, 1)
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 165.0
+scale = Vector2(2, 2)
+
+[node name="VoidbotSprite" type="Sprite2D" parent="Panel/VoidbotPanel"]
+position = Vector2(100, 70)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_qi142")
+
+[node name="Label" type="Label" parent="Panel/VoidbotPanel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 320.0
+offset_bottom = 190.0
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 12
+text = "A disturbingly human like fae, it has flown in from a different dimension full of the desire to do some trolling. It has decided to dedicate its remaining life time to trolling, the first of which, will be to steal some momentum."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="Panel/VoidbotPanel"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 125.0
+offset_right = 200.0
+offset_bottom = 165.0
+theme_override_colors/font_color = Color(1, 0.490196, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 0.729412, 0.984314, 1)
+theme_override_font_sizes/font_size = 10
+text = "Buy"
+
+[node name="TextureButton" type="TextureButton" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_yxghb")
+texture_pressed = ExtResource("6_wk1hs")
+texture_hover = ExtResource("6_wk1hs")
+texture_disabled = ExtResource("5_yxghb")
+texture_focused = ExtResource("7_yucbv")
+
+[connection signal="pressed" from="Panel/VoidbotPanel/Button" to="." method="_on_buy_pressed"]
+[connection signal="pressed" from="Panel/TextureButton" to="." method="exit"]

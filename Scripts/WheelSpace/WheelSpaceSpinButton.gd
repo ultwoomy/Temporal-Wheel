@@ -41,7 +41,7 @@ func _buttonPressed():
 func _spinUpdateLoop():
 	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinData.spinPerClick))
 	if(GVars.hellChallengeLayer2 == 0):
-		GVars.spinData.spinPerClick = 1.5/log(GVars.spinData.spin + 2)
+		GVars.spinData.spinPerClick = 1.5/(log(GVars.spinData.spin + 2)/2)
 	elif GVars.soulsData.spinBaseBuffEnabled:
 		GVars.spinData.spinPerClick = 1 + log(GVars.spinData.rotations + 1)/log(10 - GVars.soulsData.spinBaseBuff)
 	else:

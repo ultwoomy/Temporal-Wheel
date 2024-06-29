@@ -10,6 +10,7 @@ extends Control
 func _ready() -> void:
 	get_window().get_node("EventManager").mushroom_planted.connect(_update_xp_bar)
 	_update_xp_bar()
+	mushbotCheck()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,3 +26,7 @@ func _update_xp_bar() -> void:
 		xpBarProgress.modulate = Color(255,0,255)
 	xpBarProgress.scale.x = GVars.mushroomData.xp / GVars.mushroomData.xpThresh * 1.5
 	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))
+
+func mushbotCheck():
+	if Automation.contains("Mushbot"):
+		WheelSpinner.wheelRotationCompleted.connect(_update_xp_bar)

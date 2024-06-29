@@ -10,6 +10,8 @@ var automators : Array[Automator]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	WheelSpinner.wheelRotationCompleted.connect(automate)
+	for x in GVars.automatorVarsData.automatorList:
+		addAutomatorFromData(x)
 
 
 #@ Public Methods
@@ -28,7 +30,16 @@ func contains(what : String) -> bool:
 		if x.getType() == what:
 			return true
 	return false
-
+	
+func updateActive() -> void:
+	for x in GVars.automatorVarsData.automatorList:
+		if not contains(x.name):
+			initAutomatorFromType(x.name)
+			
+func initAutomatorFromType(x) -> void:
+	var d = AutomatorData.new()
+	d.setAutomator(x)
+	Automation.addAutomatorFromData(d)
 
 # Add an automator to the array using AutomatorData.
 func addAutomatorFromData(automatorData : AutomatorData) -> void:
@@ -53,3 +64,6 @@ func _createAutomatorFromData(automatorData : AutomatorData) -> Automator:
 			result = Rustbot.new()
 	result.enabled = true
 	return result
+	
+func clearAutomators():
+	automators.clear()

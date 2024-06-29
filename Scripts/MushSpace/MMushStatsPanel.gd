@@ -9,6 +9,7 @@ extends Sprite2D
 func _ready() -> void:
 	get_window().get_node("EventManager").mushroom_planted.connect(_update_stats)
 	_update_stats()
+	mushbotCheck()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,3 +19,7 @@ func _process(_delta: float) -> void:
 
 func _update_stats() -> void:
 	statsDisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff))
+
+func mushbotCheck():
+	if Automation.contains("Mushbot"):
+		WheelSpinner.wheelRotationCompleted.connect(_update_stats)

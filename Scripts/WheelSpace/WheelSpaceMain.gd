@@ -59,7 +59,7 @@ func _ready() -> void:
 	if (numOfCandles > 5):
 		numOfCandles = 5
 		
-	backpack.hide()		
+	backpack.hide()
 
 
 func _process(_delta) -> void:

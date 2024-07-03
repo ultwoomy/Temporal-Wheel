@@ -40,7 +40,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Control" type="Control"]
+[node name="AscensionSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

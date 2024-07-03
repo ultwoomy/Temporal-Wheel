@@ -163,6 +163,7 @@ func _butCha():
 	else:
 		_button_generic(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")
 
+
 func _awaken():
 	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff  # TODO: Replace this with a global variable in Buffs.gd
 	GVars.resetR0Stats()

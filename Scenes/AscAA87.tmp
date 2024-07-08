@@ -7,9 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ike3hhcec7h2" path="res://Sprites/Ascension/asc_back/tile002.png" id="3_4fn1j"]
 [ext_resource type="Texture2D" uid="uid://dt4deysgc40yo" path="res://Sprites/Ascension/asc_back/tile003.png" id="4_26tce"]
 [ext_resource type="Texture2D" uid="uid://das71kk4d7xxj" path="res://Sprites/Ascension/asc_back/tile004.png" id="5_04exf"]
+[ext_resource type="Script" path="res://Scripts/AscSpace/Amain.gd" id="8_2fh3s"]
 [ext_resource type="Texture2D" uid="uid://c4yc6q3pu5phl" path="res://Sprites/Ascension/asc_back/Aswallow.png" id="8_veqme"]
 [ext_resource type="Texture2D" uid="uid://cfk14j6sx4yav" path="res://Sprites/Ascension/asc_back/asc_contract.png" id="10_gej3s"]
-[ext_resource type="Script" path="res://Scripts/AscSpace/AscSpaceBackground.gd" id="10_mbd65"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x2fdy"]
 animations = [{
@@ -50,11 +50,19 @@ grow_vertical = 2
 theme = ExtResource("1_xtaj3")
 script = ExtResource("2_0w7t3")
 
-[node name="Background" type="AnimatedSprite2D" parent="."]
+[node name="Background" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("dia", "fear", "cold", "warmth", "wrath", "complacent", "awaken", "challenge")]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(500, 300)
 sprite_frames = SubResource("SpriteFrames_x2fdy")
-script = ExtResource("10_mbd65")
+script = ExtResource("8_2fh3s")
+dia = NodePath("../Story")
+fear = NodePath("../Fear")
+cold = NodePath("../Cold")
+warmth = NodePath("../Warmth")
+wrath = NodePath("../Wrath")
+complacent = NodePath("../Complacency")
+awaken = NodePath("../Awaken")
+challenge = NodePath("../Challenge")
 
 [node name="Story" type="Label" parent="."]
 modulate = Color(1, 1, 0, 1)

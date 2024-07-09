@@ -52,7 +52,6 @@ func displaySigils() -> void:
 		smSigils[index].setSigil(sigil)
 		smSigils[index].show()
 		index += 1
-		print(str(index))
 
 
 # Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.

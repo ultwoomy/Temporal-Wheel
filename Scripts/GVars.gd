@@ -26,6 +26,7 @@ extends Node
 @export var kbityData : KbityData
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
+@export var nightChallengeData : NightChallengeData
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -33,6 +34,7 @@ extends Node
 @export var ifFirstPack : bool
 @export var ifFirstHell : bool
 @export var ifFirstAtlas : bool
+@export var ifFirstZunda : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -51,6 +53,7 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 #@ Virtual Methods
 func _init():
+	
 	load_as_normal()
 
 
@@ -78,6 +81,8 @@ func create_data():
 		backpackData = BackpackData.new()
 	if not automatorVarsData:
 		automatorVarsData = AutomatorVarsData.new()
+	if not nightChallengeData:
+		nightChallengeData = NightChallengeData.new()
 
 
 func save_prog():
@@ -93,6 +98,7 @@ func save_prog():
 	loader.atlasData = atlasData
 	loader.kbityData = kbityData
 	loader.backpackData = backpackData
+	loader.nightChallengeData = nightChallengeData
 	#loader.sigilData = sigilData
 	loader.sand = sand
 	loader.sandCost = sandCost
@@ -109,6 +115,7 @@ func save_prog():
 	loader.ifFirstPack = ifFirstPack
 	loader.ifFirstHell = ifFirstHell
 	loader.ifFirstAtlas = ifFirstAtlas
+	loader.ifFirstZunda = ifFirstZunda
 	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
@@ -132,8 +139,8 @@ func resetR0Stats():
 	sigilData.resetData()
 	dollarData.resetData()
 	sand = 0
-	sandCost = 7
-	sandCost = 3
+	sandCost = 5
+	sandScaling = 3
 
 func resetR1Stats():
 	curEmotionBuff = -1
@@ -152,6 +159,7 @@ func resetR2Stats():
 	backpackData.resetData()
 	Automation.clearAutomators()
 	automatorVarsData.resetData()
+	nightChallengeData.resetData()
 	
 func resetPermStats():
 	ifFirstBoot = true
@@ -160,13 +168,14 @@ func resetPermStats():
 	ifFirstPack = true
 	ifFirstHell = true
 	ifFirstAtlas = true
+	ifFirstZunda = true
 	altSigilSand = false
 	altSigilCity = false
 	altSigilNight = false
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 12
+	versNo = 13
 	ratmail = 0
 	
 func getScientific(val):
@@ -214,8 +223,12 @@ func load_as_normal():
 		versNo += 1
 	if(versNo <= 12):
 		loader.sand = 0
-		loader.sandCost = 7
+		loader.sandCost = 5
 		loader.sandScaling = 3
+		versNo += 1
+	if(versNo <= 13):
+		loader.nightChallengeData = NightChallengeData.new()
+		loader.ifFirstZunda = true
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -229,6 +242,7 @@ func load_as_normal():
 	ifSecondBoot = loader.ifSecondBoot
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
+	ifFirstZunda = loader.ifFirstZunda
 	hellChallengeNerf = loader.hellChallengeNerf
 	inContract = loader.inContract
 	musicvol = loader.musicvol
@@ -248,6 +262,7 @@ func load_as_normal():
 	atlasData = loader.atlasData
 	backpackData = loader.backpackData
 	automatorVarsData = loader.automatorVarsData
+	nightChallengeData = loader.nightChallengeData
 	sand = loader.sand
 	sandCost = loader.sandCost
 	sandScaling = loader.sandScaling

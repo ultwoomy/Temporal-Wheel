@@ -31,6 +31,7 @@ extends Resource
 @export var atlasData : AtlasData
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
+@export var nightChallengeData : NightChallengeData
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -38,6 +39,7 @@ extends Resource
 @export var ifFirstPack : bool
 @export var ifFirstHell : bool
 @export var ifFirstAtlas : bool
+@export var ifFirstZunda : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -81,6 +83,7 @@ func _init():
 	kbityData.resetData()
 	backpackData = BackpackData.new()
 	automatorVarsData = AutomatorVarsData.new()
+	nightChallengeData = NightChallengeData.new()
 	sand = 0
 	sandCost = 7
 	sandScaling = 3
@@ -96,6 +99,7 @@ func _init():
 	ifFirstPack = true
 	ifFirstHell = true
 	ifFirstAtlas = true
+	ifFirstZunda = true
 	kbityProgSpin = 0
 	kbityProgRot = 0
 	altSigilSand = false
@@ -105,7 +109,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 12
+	versNo = 13
 	ratmail = 0
 
 func save_stats(data):

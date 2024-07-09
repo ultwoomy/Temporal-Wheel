@@ -3,6 +3,7 @@ class_name AutomationSubMenuRust
 
 @onready var pricetag : Label = $Panel/Price
 @onready var rustBotBuyButton : Button = $Panel/RustbotPanel/Button
+@onready var rustDesc : Label = $Panel/RustbotPanel/Label
 @onready var toggle : Button = $Panel/Button
 
 func _ready():
@@ -11,6 +12,7 @@ func _ready():
 		toggle.text = "Autobuy: Enabled"
 	else:
 		toggle.text = "Autobuy: Disabled"
+	rustDesc.text = "A small green square, filled with anger at being so poorly drawn. It hates the packsmith, and has decided to benevolently give you alternatives to speaking with them for a one time price."
 	
 func _on_buy_pressed():
 	get_parent().buyAutomator("Rustbot")
@@ -35,3 +37,7 @@ func _on_toggle_pressed():
 	else:
 		GVars.automatorVarsData.rustAutoBuyEnabled = true
 		toggle.text = "Autobuy: Enabled"
+
+
+func _on_effects_pressed():
+	rustDesc.text = "Effects:\nAutobuys rust upgrades even when not on screen. Allows you to augment sigils from Rustspace, skipping dialouge."

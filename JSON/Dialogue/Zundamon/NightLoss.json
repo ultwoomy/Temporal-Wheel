@@ -1,0 +1,38 @@
+{
+	"loss1": [
+		{
+			"TEXT": "Oh good you didn't die terribly.", 
+			"FACE": "HAPPY"
+		},
+		{
+			"TEXT": "I got too impatient, so when you came near, I accidentally swallowed you whole.",
+			"FACE": "SHEEPISH"
+		},
+		{
+			"TEXT": "It's a good thing you're completely inedible.",
+			"FACE": "HAPPY"
+		},
+		{
+			"TEXT": "Like chalky with a real bad aftertaste.",
+			"FACE": "NEUTRAL"
+		},
+		{
+			"TEXT": "You're not saying a whole lot. I didn't accidentally eat your brain or something did I?",
+			"FACE": "CONCERN"
+		},
+		{
+			"TEXT": "",
+			"FACE": "HAPPY"
+		}
+	],
+	"loss2": [
+		{
+			"TEXT": "Oh good you didn't die terribly.", 
+			"FACE": "HAPPY"
+		},
+		{
+			"TEXT": "I got too impatient, so when you came near, I accidentally swallowed you whole.",
+			"FACE": "SHEEPISH"
+		}
+	]
+}

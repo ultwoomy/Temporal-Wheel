@@ -50,7 +50,7 @@ func _ready():
 	
 	
 	
-	if (GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+	if (GVars.hellChallengeNerf > 0) or not GVars.ifFirstHell:
 		automateButton.show()
 	else:
 		automateButton.hide()

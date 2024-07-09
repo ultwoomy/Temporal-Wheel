@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://bk3u4kp47gusu"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_jbwoe"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRequestGraphic.gd" id="2_xxvv8"]
+[ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="3_83b4i"]
+[ext_resource type="Texture2D" uid="uid://cy8kyp7t10fin" path="res://Sprites/WheelSpace/backpackButtons/rotations.png" id="4_eustj"]
+[ext_resource type="Texture2D" uid="uid://ddvy1ujm5r1we" path="res://Sprites/WheelSpace/ratsheet/cheese.png" id="5_nfsmr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tsv7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_83b4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eustj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nfsmr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RequestGraphic" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_jbwoe")
+script = ExtResource("2_xxvv8")
+
+[node name="RequestIcon" type="AnimatedSprite2D" parent="."]
+position = Vector2(75, 75)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tsv7p")
+frame_progress = 0.222949
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 70.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "dsfsdf"
+vertical_alignment = 1
+
+[node name="RequestIcon2" type="AnimatedSprite2D" parent="."]
+position = Vector2(75, 180)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tsv7p")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 150.0
+offset_top = 130.0
+offset_right = 300.0
+offset_bottom = 180.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "dsfsdf"
+vertical_alignment = 1

@@ -95,5 +95,12 @@ texture_hover = ExtResource("6_xrgr8")
 texture_disabled = ExtResource("5_pstpk")
 texture_focused = ExtResource("7_vwcx0")
 
+[node name="Effects" type="Button" parent="Panel"]
+offset_left = 330.0
+offset_right = 400.0
+offset_bottom = 40.0
+text = "Effects"
+
 [connection signal="pressed" from="Panel/SpinbotPanel/Button" to="." method="_on_buy_pressed"]
 [connection signal="pressed" from="Panel/TextureButton" to="." method="exit"]
+[connection signal="pressed" from="Panel/Effects" to="." method="_on_effects_pressed"]

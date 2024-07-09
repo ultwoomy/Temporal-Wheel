@@ -19,6 +19,7 @@ const VOIDSPACE_STOP : String = "res://Scenes/VoidSpaceStop.tscn"
 const HELLSPACE : String = "res://Scenes/HellSpace.tscn"
 const MUSHSPACE : String = "res://Scenes/MushSpace/MushSpace.tscn"
 const PRE_ASCENSIONSPACE : String = "res://Scenes/PreAscSpace.tscn"
+const NIGHT_LOSS : String = "res://Scenes/NighChallengeLoss.tscn"
 
 
 #@ Public Methods

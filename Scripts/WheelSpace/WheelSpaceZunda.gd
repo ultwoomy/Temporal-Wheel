@@ -1,12 +1,55 @@
 extends AnimatedSprite2D
 
+@export var countdownBack : Sprite2D
+@export var countdownText : Label
+@export var requestButton : TextureButton
+var currentRequest : Request
+var requestsDone : int
+@onready var requestLabelScene = preload("res://Scenes/RequestGraphic.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not GVars.hellChallengeLayer2 == 2:
 		hide()
+	else:
+		WheelSpinner.wheelRotationCompleted.connect(updateCounter)
+		resetRequest()
+		updateCounter()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
+func updateCounter():
+	GVars.nightChallengeData.hungerCurrent += 1
+	if GVars.nightChallengeData.extraHungry:
+		currentRequest.upImpatience()
+		currentRequest.upImpatience()
+	currentRequest.upImpatience()
+	countdownText.text = str(GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction)
+	if GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction < 0:
+		SceneHandler.changeSceneToFilePath(SceneHandler.NIGHT_LOSS)
+	elif GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction < 20:
+		countdownBack.self_modulate = Color.DARK_RED
+	
+func resetRequest():
+	requestsDone = 0
+	for i in GVars.nightChallengeData.requestList:
+		if not i.finished:
+			currentRequest = i
+			break
+		requestsDone += 1
+	if requestsDone == 9:
+		#winning sequence
+		WheelSpinner.wheelRotationCompleted.disconnect(updateCounter)
+		hide()
+	countdownBack.self_modulate = Color.AQUA
+	var instance = requestLabelScene.instantiate()
+	requestButton.add_child(instance)
+	if requestsDone > 4:
+		GVars.nightChallengeData.extraHungry = true
+	#requestButton.get_child(0).position = Vector2(30,-200)
+
+func _on_texture_button_pressed():
+	if currentRequest.checkPassing():
+		currentRequest.finished = true
+		GVars.nightChallengeData.hungerCurrent = 0
+		requestButton.get_child(0).queue_free()
+		resetRequest()

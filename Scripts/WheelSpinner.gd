@@ -88,6 +88,10 @@ func getWheelRotationAmount() -> float:
 
 	# Increase amount by rot buff.
 	result *= GVars.ritualData.rotBuff
+	
+	# Hell Challenge 0 effect
+	if GVars.hellChallengeLayer2 == 0 and GVars.spinData.rotations > 1000:
+		result /= (5000 + GVars.spinData.rotations)/6000
 	return result
 
 #@ Private Methods

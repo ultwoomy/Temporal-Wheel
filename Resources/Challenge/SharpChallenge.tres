@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChallengeData" load_steps=2 format=3 uid="uid://cwmhj8r18gof"]
+
+[ext_resource type="Script" path="res://Resources/Data/ChallengeData.gd" id="1_dvs0v"]
+
+[resource]
+script = ExtResource("1_dvs0v")
+name = "Sharp"
+layer = 0

@@ -12,7 +12,7 @@ var presses = 0.0
 
 #@ Virtual Methods
 func _ready():
-	if GVars.hellChallengeNerf >= 0:
+	if GVars.challenges:
 		show()
 	else:
 		hide()
@@ -29,7 +29,7 @@ func _ready():
 func _buttonPressed():
 	presses += 1.0
 	if(presses > 4):
-		GVars.hellChallengeNerf = -1
+		GVars.challenges = []
 		GVars.inContract = false
 		GVars.spinData.spin = 0
 		GVars.spinData.rotations = 0

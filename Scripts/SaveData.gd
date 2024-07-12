@@ -19,6 +19,7 @@ extends Resource
 @export_group("R2stats")
 @export var inContract : bool
 @export var souls : float
+@export var challenges : Array[ChallengeData]
 @export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChallengeData" load_steps=2 format=3 uid="uid://djtffapspl0iy"]
+
+[ext_resource type="Script" path="res://Resources/Data/ChallengeData.gd" id="1_gr7p0"]
+
+[resource]
+script = ExtResource("1_gr7p0")
+name = "Calm"
+layer = 0

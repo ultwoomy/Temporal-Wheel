@@ -14,18 +14,18 @@ func _ready():
 	image.scale.x = 0
 	image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 
+
 #Yu: Removed loop, now triggers on button press instead of every 2 seconds.
 func _button_pressed():
 	presses += 1.0
-	if(presses > 4):
-		GVars.hellChallengeNerf = -1
-		GVars.hellChallengeLayer2 = -1
+	if presses > 4:
+		GVars.challenges = []
 		GVars.ifhell = true
 		GVars.inContract = false
 		GVars.hellChallengeInit = true
 		GVars.spinData.spinPerClick = 1
 		presses = 0
 		hide()
-	if(presses > 0):
+	if presses > 0:
 		button.text = "5 presses to confirm"
 	image.scale.x = 2*presses/5

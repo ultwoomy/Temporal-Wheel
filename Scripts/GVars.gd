@@ -2,6 +2,21 @@ extends Node
 # Global script.
 
 
+#@ Constants
+# Layer 1
+const INCONGRUENT : ChallengeData = preload("res://Resources/Challenge/IncongruentChallenge.tres")
+const BRAVE : ChallengeData = preload("res://Resources/Challenge/BraveChallenge.tres")
+const SHARP : ChallengeData = preload("res://Resources/Challenge/SharpChallenge.tres")
+const AWARE : ChallengeData = preload("res://Resources/Challenge/AwareChallenge.tres")
+const CALM : ChallengeData = preload("res://Resources/Challenge/CalmChallenge.tres")
+# Layer 2
+const SANDY : ChallengeData = preload("res://Resources/Challenge/SandyChallenge.tres")
+const BITTERSWEET : ChallengeData = preload("res://Resources/Challenge/BittersweetChallenge.tres")
+const STARVED : ChallengeData = preload("res://Resources/Challenge/StarvedChallenge.tres")
+const FABULOUS : ChallengeData = preload("res://Resources/Challenge/FabulousChallenge.tres")
+
+
+#@ Export Variables
 @export_group("R0stats")
 @export var spinData : SpinData
 @export var rustData : RustData
@@ -17,7 +32,8 @@ extends Node
 @export var Aspinbuff : float
 @export var ifhell : bool
 @export var ifheaven : bool
-@export var hellChallengeNerf : int
+@export var challenges : Array[ChallengeData]
+#@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
 @export var inContract : bool
@@ -109,7 +125,8 @@ func save_prog():
 	loader.ifFirstPack = ifFirstPack
 	loader.ifFirstHell = ifFirstHell
 	loader.ifFirstAtlas = ifFirstAtlas
-	loader.hellChallengeNerf = hellChallengeNerf
+	# TODO: Add challenges variable to loader
+#	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
 	loader.altSigilSand = altSigilSand
@@ -135,12 +152,15 @@ func resetR0Stats():
 	sandCost = 7
 	sandCost = 3
 
+
 func resetR1Stats():
 	curEmotionBuff = -1
 	Aspinbuff = 1
 	ifhell = false
-	hellChallengeNerf = -1
-	
+	challenges = []
+#	hellChallengeNerf = -1
+
+
 func resetR2Stats():
 	ifheaven = false
 	inContract = false
@@ -168,12 +188,20 @@ func resetPermStats():
 	sfxvol = -12.0
 	versNo = 12
 	ratmail = 0
-	
+
+
 func getScientific(val):
 	if(val > 1000):
 		return fmat.scientific(val,2)
 	else :
 		return snapped(val,0.01)
+
+
+func hasChallenge(challenge : ChallengeData) -> bool:
+	if challenge in challenges:
+		return true
+	else:
+		return false
 
 
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
@@ -229,7 +257,8 @@ func load_as_normal():
 	ifSecondBoot = loader.ifSecondBoot
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
-	hellChallengeNerf = loader.hellChallengeNerf
+	challenges = loader.challenges
+#	hellChallengeNerf = loader.hellChallengeNerf
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol

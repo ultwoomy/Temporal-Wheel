@@ -5,7 +5,7 @@ extends GameScene
 
 
 #@ Public Variables
-var newChallenges : ChallengeData
+var newChallenge : ChallengeData
 var challengeNumber : int = -1
 
 
@@ -76,37 +76,34 @@ func _onGenericButtonPressed(switchEmotionBuff : int, text : String) -> void:
 	# Grants any buffs based on switchEmotionBuff which is granted by emotion chosen.
 	#99 is placeholder number for layer 1 challenge, 199 for layer 2
 	if switchEmotionBuff == 99:
-		' 
-		(!!!) L.B: 
-			This doesnt implement the code of doing multiple challenges.
-			These new changes Ive added only imitate the old code.
-			TODO: Actually implement layered challenges.
-		'
-		GVars.challenges = [newChallenges]
-#		GVars.hellChallengeNerf = challengeNumber
+		GVars.setChallenge(newChallenge)
 		GVars.inContract = true
-		switchEmotionBuff = 0
 		GVars.curEmotionBuff = 0
 	elif switchEmotionBuff == 199:
-		GVars.hellChallengeLayer2 = challengeNumber - 10
+		GVars.setChallenge(newChallenge)
+#		GVars.hellChallengeLayer2 = challengeNumber - 10  # L.B: Not needed?
 		GVars.inContract = true
 		GVars.hellChallengeInit = true
-		switchEmotionBuff = 0
 	else:
 		GVars.curEmotionBuff = switchEmotionBuff
 	awakenButton.show()
 
 
 func _onChallengeButtonPressed() -> void:
-	# L.B: The idea is to do stuff with first layer and then second layer.
-	# However, the original code only did stuff when the latest if statement was filled(?).
-	# Meaning that previous functionality was overriden by whatever if statement at the end (if the conditions were met).
-	# This shows that the code was still incomplete/work in progress.
-	# If trying to do something with the idea of doing multiple challenges... maybe do something along the lines of:
-#	for challengeData in newChallenges:
-#		_matchChallenge(challengeData)
-	
-	_matchChallenge(newChallenges)
+	match newChallenge:
+		# Layer 1
+		GVars.CHALLENGE_INCONGRUENT: _onGenericButtonPressed(99,"feel incongruent.\n\nYou've made a terrible mistake.\nIt will be different this time.")
+		GVars.CHALLENGE_BRAVE: _onGenericButtonPressed(99,"feel brave.\n\nYou are ready to go back.\nIt will be different this time.")
+		GVars.CHALLENGE_SHARP: _onGenericButtonPressed(99,"feel sharp.\n\nAs if hundreds of needles\nare poking your skin.\nIt will be different this time.")
+		GVars.CHALLENGE_AWARE: _onGenericButtonPressed(99,"feel aware.\n\nAs if you've snapped out\na tired trance.\nIt will be different this time.")
+		GVars.CHALLENGE_CALM: _onGenericButtonPressed(99,"feel calm.\n\nYou shove your way through\nthe deep.\nIt will be different this time.")
+		# Layer 2
+		GVars.CHALLENGE_SANDY: _onGenericButtonPressed(199,"feel sandy.\n\nIt's course and gritty and\ngets everywhere.")
+		GVars.CHALLENGE_BITTERSWEET: _onGenericButtonPressed(199,"feel bittersweet.\n\nThe world is so beautiful\nyou want to cry.")
+		GVars.CHALLENGE_STARVED: _onGenericButtonPressed(199,"feel starved.\n\nIt's eating you up on the\ninside.")
+		GVars.CHALLENGE_FABULOUS: _onGenericButtonPressed(199,"feel fabulous.\n\nIt's time to slay, in one\nway or another.")
+		# Error
+		_: _onGenericButtonPressed(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")
 
 
 # L.B: COPIED AND PASTED CODE - I don't know what this is doing.
@@ -116,9 +113,10 @@ func _awaken():
 	GVars.atlasData.hasReset = false
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
 	GVars.ifSecondBoot += 1
+	
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
 	print(str(GVars.hellChallengeInit))
-	if (GVars.hellChallengeLayer2 >= 0) and GVars.hellChallengeInit:
+	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
 		print("WAYO")
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
@@ -128,7 +126,7 @@ func _awaken():
 
 func _displayDialogue() -> void:
 	storyLabel.text = "You find yourself\nat an endless ocean."
-	GVars._dialouge(storyLabel,0,0.05)
+	GVars._dialouge(storyLabel, 0, 0.05)
 	storyLabel.text += "\n\nIt calls to you."
 	storyLabel.text += "\n\nYou feel..."
 
@@ -137,82 +135,48 @@ func _displayButtons() -> void:
 	#If face is active, show emotion
 	#Cannot stack emotion with challenge of the same type
 	if GVars.sigilData.curSigilBuff == 3:
-		if not GVars.hasChallenge(GVars.INCONGRUENT):
+		if not GVars.hasChallenge(GVars.CHALLENGE_INCONGRUENT):
 			fearButton.show()
-		if not GVars.hasChallenge(GVars.BRAVE):
+		if not GVars.hasChallenge(GVars.CHALLENGE_BRAVE):
 			coldButton.show()
-		if not GVars.hasChallenge(GVars.SHARP):
+		if not GVars.hasChallenge(GVars.CHALLENGE_SHARP):
 			warmthButton.show()
-		if not GVars.hasChallenge(GVars.AWARE):
+		if not GVars.hasChallenge(GVars.CHALLENGE_AWARE):
 			wrathButton.show()
 	
 	#If hell sigil is active and hell is not unlocked, show challenge options based on emote buff
 	#Nothing prepared for no emote buff, shouldn't be easy or possible to get
-	
-	# testing purposes:
-	GVars.sigilData.curSigilBuff = 5
-	GVars.hellChallengeLayer2 = 0
-#	GVars.hellChallengeNerf = -1
-	GVars.hellChallengeInit = true
-	
-	
 	if (GVars.sigilData.curSigilBuff == 5) and not GVars.ifhell:
 		challengeButton.show()
 		if GVars.curEmotionBuff <= 0:
-			newChallenges = GVars.INCONGRUENT
-#			challengeNumber = 0
+			newChallenge = GVars.CHALLENGE_INCONGRUENT
 		elif GVars.curEmotionBuff == 1:
-			newChallenges = GVars.BRAVE
-#			challengeNumber = 1
+			newChallenge = GVars.CHALLENGE_BRAVE
 		elif GVars.curEmotionBuff == 2:
-			newChallenges = GVars.SHARP
-#			challengeNumber = 2
+			newChallenge = GVars.CHALLENGE_SHARP
 		elif GVars.curEmotionBuff == 3:
-			newChallenges = GVars.AWARE
-#			challengeNumber = 3
+			newChallenge = GVars.CHALLENGE_AWARE
 		elif GVars.curEmotionBuff == 4:
-			newChallenges = GVars.CALM
-#			challengeNumber = 4
-		challengeButton.text = newChallenges.name
+			newChallenge = GVars.CHALLENGE_CALM
+		challengeButton.text = newChallenge.name
 	
 	#If a second layer challenge is activated and there is no first layer challenge
 	#Show the unfinished meme challenges
 	#Does not actually start them until until exiting screen, is currently abusable by exiting the game during this cutscene
-	if not GVars.challenges and GVars.hellChallengeInit:
+	var onlySecondLayerChallengeActive : bool = GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and not GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST)
+	if onlySecondLayerChallengeActive and GVars.hellChallengeInit:
 		challengeButton.show()
 		if GVars.hellChallengeLayer2 == 0: 
-			newChallenges = GVars.SANDY
-			GVars.hellChallengeInit = false
-#			challengeNumber = 10
+			newChallenge = GVars.CHALLENGE_SANDY
 		elif GVars.hellChallengeLayer2 == 1:
-			newChallenges = GVars.BITTERSWEET
-			GVars.hellChallengeInit = false
-#			challengeNumber = 11
+			newChallenge = GVars.CHALLENGE_SANDY
 		elif GVars.hellChallengeLayer2 == 2:
-			newChallenges = GVars.STARVED
-			GVars.hellChallengeInit = false
-#			challengeNumber = 12
+			newChallenge = GVars.CHALLENGE_SANDY
 		elif GVars.hellChallengeLayer2 == 3:
-			newChallenges = GVars.FABULOUS
-			GVars.hellChallengeInit = false
-#			challengeNumber = 13
-		challengeButton.text = newChallenges.name
+			newChallenge = GVars.CHALLENGE_SANDY
+		
+		GVars.hellChallengeInit = false
+		if newChallenge:
+			challengeButton.text = newChallenge.name
 	
 	complacencyButton.show()
-
-
-func _matchChallenge(challenge : ChallengeData) -> void:
-	match challenge:
-		# Layer 1
-		GVars.INCONGRUENT: _onGenericButtonPressed(99,"feel incongruent.\n\nYou've made a terrible mistake.\nIt will be different this time.")
-		GVars.BRAVE: _onGenericButtonPressed(99,"feel brave.\n\nYou are ready to go back.\nIt will be different this time.")
-		GVars.SHARP: _onGenericButtonPressed(99,"feel sharp.\n\nAs if hundreds of needles\nare poking your skin.\nIt will be different this time.")
-		GVars.AWARE: _onGenericButtonPressed(99,"feel aware.\n\nAs if you've snapped out\na tired trance.\nIt will be different this time.")
-		GVars.CALM: _onGenericButtonPressed(99,"feel calm.\n\nYou shove your way through\nthe deep.\nIt will be different this time.")
-		# Layer 2
-		GVars.SANDY: _onGenericButtonPressed(199,"feel sandy.\n\nIt's course and gritty and\ngets everywhere.")
-		GVars.BITTERSWEET: _onGenericButtonPressed(199,"feel bittersweet.\n\nThe world is so beautiful\nyou want to cry.")
-		GVars.STARVED: _onGenericButtonPressed(199,"feel starved.\n\nIt's eating you up on the\ninside.")
-		GVars.FABULOUS: _onGenericButtonPressed(199,"feel fabulous.\n\nIt's time to slay, in one\nway or another.")
-		# Error
-		_: _onGenericButtonPressed(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")

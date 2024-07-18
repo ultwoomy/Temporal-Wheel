@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://2m32epwoimoi"]
+
+[ext_resource type="Texture2D" uid="uid://bo20xfgwhr2bf" path="res://Sprites/Ascension/asc_back/tile000.png" id="1_tllrj"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_xtaj3"]
+[ext_resource type="Script" path="res://Scripts/AscSpace/AscSpaceMain.gd" id="2_0w7t3"]
+[ext_resource type="Texture2D" uid="uid://dwxcfivsaasbm" path="res://Sprites/Ascension/asc_back/tile001.png" id="2_xkygk"]
+[ext_resource type="Texture2D" uid="uid://ike3hhcec7h2" path="res://Sprites/Ascension/asc_back/tile002.png" id="3_4fn1j"]
+[ext_resource type="Texture2D" uid="uid://dt4deysgc40yo" path="res://Sprites/Ascension/asc_back/tile003.png" id="4_26tce"]
+[ext_resource type="Texture2D" uid="uid://das71kk4d7xxj" path="res://Sprites/Ascension/asc_back/tile004.png" id="5_04exf"]
+[ext_resource type="Texture2D" uid="uid://c4yc6q3pu5phl" path="res://Sprites/Ascension/asc_back/Aswallow.png" id="8_veqme"]
+[ext_resource type="Texture2D" uid="uid://cfk14j6sx4yav" path="res://Sprites/Ascension/asc_back/asc_contract.png" id="10_gej3s"]
+[ext_resource type="Script" path="res://Scripts/AscSpace/AscSpaceBackground.gd" id="10_mbd65"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x2fdy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tllrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_04exf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_xkygk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4fn1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_26tce")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_veqme")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gej3s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AscensionSpace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xtaj3")
+script = ExtResource("2_0w7t3")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(500, 300)
+sprite_frames = SubResource("SpriteFrames_x2fdy")
+script = ExtResource("10_mbd65")
+
+[node name="Story" type="Label" parent="."]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 729.0
+offset_top = 20.0
+offset_right = 930.0
+offset_bottom = 567.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Fear" type="Button" parent="."]
+self_modulate = Color(1, 0.188235, 0.137255, 1)
+layout_mode = 0
+offset_left = 146.0
+offset_top = 101.0
+offset_right = 298.0
+offset_bottom = 192.0
+text = "Afraid"
+
+[node name="Cold" type="Button" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 382.0
+offset_top = 217.0
+offset_right = 534.0
+offset_bottom = 308.0
+text = "Cold"
+
+[node name="Warmth" type="Button" parent="."]
+self_modulate = Color(0.258824, 1, 0.2, 1)
+layout_mode = 0
+offset_left = 473.0
+offset_top = 383.0
+offset_right = 625.0
+offset_bottom = 474.0
+text = "Content"
+
+[node name="Wrath" type="Button" parent="."]
+self_modulate = Color(1, 0, 1, 1)
+layout_mode = 0
+offset_left = 158.0
+offset_top = 320.0
+offset_right = 310.0
+offset_bottom = 411.0
+text = "Anger"
+
+[node name="Complacency" type="Button" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 73.0
+offset_right = 666.0
+offset_bottom = 164.0
+text = "Nothing"
+
+[node name="Awaken" type="Button" parent="."]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 750.0
+offset_top = 470.0
+offset_right = 931.0
+offset_bottom = 564.0
+text = "Wake Up"
+
+[node name="Challenge" type="Button" parent="."]
+self_modulate = Color(0.47451, 0.509804, 1, 1)
+layout_mode = 0
+offset_left = 557.0
+offset_top = 219.0
+offset_right = 708.0
+offset_bottom = 310.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "Challenge"

@@ -51,10 +51,15 @@ func displaySigils() -> void:
 	for sigil in GVars.sigilData.acquiredSigils:
 		smSigils[index].setSigil(sigil)
 		smSigils[index].show()
+		print(sigil.sigilName)
+		smSigils[index].modulate = Color.WHITE
+		if sigil.sigilBuffIndex == GVars.sigilData.curSigilBuff:
+			smSigils[index].modulate = Color.AQUAMARINE
 		index += 1
 
 
 # Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.
 func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
 	GVars.sigilData.curSigilBuff = sigil.sigilBuffIndex
+	displaySigils()
 	emit_signal("rustbotSelectionPressed")

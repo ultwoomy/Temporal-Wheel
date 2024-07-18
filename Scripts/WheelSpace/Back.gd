@@ -3,6 +3,8 @@ extends AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for sigil in GVars.sigilData.acquiredSigils:
+		print(sigil.sigilName)
 	if GVars.ifSecondBoot % 4 == 3 or GVars.ifSecondBoot % 4 == 0:
 		frame = 0
 	else:

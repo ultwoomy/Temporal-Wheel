@@ -96,6 +96,7 @@ texture_disabled = ExtResource("5_pstpk")
 texture_focused = ExtResource("7_vwcx0")
 
 [node name="Effects" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 330.0
 offset_right = 400.0
 offset_bottom = 40.0

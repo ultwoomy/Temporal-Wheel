@@ -2,6 +2,7 @@ extends Container
 @export var button : Button
 @export var image : Sprite2D
 var presses = 0.0
+signal exitUpperContract
 func _ready():
 	if (GVars.hellChallengeLayer2 >= 0):
 		show()
@@ -25,6 +26,7 @@ func _button_pressed():
 		GVars.hellChallengeInit = true
 		GVars.spinData.spinPerClick = 1
 		presses = 0
+		emit_signal("exitUpperContract")
 		hide()
 	if(presses > 0):
 		button.text = "5 presses to confirm"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3cwx5qjxmdup"]
+[gd_scene load_steps=16 format=3 uid="uid://b3cwx5qjxmdup"]
 
 [ext_resource type="Texture2D" uid="uid://cr2gx5g5yrq4q" path="res://Sprites/RustSpace/rusthome_outside.png" id="1_2jcfw"]
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_ujrbo"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://nctb7gfsb5jy" path="res://Sprites/Automators/rustbot.png" id="7_867aj"]
 [ext_resource type="Texture2D" uid="uid://cif2yvh3nf0hs" path="res://Sprites/RustSpace/back_rust/back_rust3.png" id="7_gnir7"]
 [ext_resource type="Script" path="res://Scripts/RustSpace/RustbotShow.gd" id="8_2yc0t"]
+[ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="9_0pwsb"]
+[ext_resource type="Script" path="res://Scripts/Packsmith/RustbotSelectionMenu.gd" id="10_bm31r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvkyr"]
 bg_color = Color(0, 0, 0, 1)
@@ -82,6 +84,10 @@ texture_disabled = ExtResource("7_867aj")
 texture_focused = ExtResource("7_867aj")
 script = ExtResource("8_2yc0t")
 
+[node name="SelectionMenu" parent="Rustbot" instance=ExtResource("9_0pwsb")]
+script = ExtResource("10_bm31r")
+
 [connection signal="pressed" from="InsideButton" to="." method="_onInsideButtonPressed"]
 [connection signal="pressed" from="BackButton" to="." method="_onBackButtonPressed"]
 [connection signal="pressed" from="EnterAtlasButton" to="." method="_onEnterAtlasButtonPressed"]
+[connection signal="pressed" from="Rustbot" to="Rustbot" method="_on_pressed"]

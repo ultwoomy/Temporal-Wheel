@@ -41,3 +41,6 @@ func _on_text_submitted(inputtext):
 		GVars.spinData.spin = 0
 		GVars.spinData.rotations = 0
 		clear()
+	if(inputtext == "sans"):
+		GVars.sand = 1000
+		clear()

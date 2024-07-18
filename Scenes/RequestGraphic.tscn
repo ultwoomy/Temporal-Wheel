@@ -57,6 +57,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_tsv7p")
 
 [node name="Label2" type="Label" parent="."]
+layout_mode = 0
 offset_left = 150.0
 offset_top = 130.0
 offset_right = 300.0

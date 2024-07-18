@@ -3,6 +3,7 @@ extends AnimatedSprite2D
 @export var countdownBack : Sprite2D
 @export var countdownText : Label
 @export var requestButton : TextureButton
+@export var upperContractExit : Container
 var currentRequest : Request
 var requestsDone : int
 @onready var requestLabelScene = preload("res://Scenes/RequestGraphic.tscn")
@@ -13,6 +14,7 @@ func _ready():
 		hide()
 	else:
 		WheelSpinner.wheelRotationCompleted.connect(updateCounter)
+		upperContractExit.exitUpperContract.connect(quitContract)
 		resetRequest()
 		updateCounter()
 
@@ -25,7 +27,9 @@ func updateCounter():
 	currentRequest.upImpatience()
 	countdownText.text = str(GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction)
 	if GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction < 0:
-		SceneHandler.changeSceneToFilePath(SceneHandler.NIGHT_LOSS)
+		#losing sequence temporarily just adds an extra request instead of killing you
+		GVars.nightChallengeData.hungerCurrent = 0
+		#SceneHandler.changeSceneToFilePath(SceneHandler.NIGHT_LOSS)
 	elif GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction < 20:
 		countdownBack.self_modulate = Color.DARK_RED
 	
@@ -37,9 +41,12 @@ func resetRequest():
 			break
 		requestsDone += 1
 	if requestsDone == 9:
-		#winning sequence
-		WheelSpinner.wheelRotationCompleted.disconnect(updateCounter)
-		hide()
+		#winning sequence		
+		GVars.hellChallengeLayer2 = -1
+		GVars.hellChallengeNerf = -1
+		GVars.soulsData.spinBaseBuffEnabled = true
+		GVars.soulsData.souls += 20
+		quitContract()
 	countdownBack.self_modulate = Color.AQUA
 	var instance = requestLabelScene.instantiate()
 	requestButton.add_child(instance)
@@ -53,3 +60,8 @@ func _on_texture_button_pressed():
 		GVars.nightChallengeData.hungerCurrent = 0
 		requestButton.get_child(0).queue_free()
 		resetRequest()
+
+func quitContract():
+	WheelSpinner.wheelRotationCompleted.disconnect(updateCounter)
+	GVars.nightChallengeData.resetData()
+	hide()

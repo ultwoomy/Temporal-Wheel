@@ -103,6 +103,7 @@ offset_bottom = 330.0
 text = "Turn automation on"
 
 [node name="Effects" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 330.0
 offset_right = 400.0
 offset_bottom = 40.0

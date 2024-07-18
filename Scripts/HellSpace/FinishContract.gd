@@ -28,6 +28,7 @@ func _on_pressed():
 		GVars.hellChallengeNerf = -1
 		GVars.soulsData.spinBaseBuffEnabled = true
 		GVars.soulsData.souls += 20
+		GVars.nightChallengeData.resetData()
 		hide()
 	elif(GVars.hellChallengeLayer2 == 3):
 		GVars.hellChallengeLayer2 = -1

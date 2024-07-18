@@ -175,7 +175,7 @@ func resetPermStats():
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 13
+	versNo = 14
 	ratmail = 0
 	
 func getScientific(val):
@@ -229,6 +229,7 @@ func load_as_normal():
 	if(versNo <= 13):
 		loader.nightChallengeData = NightChallengeData.new()
 		loader.ifFirstZunda = true
+		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

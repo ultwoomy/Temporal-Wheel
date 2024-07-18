@@ -245,7 +245,7 @@ theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 script = ExtResource("18_gtfj1")
 
-[node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("countdownBack", "countdownText", "requestButton")]
+[node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("countdownBack", "countdownText", "requestButton", "upperContractExit")]
 position = Vector2(500, 470)
 sprite_frames = SubResource("SpriteFrames_1tw6m")
 frame_progress = 0.201388
@@ -253,6 +253,7 @@ script = ExtResource("21_bjtkx")
 countdownBack = NodePath("Countdown")
 countdownText = NodePath("Countdown/Count")
 requestButton = NodePath("TextureButton")
+upperContractExit = NodePath("../ExitContractHigher")
 
 [node name="TextureButton" type="TextureButton" parent="Zunda"]
 offset_left = 30.0

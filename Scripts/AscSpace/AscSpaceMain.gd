@@ -169,11 +169,11 @@ func _displayButtons() -> void:
 		if GVars.hellChallengeLayer2 == 0: 
 			newChallenge = GVars.CHALLENGE_SANDY
 		elif GVars.hellChallengeLayer2 == 1:
-			newChallenge = GVars.CHALLENGE_SANDY
+			newChallenge = GVars.CHALLENGE_BITTERSWEET
 		elif GVars.hellChallengeLayer2 == 2:
-			newChallenge = GVars.CHALLENGE_SANDY
+			newChallenge = GVars.CHALLENGE_STARVED
 		elif GVars.hellChallengeLayer2 == 3:
-			newChallenge = GVars.CHALLENGE_SANDY
+			newChallenge = GVars.CHALLENGE_FABULOUS
 		
 		GVars.hellChallengeInit = false
 		if newChallenge:

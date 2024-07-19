@@ -1,23 +1,35 @@
 extends Container
-@export var button : Button
-@export var image : Sprite2D
-var presses = 0.0
+
+
+#@ Export Variables
+
+
+#@ Public Variables
+var presses : int = 0
+
+
+#@ Onready Variables
+@onready var resetButton : Button = $ResetCounter
+@onready var image : Sprite2D = $ResetDisplay
+
+
+#@ Virtual Methods
 func _ready():
 	if (GVars.hellChallengeLayer2 >= 0):
 		show()
 	else:
 		hide()
-	button.text = "Exit Upper Contract"
-	button.size = Vector2(200,25)
-	button.expand_icon = true
-	button.pressed.connect(self._button_pressed)
+	resetButton.text = "Exit Upper Contract"
+	resetButton.size = Vector2(200,25)
+	resetButton.expand_icon = true
+	resetButton.pressed.connect(self._button_pressed)
 	image.scale.x = 0
 	image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 
 
 #Yu: Removed loop, now triggers on button press instead of every 2 seconds.
 func _button_pressed():
-	presses += 1.0
+	presses += 1
 	if presses > 4:
 		GVars.challenges = []
 		GVars.ifhell = true
@@ -27,5 +39,5 @@ func _button_pressed():
 		presses = 0
 		hide()
 	if presses > 0:
-		button.text = "5 presses to confirm"
-	image.scale.x = 2*presses/5
+		resetButton.text = "5 presses to confirm"
+	image.scale.x = float(2 * presses) / 5.0

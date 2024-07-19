@@ -564,17 +564,15 @@ offset = Vector2(50, 0)
 layout_mode = 2
 text = "Exit Contract"
 
-[node name="ExitContractHigher" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+[node name="ExitContractHigher" type="Container" parent="."]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 10.0
 offset_right = 600.0
 offset_bottom = 80.0
 script = ExtResource("45_3mkif")
-button = NodePath("ResetCounter")
-image = NodePath("ResetDisp")
 
-[node name="ResetDisp" type="Sprite2D" parent="ExitContractHigher"]
+[node name="ResetDisplay" type="Sprite2D" parent="ExitContractHigher"]
 position = Vector2(0, -75)
 scale = Vector2(2, 1)
 texture = ExtResource("15_skhdp")

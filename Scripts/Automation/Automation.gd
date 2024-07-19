@@ -24,22 +24,26 @@ func automate() -> void:
 	for automator in automators:
 		if automator.enabled:
 			automator._execute()
-			
+
+
 func contains(what : String) -> bool:
 	for x in automators:
 		if x.getType() == what:
 			return true
 	return false
-	
+
+
 func updateActive() -> void:
 	for x in GVars.automatorVarsData.automatorList:
 		if not contains(x.name):
 			initAutomatorFromType(x.name)
-			
+
+
 func initAutomatorFromType(x) -> void:
 	var d = AutomatorData.new()
 	d.setAutomator(x)
 	Automation.addAutomatorFromData(d)
+
 
 # Add an automator to the array using AutomatorData.
 func addAutomatorFromData(automatorData : AutomatorData) -> void:

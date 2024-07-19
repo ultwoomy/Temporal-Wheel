@@ -221,6 +221,10 @@ func setChallenge(challenge : ChallengeData) -> void:
 
 
 func hasChallenge(challenge : ChallengeData) -> bool:
+	# Check to see if challenges is null.
+	if not challenges:
+		return false
+	
 	if challenge in challenges:
 		return true
 	else:

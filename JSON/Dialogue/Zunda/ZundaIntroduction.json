@@ -1,0 +1,94 @@
+{
+	"introduction": [
+		{
+			"TEXT": "Welcome you cat thing, to the underground.",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "How was the fall?",
+			"FACE": "CHATTING",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "No idea how you got here, but while you're here.",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "Listen, I need some help.",
+			"FACE": "CHATTING",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "As the ruler of hell, I'm supposed to process souls and stuff, I think.",
+			"FACE": "SERENE",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "The problem is I already took like all of the ones here.",
+			"FACE": "CHATTING",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "And stored them safely in my belly.",
+			"FACE": "SMUG",
+			"BODY": "FINGERGUNS"
+		},
+		{
+			"TEXT": "So here's the deal. I open a portal to an alternate dimension, and you grab all the living things there.",
+			"FACE": "SERENE",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "These alternate universes usually have some weird modifier to make things difficult.",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "Dunno why. For the sake of the narrative probably.",
+			"FACE": "CHATTING",
+			"BODY": "FINGERGUNS"
+		},
+		{
+			"TEXT": "We'll split them 50/50. So whaddya say?",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "What are you supposed to do with those? You can just spend them at my shop.",
+			"FACE": "CHATTING",
+			"BODY": "FINGERGUNS"
+		},
+		{
+			"TEXT": "So in the end it all goes to me. How's that for queen of hell?",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "Oh and, before I forget, this isn't a baby contract like the one you just did.",
+			"FACE": "CHATTING",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "This will reset your identity bonus. And your ability to get here too.",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "You'll have to do that whole thing again to unlock this place.",
+			"FACE": "CHATTING",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "For your trouble, I'll give you new sigils.",
+			"FACE": "SMUG",
+			"BODY": "HAND_ON_HIPS"
+		},
+		{
+			"TEXT": "Try not to get them stolen by rabbit fae.",
+			"FACE": "CHATTING",
+			"BODY": "HAND_ON_HIPS"
+		}
+	]
+}

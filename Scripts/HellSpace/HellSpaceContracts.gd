@@ -2,9 +2,6 @@ extends Control
 class_name ContractMenu
 
 
-#@ Export Variables
-
-
 #@ Public Variables
 var contractOrder : Array = [  # (!) Elements should be derived from CMP_Strategy
 	CMP_TwinsStrategy,
@@ -17,14 +14,16 @@ var contractIndex : int = 0
 
 
 #@ Onready Variables
-@onready var contractPage : ContractPage = $TwinsContract
+@onready var contractPage : ContractPage = $ContractPage
 
 @onready var leftArrowButton : TextureButton = $LeftArrowButton
 @onready var rightArrowButton : TextureButton = $RightArrowButton
 @onready var exitButton : TextureButton = $ExitButton
 @onready var enterContractButton : Button = $EnterContractButton
 @onready var soulUpgradeButton : Button = $SoulUpgradeButton
-@onready var soulCount : Sprite2D = $SoulCount
+
+@onready var SoulCountSprite : Sprite2D = $SoulCountContainer/SoulCountSprite
+@onready var soulCountLabel : Label = $SoulCountContainer/SoulCountLabel
 
 
 #@ Virtual Methods
@@ -41,6 +40,8 @@ func _process(_delta : float) -> void:
 	if contractStrategy:
 		const ROTATION_AMOUNT : float = 1.0
 		contractStrategy.rotateSigil(ROTATION_AMOUNT)
+	
+	soulCountLabel.text = str(GVars.getScientific(GVars.soulsData.souls))
 
 
 #@ Public Methods

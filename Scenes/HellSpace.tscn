@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bdsmwouac85ff" path="res://Sprites/HellSpace/Zunda/Poses/zunda_shock.png" id="11_61w14"]
 [ext_resource type="Texture2D" uid="uid://ccy7e7jjkbk1f" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral2.png" id="11_y7knd"]
 [ext_resource type="Texture2D" uid="uid://dojma0m1dqtfs" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral.png" id="12_0m8rq"]
-[ext_resource type="Script" path="res://Scripts/HellSpace/ZundaDialogueContainer.gd" id="14_1tbc8"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/ZundaDialogueControl.gd" id="12_f033u"]
 [ext_resource type="Texture2D" uid="uid://c0xdh8mi58kco" path="res://Sprites/HellSpace/helltextbox.png" id="15_svovp"]
 [ext_resource type="Texture2D" uid="uid://bv6kqwsjpqfpp" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_shock.png" id="16_5bhqc"]
 [ext_resource type="Texture2D" uid="uid://do36jh0aesw82" path="res://Sprites/HellSpace/Arrows/hell_back1.png" id="16_ixgfe"]
@@ -134,26 +134,26 @@ offset_right = 750.0
 offset_bottom = 350.0
 text = "Contracts"
 
-[node name="DialogueContainer" type="Control" parent="."]
+[node name="DialogueControl" type="Control" parent="."]
 anchors_preset = 0
-script = ExtResource("14_1tbc8")
+script = ExtResource("12_f033u")
 
-[node name="ZundaBody" type="AnimatedSprite2D" parent="DialogueContainer"]
+[node name="ZundaBody" type="AnimatedSprite2D" parent="DialogueControl"]
 position = Vector2(194, 280)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_l7hy6")
 
-[node name="ZundaFace" type="AnimatedSprite2D" parent="DialogueContainer"]
+[node name="ZundaFace" type="AnimatedSprite2D" parent="DialogueControl"]
 position = Vector2(195, 279)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wdh50")
 
-[node name="DialogueBox" type="Sprite2D" parent="DialogueContainer"]
+[node name="DialogueBox" type="Sprite2D" parent="DialogueControl"]
 position = Vector2(512.125, 488.039)
 scale = Vector2(3, 0.7)
 texture = ExtResource("15_svovp")
 
-[node name="NextButton" type="Button" parent="DialogueContainer"]
+[node name="NextButton" type="Button" parent="DialogueControl"]
 layout_mode = 0
 offset_left = 836.0
 offset_top = 479.0
@@ -161,7 +161,7 @@ offset_right = 936.0
 offset_bottom = 579.0
 text = "Next"
 
-[node name="DialogueLabel" type="Label" parent="DialogueContainer"]
+[node name="DialogueLabel" type="Label" parent="DialogueControl"]
 layout_mode = 0
 offset_left = 86.0
 offset_top = 392.0
@@ -173,8 +173,9 @@ text = "aaaaaa"
 autowrap_mode = 2
 
 [node name="ContractMenu" parent="." instance=ExtResource("23_f0efo")]
+visible = false
 offset_top = 0.0
 offset_bottom = 0.0
 
 [connection signal="pressed" from="FinishContractButton" to="FinishContractButton" method="_on_pressed"]
-[connection signal="pressed" from="DialogueContainer/NextButton" to="DialogueContainer" method="_onNextPressed"]
+[connection signal="pressed" from="DialogueControl/NextButton" to="DialogueControl" method="_onNextPressed"]

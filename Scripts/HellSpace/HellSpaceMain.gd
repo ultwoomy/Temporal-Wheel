@@ -7,7 +7,7 @@ extends GameScene
 @onready var openContractsButton : Button = $OpenContractsButton
 
 @onready var backgroundSprite : AnimatedSprite2D = $Background
-@onready var dialogueContainer : Control = $DialogueContainer
+@onready var dialogueControl : Control = $DialogueControl
 @onready var contractMenu : ContractMenu = $ContractMenu
 
 
@@ -16,13 +16,13 @@ extends GameScene
 func _ready() -> void:
 	# Hide/Show
 	openContractsButton.hide()
-	dialogueContainer.hide()
+	dialogueControl.hide()
 	
 	# Connect signals
 	rightButton.pressed.connect(_onRightPressed)
 	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.WHEELSPACE))
 	openContractsButton.pressed.connect(_onOpenContractsPressed)
-	dialogueContainer.dialogueCompleted.connect(_onDialogueCompleted)
+	dialogueControl.dialogueCompleted.connect(_onDialogueCompleted)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,16 +44,15 @@ func _onRightPressed() -> void:
 		backgroundSprite.frame = 1
 		openContractsButton.hide()
 		
-		dialogueContainer.show()
-		dialogueContainer.zundaBodySprite.frame = 1
-		dialogueContainer.zundaFaceSprite.frame = 0
-		GVars._dialouge(dialogueContainer.dialogueLabel.text, 0, 0.02)
-		dialogueContainer.dialogueLabel.text = dialogueContainer.dialouge[0]
+		dialogueControl.show()
+		dialogueControl.zundaBodySprite.frame = 1
+		dialogueControl.zundaFaceSprite.frame = 0
+		GVars._dialouge(dialogueControl.dialogueLabel.text, 0, 0.02)
 	else:
 		backgroundSprite.frame = 2
 		openContractsButton.show()
 		
-		dialogueContainer.hide()
+		dialogueControl.hide()
 
 
 func _onDialogueCompleted() -> void:

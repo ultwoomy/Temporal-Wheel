@@ -5,7 +5,7 @@ class_name PS_MenuState
 #@ Constants
 
 
-#@ Global Variables
+#@ Public Variables
 # Use this to be able to reference the PacksmithMenu.
 var packsmithMenu : PacksmithMenu 
 

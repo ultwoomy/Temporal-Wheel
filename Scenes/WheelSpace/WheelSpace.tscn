@@ -442,6 +442,7 @@ scale = Vector2(0.333, 0.333)
 texture_normal = ExtResource("31_gdw33")
 
 [node name="Voidbot" type="TextureButton" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = 11.0
@@ -515,6 +516,7 @@ texture_normal = ExtResource("43_eoec8")
 texture_hover = ExtResource("44_8q2ll")
 
 [node name="BackpackPanel" parent="." instance=ExtResource("46_o6krw")]
+visible = false
 layout_mode = 0
 offset_left = 250.0
 offset_top = 100.0
@@ -564,37 +566,33 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
 theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
 
-[node name="ExitContract" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+[node name="ExitContract" type="Container" parent="."]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 100.0
 offset_right = 600.0
 offset_bottom = 200.0
 script = ExtResource("44_kqfr3")
-button = NodePath("ResetCounter")
-image = NodePath("ResetDisp")
 
-[node name="ResetDisp" type="Sprite2D" parent="ExitContract"]
-position = Vector2(0, -75)
+[node name="ResetDisplay" type="Sprite2D" parent="ExitContract"]
+position = Vector2(0, 30)
 scale = Vector2(2, 1)
 texture = ExtResource("15_skhdp")
-offset = Vector2(50, 105)
+offset = Vector2(50, 0)
 
 [node name="ResetCounter" type="Button" parent="ExitContract"]
 layout_mode = 2
-text = "Toggle Grow"
+text = "Exit Contract"
 
-[node name="ExitContractHigher" type="Container" parent="." node_paths=PackedStringArray("button", "image")]
+[node name="ExitContractHigher" type="Container" parent="."]
 layout_mode = 0
 offset_left = 400.0
 offset_top = 10.0
 offset_right = 600.0
 offset_bottom = 80.0
 script = ExtResource("45_3mkif")
-button = NodePath("ResetCounter")
-image = NodePath("ResetDisp")
 
-[node name="ResetDisp" type="Sprite2D" parent="ExitContractHigher"]
+[node name="ResetDisplay" type="Sprite2D" parent="ExitContractHigher"]
 position = Vector2(0, -75)
 scale = Vector2(2, 1)
 texture = ExtResource("15_skhdp")

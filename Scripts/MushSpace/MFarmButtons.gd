@@ -79,21 +79,21 @@ func _harvest_shroom(val) -> void:
 		soulsShroomBuff = 2
 	else:
 		soulsShroomBuff = 1
-	if(GVars.hellChallengeNerf == 3):
+	if GVars.hasChallenge(GVars.CHALLENGE_AWARE):
 		Ebuff = 1/(log(GVars.spinData.rotations)/log(5) + 0.5)
-	elif(GVars.curEmotionBuff == 3):
+	elif GVars.curEmotionBuff == 3:
 		Ebuff = log(GVars.spinData.rotations)/log(5) + 0.5
 		EexpBuff = GVars.rustData.fourth
-	if(val == 1):
+	if val == 1:
 		GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff * soulsShroomBuff
 		GVars.mushroomData.xp += 25 * EexpBuff
-	elif(val == 2):
+	elif val == 2:
 		GVars.spinData.rotations += (1 + GVars.mushroomData.level)/2 * (3 + Ebuff)/4 * 5 * soulsShroomBuff
 		GVars.mushroomData.xp += 50 * EexpBuff
-	elif(val == 3):
+	elif val == 3:
 		GVars.mushroomData.spinBuff += (3 * (log(GVars.mushroomData.level + 1) * Ebuff/log(3)))/(pow(2,GVars.mushroomData.spinBuff)) * soulsShroomBuff
 		GVars.mushroomData.xp += 75 * EexpBuff
-	elif(val == 4):
+	elif val == 4:
 		GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(pow(1.5,GVars.mushroomData.ascBuff)) * soulsShroomBuff
 		GVars.mushroomData.xp += 100 * EexpBuff
 	_check_xp()

@@ -1,38 +1,25 @@
-[gd_scene load_steps=38 format=3 uid="uid://cl3et1epnfgxj"]
+[gd_scene load_steps=25 format=3 uid="uid://cl3et1epnfgxj"]
 
-[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="1_nwr3y"]
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_pm7qv"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceMain.gd" id="2_8wq13"]
 [ext_resource type="Texture2D" uid="uid://bjsrvfoih3dcs" path="res://Sprites/HellSpace/hell_int.png" id="2_vud2j"]
 [ext_resource type="Texture2D" uid="uid://b3j3v63emaa12" path="res://Sprites/HellSpace/hell_box.png" id="3_lagvo"]
 [ext_resource type="Texture2D" uid="uid://da5qw8iyvke6c" path="res://Sprites/HellSpace/hell_door_barred.png" id="4_dfdm6"]
 [ext_resource type="Texture2D" uid="uid://dykkcmaxnss2h" path="res://Sprites/HellSpace/Arrows/hell_right.png" id="5_edx5n"]
 [ext_resource type="Texture2D" uid="uid://cd6o51lxay8aj" path="res://Sprites/HellSpace/hell_box_zunda.png" id="5_vu7h7"]
 [ext_resource type="Texture2D" uid="uid://dhx2b4j0s0u2k" path="res://Sprites/HellSpace/Arrows/hell_right_hover.png" id="6_000st"]
-[ext_resource type="Script" path="res://Scripts/HellSpace/Right.gd" id="7_e7d88"]
 [ext_resource type="Texture2D" uid="uid://4kj47j0y7yex" path="res://Sprites/HellSpace/Zunda/Poses/zunda_finger_gun.png" id="8_wlt4q"]
 [ext_resource type="Texture2D" uid="uid://q3l0ur4m4600" path="res://Sprites/HellSpace/Zunda/Poses/zunda_hand_on_hips.png" id="9_c1by3"]
 [ext_resource type="Texture2D" uid="uid://nhfgfh07qmta" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_eugh.png" id="10_it3et"]
 [ext_resource type="Texture2D" uid="uid://bdsmwouac85ff" path="res://Sprites/HellSpace/Zunda/Poses/zunda_shock.png" id="11_61w14"]
 [ext_resource type="Texture2D" uid="uid://ccy7e7jjkbk1f" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral2.png" id="11_y7knd"]
 [ext_resource type="Texture2D" uid="uid://dojma0m1dqtfs" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral.png" id="12_0m8rq"]
-[ext_resource type="Script" path="res://Scripts/HellSpace/ZundaControl.gd" id="13_kcxk5"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/ZundaDialogueControl.gd" id="12_f033u"]
 [ext_resource type="Texture2D" uid="uid://c0xdh8mi58kco" path="res://Sprites/HellSpace/helltextbox.png" id="15_svovp"]
 [ext_resource type="Texture2D" uid="uid://bv6kqwsjpqfpp" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_shock.png" id="16_5bhqc"]
 [ext_resource type="Texture2D" uid="uid://do36jh0aesw82" path="res://Sprites/HellSpace/Arrows/hell_back1.png" id="16_ixgfe"]
 [ext_resource type="Texture2D" uid="uid://6cf72xlfuciu" path="res://Sprites/HellSpace/Arrows/hell_back2.png" id="17_20k74"]
-[ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceBack.gd" id="21_464ab"]
-[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="21_mgqap"]
-[ext_resource type="Texture2D" uid="uid://b4fjjdjebvdx6" path="res://Sprites/HellSpace/Arrows/hell_contract_left.png" id="22_xie71"]
-[ext_resource type="Texture2D" uid="uid://q51gt7miwylw" path="res://Sprites/HellSpace/Arrows/hell_contract_left2.png" id="23_gydq3"]
-[ext_resource type="Texture2D" uid="uid://oxfv3a4u3wmd" path="res://Sprites/HellSpace/Arrows/hell_x1.png" id="24_l8moh"]
-[ext_resource type="Texture2D" uid="uid://boc4erkclqx6p" path="res://Sprites/HellSpace/Arrows/hell_x2.png" id="25_jnofj"]
-[ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceContracts.gd" id="26_peqxf"]
-[ext_resource type="Texture2D" uid="uid://cuuv1ujb2olux" path="res://Sprites/HellSpace/soul_token.png" id="27_ki66w"]
-[ext_resource type="Script" path="res://Scripts/HellSpace/Nsouls.gd" id="28_m4l01"]
-[ext_resource type="Texture2D" uid="uid://dupfwrc8dt6qn" path="res://Sprites/Sigils/sigil10.png" id="28_mjgwy"]
-[ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="29_d10p4"]
-[ext_resource type="Texture2D" uid="uid://bxmxksutsmrtl" path="res://Sprites/Sigils/sigil11.png" id="30_t867a"]
-[ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="31_8mrs8"]
+[ext_resource type="PackedScene" uid="uid://bsjou3atd2hdk" path="res://Scenes/HellSpace/ContractMenu.tscn" id="23_f0efo"]
 [ext_resource type="Script" path="res://Scripts/HellSpace/FinishContract.gd" id="32_snpwu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u03bk"]
@@ -92,7 +79,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Control2" type="Control"]
+[node name="HellSpace" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,14 +87,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_pm7qv")
-script = ExtResource("1_nwr3y")
+script = ExtResource("2_8wq13")
 
 [node name="Background" type="AnimatedSprite2D" parent="."]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u03bk")
 
-[node name="Right" type="TextureButton" parent="." node_paths=PackedStringArray("backdrop", "zunda1", "zunda2", "textbox", "next", "text", "openCPage")]
+[node name="RightButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 914.0
 offset_top = 363.0
@@ -118,38 +105,8 @@ texture_pressed = ExtResource("6_000st")
 texture_hover = ExtResource("6_000st")
 texture_disabled = ExtResource("5_edx5n")
 texture_focused = ExtResource("6_000st")
-script = ExtResource("7_e7d88")
-backdrop = NodePath("../Background")
-zunda1 = NodePath("../ZundaBody")
-zunda2 = NodePath("../ZundaFace")
-textbox = NodePath("../Textbox")
-next = NodePath("../Next")
-text = NodePath("../Label")
-openCPage = NodePath("../ContractHolder/EContractPage")
 
-[node name="ZundaBody" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("zundabody", "zundaface", "text", "textbox", "nextButton", "openCPage")]
-position = Vector2(194, 280)
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_l7hy6")
-script = ExtResource("13_kcxk5")
-zundabody = NodePath(".")
-zundaface = NodePath("../ZundaFace")
-text = NodePath("../Label")
-textbox = NodePath("../Textbox")
-nextButton = NodePath("../Next")
-openCPage = NodePath("../ContractHolder/EContractPage")
-
-[node name="ZundaFace" type="AnimatedSprite2D" parent="."]
-position = Vector2(195, 279)
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_wdh50")
-
-[node name="Textbox" type="Sprite2D" parent="."]
-position = Vector2(512.125, 488.039)
-scale = Vector2(3, 0.7)
-texture = ExtResource("15_svovp")
-
-[node name="Back" type="TextureButton" parent="."]
+[node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0
 offset_right = 299.0
 offset_bottom = 299.0
@@ -159,9 +116,44 @@ texture_pressed = ExtResource("17_20k74")
 texture_hover = ExtResource("17_20k74")
 texture_disabled = ExtResource("16_ixgfe")
 texture_focused = ExtResource("17_20k74")
-script = ExtResource("21_464ab")
 
-[node name="Next" type="Button" parent="."]
+[node name="FinishContractButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 20.0
+offset_right = 600.0
+offset_bottom = 120.0
+text = "Complete Contract"
+script = ExtResource("32_snpwu")
+
+[node name="OpenContractsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 250.0
+offset_right = 750.0
+offset_bottom = 350.0
+text = "Contracts"
+
+[node name="DialogueControl" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("12_f033u")
+
+[node name="ZundaBody" type="AnimatedSprite2D" parent="DialogueControl"]
+position = Vector2(194, 280)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_l7hy6")
+
+[node name="ZundaFace" type="AnimatedSprite2D" parent="DialogueControl"]
+position = Vector2(195, 279)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_wdh50")
+
+[node name="DialogueBox" type="Sprite2D" parent="DialogueControl"]
+position = Vector2(512.125, 488.039)
+scale = Vector2(3, 0.7)
+texture = ExtResource("15_svovp")
+
+[node name="NextButton" type="Button" parent="DialogueControl"]
 layout_mode = 0
 offset_left = 836.0
 offset_top = 479.0
@@ -169,7 +161,7 @@ offset_right = 936.0
 offset_bottom = 579.0
 text = "Next"
 
-[node name="Label" type="Label" parent="."]
+[node name="DialogueLabel" type="Label" parent="DialogueControl"]
 layout_mode = 0
 offset_left = 86.0
 offset_top = 392.0
@@ -180,301 +172,10 @@ theme_override_font_sizes/font_size = 21
 text = "aaaaaa"
 autowrap_mode = 2
 
-[node name="FinishContract" type="Button" parent="."]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 20.0
-offset_right = 600.0
-offset_bottom = 120.0
-text = "Complete Contract"
-script = ExtResource("32_snpwu")
+[node name="ContractMenu" parent="." instance=ExtResource("23_f0efo")]
+visible = false
+offset_top = 0.0
+offset_bottom = 0.0
 
-[node name="ContractHolder" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ContractPage4" type="Control" parent="ContractHolder"]
-layout_mode = 3
-anchors_preset = 0
-offset_top = 1200.0
-offset_right = 40.0
-offset_bottom = 1240.0
-
-[node name="ContractPanel" type="Sprite2D" parent="ContractHolder/ContractPage4"]
-self_modulate = Color(0, 0.337255, 0.207843, 1)
-position = Vector2(520, 320)
-scale = Vector2(6, 5)
-texture = ExtResource("21_mgqap")
-
-[node name="Control" type="Control" parent="ContractHolder/ContractPage4"]
-anchors_preset = 0
-offset_left = 520.0
-offset_top = 300.0
-offset_right = 560.0
-offset_bottom = 340.0
-
-[node name="ContractSigil" type="Sprite2D" parent="ContractHolder/ContractPage4/Control"]
-texture = ExtResource("31_8mrs8")
-
-[node name="ContractName" type="Label" parent="ContractHolder/ContractPage4/Control"]
-layout_mode = 0
-offset_left = -100.0
-offset_top = -200.0
-offset_right = 100.0
-offset_bottom = -100.0
-theme = ExtResource("1_pm7qv")
-text = "The Twins"
-horizontal_alignment = 1
-
-[node name="ContractDesc" type="Label" parent="ContractHolder/ContractPage4/Control"]
-layout_mode = 0
-offset_left = -150.0
-offset_top = 150.0
-offset_right = 150.0
-offset_bottom = 250.0
-theme = ExtResource("1_pm7qv")
-text = "You no longer gain resources
-Rust can purchase all resource
-Unlocks the Twins as an
-alternate sigil to the Packsmith (WIP)"
-horizontal_alignment = 1
-
-[node name="ContractPage3" type="Control" parent="ContractHolder"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1000.0
-offset_top = 1200.0
-offset_right = 1040.0
-offset_bottom = 1240.0
-
-[node name="ContractPanel" type="Sprite2D" parent="ContractHolder/ContractPage3"]
-self_modulate = Color(0, 0, 0.137255, 1)
-position = Vector2(520, 320)
-scale = Vector2(6, 5)
-texture = ExtResource("21_mgqap")
-
-[node name="Control" type="Control" parent="ContractHolder/ContractPage3"]
-anchors_preset = 0
-offset_left = 520.0
-offset_top = 300.0
-offset_right = 560.0
-offset_bottom = 340.0
-
-[node name="ContractSigil" type="Sprite2D" parent="ContractHolder/ContractPage3/Control"]
-texture = ExtResource("30_t867a")
-
-[node name="ContractName" type="Label" parent="ContractHolder/ContractPage3/Control"]
-layout_mode = 0
-offset_left = -100.0
-offset_top = -200.0
-offset_right = 100.0
-offset_bottom = -100.0
-theme = ExtResource("1_pm7qv")
-text = "Zunda of the Night"
-horizontal_alignment = 1
-
-[node name="ContractDesc" type="Label" parent="ContractHolder/ContractPage3/Control"]
-layout_mode = 0
-offset_left = -150.0
-offset_top = 150.0
-offset_right = 150.0
-offset_bottom = 250.0
-theme = ExtResource("1_pm7qv")
-text = "Zunda is hungry!
-Meet her growing list of demands
-Unlocks Zunda of the Night
-as an alternative to emptiness"
-horizontal_alignment = 1
-
-[node name="ContractPage2" type="Control" parent="ContractHolder"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 1000.0
-offset_top = 600.0
-offset_right = 1040.0
-offset_bottom = 640.0
-
-[node name="ContractPanel" type="Sprite2D" parent="ContractHolder/ContractPage2"]
-self_modulate = Color(0.580392, 0, 0.552941, 1)
-position = Vector2(520, 320)
-scale = Vector2(6, 5)
-texture = ExtResource("21_mgqap")
-
-[node name="Control" type="Control" parent="ContractHolder/ContractPage2"]
-anchors_preset = 0
-offset_left = 520.0
-offset_top = 300.0
-offset_right = 560.0
-offset_bottom = 340.0
-
-[node name="ContractSigil" type="Sprite2D" parent="ContractHolder/ContractPage2/Control"]
-texture = ExtResource("29_d10p4")
-
-[node name="ContractName" type="Label" parent="ContractHolder/ContractPage2/Control"]
-layout_mode = 0
-offset_left = -100.0
-offset_top = -200.0
-offset_right = 100.0
-offset_bottom = -100.0
-theme = ExtResource("1_pm7qv")
-text = "Undercity"
-horizontal_alignment = 1
-
-[node name="ContractDesc" type="Label" parent="ContractHolder/ContractPage2/Control"]
-layout_mode = 0
-offset_left = -150.0
-offset_top = 150.0
-offset_right = 150.0
-offset_bottom = 250.0
-theme = ExtResource("1_pm7qv")
-text = "Sigil costs are greatly modified
-The Kbity engine rumbles
-Unlocks the Undercity as an
-alternative sigil to the ritual"
-horizontal_alignment = 1
-
-[node name="ContractPage" type="Control" parent="ContractHolder" node_paths=PackedStringArray("openCButton", "left", "right", "exit", "enterContract", "soulupgrade", "soulcount")]
-anchors_preset = 0
-offset_left = 1000.0
-offset_right = 1040.0
-offset_bottom = 40.0
-script = ExtResource("26_peqxf")
-openCButton = NodePath("../EContractPage")
-left = NodePath("../LeftArrow")
-right = NodePath("../LeftArrow2")
-exit = NodePath("../Exit")
-enterContract = NodePath("../EnterContract")
-soulupgrade = NodePath("../SoulBuy")
-soulcount = NodePath("../SoulCount")
-
-[node name="ContractPanel" type="Sprite2D" parent="ContractHolder/ContractPage"]
-self_modulate = Color(0.458824, 0.305882, 0.258824, 1)
-position = Vector2(520, 320)
-scale = Vector2(6, 5)
-texture = ExtResource("21_mgqap")
-
-[node name="Control" type="Control" parent="ContractHolder/ContractPage"]
-anchors_preset = 0
-offset_left = 520.0
-offset_top = 300.0
-offset_right = 620.0
-offset_bottom = 400.0
-
-[node name="ContractSigil" type="Sprite2D" parent="ContractHolder/ContractPage/Control"]
-texture = ExtResource("28_mjgwy")
-
-[node name="ContractName" type="Label" parent="ContractHolder/ContractPage/Control"]
-layout_mode = 0
-offset_left = -100.0
-offset_top = -200.0
-offset_right = 100.0
-offset_bottom = -100.0
-theme = ExtResource("1_pm7qv")
-text = "Sand Dollar"
-horizontal_alignment = 1
-
-[node name="ContractDesc" type="Label" parent="ContractHolder/ContractPage/Control"]
-layout_mode = 0
-offset_left = -150.0
-offset_top = 150.0
-offset_right = 150.0
-offset_bottom = 250.0
-theme = ExtResource("1_pm7qv")
-text = "The more you have
-The less you get
-Unlocks the sand dollar as an
-alternate sigil to the candle"
-horizontal_alignment = 1
-
-[node name="Exit" type="TextureButton" parent="ContractHolder"]
-layout_mode = 0
-offset_left = 730.0
-offset_top = 70.0
-offset_right = 1029.0
-offset_bottom = 369.0
-scale = Vector2(0.3, 0.3)
-texture_normal = ExtResource("24_l8moh")
-texture_pressed = ExtResource("25_jnofj")
-texture_hover = ExtResource("25_jnofj")
-texture_disabled = ExtResource("24_l8moh")
-texture_focused = ExtResource("25_jnofj")
-
-[node name="LeftArrow" type="TextureButton" parent="ContractHolder"]
-layout_mode = 0
-offset_left = 220.0
-offset_top = 250.0
-offset_right = 519.0
-offset_bottom = 549.0
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("22_xie71")
-texture_pressed = ExtResource("23_gydq3")
-texture_hover = ExtResource("23_gydq3")
-texture_disabled = ExtResource("22_xie71")
-texture_focused = ExtResource("23_gydq3")
-
-[node name="LeftArrow2" type="TextureButton" parent="ContractHolder"]
-layout_mode = 0
-offset_left = 820.0
-offset_top = 370.0
-offset_right = 1119.0
-offset_bottom = 669.0
-rotation = 3.14159
-scale = Vector2(0.4, 0.4)
-texture_normal = ExtResource("22_xie71")
-texture_pressed = ExtResource("23_gydq3")
-texture_hover = ExtResource("23_gydq3")
-texture_disabled = ExtResource("22_xie71")
-texture_focused = ExtResource("23_gydq3")
-
-[node name="SoulCount" type="Sprite2D" parent="ContractHolder"]
-position = Vector2(275, 127)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("27_ki66w")
-
-[node name="Nsouls" type="Label" parent="ContractHolder/SoulCount"]
-offset_left = 220.0
-offset_top = -99.9998
-offset_right = 260.0
-offset_bottom = -76.9998
-scale = Vector2(10, 10)
-theme = ExtResource("1_pm7qv")
-text = "0"
-script = ExtResource("28_m4l01")
-
-[node name="SoulBuy" type="Button" parent="ContractHolder"]
-layout_mode = 0
-offset_left = 290.0
-offset_top = 450.0
-offset_right = 370.0
-offset_bottom = 530.0
-text = "Upgrade"
-
-[node name="EContractPage" type="Button" parent="ContractHolder"]
-layout_mode = 0
-offset_left = 650.0
-offset_top = 250.0
-offset_right = 750.0
-offset_bottom = 350.0
-text = "Contracts"
-
-[node name="EnterContract" type="Button" parent="ContractHolder"]
-layout_mode = 0
-offset_left = 690.0
-offset_top = 450.0
-offset_right = 770.0
-offset_bottom = 530.0
-text = "Enter
-Contract"
-
-[connection signal="pressed" from="Right" to="Right" method="_on_pressed"]
-[connection signal="pressed" from="Right" to="ZundaBody" method="_on_right_pressed"]
-[connection signal="pressed" from="Next" to="ZundaBody" method="_on_next_pressed"]
-[connection signal="pressed" from="FinishContract" to="FinishContract" method="_on_pressed"]
-[connection signal="pressed" from="ContractHolder/Exit" to="ContractHolder/ContractPage" method="_on_exit_pressed"]
-[connection signal="pressed" from="ContractHolder/LeftArrow" to="ContractHolder/ContractPage" method="toTheLeft"]
-[connection signal="pressed" from="ContractHolder/LeftArrow2" to="ContractHolder/ContractPage" method="toTheRight"]
-[connection signal="pressed" from="ContractHolder/SoulBuy" to="ContractHolder/ContractPage" method="_on_soul_buy_pressed"]
-[connection signal="pressed" from="ContractHolder/SoulBuy" to="ContractHolder/SoulCount/Nsouls" method="_on_soul_buy_pressed"]
-[connection signal="pressed" from="ContractHolder/EContractPage" to="ContractHolder/ContractPage" method="_on_e_contract_page_pressed"]
-[connection signal="pressed" from="ContractHolder/EnterContract" to="ContractHolder/ContractPage" method="beginContract"]
+[connection signal="pressed" from="FinishContractButton" to="FinishContractButton" method="_on_pressed"]
+[connection signal="pressed" from="DialogueControl/NextButton" to="DialogueControl" method="_onNextPressed"]

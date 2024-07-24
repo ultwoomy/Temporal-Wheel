@@ -1,4 +1,10 @@
 class_name DialogueHandler
+# To setup:
+#	1. Create a new instance of DialogueHandler and assign it to a variable.
+#	2. Assign JSON file path to "dialogueFilePath"
+# Example of use:
+#	1. Get dialogue data by calling "getDialogueData(...)", the parameter being any string one-indented in the JSON and on the left side (key).
+#	2. Use the returned result of "getDialogueData(...)" as an argument for the "getTextFromDialogue(...)" method to get the text for a label's text to be assigned to.
 
 
 #@ Public Variables
@@ -51,6 +57,8 @@ func getTextFromDialogue(dialogue: Dictionary) -> String:
 		return ""
 
 
+## These functions don't necessarily have to be in this class.
+## But they'll be used as an example if there are new keys to retrieve data from.
 func getFaceFromDialogue(dialogue: Dictionary) -> String:
 	if "FACE" in dialogue:
 		return dialogue["FACE"]
@@ -59,5 +67,9 @@ func getFaceFromDialogue(dialogue: Dictionary) -> String:
 		return ""
 
 
-#@ Private Methods
-
+func getBodyFromDialogue(dialogue: Dictionary) -> String:
+	if "BODY" in dialogue:
+		return dialogue["BODY"]
+	else:
+		printerr("ERROR: Provided dictionary does not have a key for body! Unable to get dialogue body.")
+		return ""

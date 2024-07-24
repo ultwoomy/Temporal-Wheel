@@ -69,6 +69,7 @@ func _resetChoice():
 	packsmithMenu.inspectButton.show()
 	packsmithMenu.augmentButton.show()
 	packsmithMenu.upgradeButton.show()
-	if(GVars.hellChallengeNerf > 0) or (GVars.ifhell):
+	
+	if GVars.challenges and (not GVars.hasChallenge(GVars.CHALLENGE_INCONGRUENT)) or GVars.ifhell:
 		packsmithMenu.automateButton.show()
 	packsmithMenu.nextButton.hide()

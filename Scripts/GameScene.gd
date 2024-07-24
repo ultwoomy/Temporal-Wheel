@@ -11,25 +11,13 @@ var emoBuff : float = 1
 # Its inheriters should call this function with super._ready().
 # Otherwise, this _ready function will get replaced and will be unable to run its functions.
 func _ready() -> void:
-	#run_tests()
 	if(GVars.curEmotionBuff == 4):
 		emoBuff = GVars.rustData.fourth
-	# L.B:
-	# When going to a new scene, this will create the event_manager and the automators (if any).
-	# Therefore, must be important to save the elements in "automators" when transitioning to different stages.
-	#	- Should probably have a new function here that handles transitions to another scene.
-	#	- Will use the event_manager like "wheel_spun".
-#	load_resources()
 	
 	WheelSpinner.wheelRotationCompleted.connect(on_wheel_spun)
 
 
 #@ Public Methods
-#func load_new_scene(scene_path: String) -> void:
-#	save_resources()
-#	get_tree().change_scene_to_file(scene_path)
-
-
 func on_wheel_spun() -> void:
 	var temp = calcClick()
 	if(GVars.ritualData.candlesLit[5]):
@@ -41,7 +29,7 @@ func calcClick() -> float:
 	var densityPower = GVars.spinData.density
 	if(GVars.atlasData.dumpRustMilestone > 1):
 		densityPower += GVars.atlasData.dumpRustMilestone/4 + 1
-	if(GVars.hellChallengeNerf == 2):
+	if GVars.hasChallenge(GVars.CHALLENGE_SHARP):
 		temp = pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2 * GVars.spinData.spinPerClick  * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
 	elif(GVars.curEmotionBuff == 2):
 		temp = pow(GVars.spinData.size,GVars.spinData.density + 1) * GVars.spinData.spinPerClick * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff

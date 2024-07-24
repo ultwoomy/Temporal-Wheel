@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ChallengeData" load_steps=2 format=3 uid="uid://1mu1xalh4np5"]
+
+[ext_resource type="Script" path="res://Resources/Data/ChallengeData.gd" id="1_skaci"]
+
+[resource]
+script = ExtResource("1_skaci")
+name = "Sandy"
+layer = 1

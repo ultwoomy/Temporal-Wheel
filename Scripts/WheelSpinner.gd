@@ -99,7 +99,7 @@ func _calculateSpinGain() -> float:
 	# Base result Player gets from spinning the wheel with a click.
 	var result : float = GVars.spinData.spinPerClick
 	# Multiply the result by the size of the wheel.
-	if GVars.hellChallengeNerf == 2:
+	if GVars.hasChallenge(GVars.CHALLENGE_SHARP):
 		result *= pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2
 	elif GVars.curEmotionBuff == 2:
 		result *= pow(GVars.spinData.size,GVars.spinData.density + 1)
@@ -191,7 +191,7 @@ func _calculateRust() -> float:
 	var result : float = 1.0
 	
 	# No calculations needed if doing the correct challenge.
-	if GVars.hellChallengeNerf == 4:
+	if GVars.hasChallenge(GVars.CHALLENGE_CALM):
 		return result
 	
 	# Base value if there is not a challenge.

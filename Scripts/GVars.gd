@@ -2,6 +2,21 @@ extends Node
 # Global script.
 
 
+#@ Constants
+# Layer 1 Challenges
+const CHALLENGE_INCONGRUENT : ChallengeData = preload("res://Resources/Challenge/IncongruentChallenge.tres")
+const CHALLENGE_BRAVE : ChallengeData = preload("res://Resources/Challenge/BraveChallenge.tres")
+const CHALLENGE_SHARP : ChallengeData = preload("res://Resources/Challenge/SharpChallenge.tres")
+const CHALLENGE_AWARE : ChallengeData = preload("res://Resources/Challenge/AwareChallenge.tres")
+const CHALLENGE_CALM : ChallengeData = preload("res://Resources/Challenge/CalmChallenge.tres")
+# Layer 2 Challenges
+const CHALLENGE_SANDY : ChallengeData = preload("res://Resources/Challenge/SandyChallenge.tres")
+const CHALLENGE_BITTERSWEET : ChallengeData = preload("res://Resources/Challenge/BittersweetChallenge.tres")
+const CHALLENGE_STARVED : ChallengeData = preload("res://Resources/Challenge/StarvedChallenge.tres")
+const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/FabulousChallenge.tres")
+
+
+#@ Export Variables
 @export_group("R0stats")
 @export var spinData : SpinData
 @export var rustData : RustData
@@ -17,7 +32,13 @@ extends Node
 @export var Aspinbuff : float
 @export var ifhell : bool
 @export var ifheaven : bool
-@export var hellChallengeNerf : int
+@export var challenges : Array[ChallengeData] = [] :
+	# L.B: This makes sure that there are NO duplicate challenge layers.
+	# 	For better performance(?), just don't set challenges manually and use the function.
+	set(value):
+		for challenge in value:
+			setChallenge(challenge)
+#@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
 @export var inContract : bool
@@ -124,7 +145,9 @@ func save_prog():
 	loader.ifFirstZunda = ifFirstZunda
 	loader.ifFirstFearcatDay = ifFirstFearcatDay
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
-	loader.hellChallengeNerf = hellChallengeNerf
+	# TODO: Add challenges variable to loader
+	loader.challenges = challenges
+#	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
 	loader.altSigilSand = altSigilSand
@@ -150,15 +173,21 @@ func resetR0Stats():
 	sandCost = 5
 	sandScaling = 3
 
+
 func resetR1Stats():
 	curEmotionBuff = -1
 	Aspinbuff = 1
 	ifhell = false
-	hellChallengeNerf = -1
-	
+	if challenges.size() >= 1:
+		challenges[0] = null  
+#	hellChallengeNerf = -1
+
+
 func resetR2Stats():
 	ifheaven = false
 	inContract = false
+	if challenges.size() >= 2:
+		challenges[1] = null
 	hellChallengeLayer2 = -1
 	hellChallengeInit = false
 	soulsData.resetData()
@@ -186,12 +215,52 @@ func resetPermStats():
 	sfxvol = -12.0
 	versNo = 15
 	ratmail = 0
-	
+
+
 func getScientific(val):
 	if(val > 1000):
 		return fmat.scientific(val,2)
 	else :
 		return snapped(val,0.01)
+
+
+func setChallenge(challenge : ChallengeData) -> void:
+	# Error checking.
+	if not challenge:
+		printerr("ERROR: Unable to set challenge!")
+		return
+	
+	# Make sure the array has a valid size to not be out of bounds.
+	if challenges.size() <= challenge.layer:
+		challenges.resize(challenge.layer + 1)
+	
+	# Set the challenge in the right layer.
+	challenges[challenge.layer] = challenge
+
+
+func hasChallenge(challenge : ChallengeData) -> bool:
+	# Check to see if challenges is null.
+	if not challenges:
+		return false
+	
+	if challenge in challenges:
+		return true
+	else:
+		return false
+
+
+func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
+	# Check to see if layer value is in bounds of the challenges array.
+	if not challenges:
+		return false
+	if not (challenges.size() >= layer + 1):
+		return false
+	
+	# If a ChallengeData is the element of the layer, then the layer has a challenge.
+	if challenges[layer]:
+		return true
+	else:
+		return false
 
 
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
@@ -255,8 +324,9 @@ func load_as_normal():
 	ifSecondBoot = loader.ifSecondBoot
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
+	challenges = loader.challenges
+#	hellChallengeNerf = loader.hellChallengeNerf
 	ifFirstZunda = loader.ifFirstZunda
-	hellChallengeNerf = loader.hellChallengeNerf
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol

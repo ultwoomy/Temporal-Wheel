@@ -1,8 +1,7 @@
-[gd_scene load_steps=38 format=3 uid="uid://cuk5evkb4ykl3"]
+[gd_scene load_steps=37 format=3 uid="uid://cuk5evkb4ykl3"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_aryn6"]
-[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceSceneManager.gd" id="3_i3hd7"]
-[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_m7pqi"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceGameScene.gd" id="3_5ruey"]
 [ext_resource type="Texture2D" uid="uid://cjrponoa23g0e" path="res://Sprites/Spaces/Rust/rust_space.png" id="4_5gufq"]
 [ext_resource type="Texture2D" uid="uid://bs53g0yb4iw38" path="res://Sprites/Spaces/Rust/rust_space_light.png" id="4_b0c6l"]
 [ext_resource type="Texture2D" uid="uid://bb2574fidse41" path="res://Sprites/Spaces/Rust/rust_space_dark.png" id="5_04br7"]
@@ -84,50 +83,56 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_aryn6")
-script = ExtResource("3_m7pqi")
+script = ExtResource("3_5ruey")
 
-[node name="Space control" type="Container" parent="." node_paths=PackedStringArray("button", "button2", "button3", "button4")]
-layout_mode = 0
-offset_right = 300.0
-offset_bottom = 150.0
-script = ExtResource("3_i3hd7")
-button = NodePath("RustButton")
-button2 = NodePath("VoidButton")
-button3 = NodePath("HeavenButton")
-button4 = NodePath("HellButton")
-
-[node name="RustButton" type="Button" parent="Space control"]
+[node name="RustButton" type="Button" parent="."]
 layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_c081o")
 theme_override_styles/hover = SubResource("StyleBoxTexture_w4s4c")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w4s4c")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_7jqrv")
 theme_override_styles/focus = SubResource("StyleBoxTexture_vwss3")
 text = "Rust Space"
+expand_icon = true
 
-[node name="VoidButton" type="Button" parent="Space control"]
+[node name="VoidButton" type="Button" parent="."]
 layout_mode = 2
+offset_left = 500.0
+offset_right = 1000.0
+offset_bottom = 300.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_eh58t")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fiv7o")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_4b8qu")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_v61fm")
 theme_override_styles/focus = SubResource("StyleBoxTexture_ct34u")
-text = "Rust Space"
+text = "Void Space"
+expand_icon = true
 
-[node name="HeavenButton" type="Button" parent="Space control"]
+[node name="HeavenButton" type="Button" parent="."]
 layout_mode = 2
+offset_top = 300.0
+offset_right = 500.0
+offset_bottom = 600.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_1iwfb")
 theme_override_styles/hover = SubResource("StyleBoxTexture_e3rua")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_d0xlg")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_yvaq7")
 theme_override_styles/focus = SubResource("StyleBoxTexture_0w2vc")
-text = "Rust Space"
+text = "Heaven"
+expand_icon = true
 
-[node name="HellButton" type="Button" parent="Space control"]
+[node name="HellButton" type="Button" parent="."]
 layout_mode = 2
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 1000.0
+offset_bottom = 600.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_pr3a5")
 theme_override_styles/hover = SubResource("StyleBoxTexture_27swn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_engd3")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_43nh8")
 theme_override_styles/focus = SubResource("StyleBoxTexture_whn2k")
-text = "Rust Space"
+text = "Hell"
+expand_icon = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cl3et1epnfgxj"]
+[gd_scene load_steps=28 format=3 uid="uid://cl3et1epnfgxj"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_pm7qv"]
 [ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceMain.gd" id="2_8wq13"]
@@ -8,17 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://dykkcmaxnss2h" path="res://Sprites/HellSpace/Arrows/hell_right.png" id="5_edx5n"]
 [ext_resource type="Texture2D" uid="uid://cd6o51lxay8aj" path="res://Sprites/HellSpace/hell_box_zunda.png" id="5_vu7h7"]
 [ext_resource type="Texture2D" uid="uid://dhx2b4j0s0u2k" path="res://Sprites/HellSpace/Arrows/hell_right_hover.png" id="6_000st"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/Right.gd" id="7_e7d88"]
 [ext_resource type="Texture2D" uid="uid://4kj47j0y7yex" path="res://Sprites/HellSpace/Zunda/Poses/zunda_finger_gun.png" id="8_wlt4q"]
 [ext_resource type="Texture2D" uid="uid://q3l0ur4m4600" path="res://Sprites/HellSpace/Zunda/Poses/zunda_hand_on_hips.png" id="9_c1by3"]
 [ext_resource type="Texture2D" uid="uid://nhfgfh07qmta" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_eugh.png" id="10_it3et"]
 [ext_resource type="Texture2D" uid="uid://bdsmwouac85ff" path="res://Sprites/HellSpace/Zunda/Poses/zunda_shock.png" id="11_61w14"]
 [ext_resource type="Texture2D" uid="uid://ccy7e7jjkbk1f" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral2.png" id="11_y7knd"]
 [ext_resource type="Texture2D" uid="uid://dojma0m1dqtfs" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_neutral.png" id="12_0m8rq"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/ZundaControl.gd" id="13_kcxk5"]
 [ext_resource type="Script" path="res://Scripts/HellSpace/ZundaDialogueContainer.gd" id="14_1tbc8"]
 [ext_resource type="Texture2D" uid="uid://c0xdh8mi58kco" path="res://Sprites/HellSpace/helltextbox.png" id="15_svovp"]
 [ext_resource type="Texture2D" uid="uid://bv6kqwsjpqfpp" path="res://Sprites/HellSpace/Zunda/Expressions/zunda_expression_shock.png" id="16_5bhqc"]
 [ext_resource type="Texture2D" uid="uid://do36jh0aesw82" path="res://Sprites/HellSpace/Arrows/hell_back1.png" id="16_ixgfe"]
 [ext_resource type="Texture2D" uid="uid://6cf72xlfuciu" path="res://Sprites/HellSpace/Arrows/hell_back2.png" id="17_20k74"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceBack.gd" id="21_464ab"]
 [ext_resource type="PackedScene" uid="uid://bsjou3atd2hdk" path="res://Scenes/HellSpace/ContractMenu.tscn" id="23_f0efo"]
 [ext_resource type="Script" path="res://Scripts/HellSpace/FinishContract.gd" id="32_snpwu"]
 
@@ -94,7 +97,7 @@ position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_u03bk")
 
-[node name="RightButton" type="TextureButton" parent="."]
+[node name="RightButton" type="TextureButton" parent="." node_paths=PackedStringArray("backdrop", "zunda1", "zunda2", "textbox", "next", "text")]
 layout_mode = 0
 offset_left = 914.0
 offset_top = 363.0
@@ -105,6 +108,13 @@ texture_pressed = ExtResource("6_000st")
 texture_hover = ExtResource("6_000st")
 texture_disabled = ExtResource("5_edx5n")
 texture_focused = ExtResource("6_000st")
+script = ExtResource("7_e7d88")
+backdrop = NodePath("../Background")
+zunda1 = NodePath("../DialogueContainer/ZundaBody")
+zunda2 = NodePath("../DialogueContainer/ZundaFace")
+textbox = NodePath("../DialogueContainer/DialogueBox")
+next = NodePath("../DialogueContainer/NextButton")
+text = NodePath("../DialogueContainer/DialogueLabel")
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0
@@ -116,6 +126,7 @@ texture_pressed = ExtResource("17_20k74")
 texture_hover = ExtResource("17_20k74")
 texture_disabled = ExtResource("16_ixgfe")
 texture_focused = ExtResource("17_20k74")
+script = ExtResource("21_464ab")
 
 [node name="FinishContractButton" type="Button" parent="."]
 layout_mode = 0
@@ -138,10 +149,16 @@ text = "Contracts"
 anchors_preset = 0
 script = ExtResource("14_1tbc8")
 
-[node name="ZundaBody" type="AnimatedSprite2D" parent="DialogueContainer"]
+[node name="ZundaBody" type="AnimatedSprite2D" parent="DialogueContainer" node_paths=PackedStringArray("zundabody", "zundaface", "text", "textbox", "nextButton")]
 position = Vector2(194, 280)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_l7hy6")
+script = ExtResource("13_kcxk5")
+zundabody = NodePath(".")
+zundaface = NodePath("../ZundaFace")
+text = NodePath("../DialogueLabel")
+textbox = NodePath("../DialogueBox")
+nextButton = NodePath("../NextButton")
 
 [node name="ZundaFace" type="AnimatedSprite2D" parent="DialogueContainer"]
 position = Vector2(195, 279)
@@ -176,5 +193,7 @@ autowrap_mode = 2
 offset_top = 0.0
 offset_bottom = 0.0
 
+[connection signal="pressed" from="RightButton" to="RightButton" method="_on_pressed"]
 [connection signal="pressed" from="FinishContractButton" to="FinishContractButton" method="_on_pressed"]
-[connection signal="pressed" from="DialogueContainer/NextButton" to="DialogueContainer" method="_onNextPressed"]
+[connection signal="pressed" from="OpenContractsButton" to="." method="_onOpenContractsPressed"]
+[connection signal="pressed" from="DialogueContainer/NextButton" to="DialogueContainer/ZundaBody" method="_on_next_pressed"]

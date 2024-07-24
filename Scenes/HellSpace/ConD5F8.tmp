@@ -1,0 +1,302 @@
+[gd_scene load_steps=16 format=3 uid="uid://bsjou3atd2hdk"]
+
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="1_iu7xx"]
+[ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="2_5caet"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/ContractPage.gd" id="2_kx1ee"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="3_ueot4"]
+[ext_resource type="Texture2D" uid="uid://bxmxksutsmrtl" path="res://Sprites/Sigils/sigil11.png" id="4_egcl1"]
+[ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="5_4xql6"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/HellSpaceContracts.gd" id="6_4dxk2"]
+[ext_resource type="Texture2D" uid="uid://dupfwrc8dt6qn" path="res://Sprites/Sigils/sigil10.png" id="7_ug8aa"]
+[ext_resource type="Texture2D" uid="uid://oxfv3a4u3wmd" path="res://Sprites/HellSpace/Arrows/hell_x1.png" id="8_y6llb"]
+[ext_resource type="Texture2D" uid="uid://boc4erkclqx6p" path="res://Sprites/HellSpace/Arrows/hell_x2.png" id="9_jwl6b"]
+[ext_resource type="Texture2D" uid="uid://b4fjjdjebvdx6" path="res://Sprites/HellSpace/Arrows/hell_contract_left.png" id="10_fnh8u"]
+[ext_resource type="Texture2D" uid="uid://q51gt7miwylw" path="res://Sprites/HellSpace/Arrows/hell_contract_left2.png" id="11_0evx6"]
+[ext_resource type="Texture2D" uid="uid://cuuv1ujb2olux" path="res://Sprites/HellSpace/soul_token.png" id="12_4xa25"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/Nsouls.gd" id="13_8gxf3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h62mh"]
+bg_color = Color(0, 0.257813, 0.160156, 1)
+corner_detail = 1
+
+[node name="ContractMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_4dxk2")
+
+[node name="TwinsContract" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 220.0
+offset_top = 1270.0
+offset_right = 820.0
+offset_bottom = 1770.0
+script = ExtResource("2_kx1ee")
+
+[node name="Panel" type="Panel" parent="TwinsContract"]
+layout_mode = 0
+offset_right = 600.0
+offset_bottom = 500.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h62mh")
+
+[node name="Content" type="Control" parent="TwinsContract"]
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 230.0
+offset_right = 300.0
+offset_bottom = 230.0
+pivot_offset = Vector2(50.035, 50)
+
+[node name="ContractSigil" type="Sprite2D" parent="TwinsContract/Content"]
+texture = ExtResource("2_5caet")
+
+[node name="ContractName" type="Label" parent="TwinsContract/Content"]
+layout_mode = 2
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = -175.0
+theme = ExtResource("3_ueot4")
+text = "The Twins"
+horizontal_alignment = 1
+
+[node name="ContractDesc" type="Label" parent="TwinsContract/Content"]
+layout_mode = 2
+offset_top = 42.0
+offset_right = 314.0
+offset_bottom = 134.0
+theme = ExtResource("3_ueot4")
+text = "You no longer gain resources
+Rust can purchase all resource
+Unlocks the Twins as an
+alternate sigil to the Packsmith (WIP)"
+horizontal_alignment = 1
+
+[node name="ZundaContract" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1000.0
+offset_top = 1200.0
+offset_right = 1040.0
+offset_bottom = 1240.0
+
+[node name="ContractPanel" type="Sprite2D" parent="ZundaContract"]
+self_modulate = Color(0, 0, 0.137255, 1)
+position = Vector2(520, 320)
+scale = Vector2(6, 5)
+texture = ExtResource("1_iu7xx")
+
+[node name="Control" type="Control" parent="ZundaContract"]
+anchors_preset = 0
+offset_left = 520.0
+offset_top = 300.0
+offset_right = 560.0
+offset_bottom = 340.0
+
+[node name="ContractSigil" type="Sprite2D" parent="ZundaContract/Control"]
+texture = ExtResource("4_egcl1")
+
+[node name="ContractName" type="Label" parent="ZundaContract/Control"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = -100.0
+theme = ExtResource("3_ueot4")
+text = "Zunda of the Night"
+horizontal_alignment = 1
+
+[node name="ContractDesc" type="Label" parent="ZundaContract/Control"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = 150.0
+offset_right = 150.0
+offset_bottom = 250.0
+theme = ExtResource("3_ueot4")
+text = "Zunda is hungry!
+Meet her growing list of demands
+Unlocks Zunda of the Night
+as an alternative to emptiness"
+horizontal_alignment = 1
+
+[node name="UndercityContract" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1000.0
+offset_top = 600.0
+offset_right = 1040.0
+offset_bottom = 640.0
+
+[node name="ContractPanel" type="Sprite2D" parent="UndercityContract"]
+self_modulate = Color(0.580392, 0, 0.552941, 1)
+position = Vector2(520, 320)
+scale = Vector2(6, 5)
+texture = ExtResource("1_iu7xx")
+
+[node name="Control" type="Control" parent="UndercityContract"]
+anchors_preset = 0
+offset_left = 520.0
+offset_top = 300.0
+offset_right = 560.0
+offset_bottom = 340.0
+
+[node name="ContractSigil" type="Sprite2D" parent="UndercityContract/Control"]
+texture = ExtResource("5_4xql6")
+
+[node name="ContractName" type="Label" parent="UndercityContract/Control"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = -100.0
+theme = ExtResource("3_ueot4")
+text = "Undercity"
+horizontal_alignment = 1
+
+[node name="ContractDesc" type="Label" parent="UndercityContract/Control"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = 150.0
+offset_right = 150.0
+offset_bottom = 250.0
+theme = ExtResource("3_ueot4")
+text = "Sigil costs are greatly modified
+The Kbity engine rumbles
+Unlocks the Undercity as an
+alternative sigil to the ritual"
+horizontal_alignment = 1
+
+[node name="SandContract" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1000.0
+offset_right = 1040.0
+offset_bottom = 40.0
+
+[node name="ContractPanel" type="Sprite2D" parent="SandContract"]
+self_modulate = Color(0.458824, 0.305882, 0.258824, 1)
+position = Vector2(520, 320)
+scale = Vector2(6, 5)
+texture = ExtResource("1_iu7xx")
+
+[node name="Control" type="Control" parent="SandContract"]
+anchors_preset = 0
+offset_left = 520.0
+offset_top = 300.0
+offset_right = 620.0
+offset_bottom = 400.0
+
+[node name="ContractSigil" type="Sprite2D" parent="SandContract/Control"]
+texture = ExtResource("7_ug8aa")
+
+[node name="ContractName" type="Label" parent="SandContract/Control"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+offset_bottom = -100.0
+theme = ExtResource("3_ueot4")
+text = "Sand Dollar"
+horizontal_alignment = 1
+
+[node name="ContractDesc" type="Label" parent="SandContract/Control"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = 150.0
+offset_right = 150.0
+offset_bottom = 250.0
+theme = ExtResource("3_ueot4")
+text = "The more you have
+The less you get
+Unlocks the sand dollar as an
+alternate sigil to the candle"
+horizontal_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 730.0
+offset_top = 70.0
+offset_right = 1029.0
+offset_bottom = 369.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("8_y6llb")
+texture_pressed = ExtResource("9_jwl6b")
+texture_hover = ExtResource("9_jwl6b")
+texture_disabled = ExtResource("8_y6llb")
+texture_focused = ExtResource("9_jwl6b")
+
+[node name="LeftArrowButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 250.0
+offset_right = 519.0
+offset_bottom = 549.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("10_fnh8u")
+texture_pressed = ExtResource("11_0evx6")
+texture_hover = ExtResource("11_0evx6")
+texture_disabled = ExtResource("10_fnh8u")
+texture_focused = ExtResource("11_0evx6")
+
+[node name="RightArrowButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 820.0
+offset_top = 370.0
+offset_right = 1119.0
+offset_bottom = 669.0
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("10_fnh8u")
+texture_pressed = ExtResource("11_0evx6")
+texture_hover = ExtResource("11_0evx6")
+texture_disabled = ExtResource("10_fnh8u")
+texture_focused = ExtResource("11_0evx6")
+
+[node name="SoulCount" type="Sprite2D" parent="."]
+position = Vector2(275, 127)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("12_4xa25")
+
+[node name="Nsouls" type="Label" parent="SoulCount"]
+offset_left = 220.0
+offset_top = -99.9998
+offset_right = 260.0
+offset_bottom = -76.9998
+scale = Vector2(10, 10)
+theme = ExtResource("3_ueot4")
+text = "0"
+script = ExtResource("13_8gxf3")
+
+[node name="SoulUpgradeButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 450.0
+offset_right = 370.0
+offset_bottom = 530.0
+text = "Upgrade"
+
+[node name="OpenContractsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 250.0
+offset_right = 750.0
+offset_bottom = 350.0
+text = "Contracts"
+
+[node name="EnterContractButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 450.0
+offset_right = 770.0
+offset_bottom = 530.0
+text = "Enter
+Contract"
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="LeftArrowButton" to="." method="toTheLeft"]
+[connection signal="pressed" from="RightArrowButton" to="." method="toTheRight"]
+[connection signal="pressed" from="SoulUpgradeButton" to="." method="_on_soul_buy_pressed"]
+[connection signal="pressed" from="SoulUpgradeButton" to="SoulCount/Nsouls" method="_on_soul_buy_pressed"]
+[connection signal="pressed" from="OpenContractsButton" to="." method="_on_e_contract_page_pressed"]
+[connection signal="pressed" from="EnterContractButton" to="." method="beginContract"]

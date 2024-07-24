@@ -1,6 +1,7 @@
 extends Button
 
 
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(GVars.hellChallengeLayer2 >= 0):
@@ -9,7 +10,7 @@ func _ready():
 		hide()
 
 
-
+#@ Private Methods
 func _on_pressed():
 	if GVars.hellChallengeLayer2 == 0:
 		GVars.challenges = []

@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://c31xxrcyut0wh"]
+
+[ext_resource type="Texture2D" uid="uid://dwtilyk234qlf" path="res://Sprites/Fearcat/fearcat/tile000.png" id="1_yuxq5"]
+[ext_resource type="Texture2D" uid="uid://b4ofgem2twdib" path="res://Sprites/Fearcat/fearcat/tile001.png" id="2_vi507"]
+[ext_resource type="Texture2D" uid="uid://dt72y7q4scu2g" path="res://Sprites/Fearcat/fearcat/tile002.png" id="3_4wns6"]
+[ext_resource type="Texture2D" uid="uid://drnbghslhr2pa" path="res://Sprites/Fearcat/fearcat/tile003.png" id="4_2lthk"]
+[ext_resource type="Texture2D" uid="uid://bxnyyybt1lal7" path="res://Sprites/Fearcat/fearcat/tile004.png" id="5_1ltjj"]
+[ext_resource type="Texture2D" uid="uid://bd5erxcdjslvp" path="res://Sprites/Fearcat/fearcat/tile005.png" id="6_jw5bl"]
+[ext_resource type="Script" path="res://Scripts/Fearcat.gd" id="7_3li4h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_drhho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yuxq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vi507")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4wns6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2lthk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1ltjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jw5bl")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Node" type="Node2D"]
+
+[node name="Fearcat" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_drhho")
+animation = &"new_animation"
+script = ExtResource("7_3li4h")

@@ -32,6 +32,7 @@ extends Resource
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
 @export var nightChallengeData : NightChallengeData
+@export var fearcatData : FearcatData
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -84,6 +85,7 @@ func _init():
 	backpackData = BackpackData.new()
 	automatorVarsData = AutomatorVarsData.new()
 	nightChallengeData = NightChallengeData.new()
+	fearcatData = FearcatData.new()
 	sand = 0
 	sandCost = 7
 	sandScaling = 3
@@ -109,7 +111,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 14
+	versNo = 15
 	ratmail = 0
 
 func save_stats(data):

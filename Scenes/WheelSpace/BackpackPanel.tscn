@@ -77,66 +77,9 @@ offset_right = 440.0
 offset_bottom = 330.0
 text = "fdfsdfsdfdf"
 
-[node name="ChoicePanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 400.0
-offset_bottom = 300.0
-
-[node name="Self" type="Button" parent="ChoicePanel"]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 90.0
-offset_right = 110.0
-offset_bottom = 130.0
-theme_override_font_sizes/font_size = 10
-text = "Me"
-
-[node name="Packsmith" type="Button" parent="ChoicePanel"]
-layout_mode = 0
-offset_left = 130.0
-offset_top = 90.0
-offset_right = 170.0
-offset_bottom = 130.0
-theme_override_font_sizes/font_size = 6
-text = "Packsmith"
-
-[node name="Fae" type="Button" parent="ChoicePanel"]
-layout_mode = 0
-offset_left = 190.0
-offset_top = 90.0
-offset_right = 230.0
-offset_bottom = 130.0
-theme_override_font_sizes/font_size = 8
-text = "Fae
-(Bunny)"
-
-[node name="Zunda" type="Button" parent="ChoicePanel"]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 140.0
-offset_right = 110.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 10
-text = "Zunda"
-
-[node name="Label" type="Label" parent="ChoicePanel"]
-layout_mode = 0
-offset_top = 40.0
-offset_right = 300.0
-offset_bottom = 63.0
-text = "Who should use this item?"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [connection signal="mouse_entered" from="Cheese" to="." method="_onCheeseFocusEntered"]
 [connection signal="mouse_exited" from="Cheese" to="." method="_onCheeseFocusExited"]
 [connection signal="pressed" from="Cheese" to="." method="_onCheesePressed"]
 [connection signal="mouse_entered" from="Ribbon" to="." method="_onRibbonFocusEntered"]
 [connection signal="mouse_exited" from="Ribbon" to="." method="_onRibbonFocusExited"]
 [connection signal="pressed" from="Ribbon" to="." method="_onRibbonPressed"]
-[connection signal="pressed" from="ChoicePanel/Self" to="." method="_onSelfPressed"]
-[connection signal="pressed" from="ChoicePanel/Packsmith" to="." method="_onPacksmithPressed"]
-[connection signal="pressed" from="ChoicePanel/Fae" to="." method="_onFaePressed"]
-[connection signal="pressed" from="ChoicePanel/Zunda" to="." method="_onZundaPressed"]

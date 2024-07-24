@@ -27,6 +27,7 @@ extends Node
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
 @export var nightChallengeData : NightChallengeData
+@export var fearcatData : FearcatData
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -35,6 +36,8 @@ extends Node
 @export var ifFirstHell : bool
 @export var ifFirstAtlas : bool
 @export var ifFirstZunda : bool
+@export var ifFirstFearcatDay : bool
+@export var ifFirstFearcatNight : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -83,6 +86,8 @@ func create_data():
 		automatorVarsData = AutomatorVarsData.new()
 	if not nightChallengeData:
 		nightChallengeData = NightChallengeData.new()
+	if not fearcatData:
+		fearcatData = FearcatData.new()
 
 
 func save_prog():
@@ -99,6 +104,7 @@ func save_prog():
 	loader.kbityData = kbityData
 	loader.backpackData = backpackData
 	loader.nightChallengeData = nightChallengeData
+	loader.fearcatData = fearcatData
 	#loader.sigilData = sigilData
 	loader.sand = sand
 	loader.sandCost = sandCost
@@ -116,6 +122,8 @@ func save_prog():
 	loader.ifFirstHell = ifFirstHell
 	loader.ifFirstAtlas = ifFirstAtlas
 	loader.ifFirstZunda = ifFirstZunda
+	loader.ifFirstFearcatDay = ifFirstFearcatDay
+	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
@@ -160,6 +168,7 @@ func resetR2Stats():
 	Automation.clearAutomators()
 	automatorVarsData.resetData()
 	nightChallengeData.resetData()
+	fearcatData.resetData()
 	
 func resetPermStats():
 	ifFirstBoot = true
@@ -175,7 +184,7 @@ func resetPermStats():
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 14
+	versNo = 15
 	ratmail = 0
 	
 func getScientific(val):
@@ -229,6 +238,9 @@ func load_as_normal():
 	if(versNo <= 13):
 		loader.nightChallengeData = NightChallengeData.new()
 		loader.ifFirstZunda = true
+		versNo += 1
+	if(versNo <= 14):
+		loader.fearcatData = FearcatData.new()
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData

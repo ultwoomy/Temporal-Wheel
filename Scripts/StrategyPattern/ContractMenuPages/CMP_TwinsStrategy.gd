@@ -41,6 +41,10 @@ func _purchaseUpgrade() -> void:
 		_assignText()
 
 
+func _getChallenge() -> ChallengeData:
+	return GVars.CHALLENGE_FABULOUS
+
+
 func _isContractCompleted() -> bool:
 	return GVars.soulsData.voidRustChanceEnabled
 

@@ -40,6 +40,10 @@ func _purchaseUpgrade() -> void:
 		_assignText()
 
 
+func _getChallenge() -> ChallengeData:
+	return GVars.CHALLENGE_BITTERSWEET
+
+
 func _isContractCompleted() -> bool:
 	return GVars.soulsData.doubleRotChanceEnabled
 

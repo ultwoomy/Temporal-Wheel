@@ -4,10 +4,10 @@ class_name ContractMenu
 
 #@ Public Variables
 var contractOrder : Array = [  # (!) Elements should be derived from CMP_Strategy
-	CMP_TwinsStrategy,
-	CMP_ZundaStrategy,
-	CMP_UndercityStrategy,
 	CMP_SandStrategy,
+	CMP_UndercityStrategy,
+	CMP_ZundaStrategy,
+	CMP_TwinsStrategy,
 ]
 var contractStrategy : CMP_Strategy
 var contractIndex : int = 0
@@ -30,7 +30,7 @@ var contractIndex : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Initial Strategy.
-	contractStrategy = CMP_TwinsStrategy.new(contractPage)
+	contractStrategy = contractOrder[contractIndex].new(contractPage)
 	
 	self.hide()
 	soulUpgradeButton.hide()
@@ -73,6 +73,7 @@ func displayContractPage() -> void:
 
 
 func beginContract() -> void:
+	GVars.setChallenge(contractStrategy._getChallenge())
 	GVars.hellChallengeLayer2 = contractIndex
 	GVars.hellChallengeInit = true
 	SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)

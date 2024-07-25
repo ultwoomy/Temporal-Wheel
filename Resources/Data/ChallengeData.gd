@@ -10,4 +10,4 @@ enum ChallengeLayer {
 
 #@ Export Variables
 @export var name : String
-@export var layer : ChallengeLayer
+@export var layer : ChallengeLayer  # Determines the index this ChallengeData resource will be in the GVars.challenges array.

@@ -63,6 +63,10 @@ func toTheRight() -> void:
 
 func displayContractPage() -> void:
 	contractStrategy._showPage()
+	displayContractPageButtons()
+
+
+func displayContractPageButtons() -> void:
 	if contractStrategy._isContractCompleted():
 		enterContractButton.hide()
 		soulUpgradeButton.show()

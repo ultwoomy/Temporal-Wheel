@@ -4,6 +4,7 @@ extends GameScene
 #@ Onready Variables
 @onready var rightButton : BaseButton = $RightButton
 @onready var backButton : BaseButton = $BackButton
+@onready var finishContractButton : Button = $FinishContractButton
 @onready var openContractsButton : Button = $OpenContractsButton
 
 @onready var backgroundSprite : AnimatedSprite2D = $Background
@@ -21,6 +22,7 @@ func _ready() -> void:
 	# Connect signals
 	rightButton.pressed.connect(_onRightPressed)
 	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.WHEELSPACE))
+	finishContractButton.pressed.connect(contractMenu.displayContractPageButtons)
 	openContractsButton.pressed.connect(_onOpenContractsPressed)
 	dialogueControl.dialogueCompleted.connect(_onDialogueCompleted)
 
@@ -47,7 +49,7 @@ func _onRightPressed() -> void:
 		dialogueControl.show()
 		dialogueControl.zundaBodySprite.frame = 1
 		dialogueControl.zundaFaceSprite.frame = 0
-		GVars._dialouge(dialogueControl.dialogueLabel.text, 0, 0.02)
+		GVars._dialouge(dialogueControl.dialogueLabel.text, str(0), 0.02)
 	else:
 		backgroundSprite.frame = 2
 		openContractsButton.show()

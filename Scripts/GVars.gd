@@ -261,7 +261,7 @@ func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 
 
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
-func _dialouge(label : Label, textToDisplay : String, time : float) -> void:
+func _dialouge(label : Label, textToDisplay, time : float) -> void:
 	if is_instance_valid(label):
 		chars = textToDisplay
 		if chars <= label.text.length():

@@ -34,6 +34,7 @@ func _buttonPressed():
 	presses += 1.0
 	if presses > 4:
 		GVars.challenges = []
+		GVars.currentChallenges = []
 		GVars.inContract = false
 		GVars.spinData.spin = 0
 		GVars.spinData.rotations = 0

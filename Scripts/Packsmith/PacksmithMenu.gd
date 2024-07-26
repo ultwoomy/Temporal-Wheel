@@ -50,7 +50,7 @@ func _ready():
 	
 	
 	
-	if GVars.challenges and (not GVars.hasChallenge(GVars.CHALLENGE_INCONGRUENT)) or GVars.ifhell:
+	if GVars.currentChallenges and (not GVars.hasChallengeActive(GVars.CHALLENGE_INCONGRUENT)) or GVars.ifhell:
 		automateButton.show()
 	else:
 		automateButton.hide()

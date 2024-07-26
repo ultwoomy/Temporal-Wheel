@@ -79,7 +79,7 @@ func _harvest_shroom(val) -> void:
 		soulsShroomBuff = 2
 	else:
 		soulsShroomBuff = 1
-	if GVars.hasChallenge(GVars.CHALLENGE_AWARE):
+	if GVars.hasChallengeActive(GVars.CHALLENGE_AWARE):
 		Ebuff = 1/(log(GVars.spinData.rotations)/log(5) + 0.5)
 	elif GVars.curEmotionBuff == 3:
 		Ebuff = log(GVars.spinData.rotations)/log(5) + 0.5

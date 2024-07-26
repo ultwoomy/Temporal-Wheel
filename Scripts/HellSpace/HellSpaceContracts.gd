@@ -22,7 +22,7 @@ var contractIndex : int = 0
 @onready var enterContractButton : Button = $EnterContractButton
 @onready var soulUpgradeButton : Button = $SoulUpgradeButton
 
-@onready var SoulCountSprite : Sprite2D = $SoulCountContainer/SoulCountSprite
+@onready var soulCountSprite : Sprite2D = $SoulCountContainer/SoulCountSprite
 @onready var soulCountLabel : Label = $SoulCountContainer/SoulCountLabel
 
 
@@ -73,7 +73,7 @@ func displayContractPage() -> void:
 
 
 func beginContract() -> void:
-	GVars.setChallenge(contractStrategy._getChallenge())
+	GVars.setChallengeDataInChallenges(contractStrategy._getChallenge())
 	GVars.hellChallengeLayer2 = contractIndex
 	GVars.hellChallengeInit = true
 	SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)

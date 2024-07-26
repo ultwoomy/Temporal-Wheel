@@ -37,7 +37,8 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	# 	For better performance(?), just don't set challenges manually and use the function.
 	set(value):
 		for challenge in value:
-			setChallenge(challenge)
+			setChallengeDataInChallenges(challenge)
+@export var currentChallenges : Array[ChallengeData] = []
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
@@ -132,6 +133,7 @@ func save_prog():
 	loader.ifFirstAtlas = ifFirstAtlas
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
+	loader.currentChallenges = currentChallenges
 #	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
@@ -165,6 +167,8 @@ func resetR1Stats():
 	ifhell = false
 	if challenges.size() >= 1:
 		challenges[0] = null  
+	if currentChallenges.size() >= 1:
+		currentChallenges[0] = null
 #	hellChallengeNerf = -1
 
 
@@ -173,6 +177,8 @@ func resetR2Stats():
 	inContract = false
 	if challenges.size() >= 2:
 		challenges[1] = null
+	if currentChallenges.size() >= 2:
+		currentChallenges[1] = null
 	hellChallengeLayer2 = -1
 	hellChallengeInit = false
 	soulsData.resetData()
@@ -206,7 +212,7 @@ func getScientific(val):
 		return snapped(val,0.01)
 
 
-func setChallenge(challenge : ChallengeData) -> void:
+func setChallengeDataInChallenges(challenge : ChallengeData) -> void:
 	# Error checking.
 	if not challenge:
 		printerr("ERROR: Unable to set challenge!")
@@ -220,40 +226,49 @@ func setChallenge(challenge : ChallengeData) -> void:
 	challenges[challenge.layer] = challenge
 
 
-func hasChallenge(challenge : ChallengeData) -> bool:
-	# Check to see if challenges is null.
+func setChallengeToCurrentChallenges() -> void:
+	# Error checking
 	if not challenges:
+		return
+	
+	currentChallenges = challenges.duplicate()  # Arrays are passed by reference.
+	challenges.clear()
+
+
+func hasChallengeActive(challenge : ChallengeData) -> bool:
+	# Check to see if challenges is null.
+	if not currentChallenges:
 		return false
 	
-	if challenge in challenges:
+	if challenge in currentChallenges:
 		return true
 	else:
 		return false
 
 
 func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
-	# Check to see if layer value is in bounds of the challenges array.
+	# Check to see if layer value is in bounds of the currentChallenges array.
 	if not challenges:
 		return false
 	if not (challenges.size() >= layer + 1):
 		return false
 	
 	# If a ChallengeData is the element of the layer, then the layer has a challenge.
-	if challenges[layer]:
+	if currentChallenges[layer]:
 		return true
 	else:
 		return false
 
 
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
-func _dialouge(lbl,charat,time):
-	if(is_instance_valid(lbl)):
-		chars = charat
-		if(chars <= lbl.text.length()):
-			lbl.visible_characters = chars
+func _dialouge(label : Label, textToDisplay : String, time : float) -> void:
+	if is_instance_valid(label):
+		chars = textToDisplay
+		if chars <= label.text.length():
+			label.visible_characters = chars
 			chars += 1
 			await get_tree().create_timer(time).timeout
-			_dialouge(lbl,chars,time)
+			_dialouge(label, textToDisplay, time)
 
 
 func load_as_normal():
@@ -299,6 +314,7 @@ func load_as_normal():
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
 	challenges = loader.challenges
+	currentChallenges = loader.currentChallenges
 #	hellChallengeNerf = loader.hellChallengeNerf
 	inContract = loader.inContract
 	musicvol = loader.musicvol

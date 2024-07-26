@@ -32,6 +32,7 @@ func _button_pressed():
 	presses += 1
 	if presses > 4:
 		GVars.challenges = []
+		GVars.currentChallenges = []
 		GVars.ifhell = true
 		GVars.inContract = false
 		GVars.hellChallengeInit = true

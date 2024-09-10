@@ -19,7 +19,6 @@ func _onWheelRotationCompleted() -> void:
 	
 	const candleSigil : Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
 	if candleSigil in GVars.sigilData.acquiredSigils:
-		print(str(basePendingRotationValue * GlobalBuffs.mushroomPendingRotationModifier))
-		GVars.mushroomData.pendingRots += basePendingRotationValue * GlobalBuffs.mushroomPendingRotationModifier
+		GVars.mushroomData.pendingRots += basePendingRotationValue * GlobalBuffs.mushroomPendingRotationModifier * GVars.mushroomData.fearMushBuff
 		if(GVars.ritualData.candlesLit[1]):
 			GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)

@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://c31xxrcyut0wh"]
+[gd_scene load_steps=14 format=3 uid="uid://c31xxrcyut0wh"]
 
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_kvvf3"]
 [ext_resource type="Texture2D" uid="uid://dwtilyk234qlf" path="res://Sprites/Fearcat/fearcat/tile000.png" id="1_yuxq5"]
 [ext_resource type="Texture2D" uid="uid://b4ofgem2twdib" path="res://Sprites/Fearcat/fearcat/tile001.png" id="2_vi507"]
 [ext_resource type="Texture2D" uid="uid://dt72y7q4scu2g" path="res://Sprites/Fearcat/fearcat/tile002.png" id="3_4wns6"]
@@ -7,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://bxnyyybt1lal7" path="res://Sprites/Fearcat/fearcat/tile004.png" id="5_1ltjj"]
 [ext_resource type="Texture2D" uid="uid://bd5erxcdjslvp" path="res://Sprites/Fearcat/fearcat/tile005.png" id="6_jw5bl"]
 [ext_resource type="Script" path="res://Scripts/Fearcat.gd" id="7_3li4h"]
+[ext_resource type="Script" path="res://Scripts/FearcatDesc.gd" id="9_3u7cl"]
+[ext_resource type="Texture2D" uid="uid://bfejsj8b3nkcf" path="res://Sprites/Fearcat/fearcat_backarrow.png" id="10_bi03p"]
+[ext_resource type="Texture2D" uid="uid://cdk1bc7hwrlgj" path="res://Sprites/Fearcat/fearcat_backarrow2.png" id="11_8jb34"]
+[ext_resource type="Texture2D" uid="uid://ccjdnh17knlps" path="res://Sprites/WheelSpace/ratsheet/bow.png" id="12_8klb7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_drhho"]
 animations = [{
@@ -34,11 +39,90 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node" type="Node2D"]
+[node name="Node" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_kvvf3")
 
-[node name="Fearcat" type="AnimatedSprite2D" parent="."]
+[node name="Fearcat" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("nextButton", "giftButton", "text", "desc", "ribbon", "extraEffect")]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_drhho")
 animation = &"new_animation"
 script = ExtResource("7_3li4h")
+nextButton = NodePath("../Button")
+giftButton = NodePath("../RibbonGift")
+text = NodePath("../Label")
+desc = NodePath("../Desc")
+ribbon = NodePath("../Sprite2D")
+extraEffect = NodePath("../ExtraEffect")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 371.0
+offset_right = 184.0
+offset_bottom = 394.0
+text = "hey now ho now"
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 194.0
+offset_right = 261.0
+offset_bottom = 294.0
+text = "Huh"
+
+[node name="RibbonGift" type="Button" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 276.0
+offset_right = 475.0
+offset_bottom = 351.0
+text = "Gift
+Ribbon"
+
+[node name="Desc" type="Label" parent="."]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 386.0
+offset_right = 985.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 21
+text = "0/0
+
+Mode:
+Day
+Grants a % mushroom xp buff"
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("9_3u7cl")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 299.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("10_bi03p")
+texture_pressed = ExtResource("11_8jb34")
+texture_hover = ExtResource("11_8jb34")
+texture_disabled = ExtResource("10_bi03p")
+texture_focused = ExtResource("11_8jb34")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(404, 332)
+texture = ExtResource("12_8klb7")
+
+[node name="ExtraEffect" type="Label" parent="."]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 14.0
+offset_right = 983.0
+offset_bottom = 180.0
+text = "Ribbon effect: Adds another mushroom"
+autowrap_mode = 2
+
+[connection signal="pressed" from="Button" to="Fearcat" method="_on_button_pressed"]
+[connection signal="pressed" from="RibbonGift" to="Fearcat" method="_on_ribbon_gift_pressed"]
+[connection signal="pressed" from="BackButton" to="Fearcat" method="_on_back_button_pressed"]

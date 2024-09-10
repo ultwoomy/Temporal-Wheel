@@ -1,10 +1,11 @@
-[gd_scene load_steps=61 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=62 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
 [ext_resource type="Texture2D" uid="uid://cysiy4xi7xnjj" path="res://Sprites/WheelSpace/Sky/night.png" id="2_ty02u"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/Back.gd" id="3_7r1my"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="4_m45rb"]
+[ext_resource type="Texture2D" uid="uid://bqsm8hfoejatb" path="res://Sprites/WheelSpace/Sky/day.png" id="4_rmxgl"]
 [ext_resource type="Texture2D" uid="uid://cx41yp0f1ckr4" path="res://Sprites/WheelSpace/mush_ext_sheet/tile000.png" id="5_nsne1"]
 [ext_resource type="Texture2D" uid="uid://q4k5bjlld7su" path="res://Sprites/WheelSpace/mush_ext_sheet/tile001.png" id="6_i1g62"]
 [ext_resource type="Texture2D" uid="uid://td637bbgri78" path="res://Sprites/WheelSpace/mush_ext_sheet/tile002.png" id="7_03kpd"]
@@ -55,6 +56,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ty02u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rmxgl")
 }],
 "loop": true,
 "name": &"default",

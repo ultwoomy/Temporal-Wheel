@@ -109,5 +109,19 @@
 			"TEXT": "...actually there's no perm\nfor that in here.\nGuess it's useless then.",
 			"FACE": "NORMAL"
 		}
+	],
+	"sanddollar" :[
+		{
+			"TEXT": "It's a little sand dollar.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Usually you find these near the\nocean, but you can find them\nfossilized everywhere in the sand.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "At least they're pretty to look\nat.",
+			"FACE": "NORMAL"
+		}
 	]
 }

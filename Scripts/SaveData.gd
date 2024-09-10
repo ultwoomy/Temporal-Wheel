@@ -42,6 +42,8 @@ extends Resource
 @export var ifFirstHell : bool
 @export var ifFirstAtlas : bool
 @export var ifFirstZunda : bool
+@export var ifFirstFearcatDay : bool
+@export var ifFirstFearcatNight : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -104,6 +106,8 @@ func _init():
 	ifFirstHell = true
 	ifFirstAtlas = true
 	ifFirstZunda = true
+	ifFirstFearcatDay = true
+	ifFirstFearcatNight = true
 	kbityProgSpin = 0
 	kbityProgRot = 0
 	altSigilSand = false

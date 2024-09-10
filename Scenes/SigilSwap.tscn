@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnfsecgg824la"]
+
+[ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="1_x8b1u"]
+[ext_resource type="Script" path="res://Scripts/HellSpace/SwapSelection.gd" id="2_kw51i"]
+
+[node name="SigilSwap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 900.0
+offset_bottom = 500.0
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 500.0
+offset_right = 900.0
+offset_bottom = 500.0
+
+[node name="SelectionMenu" parent="Panel" instance=ExtResource("1_x8b1u")]
+offset_left = -680.0
+offset_top = -135.0
+offset_right = -640.0
+offset_bottom = -95.0
+scale = Vector2(1.25, 1.25)
+script = ExtResource("2_kw51i")

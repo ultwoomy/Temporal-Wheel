@@ -139,6 +139,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_4xa25")
 
 [node name="SoulCountLabel" type="Label" parent="SoulCountContainer"]
+layout_mode = 0
 offset_left = 297.0
 offset_top = 117.0
 offset_right = 337.0

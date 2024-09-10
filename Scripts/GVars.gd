@@ -207,6 +207,8 @@ func resetPermStats():
 	ifFirstHell = true
 	ifFirstAtlas = true
 	ifFirstZunda = true
+	ifFirstFearcatDay = true
+	ifFirstFearcatNight = true
 	altSigilSand = false
 	altSigilCity = false
 	altSigilNight = false
@@ -310,6 +312,11 @@ func load_as_normal():
 		versNo += 1
 	if(versNo <= 14):
 		loader.fearcatData = FearcatData.new()
+		var tempM = MushroomData.new()
+		tempM.copy(loader.mushroomData, true)
+		loader.mushroomData = tempM
+		loader.ifFirstFearcatDay = true
+		loader.ifFirstFearcatNight = true
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
@@ -346,6 +353,7 @@ func load_as_normal():
 	backpackData = loader.backpackData
 	automatorVarsData = loader.automatorVarsData
 	nightChallengeData = loader.nightChallengeData
+	fearcatData = loader.fearcatData
 	sand = loader.sand
 	sandCost = loader.sandCost
 	sandScaling = loader.sandScaling

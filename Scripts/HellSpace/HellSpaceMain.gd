@@ -4,11 +4,12 @@ extends GameScene
 #@ Onready Variables
 @onready var rightButton : BaseButton = $RightButton
 @onready var backButton : BaseButton = $BackButton
+@onready var downButton : BaseButton = $DownButton
 @onready var openContractsButton : Button = $OpenContractsButton
 
 @onready var backgroundSprite : AnimatedSprite2D = $Background
 @onready var dialogueControl : Control = $DialogueControl
-@onready var contractMenu : ContractMenu = $ContractMenu
+@onready var contractMenu : Control = $ContractMenu
 
 
 #@ Virtual Methods
@@ -21,6 +22,7 @@ func _ready() -> void:
 	# Connect signals
 	rightButton.pressed.connect(_onRightPressed)
 	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.WHEELSPACE))
+	downButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.FEARCAT))
 	openContractsButton.pressed.connect(_onOpenContractsPressed)
 	dialogueControl.dialogueCompleted.connect(_onDialogueCompleted)
 
@@ -39,7 +41,7 @@ func _onOpenContractsPressed() -> void:
 
 func _onRightPressed() -> void:
 	rightButton.hide()
-	
+	downButton.hide()
 	if GVars.ifFirstHell:
 		backgroundSprite.frame = 1
 		openContractsButton.hide()

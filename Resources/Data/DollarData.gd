@@ -58,3 +58,24 @@ func resetData() -> void:
 	insuranceAmtSpinUp = 3
 	#additive scaling
 	insuranceAmtRotUp = 5
+	
+func resetScalingOnly():
+	dollarSpinCost = 10000
+	#exponential scaling
+	dollarSpinScaling = 1.1
+	dollarSpinAmt = 0
+	dollarRotCost = 60
+	#multiplicative scaling
+	dollarRotScaling = 2.5
+	dollarRotAmt = 0
+	dollarRustCost = 2
+	#multiplicative scaling
+	dollarRustScaling = 5
+	dollarRustAmt = 0
+	dollarTotal = 0
+	
+	ascBuffPerDollarCost = 2
+	#additive scaling
+	ascBuffPerDollarScaling = 2
+	ascBuffPerDollarAmt = 0.3
+	ascBuffPerDollarUp = 0.1

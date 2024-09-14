@@ -12,7 +12,7 @@ var candleSigil : Sigil = load("res://Resources/Sigil/CandleSigil.tres")
 var emptinessSigil : Sigil = load("res://Resources/Sigil/EmptinessSigil.tres")
 var hellSigil : Sigil = load("res://Resources/Sigil/HellSigil.tres")
 var ritualSigil : Sigil = load("res://Resources/Sigil/RitualSigil.tres")
-var sandSigil : Sigil = load("res://Resources/Sigil/SandDollarSigil.tres")
+var sandSigil : Sigil = load("res://Resources/Sigil/SandDollar.tres")
 var twinsSigil : Sigil = load("res://Resources/Sigil/TwinsSigil.tres")
 var undercitySigil : Sigil = load("res://Resources/Sigil/UndercitySigil.tres")
 var zundaNightSigil : Sigil = load("res://Resources/Sigil/ZundaNightSigil.tres")
@@ -46,11 +46,10 @@ func setUpSigils() -> void:
 		# Assign sigil resource to the sigil node.
 		selectionMenuSigil.setSigil(sigilPurchaseOrder.purchaseOrder[index])
 		
-		# Check to see if the button is not already connected.
-		if not selectionMenuSigil.button.pressed.is_connected(_emitSignalOnSigilButtonPressed):
-			# Passes the assigned sigil into the function using the sigil.sigil variable.
-			# The sigil.sigil is an export variable that you assign to sigil instances.
-			selectionMenuSigil.button.pressed.connect(_emitSignalOnSigilButtonPressed.bind(selectionMenuSigil.sigil))
+		# Check to see if the button is not already connected. Disconnects and reconnects if it is.
+		if selectionMenuSigil.button.pressed.is_connected(_emitSignalOnSigilButtonPressed):
+			selectionMenuSigil.button.pressed.disconnect(_emitSignalOnSigilButtonPressed.bind(selectionMenuSigil.sigil))
+		selectionMenuSigil.button.pressed.connect(_emitSignalOnSigilButtonPressed.bind(selectionMenuSigil.sigil))
 		index += 1
 
 
@@ -60,25 +59,27 @@ func displaySigils() -> void:
 	for sigil in sigilPurchaseOrder.purchaseOrder:
 		smSigils[index].setSigil(sigil)
 		smSigils[index].show()
+		index += 1
 
 
 # Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.
 func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
 	if sigil.sigilName == "packsmith":
+		print(sigilPurchaseOrder.purchaseOrder[0].sigilName)
 		sigilPurchaseOrder.purchaseOrder[0] = twinsSigil
+		print(sigilPurchaseOrder.purchaseOrder[0].sigilName)
 	if sigil.sigilName == "candle":
-		sigilPurchaseOrder.purchaseOrder[0] = sandSigil
+		sigilPurchaseOrder.purchaseOrder[1] = sandSigil
 	if sigil.sigilName == "emptiness":
-		sigilPurchaseOrder.purchaseOrder[0] = undercitySigil
+		sigilPurchaseOrder.purchaseOrder[3] = undercitySigil
 	if sigil.sigilName == "ritual":
-		sigilPurchaseOrder.purchaseOrder[0] = zundaNightSigil
+		sigilPurchaseOrder.purchaseOrder[4] = zundaNightSigil
 	if sigil.sigilName == "sanddollar":
-		sigilPurchaseOrder.purchaseOrder[0] = candleSigil
+		sigilPurchaseOrder.purchaseOrder[1] = candleSigil
 	if sigil.sigilName == "twins":
 		sigilPurchaseOrder.purchaseOrder[0] = packsmithSigil
 	if sigil.sigilName == "undercity":
-		sigilPurchaseOrder.purchaseOrder[0] = emptinessSigil
+		sigilPurchaseOrder.purchaseOrder[3] = emptinessSigil
 	if sigil.sigilName == "zundanight":
-		sigilPurchaseOrder.purchaseOrder[0] = ritualSigil
+		sigilPurchaseOrder.purchaseOrder[4] = ritualSigil
 	displaySigils()
-	emit_signal("sigilSwapped")

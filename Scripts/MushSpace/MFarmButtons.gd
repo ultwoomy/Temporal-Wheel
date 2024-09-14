@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 ## Functions
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GVars.mushroomData.fearMushBuff = 1
 	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
 	plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
@@ -97,7 +98,8 @@ func _harvest_shroom(val) -> void:
 		GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(pow(1.5,GVars.mushroomData.ascBuff)) * soulsShroomBuff
 		GVars.mushroomData.xp += 100 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 	elif val == 5:
-		GVars.mushroomData.fearMushBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.ascBuff)) * soulsShroomBuff
+		print(str((log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.fearMushBuff)) * soulsShroomBuff))
+		GVars.mushroomData.fearMushBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.fearMushBuff)) * soulsShroomBuff
 		GVars.mushroomData.xp += 125 * EexpBuff * GVars.fearcatData.fearcatBuffDay
 	_check_xp()
 

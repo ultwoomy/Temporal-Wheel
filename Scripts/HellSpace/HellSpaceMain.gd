@@ -6,10 +6,12 @@ extends GameScene
 @onready var backButton : BaseButton = $BackButton
 @onready var downButton : BaseButton = $DownButton
 @onready var openContractsButton : Button = $OpenContractsButton
+@onready var openSigilSwapButton : Button = $OpenSigilSwapButton
 
 @onready var backgroundSprite : AnimatedSprite2D = $Background
 @onready var dialogueControl : Control = $DialogueControl
 @onready var contractMenu : Control = $ContractMenu
+@onready var sigilSwapPanel : Control = $SigilSwap
 
 
 #@ Virtual Methods
@@ -18,12 +20,14 @@ func _ready() -> void:
 	# Hide/Show
 	openContractsButton.hide()
 	dialogueControl.hide()
+	openSigilSwapButton.hide()
 	
 	# Connect signals
 	rightButton.pressed.connect(_onRightPressed)
 	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.WHEELSPACE))
 	downButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.FEARCAT))
 	openContractsButton.pressed.connect(_onOpenContractsPressed)
+	openSigilSwapButton.pressed.connect(_onOpenSigilSwapPressed)
 	dialogueControl.dialogueCompleted.connect(_onDialogueCompleted)
 
 
@@ -37,6 +41,7 @@ func _onOpenContractsPressed() -> void:
 	contractMenu.position = Vector2(0.0, 0.0)
 	contractMenu.show()
 	contractMenu.displayContractPage()
+	openSigilSwapButton.hide()
 
 
 func _onRightPressed() -> void:
@@ -53,10 +58,22 @@ func _onRightPressed() -> void:
 	else:
 		backgroundSprite.frame = 2
 		openContractsButton.show()
-		
+		openSigilSwapButton.show()
 		dialogueControl.hide()
 
 
 func _onDialogueCompleted() -> void:
 	openContractsButton.show()
+	openSigilSwapButton.show()
 	backgroundSprite.frame = 2
+
+func _onOpenSigilSwapPressed() -> void:
+	openContractsButton.hide()
+	openSigilSwapButton.hide()
+	sigilSwapPanel.show()
+
+
+func _on_swap_exit_button_pressed():
+	sigilSwapPanel.hide()
+	openContractsButton.show()
+	openSigilSwapButton.show()

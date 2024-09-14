@@ -1,6 +1,4 @@
-extends Node
-@export var currentMush : AnimatedSprite2D
-@export var background : AnimatedSprite2D
+extends AnimatedSprite2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,7 +6,7 @@ func _ready():
 	updateRots()
 	mushbotCheck()
 	if(GVars.mushroomData.level >= 10):
-		background.frame = 2
+		frame = 2
 
 func mushbotCheck():
 	if Automation.contains("Mushbot"):

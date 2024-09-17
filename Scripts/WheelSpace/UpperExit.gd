@@ -1,5 +1,5 @@
 extends Container
-
+signal exitUpperContract
 
 #@ Export Variables
 

@@ -115,12 +115,15 @@ func _awaken():
 	GVars.ifSecondBoot += 1
 	
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
-	print(str(GVars.hellChallengeInit))
 	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
-		print("WAYO")
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
 	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
+	# Copy next sigil order into the current one unless it's the voidstop in which it resets to default
+	if not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+		GVars.currentSigilOrder = GVars.nextSigilOrder
+	else:
+		GVars.currentSigilOrder = SigilPurchaseOrder.new()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 

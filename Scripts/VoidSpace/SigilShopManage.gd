@@ -19,9 +19,9 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "",
 				  "",
 				  "Sand Dollar!\nPick them and knock them down!\nThey're just along for the ride!\nNON FUNCTIONAL",
-				  "Zunda Of The Night\nI probably shouldn't give this to you!\nIt's probably ok!\nNON FUNCTIONAL",
-				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this theming reused?\nNON FUNCTIONAL",
-				  "Twin Rose!\nDon't let them intimidate you!\nThey're chock full of insecurity!\nNON FUNCTIONAL"]
+				  "Zunda Of The Night\nI don't know how I have this!\nIt's probably ok!\nNON FUNCTIONAL",
+				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this themeing reused?\nNON FUNCTIONAL",
+				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]
 
 var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
 

@@ -1,6 +1,6 @@
 extends Control
 class_name ContractMenu
-
+signal ContractMenuExit
 
 #@ Public Variables
 var contractOrder : Array = [  # (!) Elements should be derived from CMP_Strategy
@@ -90,6 +90,7 @@ func _disableUpgradePurchase(boolean : bool) -> void:
 func _onExitPressed() -> void:
 	contractIndex = 0
 	self.hide()
+	emit_signal("ContractMenuExit")
 
 
 func _onSoulUpgradePressed() -> void:

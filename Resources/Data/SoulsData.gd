@@ -5,6 +5,7 @@ class_name SoulsData
 @export var voidRust : float
 @export var soulThresh : float
 
+#This challenge corresponds to 
 @export var spinBaseBuff : float
 @export var spinBaseBuffCost : float
 @export var spinBaseBuffScaling : float

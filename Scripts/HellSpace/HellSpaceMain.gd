@@ -1,6 +1,4 @@
 extends GameScene
-
-
 #@ Onready Variables
 @onready var rightButton : BaseButton = $RightButton
 @onready var backButton : BaseButton = $BackButton
@@ -29,6 +27,7 @@ func _ready() -> void:
 	openContractsButton.pressed.connect(_onOpenContractsPressed)
 	openSigilSwapButton.pressed.connect(_onOpenSigilSwapPressed)
 	dialogueControl.dialogueCompleted.connect(_onDialogueCompleted)
+	contractMenu.ContractMenuExit.connect(_show_swap_button)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -58,13 +57,15 @@ func _onRightPressed() -> void:
 	else:
 		backgroundSprite.frame = 2
 		openContractsButton.show()
-		openSigilSwapButton.show()
+		if GVars.challenges.has(GVars.CHALLENGE_SANDY) or GVars.challenges.has(GVars.CHALLENGE_BITTERSWEET) or GVars.challenges.has(GVars.CHALLENGE_STARVED) or GVars.challenges.has(GVars.CHALLENGE_FABULOUS):
+			openSigilSwapButton.show()
 		dialogueControl.hide()
 
 
 func _onDialogueCompleted() -> void:
 	openContractsButton.show()
-	openSigilSwapButton.show()
+	if GVars.challenges.has(GVars.CHALLENGE_SANDY) or GVars.challenges.has(GVars.CHALLENGE_BITTERSWEET) or GVars.challenges.has(GVars.CHALLENGE_STARVED) or GVars.challenges.has(GVars.CHALLENGE_FABULOUS):
+		openSigilSwapButton.show()
 	backgroundSprite.frame = 2
 
 func _onOpenSigilSwapPressed() -> void:
@@ -77,3 +78,7 @@ func _on_swap_exit_button_pressed():
 	sigilSwapPanel.hide()
 	openContractsButton.show()
 	openSigilSwapButton.show()
+	
+func _show_swap_button():
+	if GVars.challenges.has(GVars.CHALLENGE_SANDY) or GVars.challenges.has(GVars.CHALLENGE_BITTERSWEET) or GVars.challenges.has(GVars.CHALLENGE_STARVED) or GVars.challenges.has(GVars.CHALLENGE_FABULOUS):
+		openSigilSwapButton.show()

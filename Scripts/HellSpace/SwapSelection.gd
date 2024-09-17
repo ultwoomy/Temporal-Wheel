@@ -6,7 +6,7 @@ signal sigilSwapped
 
 
 #@ Public Variables
-var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/NextSigilPurchaseOrder.tres")
+var sigilPurchaseOrder = GVars.nextSigilOrder
 var packsmithSigil : Sigil = load("res://Resources/Sigil/PacksmithSigil.tres")
 var candleSigil : Sigil = load("res://Resources/Sigil/CandleSigil.tres")
 var emptinessSigil : Sigil = load("res://Resources/Sigil/EmptinessSigil.tres")
@@ -64,22 +64,21 @@ func displaySigils() -> void:
 
 # Emits the sigiL_button_pressed signal with the correct parameters depending on which sigil button was pressed.
 func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
-	if sigil.sigilName == "packsmith":
-		print(sigilPurchaseOrder.purchaseOrder[0].sigilName)
-		sigilPurchaseOrder.purchaseOrder[0] = twinsSigil
-		print(sigilPurchaseOrder.purchaseOrder[0].sigilName)
-	if sigil.sigilName == "candle":
-		sigilPurchaseOrder.purchaseOrder[1] = sandSigil
-	if sigil.sigilName == "emptiness":
-		sigilPurchaseOrder.purchaseOrder[3] = undercitySigil
-	if sigil.sigilName == "ritual":
-		sigilPurchaseOrder.purchaseOrder[4] = zundaNightSigil
+	if sigil.sigilName == "packsmith" and GVars.soulsData.voidRustChanceEnabled:
+		sigilPurchaseOrder.swap(0,twinsSigil)
+	if sigil.sigilName == "candle" and GVars.soulsData.doubleShroomChanceEnabled:
+		sigilPurchaseOrder.swap(1, sandSigil)
+	if sigil.sigilName == "emptiness" and GVars.soulsData.doubleRotChanceEnabled:
+		sigilPurchaseOrder.swap(3, undercitySigil)
+	if sigil.sigilName == "ritual" and GVars.soulsData.spinBaseBuffEnabled:
+		sigilPurchaseOrder.swap(4, zundaNightSigil)
 	if sigil.sigilName == "sanddollar":
-		sigilPurchaseOrder.purchaseOrder[1] = candleSigil
+		sigilPurchaseOrder.swap(1, candleSigil)
 	if sigil.sigilName == "twins":
-		sigilPurchaseOrder.purchaseOrder[0] = packsmithSigil
+		sigilPurchaseOrder.swap(0, packsmithSigil)
 	if sigil.sigilName == "undercity":
-		sigilPurchaseOrder.purchaseOrder[3] = emptinessSigil
+		sigilPurchaseOrder.swap(3, emptinessSigil)
 	if sigil.sigilName == "zundanight":
-		sigilPurchaseOrder.purchaseOrder[4] = ritualSigil
+		sigilPurchaseOrder.swap(4, ritualSigil)
 	displaySigils()
+	setUpSigils()

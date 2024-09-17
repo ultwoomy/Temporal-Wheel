@@ -34,6 +34,8 @@ extends Resource
 @export var automatorVarsData : AutomatorVarsData
 @export var nightChallengeData : NightChallengeData
 @export var fearcatData : FearcatData
+@export var currentSigilOrder : SigilPurchaseOrder
+@export var nextSigilOrder : SigilPurchaseOrder
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -89,6 +91,8 @@ func _init():
 	automatorVarsData = AutomatorVarsData.new()
 	nightChallengeData = NightChallengeData.new()
 	fearcatData = FearcatData.new()
+	currentSigilOrder = SigilPurchaseOrder.new()
+	nextSigilOrder = SigilPurchaseOrder.new()
 	sand = 0
 	sandCost = 7
 	sandScaling = 3

@@ -49,6 +49,8 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var automatorVarsData : AutomatorVarsData
 @export var nightChallengeData : NightChallengeData
 @export var fearcatData : FearcatData
+@export var currentSigilOrder : SigilPurchaseOrder
+@export var nextSigilOrder : SigilPurchaseOrder
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -155,6 +157,8 @@ func save_prog():
 	loader.altSigilNight = altSigilNight
 	loader.altSigilTwins = altSigilTwins
 	loader.inContract = inContract
+	loader.currentSigilOrder = currentSigilOrder
+	loader.nextSigilOrder = nextSigilOrder
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
 	loader.versNo = versNo
@@ -198,6 +202,8 @@ func resetR2Stats():
 	automatorVarsData.resetData()
 	nightChallengeData.resetData()
 	fearcatData.resetData()
+	currentSigilOrder = SigilPurchaseOrder.new()
+	nextSigilOrder = SigilPurchaseOrder.new()
 	
 func resetPermStats():
 	ifFirstBoot = true
@@ -317,6 +323,8 @@ func load_as_normal():
 		loader.mushroomData = tempM
 		loader.ifFirstFearcatDay = true
 		loader.ifFirstFearcatNight = true
+		loader.currentSigilOrder = SigilPurchaseOrder.new()
+		loader.nextSigilOrder = SigilPurchaseOrder.new()
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
@@ -354,6 +362,8 @@ func load_as_normal():
 	automatorVarsData = loader.automatorVarsData
 	nightChallengeData = loader.nightChallengeData
 	fearcatData = loader.fearcatData
+	currentSigilOrder = loader.currentSigilOrder
+	nextSigilOrder = loader.nextSigilOrder
 	sand = loader.sand
 	sandCost = loader.sandCost
 	sandScaling = loader.sandScaling

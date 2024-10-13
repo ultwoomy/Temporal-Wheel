@@ -175,7 +175,7 @@ func _completeRotation() -> void:
 	if GVars.fearcatData.bankedNightRots <= GVars.fearcatData.bankedDayRots:
 		ratio = (GVars.fearcatData.bankedNightRots / GVars.fearcatData.bankedDayRots)/4 + 0.75
 	else:
-		ratio = (GVars.fearcatData.bankedNightRots / GVars.fearcatData.bankedDayRots)/4 + 0.75
+		ratio = (GVars.fearcatData.bankedDayRots / GVars.fearcatData.bankedNightRots)/4 + 0.75
 	if GVars.ifSecondBoot % 4 == 3 or GVars.ifSecondBoot % 4 == 0:
 		GVars.fearcatData.bankedNightRots += amount * (GVars.kbityData.kbityLevel + 2 / 2)
 		GVars.fearcatData.fearcatBuffNight = 1 + (GVars.fearcatData.bankedNightRots * GVars.Aspinbuff/50000) * ratio

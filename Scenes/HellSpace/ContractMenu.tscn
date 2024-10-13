@@ -152,5 +152,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="LeftArrowButton" to="." method="toTheLeft"]
 [connection signal="pressed" from="RightArrowButton" to="." method="toTheRight"]
 [connection signal="pressed" from="SoulUpgradeButton" to="." method="_onSoulUpgradePressed"]
-[connection signal="pressed" from="SoulUpgradeButton" to="SoulCountContainer/SoulCountLabel" method="_onSoulUpgradePressed"]
 [connection signal="pressed" from="EnterContractButton" to="." method="beginContract"]

@@ -164,18 +164,18 @@ func _displayButtons() -> void:
 		challengeButton.text = newChallenge.name
 	
 	#If a second layer challenge is activated and there is no first layer challenge
-	#Show the unfinished meme challenges
-	#Does not actually start them until until exiting screen, is currently abusable by exiting the game during this cutscene
+	#Show the unfinished meme challenge
 	var onlySecondLayerChallengeActive : bool = GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and not GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST)
 	if onlySecondLayerChallengeActive and GVars.hellChallengeInit:
 		challengeButton.show()
-		if GVars.hellChallengeLayer2 == 0: 
+		# Probably unnessecary idk
+		if GVars.hasChallenge(GVars.CHALLENGE_SANDY): 
 			newChallenge = GVars.CHALLENGE_SANDY
-		elif GVars.hellChallengeLayer2 == 1:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
 			newChallenge = GVars.CHALLENGE_BITTERSWEET
-		elif GVars.hellChallengeLayer2 == 2:
+		elif GVars.hasChallenge(GVars.CHALLENGE_STARVED):
 			newChallenge = GVars.CHALLENGE_STARVED
-		elif GVars.hellChallengeLayer2 == 3:
+		elif GVars.hasChallenge(GVars.CHALLENGE_FABULOUS):
 			newChallenge = GVars.CHALLENGE_FABULOUS
 		
 		GVars.hellChallengeInit = false

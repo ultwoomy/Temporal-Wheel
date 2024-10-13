@@ -73,7 +73,7 @@ func displayContractPage() -> void:
 
 
 func beginContract() -> void:
-	GVars.hellChallengeLayer2 = contractIndex
+	GVars.setChallenge(contractStrategy.CONTRACT_CHALLENGE)
 	GVars.hellChallengeInit = true
 	SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
 

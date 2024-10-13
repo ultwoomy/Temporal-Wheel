@@ -37,6 +37,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	# 	For better performance(?), just don't set challenges manually and use the function.
 	set(value):
 		for challenge in value:
+			print(challenge)
 			setChallenge(challenge)
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
@@ -221,7 +222,7 @@ func resetPermStats():
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 15
+	versNo = 16
 	ratmail = 0
 
 
@@ -233,7 +234,10 @@ func getScientific(val):
 
 
 func setChallenge(challenge : ChallengeData) -> void:
-	# Error checking.
+	# If it's null, that just means there's no challenge in the slot
+	if challenge == null:
+		return
+	# Check type
 	if not challenge:
 		printerr("ERROR: Unable to set challenge!")
 		return
@@ -325,6 +329,11 @@ func load_as_normal():
 		loader.ifFirstFearcatNight = true
 		loader.currentSigilOrder = SigilPurchaseOrder.new()
 		loader.nextSigilOrder = SigilPurchaseOrder.new()
+		loader.dollarData = DollarData.new()
+		versNo += 1
+	if(versNo <= 15):
+		loader.dollarData = DollarData.new()
+		loader.nightChallengeData.initRequests()
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
@@ -347,7 +356,7 @@ func load_as_normal():
 	sfxvol = loader.sfxvol
 	ifFirstHell = loader.ifFirstHell
 	soulsData = loader.soulsData
-	hellChallengeLayer2 = loader.hellChallengeLayer2
+#	hellChallengeLayer2 = loader.hellChallengeLayer2
 	hellChallengeInit = loader.hellChallengeInit
 	ratmail = loader.ratmail
 	dollarData = loader.dollarData

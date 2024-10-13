@@ -1,5 +1,5 @@
 extends Control
-
+@export var desc : Label
 
 #@ Signals
 signal sigilSwapped
@@ -59,6 +59,7 @@ func displaySigils() -> void:
 	for sigil in sigilPurchaseOrder.purchaseOrder:
 		smSigils[index].setSigil(sigil)
 		smSigils[index].show()
+		setDesc(sigil)
 		index += 1
 
 
@@ -82,3 +83,32 @@ func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
 		sigilPurchaseOrder.swap(4, ritualSigil)
 	displaySigils()
 	setUpSigils()
+
+func setDesc(sigil):
+	if sigil.sigilName == "packsmith":
+		desc.text = "Current Sigil In Slot: Packsmith\n\nGives access to rust upgrades, automators, and augment bonuses. Most runs should use this.
+		\n\nIt lives in a little hole, augmenting things by wacking them with a tiny hammer. The first version of this game had a little animation, but it was changed since it didn't fit."
+	elif sigil.sigilName == "candle":
+		desc.text = "Current Sigil In Slot: Candle\n\nAllows you to grow mushrooms for buffs and resources. Use when trying to progress very far in a run.\n\n
+		Most creatures in this place have one somewhere, 1 is enough to light any space no matter the size."
+	elif sigil.sigilName == "ascension":
+		desc.text = "Current Sigil In Slot: Ascension\n\nResets some values in exchange for a momentum buff in your next run. Fly into the sea and come back anew.\n\n
+		It's a reference to a song I like. The feeling it gives is haunting."
+	elif sigil.sigilName == "ritual":
+		desc.text = "Current Sigil In Slot: Ritual\n\nGives you other buffs in exchange for a portion of your spin speed. Each candle lit increases the price.\n\n
+		Some candles are more useful than others, and the top candle is useless unless you need to do a certain challenge..."
+	elif sigil.sigilName == "emptiness":
+		desc.text = "Current Sigil In Slot: Emptiness\n\nAugmenting this will let you choose from a set of buffs on ascending. These are needed to progress the game. Doesn't do anything by itself.\n\nThis is also a song reference, faces expressing emotions that don't exist."
+	elif sigil.sigilName == "hell":
+		desc.text = "Current Sigil In Slot: Dinner Hell\n\nUnlocks Hell, and gives you access to the harder challenges. Though if you're seeing this, you've already
+		beaten one.\n\nThis is also a song reference, blue everywhere."
+	elif sigil.sigilName == "sanddollar":
+		desc.text = "Current Sigil In Slot: Sand Dollar\n\nComplete goals for sand dollars, with the option of spending them on free stuff on the start of a reset. Most
+		powerful identity buffer in the game.\n\nNot a reference to anything, I just think they look neat."
+	elif sigil.sigilName == "twins":
+		desc.text = "Current Sigil In Slot: The Twins\n\nWhat they will do when I actually code them is a secret...\nThey were originally supposed to be joke characters in the first version of the game but I changed it."
+	elif sigil.sigilName == "undercity":
+		desc.text = "Current Sigil In Slot: Undercity\n\nThis one isn't finished, it will probably take the longest among the unfinished content since it's going to be a story focused sigil, and needs a lot of art."
+	elif sigil.sigilName == "zundanight":
+		desc.text = "Current Sigil In Slot: Zunda of The Night\n\nDoesn't do anything right now but will likely either make the game much harder or much easier\n\n
+		This is a reference to a series of Zunda songs where she represents Yoru, man eating beast of the night. I thought it was really cool and stole the idea."

@@ -4,6 +4,7 @@ class_name CMP_SandStrategy
 
 #@ Constants
 const CONTRACT_NAME : String = "Sand Dollar"
+const CONTRACT_CHALLENGE : ChallengeData = GVars.CHALLENGE_SANDY
 const CONTRACT_DESCRIPTION : String = "
 	The more you have
 	The less you get
@@ -52,7 +53,7 @@ func _isUpgradeMaxed() -> bool:
 #@ Private Methods
 func _assignContractDescription() -> void:
 	if _isContractCompleted():
-		var upgradeDescription : String = UPGRADE_DESCRIPTION.format({"cost" : str(GVars.soulsData.voidRustChanceCost), "currently" : str(GVars.soulsData.voidRustChance)})
+		var upgradeDescription : String = UPGRADE_DESCRIPTION.format({"cost" : str(GVars.soulsData.doubleShroomChanceCost), "currently" : str(GVars.soulsData.doubleShroomChance)})
 		_contractDescription = upgradeDescription
 	else:
 		_contractDescription = CONTRACT_DESCRIPTION

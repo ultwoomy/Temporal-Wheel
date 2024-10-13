@@ -15,7 +15,7 @@ var presses : int = 0
 
 #@ Virtual Methods
 func _ready():
-	if (GVars.hellChallengeLayer2 >= 0):
+	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND):
 		show()
 	else:
 		hide()

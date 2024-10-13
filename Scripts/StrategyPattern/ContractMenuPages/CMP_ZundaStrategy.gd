@@ -4,6 +4,7 @@ class_name CMP_ZundaStrategy
 
 #@ Constants
 const CONTRACT_NAME : String = "Zunda of the Night"
+const CONTRACT_CHALLENGE : ChallengeData = GVars.CHALLENGE_STARVED
 const CONTRACT_DESCRIPTION : String = "
 	Zunda is hungry!
 	Meet her growing list of demands
@@ -31,6 +32,7 @@ func _showPage() -> void:
 
 
 func _purchaseUpgrade() -> void:
+	print(str(GVars.soulsData.spinBaseBuffCost))
 	if(GVars.soulsData.spinBaseBuffCost <= GVars.soulsData.souls):
 		GVars.soulsData.spinBaseBuff += 1
 		GVars.soulsData.spinBaseBuffEnabled = true
@@ -52,7 +54,7 @@ func _isUpgradeMaxed() -> bool:
 #@ Private Methods
 func _assignContractDescription() -> void:
 	if _isContractCompleted():
-		var upgradeDescription : String = UPGRADE_DESCRIPTION.format({"cost" : str(GVars.soulsData.doubleRotChanceCost), "currently" : str(GVars.soulsData.doubleRotChance)})
+		var upgradeDescription : String = UPGRADE_DESCRIPTION.format({"cost" : str(GVars.soulsData.spinBaseBuffCost), "currently" : str(GVars.soulsData.spinBaseBuff)})
 		_contractDescription = upgradeDescription
 	else:
 		_contractDescription = CONTRACT_DESCRIPTION

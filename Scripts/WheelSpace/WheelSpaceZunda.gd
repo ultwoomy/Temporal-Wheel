@@ -10,7 +10,7 @@ var requestsDone : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not GVars.hellChallengeLayer2 == 2:
+	if not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
 		hide()
 	else:
 		WheelSpinner.wheelRotationCompleted.connect(updateCounter)

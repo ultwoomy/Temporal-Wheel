@@ -46,6 +46,7 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 	
 	# Ask for a particular topic from _dialogueHandler that will be said.
 	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
+	print("buff index" + str(sigil.sigilBuffIndex))
 	GVars.sigilData.curSigilBuff = sigil.sigilBuffIndex
 	
 	# Exception. Maybe there is a cleaner way?

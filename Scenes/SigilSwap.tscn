@@ -28,11 +28,13 @@ offset_left = 10.0
 offset_top = 46.0
 offset_right = 390.0
 offset_bottom = 499.0
+autowrap_mode = 2
 
-[node name="SelectionMenu" parent="Panel" instance=ExtResource("1_x8b1u")]
+[node name="SelectionMenu" parent="Panel" node_paths=PackedStringArray("desc") instance=ExtResource("1_x8b1u")]
 offset_left = -680.0
 offset_top = -135.0
 offset_right = -640.0
 offset_bottom = -95.0
 scale = Vector2(1.25, 1.25)
 script = ExtResource("2_kw51i")
+desc = NodePath("../Panel/Label")

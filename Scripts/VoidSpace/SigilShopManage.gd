@@ -36,7 +36,6 @@ var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purcha
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(str(GVars.hellChallengeLayer2))
 	sigilDisplay.hide()
 	sigilLabel.position = Vector2(500,300)
 	sigilLabel.size = Vector2(400,200)
@@ -138,9 +137,9 @@ func reset():
 	if hellSigil in GVars.sigilData.acquiredSigils:
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
-	elif not GVars.hellChallengeLayer2 == 1 :
+	elif not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) :
 		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		if GVars.hellChallengeLayer2 == 0:
+		if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
 			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
 		buyButton.text = "Buy"
 		failbought = false

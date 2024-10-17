@@ -193,7 +193,6 @@ func resetR2Stats():
 	inContract = false
 	if challenges.size() >= 2:
 		challenges[1] = null
-	hellChallengeLayer2 = -1
 	hellChallengeInit = false
 	soulsData.resetData()
 	kbityData.resetData()

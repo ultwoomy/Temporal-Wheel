@@ -158,24 +158,6 @@ self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
 position = Vector2(498, 541)
 texture = ExtResource("4_m45rb")
 
-[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-offset_left = 750.0
-offset_top = 100.0
-offset_right = 850.0
-offset_bottom = 150.0
-script = ExtResource("9_orr02")
-spinPerCDisplay = NodePath("SpinPClickDiplay")
-button = NodePath("SpinUp")
-
-[node name="SpinUp" type="Button" parent="SpinButton"]
-layout_mode = 2
-
-[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-
 [node name="Wheel" type="Node2D" parent="."]
 position = Vector2(500, 300)
 script = ExtResource("10_p6xcq")
@@ -199,6 +181,24 @@ grow_vertical = 2
 script = ExtResource("12_sl12n")
 
 [node name="RustEmitter" parent="Wheel" instance=ExtResource("14_iqbu0")]
+
+[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 850.0
+offset_bottom = 150.0
+script = ExtResource("9_orr02")
+spinPerCDisplay = NodePath("SpinPClickDiplay")
+button = NodePath("SpinButton")
+
+[node name="SpinButton" type="Button" parent="SpinButton"]
+layout_mode = 2
+
+[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 
 [node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0

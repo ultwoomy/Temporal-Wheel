@@ -76,8 +76,8 @@ func _onButtonPressed():
 		var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
 		var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
 		
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
-			if GVars.hellChallengeLayer2 == 0:
+		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+			if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
 				if GVars.sand >= GVars.sandCost:
 					GVars.sand -= GVars.sandCost
 					GVars.sandCost += GVars.sandScaling
@@ -90,26 +90,26 @@ func _onButtonPressed():
 				GVars.spinData.spin -= GVars.sigilData.costSpin
 				GVars.spinData.rotations -= GVars.sigilData.costRot
 				checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredCandleSigil and GVars.rustData.rust >= 20:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
 			GVars.rustData.rust -= 20
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredAscensionSigil:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
 			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
 				GVars.mushroomData.level -= 5
 				checkCurrentSigil()
 			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
 				GVars.dollarTotal -= 5
 				checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredEmptinessSigil and GVars.spinData.size > 4:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
 			GVars.spinData.size -= 4
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
 			GVars.Aspinbuff -= 6
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
 			checkCurrentSigil()
 		else:
 			checkStupid()

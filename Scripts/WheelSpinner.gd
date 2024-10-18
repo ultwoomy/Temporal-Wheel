@@ -66,7 +66,7 @@ func rotateWheel() -> void:
 		GVars.rustData.threshProgress -= _calculateThreshProgress()
 		GVars.rustData.rust += rustCalculation
 		GVars.rustData.thresh *= _calculateThresh()
-		if GVars.hellChallengeLayer2 == 0:
+		if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
 			GVars.sand += 1
 		# Signal rust progression.
 		rustProgressed.emit(rustCalculation)
@@ -88,6 +88,13 @@ func getWheelRotationAmount() -> float:
 
 	# Increase amount by rot buff.
 	result *= GVars.ritualData.rotBuff
+	# Apply fearcat buff if applicable
+	if not GVars.ifFirstFearcatNight:
+		result *= GVars.fearcatData.fearcatBuffNight
+	
+	# Hell Challenge 0 effect
+	if GVars.hasChallenge(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
+		result /= (5000 + GVars.spinData.rotations)/6000
 	return result
 
 #@ Private Methods
@@ -161,6 +168,20 @@ func _completeRotation() -> void:
 	# Gain rotation.
 	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
 	GVars.spinData.rotations += amount * (GVars.kbityData.kbityLevel + 2 / 2)
+	
+	# Update fearcat buffs
+	# Find ratio
+	var ratio = 1
+	if GVars.fearcatData.bankedNightRots <= GVars.fearcatData.bankedDayRots:
+		ratio = ((GVars.fearcatData.bankedNightRots + 4)/ (GVars.fearcatData.bankedDayRots + 1))/4
+	else:
+		ratio = ((GVars.fearcatData.bankedDayRots + 4)/ (GVars.fearcatData.bankedNightRots + 1))/4 + 0.75
+	if GVars.ifSecondBoot % 4 == 3 or GVars.ifSecondBoot % 4 == 0:
+		GVars.fearcatData.bankedNightRots += amount * (GVars.kbityData.kbityLevel + 2 / 2)
+		GVars.fearcatData.fearcatBuffNight = 1 + (GVars.fearcatData.bankedNightRots * GVars.Aspinbuff/50000) * ratio
+	else:
+		GVars.fearcatData.bankedDayRots += amount * (GVars.kbityData.kbityLevel + 2 / 2)
+		GVars.fearcatData.fearcatBuffDay = GVars.fearcatData.bankedDayRots * GVars.Aspinbuff/3500 * ratio
 	
 	# Make rust progress for rotateWheel().
 	GVars.rustData.threshProgress += amount

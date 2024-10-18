@@ -37,8 +37,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	# 	For better performance(?), just don't set challenges manually and use the function.
 	set(value):
 		for challenge in value:
-			setChallengeDataInChallenges(challenge)
-@export var currentChallenges : Array[ChallengeData] = []
+			setChallenge(challenge)
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
@@ -48,6 +47,10 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var kbityData : KbityData
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
+@export var nightChallengeData : NightChallengeData
+@export var fearcatData : FearcatData
+@export var currentSigilOrder : SigilPurchaseOrder
+@export var nextSigilOrder : SigilPurchaseOrder
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -55,6 +58,9 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var ifFirstPack : bool
 @export var ifFirstHell : bool
 @export var ifFirstAtlas : bool
+@export var ifFirstZunda : bool
+@export var ifFirstFearcatDay : bool
+@export var ifFirstFearcatNight : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -73,6 +79,7 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 #@ Virtual Methods
 func _init():
+	
 	load_as_normal()
 
 
@@ -100,6 +107,10 @@ func create_data():
 		backpackData = BackpackData.new()
 	if not automatorVarsData:
 		automatorVarsData = AutomatorVarsData.new()
+	if not nightChallengeData:
+		nightChallengeData = NightChallengeData.new()
+	if not fearcatData:
+		fearcatData = FearcatData.new()
 
 
 func save_prog():
@@ -115,6 +126,8 @@ func save_prog():
 	loader.atlasData = atlasData
 	loader.kbityData = kbityData
 	loader.backpackData = backpackData
+	loader.nightChallengeData = nightChallengeData
+	loader.fearcatData = fearcatData
 	#loader.sigilData = sigilData
 	loader.sand = sand
 	loader.sandCost = sandCost
@@ -131,6 +144,9 @@ func save_prog():
 	loader.ifFirstPack = ifFirstPack
 	loader.ifFirstHell = ifFirstHell
 	loader.ifFirstAtlas = ifFirstAtlas
+	loader.ifFirstZunda = ifFirstZunda
+	loader.ifFirstFearcatDay = ifFirstFearcatDay
+	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
 	loader.currentChallenges = currentChallenges
@@ -142,6 +158,8 @@ func save_prog():
 	loader.altSigilNight = altSigilNight
 	loader.altSigilTwins = altSigilTwins
 	loader.inContract = inContract
+	loader.currentSigilOrder = currentSigilOrder
+	loader.nextSigilOrder = nextSigilOrder
 	loader.musicvol = musicvol
 	loader.sfxvol = sfxvol
 	loader.versNo = versNo
@@ -157,8 +175,8 @@ func resetR0Stats():
 	sigilData.resetData()
 	dollarData.resetData()
 	sand = 0
-	sandCost = 7
-	sandCost = 3
+	sandCost = 5
+	sandScaling = 3
 
 
 func resetR1Stats():
@@ -177,9 +195,6 @@ func resetR2Stats():
 	inContract = false
 	if challenges.size() >= 2:
 		challenges[1] = null
-	if currentChallenges.size() >= 2:
-		currentChallenges[1] = null
-	hellChallengeLayer2 = -1
 	hellChallengeInit = false
 	soulsData.resetData()
 	kbityData.resetData()
@@ -187,6 +202,10 @@ func resetR2Stats():
 	backpackData.resetData()
 	Automation.clearAutomators()
 	automatorVarsData.resetData()
+	nightChallengeData.resetData()
+	fearcatData.resetData()
+	currentSigilOrder = SigilPurchaseOrder.new()
+	nextSigilOrder = SigilPurchaseOrder.new()
 	
 func resetPermStats():
 	ifFirstBoot = true
@@ -195,13 +214,16 @@ func resetPermStats():
 	ifFirstPack = true
 	ifFirstHell = true
 	ifFirstAtlas = true
+	ifFirstZunda = true
+	ifFirstFearcatDay = true
+	ifFirstFearcatNight = true
 	altSigilSand = false
 	altSigilCity = false
 	altSigilNight = false
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 12
+	versNo = 16
 	ratmail = 0
 
 
@@ -212,8 +234,11 @@ func getScientific(val):
 		return snapped(val,0.01)
 
 
-func setChallengeDataInChallenges(challenge : ChallengeData) -> void:
-	# Error checking.
+func setChallenge(challenge : ChallengeData) -> void:
+	# If it's null, that just means there's no challenge in the slot
+	if challenge == null:
+		return
+	# Check type
 	if not challenge:
 		printerr("ERROR: Unable to set challenge!")
 		return
@@ -298,8 +323,28 @@ func load_as_normal():
 		versNo += 1
 	if(versNo <= 12):
 		loader.sand = 0
-		loader.sandCost = 7
+		loader.sandCost = 5
 		loader.sandScaling = 3
+		versNo += 1
+	if(versNo <= 13):
+		loader.nightChallengeData = NightChallengeData.new()
+		loader.ifFirstZunda = true
+		versNo += 1
+	if(versNo <= 14):
+		loader.fearcatData = FearcatData.new()
+		var tempM = MushroomData.new()
+		tempM.copy(loader.mushroomData, true)
+		loader.mushroomData = tempM
+		loader.ifFirstFearcatDay = true
+		loader.ifFirstFearcatNight = true
+		loader.currentSigilOrder = SigilPurchaseOrder.new()
+		loader.nextSigilOrder = SigilPurchaseOrder.new()
+		loader.dollarData = DollarData.new()
+		versNo += 1
+	if(versNo <= 15):
+		loader.dollarData = DollarData.new()
+		loader.nightChallengeData.initRequests()
+		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -316,12 +361,13 @@ func load_as_normal():
 	challenges = loader.challenges
 	currentChallenges = loader.currentChallenges
 #	hellChallengeNerf = loader.hellChallengeNerf
+	ifFirstZunda = loader.ifFirstZunda
 	inContract = loader.inContract
 	musicvol = loader.musicvol
 	sfxvol = loader.sfxvol
 	ifFirstHell = loader.ifFirstHell
 	soulsData = loader.soulsData
-	hellChallengeLayer2 = loader.hellChallengeLayer2
+#	hellChallengeLayer2 = loader.hellChallengeLayer2
 	hellChallengeInit = loader.hellChallengeInit
 	ratmail = loader.ratmail
 	dollarData = loader.dollarData
@@ -334,6 +380,10 @@ func load_as_normal():
 	atlasData = loader.atlasData
 	backpackData = loader.backpackData
 	automatorVarsData = loader.automatorVarsData
+	nightChallengeData = loader.nightChallengeData
+	fearcatData = loader.fearcatData
+	currentSigilOrder = loader.currentSigilOrder
+	nextSigilOrder = loader.nextSigilOrder
 	sand = loader.sand
 	sandCost = loader.sandCost
 	sandScaling = loader.sandScaling

@@ -139,6 +139,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("12_4xa25")
 
 [node name="SoulCountLabel" type="Label" parent="SoulCountContainer"]
+layout_mode = 0
 offset_left = 297.0
 offset_top = 117.0
 offset_right = 337.0
@@ -151,5 +152,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="LeftArrowButton" to="." method="toTheLeft"]
 [connection signal="pressed" from="RightArrowButton" to="." method="toTheRight"]
 [connection signal="pressed" from="SoulUpgradeButton" to="." method="_onSoulUpgradePressed"]
-[connection signal="pressed" from="SoulUpgradeButton" to="SoulCountContainer/SoulCountLabel" method="_onSoulUpgradePressed"]
 [connection signal="pressed" from="EnterContractButton" to="." method="beginContract"]

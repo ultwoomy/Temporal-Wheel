@@ -2,6 +2,7 @@ extends TextureButton
 var fmat = preload("res://Scripts/FormatNo.gd")
 var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png")
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
+var ritualSigil = preload("res://Resources/Sigil/RitualSigil.tres")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +22,7 @@ func _on_pressed():
 	setCandleSprites()
 	if get_child(0).is_visible():
 		get_child(0).hide()
-	elif GVars.sigilData.numberOfSigils[5]:
+	elif GVars.sigilData.acquiredSigils.has(ritualSigil):
 		get_child(0).show()
 		
 func getPath(cand):

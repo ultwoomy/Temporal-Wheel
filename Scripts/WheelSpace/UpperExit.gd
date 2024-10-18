@@ -1,5 +1,5 @@
 extends Container
-
+signal exitUpperContract
 
 #@ Export Variables
 
@@ -15,7 +15,7 @@ var presses : int = 0
 
 #@ Virtual Methods
 func _ready():
-	if (GVars.hellChallengeLayer2 >= 0):
+	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND):
 		show()
 	else:
 		hide()
@@ -38,6 +38,7 @@ func _button_pressed():
 		GVars.hellChallengeInit = true
 		GVars.spinData.spinPerClick = 1
 		presses = 0
+		emit_signal("exitUpperContract")
 		hide()
 	if presses > 0:
 		resetButton.text = "5 presses to confirm"

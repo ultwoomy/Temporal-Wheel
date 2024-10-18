@@ -146,5 +146,41 @@
 			"TEXT": "It's not implemented yet so\nI don't have to explain\nnuthin.",
 			"FACE": "ANGRY"
 		}
+	], 
+	"sanddollar" :[
+		{
+			"TEXT": "Perhaps if you stacked more neatly\nthey'll give each other powers.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Sounds like a bit of a stretch,\nbut let me send some roots down\nto help you.",
+			"FACE": "PEEK"
+		},
+		{
+			"TEXT": "Ooh now they're a lot stronger.\nWhat a neat looking tower.",
+			"FACE": "NORMAL"
+		}
+	],
+	"zundanight" :[
+		{
+			"TEXT": "I, once again, do not know\nwhat to do with this.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "I don't think the developer\nknows either. You better ask her\ninstead.",
+			"FACE": "CONCERN"
+		}
+	],
+	"undercity" :[
+		{
+			"TEXT": "I can't do anything with this.",
+			"FACE": "NORMAL"
+		}
+	],
+	"twins" :[
+		{
+			"TEXT": "I don't want to touch this.\nIt's spiky.",
+			"FACE": "NORMAL"
+		}
 	]
 }

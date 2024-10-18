@@ -23,8 +23,10 @@ func _ready():
 	letter.hide()
 	cheese.hide()
 	bow.hide()
+	rat.hide()
 	cheese.disabled = true
 	bow.disabled = true
+	rat.disabled = true
 	baseYpos = rat.position.y
 	#if the player exits before accepting the cheese, activate it anyways
 	if GVars.ratmail >= 2 and not GVars.backpackData.cheese:
@@ -35,6 +37,8 @@ func _ready():
 	#The second value is whenever i want to put the next letter
 	if(GVars.ratmail < GVars.ifSecondBoot) and GVars.ifSecondBoot <= 4:
 		active = true
+		rat.disabled = false
+		rat.show()
 	else:
 		active = false
 

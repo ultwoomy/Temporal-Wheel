@@ -3,7 +3,6 @@
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_2u5k0"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_27x6k"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_lw4ws"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MMain.gd" id="3_15p2a"]
 [ext_resource type="Texture2D" uid="uid://vugvkm7hi778" path="res://Sprites/MushSpace/mush_int/tile000.png" id="3_avmde"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_tatml"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="3_teq87"]
@@ -22,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="9_g2bu2"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="10_fdmec"]
 [ext_resource type="Texture2D" uid="uid://bjr4hvvmbbjm8" path="res://Sprites/WheelSpace/greenrect.png" id="20_dnr8x"]
+
+[sub_resource type="GDScript" id="GDScript_7mvq5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
 animations = [{
@@ -120,12 +121,11 @@ grow_vertical = 2
 theme = ExtResource("1_2u5k0")
 script = ExtResource("3_tatml")
 
-[node name="Container" type="Container" parent="." node_paths=PackedStringArray("currentMush")]
+[node name="Container" type="Container" parent="."]
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 100.0
-script = ExtResource("3_15p2a")
-currentMush = NodePath("MushPanel/CurrentMush")
+script = SubResource("GDScript_7mvq5")
 
 [node name="Sprite2D" type="Sprite2D" parent="Container"]
 self_modulate = Color(0.415686, 0.215686, 0.113725, 1)

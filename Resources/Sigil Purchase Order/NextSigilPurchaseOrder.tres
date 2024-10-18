@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SigilPurchaseOrder" load_steps=8 format=3 uid="uid://dyryg3mw55pov"]
+
+[ext_resource type="Resource" uid="uid://btvqxfcia54vs" path="res://Resources/Sigil/PacksmithSigil.tres" id="1_opgho"]
+[ext_resource type="Resource" uid="uid://uv4ap585eg8w" path="res://Resources/Sigil/CandleSigil.tres" id="2_g5se3"]
+[ext_resource type="Resource" uid="uid://b0l6876hj0708" path="res://Resources/Sigil/AscensionSigil.tres" id="3_phx7n"]
+[ext_resource type="Resource" uid="uid://d0jhy6fuyktvq" path="res://Resources/Sigil/EmptinessSigil.tres" id="4_4qfq6"]
+[ext_resource type="Resource" uid="uid://bb2l3hcj4yqyc" path="res://Resources/Sigil/RitualSigil.tres" id="5_xhy5r"]
+[ext_resource type="Resource" uid="uid://60cykqo6h2ct" path="res://Resources/Sigil/HellSigil.tres" id="6_cww2u"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil PurchaseOrder.gd" id="7_fu5nm"]
+
+[resource]
+script = ExtResource("7_fu5nm")
+purchaseOrder = Array[Resource("res://Scripts/Sigil Purchase Order/Sigil.gd")]([ExtResource("1_opgho"), ExtResource("2_g5se3"), ExtResource("3_phx7n"), ExtResource("4_4qfq6"), ExtResource("5_xhy5r"), ExtResource("6_cww2u")])

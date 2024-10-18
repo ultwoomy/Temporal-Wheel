@@ -11,6 +11,7 @@ var rng = RandomNumberGenerator.new()
 ## Functions
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GVars.mushroomData.fearMushBuff = 1
 	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
 	plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
@@ -86,16 +87,20 @@ func _harvest_shroom(val) -> void:
 		EexpBuff = GVars.rustData.fourth
 	if val == 1:
 		GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff * soulsShroomBuff
-		GVars.mushroomData.xp += 25 * EexpBuff
+		GVars.mushroomData.xp += 25 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 	elif val == 2:
 		GVars.spinData.rotations += (1 + GVars.mushroomData.level)/2 * (3 + Ebuff)/4 * 5 * soulsShroomBuff
-		GVars.mushroomData.xp += 50 * EexpBuff
+		GVars.mushroomData.xp += 50 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 	elif val == 3:
 		GVars.mushroomData.spinBuff += (3 * (log(GVars.mushroomData.level + 1) * Ebuff/log(3)))/(pow(2,GVars.mushroomData.spinBuff)) * soulsShroomBuff
-		GVars.mushroomData.xp += 75 * EexpBuff
+		GVars.mushroomData.xp += 75 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 	elif val == 4:
 		GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(pow(1.5,GVars.mushroomData.ascBuff)) * soulsShroomBuff
-		GVars.mushroomData.xp += 100 * EexpBuff
+		GVars.mushroomData.xp += 100 * EexpBuff + GVars.fearcatData.fearcatBuffDay
+	elif val == 5:
+		print(str((log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.fearMushBuff)) * soulsShroomBuff))
+		GVars.mushroomData.fearMushBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.fearMushBuff)) * soulsShroomBuff
+		GVars.mushroomData.xp += 125 * EexpBuff * GVars.fearcatData.fearcatBuffDay
 	_check_xp()
 
 

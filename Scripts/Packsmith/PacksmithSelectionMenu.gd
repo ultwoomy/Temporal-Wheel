@@ -7,7 +7,7 @@ signal sigilButtonPressed(sigil: Sigil)
 
 
 #@ Public Variables
-var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
+var sigilPurchaseOrder = GVars.currentSigilOrder
 
 
 #@ Onready Variables

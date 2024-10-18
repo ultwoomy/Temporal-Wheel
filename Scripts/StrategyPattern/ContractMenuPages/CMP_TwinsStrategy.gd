@@ -4,6 +4,7 @@ class_name CMP_TwinsStrategy
 
 #@ Constants
 const CONTRACT_NAME : String = "The Twins"
+const CONTRACT_CHALLENGE : ChallengeData = GVars.CHALLENGE_FABULOUS
 const CONTRACT_DESCRIPTION : String = "
 	You no longer gain resources
 	Rust can purchase all resource

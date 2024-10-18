@@ -3,8 +3,8 @@
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
 [ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_ixaxr"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MMain.gd" id="4_84kn6"]
 [ext_resource type="PackedScene" uid="uid://cyt64ilku1qh0" path="res://Scenes/MushSpace/MushInfoPanel.tscn" id="5_8ah1m"]
+[ext_resource type="Script" path="res://Scenes/MushSpace/MushRoom.gd" id="8_mtt2u"]
 [ext_resource type="PackedScene" uid="uid://c4tjf6bsqkmci" path="res://Scenes/MushSpace/MushFarmPlots.tscn" id="14_hkk4m"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="14_s4quj"]
 [ext_resource type="Texture2D" uid="uid://vugvkm7hi778" path="res://Sprites/MushSpace/mush_int/tile000.png" id="15_o1xpq"]
@@ -97,12 +97,6 @@ grow_vertical = 2
 theme = SubResource("Theme_wedbe")
 script = ExtResource("3_ixaxr")
 
-[node name="Container" type="Container" parent="."]
-layout_mode = 0
-offset_right = 200.0
-offset_bottom = 100.0
-script = ExtResource("4_84kn6")
-
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0.415686, 0.215686, 0.113725, 1)
 texture = SubResource("MeshTexture_lb1vt")
@@ -112,6 +106,7 @@ centered = false
 position = Vector2(700, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mwljc")
+script = ExtResource("8_mtt2u")
 
 [node name="BackButton" type="Button" parent="." node_paths=PackedStringArray("back")]
 layout_mode = 0

@@ -1,10 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=62 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
 [ext_resource type="Texture2D" uid="uid://cysiy4xi7xnjj" path="res://Sprites/WheelSpace/Sky/night.png" id="2_ty02u"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/Back.gd" id="3_7r1my"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="4_m45rb"]
+[ext_resource type="Texture2D" uid="uid://bqsm8hfoejatb" path="res://Sprites/WheelSpace/Sky/day.png" id="4_rmxgl"]
 [ext_resource type="Texture2D" uid="uid://cx41yp0f1ckr4" path="res://Sprites/WheelSpace/mush_ext_sheet/tile000.png" id="5_nsne1"]
 [ext_resource type="Texture2D" uid="uid://q4k5bjlld7su" path="res://Sprites/WheelSpace/mush_ext_sheet/tile001.png" id="6_i1g62"]
 [ext_resource type="Texture2D" uid="uid://td637bbgri78" path="res://Sprites/WheelSpace/mush_ext_sheet/tile002.png" id="7_03kpd"]
@@ -20,9 +21,10 @@
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensButton.gd" id="17_53q2w"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceDensDisplay.gd" id="18_gtfj1"]
 [ext_resource type="Texture2D" uid="uid://c0naj6ala7avn" path="res://Sprites/WheelSpace/Zundamon/zun_sit.png" id="19_aq2kl"]
+[ext_resource type="Texture2D" uid="uid://be4glpbamx10l" path="res://Sprites/WheelSpace/Zundamon/zun_bubble.png" id="19_urc6w"]
+[ext_resource type="Texture2D" uid="uid://cix21ro3ngcqh" path="res://Sprites/WheelSpace/Zundamon/zun_bubble_hover.png" id="20_fbisg"]
 [ext_resource type="Texture2D" uid="uid://d1sgp4e2mvs7g" path="res://Sprites/WheelSpace/Zundamon/zun_nom.png" id="20_lpp0p"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceZunda.gd" id="21_bjtkx"]
-[ext_resource type="Texture2D" uid="uid://btsdyf15q58f8" path="res://Sprites/WheelSpace/Zundamon/zun_wip.png" id="22_xu23q"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="23_wtwgm"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceRatController.gd" id="26_45hgb"]
 [ext_resource type="Texture2D" uid="uid://bmehjccofi42l" path="res://Sprites/WheelSpace/ratsheet/tile000.png" id="27_2vyi3"]
@@ -54,6 +56,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_ty02u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rmxgl")
 }],
 "loop": true,
 "name": &"default",
@@ -153,24 +158,6 @@ self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
 position = Vector2(498, 541)
 texture = ExtResource("4_m45rb")
 
-[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
-custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
-offset_left = 750.0
-offset_top = 100.0
-offset_right = 850.0
-offset_bottom = 150.0
-script = ExtResource("9_orr02")
-spinPerCDisplay = NodePath("SpinPClickDiplay")
-button = NodePath("SpinUp")
-
-[node name="SpinUp" type="Button" parent="SpinButton"]
-layout_mode = 2
-
-[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-
 [node name="Wheel" type="Node2D" parent="."]
 position = Vector2(500, 300)
 script = ExtResource("10_p6xcq")
@@ -194,6 +181,24 @@ grow_vertical = 2
 script = ExtResource("12_sl12n")
 
 [node name="RustEmitter" parent="Wheel" instance=ExtResource("14_iqbu0")]
+
+[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+offset_left = 750.0
+offset_top = 100.0
+offset_right = 850.0
+offset_bottom = 150.0
+script = ExtResource("9_orr02")
+spinPerCDisplay = NodePath("SpinPClickDiplay")
+button = NodePath("SpinButton")
+
+[node name="SpinButton" type="Button" parent="SpinButton"]
+layout_mode = 2
+
+[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
 
 [node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0
@@ -244,23 +249,42 @@ theme_override_font_sizes/font_size = 20
 vertical_alignment = 1
 script = ExtResource("18_gtfj1")
 
-[node name="Zunda" type="AnimatedSprite2D" parent="."]
+[node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("countdownBack", "countdownText", "requestButton", "upperContractExit")]
 position = Vector2(500, 470)
 sprite_frames = SubResource("SpriteFrames_1tw6m")
 frame_progress = 0.201388
 script = ExtResource("21_bjtkx")
+countdownBack = NodePath("Countdown")
+countdownText = NodePath("Countdown/Count")
+requestButton = NodePath("TextureButton")
+upperContractExit = NodePath("../ExitContractHigher")
 
 [node name="TextureButton" type="TextureButton" parent="Zunda"]
-offset_left = -15.0
-offset_top = -140.0
-offset_right = 85.0
-offset_bottom = -60.0
-texture_normal = ExtResource("22_xu23q")
-texture_pressed = ExtResource("22_xu23q")
-texture_hover = ExtResource("22_xu23q")
-texture_disabled = ExtResource("22_xu23q")
-texture_focused = ExtResource("22_xu23q")
-ignore_texture_size = true
+offset_left = 30.0
+offset_top = -200.0
+offset_right = 329.0
+offset_bottom = 99.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("19_urc6w")
+texture_pressed = ExtResource("20_fbisg")
+texture_hover = ExtResource("20_fbisg")
+texture_disabled = ExtResource("19_urc6w")
+texture_focused = ExtResource("20_fbisg")
+
+[node name="Countdown" type="Sprite2D" parent="Zunda"]
+position = Vector2(130, -20)
+texture = ExtResource("42_y8i0o")
+
+[node name="Count" type="Label" parent="Zunda/Countdown"]
+offset_left = -40.0
+offset_top = -23.0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("1_6ihys")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SpinAmountLabel" type="Label" parent="."]
 layout_mode = 2
@@ -582,6 +606,7 @@ offset = Vector2(50, 105)
 layout_mode = 2
 text = "Toggle Grow"
 
+[connection signal="pressed" from="Zunda/TextureButton" to="Zunda" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_onSettingButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="." method="_onBackpackButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="BackpackPanel" method="_onBackpackPressed"]

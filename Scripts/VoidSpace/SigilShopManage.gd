@@ -14,7 +14,14 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!",
 				  "Emptiness!\nExtremely ironic name!\nFull of emoticon!",
 				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
-				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?"]
+				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?",
+				  "",
+				  "",
+				  "",
+				  "Sand Dollar!\nPick them and knock them down!\nThey're just along for the ride!\nNON FUNCTIONAL",
+				  "Zunda Of The Night\nI don't know how I have this!\nIt's probably ok!\nNON FUNCTIONAL",
+				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this themeing reused?\nNON FUNCTIONAL",
+				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]
 
 var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
 
@@ -29,7 +36,6 @@ var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purcha
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(str(GVars.hellChallengeLayer2))
 	sigilDisplay.hide()
 	sigilLabel.position = Vector2(500,300)
 	sigilLabel.size = Vector2(400,200)
@@ -55,15 +61,23 @@ func _onButtonPressed():
 		const emptinessSigil 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
 		const ritualSigil 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
 		const hellSigil 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+		const sandSigil      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
+		const twinsSigil  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
+		const undercitySigil 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
+		const zundaNightSigil 	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
 		var acquiredPacksmithSigil 	: bool = GVars.sigilData.acquiredSigils.has(packsmithSigil)
 		var acquiredCandleSigil 	: bool = GVars.sigilData.acquiredSigils.has(candleSigil)
 		var acquiredAscensionSigil 	: bool = GVars.sigilData.acquiredSigils.has(ascensionSigil)
 		var acquiredEmptinessSigil 	: bool = GVars.sigilData.acquiredSigils.has(emptinessSigil)
 		var acquiredRitualSigil 	: bool = GVars.sigilData.acquiredSigils.has(ritualSigil)
 		var acquiredHellSigil 		: bool = GVars.sigilData.acquiredSigils.has(hellSigil)
+		var acquiredSandSigil		: bool = GVars.sigilData.acquiredSigils.has(sandSigil)
+		var acquiredtwinsSigil  	: bool = GVars.sigilData.acquiredSigils.has(twinsSigil)
+		var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
+		var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
 		
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hellChallengeLayer2 == 1:
-			if GVars.hellChallengeLayer2 == 0:
+		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+			if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
 				if GVars.sand >= GVars.sandCost:
 					GVars.sand -= GVars.sandCost
 					GVars.sandCost += GVars.sandScaling
@@ -76,26 +90,26 @@ func _onButtonPressed():
 				GVars.spinData.spin -= GVars.sigilData.costSpin
 				GVars.spinData.rotations -= GVars.sigilData.costRot
 				checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredCandleSigil and GVars.rustData.rust >= 20:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
 			GVars.rustData.rust -= 20
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredAscensionSigil:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
 			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
 				GVars.mushroomData.level -= 5
 				checkCurrentSigil()
 			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
 				GVars.dollarTotal -= 5
 				checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredEmptinessSigil and GVars.spinData.size > 4:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
 			GVars.spinData.size -= 4
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
 			GVars.Aspinbuff -= 6
 			checkCurrentSigil()
-		elif GVars.hellChallengeLayer2 == 1 and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
 			checkCurrentSigil()
 		else:
 			checkStupid()
@@ -109,7 +123,7 @@ func checkCurrentSigil():
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
 		GVars.sigilData.acquiredSigils.append(sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils])
-		sigilLabel.text = sigilText[indexFromAcquiredSigils]
+		sigilLabel.text = sigilText[sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils].sigilBuffIndex]
 	else:
 		sigilLabel.text = "Use it well!"
 	buyButton.text = "Thx"
@@ -123,9 +137,9 @@ func reset():
 	if hellSigil in GVars.sigilData.acquiredSigils:
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
-	elif not GVars.hellChallengeLayer2 == 1 :
+	elif not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) :
 		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		if GVars.hellChallengeLayer2 == 0:
+		if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
 			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
 		buyButton.text = "Buy"
 		failbought = false

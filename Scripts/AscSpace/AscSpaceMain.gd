@@ -114,15 +114,16 @@ func _awaken():
 	GVars.ifSecondBoot += 1
 	
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
-	print(str(GVars.hellChallengeInit))
 	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
-		print("WAYO")
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
 	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
-	
+	# Copy next sigil order into the current one unless it's the voidstop in which it resets to default
+	if not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+		GVars.currentSigilOrder = GVars.nextSigilOrder
+	else:
+		GVars.currentSigilOrder = SigilPurchaseOrder.new()
 	GVars.setChallengeToCurrentChallenges()
-	
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 
@@ -163,10 +164,19 @@ func _displayButtons() -> void:
 		challengeButton.text = newChallenge.name
 	
 	#If a second layer challenge is activated and there is no first layer challenge
-	#Show the unfinished meme challenges
-	#Does not actually start them until until exiting screen, is currently abusable by exiting the game during this cutscene
+	#Show the unfinished meme challenge
 	var onlySecondLayerChallengeActive : bool = GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and not GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST)
 	if onlySecondLayerChallengeActive and GVars.hellChallengeInit:
+		challengeButton.show()
+		# Probably unnessecary idk
+		if GVars.hasChallenge(GVars.CHALLENGE_SANDY): 
+			newChallenge = GVars.CHALLENGE_SANDY
+		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+			newChallenge = GVars.CHALLENGE_BITTERSWEET
+		elif GVars.hasChallenge(GVars.CHALLENGE_STARVED):
+			newChallenge = GVars.CHALLENGE_STARVED
+		elif GVars.hasChallenge(GVars.CHALLENGE_FABULOUS):
+			newChallenge = GVars.CHALLENGE_FABULOUS
 		GVars.hellChallengeInit = false
 		
 		newChallenge = GVars.currentChallenges[ChallengeData.ChallengeLayer.SECOND]

@@ -213,10 +213,10 @@ text = "Automate"
 
 [node name="NextButton" type="Button" parent="PacksmithMenu"]
 layout_mode = 0
-offset_left = 331.0
-offset_top = 425.0
-offset_right = 431.0
-offset_bottom = 525.0
+offset_left = 368.0
+offset_top = 427.0
+offset_right = 468.0
+offset_bottom = 527.0
 theme_override_font_sizes/font_size = 15
 text = "Next"
 

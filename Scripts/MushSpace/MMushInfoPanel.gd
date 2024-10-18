@@ -11,11 +11,13 @@ var currentFrame : int
 @onready var desc : Label = $MushDescription
 @onready var left : Button = $LeftArrow
 @onready var right : Button = $RightArrow
-
+var upperbound = 3
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if GVars.fearcatData.hasBow:
+		upperbound = 4
 	currentMush.frame = 0
 	desc.size = Vector2(216,90)
 	desc.position = Vector2(90,350)
@@ -35,7 +37,7 @@ func _process(_delta: float) -> void:
 #@ Private Methods
 func _left() -> void:
 	if(currentFrame <= 0):
-		currentFrame = 3
+		currentFrame = upperbound
 	else:
 		currentFrame -= 1
 	_setdesc()
@@ -44,7 +46,7 @@ func _left() -> void:
 
 
 func _right() -> void:
-	if(currentFrame >= 3):
+	if(currentFrame >= upperbound):
 		currentFrame = 0
 	else:
 		currentFrame += 1
@@ -59,6 +61,7 @@ func _setdesc() -> void:
 		"Rot Shroom\nThey are tight knit friends.\nGives you rotations.",
 		"Wine Shroom\nA lot of fun at parties.\nGives you a momentum bonus.",
 		"Twin Shroom\nWhispers to you.\nGives you a identity bonus.",
+		"Fear Shroom\nHurry up and grow faster!\nGives grow speed."
 	]
 	
 	# Check to see if currentFrame is in bounds.

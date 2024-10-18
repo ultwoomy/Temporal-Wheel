@@ -38,7 +38,6 @@ func _ready() -> void:
 #	var d = AutomatorData.new()
 #	d.setAutomator("Spinbot")
 #	Automation.addAutomatorFromData(d)
-	print(str(GVars.hellChallengeLayer2))
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText)
@@ -72,7 +71,7 @@ func updateSpinAmountText() -> void:
 
 
 func updateRotationValueText() -> void:
-	if GVars.hellChallengeLayer2 == 0 and GVars.spinData.rotations > 100:
+	if GVars.hasChallenge(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		rotationAmountLabel.text = "The sands of time erode your wheel\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
 	else:
 		rotationAmountLabel.text = str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))

@@ -1,6 +1,6 @@
 extends Control
 class_name ContractMenu
-
+signal ContractMenuExit
 
 #@ Public Variables
 var contractOrder : Array = [  # (!) Elements should be derived from CMP_Strategy
@@ -77,8 +77,7 @@ func displayContractPageButtons() -> void:
 
 
 func beginContract() -> void:
-	GVars.setChallengeDataInChallenges(contractStrategy._getChallenge())
-	GVars.hellChallengeLayer2 = contractIndex
+	GVars.setChallenge(contractStrategy.CONTRACT_CHALLENGE)
 	GVars.hellChallengeInit = true
 	SceneHandler.changeSceneToFilePath(SceneHandler.ASCENSIONSPACE)
 
@@ -95,6 +94,7 @@ func _disableUpgradePurchase(boolean : bool) -> void:
 func _onExitPressed() -> void:
 	contractIndex = 0
 	self.hide()
+	emit_signal("ContractMenuExit")
 
 
 func _onSoulUpgradePressed() -> void:

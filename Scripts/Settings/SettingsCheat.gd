@@ -7,9 +7,6 @@ func _ready():
 
 
 func _on_text_submitted(inputtext):
-	if(inputtext == "defaultsigilsunlock"):
-		GVars.unlock_all_sigils()
-		clear()
 	if(inputtext == "freecrap"):
 		GVars.spinData.spin = 1000000000000
 		GVars.spinData.rotations = 10000000
@@ -40,4 +37,10 @@ func _on_text_submitted(inputtext):
 	if(inputtext == "impoor"):
 		GVars.spinData.spin = 0
 		GVars.spinData.rotations = 0
+		clear()
+	if(inputtext == "sans"):
+		GVars.sand = 1000
+		clear()
+	if(inputtext == "accel"):
+		GVars.Aspinbuff = 100
 		clear()

@@ -10,9 +10,25 @@ class_name MushroomData
 @export var pendingRots : float
 @export var spinBuff : float
 @export var ascBuff : float
+@export var fearMushBuff : float
 
 func _init():
 	resetData()
+	
+func copy(x, resetFear):
+	level = x.level
+	xp = x.xp
+	xpThresh = x.xpThresh
+	xpThreshMult = x.xpThreshMult
+	current = x.current
+	timeLeft = x.timeLeft
+	pendingRots = x.pendingRots
+	spinBuff = x.spinBuff
+	ascBuff = x.ascBuff
+	if resetFear:
+		fearMushBuff = 1
+	else:
+		fearMushBuff = x.fearMushBuff
 	
 func resetData() -> void:
 	level = 1
@@ -24,3 +40,4 @@ func resetData() -> void:
 	pendingRots = 0
 	spinBuff = 1
 	ascBuff = 1
+	fearMushBuff = 1

@@ -69,7 +69,3 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 	else:
 		zundaLabel.text = ""
 		nextButton.hide()
-
-
-func _onBackButtonPressed():
-	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)

@@ -107,6 +107,70 @@
 		},
 		{
 			"TEXT": "...actually there's no perm\nfor that in here.\nGuess it's useless then.",
+			"FACE": "EYEBROW"
+		}
+	],
+	"sanddollar" :[
+		{
+			"TEXT": "It's a little sand dollar.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Usually you find these near the\nocean, but you can find them\nfossilized everywhere in the sand.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "At least they're pretty to look\nat.",
+			"FACE": "NORMAL"
+		}
+	],
+	"zundanight" :[
+		{
+			"TEXT": "That's a picture of the moon with\n夜.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "The Beast of the Night.\nShe'll eat anything and everything\nShe can get her hands on.",
+			"FACE": "CONCERN"
+		},
+		{
+			"TEXT": "Not that either of us\nneed to worry about that.",
+			"FACE": "NORMAL"
+		}
+	],
+	"undercity" :[
+		{
+			"TEXT": "It's said that all the fae\nlive in the undercity.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "It's quite a nice place.\nI think. I don't know.\nI don't leave this place.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "This let's you get on the\nbus that goes there.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "Bring back a souvenier.",
+			"FACE": "NORMAL"
+		}
+	],
+	"twins" :[
+		{
+			"TEXT": "That's a rose, not the kind\nthat talks though.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "My sister's own that one as\na pet. It's very weird.",
+			"FACE": "TALKING"
+		},
+		{
+			"TEXT": "They live down below. Be careful\nwhen talking to them",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "You don't want to get pricked.",
 			"FACE": "NORMAL"
 		}
 	]

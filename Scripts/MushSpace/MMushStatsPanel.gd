@@ -18,7 +18,7 @@ func _process(_delta: float) -> void:
 
 
 func _update_stats() -> void:
-	statsDisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff))
+	statsDisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff)) + "\nMush Grow Speed: " + str(GVars.getScientific(GVars.mushroomData.fearMushBuff))
 
 func mushbotCheck():
 	if Automation.contains("Mushbot"):

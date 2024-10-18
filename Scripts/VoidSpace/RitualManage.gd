@@ -10,7 +10,7 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png")
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
 var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
-					, "Lose rotations per spin, but\ntriples the effect of\nall other wheel based\ncandles."
+					, "Lose rotations per spin."
 					, "Gain a small amount of\nmushroom exp each spin."
 					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff))
 					, "Gain a small amount of rust\nper spin"

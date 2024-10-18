@@ -4,6 +4,7 @@ class_name CMP_UndercityStrategy
 
 #@ Constants
 const CONTRACT_NAME : String = "Undercity"
+const CONTRACT_CHALLENGE : ChallengeData = GVars.CHALLENGE_BITTERSWEET
 const CONTRACT_DESCRIPTION : String = "
 	Sigil costs are greatly modified
 	The Kbity engine rumbles
@@ -55,7 +56,7 @@ func _isUpgradeMaxed() -> bool:
 #@ Private Methods
 func _assignContractDescription() -> void:
 	if _isContractCompleted():
-		var upgradeDescription : String = UPGRADE_DESCRIPTION.format({"cost" : str(GVars.soulsData.spinBaseBuffCost), "currently" : str(GVars.soulsData.spinBaseBuff)})
+		var upgradeDescription : String = UPGRADE_DESCRIPTION.format({"cost" : str(GVars.soulsData.doubleRotChanceCost), "currently" : str(GVars.soulsData.doubleRotChance)})
 		_contractDescription = upgradeDescription
 	else:
 		_contractDescription = CONTRACT_DESCRIPTION

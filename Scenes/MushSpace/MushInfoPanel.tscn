@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cyt64ilku1qh0"]
+[gd_scene load_steps=23 format=3 uid="uid://cyt64ilku1qh0"]
 
 [ext_resource type="Script" path="res://Scripts/MushSpace/MMushInfoPanel.gd" id="1_6hwsa"]
 [ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_x1146"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="5_kisa2"]
 [ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="6_jr5e3"]
 [ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="7_ej7he"]
+[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="7_pyngj"]
 [ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="8_bttiw"]
 [ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="9_y16vs"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="10_e2ajo"]
@@ -35,6 +36,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_jr5e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pyngj")
 }],
 "loop": true,
 "name": &"default",

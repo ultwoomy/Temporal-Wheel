@@ -76,12 +76,11 @@ func _onGenericButtonPressed(switchEmotionBuff : int, text : String) -> void:
 	# Grants any buffs based on switchEmotionBuff which is granted by emotion chosen.
 	#99 is placeholder number for layer 1 challenge, 199 for layer 2
 	if switchEmotionBuff == 99:
-		GVars.setChallenge(newChallenge)
+		GVars.setChallengeDataInChallenges(newChallenge)
 		GVars.inContract = true
 		GVars.curEmotionBuff = 0
 	elif switchEmotionBuff == 199:
-		GVars.setChallenge(newChallenge)
-#		GVars.hellChallengeLayer2 = challengeNumber - 10  # L.B: Not needed?
+		GVars.setChallengeDataInChallenges(newChallenge)
 		GVars.inContract = true
 		GVars.hellChallengeInit = true
 	else:
@@ -124,6 +123,7 @@ func _awaken():
 		GVars.currentSigilOrder = GVars.nextSigilOrder
 	else:
 		GVars.currentSigilOrder = SigilPurchaseOrder.new()
+	GVars.setChallengeToCurrentChallenges()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 
@@ -138,13 +138,13 @@ func _displayButtons() -> void:
 	#If face is active, show emotion
 	#Cannot stack emotion with challenge of the same type
 	if GVars.sigilData.curSigilBuff == 3:
-		if not GVars.hasChallenge(GVars.CHALLENGE_INCONGRUENT):
+		if not GVars.hasChallengeActive(GVars.CHALLENGE_INCONGRUENT):
 			fearButton.show()
-		if not GVars.hasChallenge(GVars.CHALLENGE_BRAVE):
+		if not GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
 			coldButton.show()
-		if not GVars.hasChallenge(GVars.CHALLENGE_SHARP):
+		if not GVars.hasChallengeActive(GVars.CHALLENGE_SHARP):
 			warmthButton.show()
-		if not GVars.hasChallenge(GVars.CHALLENGE_AWARE):
+		if not GVars.hasChallengeActive(GVars.CHALLENGE_AWARE):
 			wrathButton.show()
 	
 	#If hell sigil is active and hell is not unlocked, show challenge options based on emote buff
@@ -177,9 +177,11 @@ func _displayButtons() -> void:
 			newChallenge = GVars.CHALLENGE_STARVED
 		elif GVars.hasChallenge(GVars.CHALLENGE_FABULOUS):
 			newChallenge = GVars.CHALLENGE_FABULOUS
-		
 		GVars.hellChallengeInit = false
-		if newChallenge:
-			challengeButton.text = newChallenge.name
+		
+		newChallenge = GVars.currentChallenges[ChallengeData.ChallengeLayer.SECOND]
+		
+		challengeButton.text = newChallenge.name
+		challengeButton.show()
 	
 	complacencyButton.show()

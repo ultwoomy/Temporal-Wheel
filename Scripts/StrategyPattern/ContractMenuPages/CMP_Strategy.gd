@@ -32,6 +32,10 @@ func _purchaseUpgrade() -> void:
 	pass
 
 
+func _getChallenge() -> ChallengeData:
+	return null
+
+
 func _isContractCompleted() -> bool:
 	return false
 

@@ -42,6 +42,10 @@ func _purchaseUpgrade() -> void:
 		_assignText()
 
 
+func _getChallenge() -> ChallengeData:
+	return GVars.CHALLENGE_SANDY
+
+
 func _isContractCompleted() -> bool:
 	return GVars.soulsData.doubleShroomChanceEnabled
 

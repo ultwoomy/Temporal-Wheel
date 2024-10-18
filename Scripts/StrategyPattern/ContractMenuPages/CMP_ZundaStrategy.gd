@@ -43,6 +43,10 @@ func _purchaseUpgrade() -> void:
 		_assignText()
 
 
+func _getChallenge() -> ChallengeData:
+	return GVars.CHALLENGE_STARVED
+
+
 func _isContractCompleted() -> bool:
 	return GVars.soulsData.spinBaseBuffEnabled
 

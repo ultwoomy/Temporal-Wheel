@@ -4,10 +4,10 @@ signal ContractMenuExit
 
 #@ Public Variables
 var contractOrder : Array = [  # (!) Elements should be derived from CMP_Strategy
-	CMP_TwinsStrategy,
-	CMP_ZundaStrategy,
-	CMP_UndercityStrategy,
 	CMP_SandStrategy,
+	CMP_UndercityStrategy,
+	CMP_ZundaStrategy,
+	CMP_TwinsStrategy,
 ]
 var contractStrategy : CMP_Strategy
 var contractIndex : int = 0
@@ -22,7 +22,7 @@ var contractIndex : int = 0
 @onready var enterContractButton : Button = $EnterContractButton
 @onready var soulUpgradeButton : Button = $SoulUpgradeButton
 
-@onready var SoulCountSprite : Sprite2D = $SoulCountContainer/SoulCountSprite
+@onready var soulCountSprite : Sprite2D = $SoulCountContainer/SoulCountSprite
 @onready var soulCountLabel : Label = $SoulCountContainer/SoulCountLabel
 
 
@@ -30,7 +30,7 @@ var contractIndex : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Initial Strategy.
-	contractStrategy = CMP_TwinsStrategy.new(contractPage)
+	contractStrategy = contractOrder[contractIndex].new(contractPage)
 	
 	self.hide()
 	soulUpgradeButton.hide()
@@ -63,6 +63,10 @@ func toTheRight() -> void:
 
 func displayContractPage() -> void:
 	contractStrategy._showPage()
+	displayContractPageButtons()
+
+
+func displayContractPageButtons() -> void:
 	if contractStrategy._isContractCompleted():
 		enterContractButton.hide()
 		soulUpgradeButton.show()

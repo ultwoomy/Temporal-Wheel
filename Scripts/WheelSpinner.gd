@@ -66,7 +66,7 @@ func rotateWheel() -> void:
 		GVars.rustData.threshProgress -= _calculateThreshProgress()
 		GVars.rustData.rust += rustCalculation
 		GVars.rustData.thresh *= _calculateThresh()
-		if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 			GVars.sand += 1
 		# Signal rust progression.
 		rustProgressed.emit(rustCalculation)
@@ -93,7 +93,7 @@ func getWheelRotationAmount() -> float:
 		result *= GVars.fearcatData.fearcatBuffNight
 	
 	# Hell Challenge 0 effect
-	if GVars.hasChallenge(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
+	if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		result /= (5000 + GVars.spinData.rotations)/6000
 	return result
 

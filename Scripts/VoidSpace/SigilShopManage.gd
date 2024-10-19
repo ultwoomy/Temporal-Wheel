@@ -76,8 +76,8 @@ func _onButtonPressed():
 		var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
 		var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
 		
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
-			if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
+		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
+			if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 				if GVars.sand >= GVars.sandCost:
 					GVars.sand -= GVars.sandCost
 					GVars.sandCost += GVars.sandScaling
@@ -90,26 +90,26 @@ func _onButtonPressed():
 				GVars.spinData.spin -= GVars.sigilData.costSpin
 				GVars.spinData.rotations -= GVars.sigilData.costRot
 				checkCurrentSigil()
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000
 			checkCurrentSigil()
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
 			GVars.rustData.rust -= 20
 			checkCurrentSigil()
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
 			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
 				GVars.mushroomData.level -= 5
 				checkCurrentSigil()
 			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
 				GVars.dollarTotal -= 5
 				checkCurrentSigil()
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
 			GVars.spinData.size -= 4
 			checkCurrentSigil()
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
 			GVars.Aspinbuff -= 6
 			checkCurrentSigil()
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
 			checkCurrentSigil()
 		else:
 			checkStupid()
@@ -137,9 +137,9 @@ func reset():
 	if hellSigil in GVars.sigilData.acquiredSigils:
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
-	elif not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET) :
+	elif not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
 		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
 		buyButton.text = "Buy"
 		failbought = false

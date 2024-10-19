@@ -38,6 +38,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	set(value):
 		for challenge in value:
 			setChallenge(challenge)
+@export var currentChallenges : Array[ChallengeData]
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
@@ -286,14 +287,14 @@ func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 
 
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
-func _dialouge(label : Label, textToDisplay, time : float) -> void:
+func _dialouge(label, charactersToDisplay, time : float) -> void:
 	if is_instance_valid(label):
-		chars = textToDisplay
+		chars = charactersToDisplay
 		if chars <= label.text.length():
 			label.visible_characters = chars
 			chars += 1
 			await get_tree().create_timer(time).timeout
-			_dialouge(label, textToDisplay, time)
+			_dialouge(label, chars, time)
 
 
 func load_as_normal():

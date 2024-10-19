@@ -26,6 +26,7 @@ MushroomGrower="*res://Scripts/MushroomGrower.gd"
 GlobalBuffs="*res://Scripts/GlobalBuffs.gd"
 Automation="*res://Scripts/Automation/Automation.gd"
 SceneHandler="*res://Scripts/SceneHandler.gd"
+Challenger="*res://Scripts/Challenger/Challenger.gd"
 
 [display]
 

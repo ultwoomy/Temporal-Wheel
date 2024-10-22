@@ -30,29 +30,22 @@ func checkComparable(comparable):
 		return true
 	if comparision == 0:
 		if comparable == targetValue:
-			filled = true
 			return true
 	if comparision == 1:
 		if comparable < targetValue:
-			filled = true
 			return true
 	if comparision == 2:
 		if comparable > targetValue:
-			filled = true
 			return true
 	if comparision == 3:
 		if comparable <= targetValue:
-			filled = true
 			return true
 	if comparision == 4:
 		if comparable >= targetValue:
-			filled = true
 			return true
 	if comparision == 5:
-		if comparision:
-			filled = true
+		if comparable:
 			return true
 	if comparision == 6:
-		if not comparision:
-			filled = true
+		if not comparable:
 			return true

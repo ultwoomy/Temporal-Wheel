@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dvywa1hjxylef"]
+[gd_scene load_steps=3 format=3 uid="uid://dvywa1hjxylef"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_8knng"]
+[ext_resource type="Script" path="res://Scripts/SandSpace/AchievementPanel.gd" id="1_erckd"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,3 +10,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_8knng")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_right = 1000.0
+offset_bottom = 600.0
+script = ExtResource("1_erckd")

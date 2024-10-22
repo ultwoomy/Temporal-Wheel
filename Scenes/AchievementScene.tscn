@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4g8f6kv87gyq"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_3r425"]
+[ext_resource type="Script" path="res://Scripts/SandSpace/AchievementBlock.gd" id="2_ckjdt"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3r425")
+script = ExtResource("2_ckjdt")
+button = NodePath("Button")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 100.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

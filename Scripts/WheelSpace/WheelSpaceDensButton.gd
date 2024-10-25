@@ -1,6 +1,7 @@
 extends Control
 class_name WheelSpaceDensityButton
 
+
 #@ Signals
 signal densUp
 

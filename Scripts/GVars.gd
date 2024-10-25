@@ -40,6 +40,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	set(value):
 		for challenge in value:
 			setChallenge(challenge)
+@export var currentChallenges : Array[ChallengeData]
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool

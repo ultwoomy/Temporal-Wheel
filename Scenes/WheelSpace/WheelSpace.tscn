@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=64 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceSpinButton.gd" id="9_orr02"]
 [ext_resource type="Script" path="res://Scenes/WheelSpaceWheel.gd" id="10_p6xcq"]
 [ext_resource type="SpriteFrames" uid="uid://c6bbqsm7enrfx" path="res://Sprites/wheelSprites.tres" id="11_71lrk"]
+[ext_resource type="Script" path="res://Scripts/ChallengeComponent/FabulousCComp.gd" id="12_naexq"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceChangePreAscButton.gd" id="12_sl12n"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceGrowButton.gd" id="14_4hb3c"]
 [ext_resource type="PackedScene" uid="uid://corsgw1t3khv0" path="res://Scenes/RustEmitter.tscn" id="14_iqbu0"]
@@ -50,6 +51,7 @@
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="44_kqfr3"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="45_3mkif"]
 [ext_resource type="PackedScene" uid="uid://3wjowbw55at0" path="res://Scenes/WheelSpace/BackpackPanel.tscn" id="46_o6krw"]
+[ext_resource type="Script" path="res://Scripts/ChallengeManager.gd" id="52_d2l6h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_68d5r"]
 animations = [{
@@ -182,7 +184,7 @@ script = ExtResource("12_sl12n")
 
 [node name="RustEmitter" parent="Wheel" instance=ExtResource("14_iqbu0")]
 
-[node name="SpinButton" type="Container" parent="." node_paths=PackedStringArray("spinPerCDisplay", "button")]
+[node name="SpinButton" type="Container" parent="."]
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 offset_left = 750.0
@@ -190,15 +192,16 @@ offset_top = 100.0
 offset_right = 850.0
 offset_bottom = 150.0
 script = ExtResource("9_orr02")
-spinPerCDisplay = NodePath("SpinPClickDiplay")
-button = NodePath("SpinButton")
 
 [node name="SpinButton" type="Button" parent="SpinButton"]
 layout_mode = 2
 
-[node name="SpinPClickDiplay" type="Label" parent="SpinButton"]
+[node name="SpinPerClickDiplay" type="Label" parent="SpinButton"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+
+[node name="FabulousCComponent" type="Node" parent="SpinButton"]
+script = ExtResource("12_naexq")
 
 [node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0
@@ -605,6 +608,10 @@ offset = Vector2(50, 105)
 [node name="ResetCounter" type="Button" parent="ExitContractHigher"]
 layout_mode = 2
 text = "Toggle Grow"
+
+[node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers")]
+script = ExtResource("52_d2l6h")
+buttonContainers = [NodePath("../SpinButton")]
 
 [connection signal="pressed" from="Zunda/TextureButton" to="Zunda" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_onSettingButtonPressed"]

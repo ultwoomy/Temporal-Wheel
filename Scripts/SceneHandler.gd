@@ -21,6 +21,7 @@ const MUSHSPACE : String = "res://Scenes/MushSpace/MushSpace.tscn"
 const PRE_ASCENSIONSPACE : String = "res://Scenes/PreAscSpace.tscn"
 const NIGHT_LOSS : String = "res://Scenes/NighChallengeLoss.tscn"
 const FEARCAT : String = "res://Scenes/Fearcat.tscn"
+const SANDSPACE : String = "res://Scenes/SandSpace.tscn"
 
 
 #@ Public Methods

@@ -4,7 +4,9 @@ extends Node
 
 #@ Constants
 # Layer 1 Challenges
+# This one does nothing. It is activated when the player enters a challenge with no emotion buff
 const CHALLENGE_INCONGRUENT : ChallengeData = preload("res://Resources/Challenge/IncongruentChallenge.tres")
+# 
 const CHALLENGE_BRAVE : ChallengeData = preload("res://Resources/Challenge/BraveChallenge.tres")
 const CHALLENGE_SHARP : ChallengeData = preload("res://Resources/Challenge/SharpChallenge.tres")
 const CHALLENGE_AWARE : ChallengeData = preload("res://Resources/Challenge/AwareChallenge.tres")
@@ -150,7 +152,6 @@ func save_prog():
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
-	loader.currentChallenges = currentChallenges
 #	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
@@ -186,8 +187,6 @@ func resetR1Stats():
 	ifhell = false
 	if challenges.size() >= 1:
 		challenges[0] = null  
-	if currentChallenges.size() >= 1:
-		currentChallenges[0] = null
 #	hellChallengeNerf = -1
 
 
@@ -252,49 +251,40 @@ func setChallenge(challenge : ChallengeData) -> void:
 	challenges[challenge.layer] = challenge
 
 
-func setChallengeToCurrentChallenges() -> void:
-	# Error checking
-	if not challenges:
-		return
-	
-	currentChallenges = challenges.duplicate()  # Arrays are passed by reference.
-	challenges.clear()
-
-
-func hasChallengeActive(challenge : ChallengeData) -> bool:
+func hasChallenge(challenge : ChallengeData) -> bool:
 	# Check to see if challenges is null.
-	if not currentChallenges:
+	if not challenges:
 		return false
 	
-	if challenge in currentChallenges:
+	if challenge in challenges:
 		return true
 	else:
 		return false
 
 
 func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
-	# Check to see if layer value is in bounds of the currentChallenges array.
+	# Check to see if layer value is in bounds of the challenges array.
 	if not challenges:
 		return false
 	if not (challenges.size() >= layer + 1):
 		return false
 	
 	# If a ChallengeData is the element of the layer, then the layer has a challenge.
-	if currentChallenges[layer]:
+	if challenges[layer]:
 		return true
 	else:
 		return false
 
 
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
-func _dialouge(label, charactersToDisplay, time : float) -> void:
-	if is_instance_valid(label):
-		chars = charactersToDisplay
-		if chars <= label.text.length():
-			label.visible_characters = chars
+func _dialouge(lbl,charat,time):
+	if(is_instance_valid(lbl)):
+		chars = charat
+		if(chars <= lbl.text.length()):
+			lbl.visible_characters = chars
 			chars += 1
 			await get_tree().create_timer(time).timeout
-			_dialouge(label, chars, time)
+			_dialouge(lbl,chars,time)
 
 
 func load_as_normal():
@@ -360,7 +350,6 @@ func load_as_normal():
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
 	challenges = loader.challenges
-	currentChallenges = loader.currentChallenges
 #	hellChallengeNerf = loader.hellChallengeNerf
 	ifFirstZunda = loader.ifFirstZunda
 	inContract = loader.inContract
@@ -383,6 +372,8 @@ func load_as_normal():
 	automatorVarsData = loader.automatorVarsData
 	nightChallengeData = loader.nightChallengeData
 	fearcatData = loader.fearcatData
+	ifFirstFearcatDay = loader.ifFirstFearcatDay
+	ifFirstFearcatNight = loader.ifFirstFearcatNight
 	currentSigilOrder = loader.currentSigilOrder
 	nextSigilOrder = loader.nextSigilOrder
 	sand = loader.sand

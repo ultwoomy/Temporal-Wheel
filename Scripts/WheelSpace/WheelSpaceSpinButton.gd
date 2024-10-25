@@ -20,7 +20,6 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 #@ Virtual Methods
 func _ready():
-	print("button is disabled" + str(button.disabled))
 	_spinUpdateLoop()
 	_saveLoop()
 	# L.B: Since clicking on the button adds to spin, this can be kept here.

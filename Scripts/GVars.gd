@@ -4,8 +4,9 @@ extends Node
 
 #@ Constants
 # Layer 1 Challenges
-# This one does nothing. It is activated when the player 
+# This one does nothing. It is activated when the player enters a challenge with no emotion buff
 const CHALLENGE_INCONGRUENT : ChallengeData = preload("res://Resources/Challenge/IncongruentChallenge.tres")
+# 
 const CHALLENGE_BRAVE : ChallengeData = preload("res://Resources/Challenge/BraveChallenge.tres")
 const CHALLENGE_SHARP : ChallengeData = preload("res://Resources/Challenge/SharpChallenge.tres")
 const CHALLENGE_AWARE : ChallengeData = preload("res://Resources/Challenge/AwareChallenge.tres")
@@ -370,6 +371,8 @@ func load_as_normal():
 	automatorVarsData = loader.automatorVarsData
 	nightChallengeData = loader.nightChallengeData
 	fearcatData = loader.fearcatData
+	ifFirstFearcatDay = loader.ifFirstFearcatDay
+	ifFirstFearcatNight = loader.ifFirstFearcatNight
 	currentSigilOrder = loader.currentSigilOrder
 	nextSigilOrder = loader.nextSigilOrder
 	sand = loader.sand

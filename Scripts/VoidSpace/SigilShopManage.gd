@@ -116,11 +116,13 @@ func _onButtonPressed():
 
 
 func checkCurrentSigil():
+	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
+	if GVars.hasChallenge(GVars.CHALLENGE_BRAVE):
+		GVars.sigilData.costRot *= 4 * (indexFromAcquiredSigils + 1)
 	
 	# The size is used to keep track of what sigil to get from purchaseOrder.
-	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
 		GVars.sigilData.acquiredSigils.append(sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils])
 		sigilLabel.text = sigilText[sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils].sigilBuffIndex]

@@ -1,7 +1,7 @@
 extends Control
 var ach : Achievement
 @export var button : Button
-signal achievementButtonPressed
+signal achievementButtonPressed(ach)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,5 +37,4 @@ func showTrue():
 	button.disabled = false
 
 func _on_button_pressed():
-	ach.filled = true
-	emit_signal("achievementButtonPressed")
+	achievementButtonPressed.emit(ach)

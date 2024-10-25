@@ -95,6 +95,12 @@ func getWheelRotationAmount() -> float:
 	# Hell Challenge 0 effect
 	if GVars.hasChallenge(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		result /= (5000 + GVars.spinData.rotations)/6000
+		
+	if GVars.hasChallenge(GVars.CHALLENGE_BRAVE):
+		if GVars.spinData.rotations <= 1000:
+			result *= GVars.spinData.rotations/1000 + 1
+		else:
+			result *= GVars.spinData.rotations/(log(GVars.spinData.rotations)/log(1.02)) + 1
 	return result
 
 #@ Private Methods

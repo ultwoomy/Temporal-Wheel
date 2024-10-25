@@ -30,6 +30,8 @@ var candleAugmentBuffModifier : float = 1.0
 @onready var spinAmountLabel : Label = $SpinAmountLabel
 @onready var rotationAmountLabel : Label = $RotationAmountLabel
 
+@onready var challengeManager : ChallengeManager = $ChallengeManager
+
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
@@ -57,7 +59,7 @@ func _ready() -> void:
 		numOfCandles -= 1
 	if (numOfCandles > 5):
 		numOfCandles = 5
-		
+	
 	backpack.hide()
 
 

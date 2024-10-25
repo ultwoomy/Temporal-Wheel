@@ -6,12 +6,16 @@ class_name WheelSpaceSpinButton
 
 
 #@ Export Variables
-@export var spinPerCDisplay: Label
-@export var button: Button
 
 
 #@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
+
+
+#@ Onready Variables
+@onready var spinPerClickDisplay : Label = $SpinPerClickDiplay
+@onready var button : Button = $SpinButton
+@onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional
 
 
 #@ Virtual Methods
@@ -38,6 +42,7 @@ func _buttonPressed():
 	_spinUpdateLoop()
 
 
+#@ Private Methods
 func _spinUpdateLoop():
 	if(GVars.hasChallengeActive(GVars.CHALLENGE_SHARP)):
 		GVars.spinData.spinPerClick = 1.5/(log(GVars.spinData.spin + 2)/2)
@@ -45,7 +50,7 @@ func _spinUpdateLoop():
 		GVars.spinData.spinPerClick = 1 + log(GVars.spinData.rotations + 1)/log(10 - GVars.soulsData.spinBaseBuff)
 	else:
 		GVars.spinData.spinPerClick = 1
-	spinPerCDisplay.text = str(GVars.getScientific(GVars.spinData.spinPerClick))
+	spinPerClickDisplay.text = str(GVars.getScientific(GVars.spinData.spinPerClick))
 
 
 func _saveLoop():

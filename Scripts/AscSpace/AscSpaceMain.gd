@@ -119,7 +119,7 @@ func _awaken():
 		GVars.hellChallengeInit = false
 	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
 	# Copy next sigil order into the current one unless it's the voidstop in which it resets to default
-	if not GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
 		GVars.currentSigilOrder = GVars.nextSigilOrder
 	else:
 		GVars.currentSigilOrder = SigilPurchaseOrder.new()
@@ -169,13 +169,13 @@ func _displayButtons() -> void:
 	if onlySecondLayerChallengeActive and GVars.hellChallengeInit:
 		challengeButton.show()
 		# Probably unnessecary idk
-		if GVars.hasChallenge(GVars.CHALLENGE_SANDY): 
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY): 
 			newChallenge = GVars.CHALLENGE_SANDY
-		elif GVars.hasChallenge(GVars.CHALLENGE_BITTERSWEET):
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
 			newChallenge = GVars.CHALLENGE_BITTERSWEET
-		elif GVars.hasChallenge(GVars.CHALLENGE_STARVED):
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_STARVED):
 			newChallenge = GVars.CHALLENGE_STARVED
-		elif GVars.hasChallenge(GVars.CHALLENGE_FABULOUS):
+		elif GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
 			newChallenge = GVars.CHALLENGE_FABULOUS
 		GVars.hellChallengeInit = false
 		

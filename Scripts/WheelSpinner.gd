@@ -66,7 +66,7 @@ func rotateWheel() -> void:
 		GVars.rustData.threshProgress -= _calculateThreshProgress()
 		GVars.rustData.rust += rustCalculation
 		GVars.rustData.thresh *= _calculateThresh()
-		if GVars.hasChallenge(GVars.CHALLENGE_SANDY):
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 			GVars.sand += 1
 		# Signal rust progression.
 		rustProgressed.emit(rustCalculation)
@@ -93,10 +93,10 @@ func getWheelRotationAmount() -> float:
 		result *= GVars.fearcatData.fearcatBuffNight
 	
 	# Hell Challenge 0 effect
-	if GVars.hasChallenge(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
+	if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		result /= (5000 + GVars.spinData.rotations)/6000
 		
-	if GVars.hasChallenge(GVars.CHALLENGE_BRAVE):
+	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
 		if GVars.spinData.rotations <= 1000:
 			result *= GVars.spinData.rotations/1000 + 1
 		else:
@@ -108,7 +108,7 @@ func _calculateSpinGain() -> float:
 	# Base result Player gets from spinning the wheel with a click.
 	var result : float = GVars.spinData.spinPerClick
 	# Multiply the result by the size of the wheel.
-	if GVars.hasChallenge(GVars.CHALLENGE_SHARP):
+	if GVars.hasChallengeActive(GVars.CHALLENGE_SHARP):
 		result *= pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2
 	elif GVars.curEmotionBuff == 2:
 		result *= pow(GVars.spinData.size,GVars.spinData.density + 1)
@@ -214,7 +214,7 @@ func _calculateRust() -> float:
 	var result : float = 1.0
 	
 	# No calculations needed if doing the correct challenge.
-	if GVars.hasChallenge(GVars.CHALLENGE_CALM):
+	if GVars.hasChallengeActive(GVars.CHALLENGE_CALM):
 		return result
 	
 	# Base value if there is not a challenge.

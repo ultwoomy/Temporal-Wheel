@@ -39,7 +39,7 @@ func _buttonPressed():
 
 
 func _spinUpdateLoop():
-	if(GVars.hasChallenge(GVars.CHALLENGE_SHARP)):
+	if(GVars.hasChallengeActive(GVars.CHALLENGE_SHARP)):
 		GVars.spinData.spinPerClick = 1.5/(log(GVars.spinData.spin + 2)/2)
 	elif GVars.soulsData.spinBaseBuffEnabled:
 		GVars.spinData.spinPerClick = 1 + log(GVars.spinData.rotations + 1)/log(10 - GVars.soulsData.spinBaseBuff)

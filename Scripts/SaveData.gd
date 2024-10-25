@@ -20,7 +20,7 @@ extends Resource
 @export var inContract : bool
 @export var souls : float
 @export var challenges : Array[ChallengeData]
-#@export var hellChallengeNerf : int
+@export var currentChallenges : Array[ChallengeData]
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
 @export var kbityProgSpin : float
@@ -98,8 +98,7 @@ func _init():
 	sandScaling = 3
 	inContract = false
 	challenges = []
-#	hellChallengeNerf = -1
-	hellChallengeLayer2 = -1
+	currentChallenges = []
 	hellChallengeInit = false
 	ifhell = false
 	ifheaven = false

@@ -71,11 +71,11 @@ func updateSpinAmountText() -> void:
 
 
 func updateRotationValueText() -> void:
-	if GVars.hasChallenge(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
+	if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		rotationAmountLabel.text = "The sands of time erode your wheel\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
-	elif GVars.hasChallenge(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations < 1000:
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations < 1000:
 		rotationAmountLabel.text = "Something will happen at 1000 rotations...\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
-	elif GVars.hasChallenge(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations >= 1000:
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations >= 1000:
 		rotationAmountLabel.text = "Maximum Overdrive!\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
 	else:
 		rotationAmountLabel.text = str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))

@@ -40,6 +40,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	set(value):
 		for challenge in value:
 			setChallenge(challenge)
+@export var currentChallenges : Array[ChallengeData] = []
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
@@ -151,6 +152,7 @@ func save_prog():
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
+	loader.currentChallenges = currentChallenges
 #	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
@@ -186,6 +188,8 @@ func resetR1Stats():
 	ifhell = false
 	if challenges.size() >= 1:
 		challenges[0] = null  
+	if currentChallenges.size() >= 1:
+		currentChallenges[0] = null
 #	hellChallengeNerf = -1
 
 
@@ -249,13 +253,19 @@ func setChallenge(challenge : ChallengeData) -> void:
 	# Set the challenge in the right layer.
 	challenges[challenge.layer] = challenge
 
-
-func hasChallenge(challenge : ChallengeData) -> bool:
-	# Check to see if challenges is null.
+		
+func setChallengeToCurrentChallenges() -> void:
+	# Error checking
 	if not challenges:
-		return false
+		return
 	
-	if challenge in challenges:
+	currentChallenges = challenges.duplicate()  # Arrays are passed by reference.
+	challenges.clear()
+	
+func hasChallengeActive(challenge : ChallengeData) -> bool:
+	if not currentChallenges:
+		return false
+	if challenge in currentChallenges:
 		return true
 	else:
 		return false
@@ -269,7 +279,7 @@ func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 		return false
 	
 	# If a ChallengeData is the element of the layer, then the layer has a challenge.
-	if challenges[layer]:
+	if currentChallenges[layer]:
 		return true
 	else:
 		return false
@@ -334,6 +344,7 @@ func load_as_normal():
 	if(versNo <= 15):
 		loader.dollarData = DollarData.new()
 		loader.nightChallengeData.initRequests()
+		loader.currentChallenges = []
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
@@ -349,7 +360,7 @@ func load_as_normal():
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
 	challenges = loader.challenges
-#	hellChallengeNerf = loader.hellChallengeNerf
+	currentChallenges = loader.currentChallenges
 	ifFirstZunda = loader.ifFirstZunda
 	inContract = loader.inContract
 	musicvol = loader.musicvol

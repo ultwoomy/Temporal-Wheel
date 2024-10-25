@@ -3,7 +3,7 @@ extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if not GVars.hasChallenge(GVars.CHALLENGE_SANDY):
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 		hide()
 	else:
 		show()

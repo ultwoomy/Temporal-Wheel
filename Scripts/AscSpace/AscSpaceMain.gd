@@ -123,6 +123,7 @@ func _awaken():
 		GVars.currentSigilOrder = GVars.nextSigilOrder
 	else:
 		GVars.currentSigilOrder = SigilPurchaseOrder.new()
+	GVars.setChallengeToCurrentChallenges()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 

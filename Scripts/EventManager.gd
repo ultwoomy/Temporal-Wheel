@@ -22,3 +22,5 @@ signal wheel_spun
 signal mushroom_frame_changed(index: int)
 signal mushroom_planted
 signal mushroom_harvested
+signal refresh_challenges
+signal thorn_disconnect_complete

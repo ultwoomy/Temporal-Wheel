@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://cu5wcmnj4xa5a"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_r1hqq"]
+[ext_resource type="Script" path="res://Scripts/FabChallenge/ThornBar.gd" id="2_uxom7"]
+[ext_resource type="Texture2D" uid="uid://c8mky4iqg8xnw" path="res://Sprites/FabChallenge/bleedbar/tile000.png" id="3_kehsj"]
+[ext_resource type="Texture2D" uid="uid://cmk2xxxltcwi8" path="res://Sprites/FabChallenge/bleedbar/tile001.png" id="4_g6s7u"]
+[ext_resource type="Texture2D" uid="uid://j2i30axcg25e" path="res://Sprites/FabChallenge/bleedbar/tile002.png" id="5_0nvvp"]
+[ext_resource type="Texture2D" uid="uid://btjwnb1e0e2b1" path="res://Sprites/FabChallenge/bleedbar/tile003.png" id="6_tue7s"]
+[ext_resource type="Texture2D" uid="uid://cfhogxc2b1xya" path="res://Sprites/FabChallenge/bleedbar/tile004.png" id="7_vfxlh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebv80"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kehsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g6s7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0nvvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tue7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vfxlh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("text")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r1hqq")
+script = ExtResource("2_uxom7")
+text = NodePath("Label")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ebv80")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -115.0
+offset_top = -33.0
+offset_right = 115.0
+offset_bottom = -10.0
+text = "0/0"
+horizontal_alignment = 1

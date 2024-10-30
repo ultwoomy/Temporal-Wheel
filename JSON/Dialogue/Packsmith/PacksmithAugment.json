@@ -140,11 +140,11 @@
 	"hellalt": [
 		{
 			"TEXT": "I can draw out the power\nof the blue babies and\nmake you immortal!!",
-			"FACE": "TALKING"
+			"FACE": "NORMAL"
 		},
 		{
 			"TEXT": "It's not implemented yet so\nI don't have to explain\nnuthin.",
-			"FACE": "ANGRY"
+			"FACE": "TALKING"
 		}
 	], 
 	"sanddollar" :[

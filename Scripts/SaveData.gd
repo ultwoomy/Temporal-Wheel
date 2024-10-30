@@ -13,6 +13,8 @@ extends Resource
 @export var sand : float
 @export var sandCost : float
 @export var sandScaling : float
+@export var health : int
+@export var bleedstacks : int
 @export_group("R1stats")
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
@@ -96,6 +98,8 @@ func _init():
 	sand = 0
 	sandCost = 7
 	sandScaling = 3
+	health = 160
+	bleedstacks = 0
 	inContract = false
 	challenges = []
 	currentChallenges = []

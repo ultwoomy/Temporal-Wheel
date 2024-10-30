@@ -39,6 +39,7 @@ func _button_pressed():
 		GVars.spinData.spinPerClick = 1
 		presses = 0
 		emit_signal("exitUpperContract")
+		EventManager.emit_signal("refresh_challenges")
 		hide()
 	if presses > 0:
 		resetButton.text = "5 presses to confirm"

@@ -60,25 +60,35 @@ var bunscript = ["Welcome to your new job!",
 				 "I have no excuse.",
 				 "I feel terrible about this and am reflecting on my actions.",
 				 "I'm not giving them back though.",
-				 "Buh bye!",]
+				 "Buh bye!",
+				
+				 "...",
+				 "Oh hey! You just popped up out of nowhere.",
+				 "Guessing your contract didn't go so well huh?",
+				 "Too bad!",
+				 "You can go back to hell and try again right now if you want.",
+				 "Or don't. Maybe there are strategies and secrets you haven't found yet?"]
 				
 var bunspritelist = [2,0,1,1,1,3,2,0,2,
 					 2,1,2,0,0,2,0,2,
 					 2,1,0,3,0,0,2,
 					 3,1,3,0,2,0,2,
 					 2,0,0,0,1,2,1,2,
-					 0,0,0,0,0,0,2]
+					 0,0,0,0,0,0,2,
+					 0,0,1,2,0,1]
 var whenend = [false,false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,true,
 			   false,false,false,false,false,false,false,true,
-			   false,false,false,false,false,false,true]
+			   false,false,false,false,false,false,true,
+			   false,false,false,false,false,true]
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	EventManager.challenge_lost_L2.connect(self.challenge_lost_text)
 	if GVars.ifSecondBoot > 9 and GVars.ifSecondBoot % 2 == 1:
 		GVars.ifSecondBoot += 1
 	firstmessage = true
@@ -103,6 +113,7 @@ func nextLine():
 	line += 1
 	text.text = bunscript[line]
 	self.get_node("Bunnies").frame = bunspritelist[line]
+	print("losthuh")
 	firstmessage = false
 
 
@@ -116,6 +127,9 @@ func _button_pressed():
 	elif whenend[line] and GVars.ifSecondBoot % 2 == 1:
 		tutScreen.hide()
 		GVars.ifSecondBoot += 1
+		get_tree().paused = false
+	elif whenend[line]:
+		tutScreen.hide()
 		get_tree().paused = false
 	elif GVars.ifFirstBoot and firstmessage:
 		line = -1
@@ -137,3 +151,9 @@ func _button_pressed():
 		nextLine()
 	else:
 		nextLine()
+		
+func challenge_lost_text():
+	print("lost")
+	tutScreen.show()
+	line = 45
+	nextLine()

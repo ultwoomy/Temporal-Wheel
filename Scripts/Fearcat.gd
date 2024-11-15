@@ -39,7 +39,7 @@ func _ready():
 			GVars._dialouge(text,0,0.01)
 			frame = 0
 			desc.show()
-			if not GVars.fearcatData.hasBow:
+			if not GVars.fearcatData.hasBow and GVars.backpackData.ribbon:
 				giftButton.show()
 	else:
 		if GVars.ifFirstFearcatNight:
@@ -54,7 +54,7 @@ func _ready():
 			GVars._dialouge(text,0,0.04)
 			frame = 3
 			desc.show()
-			if not GVars.fearcatData.hasBow:
+			if not GVars.fearcatData.hasBow and GVars.backpackData.ribbon:
 				giftButton.show()
 	if GVars.fearcatData.hasBow:
 		ribbon.show()
@@ -80,9 +80,9 @@ func _on_button_pressed():
 			frame = 0
 			desc.show()
 			nextButton.hide()
-			GVars.ifFirstFearcatDay = false
+			GVars.ifFirstFearcatNight = false
 			line = 0
-			if not GVars.fearcatData.hasBow:
+			if not GVars.fearcatData.hasBow and GVars.backpackData.ribbon:
 				giftButton.show()
 		else:
 			text.text = speechNight[line]
@@ -97,9 +97,9 @@ func _on_button_pressed():
 			frame = 3
 			nextButton.hide()
 			desc.show()
-			GVars.ifFirstFearcatNight = false
+			GVars.ifFirstFearcatDay = false
 			line = 0
-			if not GVars.fearcatData.hasBow:
+			if not GVars.fearcatData.hasBow and GVars.backpackData.ribbon:
 				giftButton.show()
 		else:
 			text.text = speechDay[line]
@@ -114,7 +114,7 @@ func _on_button_pressed():
 			line = 0
 			nextButton.hide()
 			desc.show()
-			if not GVars.fearcatData.hasBow:
+			if not GVars.fearcatData.hasBow and GVars.backpackData.ribbon:
 				giftButton.show()
 		else:
 			text.text = speechNightGift[line]
@@ -132,7 +132,7 @@ func _on_button_pressed():
 			desc.show()
 			GVars.backpackData.ribbon = false
 			GVars.fearcatData.hasBow = true
-			if not GVars.fearcatData.hasBow:
+			if not GVars.fearcatData.hasBow and GVars.backpackData.ribbon:
 				giftButton.show()
 			if GVars.fearcatData.hasBow:
 				ribbon.show()

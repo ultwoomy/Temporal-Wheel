@@ -74,6 +74,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var sfxvol : float
 @export var versNo : int
 @export var ratmail : int
+@export var challengesFailed : int
 
 
 #@ Public Variables
@@ -171,6 +172,7 @@ func save_prog():
 	loader.sfxvol = sfxvol
 	loader.versNo = versNo
 	loader.ratmail = ratmail
+	loader.challengesFailed = challengesFailed
 	loader.save_stats(loader)
 
 
@@ -320,6 +322,16 @@ func _dialouge(lbl,charat,time):
 			await get_tree().create_timer(time).timeout
 			_dialouge(lbl,chars,time)
 
+func resetChallengeVars():
+	GVars.challenges = []
+	GVars.currentChallenges = []
+	GVars.ifhell = true
+	GVars.inContract = false
+	GVars.hellChallengeInit = true
+	GVars.spinData.spinPerClick = 1
+	GVars.health = 160
+	GVars.bleedstacks = 0
+	EventManager.emit_signal("refresh_challenges")
 
 func load_as_normal():
 	loader = loader.load_stats()
@@ -372,6 +384,7 @@ func load_as_normal():
 		loader.currentChallenges = []
 		loader.health = 160
 		loader.bleedstacks = 0
+		loader.challengesFailed = 0
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
@@ -416,6 +429,9 @@ func load_as_normal():
 	sand = loader.sand
 	sandCost = loader.sandCost
 	sandScaling = loader.sandScaling
+	health = loader.health
+	bleedstacks = loader.bleedstacks
+	challengesFailed = loader.challengesFailed
 
 
 func unlock_all_sigils():

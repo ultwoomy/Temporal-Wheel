@@ -30,6 +30,11 @@ func _ready() -> void:
 	openSigilSwapButton.pressed.connect(_onOpenSigilSwapPressed)
 	dialogueControl.dialogueCompleted.connect(_onDialogueCompleted)
 	contractMenu.ContractMenuExit.connect(_show_swap_button)
+	
+	if not GVars.ifFirstFearcatDay or not GVars.ifFirstFearcatNight or GVars.curEmotionBuff == 1:
+		downButton.show()
+	else:
+		downButton.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,14 +64,14 @@ func _onRightPressed() -> void:
 	else:
 		backgroundSprite.frame = 2
 		openContractsButton.show()
-		if GVars.challenges.has(GVars.CHALLENGE_SANDY) or GVars.challenges.has(GVars.CHALLENGE_BITTERSWEET) or GVars.challenges.has(GVars.CHALLENGE_STARVED) or GVars.challenges.has(GVars.CHALLENGE_FABULOUS):
+		if GVars.soulsData.spinBaseBuffEnabled or GVars.soulsData.voidRustChanceEnabled or GVars.soulsData.doubleRotChanceEnabled or GVars.soulsData.doubleShroomChanceEnabled:
 			openSigilSwapButton.show()
 		dialogueControl.hide()
 
 
 func _onDialogueCompleted() -> void:
 	openContractsButton.show()
-	if GVars.challenges.has(GVars.CHALLENGE_SANDY) or GVars.challenges.has(GVars.CHALLENGE_BITTERSWEET) or GVars.challenges.has(GVars.CHALLENGE_STARVED) or GVars.challenges.has(GVars.CHALLENGE_FABULOUS):
+	if GVars.soulsData.spinBaseBuffEnabled or GVars.soulsData.voidRustChanceEnabled or GVars.soulsData.doubleRotChanceEnabled or GVars.soulsData.doubleShroomChanceEnabled:
 		openSigilSwapButton.show()
 	backgroundSprite.frame = 2
 
@@ -82,5 +87,5 @@ func _on_swap_exit_button_pressed():
 	openSigilSwapButton.show()
 	
 func _show_swap_button():
-	if GVars.challenges.has(GVars.CHALLENGE_SANDY) or GVars.challenges.has(GVars.CHALLENGE_BITTERSWEET) or GVars.challenges.has(GVars.CHALLENGE_STARVED) or GVars.challenges.has(GVars.CHALLENGE_FABULOUS):
+	if GVars.soulsData.spinBaseBuffEnabled or GVars.soulsData.voidRustChanceEnabled or GVars.soulsData.doubleRotChanceEnabled or GVars.soulsData.doubleShroomChanceEnabled:
 		openSigilSwapButton.show()

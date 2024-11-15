@@ -23,4 +23,7 @@ signal mushroom_frame_changed(index: int)
 signal mushroom_planted
 signal mushroom_harvested
 signal refresh_challenges
+signal bleedstacks_changed
+signal disconnect_thorns
 signal thorn_disconnect_complete
+signal challenge_lost_L2

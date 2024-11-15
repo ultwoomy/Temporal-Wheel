@@ -100,7 +100,7 @@ func _onChallengeButtonPressed() -> void:
 		GVars.CHALLENGE_SANDY: _onGenericButtonPressed(199,"feel sandy.\n\nIt's course and gritty and\ngets everywhere.")
 		GVars.CHALLENGE_BITTERSWEET: _onGenericButtonPressed(199,"feel bittersweet.\n\nThe world is so beautiful\nyou want to cry.")
 		GVars.CHALLENGE_STARVED: _onGenericButtonPressed(199,"feel starved.\n\nIt's eating you up on the\ninside.")
-		GVars.CHALLENGE_FABULOUS: _onGenericButtonPressed(199,"feel fabulous.\n\nIThe sunset is a wilting\nrose.")
+		GVars.CHALLENGE_FABULOUS: _onGenericButtonPressed(199,"feel fabulous.\n\nThe sunset is a wilting\nrose.")
 		# Error
 		_: _onGenericButtonPressed(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")
 

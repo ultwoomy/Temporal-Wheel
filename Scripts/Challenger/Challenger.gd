@@ -26,16 +26,15 @@ var currentChallenges : Array[ChallengeStrategy] = []
 
 #@ Virtual Methods
 func _ready() -> void:
-	# TESTING PURPOSES
 	EventManager.thorn_disconnect_complete.connect(self.refresh)
+	refresh()
+
+func refresh():
 	currentChallenges.clear()
 	for x in GVars.currentChallenges:
 		if x != null:
 			addChallenge(x)
 	startChallenges()
-
-func refresh():
-	currentChallenges.clear()
 
 #@ Public Methods
 func startChallenges() -> void:
@@ -45,7 +44,7 @@ func startChallenges() -> void:
 
 
 func addChallenge(newChallenge : ChallengeData) -> void:
-	if GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS): # Temporarily just check if the activated challenge is fab
+	if GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS): # Temporarily just check if the activated challenge is fab since im not sure what it would do with other challenges
 		var challengeStrategy : ChallengeStrategy = _getChallengeStrategyFromChallenge(newChallenge)
 		currentChallenges.append(challengeStrategy)
 

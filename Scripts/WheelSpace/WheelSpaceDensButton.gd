@@ -17,7 +17,7 @@ var ifsucc = false
 @onready var growDisplay : Label = $DensDisplay
 @onready var button : Button = $DensToggle
 @onready var image : Sprite2D = $DensRectDisp
-
+@onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent
 
 #@ Virtual Methods
 func _ready() -> void:

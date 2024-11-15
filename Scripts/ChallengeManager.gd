@@ -4,8 +4,7 @@ class_name ChallengeManager
 
 #@ Export Variables
 @export var buttonContainers : Array[Control]  # (.) Maybe these valid button containers should have their own designated class.
-
-
+@export var thornsbackground : Sprite2D
 #@ Public Variables
 
 
@@ -14,20 +13,23 @@ class_name ChallengeManager
 
 #@ Virtual Methods
 func _ready() -> void:
+	print(GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS))
 	EventManager.refresh_challenges.connect(self.refresh)
-	for challenge in Challenger.currentChallenges:  # This is used to get the class, since the method has(ChallengeStrategy) checks if Node is a Script- which is false.
-		if challenge is FabulousCStrat:
-			_setupFabulousChallenge(challenge)
+	EventManager.disconnect_thorns.connect(self.disconnectThorns)
+	thornsbackground.hide()
+	await get_tree().create_timer(0.1).timeout
+	refresh()
 
 
 #@ Public Methods
 func refresh():
 	for challenge in Challenger.currentChallenges:  # This is used to get the class, since the method has(ChallengeStrategy) checks if Node is a Script- which is false.
 		if challenge is FabulousCStrat:
-			disconnectThorns(challenge)
-			EventManager.emit_signal("thorn_disconnect_complete")
+			print("hh")
+			_setupFabulousChallenge(challenge)
 		
 func disconnectThorns(challenge):
+	thornsbackground.hide()
 	for buttonContainer in buttonContainers:
 		var fabulousChallengeComponent : FabulousCComp = buttonContainer.fabulousChallengeComponent
 		if fabulousChallengeComponent:
@@ -36,8 +38,11 @@ func disconnectThorns(challenge):
 
 #@ Private Methods
 func _setupFabulousChallenge(challenge : FabulousCStrat) -> void:
+	thornsbackground.show()
+	thornsbackground.modulate = Color(1,1,1,(float(GVars.bleedstacks))/4)
 	for buttonContainer in buttonContainers:
 		var fabulousChallengeComponent : FabulousCComp = buttonContainer.fabulousChallengeComponent
 		if fabulousChallengeComponent:
-			fabulousChallengeComponent.thornyButtonDamageResolved.connect(challenge.applyDamage)
-			buttonContainer.button.pressed.connect(fabulousChallengeComponent.onThornyButtonPressed)
+			if not fabulousChallengeComponent.thornyButtonDamageResolved.is_connected(challenge.applyDamage):
+				fabulousChallengeComponent.thornyButtonDamageResolved.connect(challenge.applyDamage)
+				buttonContainer.button.pressed.connect(fabulousChallengeComponent.onThornyButtonPressed)

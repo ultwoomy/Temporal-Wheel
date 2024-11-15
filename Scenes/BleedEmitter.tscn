@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://6g1cfx6lkjjr"]
+
+[ext_resource type="Script" path="res://Scripts/FabChallenge/BleedBarEmitter.gd" id="1_0xms7"]
+[ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_6rv5w"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pu21q"]
+emission_shape = 3
+emission_box_extents = Vector3(500, 1, 1)
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+
+[node name="BleedEmitter" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1000.0
+offset_bottom = -595.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0xms7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.521569, 0.0509804, 0.164706, 1)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_pu21q")
+texture = ExtResource("2_6rv5w")
+lifetime = 4.0
+one_shot = true
+explosiveness = 1.0

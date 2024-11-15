@@ -6,7 +6,7 @@ extends Node
 # Layer 1 Challenges
 # This one does nothing. It is activated when the player enters a challenge with no emotion buff
 const CHALLENGE_INCONGRUENT : ChallengeData = preload("res://Resources/Challenge/IncongruentChallenge.tres")
-# 
+# Greatly increases will spin speed and greatly increases sigil rotation cost
 const CHALLENGE_BRAVE : ChallengeData = preload("res://Resources/Challenge/BraveChallenge.tres")
 const CHALLENGE_SHARP : ChallengeData = preload("res://Resources/Challenge/SharpChallenge.tres")
 const CHALLENGE_AWARE : ChallengeData = preload("res://Resources/Challenge/AwareChallenge.tres")
@@ -40,7 +40,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 	set(value):
 		for challenge in value:
 			setChallenge(challenge)
-@export var currentChallenges : Array[ChallengeData]
+@export var currentChallenges : Array[ChallengeData] = []
 #@export var hellChallengeNerf : int
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
@@ -54,6 +54,8 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var fearcatData : FearcatData
 @export var currentSigilOrder : SigilPurchaseOrder
 @export var nextSigilOrder : SigilPurchaseOrder
+@export var health : int
+@export var bleedstacks : int
 @export_group("PermStats")
 @export var ifFirstBoot : bool
 @export var ifSecondBoot : int
@@ -72,6 +74,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var sfxvol : float
 @export var versNo : int
 @export var ratmail : int
+@export var challengesFailed : int
 
 
 #@ Public Variables
@@ -135,6 +138,8 @@ func save_prog():
 	loader.sand = sand
 	loader.sandCost = sandCost
 	loader.sandScaling = sandScaling
+	loader.health = health
+	loader.bleedstacks = bleedstacks
 	
 	#loader.Aspinbuff = Aspinbuff
 	#loader.curEmotionBuff = curEmotionBuff
@@ -152,6 +157,7 @@ func save_prog():
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
+	loader.currentChallenges = currentChallenges
 #	loader.hellChallengeNerf = hellChallengeNerf
 	loader.hellChallengeLayer2 = hellChallengeLayer2
 	loader.hellChallengeInit = hellChallengeInit
@@ -166,6 +172,7 @@ func save_prog():
 	loader.sfxvol = sfxvol
 	loader.versNo = versNo
 	loader.ratmail = ratmail
+	loader.challengesFailed = challengesFailed
 	loader.save_stats(loader)
 
 
@@ -179,6 +186,8 @@ func resetR0Stats():
 	sand = 0
 	sandCost = 5
 	sandScaling = 3
+	health = 160
+	bleedstacks = 0
 
 
 func resetR1Stats():
@@ -187,6 +196,8 @@ func resetR1Stats():
 	ifhell = false
 	if challenges.size() >= 1:
 		challenges[0] = null  
+	if currentChallenges.size() >= 1:
+		currentChallenges[0] = null
 #	hellChallengeNerf = -1
 
 
@@ -250,19 +261,45 @@ func setChallenge(challenge : ChallengeData) -> void:
 	# Set the challenge in the right layer.
 	challenges[challenge.layer] = challenge
 
-
-func hasChallenge(challenge : ChallengeData) -> bool:
-	# Check to see if challenges is null.
+		
+func setChallengeToCurrentChallenges() -> void:
+	# Error checking
 	if not challenges:
-		return false
+		return
 	
+	currentChallenges = challenges.duplicate()  # Arrays are passed by reference.
+	challenges.clear()
+	
+func hasChallengeActive(challenge : ChallengeData) -> bool:
+	if not challenge:
+		return false
+	if challenge in currentChallenges:
+		return true
+	else:
+		return false
+
+func hasFutureChallenge(challenge : ChallengeData) -> bool:
+	if not challenge:
+		return false
 	if challenge in challenges:
 		return true
 	else:
 		return false
 
-
 func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
+	# Check to see if layer value is in bounds of the challenges array.
+	if not currentChallenges:
+		return false
+	if not (currentChallenges.size() >= layer + 1):
+		return false
+	
+	# If a ChallengeData is the element of the layer, then the layer has a challenge.
+	if currentChallenges[layer]:
+		return true
+	else:
+		return false
+
+func doesLayerHaveFutureChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 	# Check to see if layer value is in bounds of the challenges array.
 	if not challenges:
 		return false
@@ -275,7 +312,6 @@ func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 	else:
 		return false
 
-
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
 func _dialouge(lbl,charat,time):
 	if(is_instance_valid(lbl)):
@@ -286,6 +322,16 @@ func _dialouge(lbl,charat,time):
 			await get_tree().create_timer(time).timeout
 			_dialouge(lbl,chars,time)
 
+func resetChallengeVars():
+	GVars.challenges = []
+	GVars.currentChallenges = []
+	GVars.ifhell = true
+	GVars.inContract = false
+	GVars.hellChallengeInit = true
+	GVars.spinData.spinPerClick = 1
+	GVars.health = 160
+	GVars.bleedstacks = 0
+	EventManager.emit_signal("refresh_challenges")
 
 func load_as_normal():
 	loader = loader.load_stats()
@@ -335,6 +381,10 @@ func load_as_normal():
 	if(versNo <= 15):
 		loader.dollarData = DollarData.new()
 		loader.nightChallengeData.initRequests()
+		loader.currentChallenges = []
+		loader.health = 160
+		loader.bleedstacks = 0
+		loader.challengesFailed = 0
 		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
@@ -350,7 +400,7 @@ func load_as_normal():
 	ifFirstVoid = loader.ifFirstVoid
 	ifFirstPack = loader.ifFirstPack
 	challenges = loader.challenges
-#	hellChallengeNerf = loader.hellChallengeNerf
+	currentChallenges = loader.currentChallenges
 	ifFirstZunda = loader.ifFirstZunda
 	inContract = loader.inContract
 	musicvol = loader.musicvol
@@ -379,6 +429,9 @@ func load_as_normal():
 	sand = loader.sand
 	sandCost = loader.sandCost
 	sandScaling = loader.sandScaling
+	health = loader.health
+	bleedstacks = loader.bleedstacks
+	challengesFailed = loader.challengesFailed
 
 
 func unlock_all_sigils():

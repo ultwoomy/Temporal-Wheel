@@ -29,8 +29,10 @@ var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purcha
 #@ Onready Variables
 @onready var sigilLabel : Label = $SigilLabel
 @onready var buyButton : Button = $BuyButton
+@onready var button : Button = $BuyButton
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var sandLabel : Label = $SandLabel
+@onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)
 
 
 #@ Virtual Methods
@@ -39,9 +41,9 @@ func _ready():
 	sigilDisplay.hide()
 	sigilLabel.position = Vector2(500,300)
 	sigilLabel.size = Vector2(400,200)
-	buyButton.size = Vector2(100,100)
-	buyButton.position = Vector2(850,380)
-	sandLabel.position = Vector2(750,225)
+	buyButton.size = Vector2(200,100)
+	buyButton.position = Vector2(730,380)
+	sandLabel.position = Vector2(850,225)
 	reset()
 	
 	# Connect signals.
@@ -119,8 +121,8 @@ func checkCurrentSigil():
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
-	if GVars.hasChallenge(GVars.CHALLENGE_BRAVE):
-		GVars.sigilData.costRot *= 4 * (indexFromAcquiredSigils + 1)
+	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
+		GVars.sigilData.costRot *=  (indexFromAcquiredSigils + 1)
 	
 	# The size is used to keep track of what sigil to get from purchaseOrder.
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():

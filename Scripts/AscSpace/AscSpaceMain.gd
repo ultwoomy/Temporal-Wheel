@@ -76,11 +76,11 @@ func _onGenericButtonPressed(switchEmotionBuff : int, text : String) -> void:
 	# Grants any buffs based on switchEmotionBuff which is granted by emotion chosen.
 	#99 is placeholder number for layer 1 challenge, 199 for layer 2
 	if switchEmotionBuff == 99:
-		GVars.setChallengeDataInChallenges(newChallenge)
+		GVars.setChallenge(newChallenge)
 		GVars.inContract = true
 		GVars.curEmotionBuff = 0
 	elif switchEmotionBuff == 199:
-		GVars.setChallengeDataInChallenges(newChallenge)
+		GVars.setChallenge(newChallenge)
 		GVars.inContract = true
 		GVars.hellChallengeInit = true
 	else:
@@ -100,7 +100,7 @@ func _onChallengeButtonPressed() -> void:
 		GVars.CHALLENGE_SANDY: _onGenericButtonPressed(199,"feel sandy.\n\nIt's course and gritty and\ngets everywhere.")
 		GVars.CHALLENGE_BITTERSWEET: _onGenericButtonPressed(199,"feel bittersweet.\n\nThe world is so beautiful\nyou want to cry.")
 		GVars.CHALLENGE_STARVED: _onGenericButtonPressed(199,"feel starved.\n\nIt's eating you up on the\ninside.")
-		GVars.CHALLENGE_FABULOUS: _onGenericButtonPressed(199,"feel fabulous.\n\nIt's time to slay, in one\nway or another.")
+		GVars.CHALLENGE_FABULOUS: _onGenericButtonPressed(199,"feel fabulous.\n\nThe sunset is a wilting\nrose.")
 		# Error
 		_: _onGenericButtonPressed(199,"Not good.\n\nError in the code.\nContinuing will half\nreset your save.")
 
@@ -114,15 +114,16 @@ func _awaken():
 	GVars.ifSecondBoot += 1
 	
 	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
-	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
+	if GVars.doesLayerHaveFutureChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
 	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
 	# Copy next sigil order into the current one unless it's the voidstop in which it resets to default
-	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
+	if not GVars.hasFutureChallenge(GVars.CHALLENGE_BITTERSWEET):
 		GVars.currentSigilOrder = GVars.nextSigilOrder
 	else:
 		GVars.currentSigilOrder = SigilPurchaseOrder.new()
+	GVars.setChallengeToCurrentChallenges()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 
@@ -164,21 +165,21 @@ func _displayButtons() -> void:
 	
 	#If a second layer challenge is activated and there is no first layer challenge
 	#Show the unfinished meme challenge
-	var onlySecondLayerChallengeActive : bool = GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND) and not GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST)
+	var onlySecondLayerChallengeActive : bool = GVars.doesLayerHaveFutureChallenge(ChallengeData.ChallengeLayer.SECOND) and not GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST)
 	if onlySecondLayerChallengeActive and GVars.hellChallengeInit:
 		challengeButton.show()
 		# Probably unnessecary idk
-		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY): 
+		if GVars.hasFutureChallenge(GVars.CHALLENGE_SANDY): 
 			newChallenge = GVars.CHALLENGE_SANDY
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
+		elif GVars.hasFutureChallenge(GVars.CHALLENGE_BITTERSWEET):
 			newChallenge = GVars.CHALLENGE_BITTERSWEET
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_STARVED):
+		elif GVars.hasFutureChallenge(GVars.CHALLENGE_STARVED):
 			newChallenge = GVars.CHALLENGE_STARVED
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
+		elif GVars.hasFutureChallenge(GVars.CHALLENGE_FABULOUS):
 			newChallenge = GVars.CHALLENGE_FABULOUS
 		GVars.hellChallengeInit = false
 		
-		newChallenge = GVars.currentChallenges[ChallengeData.ChallengeLayer.SECOND]
+		newChallenge = GVars.challenges[ChallengeData.ChallengeLayer.SECOND]
 		
 		challengeButton.text = newChallenge.name
 		challengeButton.show()

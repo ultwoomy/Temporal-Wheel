@@ -6,10 +6,10 @@ class_name CMP_TwinsStrategy
 const CONTRACT_NAME : String = "The Twins"
 const CONTRACT_CHALLENGE : ChallengeData = GVars.CHALLENGE_FABULOUS
 const CONTRACT_DESCRIPTION : String = "
-	You no longer gain resources
-	Rust can purchase all resource
+	Touching thorns will bleed you
+	You bleed 5 times, you die
 	Unlocks the Twins as an
-	alternate sigil to the Packsmith (WIP)
+	alternate sigil to the Packsmith
 "
 const UPGRADE_DESCRIPTION : String = "
 	Chance of void rust

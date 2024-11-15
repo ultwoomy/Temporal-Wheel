@@ -21,6 +21,11 @@ func _process(_delta : float) -> void:
 func emit() -> void:
 	if not particle.emitting:
 		particle.restart()
+		
+func emit_somewhere(xy : Vector2):
+	particle.position = xy
+	emit()
+	particle.position = Vector2(0,0)
 
 
 func changeParticleOnRust(rustPerThresh : float = GVars.rustData.perThresh) -> void:

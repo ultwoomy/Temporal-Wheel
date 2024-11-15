@@ -7,6 +7,7 @@ class_name WheelSpaceGrowButton
 @export var button : Button
 @export var image : Sprite2D
 @export var spinbody: CharacterBody2D
+@onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent
 
 
 #@ Public Variables

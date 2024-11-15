@@ -13,6 +13,8 @@ extends Resource
 @export var sand : float
 @export var sandCost : float
 @export var sandScaling : float
+@export var health : int
+@export var bleedstacks : int
 @export_group("R1stats")
 @export var Aspinbuff : float
 @export var curEmotionBuff : float
@@ -20,7 +22,7 @@ extends Resource
 @export var inContract : bool
 @export var souls : float
 @export var challenges : Array[ChallengeData]
-#@export var hellChallengeNerf : int
+@export var currentChallenges : Array[ChallengeData]
 @export var hellChallengeLayer2 : int
 @export var hellChallengeInit : bool
 @export var kbityProgSpin : float
@@ -54,6 +56,7 @@ extends Resource
 @export var sfxvol : float
 @export var versNo : int
 @export var ratmail : int
+@export var challengesFailed : int
 var save_path = "user://stats.tres"
 
 
@@ -96,10 +99,11 @@ func _init():
 	sand = 0
 	sandCost = 7
 	sandScaling = 3
+	health = 160
+	bleedstacks = 0
 	inContract = false
 	challenges = []
-#	hellChallengeNerf = -1
-	hellChallengeLayer2 = -1
+	currentChallenges = []
 	hellChallengeInit = false
 	ifhell = false
 	ifheaven = false
@@ -123,6 +127,7 @@ func _init():
 	sfxvol = -6.0
 	versNo = 16
 	ratmail = 0
+	challengesFailed = 0
 
 func save_stats(data):
 	if ResourceSaver.save(data, save_path):

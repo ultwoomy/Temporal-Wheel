@@ -26,6 +26,7 @@ var candleAugmentBuffModifier : float = 1.0
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
 @onready var backpack : BackpackPanel = $BackpackPanel
+var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 
 @onready var spinAmountLabel : Label = $SpinAmountLabel
 @onready var rotationAmountLabel : Label = $RotationAmountLabel
@@ -44,12 +45,16 @@ func _ready() -> void:
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText)
 	WheelSpinner.wheelRotationCompleted.connect(self.updateRotationValueText)
-	
+	EventManager.challenge_lost_L2.connect(self.checkBleedBar)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
+	
 	
 	# Display currency.
 	updateSpinAmountText()
 	updateRotationValueText()
+	if(GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS)):
+		self.add_child(bb)
+	checkBleedBar()
 	
 	numOfCandles = 0.0
 	for n in GVars.ritualData.candlesLit.size():
@@ -61,6 +66,7 @@ func _ready() -> void:
 		numOfCandles = 5
 	
 	backpack.hide()
+	Challenger.refresh()
 
 
 func _process(_delta) -> void:
@@ -68,6 +74,10 @@ func _process(_delta) -> void:
 
 
 #@ Public Methods
+func checkBleedBar():
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS) and bb != null:
+		bb.queue_free()
+	
 func updateSpinAmountText() -> void:
 	spinAmountLabel.text = str(GVars.getScientific(GVars.spinData.spin))
 
@@ -75,9 +85,9 @@ func updateSpinAmountText() -> void:
 func updateRotationValueText() -> void:
 	if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		rotationAmountLabel.text = "The sands of time erode your wheel\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
-	elif GVars.hasChallenge(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations < 1000:
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations < 1000:
 		rotationAmountLabel.text = "Something will happen at 1000 rotations...\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
-	elif GVars.hasChallenge(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations >= 1000:
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE) and GVars.spinData.rotations >= 1000:
 		rotationAmountLabel.text = "Maximum Overdrive!\n" + str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
 	else:
 		rotationAmountLabel.text = str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))

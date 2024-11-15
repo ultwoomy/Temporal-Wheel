@@ -18,6 +18,8 @@ var currentState : VS_MenuState
 
 @onready var backButton : Button = $BackButton
 
+var bb = load("res://Scenes/BleedBar.tscn").instantiate()
+@onready var challengeManager : ChallengeManager = $ChallengeManager
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
@@ -34,6 +36,14 @@ func _ready() -> void:
 	# Either hides or shows ritual button.
 	unlockRitualButton()
 #	ritualButton.show()  # Testing purposes.
+	if(GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS)):
+		self.add_child(bb)
+	checkBleedBar()
+
+#@ Public Methods
+func checkBleedBar():
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
+		bb.queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

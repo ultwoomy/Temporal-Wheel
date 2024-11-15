@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu5wcmnj4xa5a"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_r1hqq"]
+[ext_resource type="Script" path="res://Scripts/FabChallenge/ThornBar.gd" id="2_uxom7"]
+[ext_resource type="Texture2D" uid="uid://c8mky4iqg8xnw" path="res://Sprites/FabChallenge/bleedbar/tile000.png" id="3_kehsj"]
+[ext_resource type="Texture2D" uid="uid://cmk2xxxltcwi8" path="res://Sprites/FabChallenge/bleedbar/tile001.png" id="4_g6s7u"]
+[ext_resource type="Texture2D" uid="uid://j2i30axcg25e" path="res://Sprites/FabChallenge/bleedbar/tile002.png" id="5_0nvvp"]
+[ext_resource type="Texture2D" uid="uid://btjwnb1e0e2b1" path="res://Sprites/FabChallenge/bleedbar/tile003.png" id="6_tue7s"]
+[ext_resource type="Texture2D" uid="uid://cfhogxc2b1xya" path="res://Sprites/FabChallenge/bleedbar/tile004.png" id="7_vfxlh"]
+[ext_resource type="PackedScene" uid="uid://6g1cfx6lkjjr" path="res://Scenes/BleedEmitter.tscn" id="8_lpos8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebv80"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_kehsj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_g6s7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0nvvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tue7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vfxlh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("bleedbarforeground", "bleedbarbackground", "bleedEmitter")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -979.0
+offset_bottom = -582.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r1hqq")
+script = ExtResource("2_uxom7")
+bleedbarforeground = NodePath("AnimatedSprite2D")
+bleedbarbackground = NodePath("AnimatedSprite2D2")
+bleedEmitter = NodePath("AnimatedSprite2D2/BleedEmitter")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.388235)
+position = Vector2(500, 100)
+sprite_frames = SubResource("SpriteFrames_ebv80")
+frame = 1
+frame_progress = 0.0181798
+
+[node name="BleedEmitter" parent="AnimatedSprite2D2" instance=ExtResource("8_lpos8")]
+offset_right = -500.0
+offset_bottom = -300.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 100)
+sprite_frames = SubResource("SpriteFrames_ebv80")

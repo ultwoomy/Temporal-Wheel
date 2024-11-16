@@ -24,7 +24,6 @@ func onThornyButtonPressed() -> void:
 		thornyButtonDamageResolved.emit(damage)
 
 func checkIfEnabled():
-	sprite = get_parent().get_node("ButtonBackground")
 	if GVars.bleedstacks >= level and GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
 		sprite.show()
 	else:

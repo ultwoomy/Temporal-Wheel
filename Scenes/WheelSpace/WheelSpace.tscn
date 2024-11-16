@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=69 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -69,6 +69,10 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64uy5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jhc7l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1tw6m"]
 animations = [{
@@ -187,69 +191,96 @@ script = ExtResource("12_sl12n")
 
 [node name="RustEmitter" parent="Wheel" instance=ExtResource("14_iqbu0")]
 
-[node name="SpinButton" type="Container" parent="."]
-custom_minimum_size = Vector2(100, 50)
+[node name="SpinButton" type="PanelContainer" parent="."]
 layout_mode = 2
 offset_left = 750.0
 offset_top = 100.0
-offset_right = 850.0
-offset_bottom = 150.0
+offset_right = 950.0
+offset_bottom = 200.0
 script = ExtResource("9_orr02")
 
 [node name="SpinButton" type="Button" parent="SpinButton"]
 layout_mode = 2
+text = "Spin"
+expand_icon = true
 
 [node name="ButtonBackground" type="Sprite2D" parent="SpinButton"]
-visible = false
 position = Vector2(200, 100)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
 
-[node name="SpinPerClickDiplay" type="Label" parent="SpinButton"]
+[node name="SpinPerClickDisplay" type="Label" parent="SpinButton"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
+text = "SpinPerClick"
 
 [node name="FabulousCComponent" type="Node" parent="SpinButton" node_paths=PackedStringArray("sprite")]
 script = ExtResource("12_naexq")
 level = 0
 sprite = NodePath("../ButtonBackground")
 
-[node name="GrowButton" type="Container" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
+[node name="GrowButton" type="PanelContainer" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 250.0
 offset_right = 950.0
-offset_bottom = 350.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_64uy5")
 script = ExtResource("14_4hb3c")
 growDisplay = NodePath("GrowDisplay")
-button = NodePath("GrowToggle")
-image = NodePath("GrowRectDisp")
+button = NodePath("VBoxContainer/GrowButtonContainer/ToggleGrowButton")
+image = NodePath("VBoxContainer/GrowButtonContainer/GrowRectDisp")
 
-[node name="GrowRectDisp" type="Sprite2D" parent="GrowButton"]
-scale = Vector2(2, 1)
-texture = ExtResource("15_skhdp")
-offset = Vector2(50, 105)
-
-[node name="GrowToggle" type="Button" parent="GrowButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GrowButton"]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="GrowButtonContainer" type="PanelContainer" parent="GrowButton/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ToggleGrowButton" type="Button" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "Toggle Grow"
 
-[node name="ButtonBackground" type="Sprite2D" parent="GrowButton"]
-visible = false
+[node name="ButtonBackground" type="Sprite2D" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
 position = Vector2(200, 100)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
 
+[node name="GrowRectDisp" type="Sprite2D" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
+scale = Vector2(2, 1)
+texture = ExtResource("15_skhdp")
+offset = Vector2(50, 105)
+
+[node name="GrowRectContainer" type="PanelContainer" parent="GrowButton/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jhc7l")
+
+[node name="GrowRectDisplay" type="ColorRect" parent="GrowButton/VBoxContainer/GrowRectContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.92549, 0.109804, 0.141176, 1)
+
 [node name="GrowDisplay" type="Label" parent="GrowButton"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 20
+text = "Growth"
 vertical_alignment = 1
 script = ExtResource("16_ry1on")
 
 [node name="FabulousCComponent" type="Node" parent="GrowButton" node_paths=PackedStringArray("sprite")]
 script = ExtResource("12_naexq")
 damage = 5
-sprite = NodePath("../../SpinButton/ButtonBackground")
+sprite = NodePath("../VBoxContainer/GrowButtonContainer/ButtonBackground")
 
 [node name="DensButton" type="Container" parent="."]
 layout_mode = 0
@@ -645,7 +676,7 @@ text = "Toggle Grow"
 
 [node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers", "thornsbackground")]
 script = ExtResource("52_d2l6h")
-buttonContainers = [NodePath("../SpinButton"), NodePath("../GrowButton"), NodePath("../DensButton")]
+buttonContainers = [null, null, NodePath("../DensButton")]
 thornsbackground = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="ChallengeManager"]

@@ -2,13 +2,15 @@ extends Control
 class_name WheelSpaceGrowButton
 
 
+#@ Constants
+
+
+
 #@ Export Variables
 @export var growDisplay: Label
 @export var button : Button
-@export var image : Sprite2D  # TODO: Remove this variable and any related code since growToggleRect replaces it.
 @onready var growToggleRect : ColorRect = $VBoxContainer/GrowRectContainer/GrowRectDisplay
 @onready var growToggleRectContainer : PanelContainer = $VBoxContainer/GrowRectContainer
-@onready var panel : Panel = $VBoxContainer/GrowRectContainer/Panel
 @export var spinbody: CharacterBody2D
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent
 
@@ -25,23 +27,16 @@ func _ready():
 	# Connecting Signals.
 	button.pressed.connect(self._buttonPressed)
 	WheelSpinner.wheelRotationCompleted.connect(self.suc_loop)
+	growToggleRectContainer.sort_children.connect(_onChildSorted)  # Needed to resize the ColorRect.
 	
-	if(GVars.spinData.sizeToggle):
+	if GVars.spinData.sizeToggle:
 		ifsucc = true
 	
-	button.text = str("Toggle Grow")
-	button.size = Vector2(200,100)
-	button.expand_icon = true
 	growDisplay.text = str(GVars.spinData.size)
 	
-	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2
-#	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2 * 100
-	growToggleRectContainer.sort_children.connect(_onChildSorted)  # Needed to resize the ColorRect.
 	if ifsucc:
-		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 	else :
-		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
 
 
@@ -71,16 +66,14 @@ func suc_loop():
 				growDisplay.text = str(GVars.spinData.size)
 				GVars.spinData.curSucSize = 0
 				GVars.spinData.sucTresh *= 3
-	image.scale.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2
-	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2 * 100
+	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100
 
 
 #@ Private Methods
-func _buttonPressed():
+func _buttonPressed() -> void:
 	if ifsucc:
 		ifsucc = false
 		GVars.spinData.sizeToggle = false
-		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
@@ -88,7 +81,6 @@ func _buttonPressed():
 	else :
 		ifsucc = true
 		GVars.spinData.sizeToggle = true
-		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
@@ -97,5 +89,6 @@ func _buttonPressed():
 
 
 # When the container(s) have finished resizing.
-func _onChildSorted():
-	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh*2 * 100
+func _onChildSorted() -> void:
+	# Resize the color rect after resorting the container.
+	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=70 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -73,6 +73,8 @@ animations = [{
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_64uy5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jhc7l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ot2cu"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1tw6m"]
 animations = [{
@@ -221,7 +223,7 @@ script = ExtResource("12_naexq")
 level = 0
 sprite = NodePath("../ButtonBackground")
 
-[node name="GrowButton" type="PanelContainer" parent="." node_paths=PackedStringArray("growDisplay", "button", "image")]
+[node name="GrowButton" type="PanelContainer" parent="." node_paths=PackedStringArray("growDisplay", "button")]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 250.0
@@ -231,7 +233,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_64uy5")
 script = ExtResource("14_4hb3c")
 growDisplay = NodePath("GrowDisplay")
 button = NodePath("VBoxContainer/GrowButtonContainer/ToggleGrowButton")
-image = NodePath("VBoxContainer/GrowButtonContainer/GrowRectDisp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GrowButton"]
 layout_mode = 2
@@ -245,16 +246,12 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 text = "Toggle Grow"
+expand_icon = true
 
 [node name="ButtonBackground" type="Sprite2D" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
 position = Vector2(200, 100)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
-
-[node name="GrowRectDisp" type="Sprite2D" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
-scale = Vector2(2, 1)
-texture = ExtResource("15_skhdp")
-offset = Vector2(50, 105)
 
 [node name="GrowRectContainer" type="PanelContainer" parent="GrowButton/VBoxContainer"]
 layout_mode = 2
@@ -263,7 +260,6 @@ size_flags_stretch_ratio = 0.1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jhc7l")
 
 [node name="GrowRectDisplay" type="ColorRect" parent="GrowButton/VBoxContainer/GrowRectContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 color = Color(0.92549, 0.109804, 0.141176, 1)
@@ -282,32 +278,58 @@ script = ExtResource("12_naexq")
 damage = 5
 sprite = NodePath("../VBoxContainer/GrowButtonContainer/ButtonBackground")
 
-[node name="DensButton" type="Container" parent="."]
-layout_mode = 0
+[node name="DensButton" type="Control" parent="."]
+anchors_preset = 0
 offset_left = 750.0
 offset_top = 400.0
 offset_right = 950.0
-offset_bottom = 500.0
+offset_bottom = 510.0
 script = ExtResource("17_53q2w")
+metadata/_edit_use_anchors_ = true
 
-[node name="DensRectDisp" type="Sprite2D" parent="DensButton"]
-scale = Vector2(2, 1)
-texture = ExtResource("15_skhdp")
-offset = Vector2(50, 105)
+[node name="VBoxContainer" type="VBoxContainer" parent="DensButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
-[node name="DensToggle" type="Button" parent="DensButton"]
+[node name="DensityButtonContainer" type="PanelContainer" parent="DensButton/VBoxContainer"]
 layout_mode = 2
-text = "Toggle Grow"
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="ButtonBackground" type="Sprite2D" parent="DensButton"]
-visible = false
+[node name="DensityButton" type="Button" parent="DensButton/VBoxContainer/DensityButtonContainer"]
+layout_mode = 2
+text = "Condense"
+expand_icon = true
+
+[node name="ButtonBackground" type="Sprite2D" parent="DensButton/VBoxContainer/DensityButtonContainer"]
 position = Vector2(200, 100)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
 
+[node name="DensityGaugeContainer" type="PanelContainer" parent="DensButton/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ot2cu")
+
+[node name="DensityGaugeDisplay" type="ColorRect" parent="DensButton/VBoxContainer/DensityGaugeContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+color = Color(0.04, 0.4, 0.14, 1)
+
 [node name="DensDisplay" type="Label" parent="DensButton"]
 layout_mode = 2
+offset_right = 1.0
+offset_bottom = 25.0
 theme_override_font_sizes/font_size = 20
+text = "Density"
 vertical_alignment = 1
 script = ExtResource("18_gtfj1")
 
@@ -676,7 +698,7 @@ text = "Toggle Grow"
 
 [node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers", "thornsbackground")]
 script = ExtResource("52_d2l6h")
-buttonContainers = [null, null, NodePath("../DensButton")]
+buttonContainers = [null, null, null]
 thornsbackground = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="ChallengeManager"]

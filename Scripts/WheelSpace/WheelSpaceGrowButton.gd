@@ -1,4 +1,4 @@
-extends Control
+extends GameButton
 class_name WheelSpaceGrowButton
 
 
@@ -71,6 +71,7 @@ func suc_loop():
 
 #@ Private Methods
 func _buttonPressed() -> void:
+	playAnimation(GameButtonPopAnimation.new(self))
 	if ifsucc:
 		ifsucc = false
 		GVars.spinData.sizeToggle = false

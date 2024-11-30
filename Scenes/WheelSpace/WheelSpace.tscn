@@ -230,6 +230,7 @@ offset_left = 750.0
 offset_top = 250.0
 offset_right = 950.0
 offset_bottom = 360.0
+pivot_offset = Vector2(100, 50)
 theme_override_styles/panel = SubResource("StyleBoxEmpty_64uy5")
 script = ExtResource("14_4hb3c")
 growDisplay = NodePath("GrowDisplay")
@@ -285,6 +286,7 @@ offset_left = 750.0
 offset_top = 400.0
 offset_right = 950.0
 offset_bottom = 510.0
+pivot_offset = Vector2(100, 50)
 script = ExtResource("17_53q2w")
 metadata/_edit_use_anchors_ = true
 

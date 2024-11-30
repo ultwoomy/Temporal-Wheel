@@ -1,4 +1,4 @@
-extends Control
+extends GameButton
 class_name WheelSpaceDensityButton
 
 
@@ -34,6 +34,7 @@ func _ready() -> void:
 #@ Private Method
 #Yu: Removed loop, now triggers on button press instead of every 2 seconds.
 func _onButtonPressed() -> void:
+	playAnimation(GameButtonPopAnimation.new(self))
 	var playPriority = 0
 	if(GVars.spinData.size > GVars.spinData.sucPerTDens):
 		GVars.spinData.size -= GVars.spinData.sucPerTDens

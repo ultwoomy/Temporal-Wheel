@@ -217,10 +217,11 @@ theme_override_font_sizes/font_size = 22
 text = "Sand"
 script = ExtResource("18_ia1cq")
 
-[node name="FabulousCComponent" type="Node" parent="SigilShop"]
+[node name="FabulousCComponent" type="Node" parent="SigilShop" node_paths=PackedStringArray("sprite")]
 script = ExtResource("13_s5xnn")
 damage = 7
 level = 0
+sprite = NodePath("../ButtonBackground")
 
 [node name="ButtonBackground" type="Sprite2D" parent="SigilShop"]
 position = Vector2(930, 480)

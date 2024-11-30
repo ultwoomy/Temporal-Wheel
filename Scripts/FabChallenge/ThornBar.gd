@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	bleedbarforeground.frame = GVars.bleedstacks - 1
 	bleedbarbackground.frame = GVars.bleedstacks
 	bleedbarforeground.modulate = Color(1,1,1,(160.0 - float(GVars.health))/160)

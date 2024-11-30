@@ -199,6 +199,7 @@ offset_left = 750.0
 offset_top = 100.0
 offset_right = 950.0
 offset_bottom = 200.0
+pivot_offset = Vector2(100, 50)
 script = ExtResource("9_orr02")
 
 [node name="SpinButton" type="Button" parent="SpinButton"]

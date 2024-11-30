@@ -1,4 +1,4 @@
-extends Container
+extends GameButton
 class_name WheelSpaceSpinButton
 
 
@@ -26,17 +26,13 @@ func _ready():
 	# ...However, you can also have it in its own script w/ the function
 	# ...OR have the button call the function here.
 	# ...OR have the button signal to somewhere to add to spin (so other things can add to it as well)
-	button.size = Vector2(200,100)
-	button.text = "Spin"
-	button.expand_icon = true
 	button.pressed.connect(self._buttonPressed)
-	await get_tree().create_timer(0.1).timeout
 
 
 func _buttonPressed():
 	# Tell EventManager that wheel has been spun, which will apply calculations and spin currency.
 	EventManager.wheel_spun.emit()
-	
+	playAnimation(GameButtonPopAnimation.new(self))
 	_spinUpdateLoop()
 
 

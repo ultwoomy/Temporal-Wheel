@@ -26,6 +26,7 @@ var candleAugmentBuffModifier : float = 1.0
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
 @onready var backpack : BackpackPanel = $BackpackPanel
+@onready var travelButton : Button = $TravelButton
 var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 
 @onready var spinAmountLabel : Label = $SpinAmountLabel
@@ -47,7 +48,9 @@ func _ready() -> void:
 	WheelSpinner.wheelRotationCompleted.connect(self.updateRotationValueText)
 	EventManager.challenge_lost_L2.connect(self.checkBleedBar)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
-	
+	EventManager.tutorial_travel_found.connect(self.checkTutorial)
+	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.density < 2:
+		travelButton.hide()
 	
 	# Display currency.
 	updateSpinAmountText()
@@ -106,4 +109,11 @@ func _onBackpackButtonPressed() -> void:
 
 
 func _onTravelButtonPressed() -> void:
+	if GVars.ifFirstBoot:
+		GVars.ifFirstBoot = false
 	SceneHandler.changeSceneToFilePath(SceneHandler.TRAVELSPACE)
+
+func checkTutorial():
+	if GVars.spinData.density > 1:
+		travelButton.show()
+		EventManager.tutorial_travel_found.disconnect(self.checkTutorial)

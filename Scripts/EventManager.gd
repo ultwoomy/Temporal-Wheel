@@ -20,6 +20,7 @@ signal wheel_spun
 signal tutorial_grow_found
 signal tutorial_grow_clicked
 signal tutorial_dens_found
+signal tutorial_travel_found
 # MushSpace
 # (!) L.B: If things get too big, should probably make another script to hold and categorize signals to be used in this script.
 signal mushroom_frame_changed(index: int)

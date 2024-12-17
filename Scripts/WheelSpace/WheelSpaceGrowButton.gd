@@ -62,6 +62,8 @@ func suc_loop():
 			GVars.spinData.curSucSize += suc
 			if(GVars.spinData.curSucSize >= GVars.spinData.sucTresh):
 				GVars.spinData.size += 1
+				if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size == 3:
+					EventManager.tutorial_dens_found.emit()
 				if(GVars.spinData.size > GVars.spinData.sizeRecord):
 					GVars.spinData.sizeRecord = GVars.spinData.size
 				growDisplay.text = str(GVars.spinData.size)

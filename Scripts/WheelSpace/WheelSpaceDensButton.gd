@@ -25,7 +25,8 @@ func _ready() -> void:
 	button.expand_icon = true
 	growDisplay.text = str(GVars.spinData.density)
 	button.pressed.connect(self._onButtonPressed)
-	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 2:
+	EventManager.tutorial_dens_found.connect(self.checkTutorial)
+	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 3 and GVars.spinData.density < 2:
 		hide()
 
 
@@ -35,6 +36,8 @@ func _onButtonPressed() -> void:
 	var playPriority = 0
 	if(GVars.spinData.size >= GVars.spinData.densTresh + 1):
 		GVars.spinData.density += 1
+		if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.density > 1:
+			EventManager.tutorial_travel_found.emit()
 		GVars.spinData.size -= GVars.spinData.densTresh
 		densUp.emit()
 		growDisplay.text = str(GVars.spinData.density)
@@ -49,3 +52,8 @@ func _onButtonPressed() -> void:
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.get_child(0).init(load("res://Sound/SFX/nono.wav"))		
+		
+func checkTutorial():
+	if GVars.spinData.size > 2 or GVars.density > 1:
+		show()
+		EventManager.tutorial_dens_found.disconnect(self.checkTutorial)

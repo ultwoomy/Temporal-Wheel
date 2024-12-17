@@ -21,6 +21,7 @@ func _ready():
 	
 	# Connecting Signals.
 	button.pressed.connect(self._buttonPressed)
+	EventManager.wheel_spun.connect(self.checkTutorial)
 	WheelSpinner.wheelRotationCompleted.connect(self.suc_loop)
 	
 	if(GVars.spinData.sizeToggle):
@@ -36,6 +37,8 @@ func _ready():
 		image.set_texture(load("res://Sprites/WheelSpace/greenrect.png"))
 	else :
 		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
+	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.spin <= 50:
+		hide()
 
 
 #@ Public Methods
@@ -69,6 +72,7 @@ func suc_loop():
 
 #@ Private Methods
 func _buttonPressed():
+	EventManager.tutorial_grow_clicked.emit()
 	if ifsucc:
 		ifsucc = false
 		GVars.spinData.sizeToggle = false
@@ -84,3 +88,9 @@ func _buttonPressed():
 		self.add_child(sf)	
 		sf.get_child(0).init(load("res://Sound/SFX/yes.wav"))
 	GVars.save_prog()
+	
+func checkTutorial():
+	if GVars.spinData.spin >= 50:
+		show()
+		EventManager.wheel_spun.disconnect(self.checkTutorial)
+		EventManager.tutorial_grow_found.emit()

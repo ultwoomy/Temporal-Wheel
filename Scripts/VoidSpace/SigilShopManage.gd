@@ -39,11 +39,11 @@ var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purcha
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sigilDisplay.hide()
-	sigilLabel.position = Vector2(500,300)
+	sigilLabel.position = Vector2(500,200)
 	sigilLabel.size = Vector2(400,200)
 	buyButton.size = Vector2(200,100)
-	buyButton.position = Vector2(730,380)
-	sandLabel.position = Vector2(850,225)
+	buyButton.position = Vector2(730,450)
+	sandLabel.position = Vector2(850,295)
 	reset()
 	
 	# Connect signals.

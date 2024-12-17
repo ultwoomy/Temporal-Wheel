@@ -92,7 +92,7 @@ func _ready():
 	if GVars.ifSecondBoot > 9 and GVars.ifSecondBoot % 2 == 1:
 		GVars.ifSecondBoot += 1
 	firstmessage = true
-	if (GVars.ifFirstBoot or GVars.ifSecondBoot % 2 == 1) and GVars.ifSecondBoot <= 9:
+	if (GVars.ifSecondBoot % 2 == 1) and GVars.ifSecondBoot <= 9:
 		get_tree().paused = true
 		tutScreen.show()
 	else :
@@ -131,9 +131,6 @@ func _button_pressed():
 	elif whenend[line]:
 		tutScreen.hide()
 		get_tree().paused = false
-	elif GVars.ifFirstBoot and firstmessage:
-		line = -1
-		nextLine()
 	elif GVars.ifSecondBoot == 1 and firstmessage:
 		line = 8
 		nextLine()

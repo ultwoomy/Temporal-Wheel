@@ -23,7 +23,7 @@ var endSequenceFrames : int = 0.00
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	updateWheelSprite(GVars.spinData.density - 1)
+	updateWheelSprite(GVars.spinData.density - 1 + int(GVars.atlasData.dumpRustMilestone/4))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

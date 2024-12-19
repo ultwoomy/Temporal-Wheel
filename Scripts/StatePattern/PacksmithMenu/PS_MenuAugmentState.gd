@@ -63,6 +63,7 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 			GVars.currentChallenges = []
 		GVars.sigilData.curSigilBuff = 5
 	augmentChanged.emit()
+	GlobalBuffs.augmentSigilBuffs()
 	
 	# Get a new TalkState using the correct dialogue.
 	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogue) 

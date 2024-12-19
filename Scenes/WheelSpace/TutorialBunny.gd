@@ -35,7 +35,6 @@ func _ready():
 	startMoving = false
 	bun.position = Vector2(11,40)
 	if GVars.ifFirstBoot:
-		print("huh")
 		EventManager.tutorial_grow_found.connect(self.introduceSelf)
 		EventManager.tutorial_grow_clicked.connect(self.growClicked)
 		WheelSpinner.wheelRotationCompleted.connect(self.fullRotation)

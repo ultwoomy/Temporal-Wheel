@@ -8,7 +8,7 @@ var musicbox = AudioStreamPlayer.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tracks.append(preload("res://Sound/Music/MKD20.wav"))
-	tracks.append(preload("res://Sound/Music/0PW40.wav"))
+	tracks.append(preload("res://Sound/Music/SL40.wav"))
 	add_child(musicbox)
 	musicbox.stream = tracks[0]
 	musicbox.finished.connect(reset)
@@ -30,14 +30,9 @@ func _process(_delta):
 func reset():
 	musicbox.play(0.0)
 	
-func play0P():
-	var place = musicbox.get_playback_position()
-	musicbox.stream = tracks[1]
-	musicbox.play(place)
-	
 func playMKD(n):
 	var place = musicbox.get_playback_position()
-	musicbox.stream = tracks[0]
+	musicbox.stream = tracks[GVars.currentTrack]
 	musicbox.pitch_scale = n
 	musicbox.play(place)
 

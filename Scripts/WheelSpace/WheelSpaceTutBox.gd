@@ -121,6 +121,7 @@ func nextLine():
 func _button_pressed():
 	GVars._dialouge(text,0,0.02)
 	if(whenend[line]) and (GVars.ifFirstBoot):
+		#Leftover from the old tutorial but kinda don't want to touch it
 		tutScreen.hide()
 		GVars.ifFirstBoot = false
 		get_tree().paused = false

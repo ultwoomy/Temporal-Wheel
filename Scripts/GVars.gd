@@ -75,6 +75,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var versNo : int
 @export var ratmail : int
 @export var challengesFailed : int
+@export var currentTrack : int
 
 
 #@ Public Variables
@@ -173,6 +174,7 @@ func save_prog():
 	loader.versNo = versNo
 	loader.ratmail = ratmail
 	loader.challengesFailed = challengesFailed
+	loader.currentTrack = currentTrack
 	loader.save_stats(loader)
 
 
@@ -234,8 +236,9 @@ func resetPermStats():
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 16
+	versNo = 17
 	ratmail = 0
+	currentTrack = 0
 
 
 func getScientific(val):
@@ -386,6 +389,9 @@ func load_as_normal():
 		loader.bleedstacks = 0
 		loader.challengesFailed = 0
 		versNo += 1
+	if(versNo <= 16):
+		loader.currentTrack = 0
+		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -431,6 +437,7 @@ func load_as_normal():
 	sandScaling = loader.sandScaling
 	health = loader.health
 	bleedstacks = loader.bleedstacks
+	currentTrack = loader.currentTrack
 	challengesFailed = loader.challengesFailed
 
 

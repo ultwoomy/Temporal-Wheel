@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://drvujsa65tjr5"]
+
+[ext_resource type="Texture2D" uid="uid://db43cjqcuyqtv" path="res://Sprites/Settings/musicbox_roll/tile000.png" id="1_a1uuw"]
+[ext_resource type="Texture2D" uid="uid://b46pp5cvir5p" path="res://Sprites/Settings/musicbox_roll/tile001.png" id="2_hulx4"]
+[ext_resource type="Texture2D" uid="uid://4u1q5fn510b" path="res://Sprites/Settings/musicbox_roll/tile002.png" id="3_jo4xf"]
+[ext_resource type="Texture2D" uid="uid://c0xnxyiay1t1" path="res://Sprites/Settings/musicbox_roll/tile003.png" id="4_rirwy"]
+[ext_resource type="Texture2D" uid="uid://bmik8na82yjtn" path="res://Sprites/Settings/musicbox_roll/tile004.png" id="5_a21pe"]
+[ext_resource type="Texture2D" uid="uid://ck18vinqxaxs" path="res://Sprites/Settings/musicbox_roll/tile005.png" id="6_1af7b"]
+[ext_resource type="Script" path="res://Scripts/Settings/MusicRollAnimation.gd" id="7_o675v"]
+[ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="8_1el2t"]
+[ext_resource type="Texture2D" uid="uid://c3e86eqmu3tfa" path="res://Sprites/Settings/back_settings/tile001.png" id="9_jmiqh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_66kgs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a1uuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hulx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jo4xf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rirwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a21pe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1af7b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Roll" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_66kgs")
+script = ExtResource("7_o675v")
+
+[node name="BackButton" type="TextureButton" parent="."]
+offset_right = 500.0
+offset_bottom = 300.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("8_1el2t")
+texture_pressed = ExtResource("9_jmiqh")
+texture_hover = ExtResource("9_jmiqh")
+texture_disabled = ExtResource("8_1el2t")
+texture_focused = ExtResource("9_jmiqh")
+
+[connection signal="pressed" from="BackButton" to="Roll" method="goBack"]

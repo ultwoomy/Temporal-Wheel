@@ -17,6 +17,7 @@ class_name WheelSpaceWheel
 func _ready() -> void:
 	# Connect signals.
 	WheelSpinner.rustProgressed.connect(_onRustProgressed)
+	await get_tree().create_timer(0.05).timeout
 	updateWheelSprite()
 	
 	# Scale the wheel based on the given size.

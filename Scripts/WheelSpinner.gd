@@ -192,6 +192,8 @@ func _completeRotation() -> void:
 	# Make rust progress for rotateWheel().
 	GVars.rustData.threshProgress += amount
 	
+	GlobalBuffs.applyEmotionBuffs()
+	
 	# Signal rotation completed. Note: Some other scripts will need wheelRotation, so don't change wheelRotation before signalling.
 	wheelRotationCompleted.emit()
 	

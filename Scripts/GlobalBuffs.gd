@@ -14,10 +14,10 @@ var wheelRotationGainModifier : float = 1.0
 func augmentSigilBuffs() -> void:
 	if GVars.sigilData.curSigilBuff == 1:  # Packsmith sigil
 		# Rust gain doubled.
-		rustGainModifier *= 2.0
+		rustGainModifier = 2.0
 	elif GVars.sigilData.curSigilBuff == 2:  # Candle sigil
 		# Mushrooms grow 1.5x as fast.
-		mushroomPendingRotationModifier *= 1.5
+		mushroomPendingRotationModifier = 1.5
 	elif GVars.sigilData.curSigilBuff == 3:
 		pass
 	elif GVars.sigilData.curSigilBuff == 4:
@@ -34,7 +34,7 @@ func augmentSigilBuffs() -> void:
 func applyEmotionBuffs() -> void:
 	if GVars.curEmotionBuff == 1:  # 
 		# Increase rotation gain.
-		wheelRotationGainModifier *= 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
+		wheelRotationGainModifier = 1.2 + ((GVars.rustData.fourth - 1) * log(GVars.spinData.rotations + 1)/log(2))
 	elif GVars.curEmotionBuff == 2:  # 
 		pass
 	elif GVars.curEmotionBuff == 3:  # 
@@ -42,9 +42,9 @@ func applyEmotionBuffs() -> void:
 	elif GVars.curEmotionBuff == 4:  # 
 		# Increase rust gain.
 		# Base emotion buff.
-		rustGainModifier *= log(GVars.spinData.rotations + 1) + 1
+		rustGainModifier = (log(GVars.spinData.rotations + 1) + 1) * GVars.rustData.fourth * (GVars.atlasData.dumpRustMilestone + 1)
+		print(rustGainModifier)
 		# Packsmith upgrade which only works if curEmotionBuff == 4.
-		rustGainModifier *= GVars.rustData.fourth
 	elif GVars.curEmotionBuff == 5:  # 
 		pass
 	else:
@@ -52,3 +52,4 @@ func applyEmotionBuffs() -> void:
 
 
 #@ Private Methods
+

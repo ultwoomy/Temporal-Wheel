@@ -79,7 +79,5 @@ text = "fdfsdfsdfdf"
 
 [connection signal="mouse_entered" from="Cheese" to="." method="_onCheeseFocusEntered"]
 [connection signal="mouse_exited" from="Cheese" to="." method="_onCheeseFocusExited"]
-[connection signal="pressed" from="Cheese" to="." method="_onCheesePressed"]
 [connection signal="mouse_entered" from="Ribbon" to="." method="_onRibbonFocusEntered"]
 [connection signal="mouse_exited" from="Ribbon" to="." method="_onRibbonFocusExited"]
-[connection signal="pressed" from="Ribbon" to="." method="_onRibbonPressed"]

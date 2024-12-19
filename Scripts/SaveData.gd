@@ -57,6 +57,7 @@ extends Resource
 @export var versNo : int
 @export var ratmail : int
 @export var challengesFailed : int
+@export var currentTrack : int
 var save_path = "user://stats.tres"
 
 
@@ -128,6 +129,7 @@ func _init():
 	versNo = 16
 	ratmail = 0
 	challengesFailed = 0
+	currentTrack = 0
 
 func save_stats(data):
 	if ResourceSaver.save(data, save_path):

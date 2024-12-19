@@ -26,6 +26,7 @@ func _ready() -> void:
 	growDisplay.text = str(GVars.spinData.density)
 	button.pressed.connect(self._onButtonPressed)
 	EventManager.tutorial_dens_found.connect(self.checkTutorial)
+	GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
 	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 3 and GVars.spinData.density < 2:
 		hide()
 
@@ -42,7 +43,7 @@ func _onButtonPressed() -> void:
 		densUp.emit()
 		growDisplay.text = str(GVars.spinData.density)
 		GVars.spinData.densTresh += 1
-		GVars.spinData.wheelPhase = int(GVars.spinData.density)
+		GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4 + 1)
 		playPriority = 2
 	elif playPriority == 2:
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()

@@ -67,7 +67,7 @@ func updatePanel():
 	if(GVars.atlasData.dumpRustMilestone > 3):
 		milestonePanel.get_child(0).text += "\n\nYou gain a " + str(GVars.atlasData.dumpRustMilestone + 1) + " rust multiplier when the current emotion is wrath"
 	if(GVars.atlasData.dumpRustMilestone > 6):
-		milestonePanel.get_child(0).text += "\n\nReduce initial sigil cost by" + str(GVars.atlasData.dumpRustMilestone * 5) + "momentum"
+		milestonePanel.get_child(0).text += "\n\nReduce initial sigil cost by " + str(GVars.atlasData.dumpRustMilestone * 5) + " momentum"
 	if(GVars.atlasData.dumpRustMilestone >= 13):
 		dumpButton.text = "You've reached the softcap for this update."
 	elif(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
@@ -96,7 +96,7 @@ func _onDumpButtonPressed():
 	if(GVars.atlasData.dumpRustMilestone <= 13):
 		GVars.atlasData.dumpRustProg += GVars.rustData.rust
 		GVars.rustData.rust = 0
-	if(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg):
+	if(GVars.atlasData.dumpRustThresh <= GVars.atlasData.dumpRustProg) and GVars.dumpRustMilestone <= 13:
 		GVars.atlasData.dumpRustProg -= GVars.atlasData.dumpRustThresh
 		if GVars.atlasData.dumpRustMilestone < 10:
 			GVars.atlasData.dumpRustThresh *= GVars.atlasData.dumpRustScaling

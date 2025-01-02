@@ -3,6 +3,7 @@ class_name BackpackData
 
 @export var cheese : bool
 @export var ribbon : bool
+@export var drum : bool
 #shrugged = hell naw, terrible book
 
 func _init():
@@ -11,3 +12,4 @@ func _init():
 func resetData() -> void:
 	cheese = false
 	ribbon = false
+	drum = false

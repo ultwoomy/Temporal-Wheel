@@ -12,6 +12,7 @@ var itemSelected : int
 @onready var rustLabel : Label = $RustLabel
 @onready var cheese : TextureButton = $Cheese
 @onready var ribbon : TextureButton = $Ribbon
+@onready var drum :TextureButton = $Drum
 
 
 #@ Virtual Methods
@@ -20,11 +21,14 @@ func _ready():
 	itemSelected = 0
 	cheese.hide()
 	ribbon.hide()
+	drum.hide()
 	
 	if GVars.backpackData.cheese:
 		cheese.show()
 	if GVars.backpackData.ribbon:
 		ribbon.show()
+	if GVars.backpackData.drum:
+		drum.show()
 
 
 #@ Private Methods
@@ -50,9 +54,22 @@ func _onRibbonFocusExited():
 	ribbon.scale = Vector2(0.333,0.333)
 
 
+
 func _on_rat_cheese_pressed():
 	_ready()
 
 
 func _on_real_bow_pressed():
 	_ready()
+
+
+func _on_drum_focus_entered():
+	drum.scale = Vector2(0.48,0.48)
+
+
+func _on_drum_focus_exited():
+	drum.scale = Vector2(0.4,0.4)
+
+
+func _on_drum_pressed():
+	SceneHandler.changeSceneToFilePath(SceneHandler.MUSICBOX)

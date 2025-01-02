@@ -66,6 +66,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var ifFirstZunda : bool
 @export var ifFirstFearcatDay : bool
 @export var ifFirstFearcatNight : bool
+@export var ifFirstDrum : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -156,6 +157,7 @@ func save_prog():
 	loader.ifFirstZunda = ifFirstZunda
 	loader.ifFirstFearcatDay = ifFirstFearcatDay
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
+	loader.ifFirstDrum = ifFirstDrum
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
 	loader.currentChallenges = currentChallenges
@@ -230,13 +232,14 @@ func resetPermStats():
 	ifFirstZunda = true
 	ifFirstFearcatDay = true
 	ifFirstFearcatNight = true
+	ifFirstDrum = true
 	altSigilSand = false
 	altSigilCity = false
 	altSigilNight = false
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 17
+	versNo = 18
 	ratmail = 0
 	currentTrack = 0
 
@@ -392,6 +395,10 @@ func load_as_normal():
 	if(versNo <= 16):
 		loader.currentTrack = 0
 		versNo += 1
+	if(versNo <= 17):
+		loader.ifFirstDrum = true
+		loader.backpackData.drum = false
+		versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -430,6 +437,7 @@ func load_as_normal():
 	fearcatData = loader.fearcatData
 	ifFirstFearcatDay = loader.ifFirstFearcatDay
 	ifFirstFearcatNight = loader.ifFirstFearcatNight
+	ifFirstDrum = loader.ifFirstDrum
 	currentSigilOrder = loader.currentSigilOrder
 	nextSigilOrder = loader.nextSigilOrder
 	sand = loader.sand

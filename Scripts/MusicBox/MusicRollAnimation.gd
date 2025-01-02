@@ -22,4 +22,4 @@ func animate():
 	animate()
 
 func goBack():
-	SceneHandler.changeSceneToFilePath(SceneHandler.SETTINGS)
+	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)

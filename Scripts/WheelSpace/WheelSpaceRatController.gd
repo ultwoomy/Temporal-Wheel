@@ -15,6 +15,7 @@ var active = true
 var cheesepressed = false
 var flipout = false
 var baseYpos = 0
+var activeTimes = [1,3,7]
 
 
 #@ Virtual Methods
@@ -33,15 +34,22 @@ func _ready():
 		GVars.backpackData.cheese = true
 	if GVars.ratmail >= 4 and not GVars.backpackData.ribbon:
 		GVars.backpackData.ribbon = true
+	if GVars.ratmail >= 8 and not GVars.backpackData.drum:
+		GVars.backpackData.drum = true
 	#If the value of ratmail is less than the current reset value (which goes 2,4,6,etc), deploy the rat
 	#The second value is whenever i want to put the next letter
-	if(GVars.ratmail < GVars.ifSecondBoot) and GVars.ifSecondBoot <= 4:
+	if(GVars.ratmail < GVars.ifSecondBoot) and containsTime(GVars.ifSecondBoot):
 		active = true
 		rat.disabled = false
 		rat.show()
 	else:
 		active = false
 
+func containsTime(x):
+	for i in activeTimes:
+		if i == x:
+			return true
+	return false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -97,6 +105,16 @@ func _on_rat_pressed():
 						   Rat"
 		bow.show()
 		bow.disabled = false
+	elif GVars.ratmail == 8:
+		#if second reset, give a bow
+		lettertext.text = "I hear solemn notes in this barren land.\n
+						   I've sent my people to find the source.\n
+						   And we've recovered this strange obelisk.\n
+						   Not sure what it is, perhaps you can make use of it.\n
+						   Check your backpack, my child has stashed it in there.\n
+						   Sincerest sincerities,\n
+						   Rat"
+		GVars.backpackData.drum = true
 	else:
 		lettertext.text = "Woawoagh\nuwagh\nwowow\n\n- The Developer"
 	letter.show()

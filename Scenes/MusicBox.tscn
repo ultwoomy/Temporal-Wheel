@@ -1,14 +1,23 @@
-[gd_scene load_steps=11 format=3 uid="uid://drvujsa65tjr5"]
+[gd_scene load_steps=21 format=3 uid="uid://drvujsa65tjr5"]
 
 [ext_resource type="Texture2D" uid="uid://db43cjqcuyqtv" path="res://Sprites/Settings/musicbox_roll/tile000.png" id="1_a1uuw"]
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_bkrrl"]
+[ext_resource type="Script" path="res://Scripts/MusicBox/MusicBox.gd" id="2_hjcqm"]
 [ext_resource type="Texture2D" uid="uid://b46pp5cvir5p" path="res://Sprites/Settings/musicbox_roll/tile001.png" id="2_hulx4"]
 [ext_resource type="Texture2D" uid="uid://4u1q5fn510b" path="res://Sprites/Settings/musicbox_roll/tile002.png" id="3_jo4xf"]
 [ext_resource type="Texture2D" uid="uid://c0xnxyiay1t1" path="res://Sprites/Settings/musicbox_roll/tile003.png" id="4_rirwy"]
 [ext_resource type="Texture2D" uid="uid://bmik8na82yjtn" path="res://Sprites/Settings/musicbox_roll/tile004.png" id="5_a21pe"]
 [ext_resource type="Texture2D" uid="uid://ck18vinqxaxs" path="res://Sprites/Settings/musicbox_roll/tile005.png" id="6_1af7b"]
-[ext_resource type="Script" path="res://Scripts/Settings/MusicRollAnimation.gd" id="7_o675v"]
 [ext_resource type="Texture2D" uid="uid://cevq2w8mklk53" path="res://Sprites/Settings/back_settings/tile000.png" id="8_1el2t"]
+[ext_resource type="Script" path="res://Scripts/MusicBox/MusicRollAnimation.gd" id="9_10d5l"]
 [ext_resource type="Texture2D" uid="uid://c3e86eqmu3tfa" path="res://Sprites/Settings/back_settings/tile001.png" id="9_jmiqh"]
+[ext_resource type="Script" path="res://Scripts/MusicBox/SongDisplay.gd" id="12_bpfgb"]
+[ext_resource type="Texture2D" uid="uid://6i52xii2eu8p" path="res://Sprites/Settings/MusicBoxSigilBackground.png" id="13_61h0t"]
+[ext_resource type="Script" path="res://Scripts/MusicBox/SongSwap.gd" id="13_wbepq"]
+[ext_resource type="Texture2D" uid="uid://bpube7p80ayq5" path="res://Sprites/Settings/musicBoxArrow1.png" id="14_3oodw"]
+[ext_resource type="Texture2D" uid="uid://cpiaaeqqqt8wr" path="res://Sprites/Settings/musicBoxArrow2.png" id="15_x0g3b"]
+[ext_resource type="Texture2D" uid="uid://dt515cg3jngbh" path="res://Sprites/Settings/musicBoxArrow3.png" id="17_xisba"]
+[ext_resource type="Texture2D" uid="uid://b08mydwoa0uij" path="res://Sprites/Settings/musicBoxArrow4.png" id="18_2oetx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_66kgs"]
 animations = [{
@@ -36,6 +45,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_kj0nm"]
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -43,14 +54,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_bkrrl")
+script = ExtResource("2_hjcqm")
 
 [node name="Roll" type="AnimatedSprite2D" parent="."]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_66kgs")
-script = ExtResource("7_o675v")
+script = ExtResource("9_10d5l")
 
 [node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_right = 500.0
 offset_bottom = 300.0
 scale = Vector2(0.3, 0.3)
@@ -60,4 +74,81 @@ texture_hover = ExtResource("9_jmiqh")
 texture_disabled = ExtResource("8_1el2t")
 texture_focused = ExtResource("9_jmiqh")
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 30.0
+offset_right = 950.0
+offset_bottom = 560.0
+text = "It's lookin at you funny"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="DialogueButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 745.0
+offset_top = 450.0
+offset_right = 895.0
+offset_bottom = 544.0
+
+[node name="SongDisplay" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 344.0
+offset_right = 305.0
+offset_bottom = 461.0
+script = ExtResource("12_bpfgb")
+
+[node name="Label" type="Label" parent="SongDisplay"]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 110.0
+text = "
+Currently Playing:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SongSwap" type="Container" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 187.0
+offset_right = 928.0
+offset_bottom = 341.0
+script = ExtResource("13_wbepq")
+
+[node name="Back" type="Sprite2D" parent="SongSwap"]
+position = Vector2(130, 57)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_61h0t")
+
+[node name="SongSigil" type="AnimatedSprite2D" parent="SongSwap"]
+position = Vector2(130, 50)
+sprite_frames = SubResource("SpriteFrames_kj0nm")
+
+[node name="Left" type="TextureButton" parent="SongSwap"]
+layout_mode = 2
+texture_normal = ExtResource("14_3oodw")
+texture_pressed = ExtResource("15_x0g3b")
+texture_hover = ExtResource("15_x0g3b")
+texture_disabled = ExtResource("14_3oodw")
+texture_focused = ExtResource("15_x0g3b")
+
+[node name="Right" type="TextureButton" parent="SongSwap"]
+layout_mode = 2
+texture_normal = ExtResource("17_xisba")
+texture_pressed = ExtResource("18_2oetx")
+texture_hover = ExtResource("18_2oetx")
+texture_disabled = ExtResource("17_xisba")
+texture_focused = ExtResource("18_2oetx")
+
+[node name="Title" type="Label" parent="SongSwap"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+text = "sdfsdf"
+
 [connection signal="pressed" from="BackButton" to="Roll" method="goBack"]
+[connection signal="pressed" from="DialogueButton" to="." method="_on_dialogue_button_pressed"]
+[connection signal="pressed" from="SongSwap/Left" to="SongSwap" method="_on_left_pressed"]
+[connection signal="pressed" from="SongSwap/Right" to="SongSwap" method="_on_right_pressed"]

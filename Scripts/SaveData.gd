@@ -48,6 +48,7 @@ extends Resource
 @export var ifFirstZunda : bool
 @export var ifFirstFearcatDay : bool
 @export var ifFirstFearcatNight : bool
+@export var ifFirstDrum : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -117,6 +118,7 @@ func _init():
 	ifFirstZunda = true
 	ifFirstFearcatDay = true
 	ifFirstFearcatNight = true
+	ifFirstDrum = true
 	kbityProgSpin = 0
 	kbityProgRot = 0
 	altSigilSand = false
@@ -126,7 +128,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 16
+	versNo = 18
 	ratmail = 0
 	challengesFailed = 0
 	currentTrack = 0

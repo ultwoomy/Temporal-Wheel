@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://3wjowbw55at0"]
+[gd_scene load_steps=12 format=3 uid="uid://3wjowbw55at0"]
 
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceBackpackPanel.gd" id="1_eh4ke"]
 [ext_resource type="Texture2D" uid="uid://ddvy1ujm5r1we" path="res://Sprites/WheelSpace/ratsheet/cheese.png" id="2_sn7lp"]
 [ext_resource type="Texture2D" uid="uid://ccjdnh17knlps" path="res://Sprites/WheelSpace/ratsheet/bow.png" id="3_4keqn"]
+[ext_resource type="Texture2D" uid="uid://db43cjqcuyqtv" path="res://Sprites/Settings/musicbox_roll/tile000.png" id="4_6f3t4"]
 [ext_resource type="Texture2D" uid="uid://dawhuumksmjiv" path="res://Sprites/WheelSpace/backpackButtons/momentum.png" id="4_tkxm3"]
 [ext_resource type="Texture2D" uid="uid://cy8kyp7t10fin" path="res://Sprites/WheelSpace/backpackButtons/rotations.png" id="5_vqsbs"]
+[ext_resource type="Texture2D" uid="uid://b46pp5cvir5p" path="res://Sprites/Settings/musicbox_roll/tile001.png" id="5_y8mv1"]
 [ext_resource type="Texture2D" uid="uid://d4e5pth14sohy" path="res://Sprites/WheelSpace/backpackButtons/rust.png" id="6_0tmt2"]
+[ext_resource type="Texture2D" uid="uid://4u1q5fn510b" path="res://Sprites/Settings/musicbox_roll/tile002.png" id="6_aqrap"]
+[ext_resource type="Texture2D" uid="uid://c0xnxyiay1t1" path="res://Sprites/Settings/musicbox_roll/tile003.png" id="7_6t2s0"]
+[ext_resource type="Texture2D" uid="uid://bmik8na82yjtn" path="res://Sprites/Settings/musicbox_roll/tile004.png" id="8_41wtx"]
 
 [node name="BackpackPanel" type="Panel"]
 self_modulate = Color(0, 0, 0, 1)
@@ -37,6 +42,19 @@ texture_pressed = ExtResource("3_4keqn")
 texture_hover = ExtResource("3_4keqn")
 texture_disabled = ExtResource("3_4keqn")
 texture_focused = ExtResource("3_4keqn")
+
+[node name="Drum" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 2.0
+offset_right = 563.0
+offset_bottom = 301.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("4_6f3t4")
+texture_pressed = ExtResource("5_y8mv1")
+texture_hover = ExtResource("6_aqrap")
+texture_disabled = ExtResource("7_6t2s0")
+texture_focused = ExtResource("8_41wtx")
 
 [node name="Momentum" type="Sprite2D" parent="."]
 position = Vector2(60, 180)
@@ -81,3 +99,6 @@ text = "fdfsdfsdfdf"
 [connection signal="mouse_exited" from="Cheese" to="." method="_onCheeseFocusExited"]
 [connection signal="mouse_entered" from="Ribbon" to="." method="_onRibbonFocusEntered"]
 [connection signal="mouse_exited" from="Ribbon" to="." method="_onRibbonFocusExited"]
+[connection signal="focus_entered" from="Drum" to="." method="_on_drum_focus_entered"]
+[connection signal="focus_exited" from="Drum" to="." method="_on_drum_focus_exited"]
+[connection signal="pressed" from="Drum" to="." method="_on_drum_pressed"]

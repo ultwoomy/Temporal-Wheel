@@ -77,7 +77,8 @@ func _process(_delta) -> void:
 func checkBleedBar():
 	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS) and bb != null:
 		bb.queue_free()
-	
+
+
 func updateSpinAmountText() -> void:
 	spinAmountLabel.text = str(GVars.getScientific(GVars.spinData.spin))
 

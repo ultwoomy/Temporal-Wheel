@@ -1,5 +1,7 @@
 extends Node
 class_name SoundManager
+
+
 var curtrack = 0
 var pos = 0
 var tracks = []

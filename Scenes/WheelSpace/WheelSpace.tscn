@@ -480,29 +480,30 @@ texture_focused = ExtResource("28_j606s")
 
 [node name="Letter" type="Control" parent="RatController"]
 anchors_preset = 0
-offset_left = 500.0
-offset_top = 300.0
-offset_right = 540.0
-offset_bottom = 340.0
+offset_left = 325.0
+offset_top = 56.0
+offset_right = 675.0
+offset_bottom = 545.0
 
 [node name="Back" type="AnimatedSprite2D" parent="RatController/Letter"]
+position = Vector2(175, 244)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_eyet1")
 
 [node name="Exit" type="Button" parent="RatController/Letter"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 180.0
-offset_right = 170.0
-offset_bottom = 240.0
+offset_left = 255.0
+offset_top = 424.0
+offset_right = 345.0
+offset_bottom = 484.0
 text = "Toss it"
 
 [node name="Label" type="Label" parent="RatController/Letter"]
 layout_mode = 0
-offset_left = -100.0
-offset_top = -130.0
-offset_right = 100.0
-offset_bottom = 170.0
+offset_left = 75.0
+offset_top = 114.0
+offset_right = 275.0
+offset_bottom = 414.0
 theme_override_font_sizes/font_size = 14
 text = "I hope this letter finds you in good health. 
 
@@ -539,7 +540,6 @@ scale = Vector2(0.333, 0.333)
 texture_normal = ExtResource("31_gdw33")
 
 [node name="Voidbot" type="TextureButton" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 7.0
 offset_top = 11.0

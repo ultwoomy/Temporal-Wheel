@@ -36,6 +36,16 @@ func playAnimation(animation : GameButtonAnimation) -> void:
 	_activeAnimation.start()
 
 
+# Display a text message of the increment value from pressing the game button.
+func displayIncrement(value) -> void:
+	var mousePosition : Vector2 = get_global_mouse_position()
+	
+	# Create instance of text.
+	var incrementValueLabel : IncrementValueLabel = IncrementValueLabel.new(value)
+	incrementValueLabel.position = mousePosition
+	get_tree().current_scene.add_child(incrementValueLabel)
+
+
 #@ Private Methods
 func _endAnimation() -> void:
 	_activeAnimation.exit()

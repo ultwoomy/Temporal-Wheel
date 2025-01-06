@@ -27,6 +27,7 @@ func _ready():
 	# ...OR have the button call the function here.
 	# ...OR have the button signal to somewhere to add to spin (so other things can add to it as well)
 	button.pressed.connect(self._buttonPressed)
+	WheelSpinner.spinValueChanged.connect(self.displayIncrement)
 
 
 func _buttonPressed():

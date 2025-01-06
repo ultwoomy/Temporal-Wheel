@@ -20,13 +20,14 @@ config/icon="res://Sprites/kbity.png"
 
 GVars="*res://Scripts/GVars.gd"
 EventManager="*res://Scripts/EventManager.gd"
-SoundManage="*res://Scripts/SoundManager.gd"
-WheelSpinner="*res://Scripts/WheelSpinner.gd"
-MushroomGrower="*res://Scripts/MushroomGrower.gd"
-GlobalBuffs="*res://Scripts/GlobalBuffs.gd"
+SoundManage="*res://Scripts/GSoundManager.gd"
+WheelSpinner="*res://Scripts/GWheelSpinner.gd"
+MushroomGrower="*res://Scripts/GMushroomGrower.gd"
+GlobalBuffs="*res://Scripts/GBuffs.gd"
 Automation="*res://Scripts/Automation/Automation.gd"
-SceneHandler="*res://Scripts/SceneHandler.gd"
+SceneHandler="*res://Scripts/GSceneHandler.gd"
 Challenger="*res://Scripts/Challenger/Challenger.gd"
+GMouseManager="*res://Scripts/GMouseManager.gd"
 
 [display]
 

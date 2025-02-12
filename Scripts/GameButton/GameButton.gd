@@ -31,10 +31,11 @@ func playAnimation(animation : GameButtonAnimation) -> void:
 	if _activeAnimation:
 		_endAnimation()
 	
-	# Make sure animation can end when completed.
+	# Make sure the new animation can end when completed.
+	# (!) Code can be adjusted so that it can repeat.
 	animation.animationCompleted.connect(_endAnimation)
 	
-	# Set animation to new animation.
+	# Set current animation to new animation.
 	_activeAnimation = animation
 	_activeAnimation.start()
 
@@ -50,6 +51,7 @@ func displayIncrement(value) -> void:
 
 
 #@ Private Methods
+# Tells the activeAnimation to stop playing.
 func _endAnimation() -> void:
 	_activeAnimation.exit()
 	_activeAnimation = null

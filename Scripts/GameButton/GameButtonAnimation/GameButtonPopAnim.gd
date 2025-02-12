@@ -1,5 +1,7 @@
 extends GameButtonAnimation
 class_name GameButtonPopAnimation
+#  This animation causes the GameButton to "pop"
+# by having it grow and shrink back to its original size.
 
 
 #@ Constants
@@ -22,11 +24,14 @@ func start() -> void:
 
 func update(delta : float) -> void:
 	if _elapsedTime < ANIMATION_DURATION:
+		# Perform the animation.
 		var _lerpValue : float = lerp(NEW_SCALE_VALUE, DEFAULT_SCALE_VALUE, _elapsedTime / ANIMATION_DURATION)  # Decrease scale to get to DEFAULT_SCALE_VALUE
 		var _newScale : Vector2 = Vector2(_lerpValue, _lerpValue)
 		_affectedControlNode.scale = _newScale
 		_elapsedTime += delta
 	else:
+		# Reset because the animation is complete.
+		_elapsedTime = 0.0
 		animationCompleted.emit()
 
 

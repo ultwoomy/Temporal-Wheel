@@ -17,18 +17,18 @@ var _elapsedTime : float = 0.0
 
 #@ Inherited Methods
 func start() -> void:
-	_effectedControlNode.scale = Vector2(NEW_SCALE_VALUE, NEW_SCALE_VALUE)  # Probably unneeded since update() resizes scale anyways.
+	_affectedControlNode.scale = Vector2(NEW_SCALE_VALUE, NEW_SCALE_VALUE)  # Probably unneeded since update() resizes scale anyways.
 
 
 func update(delta : float) -> void:
 	if _elapsedTime < ANIMATION_DURATION:
 		var _lerpValue : float = lerp(NEW_SCALE_VALUE, DEFAULT_SCALE_VALUE, _elapsedTime / ANIMATION_DURATION)  # Decrease scale to get to DEFAULT_SCALE_VALUE
 		var _newScale : Vector2 = Vector2(_lerpValue, _lerpValue)
-		_effectedControlNode.scale = _newScale
+		_affectedControlNode.scale = _newScale
 		_elapsedTime += delta
 	else:
 		animationCompleted.emit()
 
 
 func exit() -> void:
-	_effectedControlNode.scale = DEFAULT_SCALE
+	_affectedControlNode.scale = DEFAULT_SCALE

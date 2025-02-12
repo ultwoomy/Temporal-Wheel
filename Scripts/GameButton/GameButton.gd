@@ -23,6 +23,9 @@ func _process(delta: float) -> void:
 
 
 #@ Public Methods
+# Every GameButton has this function associated with it.
+# In order for it to play any animation, you must pass in a GameButtonAnimation derived class into the parameter. 
+# With this function, it will play *any* GameButtonAnimation when called; just specify the GameButtonAnimation derived class.
 func playAnimation(animation : GameButtonAnimation) -> void:
 	# End any current animation.
 	if _activeAnimation:

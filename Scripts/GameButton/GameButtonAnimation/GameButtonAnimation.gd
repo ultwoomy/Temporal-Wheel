@@ -7,12 +7,12 @@ signal animationCompleted
 
 
 #@ Private Variables
-var _effectedControlNode : Control
+var _affectedControlNode : Control
 
 
 #@ Virtual Methods
-func _init(effectedControlNode : Control) -> void:
-	_effectedControlNode = effectedControlNode
+func _init(affectedControlNode : Control) -> void:
+	_affectedControlNode = affectedControlNode
 
 
 #@ Public Methods

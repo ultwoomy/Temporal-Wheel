@@ -38,7 +38,7 @@ func _ready():
 	if ifsucc:
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 	else :
-		growToggleRect.color = Color(0.93, 0.11, 0.14)
+		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
 	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.spin <= 50:
 		hide()
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
@@ -93,8 +93,8 @@ func _buttonPressed():
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/yes.wav"))
-	GVars.save_prog()
-	
+
+
 func checkTutorial():
 	if GVars.spinData.spin >= 50:
 		show()

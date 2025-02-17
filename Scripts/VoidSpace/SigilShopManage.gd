@@ -121,8 +121,12 @@ func checkCurrentSigil():
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
+	
+	
 	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
-		GVars.sigilData.costRot *=  (indexFromAcquiredSigils + 1)
+		print("Before: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
+		GVars.sigilData.costRot *= (indexFromAcquiredSigils + 1)
+		print("After: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
 	
 	# The size is used to keep track of what sigil to get from purchaseOrder.
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():

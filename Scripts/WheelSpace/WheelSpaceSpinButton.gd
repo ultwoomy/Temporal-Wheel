@@ -21,6 +21,9 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 #@ Virtual Methods
 func _ready():
 	_spinUpdateLoop()
+	##
+	## save DISABLED FOR TESTING!
+	##
 	_saveLoop()
 	# L.B: Since clicking on the button adds to spin, this can be kept here.
 	# ...However, you can also have it in its own script w/ the function

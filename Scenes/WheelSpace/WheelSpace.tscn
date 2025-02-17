@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=73 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]

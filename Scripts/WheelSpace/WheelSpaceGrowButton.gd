@@ -38,7 +38,7 @@ func _ready():
 	if ifsucc:
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 	else :
-		image.set_texture(load("res://Sprites/WheelSpace/redrect.png"))
+		growToggleRect.color = Color(0.93, 0.11, 0.14)
 	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.spin <= 50:
 		hide()
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED

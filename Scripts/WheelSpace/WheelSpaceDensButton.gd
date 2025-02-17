@@ -45,7 +45,6 @@ func _onButtonPressed() -> void:
 			EventManager.tutorial_travel_found.emit()
 		GVars.spinData.size -= GVars.spinData.densTresh
 		densUp.emit()
-		growDisplay.text = str(GVars.spinData.density)
 		densityDisplay.text = str(GVars.spinData.density)
 		GVars.spinData.curSucDens = 0
 		GVars.spinData.densTresh += 1
@@ -62,12 +61,13 @@ func _onButtonPressed() -> void:
 	else:
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
-		sf.get_child(0).init(load("res://Sound/SFX/nono.wav"))		
+		sf.start(load("res://Sound/SFX/nono.wav"))
 		
 func checkTutorial():
 	if GVars.spinData.size > 2 or GVars.density > 1:
 		show()
 		EventManager.tutorial_dens_found.disconnect(self.checkTutorial)
+		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		sf.start(load("res://Sound/SFX/nono.wav"))		
 	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100
 

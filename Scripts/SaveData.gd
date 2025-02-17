@@ -49,6 +49,7 @@ var nightChallengeData : NightChallengeData
 @export var ifFirstFearcatDay : bool
 @export var ifFirstFearcatNight : bool
 @export var ifFirstDrum : bool
+@export var ifFirstDollar : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -119,6 +120,7 @@ func _init():
 	ifFirstFearcatDay = true
 	ifFirstFearcatNight = true
 	ifFirstDrum = true
+	ifFirstDollar = true
 	kbityProgSpin = 0
 	kbityProgRot = 0
 	altSigilSand = false

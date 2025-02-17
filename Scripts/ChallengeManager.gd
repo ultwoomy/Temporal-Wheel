@@ -13,7 +13,6 @@ class_name ChallengeManager
 
 #@ Virtual Methods
 func _ready() -> void:
-	print(GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS))
 	EventManager.refresh_challenges.connect(self.refresh)
 	EventManager.disconnect_thorns.connect(self.disconnectThorns)
 	thornsbackground.hide()

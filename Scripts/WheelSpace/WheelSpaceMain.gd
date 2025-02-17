@@ -44,7 +44,7 @@ func _ready() -> void:
 #	Automation.addAutomatorFromData(d)
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
-	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText)
+	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText.unbind(1))
 	WheelSpinner.wheelRotationCompleted.connect(self.updateRotationValueText)
 	EventManager.challenge_lost_L2.connect(self.checkBleedBar)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
@@ -80,7 +80,8 @@ func _process(_delta) -> void:
 func checkBleedBar():
 	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS) and bb != null:
 		bb.queue_free()
-	
+
+
 func updateSpinAmountText() -> void:
 	spinAmountLabel.text = str(GVars.getScientific(GVars.spinData.spin))
 

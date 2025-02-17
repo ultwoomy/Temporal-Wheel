@@ -53,9 +53,6 @@
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="44_kqfr3"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="45_3mkif"]
 [ext_resource type="PackedScene" uid="uid://3wjowbw55at0" path="res://Scenes/WheelSpace/BackpackPanel.tscn" id="46_o6krw"]
-[ext_resource type="Script" path="res://Scenes/WheelSpace/TutorialBunny.gd" id="50_twnyn"]
-[ext_resource type="Texture2D" uid="uid://cmnfooc2xd55c" path="res://Sprites/WheelSpace/tutorialbun.png" id="51_ewy6v"]
-[ext_resource type="Texture2D" uid="uid://btsdyf15q58f8" path="res://Sprites/WheelSpace/Zundamon/zun_wip.png" id="51_qvhl7"]
 [ext_resource type="Script" path="res://Scripts/ChallengeManager.gd" id="52_d2l6h"]
 [ext_resource type="Texture2D" uid="uid://hw3tsgb8fwb2" path="res://Sprites/FabChallenge/thornsbackground.png" id="55_aqsov"]
 
@@ -140,14 +137,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
-bg_color = Color(1, 0.278431, 0.580392, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1qs7"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s6ay"]
 bg_color = Color(0.780392, 0.482353, 0.713726, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1qs7"]
-bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
 
 [node name="WheelSpace" type="Control"]
 process_mode = 1
@@ -226,35 +223,6 @@ text = "SpinPerClick"
 script = ExtResource("12_naexq")
 level = 0
 sprite = NodePath("../ButtonBackground")
-
-[node name="TutorialBunny" type="Container" parent="."]
-layout_mode = 0
-offset_left = 769.0
-offset_top = 269.0
-offset_right = 916.0
-offset_bottom = 331.0
-script = ExtResource("50_twnyn")
-
-[node name="Sprite2D" type="TextureButton" parent="TutorialBunny"]
-layout_mode = 2
-texture_normal = ExtResource("19_urc6w")
-texture_pressed = ExtResource("19_urc6w")
-texture_hover = ExtResource("20_fbisg")
-texture_disabled = ExtResource("51_qvhl7")
-texture_focused = ExtResource("20_fbisg")
-flip_h = true
-
-[node name="Label" type="Label" parent="TutorialBunny"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "sdfsd"
-autowrap_mode = 2
-
-[node name="Bun" type="Sprite2D" parent="TutorialBunny"]
-position = Vector2(11, 40)
-texture = ExtResource("51_ewy6v")
 
 [node name="GrowButton" type="PanelContainer" parent="." node_paths=PackedStringArray("growDisplay", "button")]
 layout_mode = 0
@@ -683,17 +651,17 @@ autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="TutorialBox"]
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
-theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
 
 [node name="ExitContract" type="Container" parent="."]
 layout_mode = 0
@@ -741,7 +709,6 @@ position = Vector2(500, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("55_aqsov")
 
-[connection signal="pressed" from="TutorialBunny/Sprite2D" to="TutorialBunny" method="_on_text_bubble_pressed"]
 [connection signal="pressed" from="Zunda/TextureButton" to="Zunda" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_onSettingButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="." method="_onBackpackButtonPressed"]

@@ -1,12 +1,19 @@
-extends AudioStreamPlayer
+extends Node
 
-func init(sound):
-	stream = sound
-	volume_db = GVars.sfxvol
-	if!(volume_db == -24):
-		play()
+
+#@ Onready Variables
+@onready var audioStreamPlayer : AudioStreamPlayer = $AudioStreamPlayer
+
+
+func start(sound : AudioStream):
+	audioStreamPlayer.stream = sound
+	audioStreamPlayer.volume_db = GVars.sfxvol
+	if not audioStreamPlayer.volume_db == -24:
+		audioStreamPlayer.finished.connect(_onAudioStreamPlayerFinished)
+		audioStreamPlayer.play()
 	else:
-		queue_free()
+		audioStreamPlayer.queue_free()
 
-func _on_finished():
+
+func _onAudioStreamPlayerFinished():
 	queue_free()

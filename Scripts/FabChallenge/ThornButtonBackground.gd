@@ -11,6 +11,7 @@ func _ready():
 func _process(delta):
 	pass
 
+
 func refresh():
 	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
 		hide()

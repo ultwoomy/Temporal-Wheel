@@ -4,7 +4,7 @@ extends Node
 
 
 #@ Signals
-signal spinValueChanged
+signal spinValueChanged(incrementValue : float)
 signal wheelRotationCompleted
 signal rustProgressed(rustPerThresh : float)
 
@@ -35,11 +35,14 @@ func _process(_delta: float) -> void:
 
 #@ Public Methods
 func spinWheel(reverse: bool = false) -> void:
+	var incrementValue : float
 	if not reverse:
-		GVars.spinData.spin += _calculateSpinGain()
+		incrementValue = _calculateSpinGain()
+		GVars.spinData.spin += incrementValue
 	else:
-		GVars.spinData.spin += GVars.sucPerTick * GVars.rustData.increaseHunger * 5
-	spinValueChanged.emit()
+		incrementValue = GVars.sucPerTick * GVars.rustData.increaseHunger * 5
+		GVars.spinData.spin += incrementValue
+	spinValueChanged.emit(incrementValue)
 
 
 func rotateWheel() -> void:

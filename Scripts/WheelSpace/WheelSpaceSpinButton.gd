@@ -1,4 +1,4 @@
-extends Control
+extends GameButton
 class_name WheelSpaceSpinButton
 
 
@@ -13,7 +13,7 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 
 #@ Onready Variables
-@onready var spinPerClickDisplay : Label = $SpinPerClickDiplay
+@onready var spinPerClickDisplay : Label = $SpinPerClickDisplay
 @onready var button : Button = $SpinButton
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional
 
@@ -26,19 +26,14 @@ func _ready():
 	# ...However, you can also have it in its own script w/ the function
 	# ...OR have the button call the function here.
 	# ...OR have the button signal to somewhere to add to spin (so other things can add to it as well)
-	button.size = Vector2(200,100)
-	button.text = "Spin"
-	button.expand_icon = true
 	button.pressed.connect(self._buttonPressed)
-	await get_tree().create_timer(0.1).timeout
+	WheelSpinner.spinValueChanged.connect(self.displayIncrement)
 
 
-# L.B: Probably just use a signal in a different script so all things can add to spin.
 func _buttonPressed():
+	# Tell EventManager that wheel has been spun, which will apply calculations and spin currency.
 	EventManager.wheel_spun.emit()
-#	L.B: This line of code is being commented out since it isn't needed (since SpinDisplay has it in its _process() function)
-#	...If you want to change the text only when necessary, use signals instead of assigning the Node to a variable.
-#	...Ex: Call a signal when GVars.spin changes.
+	playAnimation(GameButtonPopAnimation.new(self))
 	_spinUpdateLoop()
 
 

@@ -14,8 +14,12 @@ signal thornyButtonDamageResolved(damage: int)
 
 #@ Public Variables
 func _ready():
+	# Error checking.
+	if not sprite:
+		printerr("ERROR: Fabulous challenge component does not have a sprite assigned to it in parent, ", self.get_parent(), "!")
 	checkIfEnabled()
 	EventManager.bleedstacks_changed.connect(self.checkIfEnabled)
+
 
 #@ Public Methods
 # FabulousChallengeComponent must be in a container alongside a button in order for this method to be called when the button is pressed.
@@ -24,7 +28,6 @@ func onThornyButtonPressed() -> void:
 		thornyButtonDamageResolved.emit(damage)
 
 func checkIfEnabled():
-	sprite = get_parent().get_node("ButtonBackground")
 	if GVars.bleedstacks >= level and GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
 		sprite.show()
 	else:

@@ -16,7 +16,6 @@ var ifsucc = false
 #@ Onready Variables
 @onready var densityDisplay : Label = $DensDisplay
 @onready var button : Button = $VBoxContainer/DensityButtonContainer/DensityButton
-@onready var image : Sprite2D = $DensRectDisp
 @onready var densityGauge : ColorRect = $VBoxContainer/DensityGaugeContainer/DensityGaugeDisplay
 @onready var densityGaugeContainer : PanelContainer = $VBoxContainer/DensityGaugeContainer
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent

@@ -68,6 +68,7 @@ func checkTutorial():
 		show()
 		EventManager.tutorial_dens_found.disconnect(self.checkTutorial)
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
+		self.add_child(sf)
 		sf.start(load("res://Sound/SFX/nono.wav"))		
 	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100
 

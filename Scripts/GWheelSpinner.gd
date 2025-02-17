@@ -98,7 +98,9 @@ func getWheelRotationAmount() -> float:
 	# Hell Challenge 0 effect
 	if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY) and GVars.spinData.rotations > 1000:
 		result /= (5000 + GVars.spinData.rotations)/6000
-		
+	
+	## Brave Challenge: After the Player has reached 1000 rotation currency, increase the speed of the wheel.
+	##  - Otherwise, 
 	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
 		if GVars.spinData.rotations <= 1000:
 			result *= GVars.spinData.rotations/500 + 1

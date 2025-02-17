@@ -1,17 +1,17 @@
 [gd_scene load_steps=23 format=3 uid="uid://cyt64ilku1qh0"]
 
-[ext_resource type="Script" path="res://Scripts/MushSpace/MMushInfoPanel.gd" id="1_6hwsa"]
-[ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_x1146"]
-[ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="3_g3dxa"]
-[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="4_wgdsh"]
-[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="5_kisa2"]
-[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="6_jr5e3"]
-[ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="7_ej7he"]
-[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="7_pyngj"]
-[ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="8_bttiw"]
-[ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="9_y16vs"]
-[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="10_e2ajo"]
-[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="11_krj8t"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MMushInfoPanel.gd" id="1_d6si8"]
+[ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_a6byg"]
+[ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="3_ce78u"]
+[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="4_rkq56"]
+[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="5_ybacx"]
+[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="6_m8d84"]
+[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="7_hof5k"]
+[ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="8_ot4n1"]
+[ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="9_x6cv6"]
+[ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="10_2sjlb"]
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="11_dmxtt"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="12_w7sjc"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ljwbl"]
 size = Vector2(200, 200)
@@ -19,40 +19,40 @@ center_offset = Vector3(100, 100, 0)
 
 [sub_resource type="MeshTexture" id="MeshTexture_qg50n"]
 mesh = SubResource("QuadMesh_ljwbl")
-base_texture = ExtResource("2_x1146")
+base_texture = ExtResource("2_a6byg")
 image_size = Vector2(200, 200)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_g3dxa")
+"texture": ExtResource("3_ce78u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_wgdsh")
+"texture": ExtResource("4_rkq56")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_kisa2")
+"texture": ExtResource("5_ybacx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_jr5e3")
+"texture": ExtResource("6_m8d84")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_pyngj")
+"texture": ExtResource("7_hof5k")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aet8d"]
-texture = ExtResource("7_ej7he")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyrne"]
-texture = ExtResource("8_bttiw")
+texture = ExtResource("8_ot4n1")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ju6m2"]
-texture = ExtResource("9_y16vs")
+texture = ExtResource("9_x6cv6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aet8d"]
+texture = ExtResource("10_2sjlb")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -64,7 +64,7 @@ bg_color = Color(0.294118, 0.152941, 0.211765, 1)
 bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
 
 [sub_resource type="Theme" id="Theme_qbri3"]
-default_font = ExtResource("11_krj8t")
+default_font = ExtResource("12_w7sjc")
 default_font_size = 16
 /colors/default = Color(0.411765, 0.290196, 0.105882, 1)
 /colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
@@ -83,11 +83,11 @@ Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
 Button/constants/outline_size = 1
 Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
 Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
-Button/styles/normal = ExtResource("10_e2ajo")
+Button/styles/normal = ExtResource("11_dmxtt")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
 [node name="MushInfoPanel" type="Node"]
-script = ExtResource("1_6hwsa")
+script = ExtResource("1_d6si8")
 
 [node name="PanelBackground" type="Sprite2D" parent="."]
 self_modulate = Color(0.509804, 0.34902, 0.168627, 1)
@@ -105,10 +105,10 @@ offset_left = 40.0
 offset_top = 230.0
 offset_right = 80.0
 offset_bottom = 270.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
-theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="RightArrow" type="Button" parent="."]
 offset_left = 360.0
@@ -116,10 +116,10 @@ offset_top = 270.0
 offset_right = 400.0
 offset_bottom = 310.0
 rotation = 3.15032
-theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
-theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="MushDescription" type="Label" parent="."]
 offset_left = 90.0

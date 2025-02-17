@@ -3,22 +3,38 @@ class_name DollarData
 
 @export var achievementsCompleted : int
 var achievementList : Array[Achievement]
+var sandDollars : float
 
 @export var insuranceCost : float
 @export var insuranceScaling : float
 @export var insuranceAmtSpin : float
 @export var insuranceAmtRot : float
+@export var insuranceAmtRust : float
 @export var insuranceAmtSpinUp : float
 @export var insuranceAmtRotUp : float
+@export var insuranceAmtRustUp : float
 
 func _init():
 	resetData()
 
 func resetData() -> void:
 	achievementsCompleted = 0
+	sandDollars = 0
+	# First parameter is achievement name
+	# Second parameter is achievement description
+	# Third parameter is variable checked 
+	# Fourth parameter is comparision method
+		# 0 is equal to
+		# 1 is less than
+		# 2 is more than
+		# 3 is less than or equal to
+		# 4 is more than or equal to
+		# 5 is true
+		# 6 is false
+	# Fifth parameter is value to be checked against
+	# Sixth parameter is sand dollar reward value
 	var temp = Achievement.new()
 	temp.setAchievement("Helloo", "Click this box for a sand dollar. First one's free!", "spin", 4, 0, 1)
-	print(temp)
 	achievementList.append(temp)
 	temp = Achievement.new()
 	temp.setAchievement("Momentum", "This one's not as free. Needs 10000 momentum", "spin", 4, 10000, 1)
@@ -50,6 +66,9 @@ func resetData() -> void:
 	temp = Achievement.new()
 	temp.setAchievement("Brilliant Lightning", "Very speed. Needs 1000000000 momentum", "spin", 4, 1000000000, 4)
 	achievementList.append(temp)
+	resetDollar()
+	
+func resetDollar():
 	insuranceCost = 6
 	#additive scaling
 	insuranceScaling = 3
@@ -58,5 +77,7 @@ func resetData() -> void:
 	#multiplicative scaling
 	insuranceAmtSpinUp = 3
 	#additive scaling
-	insuranceAmtRotUp = 5
-	
+	insuranceAmtRotUp = 10
+	insuranceAmtRust = 10
+	#multiplicative scaling
+	insuranceAmtRustUp = 2

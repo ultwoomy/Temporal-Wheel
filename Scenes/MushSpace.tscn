@@ -61,23 +61,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ja8l"]
-texture = ExtResource("6_jwtua")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lww6x"]
 texture = ExtResource("7_7vdb6")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2vid"]
 texture = ExtResource("8_pioun")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aet8d"]
-texture = ExtResource("5_kg50m")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ja8l"]
+texture = ExtResource("6_jwtua")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyrne"]
 texture = ExtResource("6_i4oaq")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ju6m2"]
 texture = ExtResource("7_qjnyc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aet8d"]
+texture = ExtResource("5_kg50m")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -152,10 +152,10 @@ sprite_frames = SubResource("SpriteFrames_mwljc")
 layout_mode = 0
 offset_right = 193.0
 offset_bottom = 146.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
+theme_override_styles/focus = SubResource("StyleBoxTexture_lww6x")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lww6x")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_f2vid")
-theme_override_styles/focus = SubResource("StyleBoxTexture_lww6x")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
 script = ExtResource("10_fdmec")
 back = NodePath(".")
 
@@ -165,10 +165,10 @@ offset_left = 40.0
 offset_top = 230.0
 offset_right = 80.0
 offset_bottom = 270.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
-theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="Right" type="Button" parent="."]
 layout_mode = 2
@@ -177,10 +177,10 @@ offset_top = 270.0
 offset_right = 400.0
 offset_bottom = 310.0
 rotation = 3.15032
-theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
+theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
-theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

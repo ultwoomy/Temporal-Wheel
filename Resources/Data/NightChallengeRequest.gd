@@ -118,4 +118,3 @@ func checkSecondary():
 			return GVars.backpackData.cheese
 	else:
 		return true
-

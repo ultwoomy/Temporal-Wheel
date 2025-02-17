@@ -1,7 +1,7 @@
 extends Resource
 class_name NightChallengeData
 
-@export var requestList : Array[Request]
+var requestList : Array[Request]
 @export var hungerLimit : float
 @export var hungerCurrent : float
 @export var hungerDeduction : float

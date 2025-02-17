@@ -4,15 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_6rv5w"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pu21q"]
+particle_flag_disable_z = true
 emission_shape = 3
 emission_box_extents = Vector3(500, 1, 1)
-particle_flag_disable_z = true
 spread = 180.0
-gravity = Vector3(0, 98, 0)
 initial_velocity_min = 20.0
 initial_velocity_max = 20.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, 98, 0)
 
 [node name="BleedEmitter" type="Control"]
 layout_mode = 3

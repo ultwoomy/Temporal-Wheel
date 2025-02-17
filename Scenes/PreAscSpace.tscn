@@ -10,8 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="8_wglw0"]
 [ext_resource type="Script" path="res://Scripts/PreAscSpace/PreAscConfirmation.gd" id="9_tqnhf"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ub66e"]
-texture = ExtResource("3_4sepa")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3eid"]
+texture = ExtResource("4_kvlq3")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sg6lr"]
 texture = ExtResource("4_kvlq3")
@@ -19,8 +19,8 @@ texture = ExtResource("4_kvlq3")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1lgrt"]
 texture = ExtResource("5_51c8d")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b3eid"]
-texture = ExtResource("4_kvlq3")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ub66e"]
+texture = ExtResource("3_4sepa")
 
 [node name="PreAscSpace" type="Control"]
 layout_mode = 3
@@ -48,10 +48,10 @@ offset_left = 68.0
 offset_top = 457.0
 offset_right = 193.0
 offset_bottom = 532.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_ub66e")
+theme_override_styles/focus = SubResource("StyleBoxTexture_b3eid")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sg6lr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1lgrt")
-theme_override_styles/focus = SubResource("StyleBoxTexture_b3eid")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ub66e")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0

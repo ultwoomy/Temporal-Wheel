@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvywa1hjxylef"]
+[gd_scene load_steps=13 format=3 uid="uid://dvywa1hjxylef"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_8knng"]
 [ext_resource type="Script" path="res://Scripts/SandSpace/AchievementPanel.gd" id="1_erckd"]
+[ext_resource type="Script" path="res://Scripts/SandSpace/SandSpace.gd" id="2_fm0un"]
+[ext_resource type="Texture2D" uid="uid://byq8arkbedlyf" path="res://Sprites/SandSpace/sand_dollar_background.png" id="2_hff0l"]
+[ext_resource type="Texture2D" uid="uid://d107bfee6fxmb" path="res://Sprites/SandSpace/sand_arrow_sheet/tile000.png" id="3_d6lu8"]
+[ext_resource type="Texture2D" uid="uid://xi4mx3se41ft" path="res://Sprites/SandSpace/sand_arrow_sheet/tile001.png" id="4_cagjx"]
+[ext_resource type="Texture2D" uid="uid://dlok8p13qhc44" path="res://Sprites/SandSpace/sand_back_invert.png" id="4_pttu6"]
+[ext_resource type="Texture2D" uid="uid://dupfwrc8dt6qn" path="res://Sprites/Sigils/sigil10.png" id="8_bvqy7"]
+[ext_resource type="Texture2D" uid="uid://bdyfwmtx7eurt" path="res://Sprites/SandSpace/invert_sand_sigil.png" id="9_t7l56"]
+[ext_resource type="Script" path="res://Scripts/SandSpace/Insurance.gd" id="10_ho2eb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkab4"]
+atlas = ExtResource("2_hff0l")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsvfq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkab4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pttu6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,10 +37,88 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_8knng")
+script = ExtResource("2_fm0un")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qsvfq")
+frame = 1
+frame_progress = 0.68591
+
+[node name="Achieve" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 700.0
 offset_right = 1000.0
 offset_bottom = 600.0
 script = ExtResource("1_erckd")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 120.0
+offset_bottom = 100.0
+scale = Vector2(1.2, 1.2)
+texture_normal = ExtResource("3_d6lu8")
+texture_pressed = ExtResource("4_cagjx")
+texture_hover = ExtResource("4_cagjx")
+texture_disabled = ExtResource("3_d6lu8")
+texture_focused = ExtResource("4_cagjx")
+
+[node name="Invert" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 140.0
+offset_right = 499.0
+offset_bottom = 439.0
+focus_mode = 0
+texture_normal = ExtResource("8_bvqy7")
+texture_pressed = ExtResource("9_t7l56")
+texture_hover = ExtResource("9_t7l56")
+texture_disabled = ExtResource("8_bvqy7")
+texture_focused = ExtResource("9_t7l56")
+
+[node name="DollarLabel" type="Label" parent="Invert"]
+layout_mode = 0
+offset_top = 325.0
+offset_right = 300.0
+offset_bottom = 405.0
+text = "Sand Dollar Sigil: 
+Identity Bonus:
+Rust gain Bonus: "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Insurance" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 700.0
+offset_right = 1000.0
+offset_bottom = 600.0
+script = ExtResource("10_ho2eb")
+
+[node name="Label" type="Label" parent="Insurance"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 285.0
+offset_bottom = 262.0
+text = "Sand Dollar Count: 
+
+Upon reset, you will start out with:
+x Momentum
+x Rotations
+x Rust
+"
+autowrap_mode = 2
+
+[node name="UpgradeInsurance" type="Button" parent="Insurance"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 380.0
+offset_right = 220.0
+offset_bottom = 470.0
+text = "Upgrade"
+
+[connection signal="pressed" from="BackButton" to="Achieve" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Invert" to="." method="_on_invert_pressed"]
+[connection signal="pressed" from="Insurance/UpgradeInsurance" to="Insurance" method="_on_upgrade_insurance_pressed"]

@@ -18,20 +18,23 @@
 [ext_resource type="Texture2D" uid="uid://busup1exm6ph6" path="res://Sprites/Spaces/Heaven/heaven_space_purple.png" id="13_bcsvk"]
 [ext_resource type="Texture2D" uid="uid://cqhoo5ciyed2n" path="res://Sprites/Spaces/Heaven/heaven_space_dark.png" id="14_ncq0l"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c081o"]
-texture = ExtResource("4_5gufq")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4s4c"]
-texture = ExtResource("6_ury4k")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwss3"]
+texture = ExtResource("4_b0c6l")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7jqrv"]
 texture = ExtResource("5_04br7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwss3"]
-texture = ExtResource("4_b0c6l")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4s4c"]
+texture = ExtResource("6_ury4k")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh58t"]
-texture = ExtResource("8_065bd")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c081o"]
+texture = ExtResource("4_5gufq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ct34u"]
+texture = ExtResource("7_fogj8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v61fm"]
+texture = ExtResource("9_461di")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fiv7o"]
 texture = ExtResource("8_7e8s2")
@@ -39,14 +42,14 @@ texture = ExtResource("8_7e8s2")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4b8qu"]
 texture = ExtResource("8_7e8s2")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v61fm"]
-texture = ExtResource("9_461di")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh58t"]
+texture = ExtResource("8_065bd")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ct34u"]
-texture = ExtResource("7_fogj8")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iwfb"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0w2vc"]
 texture = ExtResource("12_7sbpn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvaq7"]
+texture = ExtResource("14_ncq0l")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rua"]
 texture = ExtResource("13_bcsvk")
@@ -54,14 +57,14 @@ texture = ExtResource("13_bcsvk")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0xlg"]
 texture = ExtResource("13_bcsvk")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvaq7"]
-texture = ExtResource("14_ncq0l")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0w2vc"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iwfb"]
 texture = ExtResource("12_7sbpn")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr3a5"]
-texture = ExtResource("12_1gx3u")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_whn2k"]
+texture = ExtResource("7_6a35o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_43nh8"]
+texture = ExtResource("9_b7kgu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27swn"]
 texture = ExtResource("8_71bsy")
@@ -69,11 +72,8 @@ texture = ExtResource("8_71bsy")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_engd3"]
 texture = ExtResource("8_71bsy")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_43nh8"]
-texture = ExtResource("9_b7kgu")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_whn2k"]
-texture = ExtResource("7_6a35o")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr3a5"]
+texture = ExtResource("12_1gx3u")
 
 [node name="TravelSpace" type="Control"]
 layout_mode = 3
@@ -89,11 +89,11 @@ script = ExtResource("3_5ruey")
 layout_mode = 2
 offset_right = 500.0
 offset_bottom = 300.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_c081o")
+theme_override_styles/focus = SubResource("StyleBoxTexture_vwss3")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7jqrv")
 theme_override_styles/hover = SubResource("StyleBoxTexture_w4s4c")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_w4s4c")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_7jqrv")
-theme_override_styles/focus = SubResource("StyleBoxTexture_vwss3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_c081o")
 text = "Rust Space"
 expand_icon = true
 
@@ -102,11 +102,11 @@ layout_mode = 2
 offset_left = 500.0
 offset_right = 1000.0
 offset_bottom = 300.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_eh58t")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ct34u")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v61fm")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fiv7o")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_4b8qu")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_v61fm")
-theme_override_styles/focus = SubResource("StyleBoxTexture_ct34u")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eh58t")
 text = "Void Space"
 expand_icon = true
 
@@ -115,11 +115,11 @@ layout_mode = 2
 offset_top = 300.0
 offset_right = 500.0
 offset_bottom = 600.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_1iwfb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_0w2vc")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_yvaq7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_e3rua")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_d0xlg")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_yvaq7")
-theme_override_styles/focus = SubResource("StyleBoxTexture_0w2vc")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1iwfb")
 text = "Heaven"
 expand_icon = true
 
@@ -129,10 +129,10 @@ offset_left = 500.0
 offset_top = 300.0
 offset_right = 1000.0
 offset_bottom = 600.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_pr3a5")
+theme_override_styles/focus = SubResource("StyleBoxTexture_whn2k")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_43nh8")
 theme_override_styles/hover = SubResource("StyleBoxTexture_27swn")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_engd3")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_43nh8")
-theme_override_styles/focus = SubResource("StyleBoxTexture_whn2k")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pr3a5")
 text = "Hell"
 expand_icon = true

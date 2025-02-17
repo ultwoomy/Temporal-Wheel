@@ -67,6 +67,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var ifFirstFearcatDay : bool
 @export var ifFirstFearcatNight : bool
 @export var ifFirstDrum : bool
+@export var ifFirstDollar : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -158,6 +159,7 @@ func save_prog():
 	loader.ifFirstFearcatDay = ifFirstFearcatDay
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	loader.ifFirstDrum = ifFirstDrum
+	loader.ifFirstDollar = ifFirstDollar
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
 	loader.currentChallenges = currentChallenges
@@ -186,7 +188,6 @@ func resetR0Stats():
 	mushroomData.resetData()
 	ritualData.resetData()
 	sigilData.resetData()
-	dollarData.resetData()
 	sand = 0
 	sandCost = 5
 	sandScaling = 3
@@ -219,6 +220,7 @@ func resetR2Stats():
 	automatorVarsData.resetData()
 	nightChallengeData.resetData()
 	fearcatData.resetData()
+	dollarData.resetData()
 	currentSigilOrder = SigilPurchaseOrder.new()
 	nextSigilOrder = SigilPurchaseOrder.new()
 	
@@ -233,6 +235,7 @@ func resetPermStats():
 	ifFirstFearcatDay = true
 	ifFirstFearcatNight = true
 	ifFirstDrum = true
+	ifFirstDollar = true
 	altSigilSand = false
 	altSigilCity = false
 	altSigilNight = false
@@ -342,36 +345,15 @@ func resetChallengeVars():
 func load_as_normal():
 	loader = loader.load_stats()
 	versNo = loader.versNo
-	if(versNo <= 8):
+	if(versNo <= 12):
 		create_data() # L.B: Needed for reset.
 		resetR0Stats()
 		resetR1Stats()
 		resetPermStats()
 		save_prog()
 		return
-	if(versNo <= 9):
-		loader.atlasData.resetData()
-		versNo += 1
-	if(versNo <= 10):
-		backpackData = BackpackData.new()
-		loader.backpackData = backpackData
-		if loader.ifSecondBoot >= 2:
-			loader.ifSecondBoot = 2
-			loader.ratmail = 0
-		versNo += 1
-	if(versNo <= 11):
-		automatorVarsData = AutomatorVarsData.new()
-		loader.automatorVarsData = automatorVarsData
-		loader.altSigilNight = false
-		versNo += 1
-	if(versNo <= 12):
-		loader.sand = 0
-		loader.sandCost = 5
-		loader.sandScaling = 3
-		versNo += 1
 	if(versNo <= 13):
-		loader.nightChallengeData = NightChallengeData.new()
-		loader.ifFirstZunda = true
+		loader.atlasData.resetData()
 		versNo += 1
 	if(versNo <= 14):
 		loader.fearcatData = FearcatData.new()
@@ -399,6 +381,9 @@ func load_as_normal():
 		loader.ifFirstDrum = true
 		loader.backpackData.drum = false
 		versNo += 1
+	if(versNo <= 18):
+		loader.dollarData = DollarData.new()
+		loader.ifFirstDollar = true
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -438,6 +423,7 @@ func load_as_normal():
 	ifFirstFearcatDay = loader.ifFirstFearcatDay
 	ifFirstFearcatNight = loader.ifFirstFearcatNight
 	ifFirstDrum = loader.ifFirstDrum
+	ifFirstDollar = loader.ifFirstDollar
 	currentSigilOrder = loader.currentSigilOrder
 	nextSigilOrder = loader.nextSigilOrder
 	sand = loader.sand

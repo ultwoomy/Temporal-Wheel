@@ -98,8 +98,7 @@ bg_color = Color(0.386719, 0.0351563, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfcd8"]
 bg_color = Color(0.0507813, 0, 0, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gecd"]
-texture = ExtResource("8_gghju")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3y61m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73tow"]
 texture = ExtResource("9_i3m1l")
@@ -107,7 +106,8 @@ texture = ExtResource("9_i3m1l")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vq5mo"]
 texture = ExtResource("10_sia5t")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3y61m"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8gecd"]
+texture = ExtResource("8_gghju")
 
 [node name="Packsmith" type="Control"]
 layout_mode = 3
@@ -163,10 +163,10 @@ offset_left = 29.0
 offset_top = 395.0
 offset_right = 279.0
 offset_bottom = 545.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_8gecd")
+theme_override_styles/focus = SubResource("StyleBoxTexture_3y61m")
 theme_override_styles/hover = SubResource("StyleBoxTexture_73tow")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_vq5mo")
-theme_override_styles/focus = SubResource("StyleBoxTexture_3y61m")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8gecd")
 
 [node name="SigilDisplay" type="AnimatedSprite2D" parent="."]
 position = Vector2(651, 482)

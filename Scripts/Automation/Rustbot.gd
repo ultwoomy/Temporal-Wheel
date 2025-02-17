@@ -61,4 +61,3 @@ func _up04():
 		elif(GVars.curEmotionBuff == 4):
 		#wrath
 			GVars.rustData.fourth *= 1.2
-

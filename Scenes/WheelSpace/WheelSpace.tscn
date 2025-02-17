@@ -134,14 +134,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1qs7"]
-bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s6ay"]
 bg_color = Color(0.780392, 0.482353, 0.713726, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycf8e"]
-bg_color = Color(1, 0.278431, 0.580392, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1qs7"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
 
 [node name="WheelSpace" type="Control"]
 process_mode = 1
@@ -622,17 +622,17 @@ autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="TutorialBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0s6ay")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycf8e")
-theme_override_styles/focus = SubResource("StyleBoxFlat_ycf8e")
+theme_override_styles/normal = SubResource("StyleBoxFlat_l1qs7")
 
 [node name="ExitContract" type="Container" parent="."]
 layout_mode = 0

@@ -34,7 +34,7 @@ extends Resource
 @export var atlasData : AtlasData
 @export var backpackData : BackpackData
 @export var automatorVarsData : AutomatorVarsData
-@export var nightChallengeData : NightChallengeData
+var nightChallengeData : NightChallengeData
 @export var fearcatData : FearcatData
 @export var currentSigilOrder : SigilPurchaseOrder
 @export var nextSigilOrder : SigilPurchaseOrder

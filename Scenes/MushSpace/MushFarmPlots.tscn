@@ -1,31 +1,31 @@
 [gd_scene load_steps=14 format=3 uid="uid://c4tjf6bsqkmci"]
 
-[ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="1_gyh2b"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmPlots.gd" id="1_h0q7a"]
-[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="2_rjw54"]
-[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="3_eiavh"]
-[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="4_tr6vb"]
-[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="5_xryxw"]
-[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="6_6emtd"]
-[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="6_orvqo"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmPlots.gd" id="1_acrpe"]
+[ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="2_dpkjh"]
+[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="3_t8425"]
+[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="4_fwc3r"]
+[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="5_hm1m0"]
+[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="6_0ljxe"]
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="7_chk1n"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="8_jviyp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_gyh2b")
+"texture": ExtResource("2_dpkjh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_rjw54")
+"texture": ExtResource("3_t8425")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_eiavh")
+"texture": ExtResource("4_fwc3r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_tr6vb")
+"texture": ExtResource("5_hm1m0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_6emtd")
+"texture": ExtResource("6_0ljxe")
 }],
 "loop": true,
 "name": &"default",
@@ -42,7 +42,7 @@ bg_color = Color(0.294118, 0.152941, 0.211765, 1)
 bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
 
 [sub_resource type="Theme" id="Theme_wedbe"]
-default_font = ExtResource("6_orvqo")
+default_font = ExtResource("8_jviyp")
 default_font_size = 16
 /colors/default = Color(0.411765, 0.290196, 0.105882, 1)
 /colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
@@ -61,11 +61,11 @@ Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
 Button/constants/outline_size = 1
 Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
 Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
-Button/styles/normal = ExtResource("5_xryxw")
+Button/styles/normal = ExtResource("7_chk1n")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
 [node name="FarmPlots" type="Node2D"]
-script = ExtResource("1_h0q7a")
+script = ExtResource("1_acrpe")
 
 [node name="Plot1" type="Node2D" parent="."]
 position = Vector2(519, 397)

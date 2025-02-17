@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bm0ka5n0co0sb"]
 
-[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmButtons.gd" id="1_60p74"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmButtons.gd" id="1_hm1iy"]
 
 [node name="FarmButtons" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_60p74")
+script = ExtResource("1_hm1iy")
 
 [node name="PlantButton" type="Button" parent="."]
 layout_mode = 0

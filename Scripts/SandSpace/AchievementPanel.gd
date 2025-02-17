@@ -1,5 +1,5 @@
 extends Panel
-
+signal achievementCompleted
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +28,12 @@ func checkoff(ach):
 	for i in GVars.dollarData.achievementList:
 		if i.achievementName == ach.achievementName:
 			i.filled = true
-			print(i.achievementName)
+			GVars.dollarData.sandDollars += i.rewardDollars
+			GVars.dollarData.achievementsCompleted += 1
+			emit_signal("achievementCompleted")
 		n += 1
 	refresh()
+
+
+func _on_back_button_pressed() -> void:
+	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)

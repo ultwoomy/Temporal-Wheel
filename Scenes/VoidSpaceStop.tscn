@@ -64,14 +64,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oplk6"]
-bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yfho"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6iml"]
 bg_color = Color(0.780392, 0.482353, 0.713726, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yfho"]
-bg_color = Color(1, 0.278431, 0.580392, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oplk6"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jao4j"]
 animations = [{
@@ -90,8 +90,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc7py"]
-texture = ExtResource("2_sapct")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbvxf"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e772k"]
 texture = ExtResource("3_pm404")
@@ -99,7 +98,8 @@ texture = ExtResource("3_pm404")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssjow"]
 texture = ExtResource("4_vh7tf")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbvxf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc7py"]
+texture = ExtResource("2_sapct")
 
 [node name="VoidSpace" type="Control"]
 layout_mode = 3
@@ -168,17 +168,17 @@ autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="TutorialBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_oplk6")
+theme_override_styles/focus = SubResource("StyleBoxFlat_8yfho")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i6iml")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8yfho")
-theme_override_styles/focus = SubResource("StyleBoxFlat_8yfho")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oplk6")
 
 [node name="SigilShop" type="Container" parent="."]
 layout_mode = 0
@@ -341,10 +341,10 @@ offset_top = 221.0
 offset_right = 470.0
 offset_bottom = 521.0
 scale = Vector2(0.5, 0.5)
-theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
+theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
 theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
-theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
 
 [node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers", "thornsbackground")]
 script = ExtResource("26_u4nkd")

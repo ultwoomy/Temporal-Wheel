@@ -14,8 +14,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvkyr"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46820"]
-texture = ExtResource("5_jsaej")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6fey"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sc7sd"]
 texture = ExtResource("6_eu6dj")
@@ -23,7 +22,8 @@ texture = ExtResource("6_eu6dj")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_koago"]
 texture = ExtResource("7_gnir7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6fey"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_46820"]
+texture = ExtResource("5_jsaej")
 
 [node name="RustSpaceOutside" type="Control"]
 layout_mode = 3
@@ -57,10 +57,10 @@ offset_top = 334.0
 offset_right = 552.0
 offset_bottom = 634.0
 scale = Vector2(0.5, 0.5)
-theme_override_styles/normal = SubResource("StyleBoxTexture_46820")
+theme_override_styles/focus = SubResource("StyleBoxTexture_p6fey")
 theme_override_styles/hover = SubResource("StyleBoxTexture_sc7sd")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_koago")
-theme_override_styles/focus = SubResource("StyleBoxTexture_p6fey")
+theme_override_styles/normal = SubResource("StyleBoxTexture_46820")
 
 [node name="EnterAtlasButton" type="Button" parent="."]
 layout_mode = 0

@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Control
 class_name MushStatsPanel
 
 

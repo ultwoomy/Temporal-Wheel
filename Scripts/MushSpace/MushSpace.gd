@@ -3,7 +3,7 @@ class_name MushSpace
 
 
 #@ Onready Variables
-@onready var mushbot : TextureButton = $Mushbot
+@onready var mushbot : Sprite2D = $Mushbot
 
 
 #@ Virtual Methods

@@ -129,15 +129,7 @@ back = NodePath(".")
 [node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]
 position = Vector2(500, 120)
 
-[node name="Mushbot" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 608.0
-offset_top = 284.0
-offset_right = 907.0
-offset_bottom = 583.0
+[node name="Mushbot" type="Sprite2D" parent="."]
+position = Vector2(682, 358)
 scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("18_vjtcm")
-texture_pressed = ExtResource("18_vjtcm")
-texture_hover = ExtResource("18_vjtcm")
-texture_disabled = ExtResource("18_vjtcm")
-texture_focused = ExtResource("18_vjtcm")
+texture = ExtResource("18_vjtcm")

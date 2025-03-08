@@ -1,22 +1,21 @@
-[gd_scene load_steps=30 format=3 uid="uid://1863b6ndwp7b"]
+[gd_scene load_steps=29 format=3 uid="uid://1863b6ndwp7b"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
-[ext_resource type="Script" path="res://Scripts/GameScene.gd" id="3_ixaxr"]
-[ext_resource type="PackedScene" uid="uid://cyt64ilku1qh0" path="res://Scenes/Mushspace/MushInfoPanel.tscn" id="5_8ah1m"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushSpace.gd" id="3_u3r4o"]
+[ext_resource type="PackedScene" uid="uid://cyt64ilku1qh0" path="res://Scenes/MushSpace/MushInfoPanel.tscn" id="5_8ah1m"]
 [ext_resource type="Script" path="res://Scenes/Mushspace/MushRoom.gd" id="8_6p0h5"]
-[ext_resource type="PackedScene" uid="uid://c4tjf6bsqkmci" path="res://Scenes/Mushspace/MushFarmPlots.tscn" id="14_hkk4m"]
+[ext_resource type="PackedScene" uid="uid://c4tjf6bsqkmci" path="res://Scenes/MushSpace/MushFarmPlots.tscn" id="14_hkk4m"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="14_s4quj"]
 [ext_resource type="Texture2D" uid="uid://vugvkm7hi778" path="res://Sprites/MushSpace/mush_int/tile000.png" id="15_o1xpq"]
-[ext_resource type="PackedScene" uid="uid://bm0ka5n0co0sb" path="res://Scenes/Mushspace/MushFarmButtons.tscn" id="15_uj0dq"]
+[ext_resource type="PackedScene" uid="uid://bm0ka5n0co0sb" path="res://Scenes/MushSpace/MushFarmButtons.tscn" id="15_uj0dq"]
 [ext_resource type="Texture2D" uid="uid://dhbmhx6q20m8s" path="res://Sprites/MushSpace/mush_int/tile001.png" id="16_7abjx"]
-[ext_resource type="PackedScene" uid="uid://cyk2uirm08knf" path="res://Scenes/Mushspace/MushLevelInfo.tscn" id="16_w5v43"]
+[ext_resource type="PackedScene" uid="uid://cyk2uirm08knf" path="res://Scenes/MushSpace/MushLevelInfo.tscn" id="16_w5v43"]
 [ext_resource type="Texture2D" uid="uid://0cyy1vlw0jt3" path="res://Sprites/MushSpace/mush_int/tile002.png" id="17_1kx05"]
-[ext_resource type="PackedScene" uid="uid://dxfkfqi78y4b" path="res://Scenes/Mushspace/MushStatsPanel.tscn" id="17_tp034"]
+[ext_resource type="PackedScene" uid="uid://dxfkfqi78y4b" path="res://Scenes/MushSpace/MushStatsPanel.tscn" id="17_tp034"]
 [ext_resource type="Texture2D" uid="uid://cfnivew40265t" path="res://Sprites/MushSpace/mush_back/tile000.png" id="18_qh8f7"]
 [ext_resource type="Texture2D" uid="uid://dx3mg7u7a54ts" path="res://Sprites/Automators/mushbot.png" id="18_vjtcm"]
 [ext_resource type="Texture2D" uid="uid://dvkqb4ocue88v" path="res://Sprites/MushSpace/mush_back/tile001.png" id="19_nsp4i"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MushbotShow.gd" id="19_t7jjl"]
 [ext_resource type="Texture2D" uid="uid://jek5ca32hi06" path="res://Sprites/MushSpace/mush_back/tile002.png" id="20_0jlj8"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="21_dy18d"]
 
@@ -95,7 +94,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_wedbe")
-script = ExtResource("3_ixaxr")
+script = ExtResource("3_u3r4o")
 
 [node name="Background" type="Sprite2D" parent="."]
 self_modulate = Color(0.415686, 0.215686, 0.113725, 1)
@@ -142,4 +141,3 @@ texture_pressed = ExtResource("18_vjtcm")
 texture_hover = ExtResource("18_vjtcm")
 texture_disabled = ExtResource("18_vjtcm")
 texture_focused = ExtResource("18_vjtcm")
-script = ExtResource("19_t7jjl")

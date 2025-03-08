@@ -86,35 +86,35 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("11_dmxtt")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
-[node name="MushInfoPanel" type="Node"]
+[node name="MushInfoPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_d6si8")
 
 [node name="PanelBackground" type="Sprite2D" parent="."]
 self_modulate = Color(0.509804, 0.34902, 0.168627, 1)
-position = Vector2(200, 250)
 scale = Vector2(1, 0.809)
 texture = SubResource("MeshTexture_qg50n")
 
 [node name="CurrentMush" type="AnimatedSprite2D" parent="."]
-position = Vector2(200, 250)
 scale = Vector2(1.548, 1.252)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 
 [node name="LeftArrow" type="Button" parent="."]
-offset_left = 40.0
-offset_top = 230.0
-offset_right = 80.0
-offset_bottom = 270.0
+offset_left = -160.0
+offset_top = -20.0
+offset_right = -120.0
+offset_bottom = 20.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="RightArrow" type="Button" parent="."]
-offset_left = 360.0
-offset_top = 270.0
-offset_right = 400.0
-offset_bottom = 310.0
+offset_left = 160.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 60.0
 rotation = 3.15032
 theme_override_styles/focus = SubResource("StyleBoxTexture_jyrne")
 theme_override_styles/hover = SubResource("StyleBoxTexture_jyrne")
@@ -122,10 +122,10 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="MushDescription" type="Label" parent="."]
-offset_left = 90.0
-offset_top = 350.0
-offset_right = 306.0
-offset_bottom = 440.0
+offset_left = -110.0
+offset_top = 100.0
+offset_right = 106.0
+offset_bottom = 190.0
 theme = SubResource("Theme_qbri3")
 theme_override_font_sizes/font_size = 18
 text = "ihjlkjfnkjz"

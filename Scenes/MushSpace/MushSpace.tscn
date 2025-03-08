@@ -115,6 +115,10 @@ texture = ExtResource("18_vjtcm")
 [node name="FarmPlots" parent="." instance=ExtResource("14_hkk4m")]
 
 [node name="InfoPanel" parent="." instance=ExtResource("5_8ah1m")]
+offset_left = 200.0
+offset_top = 250.0
+offset_right = 200.0
+offset_bottom = 250.0
 
 [node name="FarmButtons" parent="." instance=ExtResource("15_uj0dq")]
 

@@ -120,6 +120,10 @@ offset_right = 200.0
 offset_bottom = 250.0
 
 [node name="FarmButtons" parent="." instance=ExtResource("15_uj0dq")]
+offset_left = 145.0
+offset_top = 440.0
+offset_right = 145.0
+offset_bottom = 440.0
 
 [node name="LevelDisplay" parent="." instance=ExtResource("16_w5v43")]
 script = ExtResource("14_7uisj")

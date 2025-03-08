@@ -22,7 +22,16 @@ class_name MushSpace
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Connect signals
+	if not WheelSpinner.wheelRotationCompleted.is_connected(updateFromPendingRotations):
+		WheelSpinner.wheelRotationCompleted.connect(updateFromPendingRotations)
+	
+	# Firstly, make sure that when the Player enters the scene, time has gone by for the mushrooms to grow.
+	updateFromPendingRotations()
+	
 	_setMushbotVisibility(Automation.contains("Mushbot"))  # If the Player has a Mushbot automator, then show the Mushbot.
+	_displayMushRoomSprite()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,8 +40,28 @@ func _process(delta: float) -> void:
 
 
 #@ Public Methods
+# Reduce the time for mushrooms to grow depending on how many rotations has passed since last visiting MushSpace.
+func updateFromPendingRotations() -> void:
+	# Make sure pendingRotations is not negative.
+	if GVars.mushroomData.pendingRots < 0:
+		GVars.mushroomData.pendingRots = 0
+	
+	# Reduce time for harvest for every plot that has a mushroom growing in it.
+	for mushroomPlotIndex in GVars.mushroomData.current.size():
+		GVars.mushroomData.timeLeft[mushroomPlotIndex] -= GVars.mushroomData.pendingRots
+		if GVars.mushroomData.timeLeft[mushroomPlotIndex] <= 0:
+			GVars.mushroomData.timeLeft[mushroomPlotIndex] = 0
+	GVars.mushroomData.pendingRots = 0
 
 
 #@ Private Methods
 func _setMushbotVisibility(condition : bool) -> void:
 	mushbot.visible = condition
+
+
+# Change the look of the mushroom room (where the farm plots are) depending on the level.
+func _displayMushRoomSprite() -> void:
+	const LEVEL_REQUIREMENT : int = 10
+	
+	if GVars.mushroomData.level >= LEVEL_REQUIREMENT:
+		mushRoom.frame = 2

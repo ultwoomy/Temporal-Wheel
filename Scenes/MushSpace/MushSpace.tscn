@@ -1,10 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://1863b6ndwp7b"]
+[gd_scene load_steps=29 format=3 uid="uid://1863b6ndwp7b"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushSpace.gd" id="3_u3r4o"]
 [ext_resource type="PackedScene" uid="uid://cyt64ilku1qh0" path="res://Scenes/MushSpace/MushInfoPanel.tscn" id="5_8ah1m"]
-[ext_resource type="Script" path="res://Scenes/Mushspace/MushRoom.gd" id="8_6p0h5"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushLevelDisplay.gd" id="14_7uisj"]
 [ext_resource type="PackedScene" uid="uid://c4tjf6bsqkmci" path="res://Scenes/MushSpace/MushFarmPlots.tscn" id="14_hkk4m"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="14_s4quj"]
@@ -106,7 +105,6 @@ centered = false
 position = Vector2(700, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mwljc")
-script = ExtResource("8_6p0h5")
 
 [node name="Mushbot" type="Sprite2D" parent="."]
 position = Vector2(682, 358)

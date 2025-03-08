@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyk2uirm08knf"]
 
 [ext_resource type="Texture2D" uid="uid://bjr4hvvmbbjm8" path="res://Sprites/WheelSpace/greenrect.png" id="1_qoms6"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MMushLevelInfo.gd" id="1_rkmu4"]
+[ext_resource type="Script" path="res://Scenes/MushSpace/MMushLevelInfo.gd" id="1_rkmu4"]
 
 [node name="LevelInfo" type="Control"]
 layout_mode = 3

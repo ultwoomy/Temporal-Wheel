@@ -101,6 +101,7 @@ scale = Vector2(1.548, 1.252)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 
 [node name="LeftArrow" type="Button" parent="."]
+layout_mode = 0
 offset_left = -160.0
 offset_top = -20.0
 offset_right = -120.0
@@ -111,6 +112,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="RightArrow" type="Button" parent="."]
+layout_mode = 0
 offset_left = 160.0
 offset_top = 20.0
 offset_right = 200.0
@@ -122,6 +124,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_ju6m2")
 theme_override_styles/normal = SubResource("StyleBoxTexture_aet8d")
 
 [node name="MushDescription" type="Label" parent="."]
+layout_mode = 0
 offset_left = -110.0
 offset_top = 100.0
 offset_right = 106.0

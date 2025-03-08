@@ -3,7 +3,7 @@ extends Node
 
 
 #@ Public Variables
-var automators : Array[]
+var automators : Array[Automator]
 
 
 #@ Virtual Methods

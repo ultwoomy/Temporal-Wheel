@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxfkfqi78y4b"]
+[gd_scene load_steps=8 format=3 uid="uid://dxfkfqi78y4b"]
 
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="1_qehra"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="2_6e33v"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MMushStatsPanel.gd" id="2_wndg1"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="3_ww7yq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
@@ -41,7 +40,6 @@ Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 self_modulate = Color(0.368627, 0.0941176, 0.0352941, 0.67451)
 scale = Vector2(2, 2.4)
 texture = ExtResource("1_qehra")
-script = ExtResource("2_wndg1")
 
 [node name="StatsDisp" type="Label" parent="."]
 offset_left = -48.0

@@ -2,6 +2,9 @@ extends GameScene
 class_name MushSpace
 
 
+#@ Signals
+
+
 #@ Onready Variables
 @onready var mushbot : Sprite2D = $Mushbot
 

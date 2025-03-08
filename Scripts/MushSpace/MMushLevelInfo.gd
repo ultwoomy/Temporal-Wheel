@@ -9,8 +9,8 @@ extends Control
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_window().get_node("EventManager").mushroom_planted.connect(_update_xp_bar)
-	_update_xp_bar()
+	get_window().get_node("EventManager").mushroom_planted.connect(_updateXpBar)
+	_updateXpBar()
 	mushbotCheck()
 
 
@@ -22,11 +22,11 @@ func _process(_delta: float) -> void:
 #@ Public Methods
 func mushbotCheck():
 	if Automation.contains("Mushbot"):
-		WheelSpinner.wheelRotationCompleted.connect(_update_xp_bar)
+		WheelSpinner.wheelRotationCompleted.connect(_updateXpBar)
 
 
 #@ Private Methods
-func _update_xp_bar() -> void:
+func _updateXpBar() -> void:
 	while(GVars.mushroomData.xp > GVars.mushroomData.xpThresh):
 		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
 		GVars.mushroomData.level += 1

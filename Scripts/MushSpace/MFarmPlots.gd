@@ -1,6 +1,11 @@
 extends Node
 
 
+#@ Signals
+signal mushroomPlanted
+signal mushroomHarvested
+
+
 #@ Onready Variables
 @onready var plot1 : AnimatedSprite2D = $Plot1/MushroomSprite1
 @onready var plot2 : AnimatedSprite2D = $Plot2/MushroomSprite2

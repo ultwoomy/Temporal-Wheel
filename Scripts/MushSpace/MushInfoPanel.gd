@@ -24,7 +24,6 @@ func _ready() -> void:
 		upperbound = 4
 	currentMush.frame = 0
 	desc.size = Vector2(216,90)
-	desc.position = Vector2(90,350)
 	currentFrame = 0
 	_setdesc()
 	

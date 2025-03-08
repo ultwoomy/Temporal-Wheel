@@ -1,6 +1,7 @@
 extends Node
 
-## Components
+
+#@ Onready Variables
 @onready var plot1 : AnimatedSprite2D = $Plot1/MushroomSprite1
 @onready var plot2 : AnimatedSprite2D = $Plot2/MushroomSprite2
 @onready var plot3 : AnimatedSprite2D = $Plot3/MushroomSprite3
@@ -11,7 +12,7 @@ extends Node
 @onready var disp4 : Label = $Plot4/TimeLeftDisp4
 
 
-## Functions
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_update_sprites()
@@ -24,11 +25,15 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-			
+
+
+#@ Public Methods
 func mushbotCheck():
 	if Automation.contains("Mushbot"):
 		WheelSpinner.wheelRotationCompleted.connect(_update_sprites)
 
+
+#@ Virtual Methods
 func _update_sprites():
 	plot1.hide()
 	plot2.hide()

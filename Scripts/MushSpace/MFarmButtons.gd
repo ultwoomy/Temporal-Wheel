@@ -1,14 +1,17 @@
 extends Node
 
-## Components
+#@ Onready Variables
 @onready var plant : Button = $PlantButton
 @onready var harvest : Button = $HarvestButton
 @onready var remove : Button = $DeleteButton
 
+
+#@ Public Variables
 var currentFrame : int
 var rng = RandomNumberGenerator.new()
 
-## Functions
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GVars.mushroomData.fearMushBuff = 1
@@ -18,6 +21,12 @@ func _ready() -> void:
 	remove.pressed.connect(_remove)
 	mushbotCheck()
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	pass
+
+
+#@ Public Methods
 func autoHarvest():
 	var replantOrder = [-1,-1,-1,-1]
 	for n in GVars.mushroomData.current.size():
@@ -26,16 +35,14 @@ func autoHarvest():
 	for n in GVars.mushroomData.current.size():
 		if replantOrder[n] > 0:
 			_plantSpecific(replantOrder[n],n)
-			
+
+
 func mushbotCheck():
 	if Automation.contains("Mushbot"):
 		WheelSpinner.wheelRotationCompleted.connect(autoHarvest)
-		
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 
+#@ Private Methods
 func _plant() -> void:
 	var post10scaling = 1
 	for n in GVars.mushroomData.current.size():

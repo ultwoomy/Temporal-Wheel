@@ -1,6 +1,7 @@
 extends AnimatedSprite2D
 
 
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	updateRots()
@@ -8,10 +9,13 @@ func _ready():
 	if(GVars.mushroomData.level >= 10):
 		frame = 2
 
+
+#@ Public Methods
 func mushbotCheck():
 	if Automation.contains("Mushbot"):
 		WheelSpinner.wheelRotationCompleted.connect(updateRots)
-		
+
+
 func updateRots():
 	if(GVars.mushroomData.pendingRots < 0):
 		GVars.mushroomData.pendingRots = 0

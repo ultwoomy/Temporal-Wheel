@@ -11,7 +11,11 @@ var currentFrame : int
 @onready var desc : Label = $MushDescription
 @onready var left : Button = $LeftArrow
 @onready var right : Button = $RightArrow
+
+
+#@ Public Variables
 var upperbound = 3
+
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.

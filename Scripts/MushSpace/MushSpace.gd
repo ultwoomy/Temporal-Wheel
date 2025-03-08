@@ -6,7 +6,17 @@ class_name MushSpace
 
 
 #@ Onready Variables
+@onready var background : Sprite2D = $Background
+@onready var mushRoom : AnimatedSprite2D = $MushRoom
 @onready var mushbot : Sprite2D = $Mushbot
+
+@onready var farmPlots : MushFarmPlots = $FarmPlots
+@onready var infoPanel : MushInfoPanel = $InfoPanel
+@onready var farmButtons : MushFarmButtons = $FarmButtons
+@onready var levelDisplay : MushLevelDisplay = $LevelDisplay
+@onready var statsPanel : MushStatsPanel = $StatsPanel
+
+@onready var backButton : Button = $BackButton
 
 
 #@ Virtual Methods

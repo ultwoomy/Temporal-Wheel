@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bm0ka5n0co0sb"]
 
-[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmButtons.gd" id="1_hm1iy"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmButtons.gd" id="1_hm1iy"]
 
 [node name="FarmButtons" type="Control"]
 layout_mode = 3

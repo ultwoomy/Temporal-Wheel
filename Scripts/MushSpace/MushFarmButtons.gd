@@ -1,4 +1,6 @@
 extends Node
+class_name MushFarmButtons
+
 
 #@ Onready Variables
 @onready var plant : Button = $PlantButton

@@ -107,6 +107,22 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mwljc")
 script = ExtResource("8_6p0h5")
 
+[node name="Mushbot" type="Sprite2D" parent="."]
+position = Vector2(682, 358)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_vjtcm")
+
+[node name="FarmPlots" parent="." instance=ExtResource("14_hkk4m")]
+
+[node name="InfoPanel" parent="." instance=ExtResource("5_8ah1m")]
+
+[node name="FarmButtons" parent="." instance=ExtResource("15_uj0dq")]
+
+[node name="LevelDisplay" parent="." instance=ExtResource("16_w5v43")]
+
+[node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]
+position = Vector2(500, 120)
+
 [node name="BackButton" type="Button" parent="." node_paths=PackedStringArray("back")]
 layout_mode = 0
 offset_right = 193.0
@@ -117,19 +133,3 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_f2vid")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
 script = ExtResource("21_dy18d")
 back = NodePath(".")
-
-[node name="FarmPlots" parent="." instance=ExtResource("14_hkk4m")]
-
-[node name="MushInfoPanel" parent="." instance=ExtResource("5_8ah1m")]
-
-[node name="FarmButtons" parent="." instance=ExtResource("15_uj0dq")]
-
-[node name="Level" parent="." instance=ExtResource("16_w5v43")]
-
-[node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]
-position = Vector2(500, 120)
-
-[node name="Mushbot" type="Sprite2D" parent="."]
-position = Vector2(682, 358)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("18_vjtcm")

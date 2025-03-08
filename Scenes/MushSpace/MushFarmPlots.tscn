@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://c4tjf6bsqkmci"]
 
-[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmPlots.gd" id="1_acrpe"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmPlots.gd" id="1_acrpe"]
 [ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="2_dpkjh"]
 [ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="3_t8425"]
 [ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="4_fwc3r"]

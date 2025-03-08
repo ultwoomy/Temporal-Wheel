@@ -1,4 +1,5 @@
 extends Sprite2D
+class_name MushStatsPanel
 
 
 #@ Onready Variables

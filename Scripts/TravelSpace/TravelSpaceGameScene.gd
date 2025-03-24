@@ -1,43 +1,44 @@
 extends GameScene
 
-
-#@ Export Variables
+var topWindow = preload("res://Sprites/Spaces/window.png")
+var bottomWinodw = preload("res://Sprites/Spaces/window_alt.png")
 
 
 #@ Onready Variables
-@onready var rustButton : Button = $RustButton
-@onready var voidButton : Button = $VoidButton
-@onready var heavenButton : Button = $HeavenButton
-@onready var hellButton : Button = $HellButton
+@onready var topButtons : Container = $TopButtons
+@onready var bottomButtons : Container = $BottomButtons
+@onready var swapButton : TextureButton = $SwapButton
 
+var showTop = true
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rustButton.pressed.connect(self._button_pressed)
-	voidButton.pressed.connect(self._button_pressed2)
-	heavenButton.pressed.connect(self._button_pressed3)
-	hellButton.pressed.connect(self._button_pressed4)
-	
-	if not GVars.ifheaven:
-		heavenButton.disabled = true
-	if not GVars.ifhell:
-		hellButton.disabled = true
+	bottomButtons.hide()
+	topButtons.show()
+	swapButton.texture_normal = topWindow
+	swapButton.texture_disabled = topWindow
+	swapButton.texture_pressed = bottomWinodw
+	swapButton.texture_hover = bottomWinodw
+	swapButton.texture_focused = bottomWinodw
 
 
-#@ Private Methods
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _button_pressed():
-	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)
-
-
-func _button_pressed2():
-	SceneHandler.changeSceneToFilePath(SceneHandler.VOIDSPACE_STOP)
-
-
-func _button_pressed3():
-	SceneHandler.changeSceneToFilePath(SceneHandler.HELLSPACE)
-
-
-func _button_pressed4():
-	SceneHandler.changeSceneToFilePath(SceneHandler.HELLSPACE)
+func _on_swap_button_pressed() -> void:
+	if showTop:
+		bottomButtons.show()
+		topButtons.hide()
+		swapButton.texture_normal = bottomWinodw
+		swapButton.texture_disabled = bottomWinodw
+		swapButton.texture_pressed = topWindow
+		swapButton.texture_hover = topWindow
+		swapButton.texture_focused = topWindow
+		showTop = false
+	else:
+		bottomButtons.hide()
+		topButtons.show()
+		swapButton.texture_normal = topWindow
+		swapButton.texture_disabled = topWindow
+		swapButton.texture_pressed = bottomWinodw
+		swapButton.texture_hover = bottomWinodw
+		swapButton.texture_focused = bottomWinodw
+		showTop = true

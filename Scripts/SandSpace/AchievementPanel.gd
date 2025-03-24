@@ -28,6 +28,8 @@ func checkoff(ach):
 	for i in GVars.dollarData.achievementList:
 		if i.achievementName == ach.achievementName:
 			i.filled = true
+			if  GVars.soulsData.doubleShroomChanceEnabled:
+				GVars.dollarData.sandDollars += (i.rewardDollars * (GVars.soulsData.doubleShroomChance / 100)) - i.rewardDollars
 			GVars.dollarData.sandDollars += i.rewardDollars
 			GVars.dollarData.achievementsCompleted += 1
 			emit_signal("achievementCompleted")

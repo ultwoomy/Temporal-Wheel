@@ -107,13 +107,16 @@ func _onChallengeButtonPressed() -> void:
 
 # L.B: COPIED AND PASTED CODE - I don't know what this is doing.
 func _awaken():
+	var sandsigil = load("res://Sprites/Sigils/sigil10.png")
 	GVars.Aspinbuff = GVars.mushroomData.ascBuff + GVars.ritualData.ascBuff  # TODO: Replace this with a global variable in Buffs.gd
+	if sandsigil in GVars.sigilData.acquiredSigils:
+		GVars.Aspinbuff += pow(GVars.dollarData.sandDollars,2)
 	GVars.resetR0Stats()
 	GVars.atlasData.hasReset = false
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
 	GVars.ifSecondBoot += 1
 	
-	#If in a layer 2 challenge, resets ascBuff as well and deactivates hell
+	#If going into a layer 2 challenge, reset ascbuff
 	if GVars.doesLayerHaveFutureChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
@@ -123,6 +126,10 @@ func _awaken():
 		GVars.currentSigilOrder = GVars.nextSigilOrder
 	else:
 		GVars.currentSigilOrder = SigilPurchaseOrder.new()
+	if not GVars.ifFirstDollar:
+		GVars.spinData.spin = GVars.dollarData.insuranceAmtSpin
+		GVars.rustData.rust = GVars.dollarData.insuranceAmtRust
+		GVars.spinData.spin = GVars.dollarData.insuranceAmtRot
 	GVars.setChallengeToCurrentChallenges()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 

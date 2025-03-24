@@ -11,10 +11,10 @@ func _process(delta: float) -> void:
 	pass
 
 func updateText():
-	desc.text = "Sand Dollar Count: " + GVars.getScientific(GVars.dollarData.sandDollars) +  "\n\nUpon reset, you will
-	 start out with:\n" + GVars.getScientific(GVars.dollarData.insuranceAmtSpin) + " Momentum
-	\n" + GVars.getScientific(GVars.dollarData.insuranceAmtRot) + " Rotations\n" + GVars.getScientific(GVars.dollarData.insuranceAmtRust) + " Rust\n\nInsurance Upgrade 
-	Cost: " + GVars.getScientific(GVars.dollarData.insuranceCost) + " sand dollars\nGet sand dollars by completing achievements"
+	desc.text = "Sand Dollar Count: " + str(GVars.getScientific(GVars.dollarData.sandDollars)) +  "\n\nUpon reset, you will
+	 start out with:\n" + str(GVars.getScientific(GVars.dollarData.insuranceAmtSpin)) + " Momentum
+	\n" + str(GVars.getScientific(GVars.dollarData.insuranceAmtRot)) + " Rotations\n" + str(GVars.getScientific(GVars.dollarData.insuranceAmtRust)) + " Rust\n\nInsurance Upgrade 
+	Cost: " + str(GVars.getScientific(GVars.dollarData.insuranceCost)) + " sand dollars\nGet sand dollars by completing achievements"
 
 func _on_upgrade_insurance_pressed() -> void:
 	if GVars.dollarData.sandDollars >= GVars.dollarData.insuranceCost:

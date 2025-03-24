@@ -12,19 +12,20 @@ var wheelRotationGainModifier : float = 1.0
 
 #@ Public Methods
 func augmentSigilBuffs() -> void:
-	if GVars.sigilData.curSigilBuff == 1:  # Packsmith sigil
+	reset_buffs()
+	if GVars.sigilData.curSigilBuff == 0:  # Packsmith sigil
 		# Rust gain doubled.
 		rustGainModifier = 2.0
-	elif GVars.sigilData.curSigilBuff == 2:  # Candle sigil
+	elif GVars.sigilData.curSigilBuff == 1:  # Candle sigil
 		# Mushrooms grow 1.5x as fast.
 		mushroomPendingRotationModifier = 1.5
+	elif GVars.sigilData.curSigilBuff == 2:
+		pass
 	elif GVars.sigilData.curSigilBuff == 3:
 		pass
 	elif GVars.sigilData.curSigilBuff == 4:
 		pass
 	elif GVars.sigilData.curSigilBuff == 5:
-		pass
-	elif GVars.sigilData.curSigilBuff == 6:
 		pass
 	else:
 		printerr("ERROR: Sigil buff not implemented!")
@@ -52,3 +53,6 @@ func applyEmotionBuffs() -> void:
 
 
 #@ Private Methods
+func reset_buffs():
+	rustGainModifier = 1
+	mushroomPendingRotationModifier = 1

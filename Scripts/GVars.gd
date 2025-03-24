@@ -275,7 +275,9 @@ func setChallengeToCurrentChallenges() -> void:
 	# Error checking
 	if not challenges:
 		return
-	
+	# Currently duplicates second layer challenges over to the next run if theres one active
+	if doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND):
+		challenges.append(currentChallenges[1])
 	currentChallenges = challenges.duplicate()  # Arrays are passed by reference.
 	challenges.clear()
 	
@@ -341,6 +343,10 @@ func resetChallengeVars():
 	GVars.health = 160
 	GVars.bleedstacks = 0
 	EventManager.emit_signal("refresh_challenges")
+	
+func removeLayer1Challenge():
+	if doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST):
+		currentChallenges[ChallengeData.ChallengeLayer.FIRST] = null
 
 func load_as_normal():
 	loader = loader.load_stats()
@@ -384,6 +390,7 @@ func load_as_normal():
 	if(versNo <= 18):
 		loader.dollarData = DollarData.new()
 		loader.ifFirstDollar = true
+		#versNo += 1
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

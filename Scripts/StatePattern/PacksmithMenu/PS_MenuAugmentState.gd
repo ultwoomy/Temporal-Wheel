@@ -51,7 +51,7 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 	
 	# Exception. Maybe there is a cleaner way?
 	if sigil.sigilName == "hell":
-		if not GVars.currentChallenges:
+		if not GVars.currentChallenges[0]:
 			if not GVars.ifhell:
 				dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
 			else:
@@ -60,7 +60,7 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hellcomplete")
 			GVars.ifhell = true
 			GVars.inContract = false
-			GVars.currentChallenges = []
+			GVars.removeLayer1Challenge()
 		GVars.sigilData.curSigilBuff = 5
 	augmentChanged.emit()
 	GlobalBuffs.augmentSigilBuffs()

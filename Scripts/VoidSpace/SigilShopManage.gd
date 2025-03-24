@@ -23,7 +23,7 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this themeing reused?\nNON FUNCTIONAL",
 				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]
 
-var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purchase Order/DefaultSigilPurchaseOrder.tres")
+var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
 
 
 #@ Onready Variables
@@ -33,6 +33,26 @@ var sigilPurchaseOrder : SigilPurchaseOrder = load("res://Resources/Sigil Purcha
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var sandLabel : Label = $SandLabel
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)
+const packsmithSigil 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
+const candleSigil 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
+const ascensionSigil 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
+const emptinessSigil 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
+const ritualSigil 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
+const hellSigil 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+const sandSigil      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
+const twinsSigil  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
+const undercitySigil 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
+const zundaNightSigil 	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
+var acquiredPacksmithSigil 	: bool = GVars.sigilData.acquiredSigils.has(packsmithSigil)
+var acquiredCandleSigil 	: bool = GVars.sigilData.acquiredSigils.has(candleSigil)
+var acquiredAscensionSigil 	: bool = GVars.sigilData.acquiredSigils.has(ascensionSigil)
+var acquiredEmptinessSigil 	: bool = GVars.sigilData.acquiredSigils.has(emptinessSigil)
+var acquiredRitualSigil 	: bool = GVars.sigilData.acquiredSigils.has(ritualSigil)
+var acquiredHellSigil 		: bool = GVars.sigilData.acquiredSigils.has(hellSigil)
+var acquiredSandSigil		: bool = GVars.sigilData.acquiredSigils.has(sandSigil)
+var acquiredtwinsSigil  	: bool = GVars.sigilData.acquiredSigils.has(twinsSigil)
+var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
+var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
 
 
 #@ Virtual Methods
@@ -56,29 +76,9 @@ func _onButtonPressed():
 	if failbought:
 		reset()
 	else:
-		# Local Variables
-		const packsmithSigil 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
-		const candleSigil 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
-		const ascensionSigil 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
-		const emptinessSigil 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
-		const ritualSigil 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
-		const hellSigil 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
-		const sandSigil      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
-		const twinsSigil  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
-		const undercitySigil 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
-		const zundaNightSigil 	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
-		var acquiredPacksmithSigil 	: bool = GVars.sigilData.acquiredSigils.has(packsmithSigil)
-		var acquiredCandleSigil 	: bool = GVars.sigilData.acquiredSigils.has(candleSigil)
-		var acquiredAscensionSigil 	: bool = GVars.sigilData.acquiredSigils.has(ascensionSigil)
-		var acquiredEmptinessSigil 	: bool = GVars.sigilData.acquiredSigils.has(emptinessSigil)
-		var acquiredRitualSigil 	: bool = GVars.sigilData.acquiredSigils.has(ritualSigil)
-		var acquiredHellSigil 		: bool = GVars.sigilData.acquiredSigils.has(hellSigil)
-		var acquiredSandSigil		: bool = GVars.sigilData.acquiredSigils.has(sandSigil)
-		var acquiredtwinsSigil  	: bool = GVars.sigilData.acquiredSigils.has(twinsSigil)
-		var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
-		var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
 		
 		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
+			#If player is in the sand challenge, include sand cost in the sigil price
 			if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 				if GVars.sand >= GVars.sandCost:
 					GVars.sand -= GVars.sandCost
@@ -89,9 +89,11 @@ func _onButtonPressed():
 				else:
 					checkStupid()
 			else:
+				# If player is not in a challenge, just use the normal costs
 				GVars.spinData.spin -= GVars.sigilData.costSpin
 				GVars.spinData.rotations -= GVars.sigilData.costRot
 				checkCurrentSigil()
+		# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
 		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000
 			checkCurrentSigil()
@@ -125,14 +127,15 @@ func checkCurrentSigil():
 		GVars.sigilData.costRot *=  (indexFromAcquiredSigils + 1)
 	
 	# The size is used to keep track of what sigil to get from purchaseOrder.
+	var addedSigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
-		GVars.sigilData.acquiredSigils.append(sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils])
-		sigilLabel.text = sigilText[sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils].sigilBuffIndex]
+		GVars.sigilData.acquiredSigils.append(addedSigil)
+		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
 	else:
 		sigilLabel.text = "Use it well!"
 	buyButton.text = "Thx"
+	sigilDisplay.frame = addedSigil.sigilBuffIndex
 	sigilDisplay.show()
-	sigilDisplay.frame = indexFromAcquiredSigils
 	failbought = true
 
 

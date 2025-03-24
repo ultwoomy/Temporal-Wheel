@@ -6,7 +6,7 @@ signal sigilSwapped
 
 
 #@ Public Variables
-var sigilPurchaseOrder = GVars.nextSigilOrder
+var sigilPurchaseOrder : SigilPurchaseOrder = GVars.nextSigilOrder
 var packsmithSigil : Sigil = load("res://Resources/Sigil/PacksmithSigil.tres")
 var candleSigil : Sigil = load("res://Resources/Sigil/CandleSigil.tres")
 var emptinessSigil : Sigil = load("res://Resources/Sigil/EmptinessSigil.tres")
@@ -59,7 +59,6 @@ func displaySigils() -> void:
 	for sigil in sigilPurchaseOrder.purchaseOrder:
 		smSigils[index].setSigil(sigil)
 		smSigils[index].show()
-		setDesc(sigil)
 		index += 1
 
 
@@ -67,29 +66,39 @@ func displaySigils() -> void:
 func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
 	if sigil.sigilName == "packsmith" and GVars.soulsData.voidRustChanceEnabled:
 		sigilPurchaseOrder.swap(0,twinsSigil)
-	if sigil.sigilName == "candle" and GVars.soulsData.doubleShroomChanceEnabled:
+		sigil = twinsSigil
+	elif sigil.sigilName == "candle" and GVars.soulsData.doubleShroomChanceEnabled:
 		sigilPurchaseOrder.swap(1, sandSigil)
-	if sigil.sigilName == "emptiness" and GVars.soulsData.doubleRotChanceEnabled:
+		sigil = sandSigil
+	elif sigil.sigilName == "emptiness" and GVars.soulsData.doubleRotChanceEnabled:
 		sigilPurchaseOrder.swap(3, undercitySigil)
-	if sigil.sigilName == "ritual" and GVars.soulsData.spinBaseBuffEnabled:
+		sigil = undercitySigil
+	elif sigil.sigilName == "ritual" and GVars.soulsData.spinBaseBuffEnabled:
 		sigilPurchaseOrder.swap(4, zundaNightSigil)
-	if sigil.sigilName == "sanddollar":
+		sigil = zundaNightSigil
+	elif sigil.sigilName == "sanddollar":
 		sigilPurchaseOrder.swap(1, candleSigil)
-	if sigil.sigilName == "twins":
+		sigil = candleSigil
+	elif sigil.sigilName == "twins":
 		sigilPurchaseOrder.swap(0, packsmithSigil)
-	if sigil.sigilName == "undercity":
+		sigil = packsmithSigil
+	elif sigil.sigilName == "undercity":
 		sigilPurchaseOrder.swap(3, emptinessSigil)
-	if sigil.sigilName == "zundanight":
+		sigil = undercitySigil
+	elif sigil.sigilName == "zundanight":
 		sigilPurchaseOrder.swap(4, ritualSigil)
+		sigil = zundaNightSigil
 	displaySigils()
 	setUpSigils()
+	setDesc(sigil)
+	GVars.nextSigilOrder = sigilPurchaseOrder
 
 func setDesc(sigil):
 	if sigil.sigilName == "packsmith":
 		desc.text = "Current Sigil In Slot: Packsmith\n\nGives access to rust upgrades, automators, and augment bonuses. Most runs should use this.
 		\n\nIt lives in a little hole, augmenting things by wacking them with a tiny hammer. The first version of this game had a little animation, but it was changed since it didn't fit."
 	elif sigil.sigilName == "candle":
-		desc.text = "Current Sigil In Slot: Candle\n\nAllows you to grow mushrooms for buffs and resources. Use when trying to progress very far in a run.\n\n
+		desc.text = "Current Sigil In Slot: Candle\n\nAllows you to grow mushrooms for buffs and resources. Use when trying to progress very far in a long run.\n\n
 		Most creatures in this place have one somewhere, 1 is enough to light any space no matter the size."
 	elif sigil.sigilName == "ascension":
 		desc.text = "Current Sigil In Slot: Ascension\n\nResets some values in exchange for a momentum buff in your next run. Fly into the sea and come back anew.\n\n
@@ -103,7 +112,7 @@ func setDesc(sigil):
 		desc.text = "Current Sigil In Slot: Dinner Hell\n\nUnlocks Hell, and gives you access to the harder challenges. Though if you're seeing this, you've already
 		beaten one.\n\nThis is also a song reference, blue everywhere."
 	elif sigil.sigilName == "sanddollar":
-		desc.text = "Current Sigil In Slot: Sand Dollar\n\nComplete goals for sand dollars, with the option of spending them on free stuff on the start of a reset. Most
+		desc.text = "Current Sigil In Slot: Sand Dollar\n\nComplete goals for sand dollars, with the option of spending them on a headstart on the start of a reset. Most
 		powerful identity buffer in the game.\n\nNot a reference to anything, I just think they look neat."
 	elif sigil.sigilName == "twins":
 		desc.text = "Current Sigil In Slot: The Twins\n\nWhat they will do when I actually code them is a secret...\nThey were originally supposed to be joke characters in the first version of the game but I changed it."
@@ -111,4 +120,4 @@ func setDesc(sigil):
 		desc.text = "Current Sigil In Slot: Undercity\n\nThis one isn't finished, it will probably take the longest among the unfinished content since it's going to be a story focused sigil, and needs a lot of art."
 	elif sigil.sigilName == "zundanight":
 		desc.text = "Current Sigil In Slot: Zunda of The Night\n\nDoesn't do anything right now but will likely either make the game much harder or much easier\n\n
-		This is a reference to a series of Zunda songs where she represents Yoru, man eating beast of the night. I thought it was really cool and stole the idea."
+		This is a reference to a series of Zunda songs where she represents Yoru, man eating beast of the night. I thought it was really cool and smuggled her in."

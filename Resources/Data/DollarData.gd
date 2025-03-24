@@ -40,13 +40,22 @@ func resetData() -> void:
 	temp.setAchievement("Momentum", "This one's not as free. Needs 10000 momentum", "spin", 4, 10000, 1)
 	achievementList.append(temp)
 	temp = Achievement.new()
+	temp.setAchievement("Cheddar", "Get the cheese from the rats", "ratmail", 4, 2, 1)
+	achievementList.append(temp)
+	temp = Achievement.new()
 	temp.setAchievement("A friend?", "Meet Atlas", "ifFirstAtlas", 6, null, 1)
+	achievementList.append(temp)
+	temp = Achievement.new()
+	temp.setAchievement("Just a doll", "Have a current presence of 7 or more", "Aspinbuff", 4, 5, 5)
 	achievementList.append(temp)
 	temp = Achievement.new()
 	temp.setAchievement("A friend??", "Meet Fearcat", "ifFirstFearcatNight", 6, null, 2)
 	achievementList.append(temp)
 	temp = Achievement.new()
 	temp.setAchievement("A friend!", "Meet Warmcat", "ifFirstFearcatDay", 6, null, 2)
+	achievementList.append(temp)
+	temp = Achievement.new()
+	temp.setAchievement("Shards of self", "Have a current presence of 16 or more", "Aspinbuff", 4, 16, 5)
 	achievementList.append(temp)
 	temp = Achievement.new()
 	temp.setAchievement("Faster, Faster!", "A lotta speed. Needs 10000000 momentum", "spin", 4, 10000000, 2)
@@ -56,6 +65,12 @@ func resetData() -> void:
 	achievementList.append(temp)
 	temp = Achievement.new()
 	temp.setAchievement("There's time", "Ooh I got plenny of time. More than 1000 rotations", "rotations", 4, 1000, 2)
+	achievementList.append(temp)
+	temp = Achievement.new()
+	temp.setAchievement("A bit rusty", "Have more than 1000 rust", "rust", 4, 1000, 2)
+	achievementList.append(temp)
+	temp = Achievement.new()
+	temp.setAchievement("Little trinkets", "Get the drum from the rats", "ratmail", 4, 8, 1)
 	achievementList.append(temp)
 	temp = Achievement.new()
 	temp.setAchievement("Mushroom Mushroom", "SNAAAAAKE. Mushroom level of 8 or more.", "mushlevel", 4, 8, 2)
@@ -69,7 +84,7 @@ func resetData() -> void:
 	resetDollar()
 	
 func resetDollar():
-	insuranceCost = 6
+	insuranceCost = 2
 	#additive scaling
 	insuranceScaling = 3
 	insuranceAmtSpin = 100

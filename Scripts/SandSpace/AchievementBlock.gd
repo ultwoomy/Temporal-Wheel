@@ -12,6 +12,15 @@ func _ready():
 		if ach.type == "spin":
 			if ach.checkComparable(GVars.spinData.spin):
 				showTrue()
+		if ach.type == "rust":
+			if ach.checkComparable(GVars.rustData.rust):
+				showTrue()
+		if ach.type == "Aspinbuff":
+			if ach.checkComparable(GVars.Aspinbuff):
+				showTrue()
+		if ach.type == "ratmail":
+			if ach.checkComparable(GVars.ratmail):
+				showTrue()
 		if ach.type == "ifFirstAtlas":
 			if ach.checkComparable(GVars.ifFirstAtlas):
 				showTrue()

@@ -35,8 +35,8 @@ func _on_invert_pressed() -> void:
 		invert.texture_hover = lightSigil
 		invert.texture_focused = lightSigil
 		background.frame = 1
-		achievementPanel.show()
-		insurancePanel.hide()
+		achievementPanel.hide()
+		insurancePanel.show()
 	else:
 		invert.texture_normal = lightSigil
 		invert.texture_disabled = lightSigil
@@ -44,9 +44,12 @@ func _on_invert_pressed() -> void:
 		invert.texture_hover = darkSigil
 		invert.texture_focused = darkSigil
 		background.frame = 0
-		achievementPanel.hide()
-		insurancePanel.show()
+		achievementPanel.show()
+		insurancePanel.hide()
 
 func updateLabel():
-	dollarLabel.text = "Dollar Sigil: "
+	if sandSigil in GVars.sigilData.acquiredSigils:
+		dollarLabel.text = "Dollar Sigil: Active\nMultiply Identity bonus by " + str(GVars.getScientific(pow(GVars.dollarData.sandDollars,2)))
+	else:
+		dollarLabel.text = "Dollar Sigil: Inactive"
 	

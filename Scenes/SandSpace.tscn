@@ -119,6 +119,16 @@ offset_right = 220.0
 offset_bottom = 470.0
 text = "Upgrade"
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 4.0
+offset_right = 698.0
+offset_bottom = 86.0
+text = "Hover over the achievements to view the completion requirements"
+autowrap_mode = 2
+
 [connection signal="pressed" from="BackButton" to="Achieve" method="_on_back_button_pressed"]
 [connection signal="pressed" from="Invert" to="." method="_on_invert_pressed"]
+[connection signal="pressed" from="Invert" to="Insurance" method="updateText"]
 [connection signal="pressed" from="Insurance/UpgradeInsurance" to="Insurance" method="_on_upgrade_insurance_pressed"]

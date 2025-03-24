@@ -33,8 +33,15 @@ func _process(_delta: float) -> void:
 
 #@ Public Methods
 func displayStatistics() -> void:
+	var sandsigil = load("res://Sprites/Sigils/sigil10.png")
 	var textToBeDisplayed : String = "Current Presence: " + str(GVars.getScientific(GVars.Aspinbuff)) + "\n"
-	textToBeDisplayed += "Next Presence: " + str(GVars.getScientific(GVars.mushroomData.ascBuff) + GVars.getScientific(GVars.ritualData.ascBuff)) + "\n\n"
+	textToBeDisplayed += "Next Presence: " + str(GVars.getScientific(GVars.mushroomData.ascBuff))
+	textToBeDisplayed += " + "
+	textToBeDisplayed += str(GVars.getScientific(GVars.ritualData.ascBuff))
+	if sandsigil in GVars.sigilData.acquiredSigils:
+		textToBeDisplayed += " + " + str(GVars.getScientific(pow(GVars.dollarData.sandDollars,2))) + "\n\n"
+	else:
+		textToBeDisplayed += "\n\n"
 	textToBeDisplayed += "The highest presence\nvalue is kept.\n\n"
 	if GVars.sigilData.curSigilBuff == 3:
 		textToBeDisplayed += "You have worn the\nface of myraid emotion."

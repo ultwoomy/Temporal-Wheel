@@ -120,7 +120,11 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "At least they're pretty to look\nat.",
+			"TEXT": "You can now access the desert by\nclicking on the button in the\ncenter of Travel, then on Sandspace.",
+			"FACE": "NORMAL"
+		},
+		{
+			"TEXT": "And once you enter the area once,\nyou won't need this sigil to\nre-enter the area ever again.",
 			"FACE": "NORMAL"
 		}
 	],

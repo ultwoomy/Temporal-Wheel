@@ -27,7 +27,8 @@ func fadeInFromBlack() -> void:
 		frames += 1
 		var colorValue : float = float(frames) / 200.0
 		self.modulate = Color(colorValue, colorValue, colorValue)
-		await get_tree().process_frame  # Wait a frame before continuing while loop again.
+		if get_tree() != null:
+			await get_tree().process_frame  # Wait a frame before continuing while loop again.
 
 
 func playAnimation() -> void:
@@ -38,7 +39,8 @@ func playAnimation() -> void:
 		frames += 1
 		var scaleValue : float = float(frames + 300) / 300.0
 		self.scale = Vector2(scaleValue, scaleValue)
-		await get_tree().process_frame
+		if get_tree() != null:
+			await get_tree().process_frame
 
 
 #@ Private Methods

@@ -5,15 +5,15 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "All sigils are kind of like...\npermissions of sorts.",
+			"TEXT": "All sigils are kind of like... permissions of sorts.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "All this one does is let you\ntalk to me.",
+			"TEXT": "All this one does is let you talk to me.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "...Stop looking disappointed\nit's a high honor!",
+			"TEXT": "...Stop looking disappointed it's a high honor!",
 			"FACE": "TALKING"
 		}
 	],
@@ -23,29 +23,29 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It's sufficient to light any\nspace.",
+			"TEXT": "It's sufficient to light any space.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "You'll likely be able to see\nthings back home you \ncouldn't before",
+			"TEXT": "You'll likely be able to see things back home you  couldn't before",
 			"FACE": "NORMAL"
 		}
 	],
 	"ascension": [
 		{
-			"TEXT": "Looks like a portal or\nsomething.",
+			"TEXT": "Looks like a portal or something.",
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "Not sure exactly what it does\nbut.",
+			"TEXT": "Not sure exactly what it does but.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It's attached itself to your\nwheel",
+			"TEXT": "It's attached itself to your wheel",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Clicking on the wheel should\ntell you more.",
+			"TEXT": "Clicking on the wheel should tell you more.",
 			"FACE": "NORMAL"
 		}
 	],
@@ -55,33 +55,33 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It's honestly kind of creepy\nthat you have this.",
+			"TEXT": "It's honestly kind of creepy that you have this.",
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "Wearing this will amplify an\nemotion of your choice\nto a considerable degree.",
+			"TEXT": "Wearing this will amplify an emotion of your choice to a considerable degree.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "To the point where it persists\nafter death.",
+			"TEXT": "To the point where it persists after death.",
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "...You'd have to wear it\nthough.\nEw.",
+			"TEXT": "...You'd have to wear it though. Ew.",
 			"FACE": "CONCERN"
 		}
 	],
 	"ritual": [
 		{
-			"TEXT": "A relic from hell, the\nritual.",
+			"TEXT": "A relic from hell, the ritual.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It represents a deal with\nthe devil, though the\ndevil happens to be dead.",
+			"TEXT": "It represents a deal with the devil, though the devil happens to be dead.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "So it's peculiar that this\nis working at all.",
+			"TEXT": "So it's peculiar that this is working at all.",
 			"FACE": "NORMAL"
 		},
 		{
@@ -89,24 +89,24 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "The price to be paid is the\nspin speed of your wheel,\nso don't light too many candles.",
+			"TEXT": "The price to be paid is the spin speed of your wheel, so don't light too many candles.",
 			"FACE": "EYEBROW"
 		}
 	],
 	"hell": [
 		{
-			"TEXT": "Oh hey, it's the sigil of a\nblue baby.",
+			"TEXT": "Oh hey, it's the sigil of a blue baby.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Those things are the\nservants of Divine.",
+			"TEXT": "Those things are the servants of Divine.",
 			"FACE": "NORMAL"},
 		{
-			"TEXT": "You could probably use this\nto get into heaven!",
+			"TEXT": "You could probably use this to get into heaven!",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "...actually there's no perm\nfor that in here.\nGuess it's useless then.",
+			"TEXT": "...actually there's no perm for that in here. Guess it's useless then.",
 			"FACE": "EYEBROW"
 		}
 	],
@@ -116,43 +116,43 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Usually you find these near the\nocean, but you can find them\nfossilized everywhere in the sand.",
+			"TEXT": "Usually you find these near the ocean, but you can find them fossilized everywhere in the sand.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "You can now access the desert by\nclicking on the button in the\ncenter of Travel, then on Sandspace.",
+			"TEXT": "You can now access the desert by clicking on the button in the center of Travel, then on Sandspace.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "And once you enter the area once,\nyou won't need this sigil to\nre-enter the area ever again.",
+			"TEXT": "And once you enter the area once, you won't need this sigil to re-enter the area ever again.",
 			"FACE": "NORMAL"
 		}
 	],
 	"zundanight" :[
 		{
-			"TEXT": "That's a picture of the moon with\n夜.",
+			"TEXT": "That's a picture of the moon with 夜.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "The Beast of the Night.\nShe'll eat anything and everything\nShe can get her hands on.",
+			"TEXT": "The Beast of the Night. She'll eat anything and everything She can get her hands on.",
 			"FACE": "CONCERN"
 		},
 		{
-			"TEXT": "Not that either of us\nneed to worry about that.",
+			"TEXT": "Not that either of us need to worry about that.",
 			"FACE": "NORMAL"
 		}
 	],
 	"undercity" :[
 		{
-			"TEXT": "It's said that all the fae\nlive in the undercity.",
+			"TEXT": "It's said that all the fae live in the undercity.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It's quite a nice place.\nI think. I don't know.\nI don't leave this place.",
+			"TEXT": "It's quite a nice place. I think. I don't know. I don't leave this place.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "This let's you get on the\nbus that goes there.",
+			"TEXT": "This let's you get on the bus that goes there.",
 			"FACE": "NORMAL"
 		},
 		{
@@ -162,15 +162,15 @@
 	],
 	"twins" :[
 		{
-			"TEXT": "That's a rose, not the kind\nthat talks though.",
+			"TEXT": "That's a rose, not the kind that talks though.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "My sister's own that one as\na pet. It's very weird.",
+			"TEXT": "My sister's own that one as a pet. It's very weird.",
 			"FACE": "TALKING"
 		},
 		{
-			"TEXT": "They live down below. Be careful\nwhen talking to them",
+			"TEXT": "They live down below. Be careful when talking to them",
 			"FACE": "NORMAL"
 		},
 		{

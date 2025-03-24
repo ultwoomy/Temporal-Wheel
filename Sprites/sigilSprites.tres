@@ -1,8 +1,12 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://cj1arsu3uvlgg"]
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://cj1arsu3uvlgg"]
 
 [ext_resource type="Texture2D" uid="uid://yw4xwsre1f4q" path="res://Sprites/sigils.png" id="1_r7dbm"]
 [ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="2_y30hy"]
 [ext_resource type="Texture2D" uid="uid://7cw64cpkjgv3" path="res://Sprites/Sigils/sigil06.png" id="3_r2137"]
+[ext_resource type="Texture2D" uid="uid://dupfwrc8dt6qn" path="res://Sprites/Sigils/sigil10.png" id="4_mv87g"]
+[ext_resource type="Texture2D" uid="uid://bxmxksutsmrtl" path="res://Sprites/Sigils/sigil11.png" id="5_ni854"]
+[ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="6_oti8w"]
+[ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="7_ugqrg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xpxar"]
 atlas = ExtResource("1_r7dbm")
@@ -40,6 +44,27 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_r2137")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mv87g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mv87g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mv87g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mv87g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ni854")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oti8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ugqrg")
 }],
 "loop": true,
 "name": &"default",

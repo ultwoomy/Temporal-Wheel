@@ -51,6 +51,7 @@ func displaySigils() -> void:
 	for sigil in GVars.sigilData.acquiredSigils:
 		smSigils[index].setSigil(sigil)
 		smSigils[index].show()
+		print(sigil.sigilName)
 		index += 1
 
 

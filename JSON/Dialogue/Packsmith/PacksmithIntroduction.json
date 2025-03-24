@@ -1,24 +1,24 @@
 {
 	"introduction": [
 		{
-			"TEXT": "Huh. Where'd you even get \nthat hammer sigil?",
+			"TEXT": "Huh. Where'd you even get  that hammer sigil?",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Forget it. Since you have my \nsigil I guess I'll offer my \nservices.",
+			"TEXT": "Forget it. Since you have my  sigil I guess I'll offer my  services.",
 			"FACE": "NORMAL",
-			"BUTTON_TEXT": "What\nservices?"
+			"BUTTON_TEXT": "What services?"
 		},
 		{
-			"TEXT": "Blacksmithing. I specialize in \nsigils though. I'll be able\ngive you a little background\non them.",
+			"TEXT": "Blacksmithing. I specialize in  sigils though. I'll be able give you a little background on them.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "I know a bit of strengthening\ntoo, so I can give you buffs\nto your production.",
+			"TEXT": "I know a bit of strengthening too, so I can give you buffs to your production.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Lastly, rust is a currency.\nEven though I live in a place\nsurrounded by rust, I can't\nleave this room.",
+			"TEXT": "Lastly, rust is a currency. Even though I live in a place surrounded by rust, I can't leave this room.",
 			"FACE": "TALKING"
 		},
 		{
@@ -26,23 +26,23 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Bring me some and I'll buff\nsome more things.",
+			"TEXT": "Bring me some and I'll buff some more things.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "You can just grab some from\nthe ground outside and-",
+			"TEXT": "You can just grab some from the ground outside and-",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Unless you don't uh have\narms.",
+			"TEXT": "Unless you don't uh have arms.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "In any case some will get\nshaken off the wheel\nas it spins.",
+			"TEXT": "In any case some will get shaken off the wheel as it spins.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It will happen less often\nas time goes on though.\nBe warned.",
+			"TEXT": "It will happen less often as time goes on though. Be warned.",
 			"FACE": "NORMAL"
 		}
 	]

@@ -8,7 +8,10 @@ var spinGainModifier : float = 1.0
 var rustGainModifier : float = 1.0
 var mushroomPendingRotationModifier : float = 1.0
 var wheelRotationGainModifier : float = 1.0
+var dollarRotationModifier : float = 1.0
 
+func _ready() -> void:
+	EventManager.refresh_augment_buffs.connect(self.augmentSigilBuffs)
 
 #@ Public Methods
 func augmentSigilBuffs() -> void:
@@ -27,6 +30,8 @@ func augmentSigilBuffs() -> void:
 		pass
 	elif GVars.sigilData.curSigilBuff == 5:
 		pass
+	elif GVars.sigilData.curSigilBuff == 9:
+		dollarRotationModifier = 1 + (GVars.dollarData.sandDollars / 25)
 	else:
 		printerr("ERROR: Sigil buff not implemented!")
 		return
@@ -56,3 +61,4 @@ func applyEmotionBuffs() -> void:
 func reset_buffs():
 	rustGainModifier = 1
 	mushroomPendingRotationModifier = 1
+	dollarRotationModifier = 1

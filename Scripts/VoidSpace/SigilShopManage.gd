@@ -18,7 +18,7 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "",
 				  "",
 				  "",
-				  "Sand Dollar!\nPick them and knock them down!\nThey're just along for the ride!\nNON FUNCTIONAL",
+				  "Sand Dollar!\nPick them and knock them down!\nThey're just along for the ride!",
 				  "Zunda Of The Night\nI don't know how I have this!\nIt's probably ok!\nNON FUNCTIONAL",
 				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this themeing reused?\nNON FUNCTIONAL",
 				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]

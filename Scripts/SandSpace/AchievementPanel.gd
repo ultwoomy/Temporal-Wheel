@@ -29,10 +29,11 @@ func checkoff(ach):
 		if i.achievementName == ach.achievementName:
 			i.filled = true
 			if  GVars.soulsData.doubleShroomChanceEnabled:
-				GVars.dollarData.sandDollars += (i.rewardDollars * (GVars.soulsData.doubleShroomChance / 100)) - i.rewardDollars
+				GVars.dollarData.sandDollars += (i.rewardDollars * (1 + (GVars.soulsData.doubleShroomChance / 100))) - i.rewardDollars
 			GVars.dollarData.sandDollars += i.rewardDollars
 			GVars.dollarData.achievementsCompleted += 1
 			emit_signal("achievementCompleted")
+			EventManager.emit_signal("refresh_augment_buffs")
 		n += 1
 	refresh()
 

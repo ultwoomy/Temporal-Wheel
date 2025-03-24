@@ -5,27 +5,27 @@
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "You should get more rust\nfrom that wheel now.",
+			"TEXT": "You should get more rust from that wheel now.",
 			"FACE": "NORMAL"
 		}
 	],
 	"candle": [
 		{
-			"TEXT": "I've increased the strength\n of the light.",
+			"TEXT": "I've increased the strength  of the light.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "The warm glow should make\nshrooms grow twice as\nfast.",
+			"TEXT": "The warm glow should make shrooms grow twice as fast.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Which makes no sense since\nthey like dim lighting.",
+			"TEXT": "Which makes no sense since they like dim lighting.",
 			"FACE": "TALKING"
 		}
 	],
 	"ascension": [
 		{
-			"TEXT": "I don't think I know enough\nto touch this.",
+			"TEXT": "I don't think I know enough to touch this.",
 			"FACE": "NORMAL"
 		},
 		{
@@ -37,7 +37,7 @@
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "It seems to be sucking in\nmomentum at an increased\nrate.",
+			"TEXT": "It seems to be sucking in momentum at an increased rate.",
 			"FACE": "EYEBROW"
 		},
 		{
@@ -47,11 +47,11 @@
 	],
 	"emptiness": [
 		{
-			"TEXT": "I'm not entirely sure what\nyou want me to do with this.",
+			"TEXT": "I'm not entirely sure what you want me to do with this.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "You're going to wear that?\nReally?.",
+			"TEXT": "You're going to wear that? Really?.",
 			"FACE": "EYEBROW"
 		},
 		{
@@ -59,17 +59,17 @@
 			"FACE": "CONCERN"
 		},
 		{
-			"TEXT": "It uh, looks good on you\nI think?",
+			"TEXT": "It uh, looks good on you I think?",
 			"FACE": "NORMAL"
 		}
 	],
 	"ritual": [
 		{
-			"TEXT": "This one's easy, I can just\nreplace one of these\ncandles with one of mine.",
+			"TEXT": "This one's easy, I can just replace one of these candles with one of mine.",
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "Now the first candle you\nLight is free.",
+			"TEXT": "Now the first candle you Light is free.",
 			"FACE": "NORMAL"
 		},
 		{
@@ -79,35 +79,35 @@
 	],
 	"hell": [
 		{
-			"TEXT": "There's a powerful contract\netched into this sigil.",
+			"TEXT": "There's a powerful contract etched into this sigil.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "I can start this contract\nfor you, but be warned.",
+			"TEXT": "I can start this contract for you, but be warned.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "This thing is tough, even\nstarting it requires\neverything you've gotten\nup till now.",
+			"TEXT": "This thing is tough, even starting it requires everything you've gotten up till now.",
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "It will invert the effect\nof your current emotion\nturning it into a debuff.",
+			"TEXT": "It will invert the effect of your current emotion turning it into a debuff.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "What exactly that is...\nEh, you'll find out.",
+			"TEXT": "What exactly that is... Eh, you'll find out.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "This will persist until\nyou regain this sigil\nand augment it again.",
+			"TEXT": "This will persist until you regain this sigil and augment it again.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "The contract will begin\nonce you are born again.",
+			"TEXT": "The contract will begin once you are born again.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "If you don't want to\ndo this yet, just augment\nsomething else before\na reset.",
+			"TEXT": "If you don't want to do this yet, just augment something else before a reset.",
 			"FACE": "NORMAL"
 		},
 		{
@@ -117,57 +117,57 @@
 	],
 	"hellcomplete": [
 		{
-			"TEXT": "There's a powerful contract\netched into this sigil.",
+			"TEXT": "There's a powerful contract etched into this sigil.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "I can start this contract\nfor you, but...",
+			"TEXT": "I can start this contract for you, but...",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "You've already finished it\nsomehow. Huh.",
+			"TEXT": "You've already finished it somehow. Huh.",
 			"FACE": "EYEBROW"
 		},
 		{
-			"TEXT": "Well good for you, you've\nbeen updated.",
+			"TEXT": "Well good for you, you've been updated.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Go ahead and try entering\nhell now.",
+			"TEXT": "Go ahead and try entering hell now.",
 			"FACE": "PEEK"
 		}
 	],
 	"hellalt": [
 		{
-			"TEXT": "I can draw out the power\nof the blue babies and\nmake you immortal!!",
+			"TEXT": "I can draw out the power of the blue babies and make you immortal!!",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "It's not implemented yet so\nI don't have to explain\nnuthin.",
+			"TEXT": "It's not implemented yet so I don't have to explain nuthin.",
 			"FACE": "TALKING"
 		}
 	], 
 	"sanddollar" :[
 		{
-			"TEXT": "Perhaps if you stacked more neatly\nthey'll give each other powers.",
+			"TEXT": "Perhaps if you stacked more neatly they'll give each other powers.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "Sounds like a bit of a stretch,\nbut let me send some roots down\nto help you.",
+			"TEXT": "Sounds like a bit of a stretch, but let me send some roots down to help you.",
 			"FACE": "PEEK"
 		},
 		{
-			"TEXT": "Now you're getting more rotations\nper sond dollar owned.\nWhat a neat looking tower.",
+			"TEXT": "Now you're getting more rotations per sond dollar owned. What a neat looking tower.",
 			"FACE": "NORMAL"
 		}
 	],
 	"zundanight" :[
 		{
-			"TEXT": "I, once again, do not know\nwhat to do with this.",
+			"TEXT": "I, once again, do not know what to do with this.",
 			"FACE": "NORMAL"
 		},
 		{
-			"TEXT": "I don't think the developer\nknows either. You better ask her\ninstead.",
+			"TEXT": "I don't think the developer knows either. You better ask her instead.",
 			"FACE": "CONCERN"
 		}
 	],
@@ -179,7 +179,7 @@
 	],
 	"twins" :[
 		{
-			"TEXT": "I don't want to touch this.\nIt's spiky.",
+			"TEXT": "I don't want to touch this. It's spiky.",
 			"FACE": "NORMAL"
 		}
 	]

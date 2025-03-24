@@ -176,7 +176,7 @@ func _completeRotation() -> void:
 	
 	# Gain rotation.
 	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
-	GVars.spinData.rotations += amount * (GVars.kbityData.kbityLevel + 2 / 2)
+	GVars.spinData.rotations += amount * (GVars.kbityData.kbityLevel + 2 / 2) * GlobalBuffs.dollarRotationModifier
 	
 	# Update fearcat buffs
 	# Find ratio

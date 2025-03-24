@@ -16,6 +16,7 @@ extends Node
 #				EventManager.wheel_spun.emit()
 
 signal wheel_spun
+signal refresh_augment_buffs
 
 signal tutorial_grow_found
 signal tutorial_grow_clicked

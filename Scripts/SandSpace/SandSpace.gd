@@ -50,6 +50,8 @@ func _on_invert_pressed() -> void:
 func updateLabel():
 	if sandSigil in GVars.sigilData.acquiredSigils:
 		dollarLabel.text = "Dollar Sigil: Active\nMultiply Identity bonus by " + str(GVars.getScientific(pow(GVars.dollarData.sandDollars,2)))
+		if GVars.sigilData.curSigilBuff == 9:
+			dollarLabel.text += "\nMultiply Rotation gain by: " + str(GVars.getScientific(GlobalBuffs.dollarRotationModifier))
 	else:
 		dollarLabel.text = "Dollar Sigil: Inactive"
 	

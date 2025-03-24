@@ -147,6 +147,7 @@ offset_left = 103.0
 offset_top = 71.0
 offset_right = 506.0
 offset_bottom = 470.0
+autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 0

@@ -2,6 +2,12 @@ extends Node
 class_name MushFarmButtons
 
 
+#@ Signals
+signal plantButtonPressed
+signal harvestButtonPressed
+signal removeButtonPressed
+
+
 #@ Onready Variables
 @onready var plant : Button = $PlantButton
 @onready var harvest : Button = $HarvestButton
@@ -10,7 +16,7 @@ class_name MushFarmButtons
 
 #@ Public Variables
 var currentFrame : int
-var rng = RandomNumberGenerator.new()
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 
 #@ Virtual Methods
@@ -21,7 +27,7 @@ func _ready() -> void:
 	plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
 	remove.pressed.connect(_remove)
-	mushbotCheck()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -39,11 +45,6 @@ func autoHarvest():
 			_plantSpecific(replantOrder[n],n)
 
 
-func mushbotCheck():
-	if Automation.contains("Mushbot"):
-		WheelSpinner.wheelRotationCompleted.connect(autoHarvest)
-
-
 #@ Private Methods
 func _plant() -> void:
 	var post10scaling = 1
@@ -58,8 +59,9 @@ func _plant() -> void:
 				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
 			get_window().get_node("EventManager").mushroom_planted.emit()
 			break
-			
-func _plantSpecific(mushroomType,plotNo) -> void:
+
+
+func _plantSpecific(mushroomType, plotNo) -> void:
 	var post10scaling = 1
 	if(GVars.mushroomData.current[plotNo] == 0):
 		GVars.mushroomData.current[plotNo] = mushroomType

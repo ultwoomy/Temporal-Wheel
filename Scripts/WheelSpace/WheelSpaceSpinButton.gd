@@ -24,7 +24,7 @@ func _ready():
 	##
 	## save DISABLED FOR TESTING!
 	##
-	_saveLoop()
+	#_saveLoop()
 	# L.B: Since clicking on the button adds to spin, this can be kept here.
 	# ...However, you can also have it in its own script w/ the function
 	# ...OR have the button call the function here.

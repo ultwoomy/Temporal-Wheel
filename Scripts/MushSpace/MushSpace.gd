@@ -16,6 +16,10 @@ class_name MushSpace
 @onready var levelDisplay : MushLevelDisplay = $LevelDisplay
 @onready var statsPanel : MushStatsPanel = $StatsPanel
 
+@onready var planter : MushFarmPlanter = $Planter
+@onready var harvester : MushFarmHarvester = $Harvester
+@onready var remover : MushFarmRemover = $Remover
+
 @onready var backButton : Button = $BackButton
 
 
@@ -25,10 +29,12 @@ func _ready() -> void:
 	# Connect signals
 	if not WheelSpinner.wheelRotationCompleted.is_connected(updateFromPendingRotations):
 		WheelSpinner.wheelRotationCompleted.connect(updateFromPendingRotations)
+	_connectFarmButtonSignals()
 	
 	# Firstly, make sure that when the Player enters the scene, time has gone by for the mushrooms to grow.
 	updateFromPendingRotations()
 	
+	# Show the necessary visuals.
 	_setMushbotVisibility(Automation.contains("Mushbot"))  # If the Player has a Mushbot automator, then show the Mushbot.
 	_displayMushRoomSprite()
 	
@@ -55,6 +61,15 @@ func updateFromPendingRotations() -> void:
 
 
 #@ Private Methods
+func _connectFarmButtonSignals() -> void:
+	if farmButtons:
+		farmButtons.plantButtonPressed
+		farmButtons.harvestButtonPressed
+		farmButtons.removeButtonPressed
+	else:
+		printerr("ERROR: Unable to connect farm button signals! Are there no buttons for controling the mushroom farm?")
+
+
 func _setMushbotVisibility(condition : bool) -> void:
 	mushbot.visible = condition
 

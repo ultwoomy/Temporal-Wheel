@@ -53,7 +53,7 @@ func updateFromPendingRotations() -> void:
 		GVars.mushroomData.pendingRots = 0
 	
 	# Reduce time for harvest for every plot that has a mushroom growing in it.
-	for mushroomPlotIndex in GVars.mushroomData.current.size():
+	for mushroomPlotIndex in GVars.mushroomData.currentFarmPlots.size():
 		GVars.mushroomData.timeLeft[mushroomPlotIndex] -= GVars.mushroomData.pendingRots
 		if GVars.mushroomData.timeLeft[mushroomPlotIndex] <= 0:
 			GVars.mushroomData.timeLeft[mushroomPlotIndex] = 0

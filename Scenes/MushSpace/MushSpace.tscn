@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://1863b6ndwp7b"]
+[gd_scene load_steps=32 format=3 uid="uid://1863b6ndwp7b"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmPlanter.gd" id="19_4tok3"]
 [ext_resource type="Texture2D" uid="uid://dvkqb4ocue88v" path="res://Sprites/MushSpace/mush_back/tile001.png" id="19_nsp4i"]
 [ext_resource type="Texture2D" uid="uid://jek5ca32hi06" path="res://Sprites/MushSpace/mush_back/tile002.png" id="20_0jlj8"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmHarvester.gd" id="20_nayqg"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmRemover.gd" id="21_76ho1"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="21_dy18d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
@@ -150,5 +152,7 @@ back = NodePath(".")
 script = ExtResource("19_4tok3")
 
 [node name="Harvester" type="Node" parent="."]
+script = ExtResource("20_nayqg")
 
 [node name="Remover" type="Node" parent="."]
+script = ExtResource("21_76ho1")

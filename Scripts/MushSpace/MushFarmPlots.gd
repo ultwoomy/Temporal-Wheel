@@ -64,29 +64,32 @@ func _update_sprites():
 	else:
 		timeBasedOnType = 15 * post10scaling
 		timeBasedOnLevel = 10 * post10scaling
-	for n in GVars.mushroomData.current.size():
-		if(GVars.mushroomData.current[n] != 0):
+	for n in GVars.mushroomData.currentFarmPlots.size():
+		if GVars.mushroomData.currentFarmPlots[n]:
 			if(n == 0):
 				plot1.show()
-				plot1.frame = GVars.mushroomData.current[n] - 1
-				plot1.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
+				##
+				## TODO: FIX FRAMES
+				##
+				#plot1.frame = GVars.mushroomData.currentFarmPlots[n] - 1
+				plot1.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.currentFarmPlots[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
 				disp1.show()
 				disp1.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 			if(n == 1):
 				plot2.show()
-				plot2.frame = GVars.mushroomData.current[n] - 1
-				plot2.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
+				#plot2.frame = GVars.mushroomData.currentFarmPlots[n] - 1
+				plot2.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.currentFarmPlots[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
 				disp2.show()
 				disp2.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 			if(n == 2):
 				plot3.show()
-				plot3.frame = GVars.mushroomData.current[n] - 1
-				plot3.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
+				#plot3.frame = GVars.mushroomData.currentFarmPlots[n] - 1
+				plot3.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.currentFarmPlots[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
 				disp3.show()
 				disp3.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))
 			if(n ==3):
 				plot4.show()
-				plot4.frame = GVars.mushroomData.current[n] - 1
-				plot4.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
+				#plot4.frame = GVars.mushroomData.currentFarmPlots[n] - 1
+				plot4.scale = Vector2(1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.currentFarmPlots[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01,1-(GVars.mushroomData.timeLeft[n]/(GVars.mushroomData.current[n]*timeBasedOnType + GVars.mushroomData.level * timeBasedOnLevel)) + 0.01)
 				disp4.show()
 				disp4.text = str(GVars.getScientific(GVars.mushroomData.timeLeft[n]))

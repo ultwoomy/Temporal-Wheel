@@ -77,8 +77,8 @@ func _plantSpecific(mushroomType, plotNo) -> void:
 
 
 func _harvest() -> void:
-	for n in GVars.mushroomData.current.size():
-		if(GVars.mushroomData.current[n] != 0) and (GVars.mushroomData.timeLeft[n] <= 0):
+	for n in GVars.mushroomData.currentFarmPlots.size():
+		if GVars.mushroomData.currentFarmPlots[n] and (GVars.mushroomData.timeLeft[n] <= 0):
 			_harvest_shroom(GVars.mushroomData.current[n])
 			GVars.mushroomData.current[n] = 0
 			GVars.mushroomData.timeLeft[n] = 0
@@ -118,9 +118,9 @@ func _harvest_shroom(val) -> void:
 
 
 func _remove() -> void:
-	for n in GVars.mushroomData.current.size():
-		if(GVars.mushroomData.current[n] != 0):
-			GVars.mushroomData.current[n] = 0
+	for n in GVars.mushroomData.currentFarmPlots.size():
+		if GVars.mushroomData.currentFarmPlots[n]:
+			GVars.mushroomData.currentFarmPlots[n] = null
 			GVars.mushroomData.timeLeft[n] = 0
 	get_window().get_node("EventManager").mushroom_planted.emit()
 

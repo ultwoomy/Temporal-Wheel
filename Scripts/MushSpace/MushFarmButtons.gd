@@ -24,7 +24,7 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 func _ready() -> void:
 	GVars.mushroomData.fearMushBuff = 1
 	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
-	plant.pressed.connect(_plant)
+	#plant.pressed.connect(_plant)
 	harvest.pressed.connect(_harvest)
 	remove.pressed.connect(_remove)
 

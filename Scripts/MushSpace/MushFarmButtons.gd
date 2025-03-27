@@ -46,6 +46,7 @@ func autoHarvest():
 
 
 #@ Private Methods
+'
 func _plant() -> void:
 	var post10scaling = 1
 	for n in GVars.mushroomData.current.size():
@@ -59,6 +60,7 @@ func _plant() -> void:
 				GVars.mushroomData.timeLeft[n] = (currentFrame + 1) * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
 			get_window().get_node("EventManager").mushroom_planted.emit()
 			break
+'
 
 
 func _plantSpecific(mushroomType, plotNo) -> void:

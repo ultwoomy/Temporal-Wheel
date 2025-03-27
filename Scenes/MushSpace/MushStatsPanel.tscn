@@ -46,6 +46,7 @@ anchors_preset = 0
 script = ExtResource("1_yts52")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_left = -100.0
 offset_top = -120.0
 offset_right = 100.0
@@ -53,6 +54,7 @@ offset_bottom = 120.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_fanva")
 
 [node name="StatsDisp" type="Label" parent="."]
+layout_mode = 0
 offset_left = -96.0
 offset_top = -115.2
 offset_bottom = -18.2

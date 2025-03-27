@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MushroomCrop" load_steps=2 format=3 uid="uid://gcp8ui3syg7k"]
+
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushroomCrop.gd" id="1_10sjf"]
+
+[resource]
+script = ExtResource("1_10sjf")
+cropName = "Rot Shroom"
+cropDescription = "They are tight knit friends.
+Gives you rotations."

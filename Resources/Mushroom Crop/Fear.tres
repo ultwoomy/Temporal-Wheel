@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MushroomCrop" load_steps=2 format=3 uid="uid://ddxsio0nss1if"]
+
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushroomCrop.gd" id="1_whi2u"]
+
+[resource]
+script = ExtResource("1_whi2u")
+cropName = "Fear Shroom"
+cropDescription = "Hurry up and grow faster!
+Gives grow speed."

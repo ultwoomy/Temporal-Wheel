@@ -3,6 +3,7 @@ class_name MushFarmRemover
 
 
 #@ Public Methods
+# Clarification: Will remove mushroom crops from the farm plots.
 func remove() -> void:
 	for n in GVars.mushroomData.currentFarmPlots.size():
 		if GVars.mushroomData.currentFarmPlots[n]:

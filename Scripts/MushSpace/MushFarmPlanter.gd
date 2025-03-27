@@ -33,7 +33,7 @@ var mushroomSelected : MushroomCrops = 0  # 0 is the first item in the enumerato
 ## Copied from MushFarmButtons.
 func plant() -> void:
 	var post10scaling = 1
-	for n in GVars.mushroomData.current.size():
+	for n in GVars.mushroomData.currentFarmPlots.size():
 		if not GVars.mushroomData.currentFarmPlots[n]:  # Checks to see if the farm plot does NOT have a crop in it.
 			GVars.mushroomData.currentFarmPlots[n] = _getMushroomCropResource()  # Have the farm plot plant the new selected mushroom crop.
 			if(GVars.mushroomData.level > 10):

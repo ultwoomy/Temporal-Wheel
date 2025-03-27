@@ -9,9 +9,9 @@ signal removeButtonPressed
 
 
 #@ Onready Variables
-@onready var plant : Button = $PlantButton
-@onready var harvest : Button = $HarvestButton
-@onready var remove : Button = $DeleteButton
+@onready var plantButton : Button = $PlantButton
+@onready var harvestButton : Button = $HarvestButton
+@onready var removeButton : Button = $DeleteButton
 
 
 #@ Public Variables
@@ -23,10 +23,15 @@ var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GVars.mushroomData.fearMushBuff = 1
+	
+	# Connect signals
 	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
 	#plant.pressed.connect(_plant)
 	#harvest.pressed.connect(_harvest)
 	#remove.pressed.connect(_remove)
+	plantButton.pressed.connect(plantButtonPressed.emit)
+	harvestButton.pressed.connect(harvestButtonPressed.emit)
+	removeButton.pressed.connect(removeButtonPressed.emit)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

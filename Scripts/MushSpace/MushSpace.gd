@@ -63,9 +63,9 @@ func updateFromPendingRotations() -> void:
 #@ Private Methods
 func _connectFarmButtonSignals() -> void:
 	if farmButtons:
-		farmButtons.plantButtonPressed
-		farmButtons.harvestButtonPressed
-		farmButtons.removeButtonPressed
+		farmButtons.plantButtonPressed.connect(planter.plant)
+		farmButtons.harvestButtonPressed.connect(harvester.harvest)
+		farmButtons.removeButtonPressed.connect(remover.remove)
 	else:
 		printerr("ERROR: Unable to connect farm button signals! Are there no buttons for controling the mushroom farm?")
 

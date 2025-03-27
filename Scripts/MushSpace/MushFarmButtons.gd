@@ -25,8 +25,8 @@ func _ready() -> void:
 	GVars.mushroomData.fearMushBuff = 1
 	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
 	#plant.pressed.connect(_plant)
-	harvest.pressed.connect(_harvest)
-	remove.pressed.connect(_remove)
+	#harvest.pressed.connect(_harvest)
+	#remove.pressed.connect(_remove)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,7 +39,8 @@ func autoHarvest():
 	var replantOrder = [-1,-1,-1,-1]
 	for n in GVars.mushroomData.current.size():
 		replantOrder[n] = GVars.mushroomData.current[n]
-	_harvest()
+	# TODO: HARVEST CALL SHOULD CALL A SIGNAL.
+	#_harvest()
 	for n in GVars.mushroomData.current.size():
 		if replantOrder[n] > 0:
 			_plantSpecific(replantOrder[n],n)
@@ -75,7 +76,7 @@ func _plantSpecific(mushroomType, plotNo) -> void:
 			GVars.mushroomData.timeLeft[plotNo] = mushroomType * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
 		get_window().get_node("EventManager").mushroom_planted.emit()
 
-
+'
 func _harvest() -> void:
 	for n in GVars.mushroomData.currentFarmPlots.size():
 		if GVars.mushroomData.currentFarmPlots[n] and (GVars.mushroomData.timeLeft[n] <= 0):
@@ -115,23 +116,25 @@ func _harvest_shroom(val) -> void:
 		GVars.mushroomData.fearMushBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.fearMushBuff)) * soulsShroomBuff
 		GVars.mushroomData.xp += 125 * EexpBuff * GVars.fearcatData.fearcatBuffDay
 	_check_xp()
+'
 
-
+'
 func _remove() -> void:
 	for n in GVars.mushroomData.currentFarmPlots.size():
 		if GVars.mushroomData.currentFarmPlots[n]:
 			GVars.mushroomData.currentFarmPlots[n] = null
 			GVars.mushroomData.timeLeft[n] = 0
 	get_window().get_node("EventManager").mushroom_planted.emit()
+'
 
-
+'
 # Should probably just use a signal for this one.
 func _check_xp():
 	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):
 		GVars.mushroomData.level += 1
 		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
 		GVars.mushroomData.xpThresh *= GVars.mushroomData.xpThreshMult
-
+'
 
 func _on_mushroom_frame_changed(index) -> void:
 	currentFrame = index

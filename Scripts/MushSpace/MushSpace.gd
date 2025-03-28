@@ -5,6 +5,26 @@ class_name MushSpace
 #@ Signals
 
 
+#@ Enumerators
+enum MushroomCrops {
+	LAMP,  # 0
+	ROT,  # 1
+	WINE,  # 2... etc
+	TWIN,
+	FEAR,
+}
+
+
+#@ Constants
+const MUSHROOM_CROPS_RESOURCES : Dictionary = {
+	MushroomCrops.LAMP: preload("res://Resources/Mushroom Crop/Lamp.tres"),
+	MushroomCrops.ROT: preload("res://Resources/Mushroom Crop/Rot.tres"),
+	MushroomCrops.WINE: preload("res://Resources/Mushroom Crop/Wine.tres"),
+	MushroomCrops.TWIN: preload("res://Resources/Mushroom Crop/Twin.tres"),
+	MushroomCrops.FEAR: preload("res://Resources/Mushroom Crop/Fear.tres"),
+}
+
+
 #@ Onready Variables
 @onready var background : Sprite2D = $Background
 @onready var mushRoom : AnimatedSprite2D = $MushRoom
@@ -21,6 +41,10 @@ class_name MushSpace
 @onready var remover : MushFarmRemover = $Remover
 
 @onready var backButton : Button = $BackButton
+
+
+#@ Public Variables
+var mushroomSelected : MushroomCrops = 0  # 0 is the first item in the enumerator.
 
 
 #@ Virtual Methods
@@ -60,12 +84,24 @@ func updateFromPendingRotations() -> void:
 	GVars.mushroomData.pendingRots = 0
 
 
+func selectNextCrop() -> void:
+	mushroomSelected += 1
+	if mushroomSelected >= MushroomCrops.size():
+		mushroomSelected = 0
+
+
+func selectPreviousCrop() -> void:
+	mushroomSelected -= 1
+	if mushroomSelected < 0:
+		mushroomSelected = MushroomCrops.size() - 1
+
+
 #@ Private Methods
 func _connectFarmButtonSignals() -> void:
 	if farmButtons:
-		farmButtons.plantButtonPressed.connect(planter.plant)
-		farmButtons.harvestButtonPressed.connect(harvester.harvest)
-		farmButtons.removeButtonPressed.connect(remover.remove)
+		farmButtons.plantButton.pressed.connect(planter.plant)
+		farmButtons.harvestButton.pressed.connect(harvester.harvest)
+		farmButtons.removeButton.pressed.connect(remover.remove)
 	else:
 		printerr("ERROR: Unable to connect farm button signals! Are there no buttons for controling the mushroom farm?")
 
@@ -80,3 +116,13 @@ func _displayMushRoomSprite() -> void:
 	
 	if GVars.mushroomData.level >= LEVEL_REQUIREMENT:
 		mushRoom.frame = 2
+
+
+func _getMushroomCropResource() -> MushroomCrop:
+	var newMushroomCrop : MushroomCrop = MUSHROOM_CROPS_RESOURCES.get(mushroomSelected)
+	
+	# Error checking
+	if not newMushroomCrop:
+		printerr("ERROR: Unable to get correct mushroom crop resource for the mushroom crop selected!")
+	
+	return newMushroomCrop

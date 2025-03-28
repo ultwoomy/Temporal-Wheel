@@ -3,29 +3,28 @@ class_name MushFarmButtons
 
 
 #@ Signals
-signal plantButtonPressed
-signal harvestButtonPressed
-signal removeButtonPressed
 
 
 #@ Onready Variables
+# Buttons to be connected by other classes.
 @onready var plantButton : Button = $PlantButton
 @onready var harvestButton : Button = $HarvestButton
 @onready var removeButton : Button = $DeleteButton
 
 
 #@ Public Variables
-var currentFrame : int
+'var currentFrame : int'
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	## L.B: What is this for?
 	GVars.mushroomData.fearMushBuff = 1
 	
 	# Connect signals
-	get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)
+	'get_window().get_node("EventManager").mushroom_frame_changed.connect(_on_mushroom_frame_changed)'
 	#plant.pressed.connect(_plant)
 	#harvest.pressed.connect(_harvest)
 	#remove.pressed.connect(_remove)
@@ -140,6 +139,7 @@ func _check_xp():
 		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
 		GVars.mushroomData.xpThresh *= GVars.mushroomData.xpThreshMult
 '
-
+'
 func _on_mushroom_frame_changed(index) -> void:
 	currentFrame = index
+'

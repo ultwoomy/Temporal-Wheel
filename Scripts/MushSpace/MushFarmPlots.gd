@@ -3,8 +3,6 @@ class_name MushFarmPlots
 
 
 #@ Signals
-signal mushroomPlanted
-signal mushroomHarvested
 
 
 #@ Onready Variables

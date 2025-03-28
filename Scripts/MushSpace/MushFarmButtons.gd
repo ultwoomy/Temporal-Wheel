@@ -28,9 +28,6 @@ func _ready() -> void:
 	#plant.pressed.connect(_plant)
 	#harvest.pressed.connect(_harvest)
 	#remove.pressed.connect(_remove)
-	plantButton.pressed.connect(plantButtonPressed.emit)
-	harvestButton.pressed.connect(harvestButtonPressed.emit)
-	removeButton.pressed.connect(removeButtonPressed.emit)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

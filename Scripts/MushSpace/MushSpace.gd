@@ -54,6 +54,7 @@ func _ready() -> void:
 	if not WheelSpinner.wheelRotationCompleted.is_connected(updateFromPendingRotations):
 		WheelSpinner.wheelRotationCompleted.connect(updateFromPendingRotations)
 	_connectFarmButtonSignals()
+	_connectInfoPanelSignals()
 	
 	# Firstly, make sure that when the Player enters the scene, time has gone by for the mushrooms to grow.
 	updateFromPendingRotations()
@@ -99,11 +100,19 @@ func selectPreviousCrop() -> void:
 #@ Private Methods
 func _connectFarmButtonSignals() -> void:
 	if farmButtons:
-		farmButtons.plantButton.pressed.connect(planter.plant)
+		farmButtons.plantButton.pressed.connect(planter.plant.bind(_getMushroomCropResource()))
 		farmButtons.harvestButton.pressed.connect(harvester.harvest)
 		farmButtons.removeButton.pressed.connect(remover.remove)
 	else:
 		printerr("ERROR: Unable to connect farm button signals! Are there no buttons for controling the mushroom farm?")
+
+
+func _connectInfoPanelSignals() -> void:
+	if infoPanel:
+		infoPanel.leftArrowButton.pressed.connect(selectPreviousCrop)
+		infoPanel.rightArrowButton.pressed.connect(selectNextCrop)
+	else:
+		printerr("ERROR: Unable to connect info panel signals! Does an info panel exist in the scene?")
 
 
 func _setMushbotVisibility(condition : bool) -> void:

@@ -8,9 +8,9 @@ var currentFrame : int
 
 #@ Onready Variables
 @onready var currentMush : AnimatedSprite2D = $CurrentMush
-@onready var desc : Label = $MushDescription
-@onready var left : Button = $LeftArrow
-@onready var right : Button = $RightArrow
+@onready var descriptionLabel : Label = $MushDescription
+@onready var leftArrowButton : Button = $LeftArrow
+@onready var rightArrowButton : Button = $RightArrow
 
 
 #@ Public Variables
@@ -23,13 +23,13 @@ func _ready() -> void:
 	if GVars.fearcatData.hasBow:
 		upperbound = 4
 	currentMush.frame = 0
-	desc.size = Vector2(216,90)
+	descriptionLabel.size = Vector2(216,90)
 	currentFrame = 0
 	_setdesc()
 	
 	# Listeners
-	left.pressed.connect(self._left)
-	right.pressed.connect(self._right)
+	leftArrowButton.pressed.connect(self._left)
+	rightArrowButton.pressed.connect(self._right)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -69,6 +69,6 @@ func _setdesc() -> void:
 	
 	# Check to see if currentFrame is in bounds.
 	if (currentFrame >= 0 && currentFrame < descriptions.size()):
-		desc.text = descriptions[currentFrame]
+		descriptionLabel.text = descriptions[currentFrame]
 	else:
-		desc.text = ""
+		descriptionLabel.text = ""

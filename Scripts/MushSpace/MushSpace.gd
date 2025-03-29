@@ -6,23 +6,9 @@ class_name MushSpace
 
 
 #@ Enumerators
-enum MushroomCrops {
-	LAMP,  # 0
-	ROT,  # 1
-	WINE,  # 2... etc
-	TWIN,
-	FEAR,
-}
 
 
 #@ Constants
-const MUSHROOM_CROPS_RESOURCES : Dictionary = {
-	MushroomCrops.LAMP: preload("res://Resources/Mushroom Crop/Lamp.tres"),
-	MushroomCrops.ROT: preload("res://Resources/Mushroom Crop/Rot.tres"),
-	MushroomCrops.WINE: preload("res://Resources/Mushroom Crop/Wine.tres"),
-	MushroomCrops.TWIN: preload("res://Resources/Mushroom Crop/Twin.tres"),
-	MushroomCrops.FEAR: preload("res://Resources/Mushroom Crop/Fear.tres"),
-}
 
 
 #@ Onready Variables
@@ -36,6 +22,7 @@ const MUSHROOM_CROPS_RESOURCES : Dictionary = {
 @onready var levelDisplay : MushLevelDisplay = $LevelDisplay
 @onready var statsPanel : MushStatsPanel = $StatsPanel
 
+@onready var selector : MushFarmSelector = $Selector
 @onready var planter : MushFarmPlanter = $Planter
 @onready var harvester : MushFarmHarvester = $Harvester
 @onready var remover : MushFarmRemover = $Remover
@@ -44,7 +31,6 @@ const MUSHROOM_CROPS_RESOURCES : Dictionary = {
 
 
 #@ Public Variables
-var mushroomSelected : MushroomCrops = 0  # 0 is the first item in the enumerator.
 
 
 #@ Virtual Methods
@@ -85,22 +71,10 @@ func updateFromPendingRotations() -> void:
 	GVars.mushroomData.pendingRots = 0
 
 
-func selectNextCrop() -> void:
-	mushroomSelected += 1
-	if mushroomSelected >= MushroomCrops.size():
-		mushroomSelected = 0
-
-
-func selectPreviousCrop() -> void:
-	mushroomSelected -= 1
-	if mushroomSelected < 0:
-		mushroomSelected = MushroomCrops.size() - 1
-
-
 #@ Private Methods
 func _connectFarmButtonSignals() -> void:
 	if farmButtons:
-		farmButtons.plantButton.pressed.connect(planter.plant.bind(_getMushroomCropResource()))
+		farmButtons.plantButton.pressed.connect(planter.plant.bind(selector.getMushroomCropResource()))  # Get the selected mushroom crop data from selector, then plant it.
 		farmButtons.harvestButton.pressed.connect(harvester.harvest)
 		farmButtons.removeButton.pressed.connect(remover.remove)
 	else:
@@ -109,8 +83,8 @@ func _connectFarmButtonSignals() -> void:
 
 func _connectInfoPanelSignals() -> void:
 	if infoPanel:
-		infoPanel.leftArrowButton.pressed.connect(selectPreviousCrop)
-		infoPanel.rightArrowButton.pressed.connect(selectNextCrop)
+		infoPanel.leftArrowButton.pressed.connect(selector.selectPreviousCrop)
+		infoPanel.rightArrowButton.pressed.connect(selector.selectNextCrop)
 	else:
 		printerr("ERROR: Unable to connect info panel signals! Does an info panel exist in the scene?")
 
@@ -125,13 +99,3 @@ func _displayMushRoomSprite() -> void:
 	
 	if GVars.mushroomData.level >= LEVEL_REQUIREMENT:
 		mushRoom.frame = 2
-
-
-func _getMushroomCropResource() -> MushroomCrop:
-	var newMushroomCrop : MushroomCrop = MUSHROOM_CROPS_RESOURCES.get(mushroomSelected)
-	
-	# Error checking
-	if not newMushroomCrop:
-		printerr("ERROR: Unable to get correct mushroom crop resource for the mushroom crop selected!")
-	
-	return newMushroomCrop

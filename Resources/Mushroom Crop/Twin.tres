@@ -8,3 +8,4 @@ name = "Twin Shroom"
 description = "Whispers to you.
 Gives you an identity bonus."
 spritePath = "res://Sprites/MushSpace/mushrooms/soulShroom.png"
+baseHarvestTimeMultiplier = 3

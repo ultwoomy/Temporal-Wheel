@@ -50,7 +50,7 @@ func _ready() -> void:
 	_setMushbotVisibility(Automation.contains("Mushbot"))  # If the Player has a Mushbot automator, then show the Mushbot.
 	_displayMushRoomSprite()
 	infoPanel.displayMushroomCropInfo(selector.getMushroomCropResource())
-	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

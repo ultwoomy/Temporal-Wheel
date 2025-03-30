@@ -46,7 +46,7 @@ func _applyCropBuff(crop : MushroomCrop) -> void:
 		Ebuff = log(GVars.spinData.rotations)/log(5) + 0.5
 		EexpBuff = GVars.rustData.fourth
 	
-	match crop.cropName:
+	match crop.name:
 		LAMP_SHROOM_NAME:  # Lamp Shroom: Gives momentum.
 			GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff * soulsShroomBuff
 			GVars.mushroomData.xp += 25 * EexpBuff + GVars.fearcatData.fearcatBuffDay

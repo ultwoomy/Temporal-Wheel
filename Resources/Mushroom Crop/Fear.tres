@@ -8,3 +8,4 @@ name = "Fear Shroom"
 description = "Hurry up and grow faster!
 Gives grow speed."
 spritePath = "res://Sprites/MushSpace/mushrooms/fearshroom.png"
+baseHarvestTimeMultiplier = 5

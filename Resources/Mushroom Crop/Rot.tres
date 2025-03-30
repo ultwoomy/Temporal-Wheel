@@ -8,3 +8,4 @@ name = "Rot Shroom"
 description = "They are tight knit friends.
 Gives you rotations."
 spritePath = "res://Sprites/MushSpace/mushrooms/rotshroom.png"
+baseHarvestTimeMultiplier = 2

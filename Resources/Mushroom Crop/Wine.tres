@@ -8,3 +8,4 @@ name = "Wine Shroom"
 description = "A lot of fun at parties.
 Gives you a momentum bonus."
 spritePath = "res://Sprites/MushSpace/mushrooms/wineshroom.png"
+baseHarvestTimeMultiplier = 4

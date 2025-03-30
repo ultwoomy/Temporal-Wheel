@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MushroomCrop" load_steps=2 format=3 uid="uid://dmsamnefhtbjf"]
+
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushroomCrop.gd" id="1_wexyu"]
+
+[resource]
+script = ExtResource("1_wexyu")
+name = "Wine Shroom"
+description = "A lot of fun at parties.
+Gives you a momentum bonus."
+spritePath = "res://Sprites/MushSpace/mushrooms/wineshroom.png"
+baseHarvestTimeMultiplier = 3

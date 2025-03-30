@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MushroomCrop" load_steps=2 format=3 uid="uid://cjvuvvhep5n6c"]
+
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushroomCrop.gd" id="1_lv02i"]
+
+[resource]
+script = ExtResource("1_lv02i")
+name = "Twin Shroom"
+description = "Whispers to you.
+Gives you an identity bonus."
+spritePath = "res://Sprites/MushSpace/mushrooms/soulShroom.png"
+baseHarvestTimeMultiplier = 4

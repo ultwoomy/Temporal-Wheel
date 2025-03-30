@@ -1,36 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4tjf6bsqkmci"]
+[gd_scene load_steps=9 format=3 uid="uid://c4tjf6bsqkmci"]
 
-[ext_resource type="Script" path="res://Scripts/MushSpace/MFarmPlots.gd" id="1_acrpe"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmPlots.gd" id="1_acrpe"]
 [ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="2_dpkjh"]
-[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="3_t8425"]
-[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="4_fwc3r"]
-[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="5_hm1m0"]
-[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="6_0ljxe"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="7_chk1n"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="8_jviyp"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_dpkjh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_t8425")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_fwc3r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_hm1m0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_0ljxe")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -70,11 +43,11 @@ script = ExtResource("1_acrpe")
 [node name="Plot1" type="Node2D" parent="."]
 position = Vector2(519, 397)
 
-[node name="MushroomSprite1" type="AnimatedSprite2D" parent="Plot1"]
-sprite_frames = SubResource("SpriteFrames_1p1e4")
+[node name="MushroomSprite" type="Sprite2D" parent="Plot1"]
+texture = ExtResource("2_dpkjh")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp1" type="Label" parent="Plot1"]
+[node name="TimeCounter" type="Label" parent="Plot1"]
 offset_left = -25.0
 offset_top = -119.0
 offset_right = 15.0
@@ -86,11 +59,11 @@ horizontal_alignment = 1
 [node name="Plot2" type="Node2D" parent="."]
 position = Vector2(854, 375)
 
-[node name="MushroomSprite2" type="AnimatedSprite2D" parent="Plot2"]
-sprite_frames = SubResource("SpriteFrames_1p1e4")
+[node name="MushroomSprite" type="Sprite2D" parent="Plot2"]
+texture = ExtResource("2_dpkjh")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp2" type="Label" parent="Plot2"]
+[node name="TimeCounter" type="Label" parent="Plot2"]
 offset_left = -22.0
 offset_top = -113.0
 offset_right = 18.0
@@ -102,11 +75,11 @@ horizontal_alignment = 1
 [node name="Plot3" type="Node2D" parent="."]
 position = Vector2(571, 517)
 
-[node name="MushroomSprite3" type="AnimatedSprite2D" parent="Plot3"]
-sprite_frames = SubResource("SpriteFrames_1p1e4")
+[node name="MushroomSprite" type="Sprite2D" parent="Plot3"]
+texture = ExtResource("2_dpkjh")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp3" type="Label" parent="Plot3"]
+[node name="TimeCounter" type="Label" parent="Plot3"]
 offset_left = -28.0
 offset_top = -119.0
 offset_right = 19.0
@@ -118,11 +91,11 @@ horizontal_alignment = 1
 [node name="Plot4" type="Node2D" parent="."]
 position = Vector2(805, 500)
 
-[node name="MushroomSprite4" type="AnimatedSprite2D" parent="Plot4"]
-sprite_frames = SubResource("SpriteFrames_1p1e4")
+[node name="MushroomSprite" type="Sprite2D" parent="Plot4"]
+texture = ExtResource("2_dpkjh")
 offset = Vector2(0, -40)
 
-[node name="TimeLeftDisp4" type="Label" parent="Plot4"]
+[node name="TimeCounter" type="Label" parent="Plot4"]
 offset_left = -21.0
 offset_top = -113.0
 offset_right = 19.0

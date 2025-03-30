@@ -5,7 +5,7 @@ class_name MushroomData
 @export var xp : float
 @export var xpThresh : float
 @export var xpThreshMult : float
-@export var current : Array[int]
+@export var currentFarmPlots : Array[MushroomCrop]
 @export var timeLeft : Array[float]
 @export var pendingRots : float
 @export var spinBuff : float
@@ -20,7 +20,7 @@ func copy(x, resetFear):
 	xp = x.xp
 	xpThresh = x.xpThresh
 	xpThreshMult = x.xpThreshMult
-	current = x.current
+	currentFarmPlots = x.currentFarmPlots
 	timeLeft = x.timeLeft
 	pendingRots = x.pendingRots
 	spinBuff = x.spinBuff
@@ -35,7 +35,7 @@ func resetData() -> void:
 	xp = 0
 	xpThresh = 100
 	xpThreshMult = 1.5
-	current = [0,0,0,0]
+	currentFarmPlots = [null, null, null, null]
 	timeLeft = [0,0,0,0]
 	pendingRots = 0
 	spinBuff = 1

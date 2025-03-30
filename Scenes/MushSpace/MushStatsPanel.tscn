@@ -1,9 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://dxfkfqi78y4b"]
 
-[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="1_qehra"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushStatsPanel.gd" id="1_yts52"]
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="2_6e33v"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MMushStatsPanel.gd" id="2_wndg1"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="3_ww7yq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fanva"]
+bg_color = Color(0.286, 0.145, 0.118, 0.675)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
 bg_color = Color(0.266667, 0.137255, 0.192157, 1)
@@ -37,16 +40,23 @@ Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
 Button/styles/normal = ExtResource("2_6e33v")
 Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
 
-[node name="StatsPanel" type="Sprite2D"]
-self_modulate = Color(0.368627, 0.0941176, 0.0352941, 0.67451)
-scale = Vector2(2, 2.4)
-texture = ExtResource("1_qehra")
-script = ExtResource("2_wndg1")
+[node name="StatsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yts52")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -100.0
+offset_top = -120.0
+offset_right = 100.0
+offset_bottom = 120.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fanva")
 
 [node name="StatsDisp" type="Label" parent="."]
-offset_left = -48.0
-offset_top = -48.0
-offset_right = 48.0
-offset_bottom = 49.0
-scale = Vector2(0.5, 0.417)
+layout_mode = 0
+offset_left = -96.0
+offset_top = -115.2
+offset_bottom = -18.2
+scale = Vector2(1, 1.001)
 theme = SubResource("Theme_wedbe")

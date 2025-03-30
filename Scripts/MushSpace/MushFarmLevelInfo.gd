@@ -1,21 +1,18 @@
 extends Control
 
 
-## Components
+#@ Export Variables
 @export var xpBarProgress : Sprite2D  # L.B: I don't know whether this should be XpBar or XpBarProgress.
 @export var leveldisp : Label
 
 
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_xp_bar()
+	updateXpBar()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func update_xp_bar() -> void:
+#@ Public Methods
+func updateXpBar() -> void:
 	xpBarProgress.scale.x = GVars.mushroomData.xp / GVars.mushroomData.xpThresh * 1.5
 	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))

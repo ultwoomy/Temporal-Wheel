@@ -41,6 +41,7 @@ func _ready() -> void:
 		WheelSpinner.wheelRotationCompleted.connect(updateFromPendingRotations)
 	_connectFarmButtonSignals()
 	_connectInfoPanelSignals()
+	_connectSelectorSignals()
 	
 	# Firstly, make sure that when the Player enters the scene, time has gone by for the mushrooms to grow.
 	updateFromPendingRotations()
@@ -48,6 +49,7 @@ func _ready() -> void:
 	# Show the necessary visuals.
 	_setMushbotVisibility(Automation.contains("Mushbot"))  # If the Player has a Mushbot automator, then show the Mushbot.
 	_displayMushRoomSprite()
+	infoPanel.displayMushroomCropInfo(selector.getMushroomCropResource())
 	
 
 
@@ -73,20 +75,24 @@ func updateFromPendingRotations() -> void:
 
 #@ Private Methods
 func _connectFarmButtonSignals() -> void:
-	if farmButtons:
-		farmButtons.plantButton.pressed.connect(planter.plant.bind(selector.getMushroomCropResource()))  # Get the selected mushroom crop data from selector, then plant it.
-		farmButtons.harvestButton.pressed.connect(harvester.harvest)
-		farmButtons.removeButton.pressed.connect(remover.remove)
-	else:
-		printerr("ERROR: Unable to connect farm button signals! Are there no buttons for controling the mushroom farm?")
+	farmButtons.plantButton.pressed.connect(
+		func _plantMushroomFromResource() -> void:  # Get the selected mushroom crop data from selector, then plant it.
+			return planter.plant(selector.getMushroomCropResource())
+	)
+	farmButtons.harvestButton.pressed.connect(harvester.harvest)
+	farmButtons.removeButton.pressed.connect(remover.remove)
 
 
 func _connectInfoPanelSignals() -> void:
-	if infoPanel:
-		infoPanel.leftArrowButton.pressed.connect(selector.selectPreviousCrop)
-		infoPanel.rightArrowButton.pressed.connect(selector.selectNextCrop)
-	else:
-		printerr("ERROR: Unable to connect info panel signals! Does an info panel exist in the scene?")
+	infoPanel.leftArrowButton.pressed.connect(selector.selectPreviousCrop)
+	infoPanel.rightArrowButton.pressed.connect(selector.selectNextCrop)
+
+
+func _connectSelectorSignals() -> void:
+	selector.mushroomSelectionChanged.connect(
+		func _displayMushroomCropInfo() -> void:
+			return infoPanel.displayMushroomCropInfo(selector.getMushroomCropResource())
+	)
 
 
 func _setMushbotVisibility(condition : bool) -> void:

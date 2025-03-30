@@ -22,14 +22,17 @@ var upperbound = 3
 func _ready() -> void:
 	if GVars.fearcatData.hasBow:
 		upperbound = 4
+	
 	currentMush.frame = 0
-	descriptionLabel.size = Vector2(216,90)
+	#descriptionLabel.size = Vector2(216,90)
 	currentFrame = 0
-	_setdesc()
+	#_setdesc()
 	
 	# Listeners
+	'
 	leftArrowButton.pressed.connect(self._left)
 	rightArrowButton.pressed.connect(self._right)
+	'
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,13 +40,21 @@ func _process(_delta: float) -> void:
 	pass
 
 
+#@ Public Methods
+func displayMushroomCropInfo(mushroomCrop : MushroomCrop) -> void:
+	# Display Name & Description of the selected crop.
+	descriptionLabel.text = mushroomCrop.cropName + "\n"
+	descriptionLabel.text += mushroomCrop.cropDescription
+
+
 #@ Private Methods
+'
 func _left() -> void:
 	if(currentFrame <= 0):
 		currentFrame = upperbound
 	else:
 		currentFrame -= 1
-	_setdesc()
+	#_setdesc()
 	currentMush.frame = currentFrame
 	get_window().get_node("EventManager").mushroom_frame_changed.emit(currentFrame)
 
@@ -53,11 +64,11 @@ func _right() -> void:
 		currentFrame = 0
 	else:
 		currentFrame += 1
-	_setdesc()
+	#_setdesc()
 	currentMush.frame = currentFrame
 	get_window().get_node("EventManager").mushroom_frame_changed.emit(currentFrame)
-
-
+'
+'
 func _setdesc() -> void:
 	var descriptions: Array[String] = [
 		"Lamp Shroom\nLights up your day.\nGives you momentum.",
@@ -72,3 +83,4 @@ func _setdesc() -> void:
 		descriptionLabel.text = descriptions[currentFrame]
 	else:
 		descriptionLabel.text = ""
+'

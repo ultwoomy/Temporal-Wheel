@@ -2,6 +2,10 @@ extends Node
 class_name MushFarmSelector
 
 
+#@ Signals
+signal mushroomSelectionChanged
+
+
 #@ Enumerators
 enum MushroomCrops {
 	LAMP,  # 0
@@ -45,9 +49,11 @@ func selectNextCrop() -> void:
 	_mushroomSelected += 1
 	if _mushroomSelected >= MushroomCrops.size():
 		_mushroomSelected = 0
+	mushroomSelectionChanged.emit()  # Signals that the current mushroom selected has changed.
 
 
 func selectPreviousCrop() -> void:
 	_mushroomSelected -= 1
 	if _mushroomSelected < 0:
 		_mushroomSelected = MushroomCrops.size() - 1
+	mushroomSelectionChanged.emit()  # Signals that the current mushroom selected has changed.

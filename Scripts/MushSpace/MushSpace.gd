@@ -57,6 +57,7 @@ func _ready() -> void:
 	# Other.
 	_activateMushbot()
 
+
 #@ Public Methods
 # Reduce the time for mushrooms to grow depending on how many rotations has passed since last visiting MushSpace.
 func updateFromPendingRotations() -> void:

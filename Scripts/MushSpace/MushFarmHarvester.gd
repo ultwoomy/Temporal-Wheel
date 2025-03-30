@@ -26,8 +26,10 @@ func harvest() -> void:
 			_applyCropBuff(GVars.mushroomData.currentFarmPlots[n])
 			GVars.mushroomData.currentFarmPlots[n] = null
 			GVars.mushroomData.timeLeft[n] = 0
-			#get_window().get_node("EventManager").mushroom_planted.emit()
 	mushroomsHarvested.emit()
+
+
+
 
 
 #@ Private Methods
@@ -66,6 +68,19 @@ func _applyCropBuff(crop : MushroomCrop) -> void:
 			GVars.mushroomData.xp += 125 * EexpBuff * GVars.fearcatData.fearcatBuffDay
 	
 	_checkXp()
+
+
+func _plantSpecific(crop : MushroomCrop, plotNumber : int) -> void:
+	var post10scaling = 1
+	if GVars.mushroomData.current[plotNumber] == 0:
+		GVars.mushroomData.current[plotNumber] = crop
+		if(GVars.mushroomData.level > 10):
+			post10scaling = GVars.mushroomData.level - 8
+		if(GVars.curEmotionBuff == 3):
+			GVars.mushroomData.timeLeft[plotNumber] = (crop.baseHarvestTimeMultiplier * 30 + GVars.mushroomData.level * 5) * post10scaling
+		else:
+			GVars.mushroomData.timeLeft[plotNumber] = (crop.baseHarvestTimeMultiplier * 15 + GVars.mushroomData.level * 10) * post10scaling
+		get_window().get_node("EventManager").mushroom_planted.emit()
 
 
 # Should probably just use a signal for this one.

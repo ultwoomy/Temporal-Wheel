@@ -6,11 +6,13 @@ extends Control
 @export var leveldisp : Label
 
 
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_xp_bar()
+	updateXpBar()
 
 
-func update_xp_bar() -> void:
+#@ Public Methods
+func updateXpBar() -> void:
 	xpBarProgress.scale.x = GVars.mushroomData.xp / GVars.mushroomData.xpThresh * 1.5
 	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))

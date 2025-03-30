@@ -28,10 +28,11 @@ func mushbotCheck():
 
 #@ Private Methods
 func _updateXpBar() -> void:
-	while(GVars.mushroomData.xp > GVars.mushroomData.xpThresh):
+	while GVars.mushroomData.xp > GVars.mushroomData.xpThresh:
 		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
 		GVars.mushroomData.level += 1
-	if(GVars.mushroomData.level >= 10):
+	
+	if GVars.mushroomData.level >= 10:
 		xpBarProgress.modulate = Color(255,0,255)
 	xpBarProgress.scale.x = GVars.mushroomData.xp / GVars.mushroomData.xpThresh * 1.5
 	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))

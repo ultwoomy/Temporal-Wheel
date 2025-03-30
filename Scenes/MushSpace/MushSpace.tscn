@@ -130,6 +130,10 @@ offset_right = 145.0
 offset_bottom = 440.0
 
 [node name="LevelDisplay" parent="." instance=ExtResource("16_w5v43")]
+offset_left = 206.0
+offset_top = 50.0
+offset_right = 206.0
+offset_bottom = 50.0
 script = ExtResource("14_7uisj")
 
 [node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]

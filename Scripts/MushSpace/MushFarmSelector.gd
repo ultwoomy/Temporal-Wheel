@@ -16,11 +16,22 @@ enum MushroomCrops {
 }
 
 
-#@ Constants
+#@ Public Variables
+var unlockedCrops : Array[MushroomCrops] = [  # Default unlocked crops.
+	MushroomCrops.LAMP,
+	MushroomCrops.ROT,
+	MushroomCrops.WINE,
+	MushroomCrops.TWIN,
+]
 
 
 #@ Private Variables
 var _mushroomSelected : MushroomCrops = 0  # 0 is the first item in the enumerator, which will be the current selected mushroom crop.
+
+
+#@ Virtual Methods
+func _ready() -> void:
+	_unlockCrops()
 
 
 #@ Public Methods
@@ -47,7 +58,7 @@ func getMushroomCropResource() -> MushroomCrop:
 
 func selectNextCrop() -> void:
 	_mushroomSelected += 1
-	if _mushroomSelected >= MushroomCrops.size():
+	if _mushroomSelected >= unlockedCrops.size():
 		_mushroomSelected = 0
 	mushroomSelectionChanged.emit()  # Signals that the current mushroom selected has changed.
 
@@ -55,5 +66,12 @@ func selectNextCrop() -> void:
 func selectPreviousCrop() -> void:
 	_mushroomSelected -= 1
 	if _mushroomSelected < 0:
-		_mushroomSelected = MushroomCrops.size() - 1
+		_mushroomSelected = unlockedCrops.size() - 1
 	mushroomSelectionChanged.emit()  # Signals that the current mushroom selected has changed.
+
+
+#@ Private Methods
+func _unlockCrops() -> void:
+	# Unlocks fear mushroom.
+	if GVars.fearcatData.hasBow:
+		unlockedCrops.append(MushroomCrops.FEAR)

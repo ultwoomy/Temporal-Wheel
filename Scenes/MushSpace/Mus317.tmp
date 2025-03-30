@@ -1,0 +1,166 @@
+[gd_scene load_steps=33 format=3 uid="uid://1863b6ndwp7b"]
+
+[ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
+[ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushSpace.gd" id="3_u3r4o"]
+[ext_resource type="PackedScene" uid="uid://cyt64ilku1qh0" path="res://Scenes/MushSpace/MushInfoPanel.tscn" id="5_8ah1m"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushLevelDisplay.gd" id="14_7uisj"]
+[ext_resource type="PackedScene" uid="uid://c4tjf6bsqkmci" path="res://Scenes/MushSpace/MushFarmPlots.tscn" id="14_hkk4m"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="14_s4quj"]
+[ext_resource type="Texture2D" uid="uid://vugvkm7hi778" path="res://Sprites/MushSpace/mush_int/tile000.png" id="15_o1xpq"]
+[ext_resource type="PackedScene" uid="uid://bm0ka5n0co0sb" path="res://Scenes/MushSpace/MushFarmButtons.tscn" id="15_uj0dq"]
+[ext_resource type="Texture2D" uid="uid://dhbmhx6q20m8s" path="res://Sprites/MushSpace/mush_int/tile001.png" id="16_7abjx"]
+[ext_resource type="PackedScene" uid="uid://cyk2uirm08knf" path="res://Scenes/MushSpace/MushLevelInfo.tscn" id="16_w5v43"]
+[ext_resource type="Texture2D" uid="uid://0cyy1vlw0jt3" path="res://Sprites/MushSpace/mush_int/tile002.png" id="17_1kx05"]
+[ext_resource type="PackedScene" uid="uid://dxfkfqi78y4b" path="res://Scenes/MushSpace/MushStatsPanel.tscn" id="17_tp034"]
+[ext_resource type="Texture2D" uid="uid://cfnivew40265t" path="res://Sprites/MushSpace/mush_back/tile000.png" id="18_qh8f7"]
+[ext_resource type="Texture2D" uid="uid://dx3mg7u7a54ts" path="res://Sprites/Automators/mushbot.png" id="18_vjtcm"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmPlanter.gd" id="19_4tok3"]
+[ext_resource type="Texture2D" uid="uid://dvkqb4ocue88v" path="res://Sprites/MushSpace/mush_back/tile001.png" id="19_nsp4i"]
+[ext_resource type="Texture2D" uid="uid://jek5ca32hi06" path="res://Sprites/MushSpace/mush_back/tile002.png" id="20_0jlj8"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmHarvester.gd" id="20_nayqg"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmRemover.gd" id="21_76ho1"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="21_dy18d"]
+[ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmSelector.gd" id="22_vpwsq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
+bg_color = Color(0.266667, 0.137255, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jva3u"]
+bg_color = Color(0.294118, 0.152941, 0.211765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_op2ra"]
+bg_color = Color(0.191729, 0.0922811, 0.132773, 1)
+
+[sub_resource type="Theme" id="Theme_wedbe"]
+default_font = ExtResource("2_8ef3o")
+default_font_size = 16
+/colors/default = Color(0.411765, 0.290196, 0.105882, 1)
+/colors/main_button_color = Color(0.458824, 0.278431, 0.309804, 1)
+Button/colors/bg_color = Color(0.447059, 0.313726, 0.392157, 1)
+Button/colors/font_color = Color(0.576471, 0.945098, 1, 1)
+Button/colors/font_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/font_hover_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_hover_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/font_outline_color = Color(0, 0.8148, 0.668431, 1)
+Button/colors/font_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/colors/icon_focus_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(0.576353, 0.944246, 1, 1)
+Button/colors/icon_normal_color = Color(0.552941, 0.752941, 0.654902, 1)
+Button/colors/icon_pressed_color = Color(0.551658, 0.752098, 0.656091, 1)
+Button/constants/outline_size = 1
+Button/styles/focus = SubResource("StyleBoxFlat_sj4wp")
+Button/styles/hover = SubResource("StyleBoxFlat_jva3u")
+Button/styles/normal = ExtResource("1_s7sal")
+Button/styles/pressed = SubResource("StyleBoxFlat_op2ra")
+
+[sub_resource type="QuadMesh" id="QuadMesh_be3hl"]
+size = Vector2(1000, 600)
+center_offset = Vector3(500, 300, 0)
+
+[sub_resource type="MeshTexture" id="MeshTexture_lb1vt"]
+mesh = SubResource("QuadMesh_be3hl")
+base_texture = ExtResource("14_s4quj")
+image_size = Vector2(1000, 600)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mwljc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_o1xpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7abjx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_1kx05")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lww6x"]
+texture = ExtResource("19_nsp4i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f2vid"]
+texture = ExtResource("20_0jlj8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ja8l"]
+texture = ExtResource("18_qh8f7")
+
+[node name="MushSpace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wedbe")
+script = ExtResource("3_u3r4o")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.415686, 0.215686, 0.113725, 1)
+texture = SubResource("MeshTexture_lb1vt")
+centered = false
+
+[node name="MushRoom" type="AnimatedSprite2D" parent="."]
+position = Vector2(700, 300)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mwljc")
+
+[node name="Mushbot" type="Sprite2D" parent="."]
+position = Vector2(682, 358)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("18_vjtcm")
+
+[node name="FarmPlots" parent="." instance=ExtResource("14_hkk4m")]
+
+[node name="InfoPanel" parent="." instance=ExtResource("5_8ah1m")]
+offset_left = 200.0
+offset_top = 250.0
+offset_right = 200.0
+offset_bottom = 250.0
+
+[node name="FarmButtons" parent="." instance=ExtResource("15_uj0dq")]
+offset_left = 145.0
+offset_top = 440.0
+offset_right = 145.0
+offset_bottom = 440.0
+
+[node name="LevelDisplay" parent="." instance=ExtResource("16_w5v43")]
+offset_left = 206.0
+offset_top = 50.0
+offset_right = 206.0
+offset_bottom = 50.0
+script = ExtResource("14_7uisj")
+
+[node name="StatsPanel" parent="." instance=ExtResource("17_tp034")]
+offset_left = 500.0
+offset_top = 120.0
+offset_right = 500.0
+offset_bottom = 120.0
+
+[node name="BackButton" type="Button" parent="." node_paths=PackedStringArray("back")]
+layout_mode = 0
+offset_right = 193.0
+offset_bottom = 146.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_lww6x")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lww6x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_f2vid")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
+script = ExtResource("21_dy18d")
+back = NodePath(".")
+
+[node name="Selector" type="Node" parent="."]
+script = ExtResource("22_vpwsq")
+
+[node name="Planter" type="Node" parent="."]
+script = ExtResource("19_4tok3")
+
+[node name="Harvester" type="Node" parent="."]
+script = ExtResource("20_nayqg")
+
+[node name="Remover" type="Node" parent="."]
+script = ExtResource("21_76ho1")

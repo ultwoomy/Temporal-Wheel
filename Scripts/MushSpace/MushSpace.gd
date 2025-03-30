@@ -50,7 +50,9 @@ func _ready() -> void:
 	_setMushbotVisibility(Automation.contains("Mushbot"))  # If the Player has a Mushbot automator, then show the Mushbot.
 	_displayMushRoomSprite()
 	infoPanel.displayMushroomCropInfo(selector.getMushroomCropResource())
-
+	
+	# Other.
+	_activateMushbot()
 
 #@ Public Methods
 # Reduce the time for mushrooms to grow depending on how many rotations has passed since last visiting MushSpace.
@@ -99,3 +101,10 @@ func _displayMushRoomSprite() -> void:
 	
 	if GVars.mushroomData.level >= LEVEL_REQUIREMENT:
 		mushRoom.frame = 2
+
+
+func _activateMushbot() -> void:
+	if Automation.contains("Mushbot"):
+		WheelSpinner.wheelRotationCompleted.connect(farmPlots.updateSprites)
+		WheelSpinner.wheelRotationCompleted.connect(levelDisplay.updateXpBar)
+		WheelSpinner.wheelRotationCompleted.connect(statsPanel.updateStats)

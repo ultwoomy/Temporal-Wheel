@@ -10,9 +10,8 @@ class_name MushLevelDisplay
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_window().get_node("EventManager").mushroom_planted.connect(_updateXpBar)
-	_updateXpBar()
-	mushbotCheck()
+	get_window().get_node("EventManager").mushroom_planted.connect(updateXpBar)
+	updateXpBar()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,13 +20,10 @@ func _process(_delta: float) -> void:
 
 
 #@ Public Methods
-func mushbotCheck():
-	if Automation.contains("Mushbot"):
-		WheelSpinner.wheelRotationCompleted.connect(_updateXpBar)
 
 
 #@ Private Methods
-func _updateXpBar() -> void:
+func updateXpBar() -> void:
 	while GVars.mushroomData.xp > GVars.mushroomData.xpThresh:
 		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh
 		GVars.mushroomData.level += 1

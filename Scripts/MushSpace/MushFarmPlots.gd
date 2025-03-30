@@ -12,11 +12,10 @@ class_name MushFarmPlots
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_updateSprites()
-	mushbotCheck()
+	updateSprites()
 	
-	get_window().get_node("EventManager").mushroom_planted.connect(_updateSprites)
-	get_window().get_node("EventManager").mushroom_harvested.connect(_updateSprites)
+	get_window().get_node("EventManager").mushroom_planted.connect(updateSprites)
+	get_window().get_node("EventManager").mushroom_harvested.connect(updateSprites)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,13 +24,10 @@ func _process(_delta: float) -> void:
 
 
 #@ Public Methods
-func mushbotCheck():
-	if Automation.contains("Mushbot"):
-		WheelSpinner.wheelRotationCompleted.connect(_updateSprites)
 
 
 #@ Private Methods
-func _updateSprites():
+func updateSprites():
 	## TODO: Inefficient. Example: If plot has a mushroom, then it will unhide. Once this is called again, it will hide and then unhide. No need to continue hiding.
 	for plot in plots:
 		plot.hide()

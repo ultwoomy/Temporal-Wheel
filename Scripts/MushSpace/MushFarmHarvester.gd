@@ -27,6 +27,7 @@ func harvest() -> void:
 			GVars.mushroomData.currentFarmPlots[n] = null
 			GVars.mushroomData.timeLeft[n] = 0
 			get_window().get_node("EventManager").mushroom_planted.emit()
+	mushroomsHarvested.emit()
 
 
 #@ Private Methods

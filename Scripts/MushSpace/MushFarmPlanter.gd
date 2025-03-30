@@ -27,9 +27,9 @@ func plant(crop : MushroomCrop) -> void:
 			
 			# Reset harvest time and set it depending on mushroom crop and level.
 			if(GVars.curEmotionBuff == 3):
-				GVars.mushroomData.timeLeft[n] = crop.baseHarvestTimeMultiplier * 30 * post10scaling + GVars.mushroomData.level * 5 * post10scaling  ## mushroomSelected DEPENDS ON MushroomCrops enum 
+				GVars.mushroomData.timeLeft[n] = (crop.baseHarvestTimeMultiplier * 30 + GVars.mushroomData.level * 5) * post10scaling
 			else:
-				GVars.mushroomData.timeLeft[n] = crop.baseHarvestTimeMultiplier * 15 * post10scaling + GVars.mushroomData.level * 10 * post10scaling
+				GVars.mushroomData.timeLeft[n] = (crop.baseHarvestTimeMultiplier * 15 + GVars.mushroomData.level * 10) * post10scaling
 			
 			get_window().get_node("EventManager").mushroom_planted.emit()
 			mushroomPlanted.emit()

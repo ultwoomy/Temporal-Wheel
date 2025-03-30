@@ -26,7 +26,7 @@ var unlockedCrops : Array[MushroomCrops] = [  # Default unlocked crops.
 
 
 #@ Private Variables
-var _mushroomSelected : MushroomCrops = 0  # 0 is the first item in the enumerator, which will be the current selected mushroom crop.
+var _mushroomIndexSelected : int = 0  # 0 is the first item in the enumerator, which will be the current selected mushroom crop.
 
 
 #@ Virtual Methods
@@ -47,7 +47,7 @@ func getMushroomCropResource() -> MushroomCrop:
 	}
 	
 	# Get the mushroom crop that matches _mushroomSelected.
-	var newMushroomCrop : MushroomCrop = MUSHROOM_CROPS_RESOURCES.get(_mushroomSelected)
+	var newMushroomCrop : MushroomCrop = MUSHROOM_CROPS_RESOURCES.get(unlockedCrops[_mushroomIndexSelected])
 	
 	# Error checking
 	if not newMushroomCrop:
@@ -57,16 +57,16 @@ func getMushroomCropResource() -> MushroomCrop:
 
 
 func selectNextCrop() -> void:
-	_mushroomSelected += 1
-	if _mushroomSelected >= unlockedCrops.size():
-		_mushroomSelected = 0
+	_mushroomIndexSelected += 1
+	if _mushroomIndexSelected >= unlockedCrops.size():
+		_mushroomIndexSelected = 0
 	mushroomSelectionChanged.emit()  # Signals that the current mushroom selected has changed.
 
 
 func selectPreviousCrop() -> void:
-	_mushroomSelected -= 1
-	if _mushroomSelected < 0:
-		_mushroomSelected = unlockedCrops.size() - 1
+	_mushroomIndexSelected -= 1
+	if _mushroomIndexSelected < 0:
+		_mushroomIndexSelected = unlockedCrops.size() - 1
 	mushroomSelectionChanged.emit()  # Signals that the current mushroom selected has changed.
 
 

@@ -52,12 +52,6 @@ func _ready() -> void:
 	infoPanel.displayMushroomCropInfo(selector.getMushroomCropResource())
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 #@ Public Methods
 # Reduce the time for mushrooms to grow depending on how many rotations has passed since last visiting MushSpace.
 func updateFromPendingRotations() -> void:

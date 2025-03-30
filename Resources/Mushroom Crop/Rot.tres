@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_10sjf")
-cropName = "Rot Shroom"
-cropDescription = "They are tight knit friends.
+name = "Rot Shroom"
+description = "They are tight knit friends.
 Gives you rotations."
+spritePath = "res://Sprites/MushSpace/mushrooms/rotshroom.png"

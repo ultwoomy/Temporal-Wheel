@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_lv02i")
-cropName = "Twin Shroom"
-cropDescription = "Whispers to you.
-Gives you a identity bonus."
+name = "Twin Shroom"
+description = "Whispers to you.
+Gives you an identity bonus."
+spritePath = "res://Sprites/MushSpace/mushrooms/soulShroom.png"

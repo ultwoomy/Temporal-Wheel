@@ -96,7 +96,12 @@ self_modulate = Color(0.509804, 0.34902, 0.168627, 1)
 scale = Vector2(1, 0.809)
 texture = SubResource("MeshTexture_qg50n")
 
-[node name="CurrentMush" type="AnimatedSprite2D" parent="."]
+[node name="MushroomSprite" type="Sprite2D" parent="."]
+scale = Vector2(1.548, 1.252)
+texture = ExtResource("3_ce78u")
+
+[node name="MushroomSprite2" type="AnimatedSprite2D" parent="."]
+visible = false
 scale = Vector2(1.548, 1.252)
 sprite_frames = SubResource("SpriteFrames_1p1e4")
 

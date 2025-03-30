@@ -7,7 +7,7 @@ var currentFrame : int
 
 
 #@ Onready Variables
-@onready var currentMush : AnimatedSprite2D = $CurrentMush
+@onready var mushroomSprite : Sprite2D = $MushroomSprite
 @onready var descriptionLabel : Label = $MushDescription
 @onready var leftArrowButton : Button = $LeftArrow
 @onready var rightArrowButton : Button = $RightArrow
@@ -23,7 +23,7 @@ func _ready() -> void:
 	if GVars.fearcatData.hasBow:
 		upperbound = 4
 	
-	currentMush.frame = 0
+	#currentMush.frame = 0
 	#descriptionLabel.size = Vector2(216,90)
 	currentFrame = 0
 	#_setdesc()
@@ -42,9 +42,12 @@ func _process(_delta: float) -> void:
 
 #@ Public Methods
 func displayMushroomCropInfo(mushroomCrop : MushroomCrop) -> void:
-	# Display Name & Description of the selected crop.
-	descriptionLabel.text = mushroomCrop.cropName + "\n"
-	descriptionLabel.text += mushroomCrop.cropDescription
+	# Display mushroom sprite.
+	mushroomSprite.texture = load(mushroomCrop.spritePath)
+	
+	# Display name and description of the selected crop.
+	descriptionLabel.text = mushroomCrop.name + "\n"
+	descriptionLabel.text += mushroomCrop.description
 
 
 #@ Private Methods

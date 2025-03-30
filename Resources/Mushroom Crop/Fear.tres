@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_whi2u")
-cropName = "Fear Shroom"
-cropDescription = "Hurry up and grow faster!
+name = "Fear Shroom"
+description = "Hurry up and grow faster!
 Gives grow speed."
+spritePath = "res://Sprites/MushSpace/mushrooms/fearshroom.png"

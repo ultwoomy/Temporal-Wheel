@@ -48,7 +48,7 @@ func _onButtonPressed() -> void:
 		densityDisplay.text = str(GVars.spinData.density)
 		GVars.spinData.curSucDens = 0
 		GVars.spinData.densTresh += 1
-		GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4 + 1)
+		GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
 		playPriority = 2
 	if playPriority == 1:
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()

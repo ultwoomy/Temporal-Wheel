@@ -22,6 +22,7 @@ const PRE_ASCENSIONSPACE : String = "res://Scenes/PreAscSpace.tscn"
 const NIGHT_LOSS : String = "res://Scenes/NighChallengeLoss.tscn"
 const FEARCAT : String = "res://Scenes/Fearcat.tscn"
 const SANDSPACE : String = "res://Scenes/SandSpace.tscn"
+const HUNTSPACE : String = "res://Scenes/HuntSpace.tscn"
 const MUSICBOX : String = "res://Scenes/MusicBox.tscn"
 
 

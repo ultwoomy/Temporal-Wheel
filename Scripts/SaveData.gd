@@ -30,6 +30,7 @@ extends Resource
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var soulsData : SoulsData
+@export var huntData : HuntData
 @export var kbityData : KbityData
 @export var atlasData : AtlasData
 @export var backpackData : BackpackData
@@ -50,6 +51,7 @@ var nightChallengeData : NightChallengeData
 @export var ifFirstFearcatNight : bool
 @export var ifFirstDrum : bool
 @export var ifFirstDollar : bool
+@export var ifFirstHunt : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -87,6 +89,8 @@ func _init():
 	sigilData.resetData()
 	soulsData = SoulsData.new()
 	soulsData.resetData()
+	huntData = HuntData.new()
+	huntData.resetData()
 	dollarData = DollarData.new()
 	dollarData.resetData()
 	atlasData = AtlasData.new()
@@ -121,6 +125,7 @@ func _init():
 	ifFirstFearcatNight = true
 	ifFirstDrum = true
 	ifFirstDollar = true
+	ifFirstHunt = true
 	kbityProgSpin = 0
 	kbityProgRot = 0
 	altSigilSand = false
@@ -130,7 +135,7 @@ func _init():
 	souls = 0
 	musicvol = -6.0
 	sfxvol = -6.0
-	versNo = 18
+	versNo = 19
 	ratmail = 0
 	challengesFailed = 0
 	currentTrack = 0

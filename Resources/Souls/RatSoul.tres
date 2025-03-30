@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://cmp3ukyx11h2l"]
+
+[ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_gt83r"]
+
+[resource]
+script = ExtResource("1_gt83r")
+length = 200.0
+cost = 60000.0
+xp = 20.0
+soulvalue = 1.5
+name = "ratsoul"
+minimumLevel = 0

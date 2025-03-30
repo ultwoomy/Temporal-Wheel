@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://bcyn4hgewwgg0"]
+
+[ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_2l3t6"]
+
+[resource]
+script = ExtResource("1_2l3t6")
+length = 1.0
+cost = 1e+06
+xp = 50.0
+soulvalue = 5.0
+name = "happysoul"
+minimumLevel = 2

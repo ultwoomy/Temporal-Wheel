@@ -46,6 +46,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var hellChallengeInit : bool
 @export var inContract : bool
 @export var soulsData : SoulsData
+@export var huntData : HuntData
 @export var atlasData : AtlasData
 @export var kbityData : KbityData
 @export var backpackData : BackpackData
@@ -68,6 +69,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var ifFirstFearcatNight : bool
 @export var ifFirstDrum : bool
 @export var ifFirstDollar : bool
+@export var ifFirstHunt : bool
 @export var altSigilSand : bool
 @export var altSigilCity : bool
 @export var altSigilNight : bool
@@ -106,6 +108,8 @@ func create_data():
 		spinData = SpinData.new()
 	if(!soulsData):
 		soulsData = SoulsData.new()
+	if(!huntData):
+		huntData = HuntData.new()
 	if(!dollarData):
 		dollarData = DollarData.new()
 	if(!atlasData):
@@ -131,6 +135,7 @@ func save_prog():
 	loader.curEmotionBuff = curEmotionBuff
 	loader.sigilData = sigilData
 	loader.soulsData = soulsData
+	loader.huntData = huntData
 	loader.dollarData = dollarData
 	loader.atlasData = atlasData
 	loader.kbityData = kbityData
@@ -160,6 +165,7 @@ func save_prog():
 	loader.ifFirstFearcatNight = ifFirstFearcatNight
 	loader.ifFirstDrum = ifFirstDrum
 	loader.ifFirstDollar = ifFirstDollar
+	loader.ifFirstHunt = ifFirstHunt
 	# TODO: Add challenges variable to loader
 	loader.challenges = challenges
 	loader.currentChallenges = currentChallenges
@@ -213,6 +219,7 @@ func resetR2Stats():
 		challenges[1] = null
 	hellChallengeInit = false
 	soulsData.resetData()
+	huntData.resetData()
 	kbityData.resetData()
 	atlasData.resetData()
 	backpackData.resetData()
@@ -236,13 +243,14 @@ func resetPermStats():
 	ifFirstFearcatNight = true
 	ifFirstDrum = true
 	ifFirstDollar = true
+	ifFirstHunt = true
 	altSigilSand = false
 	altSigilCity = false
 	altSigilNight = false
 	altSigilTwins = false
 	musicvol = -12.0
 	sfxvol = -12.0
-	versNo = 18
+	versNo = 19
 	ratmail = 0
 	currentTrack = 0
 
@@ -390,7 +398,10 @@ func load_as_normal():
 	if(versNo <= 18):
 		loader.dollarData = DollarData.new()
 		loader.ifFirstDollar = true
-		#versNo += 1
+		versNo += 1
+	if(versNo <= 19):
+		loader.ifFirstHunt = true
+		loader.huntData = HuntData.new()
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData
@@ -412,6 +423,7 @@ func load_as_normal():
 	sfxvol = loader.sfxvol
 	ifFirstHell = loader.ifFirstHell
 	soulsData = loader.soulsData
+	huntData = loader.huntData
 #	hellChallengeLayer2 = loader.hellChallengeLayer2
 	hellChallengeInit = loader.hellChallengeInit
 	ratmail = loader.ratmail

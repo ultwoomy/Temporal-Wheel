@@ -1,12 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://cyt64ilku1qh0"]
+[gd_scene load_steps=18 format=3 uid="uid://cyt64ilku1qh0"]
 
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushInfoPanel.gd" id="1_d6si8"]
 [ext_resource type="Texture2D" uid="uid://bxo8x4wpvdbv8" path="res://Sprites/WheelSpace/small_grey_square.png" id="2_a6byg"]
 [ext_resource type="Texture2D" uid="uid://bh02wg850ob26" path="res://Sprites/MushSpace/mushrooms/spinShroom.png" id="3_ce78u"]
-[ext_resource type="Texture2D" uid="uid://cepqy2cfoh2bj" path="res://Sprites/MushSpace/mushrooms/rotshroom.png" id="4_rkq56"]
-[ext_resource type="Texture2D" uid="uid://xo4rkrl5iige" path="res://Sprites/MushSpace/mushrooms/wineshroom.png" id="5_ybacx"]
-[ext_resource type="Texture2D" uid="uid://q1444xfej128" path="res://Sprites/MushSpace/mushrooms/soulShroom.png" id="6_m8d84"]
-[ext_resource type="Texture2D" uid="uid://c23l6s4i512av" path="res://Sprites/MushSpace/mushrooms/fearshroom.png" id="7_hof5k"]
 [ext_resource type="Texture2D" uid="uid://uxulea4e2u08" path="res://Sprites/MushSpace/mush_arrow/tile001.png" id="8_ot4n1"]
 [ext_resource type="Texture2D" uid="uid://cmbeapxj7u63d" path="res://Sprites/MushSpace/mush_arrow/tile002.png" id="9_x6cv6"]
 [ext_resource type="Texture2D" uid="uid://4rf4hct70qhg" path="res://Sprites/MushSpace/mush_arrow/tile000.png" id="10_2sjlb"]
@@ -21,29 +17,6 @@ center_offset = Vector3(100, 100, 0)
 mesh = SubResource("QuadMesh_ljwbl")
 base_texture = ExtResource("2_a6byg")
 image_size = Vector2(200, 200)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1p1e4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ce78u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_rkq56")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ybacx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_m8d84")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_hof5k")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jyrne"]
 texture = ExtResource("8_ot4n1")
@@ -99,11 +72,6 @@ texture = SubResource("MeshTexture_qg50n")
 [node name="MushroomSprite" type="Sprite2D" parent="."]
 scale = Vector2(1.548, 1.252)
 texture = ExtResource("3_ce78u")
-
-[node name="MushroomSprite2" type="AnimatedSprite2D" parent="."]
-visible = false
-scale = Vector2(1.548, 1.252)
-sprite_frames = SubResource("SpriteFrames_1p1e4")
 
 [node name="LeftArrow" type="Button" parent="."]
 layout_mode = 0

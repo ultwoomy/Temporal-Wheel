@@ -26,7 +26,7 @@ func harvest() -> void:
 			_applyCropBuff(GVars.mushroomData.currentFarmPlots[n])
 			GVars.mushroomData.currentFarmPlots[n] = null
 			GVars.mushroomData.timeLeft[n] = 0
-			get_window().get_node("EventManager").mushroom_planted.emit()
+			#get_window().get_node("EventManager").mushroom_planted.emit()
 	mushroomsHarvested.emit()
 
 
@@ -65,11 +65,11 @@ func _applyCropBuff(crop : MushroomCrop) -> void:
 			GVars.mushroomData.fearMushBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(8))/(pow(1.5,GVars.mushroomData.fearMushBuff)) * soulsShroomBuff
 			GVars.mushroomData.xp += 125 * EexpBuff * GVars.fearcatData.fearcatBuffDay
 	
-	_check_xp()
+	_checkXp()
 
 
 # Should probably just use a signal for this one.
-func _check_xp():
+func _checkXp():
 	while(GVars.mushroomData.xp >= GVars.mushroomData.xpThresh):
 		GVars.mushroomData.level += 1
 		GVars.mushroomData.xp -= GVars.mushroomData.xpThresh

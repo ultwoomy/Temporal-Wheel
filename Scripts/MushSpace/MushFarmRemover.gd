@@ -12,5 +12,5 @@ func remove() -> void:
 		if GVars.mushroomData.currentFarmPlots[n]:
 			GVars.mushroomData.currentFarmPlots[n] = null
 			GVars.mushroomData.timeLeft[n] = 0
-	get_window().get_node("EventManager").mushroom_planted.emit()
+	#get_window().get_node("EventManager").mushroom_planted.emit()
 	mushroomsRemoved.emit()

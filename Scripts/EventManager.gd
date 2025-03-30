@@ -24,8 +24,7 @@ signal tutorial_travel_found
 # MushSpace
 # (!) L.B: If things get too big, should probably make another script to hold and categorize signals to be used in this script.
 signal mushroom_frame_changed(index: int)
-signal mushroom_planted
-signal mushroom_harvested
+
 signal refresh_challenges
 signal bleedstacks_changed
 signal disconnect_thorns

@@ -13,9 +13,6 @@ class_name MushFarmPlots
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updateSprites()
-	
-	get_window().get_node("EventManager").mushroom_planted.connect(updateSprites)
-	get_window().get_node("EventManager").mushroom_harvested.connect(updateSprites)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,11 +28,8 @@ func updateSprites():
 	## TODO: Inefficient. Example: If plot has a mushroom, then it will unhide. Once this is called again, it will hide and then unhide. No need to continue hiding.
 	for plot in plots:
 		plot.hide()
-
-
-#	xpbar.scale.x = GVars.mushroomData.xp / GVars.mushroomData.xpThresh * 1.5
-#	leveldisp.text = "Level: " + str(GVars.getScientific(GVars.mushroomData.level))
-#	statsdisp.text = "Buffs\nSpin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\nIdentity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff))
+	
+	
 	var timeBasedOnType = 0
 	var timeBasedOnLevel = 0
 	var post10scaling = 1

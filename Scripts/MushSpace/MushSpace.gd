@@ -42,6 +42,9 @@ func _ready() -> void:
 	_connectFarmButtonSignals()
 	_connectInfoPanelSignals()
 	_connectSelectorSignals()
+	_connectPlanterSignals()
+	_connectHarvesterSignals()
+	_connectRemoverSignals()
 	
 	# Firstly, make sure that when the Player enters the scene, time has gone by for the mushrooms to grow.
 	updateFromPendingRotations()
@@ -89,6 +92,24 @@ func _connectSelectorSignals() -> void:
 		func _displayMushroomCropInfo() -> void:
 			return infoPanel.displayMushroomCropInfo(selector.getMushroomCropResource())
 	)
+
+
+func _connectPlanterSignals() -> void:
+	planter.mushroomPlanted.connect(farmPlots.updateSprites)
+	planter.mushroomPlanted.connect(levelDisplay.updateXpBar)  # L.B: Is this needed?
+	planter.mushroomPlanted.connect(statsPanel.updateStats)  # L.B: Is this needed?
+
+
+func _connectHarvesterSignals() -> void:
+	harvester.mushroomsHarvested.connect(farmPlots.updateSprites)
+	harvester.mushroomsHarvested.connect(levelDisplay.updateXpBar)
+	harvester.mushroomsHarvested.connect(statsPanel.updateStats)
+
+
+func _connectRemoverSignals() -> void:
+	remover.mushroomsRemoved.connect(farmPlots.updateSprites)
+	remover.mushroomsRemoved.connect(levelDisplay.updateXpBar)  # L.B: Is this needed?
+	remover.mushroomsRemoved.connect(statsPanel.updateStats)  # L.B: Is this needed?
 
 
 func _setMushbotVisibility(condition : bool) -> void:

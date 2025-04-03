@@ -5,23 +5,38 @@ extends Container
 signal kbity_up
 
 
+#@ Constants
+const DIALOGUE_INTRODUCTION_KEY : String = "introduction"
+const DIALOGUE_KBITY_KEY : String = "kbity"
+
+
 #@ Export Variables
 
 
 #@ Public Variables
-var line = 0
+var dialogueData : Array[Dictionary]
+
+
+#@ Private Variables
+var _dialogueHandler : DialogueHandler = DialogueHandler.new()
+var _dialogueLine : int = 0
 
 
 #@ Onready Variables
-@onready var dialogueBox : Label = $DialougeBox
+@onready var dialogueBox : Label = $DialogueBox
+@onready var bunniesSprite : AnimatedSprite2D = $Bunnies
 @onready var nextButton : Button = $NextButton
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Get dialogue JSON file.
+	_dialogueHandler.dialogueFilePath = "res://JSON/Dialogue/VoidSpaceStop/VoidSpaceTutorialBox.json"
+	
 	# Only shows the dialouge box if its the players first time coming here
 	if GVars.ifFirstVoid:
+		dialogueData = _dialogueHandler.getDialogueData(DIALOGUE_INTRODUCTION_KEY)
 		get_tree().paused = true
 		show()
 	else:
@@ -45,50 +60,20 @@ func _ready():
 # L.B: Don't know what to do with this quite yet.
 func kbityTime():
 	if(GVars.kbityData.kbityLevel == 1):
-		get_tree().paused = true
-		line = 10
+		dialogueData = _dialogueHandler.getDialogueData(DIALOGUE_KBITY_KEY)
+		get_tree().paused = true  # TODO: Use a signal
 		show()
 
 
 #@ Private Methods
 func _buttonPressed():
-	GVars._dialouge(dialogueBox,0,0.03)
-	# too short for me to make it an array or anything better than a series of if statements tbh
-	if(line == 0):
-		self.get_node("Bunnies").frame = 2
-		dialogueBox.text = "This is where the business \nhappens."
-	elif(line == 1):
-		self.get_node("Bunnies").frame = 1
-		dialogueBox.text = "You give me rotations, I give \nyou a cool lookin circle\ncalled a sigil."
-	elif(line == 2):
-		self.get_node("Bunnies").frame = 0
-		dialogueBox.text = "And then other stuff too \nprobably."
-	elif(line == 3):
-		dialogueBox.text = "Later."
-	elif(line == 4):
-		self.get_node("Bunnies").frame = 1
-		dialogueBox.text = "But I need those so come to\nme every time you have enough\nto trade, yes?"
+	GVars._dialouge(dialogueBox, 0, 0.03)
 	
-	elif(line == 10):
-		self.get_node("Bunnies").frame = 3
-		dialogueBox.text = "You... I can't believe you actually did it."
-	elif(line == 11):
-		self.get_node("Bunnies").frame = 3
-		dialogueBox.text = "You've created another kbity cat. How's time supposed to function now?"
-	elif(line == 12):
-		self.get_node("Bunnies").frame = 1
-		dialogueBox.text = "I mean yeah I was the one who helped you do it but the prices were absurd on purpose."
-	elif(line == 13):
-		self.get_node("Bunnies").frame = 1
-		dialogueBox.text = "It's probably fine though. It doesn't have a soul or a part of a soul like you and me."
-	elif(line == 14):
-		self.get_node("Bunnies").frame = 2
-		dialogueBox.text = "Maybe you'll get more time every time you get time? Won't that be fun!"
-	elif(line == 15):
-		self.get_node("Bunnies").frame = 2
-		dialogueBox.text = "And it'll never go away so no need to worry about losing it upon resetting."
+	if _dialogueLine < dialogueData.size() and _dialogueLine >= 0:
+		dialogueBox.text = _dialogueHandler.getFromSpecialKey(dialogueData[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
+		bunniesSprite.animation = _dialogueHandler.getFromSpecialKey(dialogueData[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)
 	else:
 		hide()
 		GVars.ifFirstVoid = false
 		get_tree().paused = false
-	line += 1
+	_dialogueLine += 1

@@ -83,7 +83,7 @@ position = Vector2(500, 250)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lmjuv")
 
-[node name="DialougeBox" type="Label" parent="."]
+[node name="DialogueBox" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 autowrap_mode = 2

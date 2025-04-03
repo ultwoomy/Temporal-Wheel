@@ -24,7 +24,7 @@ func _ready():
 	if GVars.ifFirstVoid:
 		get_tree().paused = true
 		show()
-	else :
+	else:
 		hide()
 	
 	dialogueBox.position = Vector2(300,300)

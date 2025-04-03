@@ -54,8 +54,8 @@ func _nextLine() -> void:
 		return
 	
 	# Display dialogue.
-	packsmithMenu.dialogueText.text = packsmithMenu._dialogueHandler.getTextFromDialogue(_dialogue[_dialogueLine])
-	packsmithMenu.packback.frame = packsmithMenu.Emotes[packsmithMenu._dialogueHandler.getFaceFromDialogue(_dialogue[_dialogueLine])]
+	packsmithMenu.dialogueText.text = packsmithMenu._dialogueHandler.getFromSpecialKey(_dialogue[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
+	packsmithMenu.packback.frame = packsmithMenu.Emotes[packsmithMenu._dialogueHandler.getFromSpecialKey(_dialogue[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
 	GVars._dialouge(packsmithMenu.dialogueText, 0, 0.03)
 	
 	# Increment counter.

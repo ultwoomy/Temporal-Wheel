@@ -41,35 +41,50 @@
 atlas = ExtResource("9_75xv6")
 region = Rect2(0, 0, 500, 300)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ruuii"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c1q8"]
 atlas = ExtResource("9_75xv6")
-region = Rect2(500, 0, 500, 300)
+region = Rect2(1500, 0, 500, 300)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6eep"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qs6r"]
 atlas = ExtResource("9_75xv6")
 region = Rect2(1000, 0, 500, 300)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gu7eo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bsco"]
 atlas = ExtResource("9_75xv6")
-region = Rect2(1500, 0, 500, 300)
+region = Rect2(500, 0, 500, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lmjuv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3dil3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ruuii")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f6eep")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gu7eo")
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c1q8")
+}],
+"loop": true,
+"name": &"fierce",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qs6r")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bsco")
+}],
+"loop": true,
+"name": &"suspicion",
 "speed": 5.0
 }]
 
@@ -198,7 +213,6 @@ text = "Kbity"
 
 [node name="TutorialBox" type="Container" parent="."]
 process_mode = 3
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -237,6 +251,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_8yfho")
 theme_override_styles/normal = SubResource("StyleBoxFlat_oplk6")
 
 [node name="SigilShop" type="Container" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -285,6 +300,7 @@ texture = ExtResource("7_05ii3")
 script = ExtResource("8_uukfj")
 
 [node name="RitualShop" type="Container" parent="." node_paths=PackedStringArray("text")]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -361,6 +377,7 @@ texture_normal = ExtResource("17_mss5q")
 texture_hover = ExtResource("18_f5spc")
 
 [node name="KbityShop" type="Panel" parent="." node_paths=PackedStringArray("kbityOpenButton", "kbitySprites", "descText")]
+visible = false
 layout_mode = 2
 offset_right = 600.0
 offset_bottom = 600.0

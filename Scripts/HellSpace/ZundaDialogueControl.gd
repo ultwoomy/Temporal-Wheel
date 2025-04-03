@@ -44,7 +44,7 @@ var _dialogueHandler : DialogueHandler = DialogueHandler.new()
 func _ready() -> void:
 	_dialogueHandler.dialogueFilePath = ZUNDA_DIALOGUE_FILEPATH
 	dialogueData = _dialogueHandler.getDialogueData("introduction")
-	dialogueLabel.text = _dialogueHandler.getTextFromDialogue(dialogueData[dialogueLine])
+	dialogueLabel.text = _dialogueHandler.getFromSpecialKey(dialogueData[dialogueLine], DialogueHandler.SpecialKeys.TEXT)
 
 
 #@ Private Methods
@@ -52,9 +52,9 @@ func _onNextPressed():
 	dialogueLine += 1
 	if dialogueLine < dialogueData.size():
 		GVars._dialouge(dialogueLabel, 0, 0.02)
-		dialogueLabel.text = _dialogueHandler.getTextFromDialogue(dialogueData[dialogueLine])
-		zundaBodySprite.frame = ZUNDA_BODY[_dialogueHandler.getBodyFromDialogue(dialogueData[dialogueLine])]
-		zundaFaceSprite.frame = ZUNDA_FACES[_dialogueHandler.getFaceFromDialogue(dialogueData[dialogueLine])]
+		dialogueLabel.text = _dialogueHandler.getFromSpecialKey(dialogueData[dialogueLine], DialogueHandler.SpecialKeys.TEXT)
+		zundaBodySprite.frame = ZUNDA_BODY[_dialogueHandler.getFromSpecialKey(dialogueData[dialogueLine], DialogueHandler.SpecialKeys.BODY)]
+		zundaFaceSprite.frame = ZUNDA_FACES[_dialogueHandler.getFaceFromDialogue(dialogueData[dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
 	else:
 		self.hide()
 		dialogueCompleted.emit()

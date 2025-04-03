@@ -53,10 +53,10 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 	
 	if _dialogueLine >= 0 and _dialogueLine < dialogue.size():
 		# Change text to the dialogue text at index, _dialogueLine.
-		zundaLabel.text = _dialogueHandler.getTextFromDialogue(dialogue[_dialogueLine])
+		zundaLabel.text = _dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
 		
 		# Change face/background to the dialogue face at index, _dialogueLine. Matches with the Emotes enumerator.
-		zundaSprites.frame = Emotes[_dialogueHandler.getFaceFromDialogue(dialogue[_dialogueLine])]
+		zundaSprites.frame = Emotes[_dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
 		
 		# Change nextButton text to dialogue's BUTTON_TEXT, if it exists.
 		if "BUTTON_TEXT" in dialogue[_dialogueLine]:

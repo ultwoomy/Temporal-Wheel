@@ -2,180 +2,180 @@
 	"packsmith": [
 		{
 			"TEXT": "That's my sigil.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "All sigils are kind of like... permissions of sorts.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "All this one does is let you talk to me.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "...Stop looking disappointed it's a high honor!",
-			"FACE": "TALKING"
+			"ANIMATION_NAME": "TALKING"
 		}
 	],
 	"candle": [
 		{
 			"TEXT": "A lovely candle.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "It's sufficient to light any space.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "You'll likely be able to see things back home you  couldn't before",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"ascension": [
 		{
 			"TEXT": "Looks like a portal or something.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "Not sure exactly what it does but.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "It's attached itself to your wheel",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Clicking on the wheel should tell you more.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"emptiness": [
 		{
-			"TEXT": "A vague memory of a face.",
-			"FACE": "NORMAL"
+			"TEXT": "A vague memory of a ANIMATION_NAME.",
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "It's honestly kind of creepy that you have this.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "Wearing this will amplify an emotion of your choice to a considerable degree.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "To the point where it persists after death.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "...You'd have to wear it though. Ew.",
-			"FACE": "CONCERN"
+			"ANIMATION_NAME": "CONCERN"
 		}
 	],
 	"ritual": [
 		{
 			"TEXT": "A relic from hell, the ritual.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "It represents a deal with the devil, though the devil happens to be dead.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "So it's peculiar that this is working at all.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Maybe a new one spawned in.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "The price to be paid is the spin speed of your wheel, so don't light too many candles.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		}
 	],
 	"hell": [
 		{
 			"TEXT": "Oh hey, it's the sigil of a blue baby.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Those things are the servants of Divine.",
-			"FACE": "NORMAL"},
+			"ANIMATION_NAME": "NORMAL"},
 		{
 			"TEXT": "You could probably use this to get into heaven!",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "...actually there's no perm for that in here. Guess it's useless then.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		}
 	],
 	"sanddollar" :[
 		{
 			"TEXT": "It's a little sand dollar.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Usually you find these near the ocean, but you can find them fossilized everywhere in the sand.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "You can now access the desert by clicking on the button in the center of Travel, then on Sandspace.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "And once you enter the area once, you won't need this sigil to re-enter the area ever again.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"zundanight" :[
 		{
 			"TEXT": "That's a picture of the moon with 夜.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "The Beast of the Night. She'll eat anything and everything She can get her hands on.",
-			"FACE": "CONCERN"
+			"ANIMATION_NAME": "CONCERN"
 		},
 		{
 			"TEXT": "Not that either of us need to worry about that.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"undercity" :[
 		{
 			"TEXT": "It's said that all the fae live in the undercity.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "It's quite a nice place. I think. I don't know. I don't leave this place.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "This let's you get on the bus that goes there.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Bring back a souvenier.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"twins" :[
 		{
 			"TEXT": "That's a rose, not the kind that talks though.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "My sister's own that one as a pet. It's very weird.",
-			"FACE": "TALKING"
+			"ANIMATION_NAME": "TALKING"
 		},
 		{
 			"TEXT": "They live down below. Be careful when talking to them",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "You don't want to get pricked.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	]
 }

@@ -2,185 +2,185 @@
 	"packsmith": [
 		{
 			"TEXT": "Now it's a rust magnet.", 
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "You should get more rust from that wheel now.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"candle": [
 		{
 			"TEXT": "I've increased the strength  of the light.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "The warm glow should make shrooms grow twice as fast.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Which makes no sense since they like dim lighting.",
-			"FACE": "TALKING"
+			"ANIMATION_NAME": "TALKING"
 		}
 	],
 	"ascension": [
 		{
 			"TEXT": "I don't think I know enough to touch this.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Lemme just uh.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Oops.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "It seems to be sucking in momentum at an increased rate.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "I barely touched it I swear.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"emptiness": [
 		{
 			"TEXT": "I'm not entirely sure what you want me to do with this.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "You're going to wear that? Really?.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "...",
-			"FACE": "CONCERN"
+			"ANIMATION_NAME": "CONCERN"
 		},
 		{
 			"TEXT": "It uh, looks good on you I think?",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"ritual": [
 		{
 			"TEXT": "This one's easy, I can just replace one of these candles with one of mine.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "Now the first candle you Light is free.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "I'm not giving you any more.",
-			"FACE": "CONCERN"
+			"ANIMATION_NAME": "CONCERN"
 		}
 	],
 	"hell": [
 		{
 			"TEXT": "There's a powerful contract etched into this sigil.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "I can start this contract for you, but be warned.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "This thing is tough, even starting it requires everything you've gotten up till now.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "It will invert the effect of your current emotion turning it into a debuff.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "What exactly that is... Eh, you'll find out.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "This will persist until you regain this sigil and augment it again.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "The contract will begin once you are born again.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "If you don't want to do this yet, just augment something else before a reset.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Alright, good luck.",
-			"FACE": "PEEK"
+			"ANIMATION_NAME": "PEEK"
 		}
 	],
 	"hellcomplete": [
 		{
 			"TEXT": "There's a powerful contract etched into this sigil.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "I can start this contract for you, but...",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "You've already finished it somehow. Huh.",
-			"FACE": "EYEBROW"
+			"ANIMATION_NAME": "EYEBROW"
 		},
 		{
 			"TEXT": "Well good for you, you've been updated.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Go ahead and try entering hell now.",
-			"FACE": "PEEK"
+			"ANIMATION_NAME": "PEEK"
 		}
 	],
 	"hellalt": [
 		{
 			"TEXT": "I can draw out the power of the blue babies and make you immortal!!",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "It's not implemented yet so I don't have to explain nuthin.",
-			"FACE": "TALKING"
+			"ANIMATION_NAME": "TALKING"
 		}
 	], 
 	"sanddollar" :[
 		{
 			"TEXT": "Perhaps if you stacked more neatly they'll give each other powers.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "Sounds like a bit of a stretch, but let me send some roots down to help you.",
-			"FACE": "PEEK"
+			"ANIMATION_NAME": "PEEK"
 		},
 		{
 			"TEXT": "Now you're getting more rotations per sond dollar owned. What a neat looking tower.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"zundanight" :[
 		{
 			"TEXT": "I, once again, do not know what to do with this.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		},
 		{
 			"TEXT": "I don't think the developer knows either. You better ask her instead.",
-			"FACE": "CONCERN"
+			"ANIMATION_NAME": "CONCERN"
 		}
 	],
 	"undercity" :[
 		{
 			"TEXT": "I can't do anything with this.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	],
 	"twins" :[
 		{
 			"TEXT": "I don't want to touch this. It's spiky.",
-			"FACE": "NORMAL"
+			"ANIMATION_NAME": "NORMAL"
 		}
 	]
 }

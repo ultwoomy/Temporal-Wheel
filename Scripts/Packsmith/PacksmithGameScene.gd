@@ -97,8 +97,8 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 	
 	if _dialogueLine >= 0 and _dialogueLine < dialogue.size():
 		# Change text to the dialogue text at index, _dialogueLine.
-		dialogueText.text = _dialogueHandler.getTextFromDialogue(dialogue[_dialogueLine])
-		
+		dialogueText.text = _dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
+
 		# Change face/background to the dialogue face at index, _dialogueLine. Matches with the Emotes enumerator.
 		packsmithBackground.frame = Emotes[_dialogueHandler.getFaceFromDialogue(dialogue[_dialogueLine])]
 		

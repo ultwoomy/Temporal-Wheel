@@ -68,6 +68,7 @@ func _buttonPressed():
 	elif(line == 4):
 		self.get_node("Bunnies").frame = 1
 		dialogueBox.text = "But I need those so come to\nme every time you have enough\nto trade, yes?"
+	
 	elif(line == 10):
 		self.get_node("Bunnies").frame = 3
 		dialogueBox.text = "You... I can't believe you actually did it."

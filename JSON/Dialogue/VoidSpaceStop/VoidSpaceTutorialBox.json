@@ -1,3 +1,50 @@
 {
-	
+	"introduction": [
+		{
+			"TEXT": "This is where the business \nhappens.",
+			"ANIMATION_NAME": "happy"
+		},
+		{
+			"TEXT": "You give me rotations, I give \nyou a cool lookin circle\ncalled a sigil.",
+			"ANIMATION_NAME": "eyebrow"
+		},
+		{
+			"TEXT": "And then other stuff too \nprobably.",
+			"ANIMATION_NAME": "default"
+		},
+		{
+			"TEXT": "Later.",
+			"ANIMATION_NAME": "default"
+		},
+		{
+			"TEXT": "But I need those so come to\nme every time you have enough\nto trade, yes?",
+			"ANIMATION_NAME": "eyebrow"
+		}
+	],
+	"kbity": [
+		{
+			"TEXT": "You... I can't believe you actually did it.",
+			"ANIMATION_NAME": "fierce"
+		},
+		{
+			"TEXT": "You've created another kbity cat. How's time supposed to function now?",
+			"ANIMATION_NAME": "fierce"
+		},
+		{
+			"TEXT": "I mean yeah I was the one who helped you do it but the prices were absurd on purpose.",
+			"ANIMATION_NAME": "eyebrow"
+		},
+		{
+			"TEXT": "It's probably fine though. It doesn't have a soul or a part of a soul like you and me.",
+			"ANIMATION_NAME": "eyebrow"
+		},
+		{
+			"TEXT": "Maybe you'll get more time every time you get time? Won't that be fun!",
+			"ANIMATION_NAME": "happy"
+		},
+		{
+			"TEXT": "And it'll never go away so no need to worry about losing it upon resetting.",
+			"ANIMATION_NAME": "happy"
+		}
+	]
 }

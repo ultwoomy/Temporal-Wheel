@@ -1,0 +1,113 @@
+[gd_scene load_steps=19 format=3 uid="uid://dobax2tkjb1xx"]
+
+[ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopManage.gd" id="1_os3ii"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_3imgq"]
+[ext_resource type="Texture2D" uid="uid://d2a33mt2yv85v" path="res://Sprites/VoidSpace/sigil_bunny.png" id="3_ubvse"]
+[ext_resource type="Texture2D" uid="uid://bn1a7pk136bjx" path="res://Sprites/Sigils/sigil01.png" id="4_7osrx"]
+[ext_resource type="Texture2D" uid="uid://dmit8kja5co48" path="res://Sprites/Sigils/sigil02.png" id="5_ksu7n"]
+[ext_resource type="Texture2D" uid="uid://bcte3ctqjjdpd" path="res://Sprites/Sigils/sigil03.png" id="6_1mwg0"]
+[ext_resource type="Texture2D" uid="uid://y8g1idx3il2b" path="res://Sprites/Sigils/sigil04.png" id="7_8fcoh"]
+[ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="8_ybgq0"]
+[ext_resource type="Texture2D" uid="uid://7cw64cpkjgv3" path="res://Sprites/Sigils/sigil06.png" id="9_2legs"]
+[ext_resource type="Texture2D" uid="uid://dupfwrc8dt6qn" path="res://Sprites/Sigils/sigil10.png" id="10_3wwvo"]
+[ext_resource type="Texture2D" uid="uid://bxmxksutsmrtl" path="res://Sprites/Sigils/sigil11.png" id="11_pflm5"]
+[ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="12_ln28x"]
+[ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="13_ugs1t"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/SandLabel.gd" id="14_b2ams"]
+[ext_resource type="Script" path="res://Scripts/ChallengeComponent/FabulousCComp.gd" id="15_83w5t"]
+[ext_resource type="Texture2D" uid="uid://cbtbrufucskwt" path="res://Sprites/FabChallenge/standard_button_thorns.png" id="16_t7mi4"]
+[ext_resource type="Script" path="res://Scripts/FabChallenge/ThornButtonBackground.gd" id="17_rahxv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1egap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_7osrx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ksu7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1mwg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8fcoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ybgq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2legs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3wwvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3wwvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3wwvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3wwvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_pflm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ln28x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ugs1t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SigilShop" type="Container"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_os3ii")
+
+[node name="MaskSigil" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.690196)
+self_modulate = Color(0, 0, 0, 0.690196)
+position = Vector2(697.75, 300)
+scale = Vector2(6.045, 6)
+texture = ExtResource("2_3imgq")
+
+[node name="DialogueBox" type="Sprite2D" parent="."]
+position = Vector2(700, 140)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ubvse")
+
+[node name="SigilLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
+
+[node name="BuyButton" type="Button" parent="."]
+layout_mode = 2
+
+[node name="SigilDisplay" type="AnimatedSprite2D" parent="."]
+position = Vector2(231, 438)
+scale = Vector2(0.51, 0.5)
+sprite_frames = SubResource("SpriteFrames_1egap")
+
+[node name="SandLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Sand"
+script = ExtResource("14_b2ams")
+
+[node name="FabulousCComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("15_83w5t")
+damage = 7
+level = 0
+sprite = NodePath("../ButtonBackground")
+
+[node name="ButtonBackground" type="Sprite2D" parent="."]
+position = Vector2(930, 610)
+texture = ExtResource("16_t7mi4")
+script = ExtResource("17_rahxv")

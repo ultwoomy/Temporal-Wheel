@@ -100,7 +100,8 @@
 		},
 		{
 			"TEXT": "Those things are the servants of Divine.",
-			"ANIMATION_NAME": "NORMAL"},
+			"ANIMATION_NAME": "NORMAL"
+		},
 		{
 			"TEXT": "You could probably use this to get into heaven!",
 			"ANIMATION_NAME": "NORMAL"
@@ -110,7 +111,7 @@
 			"ANIMATION_NAME": "EYEBROW"
 		}
 	],
-	"sanddollar" :[
+	"sanddollar": [
 		{
 			"TEXT": "It's a little sand dollar.",
 			"ANIMATION_NAME": "NORMAL"
@@ -128,7 +129,7 @@
 			"ANIMATION_NAME": "NORMAL"
 		}
 	],
-	"zundanight" :[
+	"zundanight": [
 		{
 			"TEXT": "That's a picture of the moon with 夜.",
 			"ANIMATION_NAME": "NORMAL"
@@ -142,7 +143,7 @@
 			"ANIMATION_NAME": "NORMAL"
 		}
 	],
-	"undercity" :[
+	"undercity": [
 		{
 			"TEXT": "It's said that all the fae live in the undercity.",
 			"ANIMATION_NAME": "NORMAL"
@@ -160,7 +161,7 @@
 			"ANIMATION_NAME": "NORMAL"
 		}
 	],
-	"twins" :[
+	"twins": [
 		{
 			"TEXT": "That's a rose, not the kind that talks though.",
 			"ANIMATION_NAME": "NORMAL"

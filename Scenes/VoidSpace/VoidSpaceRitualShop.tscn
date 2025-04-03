@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://yapy0roubrer"]
+
+[ext_resource type="Script" path="res://Scripts/VoidSpace/RitualManage.gd" id="1_d572v"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_ioc4p"]
+[ext_resource type="Texture2D" uid="uid://bt50cnulqyp7n" path="res://Sprites/VoidSpace/ritualbunny.png" id="3_4s2ql"]
+[ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="4_icdqi"]
+[ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="5_28uy6"]
+[ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="6_fjgcb"]
+
+[node name="RitualShop" type="Container" node_paths=PackedStringArray("text")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_d572v")
+text = NodePath("SigilLabel")
+
+[node name="MaskSigil" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.690196)
+self_modulate = Color(0, 0, 0, 0.690196)
+position = Vector2(697.75, 300)
+scale = Vector2(6.045, 6)
+texture = ExtResource("2_ioc4p")
+
+[node name="DialogueBox" type="Sprite2D" parent="."]
+position = Vector2(700, 340)
+scale = Vector2(2, 2)
+texture = ExtResource("3_4s2ql")
+
+[node name="SigilLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
+
+[node name="Ritual" type="Sprite2D" parent="."]
+position = Vector2(720, 200)
+texture = ExtResource("4_icdqi")
+
+[node name="Candle1" type="TextureButton" parent="Ritual"]
+offset_left = -25.0
+offset_top = -160.0
+offset_right = 25.0
+offset_bottom = -110.0
+texture_normal = ExtResource("5_28uy6")
+texture_hover = ExtResource("6_fjgcb")
+
+[node name="Candle2" type="TextureButton" parent="Ritual"]
+offset_left = 80.0
+offset_top = -110.0
+offset_right = 130.0
+offset_bottom = -60.0
+texture_normal = ExtResource("5_28uy6")
+texture_hover = ExtResource("6_fjgcb")
+
+[node name="Candle3" type="TextureButton" parent="Ritual"]
+offset_left = 80.0
+offset_top = 60.0
+offset_right = 130.0
+offset_bottom = 110.0
+texture_normal = ExtResource("5_28uy6")
+texture_hover = ExtResource("6_fjgcb")
+
+[node name="Candle4" type="TextureButton" parent="Ritual"]
+offset_left = -25.0
+offset_top = 115.0
+offset_right = 25.0
+offset_bottom = 165.0
+texture_normal = ExtResource("5_28uy6")
+texture_hover = ExtResource("6_fjgcb")
+
+[node name="Candle5" type="TextureButton" parent="Ritual"]
+offset_left = -130.0
+offset_top = 60.0
+offset_right = -80.0
+offset_bottom = 110.0
+texture_normal = ExtResource("5_28uy6")
+texture_hover = ExtResource("6_fjgcb")
+
+[node name="Candle6" type="TextureButton" parent="Ritual"]
+offset_left = -130.0
+offset_top = -110.0
+offset_right = -80.0
+offset_bottom = -60.0
+texture_normal = ExtResource("5_28uy6")
+texture_hover = ExtResource("6_fjgcb")
+
+[connection signal="mouse_entered" from="Ritual/Candle1" to="." method="_on_candle_1_mouse_entered"]
+[connection signal="pressed" from="Ritual/Candle1" to="." method="_on_candle_1_pressed"]
+[connection signal="mouse_entered" from="Ritual/Candle2" to="." method="_on_candle_2_mouse_entered"]
+[connection signal="pressed" from="Ritual/Candle2" to="." method="_on_candle_2_pressed"]
+[connection signal="mouse_entered" from="Ritual/Candle3" to="." method="_on_candle_3_mouse_entered"]
+[connection signal="pressed" from="Ritual/Candle3" to="." method="_on_candle_3_pressed"]
+[connection signal="mouse_entered" from="Ritual/Candle4" to="." method="_on_candle_4_mouse_entered"]
+[connection signal="pressed" from="Ritual/Candle4" to="." method="_on_candle_4_pressed"]
+[connection signal="mouse_entered" from="Ritual/Candle5" to="." method="_on_candle_5_mouse_entered"]
+[connection signal="pressed" from="Ritual/Candle5" to="." method="_on_candle_5_pressed"]
+[connection signal="mouse_entered" from="Ritual/Candle6" to="." method="_on_candle_6_mouse_entered"]
+[connection signal="pressed" from="Ritual/Candle6" to="." method="_on_candle_6_pressed"]

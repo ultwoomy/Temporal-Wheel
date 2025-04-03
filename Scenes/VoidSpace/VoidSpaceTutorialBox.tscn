@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://dg2g6efrv0lma"]
+
+[ext_resource type="Script" path="res://Scripts/VoidSpace/BusStopTut.gd" id="1_we2hs"]
+[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_n2oke"]
+[ext_resource type="Texture2D" uid="uid://466obawea3lq" path="res://Sprites/VoidSpace/voidbunny.png" id="3_o1upk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dil3"]
+atlas = ExtResource("3_o1upk")
+region = Rect2(0, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5c1q8"]
+atlas = ExtResource("3_o1upk")
+region = Rect2(1500, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qs6r"]
+atlas = ExtResource("3_o1upk")
+region = Rect2(1000, 0, 500, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bsco"]
+atlas = ExtResource("3_o1upk")
+region = Rect2(500, 0, 500, 300)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmjuv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dil3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5c1q8")
+}],
+"loop": true,
+"name": &"fierce",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qs6r")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bsco")
+}],
+"loop": true,
+"name": &"suspicion",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8yfho"]
+bg_color = Color(1, 0.278431, 0.580392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6iml"]
+bg_color = Color(0.780392, 0.482353, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oplk6"]
+bg_color = Color(0.843137, 0.462745, 0.592157, 1)
+
+[node name="TutorialBox" type="Container"]
+process_mode = 3
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_we2hs")
+
+[node name="Mask" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.580392)
+self_modulate = Color(1, 1, 1, 0.47451)
+show_behind_parent = true
+position = Vector2(500, 300)
+scale = Vector2(10, 6)
+texture = ExtResource("2_n2oke")
+
+[node name="Bunnies" type="AnimatedSprite2D" parent="."]
+position = Vector2(500, 250)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_lmjuv")
+animation = &"fierce"
+
+[node name="DialougeBox" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_8yfho")
+theme_override_styles/hover = SubResource("StyleBoxFlat_i6iml")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8yfho")
+theme_override_styles/normal = SubResource("StyleBoxFlat_oplk6")

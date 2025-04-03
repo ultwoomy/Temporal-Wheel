@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba5cimgobrokq"]
+
+[ext_resource type="Script" path="res://Scripts/VoidSpace/KbityStats.gd" id="1_pvirx"]
+[ext_resource type="Texture2D" uid="uid://crxtsuo1sx3bq" path="res://Sprites/VoidSpace/kbityclone/tile000.png" id="2_dvhiq"]
+[ext_resource type="Texture2D" uid="uid://b8vp12fm4mmjn" path="res://Sprites/VoidSpace/kbityclone/tile001.png" id="3_cndfe"]
+[ext_resource type="Texture2D" uid="uid://cmnqksuo14u0w" path="res://Sprites/VoidSpace/kbityclone/tile002.png" id="4_vxrg5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jao4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dvhiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cndfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vxrg5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="KbityShop" type="Panel" node_paths=PackedStringArray("kbitySprites", "descText")]
+offset_right = 600.0
+offset_bottom = 600.0
+script = ExtResource("1_pvirx")
+kbitySprites = NodePath("AnimatedSprite2D")
+descText = NodePath("Stats")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(300, 200)
+sprite_frames = SubResource("SpriteFrames_jao4j")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 40.0
+offset_right = 350.0
+offset_bottom = 63.0
+text = "Kbity Clone"
+
+[node name="Stats" type="Label" parent="."]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 300.0
+offset_right = 435.0
+offset_bottom = 458.0
+text = "Kbity Stats:
+Level:
+Effect: "

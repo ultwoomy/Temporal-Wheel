@@ -1,7 +1,7 @@
 {
 	"packsmith": [
 		{
-			"TEXT": "Now it's a rust magnet.", 
+			"TEXT": "Now it's a rust magnet.",
 			"ANIMATION_NAME": "NORMAL"
 		},
 		{
@@ -146,8 +146,8 @@
 			"TEXT": "It's not implemented yet so I don't have to explain nuthin.",
 			"ANIMATION_NAME": "TALKING"
 		}
-	], 
-	"sanddollar" :[
+	],
+	"sanddollar": [
 		{
 			"TEXT": "Perhaps if you stacked more neatly they'll give each other powers.",
 			"ANIMATION_NAME": "NORMAL"
@@ -161,7 +161,7 @@
 			"ANIMATION_NAME": "NORMAL"
 		}
 	],
-	"zundanight" :[
+	"zundanight": [
 		{
 			"TEXT": "I, once again, do not know what to do with this.",
 			"ANIMATION_NAME": "NORMAL"
@@ -171,13 +171,13 @@
 			"ANIMATION_NAME": "CONCERN"
 		}
 	],
-	"undercity" :[
+	"undercity": [
 		{
 			"TEXT": "I can't do anything with this.",
 			"ANIMATION_NAME": "NORMAL"
 		}
 	],
-	"twins" :[
+	"twins": [
 		{
 			"TEXT": "I don't want to touch this. It's spiky.",
 			"ANIMATION_NAME": "NORMAL"

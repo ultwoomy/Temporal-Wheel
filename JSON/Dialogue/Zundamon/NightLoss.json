@@ -1,7 +1,7 @@
 {
 	"loss1": [
 		{
-			"TEXT": "Oh good you didn't die terribly.", 
+			"TEXT": "Oh good you didn't die terribly.",
 			"ANIMATION_NAME": "HAPPY"
 		},
 		{
@@ -27,7 +27,7 @@
 	],
 	"loss2": [
 		{
-			"TEXT": "Oh good you didn't die terribly.", 
+			"TEXT": "Oh good you didn't die terribly.",
 			"ANIMATION_NAME": "HAPPY"
 		},
 		{

@@ -64,10 +64,10 @@ bg_color = Color(0.780392, 0.482353, 0.713726, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oplk6"]
 bg_color = Color(0.843137, 0.462745, 0.592157, 1)
 
-[node name="TutorialBox" type="Container"]
+[node name="TutorialBox" type="Control"]
 process_mode = 3
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_we2hs")
 
 [node name="Mask" type="Sprite2D" parent="."]
@@ -83,13 +83,22 @@ position = Vector2(500, 250)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lmjuv")
 
-[node name="DialogueBox" type="Label" parent="."]
+[node name="DialogueText" type="Label" parent="."]
 layout_mode = 2
+offset_left = 300.0
+offset_top = 300.0
+offset_right = 700.0
+offset_bottom = 500.0
 theme_override_font_sizes/font_size = 25
+text = "Welcome to the bus stop!"
 autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="."]
 layout_mode = 2
+offset_left = 650.0
+offset_top = 400.0
+offset_right = 750.0
+offset_bottom = 500.0
 theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0.376471, 0, 0.447059, 1)
@@ -101,3 +110,5 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_8yfho")
 theme_override_styles/hover = SubResource("StyleBoxFlat_i6iml")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_8yfho")
 theme_override_styles/normal = SubResource("StyleBoxFlat_oplk6")
+text = "Next"
+expand_icon = true

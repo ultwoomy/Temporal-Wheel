@@ -34,6 +34,8 @@ var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var sandLabel : Label = $SandLabel
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)
+
+
 const packsmithSigil 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
 const candleSigil 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
 const ascensionSigil 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
@@ -60,15 +62,16 @@ var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightS
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sigilDisplay.hide()
-	sigilLabel.position = Vector2(500,200)
-	sigilLabel.size = Vector2(400,200)
-	buyButton.size = Vector2(200,100)
-	buyButton.position = Vector2(730,450)
-	sandLabel.position = Vector2(850,295)
 	reset()
+	
+	sandLabel.visible = GVars.hasChallengeActive(GVars.CHALLENGE_SANDY)
 	
 	# Connect signals.
 	buyButton.pressed.connect(self._onButtonPressed)
+
+
+func _process(delta: float) -> void:
+	sandLabel.text = "Sand\namount:\n" + str(GVars.sand)
 
 
 #@ Private Methods
@@ -94,6 +97,7 @@ func _onButtonPressed():
 				GVars.spinData.spin -= GVars.sigilData.costSpin
 				GVars.spinData.rotations -= GVars.sigilData.costRot
 				checkCurrentSigil()
+		
 		# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
 		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
 			GVars.spinData.spin -= 1000

@@ -278,7 +278,7 @@ func setChallenge(challenge : ChallengeData) -> void:
 	# Set the challenge in the right layer.
 	challenges[challenge.layer] = challenge
 
-		
+
 func setChallengeToCurrentChallenges() -> void:
 	# Error checking
 	if not challenges:
@@ -288,7 +288,8 @@ func setChallengeToCurrentChallenges() -> void:
 		challenges.append(currentChallenges[1])
 	currentChallenges = challenges.duplicate()  # Arrays are passed by reference.
 	challenges.clear()
-	
+
+
 func hasChallengeActive(challenge : ChallengeData) -> bool:
 	if not challenge:
 		return false
@@ -297,6 +298,7 @@ func hasChallengeActive(challenge : ChallengeData) -> bool:
 	else:
 		return false
 
+
 func hasFutureChallenge(challenge : ChallengeData) -> bool:
 	if not challenge:
 		return false
@@ -304,6 +306,7 @@ func hasFutureChallenge(challenge : ChallengeData) -> bool:
 		return true
 	else:
 		return false
+
 
 func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 	# Check to see if layer value is in bounds of the challenges array.
@@ -318,6 +321,7 @@ func doesLayerHaveChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 	else:
 		return false
 
+
 func doesLayerHaveFutureChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 	# Check to see if layer value is in bounds of the challenges array.
 	if not challenges:
@@ -331,6 +335,7 @@ func doesLayerHaveFutureChallenge(layer : ChallengeData.ChallengeLayer) -> bool:
 	else:
 		return false
 
+
 # TODO: Move this function elsewhere. Maybe DialogueHandler.gd?
 func _dialouge(lbl,charat,time):
 	if(is_instance_valid(lbl)):
@@ -340,6 +345,7 @@ func _dialouge(lbl,charat,time):
 			chars += 1
 			await get_tree().create_timer(time).timeout
 			_dialouge(lbl,chars,time)
+
 
 func resetChallengeVars():
 	GVars.challenges = []
@@ -351,10 +357,12 @@ func resetChallengeVars():
 	GVars.health = 160
 	GVars.bleedstacks = 0
 	EventManager.emit_signal("refresh_challenges")
-	
+
+
 func removeLayer1Challenge():
 	if doesLayerHaveChallenge(ChallengeData.ChallengeLayer.FIRST):
 		currentChallenges[ChallengeData.ChallengeLayer.FIRST] = null
+
 
 func load_as_normal():
 	loader = loader.load_stats()

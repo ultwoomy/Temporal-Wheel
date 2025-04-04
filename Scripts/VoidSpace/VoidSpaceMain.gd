@@ -8,15 +8,16 @@ var currentState : VS_MenuState
 
 #@ Onready Variables
 @onready var busStopBackground : Sprite2D = $BusStopBackground
-
+# Buttons
 @onready var sigilButton : Button = $SigilButton  # Use to enter the sigil shop.
-@onready var sigilShop : Container = $SigilShop
 @onready var ritualButton : Button = $RitualButton  # Use to enter the ritual shop.
-@onready var ritualShop : Container = $RitualShop
 @onready var kbityButton : Button = $KbityCloneButton # Enter kbity shop
-@onready var kbityShop : Panel = $KbityShop
-
 @onready var backButton : Button = $BackButton
+# Shops
+@onready var sigilShop : VoidSpaceSigilShop = $SigilShop
+@onready var ritualShop : VoidSpaceRitualShop = $RitualShop
+@onready var kbityShop : VoidSpaceKbityShop = $KbityShop
+
 
 var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 @onready var challengeManager : ChallengeManager = $ChallengeManager
@@ -36,8 +37,7 @@ func _ready() -> void:
 	
 	# Either hides or shows ritual button.
 	unlockRitualButton()
-#	ritualButton.show()  # Testing purposes.
-	if(GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS)):
+	if GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
 		self.add_child(bb)
 	checkBleedBar()
 

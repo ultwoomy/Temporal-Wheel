@@ -3,7 +3,6 @@ class_name VoidSpaceRitualShop
 
 
 #@ Export Variables
-@export var text : Label
 
 
 #@ Public Variables
@@ -20,6 +19,10 @@ var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
 					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + " momentum and " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "\nrotations to create kbity!\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."
 					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "rotations\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."
 					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + "momentum\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum."]
+
+
+#@ Onready Variables
+@onready var sigilLabel : Label = $SigilLabel
 
 
 #@ Virtual Methods
@@ -41,8 +44,6 @@ func _ready():
 		GVars.kbityData.kbityProgRot *= 6
 		GVars.kbityData.kbityLevel += 1
 		emit_signal("kbity_up")
-	text.position = Vector2(500,400)
-	text.size = Vector2(400,200)
 
 
 #@ Public Methods
@@ -56,7 +57,7 @@ func setIdleText():
 	if(numOfCandles > 5):
 		numOfCandles = 5
 	effectsDesc[0] = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (numOfCandles * 0.2))
-	text.text = effectsDesc[0]
+	sigilLabel.text = effectsDesc[0]
 
 
 func setCandleSprites():
@@ -71,7 +72,7 @@ func setCandleSprites():
 
 
 func setDescText(n):
-	text.text = effectsDesc[n]
+	sigilLabel.text = effectsDesc[n]
 
 
 func getPath(cand):

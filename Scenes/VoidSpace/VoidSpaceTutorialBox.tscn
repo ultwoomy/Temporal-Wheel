@@ -90,7 +90,7 @@ offset_top = 300.0
 offset_right = 700.0
 offset_bottom = 500.0
 theme_override_font_sizes/font_size = 25
-text = "Welcome to the bus stop!"
+text = "TutorialBox Text"
 autowrap_mode = 2
 
 [node name="NextButton" type="Button" parent="."]

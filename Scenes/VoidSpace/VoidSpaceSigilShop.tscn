@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dobax2tkjb1xx"]
+[gd_scene load_steps=18 format=3 uid="uid://dobax2tkjb1xx"]
 
 [ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceSigilShop.gd" id="1_os3ii"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_3imgq"]
@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://bxmxksutsmrtl" path="res://Sprites/Sigils/sigil11.png" id="11_pflm5"]
 [ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="12_ln28x"]
 [ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="13_ugs1t"]
-[ext_resource type="Script" path="res://Scripts/VoidSpace/SandLabel.gd" id="14_b2ams"]
 [ext_resource type="Script" path="res://Scripts/ChallengeComponent/FabulousCComp.gd" id="15_83w5t"]
 [ext_resource type="Texture2D" uid="uid://cbtbrufucskwt" path="res://Sprites/FabChallenge/standard_button_thorns.png" id="16_t7mi4"]
 [ext_resource type="Script" path="res://Scripts/FabChallenge/ThornButtonBackground.gd" id="17_rahxv"]
@@ -65,7 +64,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="SigilShop" type="Container"]
+[node name="SigilShop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_os3ii")
@@ -84,11 +85,19 @@ texture = ExtResource("3_ubvse")
 
 [node name="SigilLabel" type="Label" parent="."]
 layout_mode = 2
+offset_left = 500.0
+offset_top = 200.0
+offset_right = 900.0
+offset_bottom = 400.0
 theme_override_font_sizes/font_size = 25
 autowrap_mode = 2
 
 [node name="BuyButton" type="Button" parent="."]
 layout_mode = 2
+offset_left = 730.0
+offset_top = 450.0
+offset_right = 930.0
+offset_bottom = 550.0
 
 [node name="SigilDisplay" type="AnimatedSprite2D" parent="."]
 position = Vector2(231, 438)
@@ -97,9 +106,12 @@ sprite_frames = SubResource("SpriteFrames_1egap")
 
 [node name="SandLabel" type="Label" parent="."]
 layout_mode = 2
+offset_left = 850.0
+offset_top = 295.0
+offset_right = 898.0
+offset_bottom = 323.0
 theme_override_font_sizes/font_size = 20
 text = "Sand"
-script = ExtResource("14_b2ams")
 
 [node name="FabulousCComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("15_83w5t")

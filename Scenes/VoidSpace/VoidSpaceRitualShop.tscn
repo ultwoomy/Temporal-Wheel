@@ -1,24 +1,23 @@
-[gd_scene load_steps=7 format=3 uid="uid://yapy0roubrer"]
+[gd_scene load_steps=6 format=3 uid="uid://yapy0roubrer"]
 
 [ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceRitualShop.gd" id="1_d572v"]
-[ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_ioc4p"]
 [ext_resource type="Texture2D" uid="uid://bt50cnulqyp7n" path="res://Sprites/VoidSpace/ritualbunny.png" id="3_4s2ql"]
 [ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="4_icdqi"]
 [ext_resource type="Texture2D" uid="uid://c5epcwsea8t4d" path="res://Sprites/VoidSpace/candles/candle1disabled.png" id="5_28uy6"]
 [ext_resource type="Texture2D" uid="uid://dy6037hyuceu1" path="res://Sprites/VoidSpace/candles/candle1hover.png" id="6_fjgcb"]
 
-[node name="RitualShop" type="Container" node_paths=PackedStringArray("text")]
+[node name="RitualShop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_d572v")
-text = NodePath("SigilLabel")
 
-[node name="MaskSigil" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 0.690196)
-self_modulate = Color(0, 0, 0, 0.690196)
-position = Vector2(697.75, 300)
-scale = Vector2(6.045, 6)
-texture = ExtResource("2_ioc4p")
+[node name="MaskPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 395.5
+offset_right = 1000.0
+offset_bottom = 600.0
 
 [node name="DialogueBox" type="Sprite2D" parent="."]
 position = Vector2(700, 340)
@@ -27,6 +26,10 @@ texture = ExtResource("3_4s2ql")
 
 [node name="SigilLabel" type="Label" parent="."]
 layout_mode = 2
+offset_left = 500.0
+offset_top = 400.0
+offset_right = 900.0
+offset_bottom = 600.0
 theme_override_font_sizes/font_size = 25
 autowrap_mode = 2
 

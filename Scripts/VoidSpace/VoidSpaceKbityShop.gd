@@ -1,8 +1,14 @@
 extends Panel
+class_name VoidSpaceKbityShop
+
+
+#@ Export Variables
 @export var kbityOpenButton : Button
 @export var kbitySprites : AnimatedSprite2D
 @export var descText : Label
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hide()
@@ -17,6 +23,7 @@ func _process(delta):
 	pass
 
 
+#@ Private Methods
 func _on_kbity_clone_button_pressed():
 	if GVars.kbityData.kbityLevel < 2:
 		kbitySprites.frame = GVars.kbityData.kbityLevel - 1

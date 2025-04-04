@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ba5cimgobrokq"]
 
-[ext_resource type="Script" path="res://Scripts/VoidSpace/KbityStats.gd" id="1_pvirx"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceKbityShop.gd" id="1_pvirx"]
 [ext_resource type="Texture2D" uid="uid://crxtsuo1sx3bq" path="res://Sprites/VoidSpace/kbityclone/tile000.png" id="2_dvhiq"]
 [ext_resource type="Texture2D" uid="uid://b8vp12fm4mmjn" path="res://Sprites/VoidSpace/kbityclone/tile001.png" id="3_cndfe"]
 [ext_resource type="Texture2D" uid="uid://cmnqksuo14u0w" path="res://Sprites/VoidSpace/kbityclone/tile002.png" id="4_vxrg5"]

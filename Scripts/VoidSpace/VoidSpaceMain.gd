@@ -21,6 +21,7 @@ var currentState : VS_MenuState
 var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 @onready var challengeManager : ChallengeManager = $ChallengeManager
 
+
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,11 +41,6 @@ func _ready() -> void:
 		self.add_child(bb)
 	checkBleedBar()
 
-#@ Public Methods
-func checkBleedBar():
-	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
-		bb.queue_free()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -53,6 +49,11 @@ func _process(delta: float) -> void:
 
 
 #@ Public Methods
+func checkBleedBar():
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_FABULOUS):
+		bb.queue_free()
+
+
 func changeState(newState : VS_MenuState) -> void:
 	if currentState:
 		currentState._exit()
@@ -62,13 +63,8 @@ func changeState(newState : VS_MenuState) -> void:
 
 func unlockRitualButton() -> void:
 	const ritualSigil : Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
-	if ritualSigil in GVars.sigilData.acquiredSigils:
-		ritualButton.show()
-	else:
-		ritualButton.hide()
+	ritualButton.visible = GVars.sigilData.acquiredSigils.has(ritualSigil)
+
 
 func unlockKbityButton() -> void:
-	if GVars.kbityData.kbityLevel > 0:
-		kbityButton.show()
-	else:
-		kbityButton.hide()
+	kbityButton.visible = GVars.kbityData.kbityLevel > 0

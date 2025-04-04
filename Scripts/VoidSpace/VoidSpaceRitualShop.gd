@@ -1,4 +1,5 @@
-extends Container
+extends Control
+class_name VoidSpaceRitualShop
 
 
 #@ Export Variables

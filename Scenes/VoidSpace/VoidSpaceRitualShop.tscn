@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://yapy0roubrer"]
 
-[ext_resource type="Script" path="res://Scripts/VoidSpace/RitualManage.gd" id="1_d572v"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceRitualShop.gd" id="1_d572v"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_ioc4p"]
 [ext_resource type="Texture2D" uid="uid://bt50cnulqyp7n" path="res://Sprites/VoidSpace/ritualbunny.png" id="3_4s2ql"]
 [ext_resource type="Texture2D" uid="uid://dd7neey6wx241" path="res://Sprites/VoidSpace/ritual.png" id="4_icdqi"]

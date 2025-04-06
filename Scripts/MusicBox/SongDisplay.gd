@@ -11,6 +11,8 @@ func checkSong():
 	var nextText = "\nCurrently Playing:\n"
 	if GVars.currentTrack == 0:
 		nextText += "MKD20"
-	else:
-		nextText += "???"
+	elif GVars.currentTrack == 1:
+		nextText += "SL40"
+	elif GVars.currentTrack == 2:
+		nextText += "SYT80"
 	text.text = nextText

@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://c5purqhsdwl66"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://c5purqhsdwl66"]
 
-[ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_14klc"]
+[ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_2rttc"]
+[ext_resource type="Texture2D" uid="uid://dj5o17y2u0ovj" path="res://Sprites/HuntSpace/souls/moldsoul.png" id="2_makad"]
 
 [resource]
-script = ExtResource("1_14klc")
+script = ExtResource("1_2rttc")
 length = 222.0
 cost = 2e+06
+sprite = ExtResource("2_makad")
 xp = 30.0
 soulvalue = 6.0
-name = "oldsoul"
+name = "moldsoul"
 minimumLevel = 2
+description = "I'm just so moldy today"

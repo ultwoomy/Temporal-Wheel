@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://ca4gkcfid2on"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://ca4gkcfid2on"]
 
 [ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_ynrpe"]
+[ext_resource type="Texture2D" uid="uid://bxgi8a23rusc3" path="res://Sprites/HuntSpace/souls/fearfulsoul.png" id="2_lkdpc"]
 
 [resource]
 script = ExtResource("1_ynrpe")
 length = 600.0
 cost = 400000.0
+sprite = ExtResource("2_lkdpc")
 xp = 40.0
 soulvalue = 3.0
 name = "fearfulsoul"
 minimumLevel = 1
+description = "It knows you're coming and it's trying to run far far away"

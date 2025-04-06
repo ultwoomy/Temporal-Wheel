@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://hdaiyxporq22"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://hdaiyxporq22"]
 
 [ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_ywc0p"]
+[ext_resource type="Texture2D" uid="uid://c4f8rb33u8jrc" path="res://Sprites/HuntSpace/souls/trainingsoul.png" id="2_4u2ox"]
 
 [resource]
 script = ExtResource("1_ywc0p")
 length = 100.0
 cost = 1000.0
+sprite = ExtResource("2_4u2ox")
 xp = 10.0
 soulvalue = 1.0
 name = "trainingsoul"
 minimumLevel = 0
+description = "This ones just giving itself up to let you figure things out. How nice!"

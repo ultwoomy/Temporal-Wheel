@@ -11,14 +11,16 @@ var musicbox = AudioStreamPlayer.new()
 func _ready():
 	tracks.append(preload("res://Sound/Music/MKD20.wav"))
 	tracks.append(preload("res://Sound/Music/SL40.wav"))
+	tracks.append(preload("res://Sound/Music/SYT80.wav"))
 	add_child(musicbox)
-	musicbox.stream = tracks[0]
+	musicbox.stream = tracks[GVars.currentTrack]
 	musicbox.finished.connect(reset)
 	musicbox.volume_db = GVars.musicvol
 	check_track()
 	musicbox.play()
 	musicbox.stream_paused = true
-	get_tree().get_root().get_node("EventManager").wheel_spun.connect(check_track)
+	EventManager.wheel_spun.connect(check_track)
+	EventManager.refresh_song.connect(check_track)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

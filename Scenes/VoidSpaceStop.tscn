@@ -1,10 +1,11 @@
-[gd_scene load_steps=51 format=3 uid="uid://nc3r8b15k1bk"]
+[gd_scene load_steps=52 format=3 uid="uid://nc3r8b15k1bk"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_7qe2c"]
 [ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="1_burux"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceMain.gd" id="2_nvleh"]
 [ext_resource type="Texture2D" uid="uid://bxe44cpe8n2sq" path="res://Sprites/VoidSpace/back_void/tile000.png" id="2_sapct"]
 [ext_resource type="Texture2D" uid="uid://b2p6qbiri8oc6" path="res://Sprites/VoidSpace/back_void/tile001.png" id="3_pm404"]
+[ext_resource type="Script" path="res://Scripts/GSoundManager.gd" id="4_mhm64"]
 [ext_resource type="Texture2D" uid="uid://ckqfyij8e073u" path="res://Sprites/VoidSpace/back_void/tile002.png" id="4_vh7tf"]
 [ext_resource type="Texture2D" uid="uid://cbtbrufucskwt" path="res://Sprites/FabChallenge/standard_button_thorns.png" id="7_05ii3"]
 [ext_resource type="Script" path="res://Scripts/VoidSpace/BusStopTut.gd" id="8_lvpo8"]
@@ -171,6 +172,7 @@ script = ExtResource("2_nvleh")
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("1_burux")
+script = ExtResource("4_mhm64")
 
 [node name="SigilButton" type="Button" parent="."]
 layout_mode = 0

@@ -8,6 +8,7 @@ class_name HuntSoul
 @export var soulvalue : float
 @export var name : String
 @export var minimumLevel : int
+@export var description : String
 
 
 func _init() -> void:

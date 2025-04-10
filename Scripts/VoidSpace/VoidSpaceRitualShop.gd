@@ -9,25 +9,35 @@ class_name VoidSpaceRitualShop
 var fmat = preload("res://Scripts/FormatNo.gd")
 var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png")
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
-var effectsDesc = ["The spin speed of your wheel is\ncurrently multiplied by "
-					, "Lose rotations per spin."
-					, "Gain a small amount of\nmushroom exp each spin."
-					, "Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff))
-					, "Gain a small amount of rust\nper spin"
-					, "Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.ritualData.rotBuff)) + ". Perpetual!"
-					, "Powers the kbity creation\nmachine! It's broken??????"
-					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + " momentum and " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "\nrotations to create kbity!\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."
-					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "rotations\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations."
-					, "Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + "momentum\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum."]
+var effectsDesc = [
+	"The spin speed of your wheel is\ncurrently multiplied by ",
+	
+	"Lose rotations per spin.",
+	"Gain a small amount of\nmushroom exp each spin.",
+	"Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff)),
+	"Gain a small amount of rust\nper spin",
+	"Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.ritualData.rotBuff)) + ". Perpetual!",
+	"Powers the kbity creation\nmachine! It's broken??????",
+	
+	"Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + " momentum and " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "\nrotations to create kbity!\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations.",
+	"Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "rotations\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations.",
+	"Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + "momentum\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum."
+]
 
 
 #@ Onready Variables
 @onready var sigilLabel : Label = $SigilLabel
+@onready var ritual : Ritual = $Ritual
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Listen and connect signals
+	for candle in ritual.candles:
+		candle.pressed.connect(_onRitualCandlePressed.bind(candle))
+		candle.mouse_entered.connect(_onRitualCandleHovered.bind(candle))
+	
 	hide()
 	setCandleSprites()
 	setIdleText()
@@ -48,6 +58,7 @@ func _ready():
 
 #@ Public Methods
 func setIdleText():
+	## TODO: L.B: replace this with GVars.ritualData.totalLitCandles
 	var numOfCandles = 0.0
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
@@ -89,6 +100,23 @@ func getPath(cand):
 
 
 #@ Private Methods
+func _onRitualCandlePressed(candle : RitualCandle) -> void:
+	var toggledOn : bool = candle.texture_normal == Ritual.CANDLE_SPRITE_ENABLED
+	if toggledOn:
+		candle.texture_normal = Ritual.CANDLE_SPRITE_DISABLED
+		candle.texture_focused = Ritual.CANDLE_SPRITE_DISABLED
+	else:
+		candle.texture_normal = Ritual.CANDLE_SPRITE_ENABLED
+		candle.texture_focused = Ritual.CANDLE_SPRITE_ENABLED
+	GVars.ritualData.candlesLit[candle.candleIndex] = not toggledOn
+	setIdleText()
+
+
+func _onRitualCandleHovered(candle : RitualCandle) -> void:
+	sigilLabel.text = candle.description
+
+
+'
 func _on_candle_1_pressed():
 	getPath(1)
 
@@ -106,7 +134,8 @@ func _on_candle_5_pressed():
 
 func _on_candle_6_pressed():
 	getPath(6)
-
+'
+'
 func _on_candle_1_mouse_entered():
 	setDescText(1)
 
@@ -127,3 +156,4 @@ func _on_candle_6_mouse_entered():
 		setDescText(6)
 	else:
 		setDescText(7)
+'

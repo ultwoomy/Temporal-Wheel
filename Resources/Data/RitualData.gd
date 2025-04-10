@@ -1,7 +1,15 @@
 extends Resource
 class_name RitualData
 
+
 @export var candlesLit : Array[bool]
+@export var totalLitCandles : int :
+	get():
+		var result : int = 0
+		for candle in candlesLit:
+			if candle:
+				result += 1
+		return result
 @export var ascBuff : float
 @export var rotBuff : float
 

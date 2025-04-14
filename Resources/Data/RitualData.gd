@@ -9,6 +9,11 @@ class_name RitualData
 		for candle in candlesLit:
 			if candle:
 				result += 1
+		
+		if (result > 0) and (GVars.sigilData.curSigilBuff == 4):
+			result -= 1
+		elif (result > 5):
+			result = 5
 		return result
 @export var ascBuff : float
 @export var rotBuff : float

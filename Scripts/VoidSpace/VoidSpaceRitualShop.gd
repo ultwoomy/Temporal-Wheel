@@ -9,20 +9,6 @@ class_name VoidSpaceRitualShop
 var fmat = preload("res://Scripts/FormatNo.gd")
 var enabledSprite = preload("res://Sprites/VoidSpace/candles/candle1enabled.png")
 var disabledSprite = preload("res://Sprites/VoidSpace/candles/candle1disabled.png")
-var effectsDesc = [
-	"The spin speed of your wheel is\ncurrently multiplied by ",
-	
-	"Lose rotations per spin.",
-	"Gain a small amount of\nmushroom exp each spin.",
-	"Solidify your identity.\nYour wheel currently gives you\n" + str(GVars.getScientific(GVars.ritualData.ascBuff)),
-	"Gain a small amount of rust\nper spin",
-	"Gain an increase to rotation\nspeed every rotation, currently\nbeing " + str(GVars.getScientific(GVars.ritualData.rotBuff)) + ". Perpetual!",
-	"Powers the kbity creation\nmachine! It's broken??????",
-	
-	"Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + " momentum and " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "\nrotations to create kbity!\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations.",
-	"Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshRot)) + "rotations\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgRot)) + "rotations.",
-	"Consume " + str(GVars.getScientific(GVars.kbityData.kbityThreshSpin)) + "momentum\nYou can do this over several runs\n" + str(GVars.getScientific(GVars.kbityData.kbityProgSpin)) + "momentum."
-]
 
 
 #@ Onready Variables
@@ -37,10 +23,12 @@ func _ready():
 	for candle in ritual.candles:
 		candle.pressed.connect(_onRitualCandlePressed.bind(candle))
 		candle.mouse_entered.connect(_onRitualCandleHovered.bind(candle))
+		candle.mouse_exited.connect(_onRitualCandleUnhovered)
 	
 	hide()
 	setCandleSprites()
 	setIdleText()
+	
 	GVars.kbityData.kbityProgSpin += GVars.kbityData.kbityAddSpin
 	GVars.kbityData.kbityAddSpin = 0
 	GVars.kbityData.kbityProgRot += GVars.kbityData.kbityAddRot
@@ -67,36 +55,19 @@ func setIdleText():
 		numOfCandles -= 1
 	if(numOfCandles > 5):
 		numOfCandles = 5
-	effectsDesc[0] = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (numOfCandles * 0.2))
-	sigilLabel.text = effectsDesc[0]
+	
+	sigilLabel.text = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (numOfCandles * 0.2))
 
 
+## TODO: Let RitualCandle.gd do this itself.
+# Show that a candle is enabled/disabled when reentering a scene.
 func setCandleSprites():
 	for n in GVars.ritualData.candlesLit.size():
 		var path = "Ritual/Candle" + str(n + 1)
 		if(GVars.ritualData.candlesLit[n]):
 			get_node(path).texture_normal = enabledSprite
-			get_node(path).texture_focused = enabledSprite
 		else: 
 			get_node(path).texture_normal = disabledSprite
-			get_node(path).texture_focused = disabledSprite
-
-
-func setDescText(n):
-	sigilLabel.text = effectsDesc[n]
-
-
-func getPath(cand):
-	var path = "Ritual/Candle" + str(cand)
-	if(get_node(path).texture_normal == enabledSprite):
-		get_node(path).texture_normal = disabledSprite
-		get_node(path).texture_focused = disabledSprite
-		GVars.ritualData.candlesLit[cand - 1] = false
-	else:
-		get_node(path).texture_normal = enabledSprite
-		get_node(path).texture_focused = enabledSprite
-		GVars.ritualData.candlesLit[cand - 1] = true
-	setIdleText()
 
 
 #@ Private Methods
@@ -104,10 +75,8 @@ func _onRitualCandlePressed(candle : RitualCandle) -> void:
 	var toggledOn : bool = candle.texture_normal == Ritual.CANDLE_SPRITE_ENABLED
 	if toggledOn:
 		candle.texture_normal = Ritual.CANDLE_SPRITE_DISABLED
-		candle.texture_focused = Ritual.CANDLE_SPRITE_DISABLED
 	else:
 		candle.texture_normal = Ritual.CANDLE_SPRITE_ENABLED
-		candle.texture_focused = Ritual.CANDLE_SPRITE_ENABLED
 	GVars.ritualData.candlesLit[candle.candleIndex] = not toggledOn
 	setIdleText()
 
@@ -116,44 +85,5 @@ func _onRitualCandleHovered(candle : RitualCandle) -> void:
 	sigilLabel.text = candle.description
 
 
-'
-func _on_candle_1_pressed():
-	getPath(1)
-
-func _on_candle_2_pressed():
-	getPath(2)
-	
-func _on_candle_3_pressed():
-	getPath(3)
-
-func _on_candle_4_pressed():
-	getPath(4)
-
-func _on_candle_5_pressed():
-	getPath(5)
-
-func _on_candle_6_pressed():
-	getPath(6)
-'
-'
-func _on_candle_1_mouse_entered():
-	setDescText(1)
-
-func _on_candle_2_mouse_entered():
-	setDescText(2)
-
-func _on_candle_3_mouse_entered():
-	setDescText(3)
-
-func _on_candle_4_mouse_entered():
-	setDescText(4)
-
-func _on_candle_5_mouse_entered():
-	setDescText(5)
-
-func _on_candle_6_mouse_entered():
-	if not GVars.hellChallengeLayer2 == 1:
-		setDescText(6)
-	else:
-		setDescText(7)
-'
+func _onRitualCandleUnhovered() -> void:
+	sigilLabel.text = "The spin speed of your wheel is\ncurrently multiplied by " + str(1 - (GVars.ritualData.totalLitCandles * 0.2))

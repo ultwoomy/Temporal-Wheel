@@ -77,51 +77,53 @@ func _process(delta: float) -> void:
 #@ Private Methods
 func _onButtonPressed():
 	GVars._dialouge(sigilLabel, 0, 0.02)
+	
+	# If Player was unable to afford the sigil...
 	if failbought:
 		reset()
-	else:
-		
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
-			#If player is in the sand challenge, include sand cost in the sigil price
-			if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
-				if GVars.sand >= GVars.sandCost:
-					GVars.sand -= GVars.sandCost
-					GVars.sandCost += GVars.sandScaling
-					GVars.spinData.spin -= GVars.sigilData.costSpin
-					GVars.spinData.rotations -= GVars.sigilData.costRot
-					checkCurrentSigil()
-				else:
-					checkStupid()
-			else:
-				# If player is not in a challenge, just use the normal costs
+		return
+	
+	if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
+		#If player is in the sand challenge, include sand cost in the sigil price
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
+			if GVars.sand >= GVars.sandCost:
+				GVars.sand -= GVars.sandCost
+				GVars.sandCost += GVars.sandScaling
 				GVars.spinData.spin -= GVars.sigilData.costSpin
 				GVars.spinData.rotations -= GVars.sigilData.costRot
 				checkCurrentSigil()
-		
-		# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
-			GVars.spinData.spin -= 1000
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
-			GVars.rustData.rust -= 20
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
-			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
-				GVars.mushroomData.level -= 5
-				checkCurrentSigil()
-			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
-				GVars.dollarTotal -= 5
-				checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
-			GVars.spinData.size -= 4
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
-			GVars.Aspinbuff -= 6
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
-			checkCurrentSigil()
+			else:
+				checkStupid()
 		else:
-			checkStupid()
+			# If player is not in a challenge, just use the normal costs
+			GVars.spinData.spin -= GVars.sigilData.costSpin
+			GVars.spinData.rotations -= GVars.sigilData.costRot
+			checkCurrentSigil()
+	
+	# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
+		GVars.spinData.spin -= 1000
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
+		GVars.rustData.rust -= 20
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
+		if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
+			GVars.mushroomData.level -= 5
+			checkCurrentSigil()
+		elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
+			GVars.dollarTotal -= 5
+			checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
+		GVars.spinData.size -= 4
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
+		GVars.Aspinbuff -= 6
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
+		checkCurrentSigil()
+	else:
+		checkStupid()
 
 
 func checkCurrentSigil():
@@ -136,7 +138,7 @@ func checkCurrentSigil():
 		print("After: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
 	
 	# The size is used to keep track of what sigil to get from purchaseOrder.
-	var addedSigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
+	var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
 		GVars.sigilData.acquiredSigils.append(addedSigil)
 		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
@@ -149,19 +151,23 @@ func checkCurrentSigil():
 
 
 func reset():
-	const hellSigil : Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+	# Check to see if the shop is out of Sigils.
+	# TODO: Have condition be modular.
 	if hellSigil in GVars.sigilData.acquiredSigils:
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
-	elif not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
-		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
+		return
+	
+	sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n"
+	# If NOT in the Bittersweet challenge.
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
+		sigilLabel.text += str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n"
+		sigilLabel.text += str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
 		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
-		buyButton.text = "Buy"
-		failbought = false
+	# If in the Bittersweet challenge.
 	else:
 		var numberOfAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-		sigilLabel.text = "Here for a sigil?\nIt\'ll cost ya:\n"
 		if numberOfAcquiredSigils == 0:
 			sigilLabel.text += "1000 momentum"
 		elif numberOfAcquiredSigils == 1:
@@ -178,8 +184,8 @@ func reset():
 		elif numberOfAcquiredSigils == 5:
 			altprice = 100
 			sigilLabel.text = "Here for a sigil?\nFully charge the kbity machine and I\'ll give it to you"
-		buyButton.text = "Buy"
-		failbought = false
+	buyButton.text = "Buy"
+	failbought = false
 
 
 func checkStupid():

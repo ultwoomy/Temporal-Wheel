@@ -74,58 +74,7 @@ func _process(delta: float) -> void:
 	sandLabel.text = "Sand\namount:\n" + str(GVars.sand)
 
 
-#@ Private Methods
-func _onButtonPressed():
-	GVars._dialouge(sigilLabel, 0, 0.02)
-	
-	# If Player was unable to afford the sigil...
-	if failbought:
-		reset()
-		return
-	
-	if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
-		#If player is in the sand challenge, include sand cost in the sigil price
-		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
-			if GVars.sand >= GVars.sandCost:
-				GVars.sand -= GVars.sandCost
-				GVars.sandCost += GVars.sandScaling
-				GVars.spinData.spin -= GVars.sigilData.costSpin
-				GVars.spinData.rotations -= GVars.sigilData.costRot
-				checkCurrentSigil()
-			else:
-				checkStupid()
-		else:
-			# If player is not in a challenge, just use the normal costs
-			GVars.spinData.spin -= GVars.sigilData.costSpin
-			GVars.spinData.rotations -= GVars.sigilData.costRot
-			checkCurrentSigil()
-	
-	# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
-		GVars.spinData.spin -= 1000
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
-		GVars.rustData.rust -= 20
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
-		if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
-			GVars.mushroomData.level -= 5
-			checkCurrentSigil()
-		elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
-			GVars.dollarTotal -= 5
-			checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
-		GVars.spinData.size -= 4
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
-		GVars.Aspinbuff -= 6
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
-		checkCurrentSigil()
-	else:
-		checkStupid()
-
-
+#@ Public Methods
 func checkCurrentSigil():
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
@@ -150,7 +99,7 @@ func checkCurrentSigil():
 	failbought = true
 
 
-func reset():
+func reset() -> void:
 	# Check to see if the shop is out of Sigils.
 	# TODO: Have condition be modular.
 	if hellSigil in GVars.sigilData.acquiredSigils:
@@ -184,6 +133,8 @@ func reset():
 		elif numberOfAcquiredSigils == 5:
 			altprice = 100
 			sigilLabel.text = "Here for a sigil?\nFully charge the kbity machine and I\'ll give it to you"
+	
+	# Reset to have new sigil available
 	buyButton.text = "Buy"
 	failbought = false
 
@@ -250,3 +201,133 @@ func checkStupid():
 		stupids += 1
 	buyButton.text = "Oh"
 	failbought = true
+
+
+#@ Private Methods
+func _onButtonPressed():
+	GVars._dialouge(sigilLabel, 0, 0.02)
+	
+	# If Player was unable to afford the sigil...
+	if failbought:
+		reset()
+		return
+	
+	## Problem:
+	## How do I use if/else AND account for currency?
+	## Have it compare challenge first
+	## Then keep tally of pay
+	## Then compare pay
+	## Then decide whether or not player can pay
+	# Get price of sigil.
+	var _sigilPrice : ShopPrice = ShopPrice.new()
+	if GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):  # Alternate prices for the sigil price if in BITTERSWEET challenge.
+		_getSigilPrice(_sigilPrice, "BITTERSWEET")
+	else:
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
+			_getSigilPrice(_sigilPrice, "SANDY")
+		_getSigilPrice(_sigilPrice)
+	
+	# Pay for the sigil, if able.
+	_payPrice(_sigilPrice)
+	
+	'
+	if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
+		#If player is in the sand challenge, include sand cost in the sigil price
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
+			if GVars.sand >= GVars.sandCost:
+				GVars.sand -= GVars.sandCost
+				GVars.sandCost += GVars.sandScaling
+				GVars.spinData.spin -= GVars.sigilData.costSpin
+				GVars.spinData.rotations -= GVars.sigilData.costRot
+				checkCurrentSigil()
+			else:
+				checkStupid()
+		else:
+			# If player is not in a challenge, just use the normal costs
+			GVars.spinData.spin -= GVars.sigilData.costSpin
+			GVars.spinData.rotations -= GVars.sigilData.costRot
+			checkCurrentSigil()
+	
+	# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
+		GVars.spinData.spin -= 1000
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
+		GVars.rustData.rust -= 20
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
+		if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
+			GVars.mushroomData.level -= 5
+			checkCurrentSigil()
+		elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:  # (!) Variable does not exist?!
+			GVars.dollarTotal -= 5  # (!) Variable does not exist?!
+			checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
+		GVars.spinData.size -= 4
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
+		GVars.Aspinbuff -= 6
+		checkCurrentSigil()
+	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
+		checkCurrentSigil()
+	else:
+		checkStupid()
+	'
+
+
+func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
+	match specialConditions:
+		"BITTERSWEET":
+			## TODO:
+			##  Do the different kinds of alternate currency
+			shopPrice
+		"SANDY":
+			shopPrice.sandCost = GVars.sandCost
+			# GVars.sandCost += GVars.sandScaling
+		_:
+			shopPrice.spinCost = GVars.sigilData.costSpin
+			shopPrice.rotationCost = GVars.sigilData.costRot
+
+
+func _payPrice(shopPrice : ShopPrice) -> void:
+	# Make sure you can actually pay for the sigil.
+	var _failConditions : Array[bool] = [
+		shopPrice.spinCost > GVars.sigilData.costSpin,
+		shopPrice.rotationCost > GVars.sigilData.costRot,
+		shopPrice.sandCost > GVars.sandCost,
+		shopPrice.rustCost > 20,  # TODO: Have a const instead
+		shopPrice.mushroomLevelCost > 5,  # TODO: Have a const instead
+		shopPrice.dollarCost > 5,  # TODO: Have a const instead
+		shopPrice.wheelSizeCost > 4,  # TODO: Have a const instead
+		shopPrice.ascensionSpinBuffCost > 6,  # TODO: Have a const instead
+		shopPrice.kbityLevelCost > 0  # WIP
+	]
+	if true in _failConditions:
+		checkStupid()
+		return
+	
+	# Pay for sigil.
+	GVars.spinData.spin -= shopPrice.spinCost
+	GVars.spinData.rotations -= shopPrice.rotationCost
+	GVars.sand -= shopPrice.sandCost
+	# TODO: GVars.sandCost += GVars.sandScaling
+	GVars.rustData.rust -= shopPrice.rustCost
+	GVars.mushroomData.level -= shopPrice.mushroomLevelCost
+	GVars.dollarTotal -= shopPrice.dollarCost
+	GVars.spinData.size -= shopPrice.wheelSizeCost
+	GVars.Aspinbuff -= shopPrice.ascensionSpinBuffCost
+	shopPrice.kbityLevelCost  # TODO: Code was left unfinished, so finish this when kbity is done!
+	checkCurrentSigil()
+
+
+#@ Subclasses
+class ShopPrice:
+	var spinCost : float = 0.0
+	var rotationCost : float = 0.0
+	var sandCost : float = 0.0 # (!) GVars already has a variable for this. Should this replace it?
+	var rustCost : float = 0.0
+	var mushroomLevelCost : int = 0
+	var dollarCost : int = 0 # (!) GVars.dollarTotal does not even exist
+	var wheelSizeCost : float = 0.0 # (?) Apparently GVars.spinData.size is a FLOAT instead of an INT.
+	var ascensionSpinBuffCost : float = 0.0
+	var kbityLevelCost : int = 0

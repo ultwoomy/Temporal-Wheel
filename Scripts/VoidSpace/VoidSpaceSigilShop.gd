@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 #@ Public Methods
 func checkCurrentSigil():
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
+	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin, GVars.sigilData.costSpinScale)
 	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
 	
 	
@@ -212,12 +212,6 @@ func _onButtonPressed():
 		reset()
 		return
 	
-	## Problem:
-	## How do I use if/else AND account for currency?
-	## Have it compare challenge first
-	## Then keep tally of pay
-	## Then compare pay
-	## Then decide whether or not player can pay
 	# Get price of sigil.
 	var _sigilPrice : ShopPrice = ShopPrice.new()
 	if GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):  # Alternate prices for the sigil price if in BITTERSWEET challenge.
@@ -227,6 +221,16 @@ func _onButtonPressed():
 			_getSigilPrice(_sigilPrice, "SANDY")
 		_getSigilPrice(_sigilPrice)
 	
+	print("_sigilPrice.spinCost = " + str(_sigilPrice.spinCost) + "\n" +
+		"_sigilPrice.rustCost = " + str(_sigilPrice.rustCost) + "\n" +
+		"_sigilPrice.rotationCost = " + str(_sigilPrice.rotationCost) + "\n" +
+		"_sigilPrice.sandCost = " + str(_sigilPrice.sandCost) + "\n" +
+		"_sigilPrice.ascensionSpinBuffCost = " + str(_sigilPrice.ascensionSpinBuffCost) + "\n" +
+		"_sigilPrice.dollarCost = " + str(_sigilPrice.dollarCost) + "\n" +
+		"_sigilPrice.kbityLevelCost = " + str(_sigilPrice.kbityLevelCost) + "\n" +
+		"_sigilPrice.mushroomLevelCost = " + str(_sigilPrice.mushroomLevelCost) + "\n" +
+		"_sigilPrice.wheelSizeCost = " + str(_sigilPrice.wheelSizeCost) + "\n"
+	)
 	# Pay for the sigil, if able.
 	_payPrice(_sigilPrice)
 	
@@ -278,34 +282,55 @@ func _onButtonPressed():
 func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
 	match specialConditions:
 		"BITTERSWEET":
-			## TODO:
-			##  Do the different kinds of alternate currency
-			shopPrice
+			if not acquiredPacksmithSigil:
+				shopPrice.spinCost = 1000
+			if not acquiredCandleSigil:
+				shopPrice.rustCost = 20
+			if not acquiredAscensionSigil:
+				shopPrice.mushroomLevelCost = 5
+				# TODO
+				'
+				elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:  # (!) Variable does not exist?!
+				GVars.dollarTotal -= 5  # (!) Variable does not exist?!
+				checkCurrentSigil()
+				'
+			if not acquiredEmptinessSigil:
+				shopPrice.wheelSizeCost = 4
+			if not acquiredRitualSigil:
+				shopPrice.ascensionSpinBuffCost = 6
+			if not acquiredHellSigil:
+				# TODO
+				pass
+			else:
+				# TODO: What to do when no sigil?!
+				return
 		"SANDY":
 			shopPrice.sandCost = GVars.sandCost
 			# GVars.sandCost += GVars.sandScaling
 		_:
-			shopPrice.spinCost = GVars.sigilData.costSpin
-			shopPrice.rotationCost = GVars.sigilData.costRot
+			shopPrice.spinCost = pow(GVars.sigilData.costSpin, GVars.sigilData.costSpinScale)
+			shopPrice.rotationCost = GVars.sigilData.costRotScale
 
 
 func _payPrice(shopPrice : ShopPrice) -> void:
 	# Make sure you can actually pay for the sigil.
 	var _failConditions : Array[bool] = [
-		shopPrice.spinCost > GVars.sigilData.costSpin,
-		shopPrice.rotationCost > GVars.sigilData.costRot,
+		shopPrice.spinCost > GVars.spinData.spin,
+		shopPrice.rotationCost > GVars.spinData.rotations,
 		shopPrice.sandCost > GVars.sandCost,
-		shopPrice.rustCost > 20,  # TODO: Have a const instead
-		shopPrice.mushroomLevelCost > 5,  # TODO: Have a const instead
-		shopPrice.dollarCost > 5,  # TODO: Have a const instead
-		shopPrice.wheelSizeCost > 4,  # TODO: Have a const instead
-		shopPrice.ascensionSpinBuffCost > 6,  # TODO: Have a const instead
-		shopPrice.kbityLevelCost > 0  # WIP
+		shopPrice.rustCost > GVars.rustData.rust,
+		shopPrice.mushroomLevelCost > GVars.mushroomData.level,
+		shopPrice.dollarCost > 5,  # TODO: THE VARIABLE:  GVars.dollarData.dollarTotal  DOES NOT EXIST!
+		shopPrice.wheelSizeCost > GVars.spinData.size,  # TODO: Have a const instead
+		shopPrice.ascensionSpinBuffCost > GVars.Aspinbuff,  # TODO: Have a const instead
+		shopPrice.kbityLevelCost > GVars.kbityData.kbityLevel  # WIP
 	]
-	if true in _failConditions:
-		checkStupid()
-		return
-	
+	## TODO: MORE TESTING
+	print("shopPrice.spinCost = ", shopPrice.spinCost, " > GVars.spinData.spin = ", GVars.spinData.spin)
+	for boolean in _failConditions:
+		if boolean:
+			checkStupid()
+			return
 	# Pay for sigil.
 	GVars.spinData.spin -= shopPrice.spinCost
 	GVars.spinData.rotations -= shopPrice.rotationCost
@@ -313,7 +338,8 @@ func _payPrice(shopPrice : ShopPrice) -> void:
 	# TODO: GVars.sandCost += GVars.sandScaling
 	GVars.rustData.rust -= shopPrice.rustCost
 	GVars.mushroomData.level -= shopPrice.mushroomLevelCost
-	GVars.dollarTotal -= shopPrice.dollarCost
+	# TODO: ERROR - This variable doesn't exist!
+	#GVars.dollarTotal -= shopPrice.dollarCost
 	GVars.spinData.size -= shopPrice.wheelSizeCost
 	GVars.Aspinbuff -= shopPrice.ascensionSpinBuffCost
 	shopPrice.kbityLevelCost  # TODO: Code was left unfinished, so finish this when kbity is done!

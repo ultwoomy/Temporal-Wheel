@@ -2,6 +2,19 @@ extends Control
 class_name VoidSpaceSigilShop
 
 
+#@ Constants
+const SIGIL_PACKSMITH 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
+const SIGIL_CANDLE 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
+const SIGIL_ASCENSION 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
+const SIGIL_EMPTINESS 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
+const SIGIL_RITUAL 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
+const SIGIL_HELL 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+const SIGIL_SAND      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
+const SIGIL_TWINS  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
+const SIGIL_UNDERCITY 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
+const SIGIL_ZUNDA_NIGHT	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
+
+
 #@ Export Variables
 
 
@@ -34,28 +47,6 @@ var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var sandLabel : Label = $SandLabel
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)
-
-
-const packsmithSigil 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
-const candleSigil 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
-const ascensionSigil 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
-const emptinessSigil 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
-const ritualSigil 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
-const hellSigil 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
-const sandSigil      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
-const twinsSigil  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
-const undercitySigil 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
-const zundaNightSigil 	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
-var acquiredPacksmithSigil 	: bool = GVars.sigilData.acquiredSigils.has(packsmithSigil)
-var acquiredCandleSigil 	: bool = GVars.sigilData.acquiredSigils.has(candleSigil)
-var acquiredAscensionSigil 	: bool = GVars.sigilData.acquiredSigils.has(ascensionSigil)
-var acquiredEmptinessSigil 	: bool = GVars.sigilData.acquiredSigils.has(emptinessSigil)
-var acquiredRitualSigil 	: bool = GVars.sigilData.acquiredSigils.has(ritualSigil)
-var acquiredHellSigil 		: bool = GVars.sigilData.acquiredSigils.has(hellSigil)
-var acquiredSandSigil		: bool = GVars.sigilData.acquiredSigils.has(sandSigil)
-var acquiredtwinsSigil  	: bool = GVars.sigilData.acquiredSigils.has(twinsSigil)
-var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
-var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
 
 
 #@ Virtual Methods
@@ -102,7 +93,7 @@ func checkCurrentSigil():
 func reset() -> void:
 	# Check to see if the shop is out of Sigils.
 	# TODO: Have condition be modular.
-	if hellSigil in GVars.sigilData.acquiredSigils:
+	if GVars.sigilData.acquiredSigils.has(SIGIL_HELL):
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
 		return
@@ -234,59 +225,16 @@ func _onButtonPressed():
 	# Pay for the sigil, if able.
 	_payPrice(_sigilPrice)
 	
-	'
-	if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
-		#If player is in the sand challenge, include sand cost in the sigil price
-		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
-			if GVars.sand >= GVars.sandCost:
-				GVars.sand -= GVars.sandCost
-				GVars.sandCost += GVars.sandScaling
-				GVars.spinData.spin -= GVars.sigilData.costSpin
-				GVars.spinData.rotations -= GVars.sigilData.costRot
-				checkCurrentSigil()
-			else:
-				checkStupid()
-		else:
-			# If player is not in a challenge, just use the normal costs
-			GVars.spinData.spin -= GVars.sigilData.costSpin
-			GVars.spinData.rotations -= GVars.sigilData.costRot
-			checkCurrentSigil()
-	
-	# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
-		GVars.spinData.spin -= 1000
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
-		GVars.rustData.rust -= 20
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
-		if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
-			GVars.mushroomData.level -= 5
-			checkCurrentSigil()
-		elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:  # (!) Variable does not exist?!
-			GVars.dollarTotal -= 5  # (!) Variable does not exist?!
-			checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
-		GVars.spinData.size -= 4
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
-		GVars.Aspinbuff -= 6
-		checkCurrentSigil()
-	elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
-		checkCurrentSigil()
-	else:
-		checkStupid()
-	'
 
 
 func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
 	match specialConditions:
 		"BITTERSWEET":
-			if not acquiredPacksmithSigil:
+			if not GVars.sigilData.acquiredSigils.has(SIGIL_PACKSMITH):
 				shopPrice.spinCost = 1000
-			if not acquiredCandleSigil:
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_CANDLE):
 				shopPrice.rustCost = 20
-			if not acquiredAscensionSigil:
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_ASCENSION):
 				shopPrice.mushroomLevelCost = 5
 				# TODO
 				'
@@ -294,12 +242,12 @@ func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> v
 				GVars.dollarTotal -= 5  # (!) Variable does not exist?!
 				checkCurrentSigil()
 				'
-			if not acquiredEmptinessSigil:
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_EMPTINESS):
 				shopPrice.wheelSizeCost = 4
-			if not acquiredRitualSigil:
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_RITUAL):
 				shopPrice.ascensionSpinBuffCost = 6
-			if not acquiredHellSigil:
-				# TODO
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_HELL):
+				# TODO: L.B: There was no price assigned for hell sigil for the BITTERSWEET challenge!
 				pass
 			else:
 				# TODO: What to do when no sigil?!

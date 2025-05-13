@@ -38,7 +38,8 @@ var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and
 				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]
 
 var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
-
+var sigilSpinPrice : float = GVars.sigilData.costSpin
+var sigilRotationPrice : float = GVars.sigilData.costRot
 
 #@ Onready Variables
 @onready var sigilLabel : Label = $SigilLabel
@@ -62,20 +63,20 @@ func _ready():
 
 
 func _process(delta: float) -> void:
+	# TODO: Have sand amount change text from a signal instead if possible.
 	sandLabel.text = "Sand\namount:\n" + str(GVars.sand)
 
 
 #@ Public Methods
 func checkCurrentSigil():
+	# Increase price of sigil.
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin, GVars.sigilData.costSpinScale)
-	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
+	sigilSpinPrice **= GVars.sigilData.costSpinScale
+	sigilRotationPrice *= GVars.sigilData.costRotScale
 	
-	
+	# Increase rotation price if in the BRAVE challenge.
 	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
-		print("Before: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
-		GVars.sigilData.costRot *= (indexFromAcquiredSigils + 1)
-		print("After: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
+		sigilRotationPrice *= indexFromAcquiredSigils + 1
 	
 	# The size is used to keep track of what sigil to get from purchaseOrder.
 	var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
@@ -84,6 +85,7 @@ func checkCurrentSigil():
 		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
 	else:
 		sigilLabel.text = "Use it well!"
+	
 	buyButton.text = "Thx"
 	sigilDisplay.frame = addedSigil.sigilBuffIndex
 	sigilDisplay.show()
@@ -101,10 +103,11 @@ func reset() -> void:
 	sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n"
 	# If NOT in the Bittersweet challenge.
 	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
-		sigilLabel.text += str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n"
-		sigilLabel.text += str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
+		sigilLabel.text += str(GVars.getScientific(sigilSpinPrice)) + " momentum\n"
+		sigilLabel.text += str(GVars.getScientific(sigilRotationPrice)) + " rotations"
 		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
+	
 	# If in the Bittersweet challenge.
 	else:
 		var numberOfAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
@@ -256,8 +259,8 @@ func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> v
 			shopPrice.sandCost = GVars.sandCost
 			# GVars.sandCost += GVars.sandScaling
 		_:
-			shopPrice.spinCost = pow(GVars.sigilData.costSpin, GVars.sigilData.costSpinScale)
-			shopPrice.rotationCost = GVars.sigilData.costRotScale
+			shopPrice.spinCost = sigilSpinPrice
+			shopPrice.rotationCost = sigilRotationPrice
 
 
 func _payPrice(shopPrice : ShopPrice) -> void:
@@ -265,21 +268,20 @@ func _payPrice(shopPrice : ShopPrice) -> void:
 	var _failConditions : Array[bool] = [
 		shopPrice.spinCost > GVars.spinData.spin,
 		shopPrice.rotationCost > GVars.spinData.rotations,
-		shopPrice.sandCost > GVars.sandCost,
+		shopPrice.sandCost > GVars.sand,
 		shopPrice.rustCost > GVars.rustData.rust,
 		shopPrice.mushroomLevelCost > GVars.mushroomData.level,
 		shopPrice.dollarCost > 5,  # TODO: THE VARIABLE:  GVars.dollarData.dollarTotal  DOES NOT EXIST!
-		shopPrice.wheelSizeCost > GVars.spinData.size,  # TODO: Have a const instead
-		shopPrice.ascensionSpinBuffCost > GVars.Aspinbuff,  # TODO: Have a const instead
-		shopPrice.kbityLevelCost > GVars.kbityData.kbityLevel  # WIP
+		shopPrice.wheelSizeCost > GVars.spinData.size,
+		shopPrice.ascensionSpinBuffCost > GVars.Aspinbuff,
+		shopPrice.kbityLevelCost > GVars.kbityData.kbityLevel  # TODO: WIP
 	]
-	## TODO: MORE TESTING
-	print("shopPrice.spinCost = ", shopPrice.spinCost, " > GVars.spinData.spin = ", GVars.spinData.spin)
 	for boolean in _failConditions:
 		if boolean:
 			checkStupid()
 			return
-	# Pay for sigil.
+	
+	# Pay for sigil now that it has checked Player has enough currency.
 	GVars.spinData.spin -= shopPrice.spinCost
 	GVars.spinData.rotations -= shopPrice.rotationCost
 	GVars.sand -= shopPrice.sandCost

@@ -225,9 +225,13 @@ func _onButtonPressed():
 		"_sigilPrice.mushroomLevelCost = " + str(_sigilPrice.mushroomLevelCost) + "\n" +
 		"_sigilPrice.wheelSizeCost = " + str(_sigilPrice.wheelSizeCost) + "\n"
 	)
-	# Pay for the sigil, if able.
-	_payPrice(_sigilPrice)
 	
+	# Pay for the sigil, if able.
+	if _canAfford(_sigilPrice):
+		_payPrice(_sigilPrice)
+		checkCurrentSigil()
+	else:
+		checkStupid()
 
 
 func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
@@ -263,8 +267,8 @@ func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> v
 			shopPrice.rotationCost = sigilRotationPrice
 
 
-func _payPrice(shopPrice : ShopPrice) -> void:
-	# Make sure you can actually pay for the sigil.
+# Make sure the Player can actually pay for the sigil whose price is determined by the ShopPrice subclass.
+func _canAfford(shopPrice : ShopPrice) -> bool:
 	var _failConditions : Array[bool] = [
 		shopPrice.spinCost > GVars.spinData.spin,
 		shopPrice.rotationCost > GVars.spinData.rotations,
@@ -277,11 +281,13 @@ func _payPrice(shopPrice : ShopPrice) -> void:
 		shopPrice.kbityLevelCost > GVars.kbityData.kbityLevel  # TODO: WIP
 	]
 	for boolean in _failConditions:
-		if boolean:
-			checkStupid()
-			return
-	
-	# Pay for sigil now that it has checked Player has enough currency.
+		if boolean:  # If any of the fail conditions is TRUE, return FALSE.
+			return false
+	return true
+
+
+# Pay for a sigil given by the ShopPrice subclass.
+func _payPrice(shopPrice : ShopPrice) -> void:
 	GVars.spinData.spin -= shopPrice.spinCost
 	GVars.spinData.rotations -= shopPrice.rotationCost
 	GVars.sand -= shopPrice.sandCost
@@ -293,7 +299,6 @@ func _payPrice(shopPrice : ShopPrice) -> void:
 	GVars.spinData.size -= shopPrice.wheelSizeCost
 	GVars.Aspinbuff -= shopPrice.ascensionSpinBuffCost
 	shopPrice.kbityLevelCost  # TODO: Code was left unfinished, so finish this when kbity is done!
-	checkCurrentSigil()
 
 
 #@ Subclasses

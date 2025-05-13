@@ -1,0 +1,102 @@
+[gd_scene load_steps=17 format=3 uid="uid://nc3r8b15k1bk"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ddtq"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceMain.gd" id="2_rbsgv"]
+[ext_resource type="Texture2D" uid="uid://c7wdjjdwqyg14" path="res://Sprites/VoidSpace/bus_stop.png" id="3_ki8ng"]
+[ext_resource type="PackedScene" uid="uid://dg2g6efrv0lma" path="res://Scenes/VoidSpace/VoidSpaceTutorialBox.tscn" id="4_a4bjj"]
+[ext_resource type="PackedScene" uid="uid://dobax2tkjb1xx" path="res://Scenes/VoidSpace/VoidSpaceSigilShop.tscn" id="5_5272s"]
+[ext_resource type="PackedScene" uid="uid://yapy0roubrer" path="res://Scenes/VoidSpace/VoidSpaceRitualShop.tscn" id="6_rlnr1"]
+[ext_resource type="PackedScene" uid="uid://ba5cimgobrokq" path="res://Scenes/VoidSpace/VoidSpaceKbityShop.tscn" id="7_lru7q"]
+[ext_resource type="Texture2D" uid="uid://b2p6qbiri8oc6" path="res://Sprites/VoidSpace/back_void/tile001.png" id="31_yey6e"]
+[ext_resource type="Texture2D" uid="uid://ckqfyij8e073u" path="res://Sprites/VoidSpace/back_void/tile002.png" id="32_oykvb"]
+[ext_resource type="Texture2D" uid="uid://bxe44cpe8n2sq" path="res://Sprites/VoidSpace/back_void/tile000.png" id="33_m1ibq"]
+[ext_resource type="Script" path="res://Scripts/ChallengeManager.gd" id="34_1r7lx"]
+[ext_resource type="Texture2D" uid="uid://hw3tsgb8fwb2" path="res://Sprites/FabChallenge/thornsbackground.png" id="35_7eho0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbvxf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e772k"]
+texture = ExtResource("31_yey6e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssjow"]
+texture = ExtResource("32_oykvb")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nc7py"]
+texture = ExtResource("33_m1ibq")
+
+[node name="VoidSpace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6ddtq")
+script = ExtResource("2_rbsgv")
+
+[node name="BusStopBackground" type="Sprite2D" parent="."]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+texture = ExtResource("3_ki8ng")
+
+[node name="SigilButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 200.0
+offset_right = 400.0
+offset_bottom = 300.0
+text = "Sigil"
+
+[node name="RitualButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 410.0
+offset_right = 470.0
+offset_bottom = 510.0
+text = "Ritual"
+
+[node name="KbityCloneButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 750.0
+offset_top = 300.0
+offset_right = 850.0
+offset_bottom = 400.0
+text = "Kbity"
+
+[node name="TutorialBox" parent="." instance=ExtResource("4_a4bjj")]
+visible = false
+layout_mode = 0
+
+[node name="SigilShop" parent="." instance=ExtResource("5_5272s")]
+visible = false
+layout_mode = 0
+
+[node name="RitualShop" parent="." instance=ExtResource("6_rlnr1")]
+visible = false
+layout_mode = 0
+
+[node name="KbityShop" parent="." instance=ExtResource("7_lru7q")]
+visible = false
+layout_mode = 0
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -30.0
+offset_top = 221.0
+offset_right = 470.0
+offset_bottom = 521.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/focus = SubResource("StyleBoxTexture_dbvxf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
+theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
+
+[node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers", "thornsbackground")]
+script = ExtResource("34_1r7lx")
+buttonContainers = [null]
+thornsbackground = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="ChallengeManager"]
+position = Vector2(500, 300)
+scale = Vector2(2, 2)
+texture = ExtResource("35_7eho0")

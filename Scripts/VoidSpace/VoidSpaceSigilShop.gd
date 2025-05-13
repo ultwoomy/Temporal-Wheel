@@ -293,15 +293,15 @@ func _raiseSigilPrice() -> void:
 func checkCurrentSigil() -> void:
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
 	# The size is used to keep track of what sigil to get from purchaseOrder.
-	var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
+		var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
 		GVars.sigilData.acquiredSigils.append(addedSigil)
 		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
+		sigilDisplay.frame = addedSigil.sigilBuffIndex
 	else:
 		sigilLabel.text = "Use it well!"
 	
 	buyButton.text = "Thx"
-	sigilDisplay.frame = addedSigil.sigilBuffIndex
 	sigilDisplay.show()
 	failbought = true
 

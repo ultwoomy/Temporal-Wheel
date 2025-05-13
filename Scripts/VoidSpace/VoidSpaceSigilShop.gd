@@ -68,30 +68,6 @@ func _process(delta: float) -> void:
 
 
 #@ Public Methods
-func checkCurrentSigil():
-	# Increase price of sigil.
-	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-	sigilSpinPrice **= GVars.sigilData.costSpinScale
-	sigilRotationPrice *= GVars.sigilData.costRotScale
-	
-	# Increase rotation price if in the BRAVE challenge.
-	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
-		sigilRotationPrice *= indexFromAcquiredSigils + 1
-	
-	# The size is used to keep track of what sigil to get from purchaseOrder.
-	var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
-	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
-		GVars.sigilData.acquiredSigils.append(addedSigil)
-		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
-	else:
-		sigilLabel.text = "Use it well!"
-	
-	buyButton.text = "Thx"
-	sigilDisplay.frame = addedSigil.sigilBuffIndex
-	sigilDisplay.show()
-	failbought = true
-
-
 func reset() -> void:
 	# Check to see if the shop is out of Sigils.
 	# TODO: Have condition be modular.
@@ -229,11 +205,13 @@ func _onButtonPressed():
 	# Pay for the sigil, if able.
 	if _canAfford(_sigilPrice):
 		_payPrice(_sigilPrice)
+		_raiseSigilPrice()
 		checkCurrentSigil()
 	else:
 		checkStupid()
 
 
+# Given a ShopPrice subclass object, modify it to get the price for the sigil. Subclasses are passed by reference.
 func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
 	match specialConditions:
 		"BITTERSWEET":
@@ -299,6 +277,33 @@ func _payPrice(shopPrice : ShopPrice) -> void:
 	GVars.spinData.size -= shopPrice.wheelSizeCost
 	GVars.Aspinbuff -= shopPrice.ascensionSpinBuffCost
 	shopPrice.kbityLevelCost  # TODO: Code was left unfinished, so finish this when kbity is done!
+
+
+# Increase the non-alternative price of the next sigil.
+func _raiseSigilPrice() -> void:
+	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
+	sigilSpinPrice **= GVars.sigilData.costSpinScale  # To the power of
+	sigilRotationPrice *= GVars.sigilData.costRotScale
+	
+	# Further increase rotation price if in the BRAVE challenge.
+	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
+		sigilRotationPrice *= indexFromAcquiredSigils + 1
+
+
+func checkCurrentSigil() -> void:
+	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
+	# The size is used to keep track of what sigil to get from purchaseOrder.
+	var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
+	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
+		GVars.sigilData.acquiredSigils.append(addedSigil)
+		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
+	else:
+		sigilLabel.text = "Use it well!"
+	
+	buyButton.text = "Thx"
+	sigilDisplay.frame = addedSigil.sigilBuffIndex
+	sigilDisplay.show()
+	failbought = true
 
 
 #@ Subclasses

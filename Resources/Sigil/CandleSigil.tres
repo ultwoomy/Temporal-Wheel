@@ -8,3 +8,5 @@ script = ExtResource("1_3k73o")
 sigilName = "candle"
 spriteTexture = ExtResource("2_v65gx")
 sigilBuffIndex = 1
+sigilShopDescription = "A warm candle!
+Lights up your entire universe!"

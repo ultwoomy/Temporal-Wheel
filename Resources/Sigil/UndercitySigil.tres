@@ -8,3 +8,7 @@ script = ExtResource("1_rth64")
 sigilName = "undercity"
 spriteTexture = ExtResource("2_vwjfk")
 sigilBuffIndex = 11
+sigilShopDescription = "Undercity!
+The birthplace of fae and fun!
+Isn't this themeing reused?
+NON FUNCTIONAL"

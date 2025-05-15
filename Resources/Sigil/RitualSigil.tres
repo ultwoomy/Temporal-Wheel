@@ -8,3 +8,7 @@ script = ExtResource("1_hk2ag")
 sigilName = "ritual"
 spriteTexture = ExtResource("2_nm8p7")
 sigilBuffIndex = 4
+sigilShopDescription = "Ritual!
+Every candle lit gives a buff!
+And lowers wheel spin speed!
+Be careful!"

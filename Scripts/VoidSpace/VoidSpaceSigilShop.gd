@@ -296,7 +296,7 @@ func checkCurrentSigil() -> void:
 	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
 		var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
 		GVars.sigilData.acquiredSigils.append(addedSigil)
-		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
+		sigilLabel.text = addedSigil.sigilShopDescription
 		sigilDisplay.frame = addedSigil.sigilBuffIndex
 	else:
 		sigilLabel.text = "Use it well!"

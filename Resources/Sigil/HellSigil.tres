@@ -8,3 +8,6 @@ script = ExtResource("1_ts2sc")
 sigilName = "hell"
 spriteTexture = ExtResource("2_dramb")
 sigilBuffIndex = 5
+sigilShopDescription = "Dinner Hell!
+Access a wonderful new realm!
+Do you hear something?"

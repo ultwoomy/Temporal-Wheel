@@ -20,26 +20,15 @@ const SIGIL_ZUNDA_NIGHT	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil
 
 #@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
-var failbought
+var failbought : bool
 var stupids : int = 0
 var altprice = 0
-var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!",
-				  "A warm candle!\nLights up your entire universe!",
-				  "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!",
-				  "Emptiness!\nExtremely ironic name!\nFull of emoticon!",
-				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
-				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?",
-				  "",
-				  "",
-				  "",
-				  "Sand Dollar!\nPick them and knock them down!\nThey're just along for the ride!",
-				  "Zunda Of The Night\nI don't know how I have this!\nIt's probably ok!\nNON FUNCTIONAL",
-				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this themeing reused?\nNON FUNCTIONAL",
-				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]
 
 var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
+var sigilForSale : Sigil
 var sigilSpinPrice : float = GVars.sigilData.costSpin
 var sigilRotationPrice : float = GVars.sigilData.costRot
+
 
 #@ Onready Variables
 @onready var sigilLabel : Label = $SigilLabel
@@ -75,6 +64,11 @@ func reset() -> void:
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
 		return
+	
+	# Keeps track of what sigils are left to buy in the sigilPurchaseOrder.
+	var sigilPurchaseOrderIndex : int = GVars.sigilData.acquiredSigils.size()  # To get the sigil from the SigilPurchaseOrder, you need an index.
+	if sigilPurchaseOrderIndex < GVars.currentSigilOrder.purchaseOrder.size():  # Make sure that index is in bounds.
+		sigilForSale = GVars.currentSigilOrder.purchaseOrder[sigilPurchaseOrderIndex]
 	
 	sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n"
 	# If NOT in the Bittersweet challenge.
@@ -206,7 +200,7 @@ func _onButtonPressed():
 	if _canAfford(_sigilPrice):
 		_payPrice(_sigilPrice)
 		_raiseSigilPrice()
-		checkCurrentSigil()
+		_acquireSigil()
 	else:
 		checkStupid()
 
@@ -290,19 +284,23 @@ func _raiseSigilPrice() -> void:
 		sigilRotationPrice *= indexFromAcquiredSigils + 1
 
 
-func checkCurrentSigil() -> void:
-	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-	# The size is used to keep track of what sigil to get from purchaseOrder.
-	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
-		var addedSigil : Sigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
-		GVars.sigilData.acquiredSigils.append(addedSigil)
-		sigilLabel.text = addedSigil.sigilShopDescription
-		sigilDisplay.frame = addedSigil.sigilBuffIndex
-	else:
-		sigilLabel.text = "Use it well!"
+# Have the Player receive the current sigil being sold.
+func _acquireSigil() -> void:
+	# See if there is a sigil for sale.
+	if not sigilForSale:
+		return
 	
-	buyButton.text = "Thx"
+	# Add the sigil to Player.
+	GVars.sigilData.acquiredSigils.append(sigilForSale)
+	
+	# Display and describe the sigil.
+	sigilLabel.text = sigilForSale.sigilShopDescription
+	sigilDisplay.frame = sigilForSale.sigilBuffIndex
 	sigilDisplay.show()
+	buyButton.text = "Thx"
+	
+	# Reset the shop.
+	sigilForSale = null
 	failbought = true
 
 

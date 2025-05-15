@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://bcyn4hgewwgg0"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://bcyn4hgewwgg0"]
 
 [ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_2l3t6"]
+[ext_resource type="Texture2D" uid="uid://45fu18xet863" path="res://Sprites/HuntSpace/souls/happysoul.png" id="2_idyby"]
 
 [resource]
 script = ExtResource("1_2l3t6")
 length = 1.0
 cost = 1e+06
+sprite = ExtResource("2_idyby")
 xp = 50.0
 soulvalue = 5.0
 name = "happysoul"
 minimumLevel = 2
+description = "It doesn't mind being caught"

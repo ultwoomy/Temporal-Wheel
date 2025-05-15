@@ -108,8 +108,8 @@ Currently Playing:"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="SongSwap" type="Container" parent="."]
-layout_mode = 0
+[node name="SongSwap" type="Control" parent="."]
+anchors_preset = 0
 offset_left = 690.0
 offset_top = 187.0
 offset_right = 928.0
@@ -117,7 +117,7 @@ offset_bottom = 341.0
 script = ExtResource("13_wbepq")
 
 [node name="Back" type="Sprite2D" parent="SongSwap"]
-position = Vector2(130, 57)
+position = Vector2(130, 60)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("13_61h0t")
 
@@ -127,6 +127,11 @@ sprite_frames = SubResource("SpriteFrames_kj0nm")
 
 [node name="Left" type="TextureButton" parent="SongSwap"]
 layout_mode = 2
+offset_left = -40.0
+offset_top = 30.0
+offset_right = 60.0
+offset_bottom = 130.0
+scale = Vector2(0.7, 0.7)
 texture_normal = ExtResource("14_3oodw")
 texture_pressed = ExtResource("15_x0g3b")
 texture_hover = ExtResource("15_x0g3b")
@@ -135,6 +140,11 @@ texture_focused = ExtResource("15_x0g3b")
 
 [node name="Right" type="TextureButton" parent="SongSwap"]
 layout_mode = 2
+offset_left = 230.0
+offset_top = 30.0
+offset_right = 330.0
+offset_bottom = 130.0
+scale = Vector2(0.7, 0.7)
 texture_normal = ExtResource("17_xisba")
 texture_pressed = ExtResource("18_2oetx")
 texture_hover = ExtResource("18_2oetx")
@@ -143,12 +153,37 @@ texture_focused = ExtResource("18_2oetx")
 
 [node name="Title" type="Label" parent="SongSwap"]
 layout_mode = 2
+offset_top = -30.0
+offset_right = 260.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "sdfsdf"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="SongSwap"]
+layout_mode = 2
+offset_left = -30.0
+offset_top = 115.0
+offset_right = 290.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "jflkjsdlfksjdlfsjldfjsfsdf"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Swap" type="Button" parent="SongSwap"]
+offset_left = 80.0
+offset_top = 180.0
+offset_right = 180.0
+offset_bottom = 220.0
+text = "Swap"
 
 [connection signal="pressed" from="BackButton" to="Roll" method="goBack"]
 [connection signal="pressed" from="DialogueButton" to="." method="_on_dialogue_button_pressed"]
 [connection signal="pressed" from="SongSwap/Left" to="SongSwap" method="_on_left_pressed"]
 [connection signal="pressed" from="SongSwap/Right" to="SongSwap" method="_on_right_pressed"]
+[connection signal="pressed" from="SongSwap/Swap" to="SongSwap" method="_on_swap_pressed"]

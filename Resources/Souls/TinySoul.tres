@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://bbwhkfgnvgnsb"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://bbwhkfgnvgnsb"]
 
 [ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_a55jr"]
+[ext_resource type="Texture2D" uid="uid://clfyrmfw0lblq" path="res://Sprites/HuntSpace/souls/tinysoul.png" id="2_jcg8w"]
 
 [resource]
 script = ExtResource("1_a55jr")
 length = 60.0
 cost = 12000.0
+sprite = ExtResource("2_jcg8w")
 xp = 10.0
 soulvalue = 1.0
 name = "tinysoul"
 minimumLevel = 0
+description = "Would this even count as a snack?"

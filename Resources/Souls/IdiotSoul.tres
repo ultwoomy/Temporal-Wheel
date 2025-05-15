@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://c5tp2t3kgqkcj"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://c5tp2t3kgqkcj"]
 
 [ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_smh2t"]
+[ext_resource type="Texture2D" uid="uid://bxsqtgu7n44uh" path="res://Sprites/HuntSpace/souls/idiotsoul.png" id="2_wlndu"]
 
 [resource]
 script = ExtResource("1_smh2t")
 length = 999.0
 cost = 1e+07
+sprite = ExtResource("2_wlndu")
 xp = 99.0
 soulvalue = 9.0
 name = "idiotsoul"
 minimumLevel = 3
+description = "Becomes a puddle in the summer months"

@@ -410,6 +410,7 @@ func load_as_normal():
 	if(versNo <= 19):
 		loader.ifFirstHunt = true
 		loader.huntData = HuntData.new()
+		loader.currentTrack = 0
 	spinData = loader.spinData
 	rustData = loader.rustData
 	mushroomData = loader.mushroomData

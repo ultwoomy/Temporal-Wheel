@@ -17,6 +17,7 @@ extends Node
 
 signal wheel_spun
 signal refresh_augment_buffs
+signal refresh_song
 
 # Tutorial Stuff
 signal tutorial_grow_found

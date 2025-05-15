@@ -1,12 +1,15 @@
-[gd_resource type="Resource" script_class="HuntSoul" load_steps=2 format=3 uid="uid://i1iujudlnn3n"]
+[gd_resource type="Resource" script_class="HuntSoul" load_steps=3 format=3 uid="uid://i1iujudlnn3n"]
 
 [ext_resource type="Script" path="res://Resources/Souls/HuntSoul.gd" id="1_0ctj8"]
+[ext_resource type="Texture2D" uid="uid://bbecwpwili1bs" path="res://Sprites/HuntSpace/souls/trollsoul.png" id="2_x3j2c"]
 
 [resource]
 script = ExtResource("1_0ctj8")
-length = 10000.0
+length = 20000.0
 cost = 1.0
+sprite = ExtResource("2_x3j2c")
 xp = 123.0
 soulvalue = 12.0
 name = "trollsoul"
-minimumLevel = 4
+minimumLevel = 3
+description = "Problem?"

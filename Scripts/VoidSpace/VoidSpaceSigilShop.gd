@@ -14,6 +14,9 @@ const SIGIL_TWINS  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres"
 const SIGIL_UNDERCITY 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
 const SIGIL_ZUNDA_NIGHT	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
 
+const FAILED_PURCHASE_DIALOGUE_FILE_PATH : String = "res://JSON/Dialogue/VoidSpaceStop/VoidSpaceSigilShop.json"
+const FAILED_PURCHASE_DIALOGUE_KEY : String = "failedPurchase"  # The key in the FAILED_PURCHASE_DIALOGUE_FILE_PATH JSON file to access the data.
+
 
 #@ Export Variables
 
@@ -21,13 +24,16 @@ const SIGIL_ZUNDA_NIGHT	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil
 #@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
 var failbought : bool
-var stupids : int = 0
 var altprice = 0
 
 var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
 var sigilForSale : Sigil
 var sigilSpinPrice : float = GVars.sigilData.costSpin
 var sigilRotationPrice : float = GVars.sigilData.costRot
+
+# Dialogue related variables.
+var dialogueHandler : DialogueHandler = DialogueHandler.new()
+var dialogueCounter : int = 0
 
 
 #@ Onready Variables
@@ -42,16 +48,19 @@ var sigilRotationPrice : float = GVars.sigilData.costRot
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Visuals.
 	sigilDisplay.hide()
 	reset()
-	
 	sandLabel.visible = GVars.hasChallengeActive(GVars.CHALLENGE_SANDY)
+	
+	# Assign important variables.
+	dialogueHandler.dialogueFilePath = FAILED_PURCHASE_DIALOGUE_FILE_PATH
 	
 	# Connect signals.
 	buyButton.pressed.connect(self._onButtonPressed)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# TODO: Have sand amount change text from a signal instead if possible.
 	sandLabel.text = "Sand\namount:\n" + str(GVars.sand)
 
@@ -103,70 +112,6 @@ func reset() -> void:
 	failbought = false
 
 
-func checkStupid():
-	if(stupids == 0):
-		sigilLabel.text = "You can't afford that stupid."
-		stupids += 1
-	elif(stupids == 1):
-		sigilLabel.text = "Guess what? You can't afford that."
-		stupids += 1
-	elif(stupids == 2):
-		sigilLabel.text = "Yup. Still broke."
-		stupids += 1
-	elif(stupids == 3):
-		sigilLabel.text = "Not much has changed."
-		stupids += 1
-	elif(stupids == 4):
-		sigilLabel.text = "You still can't afford that."
-		stupids += 1
-	elif(stupids == 5):
-		sigilLabel.text = "And you're still stupid."
-		stupids += 1
-	elif(stupids == 6):
-		sigilLabel.text = "Kidding! You can afford that now!"
-		stupids += 1
-	elif(stupids == 7):
-		sigilLabel.text = "Not really."
-		stupids += 1
-	elif(stupids == 8):
-		sigilLabel.text = "But one day you will."
-		stupids += 1
-	elif(stupids == 9):
-		sigilLabel.text = "Maybe."
-		stupids += 1
-	elif(stupids == 10):
-		sigilLabel.text = "Do you like secrets?"
-		stupids += 1
-	elif(stupids == 15):
-		sigilLabel.text = "I think you like secrets."
-		stupids += 1
-	elif(stupids == 20):
-		sigilLabel.text = "You must have a lot of free time."
-		stupids += 1
-	elif(stupids == 21):
-		sigilLabel.text = "Good for you. It doesn't last."
-		stupids += 1
-	elif(stupids == 22):
-		sigilLabel.text = "Unless you literally make time."
-		stupids += 1
-	elif(stupids == 23):
-		sigilLabel.text = "Now I'm the stupid one."
-		stupids += 1
-	elif(stupids == 24):
-		sigilLabel.text = "This doesn't make you less broke."
-		stupids += 1
-	elif(stupids == 25):
-		sigilLabel.text = "Just vaguely annoying."
-		stupids += 1
-	elif(stupids == 30):
-		sigilLabel.text = "I'm going to stop you here."
-	else:
-		sigilLabel.text = "I like secrets!"
-		stupids += 1
-	buyButton.text = "Oh"
-	failbought = true
-
-
 #@ Private Methods
 func _onButtonPressed():
 	GVars._dialouge(sigilLabel, 0, 0.02)
@@ -202,7 +147,7 @@ func _onButtonPressed():
 		_raiseSigilPrice()
 		_acquireSigil()
 	else:
-		checkStupid()
+		_notifyFailedShopPurchase()
 
 
 # Given a ShopPrice subclass object, modify it to get the price for the sigil. Subclasses are passed by reference.
@@ -301,6 +246,17 @@ func _acquireSigil() -> void:
 	
 	# Reset the shop.
 	sigilForSale = null
+	failbought = true
+
+
+func _notifyFailedShopPurchase():
+	var failedPurchaseDialogueData : Array[Dictionary] = dialogueHandler.getDialogueData(FAILED_PURCHASE_DIALOGUE_KEY)
+	if dialogueCounter < failedPurchaseDialogueData.size():
+		sigilLabel.text = dialogueHandler.getFromSpecialKey(failedPurchaseDialogueData[dialogueCounter], DialogueHandler.SpecialKeys.TEXT)
+		dialogueCounter += 1
+	else:
+		sigilLabel.text = "I like secrets!"
+	buyButton.text = "Oh"
 	failbought = true
 
 

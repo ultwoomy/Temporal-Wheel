@@ -1,3 +1,85 @@
 {
-	
+	"failedPurchase": [
+		{
+			"TEXT": "You can't afford that stupid."
+		},
+		{
+			"TEXT": "Guess what? You can't afford that."
+		},
+		{
+			"TEXT": "Yup. Still broke."
+		},
+		{
+			"TEXT": "Not much has changed."
+		},
+		{
+			"TEXT": "You still can't afford that."
+		},
+		{
+			"TEXT": "And you're still stupid."
+		},
+		{
+			"TEXT": "Kidding! You can afford that now!"
+		},
+		{
+			"TEXT": "Not really."
+		},
+		{
+			"TEXT": "But one day you will."
+		},
+		{
+			"TEXT": "Maybe."
+		},
+		{
+			"TEXT": "Do you like secrets?"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I think you like secrets."
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "I like secrets!"
+		},
+		{
+			"TEXT": "You must have a lot of free time."
+		},
+		{
+			"TEXT": "Good for you. It doesn't last."
+		},
+		{
+			"TEXT": "Unless you literally make time."
+		},
+		{
+			"TEXT": "Now I'm the stupid one."
+		},
+		{
+			"TEXT": "This doesn't make you less broke."
+		},
+		{
+			"TEXT": "Just vaguely annoying."
+		},
+		{
+			"TEXT": "I'm going to stop you here."
+		},
+	]
 }

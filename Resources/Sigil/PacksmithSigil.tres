@@ -8,3 +8,7 @@ script = ExtResource("1_s61id")
 sigilName = "packsmith"
 spriteTexture = ExtResource("2_s76l5")
 sigilBuffIndex = 0
+sigilShopDescription = "The Packsmith's token!
+Use it to make that grumpy
+old so and so do business
+with you!"

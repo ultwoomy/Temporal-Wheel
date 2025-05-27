@@ -8,3 +8,7 @@ script = ExtResource("1_np2ql")
 sigilName = "sanddollar"
 spriteTexture = ExtResource("2_s553e")
 sigilBuffIndex = 9
+sigilShopDescription = "Sand Dollar!
+Pick them and knock them down!
+They're just along for the ride!
+NON FUNCTIONAL"

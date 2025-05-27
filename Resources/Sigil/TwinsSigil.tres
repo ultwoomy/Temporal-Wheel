@@ -8,3 +8,7 @@ script = ExtResource("1_bpiqo")
 sigilName = "twins"
 spriteTexture = ExtResource("2_wnkbv")
 sigilBuffIndex = 12
+sigilShopDescription = "Twin Rose!
+Don't let them intimidate you!
+They're actually quite nice!
+NON FUNCTIONAL"

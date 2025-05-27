@@ -8,3 +8,7 @@ script = ExtResource("1_2dddq")
 sigilName = "zundanight"
 spriteTexture = ExtResource("2_bahc3")
 sigilBuffIndex = 10
+sigilShopDescription = "Zunda Of The Night
+I don't know how I have this!
+It's probably ok!
+NON FUNCTIONAL"

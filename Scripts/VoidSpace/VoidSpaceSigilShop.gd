@@ -2,29 +2,39 @@ extends Control
 class_name VoidSpaceSigilShop
 
 
+#@ Constants
+const SIGIL_PACKSMITH 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
+const SIGIL_CANDLE 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
+const SIGIL_ASCENSION 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
+const SIGIL_EMPTINESS 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
+const SIGIL_RITUAL 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
+const SIGIL_HELL 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+const SIGIL_SAND      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
+const SIGIL_TWINS  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
+const SIGIL_UNDERCITY 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
+const SIGIL_ZUNDA_NIGHT	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
+
+const FAILED_PURCHASE_DIALOGUE_FILE_PATH : String = "res://JSON/Dialogue/VoidSpaceStop/VoidSpaceSigilShop.json"
+const FAILED_PURCHASE_DIALOGUE_KEY : String = "failedPurchase"  # The key in the FAILED_PURCHASE_DIALOGUE_FILE_PATH JSON file to access the data.
+
+
 #@ Export Variables
 
 
 #@ Public Variables
 var fmat = preload("res://Scripts/FormatNo.gd")
-var failbought
-var stupids : int = 0
+var failbought : bool
 var altprice = 0
-var sigilText = ["The Packsmith's token!\nUse it to make that grumpy\nold so and so do business\nwith you!",
-				  "A warm candle!\nLights up your entire universe!",
-				  "Reincarnation Ascension!\nI don't know what this does!\nMysteries are fun!",
-				  "Emptiness!\nExtremely ironic name!\nFull of emoticon!",
-				  "Ritual!\nEvery candle lit gives a buff!\nAnd lowers wheel spin speed!\nBe careful!",
-				  "Dinner Hell!\nAccess a wonderful new realm!\nDo you hear something?",
-				  "",
-				  "",
-				  "",
-				  "Sand Dollar!\nPick them and knock them down!\nThey're just along for the ride!",
-				  "Zunda Of The Night\nI don't know how I have this!\nIt's probably ok!\nNON FUNCTIONAL",
-				  "Undercity!\nThe birthplace of fae and fun!\nIsn't this themeing reused?\nNON FUNCTIONAL",
-				  "Twin Rose!\nDon't let them intimidate you!\nThey're actually quite nice!\nNON FUNCTIONAL"]
 
 var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
+var sigilForSale : Sigil
+var sigilSpinPrice : float = GVars.sigilData.costSpin
+var sigilRotationPrice : float = GVars.sigilData.costRot
+var sigilAdditionalPriceAsString : String  # Keep track of the additional price of a sigil so it can be displayed later.
+
+# Dialogue related variables.
+var dialogueHandler : DialogueHandler = DialogueHandler.new()
+var dialogueCounter : int = 0
 
 
 #@ Onready Variables
@@ -36,211 +46,224 @@ var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)
 
 
-const packsmithSigil 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
-const candleSigil 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
-const ascensionSigil 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
-const emptinessSigil 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
-const ritualSigil 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
-const hellSigil 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
-const sandSigil      	: Sigil = preload("res://Resources/Sigil/SandDollar.tres")
-const twinsSigil  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
-const undercitySigil 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
-const zundaNightSigil 	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
-var acquiredPacksmithSigil 	: bool = GVars.sigilData.acquiredSigils.has(packsmithSigil)
-var acquiredCandleSigil 	: bool = GVars.sigilData.acquiredSigils.has(candleSigil)
-var acquiredAscensionSigil 	: bool = GVars.sigilData.acquiredSigils.has(ascensionSigil)
-var acquiredEmptinessSigil 	: bool = GVars.sigilData.acquiredSigils.has(emptinessSigil)
-var acquiredRitualSigil 	: bool = GVars.sigilData.acquiredSigils.has(ritualSigil)
-var acquiredHellSigil 		: bool = GVars.sigilData.acquiredSigils.has(hellSigil)
-var acquiredSandSigil		: bool = GVars.sigilData.acquiredSigils.has(sandSigil)
-var acquiredtwinsSigil  	: bool = GVars.sigilData.acquiredSigils.has(twinsSigil)
-var acquiredUndercitySigil	: bool = GVars.sigilData.acquiredSigils.has(undercitySigil)
-var acquiredNightSigil 		: bool = GVars.sigilData.acquiredSigils.has(zundaNightSigil)
-
-
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Visuals.
 	sigilDisplay.hide()
 	reset()
-	
 	sandLabel.visible = GVars.hasChallengeActive(GVars.CHALLENGE_SANDY)
+	
+	# Assign important variables.
+	dialogueHandler.dialogueFilePath = FAILED_PURCHASE_DIALOGUE_FILE_PATH
 	
 	# Connect signals.
 	buyButton.pressed.connect(self._onButtonPressed)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	# TODO: Have sand amount change text from a signal instead if possible.
 	sandLabel.text = "Sand\namount:\n" + str(GVars.sand)
+
+
+#@ Public Methods
+func reset() -> void:
+	# Check to see if the shop is out of Sigils.
+	# TODO: Have condition be modular.
+	if GVars.sigilData.acquiredSigils.has(SIGIL_HELL):
+		sigilLabel.text = "We're out lmao."
+		buyButton.hide()
+		return
+	
+	# Keeps track of what sigils are left to buy in the sigilPurchaseOrder.
+	var sigilPurchaseOrderIndex : int = GVars.sigilData.acquiredSigils.size()  # To get the sigil from the SigilPurchaseOrder, you need an index.
+	if sigilPurchaseOrderIndex < GVars.currentSigilOrder.purchaseOrder.size():  # Make sure that index is in bounds.
+		sigilForSale = GVars.currentSigilOrder.purchaseOrder[sigilPurchaseOrderIndex]
+	
+	if not sigilForSale == SIGIL_HELL:  # (!) If buying the hell sigil, the text becomes different. Check _getSigilPrice().
+		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n"
+	else:
+		sigilLabel.text = ""
+	# If NOT in the Bittersweet challenge.
+	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
+		sigilLabel.text += str(GVars.getScientific(sigilSpinPrice)) + " momentum\n"
+		sigilLabel.text += str(GVars.getScientific(sigilRotationPrice)) + " rotations"
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
+			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
+	
+	# If in the Bittersweet challenge.
+	else:
+		sigilLabel.text += sigilAdditionalPriceAsString
+	
+	# Reset to have new sigil available
+	buyButton.text = "Buy"
+	failbought = false
 
 
 #@ Private Methods
 func _onButtonPressed():
 	GVars._dialouge(sigilLabel, 0, 0.02)
+	
+	# Get price of sigil.
+	var _sigilPrice : ShopPrice = ShopPrice.new()
+	if GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):  # Alternate prices for the sigil price if in BITTERSWEET challenge.
+		_getSigilPrice(_sigilPrice, "BITTERSWEET")
+	else:
+		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
+			_getSigilPrice(_sigilPrice, "SANDY")
+		_getSigilPrice(_sigilPrice)
+	
+	# If Player was unable to afford the sigil...
 	if failbought:
 		reset()
+		return
+	
+	print("_sigilPrice.spinCost = " + str(_sigilPrice.spinCost) + "\n" +
+		"_sigilPrice.rustCost = " + str(_sigilPrice.rustCost) + "\n" +
+		"_sigilPrice.rotationCost = " + str(_sigilPrice.rotationCost) + "\n" +
+		"_sigilPrice.sandCost = " + str(_sigilPrice.sandCost) + "\n" +
+		"_sigilPrice.ascensionSpinBuffCost = " + str(_sigilPrice.ascensionSpinBuffCost) + "\n" +
+		"_sigilPrice.dollarCost = " + str(_sigilPrice.dollarCost) + "\n" +
+		"_sigilPrice.kbityLevelCost = " + str(_sigilPrice.kbityLevelCost) + "\n" +
+		"_sigilPrice.mushroomLevelCost = " + str(_sigilPrice.mushroomLevelCost) + "\n" +
+		"_sigilPrice.wheelSizeCost = " + str(_sigilPrice.wheelSizeCost) + "\n"
+	)
+	
+	# Pay for the sigil, if able.
+	if _canAfford(_sigilPrice):
+		_payPrice(_sigilPrice)
+		_raiseSigilPrice()
+		_acquireSigil()
 	else:
-		
-		if ((GVars.spinData.spin > GVars.sigilData.costSpin) and (GVars.spinData.rotations > GVars.sigilData.costRot)) and not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
-			#If player is in the sand challenge, include sand cost in the sigil price
-			if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
-				if GVars.sand >= GVars.sandCost:
-					GVars.sand -= GVars.sandCost
-					GVars.sandCost += GVars.sandScaling
-					GVars.spinData.spin -= GVars.sigilData.costSpin
-					GVars.spinData.rotations -= GVars.sigilData.costRot
-					checkCurrentSigil()
+		_notifyFailedShopPurchase()
+
+
+# Given a ShopPrice subclass object, modify it to get the price for the sigil. Subclasses are passed by reference.
+func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
+	match specialConditions:
+		"BITTERSWEET":
+			if not GVars.sigilData.acquiredSigils.has(SIGIL_PACKSMITH):  # Player should have 0 owned sigils.
+				shopPrice.spinCost = 1000
+				sigilAdditionalPriceAsString = str(shopPrice.spinCost) + " momentum"
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_CANDLE):
+				shopPrice.rustCost = 20
+				sigilAdditionalPriceAsString = str(shopPrice.rustCost) + " rust"
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_ASCENSION):
+				if GVars.altSigilSand:
+					sigilAdditionalPriceAsString = "5 sand dollars"
+					# TODO:
+					# GVars.dollarTotal -= 5  # (!) Variable does not exist?!
 				else:
-					checkStupid()
+					shopPrice.mushroomLevelCost = 5
+					sigilAdditionalPriceAsString = str(shopPrice.mushroomLevelCost) + " mush levels\nYou\'ll need " + str(shopPrice.mushroomLevelCost + 1) + "."
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_EMPTINESS):
+				shopPrice.wheelSizeCost = 4
+				sigilAdditionalPriceAsString = str(shopPrice.wheelSizeCost) + " size\nYou\'ll need " + str(shopPrice.wheelSizeCost + 1) + "."
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_RITUAL):
+				shopPrice.ascensionSpinBuffCost = 6
+				sigilAdditionalPriceAsString = str(shopPrice.ascensionSpinBuffCost) + " identity\nYou\'ll need " + str(shopPrice.ascensionSpinBuffCost + 1) + "."
+			elif not GVars.sigilData.acquiredSigils.has(SIGIL_HELL):
+				# TODO: L.B: There was no price assigned for hell sigil for the BITTERSWEET challenge!
+				# No idea what altprice is! Need to make it a variable in the subclass!
+				# (!!!) As it stands, you don't pay anything at all to get this sigil!
+				altprice = 100
+				sigilAdditionalPriceAsString = "Here for a sigil?\nFully charge the kbity machine and I\'ll give it to you"
 			else:
-				# If player is not in a challenge, just use the normal costs
-				GVars.spinData.spin -= GVars.sigilData.costSpin
-				GVars.spinData.rotations -= GVars.sigilData.costRot
-				checkCurrentSigil()
-		
-		# If player is in the bittersweet challenge, change the price to a custom value, everything under this text does this
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not GVars.sigilData.numberOfSigils[0] and GVars.spinData.spin >= 1000:
-			GVars.spinData.spin -= 1000
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredCandleSigil and GVars.rustData.rust >= 20:
-			GVars.rustData.rust -= 20
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredAscensionSigil:
-			if not GVars.altSigilSand and GVars.mushroomData.level >= 6:
-				GVars.mushroomData.level -= 5
-				checkCurrentSigil()
-			elif GVars.altSigilSand and GVars.dollarData.dollarTotal >= 5:
-				GVars.dollarTotal -= 5
-				checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredEmptinessSigil and GVars.spinData.size > 4:
-			GVars.spinData.size -= 4
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredRitualSigil and GVars.Aspinbuff >= 7:
-			GVars.Aspinbuff -= 6
-			checkCurrentSigil()
-		elif GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) and not acquiredHellSigil and GVars.kbityData.kbityLevel > 0:
-			checkCurrentSigil()
-		else:
-			checkStupid()
+				# TODO: What to do when no sigil?!
+				return
+		"SANDY":
+			shopPrice.sandCost = GVars.sandCost
+			# GVars.sandCost += GVars.sandScaling
+		_:
+			shopPrice.spinCost = sigilSpinPrice
+			shopPrice.rotationCost = sigilRotationPrice
 
 
-func checkCurrentSigil():
+# Make sure the Player can actually pay for the sigil whose price is determined by the ShopPrice subclass.
+func _canAfford(shopPrice : ShopPrice) -> bool:
+	var _failConditions : Array[bool] = [
+		shopPrice.spinCost > GVars.spinData.spin,
+		shopPrice.rotationCost > GVars.spinData.rotations,
+		shopPrice.sandCost > GVars.sand,
+		shopPrice.rustCost > GVars.rustData.rust,
+		shopPrice.mushroomLevelCost >= GVars.mushroomData.level,  # (!) The Player can only pay if their level is HIGHER.
+		shopPrice.dollarCost > 5,  # TODO: THE VARIABLE:  GVars.dollarData.dollarTotal  DOES NOT EXIST!
+		shopPrice.wheelSizeCost > GVars.spinData.size,
+		shopPrice.ascensionSpinBuffCost > GVars.Aspinbuff,
+		shopPrice.kbityLevelCost > GVars.kbityData.kbityLevel  # TODO: WIP
+	]
+	for boolean in _failConditions:
+		if boolean:  # If any of the fail conditions is TRUE, return FALSE.
+			return false
+	return true
+
+
+# Pay for a sigil given by the ShopPrice subclass.
+func _payPrice(shopPrice : ShopPrice) -> void:
+	GVars.spinData.spin -= shopPrice.spinCost
+	GVars.spinData.rotations -= shopPrice.rotationCost
+	GVars.sand -= shopPrice.sandCost
+	# TODO: GVars.sandCost += GVars.sandScaling
+	GVars.rustData.rust -= shopPrice.rustCost
+	GVars.mushroomData.level -= shopPrice.mushroomLevelCost
+	# TODO: ERROR - This variable doesn't exist!
+	#GVars.dollarTotal -= shopPrice.dollarCost
+	GVars.spinData.size -= shopPrice.wheelSizeCost
+	GVars.Aspinbuff -= shopPrice.ascensionSpinBuffCost
+	shopPrice.kbityLevelCost  # TODO: Code was left unfinished, so finish this when kbity is done!
+
+
+# Increase the non-alternative price of the next sigil.
+func _raiseSigilPrice() -> void:
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-	GVars.sigilData.costSpin = pow(GVars.sigilData.costSpin,GVars.sigilData.costSpinScale)
-	GVars.sigilData.costRot *= GVars.sigilData.costRotScale
+	sigilSpinPrice **= GVars.sigilData.costSpinScale  # To the power of
+	sigilRotationPrice *= GVars.sigilData.costRotScale
 	
-	
+	# Further increase rotation price if in the BRAVE challenge.
 	if GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
-		print("Before: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
-		GVars.sigilData.costRot *= (indexFromAcquiredSigils + 1)
-		print("After: GVars.sigilData.costRot = ", GVars.sigilData.costRot)
+		sigilRotationPrice *= indexFromAcquiredSigils + 1
+
+
+# Have the Player receive the current sigil being sold.
+func _acquireSigil() -> void:
+	# See if there is a sigil for sale.
+	if not sigilForSale:
+		return
 	
-	# The size is used to keep track of what sigil to get from purchaseOrder.
-	var addedSigil = sigilPurchaseOrder.purchaseOrder[indexFromAcquiredSigils]
-	if indexFromAcquiredSigils < sigilPurchaseOrder.purchaseOrder.size():
-		GVars.sigilData.acquiredSigils.append(addedSigil)
-		sigilLabel.text = sigilText[addedSigil.sigilBuffIndex]
-	else:
-		sigilLabel.text = "Use it well!"
-	buyButton.text = "Thx"
-	sigilDisplay.frame = addedSigil.sigilBuffIndex
+	# Add the sigil to Player.
+	GVars.sigilData.acquiredSigils.append(sigilForSale)
+	
+	# Display and describe the sigil.
+	sigilLabel.text = sigilForSale.sigilShopDescription
+	sigilDisplay.frame = sigilForSale.sigilBuffIndex
 	sigilDisplay.show()
+	buyButton.text = "Thx"
+	
+	# Reset the shop.
+	sigilForSale = null
 	failbought = true
+	dialogueCounter = 0
 
 
-func reset():
-	const hellSigil : Sigil = preload("res://Resources/Sigil/HellSigil.tres")
-	if hellSigil in GVars.sigilData.acquiredSigils:
-		sigilLabel.text = "We're out lmao."
-		buyButton.hide()
-	elif not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
-		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n" + str(GVars.getScientific(GVars.sigilData.costSpin)) + " momentum\n" + str(GVars.getScientific(GVars.sigilData.costRot)) + " rotations"
-		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
-			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
-		buyButton.text = "Buy"
-		failbought = false
-	else:
-		var numberOfAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-		sigilLabel.text = "Here for a sigil?\nIt\'ll cost ya:\n"
-		if numberOfAcquiredSigils == 0:
-			sigilLabel.text += "1000 momentum"
-		elif numberOfAcquiredSigils == 1:
-			sigilLabel.text += "20 rust"
-		elif numberOfAcquiredSigils == 2:
-			if not GVars.altSigilSand:
-				sigilLabel.text += "5 mush levels\nYou\'ll need 6."
-			else:
-				sigilLabel.text += "5 sand dollars"
-		elif numberOfAcquiredSigils == 3:
-			sigilLabel.text += "4 size\nYou\'ll need 5."
-		elif numberOfAcquiredSigils == 4:
-			sigilLabel.text += "6 identity\nYou\'ll need 7"
-		elif numberOfAcquiredSigils == 5:
-			altprice = 100
-			sigilLabel.text = "Here for a sigil?\nFully charge the kbity machine and I\'ll give it to you"
-		buyButton.text = "Buy"
-		failbought = false
-
-
-func checkStupid():
-	if(stupids == 0):
-		sigilLabel.text = "You can't afford that stupid."
-		stupids += 1
-	elif(stupids == 1):
-		sigilLabel.text = "Guess what? You can't afford that."
-		stupids += 1
-	elif(stupids == 2):
-		sigilLabel.text = "Yup. Still broke."
-		stupids += 1
-	elif(stupids == 3):
-		sigilLabel.text = "Not much has changed."
-		stupids += 1
-	elif(stupids == 4):
-		sigilLabel.text = "You still can't afford that."
-		stupids += 1
-	elif(stupids == 5):
-		sigilLabel.text = "And you're still stupid."
-		stupids += 1
-	elif(stupids == 6):
-		sigilLabel.text = "Kidding! You can afford that now!"
-		stupids += 1
-	elif(stupids == 7):
-		sigilLabel.text = "Not really."
-		stupids += 1
-	elif(stupids == 8):
-		sigilLabel.text = "But one day you will."
-		stupids += 1
-	elif(stupids == 9):
-		sigilLabel.text = "Maybe."
-		stupids += 1
-	elif(stupids == 10):
-		sigilLabel.text = "Do you like secrets?"
-		stupids += 1
-	elif(stupids == 15):
-		sigilLabel.text = "I think you like secrets."
-		stupids += 1
-	elif(stupids == 20):
-		sigilLabel.text = "You must have a lot of free time."
-		stupids += 1
-	elif(stupids == 21):
-		sigilLabel.text = "Good for you. It doesn't last."
-		stupids += 1
-	elif(stupids == 22):
-		sigilLabel.text = "Unless you literally make time."
-		stupids += 1
-	elif(stupids == 23):
-		sigilLabel.text = "Now I'm the stupid one."
-		stupids += 1
-	elif(stupids == 24):
-		sigilLabel.text = "This doesn't make you less broke."
-		stupids += 1
-	elif(stupids == 25):
-		sigilLabel.text = "Just vaguely annoying."
-		stupids += 1
-	elif(stupids == 30):
-		sigilLabel.text = "I'm going to stop you here."
+func _notifyFailedShopPurchase():
+	var failedPurchaseDialogueData : Array[Dictionary] = dialogueHandler.getDialogueData(FAILED_PURCHASE_DIALOGUE_KEY)
+	if dialogueCounter < failedPurchaseDialogueData.size():
+		sigilLabel.text = dialogueHandler.getFromSpecialKey(failedPurchaseDialogueData[dialogueCounter], DialogueHandler.SpecialKeys.TEXT)
+		dialogueCounter += 1
 	else:
 		sigilLabel.text = "I like secrets!"
-		stupids += 1
 	buyButton.text = "Oh"
 	failbought = true
+
+
+#@ Subclasses
+class ShopPrice:
+	var spinCost : float = 0.0
+	var rotationCost : float = 0.0
+	var sandCost : float = 0.0 # (!) GVars already has a variable for this. Should this replace it?
+	var rustCost : float = 0.0
+	var mushroomLevelCost : int = 0
+	var dollarCost : int = 0 # (!) GVars.dollarTotal does not even exist
+	var wheelSizeCost : float = 0.0 # (?) Apparently GVars.spinData.size is a FLOAT instead of an INT.
+	var ascensionSpinBuffCost : float = 0.0
+	var kbityLevelCost : int = 0

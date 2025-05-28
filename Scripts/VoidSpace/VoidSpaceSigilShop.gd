@@ -44,6 +44,7 @@ var dialogueCounter : int = 0
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var sandLabel : Label = $SandLabel
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)
+@onready var currencyUI : VoidSpaceCurrencyUI = $CurrencyUI
 
 
 #@ Virtual Methods
@@ -132,6 +133,7 @@ func _onButtonPressed():
 	# Pay for the sigil, if able.
 	if _canAfford(_sigilPrice):
 		_payPrice(_sigilPrice)
+		currencyUI.displayCurrency()
 		_raiseSigilPrice()
 		_acquireSigil()
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dobax2tkjb1xx"]
+[gd_scene load_steps=19 format=3 uid="uid://dobax2tkjb1xx"]
 
 [ext_resource type="Script" path="res://Scripts/VoidSpace/VoidSpaceSigilShop.gd" id="1_os3ii"]
 [ext_resource type="Texture2D" uid="uid://dgsorb7o1m42f" path="res://Sprites/WheelSpace/grey_square.png" id="2_3imgq"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="13_ugs1t"]
 [ext_resource type="Script" path="res://Scripts/ChallengeComponent/FabulousCComp.gd" id="15_83w5t"]
 [ext_resource type="Texture2D" uid="uid://cbtbrufucskwt" path="res://Sprites/FabChallenge/standard_button_thorns.png" id="16_t7mi4"]
+[ext_resource type="Script" path="res://Scripts/VoidSpace/SigilShopCurrencyUI.gd" id="17_l3gv0"]
 [ext_resource type="Script" path="res://Scripts/FabChallenge/ThornButtonBackground.gd" id="17_rahxv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1egap"]
@@ -120,6 +121,21 @@ level = 0
 sprite = NodePath("../ButtonBackground")
 
 [node name="ButtonBackground" type="Sprite2D" parent="."]
-position = Vector2(930, 610)
+position = Vector2(930, 550)
 texture = ExtResource("16_t7mi4")
 script = ExtResource("17_rahxv")
+
+[node name="CurrencyUI" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 463.0
+offset_top = 440.0
+offset_right = 463.0
+offset_bottom = 440.0
+script = ExtResource("17_l3gv0")
+
+[node name="CurrencyLabel" type="Label" parent="CurrencyUI"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 23.0
+text = "Player Currency"
+clip_text = true

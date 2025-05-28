@@ -22,6 +22,7 @@ func displayCurrency() -> void:
 	# Setup.
 	var linesOfText : Array[String] = [
 		"Momentum: " + str(GVars.getScientific(GVars.spinData.spin)) + "\n",
+		"Rotations: " + str(GVars.getScientific(GVars.spinData.rotations)) + "\n",
 		"Rust: " + str(GVars.getScientific(GVars.rustData.rust)) + "\n",
 	]
 	currencyLabel.text = ""

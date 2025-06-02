@@ -38,13 +38,15 @@ var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#var d = AutomatorData.new()
+	#d.setAutomator("Spinbot")
+	#Automation.addAutomatorFromData(d)
+	
 	# Connect signals
-#	var d = AutomatorData.new()
-#	d.setAutomator("Spinbot")
-#	Automation.addAutomatorFromData(d)
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
 	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText.unbind(1))
+	GVars.spinData.momentumValueChanged.connect(self.updateSpinAmountText.unbind(1))
 	WheelSpinner.wheelRotationCompleted.connect(self.updateRotationValueText)
 	EventManager.challenge_lost_L2.connect(self.checkBleedBar)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))

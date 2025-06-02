@@ -4,7 +4,7 @@ extends Node
 
 
 #@ Signals
-signal spinValueChanged(incrementValue : float)
+signal spinValueChanged(incrementValue : float)  # TODO: Delete because spinData.spin emits its own signal.
 signal wheelRotationCompleted
 signal rustProgressed(rustPerThresh : float)
 

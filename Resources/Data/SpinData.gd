@@ -3,11 +3,16 @@ class_name SpinData
 
 
 #@ Signals
+signal momentumValueChanged(addend : float)
 signal wheelPhaseChanged
 
 
 #@ Export Variables
-@export var spin : float
+@export var spin : float :
+	set(value):
+		var addend : float = value - spin
+		spin = value
+		momentumValueChanged.emit(addend)
 @export var spinPerClick : float
 @export var size : float
 @export var sizeToggle : bool

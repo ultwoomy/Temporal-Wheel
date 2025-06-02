@@ -62,7 +62,8 @@ func _onButtonPressed() -> void:
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
-		
+
+
 func checkTutorial():
 	if GVars.spinData.size > 2 or GVars.density > 1:
 		show()

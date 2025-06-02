@@ -38,7 +38,7 @@ func _ready():
 		EventManager.tutorial_grow_found.connect(self.introduceSelf)
 		EventManager.tutorial_grow_clicked.connect(self.growClicked)
 		WheelSpinner.wheelRotationCompleted.connect(self.fullRotation)
-		if GVars.spinData.spin > 49:
+		if GVars.spinData.momentum > 49:
 			EventManager.tutorial_grow_found.emit()
 
 

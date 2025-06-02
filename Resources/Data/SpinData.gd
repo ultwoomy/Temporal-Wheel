@@ -8,12 +8,12 @@ signal wheelPhaseChanged
 
 
 #@ Export Variables
-@export var spin : float :
+@export var momentum : float :
 	set(value):
-		var addend : float = value - spin
-		spin = value
+		var addend : float = value - momentum
+		momentum = value
 		momentumValueChanged.emit(addend)
-@export var spinPerClick : float
+@export var momentumPerClick : float
 @export var size : float
 @export var sizeToggle : bool
 @export var sucPerTick : float
@@ -36,8 +36,8 @@ func _init():
 	
 
 func resetData() -> void:
-	spin = 0
-	spinPerClick = 1
+	momentum = 0
+	momentumPerClick = 1
 	size = 1
 	sizeToggle = false
 	sucPerTick = 5

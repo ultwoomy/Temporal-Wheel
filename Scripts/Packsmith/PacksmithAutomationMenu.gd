@@ -33,11 +33,11 @@ func _on_spinbuy_pressed():
 	add_child(instance)
 
 func buyAutomator(type) -> bool:
-	if GVars.rustData.rust > GVars.automatorVarsData.globalAutomatorCostRust and GVars.spinData.spin > GVars.automatorVarsData.globalAutomatorCostSpin:
+	if GVars.rustData.rust > GVars.automatorVarsData.globalAutomatorCostRust and GVars.spinData.momentum > GVars.automatorVarsData.globalAutomatorCostMomentum:
 		GVars.rustData.rust -= GVars.automatorVarsData.globalAutomatorCostRust
-		GVars.spinData.spin -= GVars.automatorVarsData.globalAutomatorCostSpin
+		GVars.spinData.momentum -= GVars.automatorVarsData.globalAutomatorCostMomentum
 		GVars.automatorVarsData.globalAutomatorCostRust *= GVars.automatorVarsData.globalAutomatorScalingRust
-		GVars.automatorVarsData.globalAutomatorCostSpin = pow(GVars.automatorVarsData.globalAutomatorCostSpin, GVars.automatorVarsData.globalAutomatorScalingSpin)
+		GVars.automatorVarsData.globalAutomatorCostMomentum = pow(GVars.automatorVarsData.globalAutomatorCostMomentum, GVars.automatorVarsData.globalAutomatorScalingSpin)
 		var d = AutomatorData.new()
 		d.setAutomator(type)
 		Automation.addAutomatorFromData(d)
@@ -48,4 +48,4 @@ func buyAutomator(type) -> bool:
 	return false
 
 func refreshPage():
-	pricetag.text = "Cost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostSpin)) + "\nCost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostRust))
+	pricetag.text = "Cost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostMomentum)) + "\nCost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostRust))

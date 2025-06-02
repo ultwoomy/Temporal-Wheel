@@ -9,7 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func returnComparisionVar(x):
 	if x == "spin":
-		return GVars.spinData.spin
+		return GVars.spinData.momentum
 	elif x == "ifFirstAtlas":
 		return GVars.ifFirstAtlas
 	elif x == "ifFirstFearcatDay":

@@ -18,6 +18,6 @@ func _ready() -> void:
 #@ Private Methods
 func updateStats() -> void:
 	statsDisp.text = "Buffs\n"
-	statsDisp.text += "Spin Buff: " + str(GVars.getScientific(GVars.mushroomData.spinBuff)) + "\n"
+	statsDisp.text += "Spin Buff: " + str(GVars.getScientific(GVars.mushroomData.momentumBuff)) + "\n"
 	statsDisp.text += "Identity Buff: " + str(GVars.getScientific(GVars.mushroomData.ascBuff)) + "\n"
 	statsDisp.text += "Mush Grow Speed: " + str(GVars.getScientific(GVars.mushroomData.fearMushBuff))

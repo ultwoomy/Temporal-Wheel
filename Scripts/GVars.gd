@@ -353,7 +353,7 @@ func resetChallengeVars():
 	GVars.ifhell = true
 	GVars.inContract = false
 	GVars.hellChallengeInit = true
-	GVars.spinData.spinPerClick = 1
+	GVars.spinData.momentumPerClick = 1
 	GVars.health = 160
 	GVars.bleedstacks = 0
 	EventManager.emit_signal("refresh_challenges")

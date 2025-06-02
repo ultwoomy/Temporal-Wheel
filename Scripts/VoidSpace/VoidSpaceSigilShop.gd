@@ -28,7 +28,7 @@ var altprice = 0
 
 var sigilPurchaseOrder : SigilPurchaseOrder = GVars.currentSigilOrder
 var sigilForSale : Sigil
-var sigilSpinPrice : float = GVars.sigilData.costSpin
+var sigilMomentumPrice : float = GVars.sigilData.costMomentum
 var sigilRotationPrice : float = GVars.sigilData.costRot
 var sigilAdditionalPriceAsString : String  # Keep track of the additional price of a sigil so it can be displayed later.
 
@@ -87,7 +87,7 @@ func reset() -> void:
 		sigilLabel.text = ""
 	# If NOT in the Bittersweet challenge.
 	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET) :
-		sigilLabel.text += str(GVars.getScientific(sigilSpinPrice)) + " momentum\n"
+		sigilLabel.text += str(GVars.getScientific(sigilMomentumPrice)) + " momentum\n"
 		sigilLabel.text += str(GVars.getScientific(sigilRotationPrice)) + " rotations"
 		if GVars.hasChallengeActive(GVars.CHALLENGE_SANDY):
 			sigilLabel.text += "\n" + str(GVars.sandCost) + " sand"
@@ -177,14 +177,14 @@ func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> v
 			shopPrice.sandCost = GVars.sandCost
 			# GVars.sandCost += GVars.sandScaling
 		_:
-			shopPrice.spinCost = sigilSpinPrice
+			shopPrice.spinCost = sigilMomentumPrice
 			shopPrice.rotationCost = sigilRotationPrice
 
 
 # Make sure the Player can actually pay for the sigil whose price is determined by the ShopPrice subclass.
 func _canAfford(shopPrice : ShopPrice) -> bool:
 	var _failConditions : Array[bool] = [
-		shopPrice.spinCost > GVars.spinData.spin,
+		shopPrice.spinCost > GVars.spinData.momentum,
 		shopPrice.rotationCost > GVars.spinData.rotations,
 		shopPrice.sandCost > GVars.sand,
 		shopPrice.rustCost > GVars.rustData.rust,
@@ -202,7 +202,7 @@ func _canAfford(shopPrice : ShopPrice) -> bool:
 
 # Pay for a sigil given by the ShopPrice subclass.
 func _payPrice(shopPrice : ShopPrice) -> void:
-	GVars.spinData.spin -= shopPrice.spinCost
+	GVars.spinData.momentum -= shopPrice.spinCost
 	GVars.spinData.rotations -= shopPrice.rotationCost
 	GVars.sand -= shopPrice.sandCost
 	# TODO: GVars.sandCost += GVars.sandScaling
@@ -218,7 +218,7 @@ func _payPrice(shopPrice : ShopPrice) -> void:
 # Increase the non-alternative price of the next sigil.
 func _raiseSigilPrice() -> void:
 	var indexFromAcquiredSigils : int = GVars.sigilData.acquiredSigils.size()
-	sigilSpinPrice **= GVars.sigilData.costSpinScale  # To the power of
+	sigilMomentumPrice **= GVars.sigilData.costMomentumScale  # To the power of
 	sigilRotationPrice *= GVars.sigilData.costRotScale
 	
 	# Further increase rotation price if in the BRAVE challenge.

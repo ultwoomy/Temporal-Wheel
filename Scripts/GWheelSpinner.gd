@@ -9,7 +9,7 @@ signal rustProgressed(rustPerThresh : float)
 
 
 #@ Constants
-const FULL_ROTATION_RADIANS : float = 2*PI
+const FULL_ROTATION_RADIANS : float = 2 * PI
 
 
 #@ Public Variables
@@ -37,10 +37,10 @@ func spinWheel(reverse: bool = false) -> void:
 	var incrementValue : float
 	if not reverse:
 		incrementValue = _calculateSpinGain()
-		GVars.spinData.spin += incrementValue
+		GVars.spinData.momentum += incrementValue
 	else:
 		incrementValue = GVars.sucPerTick * GVars.rustData.increaseHunger * 5
-		GVars.spinData.spin += incrementValue
+		GVars.spinData.momentum += incrementValue
 
 
 func rotateWheel() -> void:
@@ -49,7 +49,7 @@ func rotateWheel() -> void:
 		_completeRotation()
 	
 	# No spins then no rotating the wheel.
-	if GVars.spinData.spin <= 0:
+	if GVars.spinData.momentum <= 0:
 		return
 	
 	# Get the direction that the wheel should be rotating towards. Counter-clockwise is negative.
@@ -75,7 +75,7 @@ func rotateWheel() -> void:
 
 # Probably move this in WheelSpaceWheel(?), or a script that is global.
 func getWheelRotationAmount() -> float:
-	var result : float = log(GVars.spinData.spin)/log(2)
+	var result : float = log(GVars.spinData.momentum)/log(2)
 	# Divide by the speed divisor, which is based off the wheel phase.
 	result /= _getRotationSpeedDivisor()
 	# Reduce amount by the amount of lit candles .
@@ -109,7 +109,7 @@ func getWheelRotationAmount() -> float:
 #@ Private Methods
 func _calculateSpinGain() -> float:
 	# Base result Player gets from spinning the wheel with a click.
-	var result : float = GVars.spinData.spinPerClick
+	var result : float = GVars.spinData.momentumPerClick
 	# Multiply the result by the size of the wheel.
 	if GVars.hasChallengeActive(GVars.CHALLENGE_SHARP):
 		result *= pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2
@@ -120,11 +120,11 @@ func _calculateSpinGain() -> float:
 	# Multiply the result by the density of the wheel.
 	result *= GVars.spinData.density
 	# Multiply the result by the rust purchasable upgrade, increase spin.
-	result *= GVars.rustData.increaseSpin
+	result *= GVars.rustData.increaseMomentum
 	
 	## BUFFS, should probably be in Buffs.gd.
 	# Multiply the result by the buffs granted by growing mushrooms.
-	result *= GVars.mushroomData.spinBuff
+	result *= GVars.mushroomData.momentumBuff
 	# Multiply the result by the buff granted by ascension(?).
 	result *= GVars.Aspinbuff
 	# Multiply the result by the buff granted by emotion(?) from ascension(?).

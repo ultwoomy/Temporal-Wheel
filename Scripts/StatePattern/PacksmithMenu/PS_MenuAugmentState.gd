@@ -51,6 +51,10 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 	
 	# Exception. Maybe there is a cleaner way?
 	if sigil.sigilName == "hell":
+		if not GVars.currentChallenges:
+			printerr("ERROR! No current challenges available for the Player!")
+			return
+		
 		if not GVars.currentChallenges[0]:
 			if not GVars.ifhell:
 				dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")

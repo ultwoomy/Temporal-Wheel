@@ -3,9 +3,9 @@ class_name SigilData
 
 
 #@ Export Variables
-@export var costSpin : float
+@export var costMomentum : float
 @export var costRot : float
-@export var costSpinScale : float
+@export var costMomentumScale : float
 @export var costRotScale : float
 @export var acquiredSigils : Array[Sigil]
 @export var curSigilBuff : int
@@ -33,9 +33,9 @@ var activeSigils : Dictionary = {
 
 
 func resetData() -> void:
-	costSpin = 300
+	costMomentum = 300
 	costRot = 10
-	costSpinScale = 1.24
+	costMomentumScale = 1.24
 	costRotScale = 3
 	acquiredSigils = []
 	curSigilBuff = -1

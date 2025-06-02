@@ -48,8 +48,10 @@ func displayIncrement(value) -> void:
 	var incrementValueLabel : IncrementValueLabel = IncrementValueLabel.new(value)
 	
 	# Add text to scene at mouse.
-	get_tree().current_scene.add_child(incrementValueLabel)
-	incrementValueLabel.position = mousePosition - (incrementValueLabel.size / 2.0)
+	var currentTree : SceneTree = get_tree()
+	if currentTree:  # Avoids error when switching scenes at the same time of creating child.
+		currentTree.current_scene.add_child(incrementValueLabel)
+		incrementValueLabel.position = mousePosition - (incrementValueLabel.size / 2.0)
 
 
 #@ Private Methods

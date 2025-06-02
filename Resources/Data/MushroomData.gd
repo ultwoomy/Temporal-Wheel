@@ -8,7 +8,7 @@ class_name MushroomData
 @export var currentFarmPlots : Array[MushroomCrop]
 @export var timeLeft : Array[float]
 @export var pendingRots : float
-@export var spinBuff : float
+@export var momentumBuff : float
 @export var ascBuff : float
 @export var fearMushBuff : float
 
@@ -23,7 +23,7 @@ func copy(x, resetFear):
 	currentFarmPlots = x.currentFarmPlots
 	timeLeft = x.timeLeft
 	pendingRots = x.pendingRots
-	spinBuff = x.spinBuff
+	momentumBuff = x.momentumBuff
 	ascBuff = x.ascBuff
 	if resetFear:
 		fearMushBuff = 1
@@ -38,6 +38,6 @@ func resetData() -> void:
 	currentFarmPlots = [null, null, null, null]
 	timeLeft = [0,0,0,0]
 	pendingRots = 0
-	spinBuff = 1
+	momentumBuff = 1
 	ascBuff = 1
 	fearMushBuff = 1

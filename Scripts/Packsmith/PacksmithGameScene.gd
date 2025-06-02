@@ -100,7 +100,7 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 		dialogueText.text = _dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
 
 		# Change face/background to the dialogue face at index, _dialogueLine. Matches with the Emotes enumerator.
-		packsmithBackground.frame = Emotes[_dialogueHandler.getFaceFromDialogue(dialogue[_dialogueLine])]
+		packsmithBackground.frame = Emotes[_dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
 		
 		# Change nextButton text to dialogue's BUTTON_TEXT, if it exists.
 		if "BUTTON_TEXT" in dialogue[_dialogueLine]:

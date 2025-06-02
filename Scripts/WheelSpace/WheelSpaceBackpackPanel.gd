@@ -33,7 +33,7 @@ func _ready():
 
 #@ Private Methods
 func _onBackpackPressed():
-	momentumLabel.text = str(GVars.getScientific(GVars.spinData.spin))
+	momentumLabel.text = str(GVars.getScientific(GVars.spinData.momentum))
 	rotationLabel.text = str(GVars.getScientific(GVars.spinData.rotations))
 	rustLabel.text = str(GVars.getScientific(GVars.rustData.rust))
 

@@ -2,9 +2,9 @@ extends Resource
 class_name RustData
 
 @export var rust : float
-@export var increaseSpin : float
-@export var increaseSpinCost : float
-@export var increaseSpinScaling : float
+@export var increaseMomentum : float
+@export var increaseMomentumCost : float
+@export var increaseMomentumScaling : float
 @export var increaseHunger : float
 @export var increaseHungerCost : float
 @export var increaseHungerScaling : float
@@ -24,9 +24,9 @@ func _init():
 	
 func resetData() -> void:
 	rust = 0
-	increaseSpin = 1
-	increaseSpinCost = 1
-	increaseSpinScaling = 1.5
+	increaseMomentum = 1
+	increaseMomentumCost = 1
+	increaseMomentumScaling = 1.5
 	increaseHunger = 1
 	increaseHungerCost = 1
 	increaseHungerScaling = 2

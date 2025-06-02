@@ -23,4 +23,4 @@ func bleed():
 	bleedEmitter.emit()
 	bleedEmitter.emit_somewhere(Vector2(-100,0))
 	bleedEmitter.emit_somewhere(Vector2(100,0))
-	GVars.spinData.spin -= (GVars.spinData.spin/200 * GVars.bleedstacks)
+	GVars.spinData.momentum -= (GVars.spinData.momentum/200 * GVars.bleedstacks)

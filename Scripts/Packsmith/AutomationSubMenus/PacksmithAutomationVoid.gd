@@ -14,7 +14,7 @@ func _on_buy_pressed():
 	refreshPage()
 
 func refreshPage():
-	pricetag.text = "Cost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostSpin)) + "\nCost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostRust))
+	pricetag.text = "Cost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostMomentum)) + "\nCost in       :" + str(GVars.getScientific(GVars.automatorVarsData.globalAutomatorCostRust))
 	if Automation.contains("Voidbot"):
 		voidBotBuyButton.hide()
 

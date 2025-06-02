@@ -30,9 +30,9 @@ func calcClick() -> float:
 	if(GVars.atlasData.dumpRustMilestone > 1):
 		densityPower += GVars.atlasData.dumpRustMilestone/4 + 1
 	if GVars.hasChallengeActive(GVars.CHALLENGE_SHARP):
-		temp = pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2 * GVars.spinData.spinPerClick  * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+		temp = pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2 * GVars.spinData.momentumPerClick  * densityPower * GVars.rustData.increaseMomentum * GVars.mushroomData.momentumBuff * GVars.Aspinbuff * emoBuff
 	elif(GVars.curEmotionBuff == 2):
-		temp = pow(GVars.spinData.size,GVars.spinData.density + 1) * GVars.spinData.spinPerClick * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+		temp = pow(GVars.spinData.size,GVars.spinData.density + 1) * GVars.spinData.momentumPerClick * densityPower * GVars.rustData.increaseMomentum * GVars.mushroomData.momentumBuff * GVars.Aspinbuff * emoBuff
 	else:
-		temp = GVars.spinData.spinPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.Aspinbuff * emoBuff
+		temp = GVars.spinData.momentumPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseMomentum * GVars.mushroomData.momentumBuff * GVars.Aspinbuff * emoBuff
 	return temp

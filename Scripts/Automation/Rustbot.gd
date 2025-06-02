@@ -24,10 +24,10 @@ func getType() -> String:
 
 #@ Private Methods
 func _up01():
-	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
-		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
-		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
-		GVars.rustData.increaseSpin += 1
+	if(GVars.rustData.rust >= GVars.rustData.increaseMomentumCost):
+		GVars.rustData.rust -= GVars.rustData.increaseMomentumCost
+		GVars.rustData.increaseMomentumCost *= GVars.rustData.increaseMomentumScaling
+		GVars.rustData.increaseMomentum += 1
 
 
 func _up02():

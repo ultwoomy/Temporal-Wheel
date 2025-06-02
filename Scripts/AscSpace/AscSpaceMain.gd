@@ -120,16 +120,16 @@ func _awaken():
 	if GVars.doesLayerHaveFutureChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:
 		GVars.resetR1Stats()
 		GVars.hellChallengeInit = false
-	GVars.sigilData.costSpin = 300 - GVars.atlasData.dumpRustMilestone * 5
+	GVars.sigilData.costMomentum = 300 - GVars.atlasData.dumpRustMilestone * 5
 	# Copy next sigil order into the current one unless it's the voidstop in which it resets to default
 	if not GVars.hasFutureChallenge(GVars.CHALLENGE_BITTERSWEET):
 		GVars.currentSigilOrder = GVars.nextSigilOrder
 	else:
 		GVars.currentSigilOrder = SigilPurchaseOrder.new()
 	if not GVars.ifFirstDollar:
-		GVars.spinData.spin = GVars.dollarData.insuranceAmtSpin
+		GVars.spinData.momentum = GVars.dollarData.insuranceAmtSpin
 		GVars.rustData.rust = GVars.dollarData.insuranceAmtRust
-		GVars.spinData.spin = GVars.dollarData.insuranceAmtRot
+		GVars.spinData.rotations = GVars.dollarData.insuranceAmtRot
 	GVars.setChallengeToCurrentChallenges()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 

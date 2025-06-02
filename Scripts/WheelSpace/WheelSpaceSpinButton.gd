@@ -30,7 +30,7 @@ func _ready():
 	# ...OR have the button call the function here.
 	# ...OR have the button signal to somewhere to add to spin (so other things can add to it as well)
 	button.pressed.connect(self._buttonPressed)
-	WheelSpinner.spinValueChanged.connect(self.displayIncrement)
+	GVars.spinData.momentumValueChanged.connect(self.displayIncrement)
 
 
 func _buttonPressed():
@@ -43,12 +43,12 @@ func _buttonPressed():
 #@ Private Methods
 func _spinUpdateLoop():
 	if(GVars.hasChallengeActive(GVars.CHALLENGE_SHARP)):
-		GVars.spinData.spinPerClick = 1.5/(log(GVars.spinData.spin + 2)/2)
+		GVars.spinData.momentumPerClick = 1.5/(log(GVars.spinData.momentum + 2)/2)
 	elif GVars.soulsData.spinBaseBuffEnabled:
-		GVars.spinData.spinPerClick = 1 + log(GVars.spinData.rotations + 1)/log(10 - GVars.soulsData.spinBaseBuff)
+		GVars.spinData.momentumPerClick = 1 + log(GVars.spinData.rotations + 1)/log(10 - GVars.soulsData.spinBaseBuff)
 	else:
-		GVars.spinData.spinPerClick = 1
-	spinPerClickDisplay.text = str(GVars.getScientific(GVars.spinData.spinPerClick))
+		GVars.spinData.momentumPerClick = 1
+	spinPerClickDisplay.text = str(GVars.getScientific(GVars.spinData.momentumPerClick))
 
 
 func _saveLoop():

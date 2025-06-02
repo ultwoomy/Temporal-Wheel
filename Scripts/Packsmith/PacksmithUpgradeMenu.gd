@@ -36,7 +36,7 @@ func _ready() -> void:
 		#wrath
 		upgradeButton4.text = "Increase Effect Of Rust\nUpgrades"
 	
-	upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
+	upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseMomentumCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseMomentum))
 	upgradeText2.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
 	upgradeText3.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 	upgradeText4.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
@@ -59,12 +59,12 @@ func _process(_delta: float) -> void:
 
 func updateDisplays():
 	if(GVars.curEmotionBuff == 4):
-		upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin * GVars.rustData.fourth))
+		upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseMomentumCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseMomentum * GVars.rustData.fourth))
 		upgradeText2.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger * GVars.rustData.fourth))
 		upgradeText3.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust * GVars.rustData.fourth))
 		upgradeText4.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
 	else:
-		upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseSpinCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseSpin))
+		upgradeText1.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseMomentumCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseMomentum))
 		upgradeText2.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseHungerCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseHunger))
 		upgradeText3.text = "Cost: " + str(GVars.getScientific(GVars.rustData.increaseRustCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.increaseRust))
 		upgradeText4.text = "Cost: " + str(GVars.getScientific(GVars.rustData.fourthCost)) + "\nCurrent Multiplier: " + str(GVars.getScientific(GVars.rustData.fourth))
@@ -73,10 +73,10 @@ func updateDisplays():
 
 #@ Private Methods
 func _up01():
-	if(GVars.rustData.rust >= GVars.rustData.increaseSpinCost):
-		GVars.rustData.rust -= GVars.rustData.increaseSpinCost
-		GVars.rustData.increaseSpinCost *= GVars.rustData.increaseSpinScaling
-		GVars.rustData.increaseSpin += 1
+	if(GVars.rustData.rust >= GVars.rustData.increaseMomentumCost):
+		GVars.rustData.rust -= GVars.rustData.increaseMomentumCost
+		GVars.rustData.increaseMomentumCost *= GVars.rustData.increaseMomentumScaling
+		GVars.rustData.increaseMomentum += 1
 		updateDisplays()
 
 

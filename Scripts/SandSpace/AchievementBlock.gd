@@ -10,7 +10,7 @@ func _ready():
 		button.text = ach.achievementName
 		button.tooltip_text = ach.description
 		if ach.type == "spin":
-			if ach.checkComparable(GVars.spinData.spin):
+			if ach.checkComparable(GVars.spinData.momentum):
 				showTrue()
 		if ach.type == "rust":
 			if ach.checkComparable(GVars.rustData.rust):

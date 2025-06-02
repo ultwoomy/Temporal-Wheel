@@ -39,7 +39,7 @@ func _ready():
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 	else :
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
-	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.spin <= 50:
+	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.momentum <= 50:
 		hide()
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
 
@@ -60,8 +60,8 @@ func suc_loop():
 	else:
 		suc = GVars.spinData.sucPerTick * rustUpBuff + Ebuff
 	if(ifsucc):
-		if(GVars.spinData.spin >= suc):
-			GVars.spinData.spin -= suc
+		if(GVars.spinData.momentum >= suc):
+			GVars.spinData.momentum -= suc
 			GVars.spinData.curSucSize += suc
 			if(GVars.spinData.curSucSize >= GVars.spinData.sucTresh):
 				GVars.spinData.size += 1
@@ -96,7 +96,7 @@ func _buttonPressed():
 
 
 func checkTutorial():
-	if GVars.spinData.spin >= 50:
+	if GVars.spinData.momentum >= 50:
 		show()
 		EventManager.wheel_spun.disconnect(self.checkTutorial)
 		EventManager.tutorial_grow_found.emit()

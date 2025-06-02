@@ -45,7 +45,7 @@ func _ready() -> void:
 	# Connect signals
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
 	GVars.spinData.wheelPhaseChanged.connect(wheel.updateWheelSprite)
-	WheelSpinner.spinValueChanged.connect(self.updateSpinAmountText.unbind(1))
+	GVars.spinData.momentumValueChanged.connect(self.updateSpinAmountText.unbind(1))
 	WheelSpinner.wheelRotationCompleted.connect(self.updateRotationValueText)
 	EventManager.challenge_lost_L2.connect(self.checkBleedBar)
 	RenderingServer.set_default_clear_color(Color(0,0,0,1.0))
@@ -84,7 +84,7 @@ func checkBleedBar():
 
 
 func updateSpinAmountText() -> void:
-	spinAmountLabel.text = str(GVars.getScientific(GVars.spinData.spin))
+	spinAmountLabel.text = str(GVars.getScientific(GVars.spinData.momentum))
 
 
 func updateRotationValueText() -> void:

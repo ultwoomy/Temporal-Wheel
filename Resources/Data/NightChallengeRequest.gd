@@ -35,9 +35,9 @@ func initializeSecondary(x : String, y : float):
 
 func checkPassing():
 	if currentType == type.MOMENTUM:
-		if GVars.spinData.spin >= amount:
+		if GVars.spinData.momentum >= amount:
 			if checkSecondary():
-				GVars.spinData.spin -= amount
+				GVars.spinData.momentum -= amount
 				return true
 		else:
 			return false
@@ -103,8 +103,8 @@ func setType(x : String, primary : bool):
 func checkSecondary():
 	if secondaryTypeEnabled:
 		if secondaryType == type.MOMENTUM:
-			if GVars.spinData.spin >= secondaryAmount:
-				GVars.spinData.spin -= secondaryAmount
+			if GVars.spinData.momentum >= secondaryAmount:
+				GVars.spinData.momentum -= secondaryAmount
 				return true
 			else:
 				return false

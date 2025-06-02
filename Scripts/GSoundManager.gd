@@ -25,10 +25,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if(GVars.spinData.spin == 0) and !musicbox.stream_paused:
+	if(GVars.spinData.momentum == 0) and !musicbox.stream_paused:
 		pos = musicbox.get_playback_position()
 		musicbox.stream_paused = true
-	elif musicbox.stream_paused and GVars.spinData.spin > 0 and GVars.musicvol != -24:
+	elif musicbox.stream_paused and GVars.spinData.momentum > 0 and GVars.musicvol != -24:
 		musicbox.stream_paused = false
 
 func reset():
@@ -42,9 +42,9 @@ func playMKD(n):
 
 func check_track():
 	if(GVars.musicvol != -24):
-		if(GVars.spinData.spin > 10000):
+		if(GVars.spinData.momentum > 10000):
 			playMKD(1.0)
-		elif(GVars.spinData.spin > 100):
+		elif(GVars.spinData.momentum > 100):
 			playMKD(0.8)
 		else:
 			playMKD(0.5)

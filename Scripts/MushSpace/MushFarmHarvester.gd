@@ -51,13 +51,13 @@ func _applyCropBuff(crop : MushroomCrop) -> void:
 	
 	match crop.name:
 		LAMP_SHROOM_NAME:  # Lamp Shroom: Gives momentum.
-			GVars.spinData.spin += GVars.spinData.spinPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseSpin * GVars.mushroomData.spinBuff * GVars.mushroomData.level * 20 * Ebuff * soulsShroomBuff
+			GVars.spinData.momentum += GVars.spinData.momentumPerClick * GVars.mushroomData.level * GVars.spinData.size * GVars.spinData.density * GVars.rustData.increaseMomentum * GVars.mushroomData.momentumBuff * GVars.mushroomData.level * 20 * Ebuff * soulsShroomBuff
 			GVars.mushroomData.xp += 25 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 		ROT_SHROOM_NAME:  # Rot Shroom: Gives rotations.
 			GVars.spinData.rotations += (1 + GVars.mushroomData.level)/2 * (3 + Ebuff)/4 * 5 * soulsShroomBuff
 			GVars.mushroomData.xp += 50 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 		WINE_SHROOM_NAME:  # Wine Shroom: Gives momentum buff.
-			GVars.mushroomData.spinBuff += (3 * (log(GVars.mushroomData.level + 1) * Ebuff/log(3)))/(pow(2,GVars.mushroomData.spinBuff)) * soulsShroomBuff
+			GVars.mushroomData.momentumBuff += (3 * (log(GVars.mushroomData.level + 1) * Ebuff/log(3)))/(pow(2,GVars.mushroomData.momentumBuff)) * soulsShroomBuff
 			GVars.mushroomData.xp += 75 * EexpBuff + GVars.fearcatData.fearcatBuffDay
 		TWIN_SHROOM_NAME:  # Twin Shroom: Gives an identity buff.
 			GVars.mushroomData.ascBuff += (log(GVars.mushroomData.level + 1) * Ebuff/log(3))/(pow(1.5,GVars.mushroomData.ascBuff)) * soulsShroomBuff

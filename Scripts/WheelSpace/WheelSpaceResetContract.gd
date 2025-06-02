@@ -35,9 +35,9 @@ func _buttonPressed():
 	if presses > 4:
 		GVars.currentChallenges[0] = null
 		GVars.inContract = false
-		GVars.spinData.spin = 0
+		GVars.spinData.momentum = 0
 		GVars.spinData.rotations = 0
-		GVars.spinData.spinPerClick = 1
+		GVars.spinData.momentumPerClick = 1
 		EventManager.emit_signal("refresh_challenges")
 		presses = 0
 		hide()

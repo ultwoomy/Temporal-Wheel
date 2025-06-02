@@ -14,14 +14,14 @@ func _ready() -> void:
 	displayCurrency()
 	
 	#@ Listen for signals.
-	WheelSpinner.spinValueChanged.connect(displayCurrency)
+	GVars.spinData.momentumValueChanged.connect(displayCurrency.unbind(1))
 
 
 #@ Public Methods
 func displayCurrency() -> void:
 	# Setup.
 	var linesOfText : Array[String] = [
-		"Momentum: " + str(GVars.getScientific(GVars.spinData.spin)) + "\n",
+		"Momentum: " + str(GVars.getScientific(GVars.spinData.momentum)) + "\n",
 		"Rotations: " + str(GVars.getScientific(GVars.spinData.rotations)) + "\n",
 		"Rust: " + str(GVars.getScientific(GVars.rustData.rust)) + "\n",
 	]

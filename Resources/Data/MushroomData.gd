@@ -1,6 +1,13 @@
 extends Resource
 class_name MushroomData
 
+
+#@ Signals
+# Momentum-gain related signals.
+signal momentumBuffValueChanged
+
+
+#@ Export Variables
 @export var level : float
 @export var xp : float
 @export var xpThresh : float
@@ -8,7 +15,11 @@ class_name MushroomData
 @export var currentFarmPlots : Array[MushroomCrop]
 @export var timeLeft : Array[float]
 @export var pendingRots : float
-@export var momentumBuff : float
+@export var momentumBuff : float :
+	set(value):
+		if momentumBuff != value:
+			momentumBuff = value
+			momentumBuffValueChanged.emit()
 @export var ascBuff : float
 @export var fearMushBuff : float
 

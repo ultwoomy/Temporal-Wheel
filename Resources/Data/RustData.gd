@@ -1,8 +1,20 @@
 extends Resource
 class_name RustData
 
+
+#@ Signals
+# Momentum-gain related signals.
+signal increaseMomentumValueChanged
+signal fourthValueChanged
+
+
+#@ Export Variables
 @export var rust : float
-@export var increaseMomentum : float
+@export var increaseMomentum : float :
+	set(value):
+		if increaseMomentum != value:
+			increaseMomentum = value
+			increaseMomentumValueChanged.emit()
 @export var increaseMomentumCost : float
 @export var increaseMomentumScaling : float
 @export var increaseHunger : float
@@ -11,7 +23,11 @@ class_name RustData
 @export var increaseRust : float
 @export var increaseRustCost : float
 @export var increaseRustScaling : float
-@export var fourth : float
+@export var fourth : float :
+	set(value):
+		if fourth != value:
+			fourth = value
+			fourthValueChanged.emit()
 @export var fourthCost : float
 @export var fourthScaling : float
 @export var thresh : float

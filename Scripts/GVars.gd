@@ -1,5 +1,10 @@
 extends Node
 # Global script.
+## (!!!) GVars should be the FIRST script in the Autoload.
+
+
+#@ Signals
+signal ascensionMomentumBuffValueChanged
 
 
 #@ Constants
@@ -31,7 +36,11 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var sandScaling : float
 @export_group("R1stats")
 @export var curEmotionBuff : int
-@export var Aspinbuff : float
+@export var Aspinbuff : float :
+	set(value):
+		if Aspinbuff != value:
+			Aspinbuff = value
+			ascensionMomentumBuffValueChanged.emit()
 @export var ifhell : bool
 @export var ifheaven : bool
 @export var challenges : Array[ChallengeData] = [] :

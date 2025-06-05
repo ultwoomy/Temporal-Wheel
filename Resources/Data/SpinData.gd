@@ -4,6 +4,13 @@ class_name SpinData
 
 #@ Signals
 signal momentumValueChanged(addend : float)
+
+# Momentum-gain related signals.
+signal momentumPerClickValueChanged
+signal sizeValueChanged
+signal rotationValueChanged
+signal densityValueChanged
+
 signal wheelPhaseChanged
 
 
@@ -13,14 +20,26 @@ signal wheelPhaseChanged
 		var addend : float = value - momentum
 		momentum = value
 		momentumValueChanged.emit(addend)
-@export var momentumPerClick : float
-@export var size : float
+@export var momentumPerClick : float :
+	set(value):
+		if momentumPerClick != value:
+			momentumPerClick = value
+			momentumPerClickValueChanged.emit()  # Calculating momentum gain.
+@export var size : float :
+	set(value):
+		if size != value:
+			size = value
+			sizeValueChanged.emit()  # Calculating momentum gain.
 @export var sizeToggle : bool
 @export var sucPerTick : float
 @export var sucTresh : float
 @export var curSucSize : float
 @export var sizeRecord : float
-@export var density : float
+@export var density : float :
+	set(value):
+		if density != value:
+			density = value
+			densityValueChanged.emit()  # Calculating momentum gain.
 @export var sucPerTDens : float
 @export var densTresh : float
 @export var curSucDens : float
@@ -28,7 +47,11 @@ signal wheelPhaseChanged
 	set(value):
 		wheelPhase = value
 		wheelPhaseChanged.emit()
-@export var rotations : float
+@export var rotations : float :
+	set(value):
+		if rotations != value:
+			rotations = value
+			rotationValueChanged.emit()  # Calculating momentum gain.
 @export var spinSpeed : float
 
 func _init():

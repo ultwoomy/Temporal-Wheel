@@ -13,6 +13,7 @@ const FULL_ROTATION_RADIANS : float = 2 * PI
 
 
 #@ Public Variables
+var incrementAmount : float
 # Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
 # wheelRotation keeps track of the value, but doesn't do anything itself.
 var wheelRotation : float = 0.0
@@ -28,19 +29,36 @@ var _sign : int = 1 :
 
 
 #@ Virtual Methods
+func _ready() -> void:
+	incrementAmount = _calculateMomentumGain()
+	
+	# Listen for signals.
+	# Momentum-gain related signals.
+	var updateMomentumGain : Callable = func() -> void: 
+		incrementAmount = _calculateMomentumGain()
+		print("There was a change in the value of a variable that updates the amount of momentum gained!")
+	GVars.spinData.momentumPerClickValueChanged.connect(updateMomentumGain) 
+	GVars.spinData.sizeValueChanged.connect(updateMomentumGain)
+	GVars.spinData.rotationValueChanged.connect(updateMomentumGain)
+	GVars.spinData.densityValueChanged.connect(updateMomentumGain)
+	GVars.rustData.increaseMomentumValueChanged.connect(updateMomentumGain)
+	GVars.rustData.fourthValueChanged.connect(updateMomentumGain)
+	GVars.mushroomData.momentumBuffValueChanged.connect(updateMomentumGain)
+	GVars.ascensionMomentumBuffValueChanged.connect(updateMomentumGain)
+
+
 func _process(_delta: float) -> void:
 	rotateWheel()
 
 
 #@ Public Methods
 func spinWheel(reverse: bool = false) -> void:
-	var incrementValue : float
-	if not reverse:
-		incrementValue = _calculateSpinGain()
-		GVars.spinData.momentum += incrementValue
-	else:
+	if reverse:
+		var incrementValue : float
 		incrementValue = GVars.sucPerTick * GVars.rustData.increaseHunger * 5
 		GVars.spinData.momentum += incrementValue
+	else:
+		GVars.spinData.momentum += incrementAmount
 
 
 func rotateWheel() -> void:
@@ -107,14 +125,14 @@ func getWheelRotationAmount() -> float:
 	return result
 
 #@ Private Methods
-func _calculateSpinGain() -> float:
+func _calculateMomentumGain() -> float:
 	# Base result Player gets from spinning the wheel with a click.
 	var result : float = GVars.spinData.momentumPerClick
 	# Multiply the result by the size of the wheel.
 	if GVars.hasChallengeActive(GVars.CHALLENGE_SHARP):
-		result *= pow(GVars.spinData.size,0.5)/log(GVars.spinData.rotations + 2)/2
+		result *= pow(GVars.spinData.size,0.5) / log(GVars.spinData.rotations + 2)/2
 	elif GVars.curEmotionBuff == 2:
-		result *= pow(GVars.spinData.size,GVars.spinData.density + 1)
+		result *= pow(GVars.spinData.size, GVars.spinData.density + 1)
 	else:
 		result *= GVars.spinData.size
 	# Multiply the result by the density of the wheel.

@@ -29,18 +29,18 @@ func _ready():
 	# ...However, you can also have it in its own script w/ the function
 	# ...OR have the button call the function here.
 	# ...OR have the button signal to somewhere to add to spin (so other things can add to it as well)
-	button.pressed.connect(self._buttonPressed)
-	GVars.spinData.momentumValueChanged.connect(self.displayIncrement)
+	button.pressed.connect(self._onButtonPressed)
 
 
-func _buttonPressed():
+#@ Private Methods
+func _onButtonPressed():
 	# Tell EventManager that wheel has been spun, which will apply calculations and spin currency.
 	EventManager.wheel_spun.emit()
 	playAnimation(GameButtonPopAnimation.new(self))
 	_spinUpdateLoop()
+	displayIncrement(WheelSpinner.incrementAmount)
 
 
-#@ Private Methods
 func _spinUpdateLoop():
 	if(GVars.hasChallengeActive(GVars.CHALLENGE_SHARP)):
 		GVars.spinData.momentumPerClick = 1.5/(log(GVars.spinData.momentum + 2)/2)

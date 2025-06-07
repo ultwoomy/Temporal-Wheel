@@ -1,5 +1,5 @@
 extends Label
-class_name IncrementValueLabel
+class_name IncrementLabel
 
 
 #@ Constants
@@ -18,7 +18,7 @@ func _init(value : float) -> void:
 	if value >= 0:
 		self.text = "+" + str(GVars.getScientific(value))
 	else:
-		self.text = "-" + str(GVars.getScientific(value))
+		self.text = str(GVars.getScientific(value))
 	
 	
 

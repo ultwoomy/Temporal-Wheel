@@ -38,7 +38,8 @@ func _onButtonPressed():
 	EventManager.wheel_spun.emit()
 	playAnimation(GameButtonPopAnimation.new(self))
 	_spinUpdateLoop()
-	displayIncrement(WheelSpinner.incrementAmount)
+	_displayIncrementValue(WheelSpinner.incrementAmount)
+	
 
 
 func _spinUpdateLoop():
@@ -55,3 +56,11 @@ func _saveLoop():
 	GVars.save_prog()
 	await get_tree().create_timer(20).timeout
 	_saveLoop()
+
+
+func _displayIncrementValue(value : float) -> void:
+	var incrementLabel : IncrementLabel = createIncrementLabel(value)
+	
+	# Reposition the increment value label at the mouse position.
+	var mousePosition : Vector2 = get_global_mouse_position()
+	incrementLabel.position = mousePosition - (incrementLabel.size / 2.0)

@@ -61,6 +61,7 @@ func suc_loop():
 		suc = GVars.spinData.sucPerTick * rustUpBuff + Ebuff
 	if(ifsucc):
 		if(GVars.spinData.momentum >= suc):
+			_displayIncrementValue(-suc)
 			GVars.spinData.momentum -= suc
 			GVars.spinData.curSucSize += suc
 			if(GVars.spinData.curSucSize >= GVars.spinData.sucTresh):
@@ -73,6 +74,13 @@ func suc_loop():
 				GVars.spinData.curSucSize = 0
 				GVars.spinData.sucTresh *= 3
 	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100
+
+
+func checkTutorial():
+	if GVars.spinData.momentum >= 50:
+		show()
+		EventManager.wheel_spun.disconnect(self.checkTutorial)
+		EventManager.tutorial_grow_found.emit()
 
 
 #@ Private Methods
@@ -95,14 +103,12 @@ func _buttonPressed():
 		sf.start(load("res://Sound/SFX/yes.wav"))
 
 
-func checkTutorial():
-	if GVars.spinData.momentum >= 50:
-		show()
-		EventManager.wheel_spun.disconnect(self.checkTutorial)
-		EventManager.tutorial_grow_found.emit()
-
-
 # When the container(s) have finished resizing.
 func _onChildSorted() -> void:
 	# Resize the color rect after resorting the container.
 	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100
+
+
+func _displayIncrementValue(value : float) -> void:
+	var incrementLabel : IncrementLabel = createIncrementLabel(value)
+	incrementLabel.position = self.position + Vector2(self.size.x/2.0, self.size.y/2.0) - (incrementLabel.size / 2.0)

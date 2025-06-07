@@ -40,18 +40,13 @@ func playAnimation(animation : GameButtonAnimation) -> void:
 	_activeAnimation.start()
 
 
-# Display a text message of the increment value from pressing the game button.
-func displayIncrement(value) -> void:
-	var mousePosition : Vector2 = get_global_mouse_position()
-	
-	# Create instance of text.
-	var incrementValueLabel : IncrementValueLabel = IncrementValueLabel.new(value)
-	
-	# Add text to scene at mouse.
+# Create an increment label that only displays number in scientific notation.
+func createIncrementLabel(value : float) -> IncrementLabel:
+	var incrementLabel : IncrementLabel = IncrementLabel.new(value)
 	var currentTree : SceneTree = get_tree()
 	if currentTree:  # Avoids error when switching scenes at the same time of creating child.
-		currentTree.current_scene.add_child(incrementValueLabel)
-		incrementValueLabel.position = mousePosition - (incrementValueLabel.size / 2.0)
+		currentTree.current_scene.add_child(incrementLabel)
+	return incrementLabel
 
 
 #@ Private Methods

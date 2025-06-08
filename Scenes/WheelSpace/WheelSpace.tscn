@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=75 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -38,7 +38,9 @@
 [ext_resource type="Texture2D" uid="uid://dbxedep3ucns5" path="res://Sprites/WheelSpace/spinbot.png" id="33_l2up4"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/SpinbotShow.gd" id="34_ksfch"]
 [ext_resource type="Texture2D" uid="uid://bjex0cifjs7ei" path="res://Sprites/WheelSpace/ratsheet/ratletter.png" id="35_7lkiw"]
+[ext_resource type="Texture2D" uid="uid://cwh8j63uw23no" path="res://Sprites/WheelSpace/challenge_button/challenge_icon_default.png" id="35_h3o4k"]
 [ext_resource type="Texture2D" uid="uid://dbqifpea6l5v3" path="res://Sprites/WheelSpace/settings buttons/tile000.png" id="35_op35j"]
+[ext_resource type="Texture2D" uid="uid://bfnxl2too2xx" path="res://Sprites/WheelSpace/challenge_button/challenge_icon_tilted.png" id="36_fs0mf"]
 [ext_resource type="Texture2D" uid="uid://da7ojbspruc6b" path="res://Sprites/WheelSpace/settings buttons/tile001.png" id="36_pjqq4"]
 [ext_resource type="Texture2D" uid="uid://r0bdyjhn2kk7" path="res://Sprites/WheelSpace/backpackButtons/backpack_closed.png" id="38_21m8y"]
 [ext_resource type="Texture2D" uid="uid://cwchmr65j57xn" path="res://Sprites/WheelSpace/backpackButtons/backpack_open.png" id="39_fs3l2"]
@@ -463,6 +465,17 @@ texture_pressed = ExtResource("39_fs3l2")
 texture_hover = ExtResource("39_fs3l2")
 texture_disabled = ExtResource("38_21m8y")
 texture_focused = ExtResource("39_fs3l2")
+
+[node name="ChallengesButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 20.0
+offset_right = 820.0
+offset_bottom = 80.0
+texture_normal = ExtResource("35_h3o4k")
+texture_hover = ExtResource("36_fs0mf")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="TravelButton" type="Button" parent="."]
 layout_mode = 2

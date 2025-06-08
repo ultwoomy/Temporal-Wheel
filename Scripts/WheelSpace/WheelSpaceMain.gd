@@ -26,6 +26,7 @@ var candleAugmentBuffModifier : float = 1.0
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
 @onready var backpack : BackpackPanel = $BackpackPanel
+@onready var challengesButton : TextureButton = $ChallengesButton
 @onready var travelButton : Button = $TravelButton
 var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 

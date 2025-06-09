@@ -113,8 +113,7 @@ func _onBackpackButtonPressed() -> void:
 
 
 func _onChallengesButtonPressed() -> void:
-	const CHALLENGES_PANEL_SCENE : Resource = preload("res://Scenes/WheelSpace/ChallengesPanel.tscn")
-	var challengesPanel : Control = CHALLENGES_PANEL_SCENE.instantiate()
+	pass
 	
 	
 

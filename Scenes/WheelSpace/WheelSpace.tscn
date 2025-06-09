@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=74 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -54,7 +54,6 @@
 [ext_resource type="Script" path="res://Scripts/VoidSpace/VoidbotShow.gd" id="44_gayhw"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="44_kqfr3"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="45_3mkif"]
-[ext_resource type="PackedScene" uid="uid://3wjowbw55at0" path="res://Scenes/WheelSpace/BackpackPanel.tscn" id="46_o6krw"]
 [ext_resource type="Script" path="res://Scenes/WheelSpace/TutorialBunny.gd" id="50_twnyn"]
 [ext_resource type="Texture2D" uid="uid://cmnfooc2xd55c" path="res://Sprites/WheelSpace/tutorialbun.png" id="51_ewy6v"]
 [ext_resource type="Texture2D" uid="uid://btsdyf15q58f8" path="res://Sprites/WheelSpace/Zundamon/zun_wip.png" id="51_qvhl7"]
@@ -657,14 +656,6 @@ offset_bottom = 110.0
 texture_normal = ExtResource("43_eoec8")
 texture_hover = ExtResource("44_8q2ll")
 
-[node name="BackpackPanel" parent="." instance=ExtResource("46_o6krw")]
-visible = false
-layout_mode = 0
-offset_left = 250.0
-offset_top = 100.0
-offset_right = 750.0
-offset_bottom = 500.0
-
 [node name="TutorialBox" type="Container" parent="." node_paths=PackedStringArray("text", "button", "tutScreen")]
 process_mode = 3
 visible = false
@@ -758,7 +749,6 @@ texture = ExtResource("55_aqsov")
 [connection signal="pressed" from="Zunda/TextureButton" to="Zunda" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_onSettingButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="." method="_onBackpackButtonPressed"]
-[connection signal="pressed" from="BackpackButton" to="BackpackPanel" method="_onBackpackPressed"]
 [connection signal="pressed" from="TravelButton" to="." method="_onTravelButtonPressed"]
 [connection signal="pressed" from="RatController/Rat" to="RatController" method="_on_rat_pressed"]
 [connection signal="pressed" from="RatController/Letter/Exit" to="RatController" method="_on_exit_pressed"]

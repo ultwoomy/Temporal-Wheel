@@ -27,7 +27,6 @@ var menuState : WS_MenuState
 @onready var spinButton : WheelSpaceSpinButton = $SpinButton
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
-@onready var backpack : BackpackPanel = $BackpackPanel
 @onready var challengesButton : TextureButton = $ChallengesButton
 @onready var travelButton : Button = $TravelButton
 var bb = load("res://Scenes/BleedBar.tscn").instantiate()
@@ -76,7 +75,6 @@ func _ready() -> void:
 	if (numOfCandles > 5):
 		numOfCandles = 5
 	
-	backpack.hide()
 	Challenger.refresh()
 
 
@@ -125,10 +123,11 @@ func _onSettingButtonPressed() -> void:
 
 
 func _onBackpackButtonPressed() -> void:
-	if backpack.is_visible_in_tree():
-		backpack.hide()
-	else:
-		backpack.show()
+	if menuState:
+		if menuState is WS_MenuBackpackState:  # If already in the Backpack menu, then close it.
+			changeMenuState(WS_MenuState.new(self))
+			return
+	changeMenuState(WS_MenuBackpackState.new(self))  # Otherwise, open the Backpack menu.
 
 
 func _onChallengesButtonPressed() -> void:

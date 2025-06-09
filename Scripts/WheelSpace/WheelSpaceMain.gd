@@ -53,6 +53,7 @@ func _ready() -> void:
 	EventManager.tutorial_travel_found.connect(self.checkTutorial)
 	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.density < 2:
 		travelButton.hide()
+	challengesButton.pressed.connect(_onChallengesButtonPressed)
 	
 	# Display currency.
 	updateSpinAmountText()
@@ -109,6 +110,13 @@ func _onBackpackButtonPressed() -> void:
 		backpack.hide()
 	else:
 		backpack.show()
+
+
+func _onChallengesButtonPressed() -> void:
+	const CHALLENGES_PANEL_SCENE : Resource = preload("res://Scenes/WheelSpace/ChallengesPanel.tscn")
+	var challengesPanel : Control = CHALLENGES_PANEL_SCENE.instantiate()
+	
+	
 
 
 func _onTravelButtonPressed() -> void:

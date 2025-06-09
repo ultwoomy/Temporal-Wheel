@@ -19,6 +19,8 @@ var numOfCandles : int = 0
 var fourthRustBuff : float = 1.0
 var candleAugmentBuffModifier : float = 1.0
 
+var menuState : WS_MenuState
+
 
 #@ Onready Variables
 @onready var wheel : WheelSpaceWheel = $Wheel
@@ -42,6 +44,9 @@ func _ready() -> void:
 	#var d = AutomatorData.new()
 	#d.setAutomator("Spinbot")
 	#Automation.addAutomatorFromData(d)
+	
+	# Set variables.
+	menuState = WS_MenuState.new(self)
 	
 	# Connect signals
 	spinButton.button.pressed.connect(WheelSpinner.spinWheel)
@@ -75,8 +80,15 @@ func _ready() -> void:
 	Challenger.refresh()
 
 
-func _process(_delta) -> void:
-	pass
+func _process(_delta : float) -> void:
+	if menuState:
+		menuState._update(_delta)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_ESCAPE:  # Exit out of menu using ESCAPE key.
+			changeMenuState(WS_MenuState.new(self))
 
 
 #@ Public Methods
@@ -100,6 +112,13 @@ func updateRotationValueText() -> void:
 		rotationAmountLabel.text = str("Rotations: ",GVars.getScientific(GVars.spinData.rotations))
 
 
+func changeMenuState(newMenuState : WS_MenuState) -> void:
+	if menuState:
+		menuState._exit()
+	menuState = newMenuState
+	menuState._enter()
+
+
 #@ Private Methods
 func _onSettingButtonPressed() -> void:
 	SceneHandler.changeSceneToFilePath(SceneHandler.SETTINGS)
@@ -113,9 +132,11 @@ func _onBackpackButtonPressed() -> void:
 
 
 func _onChallengesButtonPressed() -> void:
-	pass
-	
-	
+	if menuState:
+		if menuState is WS_MenuChallengesState:  # If already in the Challenges menu, then close it.
+			changeMenuState(WS_MenuState.new(self))
+			return
+	changeMenuState(WS_MenuChallengesState.new(self))  # Otherwise, open the Challenges menu.
 
 
 func _onTravelButtonPressed() -> void:

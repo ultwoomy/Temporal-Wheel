@@ -16,7 +16,7 @@ func _enter() -> void:
 	voidSpace.unlockKbityButton()
 	
 	# Connect signals as to wait for the Player to choose a menu to go into.
-	if not voidSpace.sigilButton.pressed.is_connected(voidSpace.changeState):
+	if not voidSpace.sigilButton.pressed.is_connected(voidSpace.changeState):  # L.B: Is this necessary...?
 		voidSpace.sigilButton.pressed.connect(voidSpace.changeState.bind(VS_MenuSigilState.new(voidSpace)))
 	if not voidSpace.ritualButton.pressed.is_connected(voidSpace.changeState):
 		voidSpace.ritualButton.pressed.connect(voidSpace.changeState.bind(VS_MenuRitualState.new(voidSpace)))

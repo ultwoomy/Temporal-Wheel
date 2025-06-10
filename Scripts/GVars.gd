@@ -8,6 +8,15 @@ signal ascensionMomentumBuffValueChanged
 
 
 #@ Constants
+# Sigils
+const SIGIL_PACKSMITH : Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
+const SIGIL_CANDLE : Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
+const SIGIL_ASCENSION : Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
+const SIGIL_EMPTINESS : Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
+const SIGIL_RITUAL : Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
+const SIGIL_HELL : Sigil = preload("res://Resources/Sigil/HellSigil.tres")
+
+
 # Layer 1 Challenges
 # This one does nothing. It is activated when the player enters a challenge with no emotion buff
 const CHALLENGE_INCONGRUENT : ChallengeData = preload("res://Resources/Challenge/IncongruentChallenge.tres")

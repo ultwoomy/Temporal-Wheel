@@ -8,65 +8,101 @@
 [ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="6_oti8w"]
 [ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="7_ugqrg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xpxar"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt3p7"]
 atlas = ExtResource("1_r7dbm")
-region = Rect2(0, 0, 299, 299)
+region = Rect2(598, 0, 299, 299)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cm1ph"]
 atlas = ExtResource("1_r7dbm")
 region = Rect2(299, 0, 299, 299)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yt3p7"]
-atlas = ExtResource("1_r7dbm")
-region = Rect2(598, 0, 299, 299)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_31rre"]
 atlas = ExtResource("1_r7dbm")
 region = Rect2(897, 0, 299, 299)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpxar"]
+atlas = ExtResource("1_r7dbm")
+region = Rect2(0, 0, 299, 299)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xpxar")
+"texture": SubResource("AtlasTexture_yt3p7")
+}],
+"loop": true,
+"name": &"ascension",
+"speed": 5.0
 }, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cm1ph")
+}],
+"loop": true,
+"name": &"candle",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yt3p7")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_31rre")
+}],
+"loop": true,
+"name": &"emptiness",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": ExtResource("2_y30hy")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_r2137")
+}],
+"loop": true,
+"name": &"hell",
+"speed": 5.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpxar")
+}],
+"loop": true,
+"name": &"packsmith",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y30hy")
+}],
+"loop": true,
+"name": &"ritual",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_mv87g")
+}],
+"loop": true,
+"name": &"sand",
+"speed": 5.0
 }, {
-"duration": 1.0,
-"texture": ExtResource("4_mv87g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_mv87g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_mv87g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ni854")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_oti8w")
-}, {
+"frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_ugqrg")
 }],
 "loop": true,
-"name": &"default",
+"name": &"twins",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_oti8w")
+}],
+"loop": true,
+"name": &"undercity",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ni854")
+}],
+"loop": true,
+"name": &"zundanight",
 "speed": 5.0
 }]

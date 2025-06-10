@@ -43,7 +43,7 @@ func displayStatistics() -> void:
 	else:
 		textToBeDisplayed += "\n\n"
 	textToBeDisplayed += "The highest presence\nvalue is kept.\n\n"
-	if GVars.sigilData.curSigilBuff == 3:
+	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_EMPTINESS:
 		textToBeDisplayed += "You have worn the\nface of myraid emotion."
 	
 	statDisplay.text = textToBeDisplayed
@@ -54,7 +54,7 @@ func _endSequence() -> void:
 	#hides every ui element before playing reset animation
 	controlUI.hide()
 	const emptinessSigil : Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
-	if not GVars.sigilData.curSigilBuff == 3 and emptinessSigil in GVars.sigilData.acquiredSigils:
+	if not GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_EMPTINESS and emptinessSigil in GVars.sigilData.acquiredSigils:
 		confirmationPanel.show()
 	else:
 		centerpiece.setEndSequence(true)

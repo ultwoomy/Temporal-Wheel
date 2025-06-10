@@ -20,7 +20,7 @@ signal canceled
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	hide()
-	if not GVars.ifhell and GVars.sigilData.curSigilBuff == 5:
+	if not GVars.ifhell and GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_HELL:
 		get_child(0).text = "You are about to enter a hell challenge corresponding to you current emotion buff. Are you prepared?"
 
 

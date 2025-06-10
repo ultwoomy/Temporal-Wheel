@@ -10,7 +10,7 @@ class_name RitualData
 			if candle:
 				result += 1
 		
-		if (result > 0) and (GVars.sigilData.curSigilBuff == 4):
+		if (result > 0) and (GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_RITUAL):
 			result -= 1
 		elif (result > 5):
 			result = 5

@@ -12,7 +12,8 @@ func _ready() -> void:
 	## TODO: Set texture to current sigil texture.
 	## Need to receive sigil. Should be curSigilBuff... but I don't like that.
 	## Need to change curSigilBuff.
-	sigilSprite.texture
+	if GVars.sigilData.currentAugmentedSigil:
+		sigilSprite.texture = GVars.sigilData.currentAugmentedSigil.spriteTexture
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

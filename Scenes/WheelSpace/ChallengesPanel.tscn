@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://crhafgd8lprvr"]
+[gd_scene load_steps=3 format=3 uid="uid://crhafgd8lprvr"]
+
+[ext_resource type="Texture2D" uid="uid://bn1a7pk136bjx" path="res://Sprites/Sigils/sigil01.png" id="1_7avu3"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/ChallengesPanel.gd" id="1_vnghd"]
 
 [node name="ChallengesPanel" type="Control"]
 layout_mode = 3
@@ -10,6 +13,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = ExtResource("1_vnghd")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -24,3 +28,16 @@ offset_right = 250.0
 offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="SigilSprite" type="Sprite2D" parent="."]
+position = Vector2(-152, -104)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7avu3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -227.0
+offset_right = -27.0
+offset_bottom = 23.0
+text = "Test"
+vertical_alignment = 1

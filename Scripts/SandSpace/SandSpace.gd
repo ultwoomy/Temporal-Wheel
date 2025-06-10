@@ -4,7 +4,7 @@ extends Control
 @onready var invert : TextureButton = $Invert
 @onready var background : AnimatedSprite2D = $Background
 @onready var dollarLabel : Label = $Invert/DollarLabel
-const sandSigil : Sigil = preload("res://Resources/Sigil/SandDollar.tres")
+const sandSigil : Sigil = preload("res://Resources/Sigil/SandSigil.tres")
 var lightSigil = preload("res://Sprites/Sigils/sigil10.png")
 var darkSigil = preload("res://Sprites/SandSpace/invert_sand_sigil.png")
 
@@ -50,8 +50,9 @@ func _on_invert_pressed() -> void:
 func updateLabel():
 	if sandSigil in GVars.sigilData.acquiredSigils:
 		dollarLabel.text = "Dollar Sigil: Active\nMultiply Identity bonus by " + str(GVars.getScientific(pow(GVars.dollarData.sandDollars,2)))
-		if GVars.sigilData.curSigilBuff == 9:
-			dollarLabel.text += "\nMultiply Rotation gain by: " + str(GVars.getScientific(GlobalBuffs.dollarRotationModifier))
+		## TODO:
+		#if GVars.sigilData.currentAugmentedSigil == 9:
+			#dollarLabel.text += "\nMultiply Rotation gain by: " + str(GVars.getScientific(GlobalBuffs.dollarRotationModifier))
 	else:
 		dollarLabel.text = "Dollar Sigil: Inactive"
 	

@@ -3,7 +3,7 @@ extends Container
 @onready var sandspace : Button = $SandButton
 @onready var huntspace : Button = $HuntButton
 
-const sandSigil : Sigil = preload("res://Resources/Sigil/SandDollar.tres")
+const sandSigil : Sigil = preload("res://Resources/Sigil/SandSigil.tres")
 const huntSigil : Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
 
 # Called when the node enters the scene tree for the first time.

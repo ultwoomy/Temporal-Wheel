@@ -62,11 +62,11 @@ func _process(_delta):
 
 #@ Private Methods
 func _setSigilDisplay():
-	if GVars.sigilData.curSigilBuff >= 0:
-		sigilDisplay.frame = GVars.sigilData.curSigilBuff
+	if GVars.sigilData.currentAugmentedSigil:
+		sigilDisplay.animation = GVars.sigilData.currentAugmentedSigil.sigilName
 		sigilDisplay.show()
 	else:
-		sigilDisplay.frame = 0
+		sigilDisplay.animation = "packsmith"
 		sigilDisplay.hide()
 
 

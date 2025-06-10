@@ -47,7 +47,7 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 	# Ask for a particular topic from _dialogueHandler that will be said.
 	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
 	print("buff index" + str(sigil.sigilBuffIndex))
-	GVars.sigilData.curSigilBuff = sigil.sigilBuffIndex
+	GVars.sigilData.currentAugmentedSigil = sigil
 	
 	# Exception. Maybe there is a cleaner way?
 	if sigil.sigilName == "hell":
@@ -65,7 +65,7 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 			GVars.ifhell = true
 			GVars.inContract = false
 			GVars.removeLayer1Challenge()
-		GVars.sigilData.curSigilBuff = 5
+		GVars.sigilData.currentAugmentedSigil = GVars.SIGIL_HELL
 	augmentChanged.emit()
 	GlobalBuffs.augmentSigilBuffs()
 	

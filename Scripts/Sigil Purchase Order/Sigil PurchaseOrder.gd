@@ -9,7 +9,7 @@ var emptinessSigil : Sigil = load("res://Resources/Sigil/EmptinessSigil.tres")
 var ritualSigil : Sigil = load("res://Resources/Sigil/RitualSigil.tres")
 var hellSigil : Sigil = load("res://Resources/Sigil/HellSigil.tres")
 
-var sandSigil : Sigil = load("res://Resources/Sigil/SandDollar.tres")
+var sandSigil : Sigil = load("res://Resources/Sigil/SandSigil.tres")
 var twinsSigil : Sigil = load("res://Resources/Sigil/TwinsSigil.tres")
 var undercitySigil : Sigil = load("res://Resources/Sigil/UndercitySigil.tres")
 var zundaNightSigil : Sigil = load("res://Resources/Sigil/ZundaNightSigil.tres")

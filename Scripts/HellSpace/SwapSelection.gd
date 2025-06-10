@@ -12,7 +12,7 @@ var candleSigil : Sigil = load("res://Resources/Sigil/CandleSigil.tres")
 var emptinessSigil : Sigil = load("res://Resources/Sigil/EmptinessSigil.tres")
 var hellSigil : Sigil = load("res://Resources/Sigil/HellSigil.tres")
 var ritualSigil : Sigil = load("res://Resources/Sigil/RitualSigil.tres")
-var sandSigil : Sigil = load("res://Resources/Sigil/SandDollar.tres")
+var sandSigil : Sigil = load("res://Resources/Sigil/SandSigil.tres")
 var twinsSigil : Sigil = load("res://Resources/Sigil/TwinsSigil.tres")
 var undercitySigil : Sigil = load("res://Resources/Sigil/UndercitySigil.tres")
 var zundaNightSigil : Sigil = load("res://Resources/Sigil/ZundaNightSigil.tres")
@@ -76,7 +76,7 @@ func _emitSignalOnSigilButtonPressed(sigil: Sigil) -> void:
 	elif sigil.sigilName == "ritual" and GVars.soulsData.spinBaseBuffEnabled:
 		sigilPurchaseOrder.swap(4, zundaNightSigil)
 		sigil = zundaNightSigil
-	elif sigil.sigilName == "sanddollar":
+	elif sigil.sigilName == "sand":
 		sigilPurchaseOrder.swap(1, candleSigil)
 		sigil = candleSigil
 	elif sigil.sigilName == "twins":
@@ -111,7 +111,7 @@ func setDesc(sigil):
 	elif sigil.sigilName == "hell":
 		desc.text = "Current Sigil In Slot: Dinner Hell\n\nUnlocks Hell, and gives you access to the harder challenges. Though if you're seeing this, you've already
 		beaten one.\n\nThis is also a song reference, blue everywhere."
-	elif sigil.sigilName == "sanddollar":
+	elif sigil.sigilName == "sand":
 		desc.text = "Current Sigil In Slot: Sand Dollar\n\nComplete goals for sand dollars, with the option of spending them on a headstart on the start of a reset. Most
 		powerful identity buffer in the game.\n\nNot a reference to anything, I just think they look neat."
 	elif sigil.sigilName == "twins":

@@ -70,7 +70,7 @@ func _ready() -> void:
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1
-	if(numOfCandles > 0) and (GVars.sigilData.curSigilBuff == 4):
+	if(numOfCandles > 0) and (GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_RITUAL):
 		numOfCandles -= 1
 	if (numOfCandles > 5):
 		numOfCandles = 5

@@ -16,22 +16,23 @@ func _ready() -> void:
 #@ Public Methods
 func augmentSigilBuffs() -> void:
 	reset_buffs()
-	if GVars.sigilData.curSigilBuff == 0:  # Packsmith sigil
+	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_PACKSMITH:  # Packsmith sigil
 		# Rust gain doubled.
 		rustGainModifier = 2.0
-	elif GVars.sigilData.curSigilBuff == 1:  # Candle sigil
+	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_CANDLE:  # Candle sigil
 		# Mushrooms grow 1.5x as fast.
 		mushroomPendingRotationModifier = 1.5
-	elif GVars.sigilData.curSigilBuff == 2:
+	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_ASCENSION:
 		pass
-	elif GVars.sigilData.curSigilBuff == 3:
+	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_EMPTINESS:
 		pass
-	elif GVars.sigilData.curSigilBuff == 4:
+	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_RITUAL:
 		pass
-	elif GVars.sigilData.curSigilBuff == 5:
+	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_HELL:
 		pass
-	elif GVars.sigilData.curSigilBuff == 9:
-		dollarRotationModifier = 1 + (GVars.dollarData.sandDollars / 25)
+	## TODO:
+	#elif GVars.sigilData.currentAugmentedSigil == 9:
+		#dollarRotationModifier = 1 + (GVars.dollarData.sandDollars / 25)
 	else:
 		printerr("ERROR: Sigil buff not implemented!")
 		return

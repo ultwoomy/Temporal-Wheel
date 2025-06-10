@@ -144,7 +144,7 @@ func _displayDialogue() -> void:
 func _displayButtons() -> void:
 	#If face is active, show emotion
 	#Cannot stack emotion with challenge of the same type
-	if GVars.sigilData.curSigilBuff == 3:
+	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_EMPTINESS:
 		if not GVars.hasChallengeActive(GVars.CHALLENGE_INCONGRUENT):
 			fearButton.show()
 		if not GVars.hasChallengeActive(GVars.CHALLENGE_BRAVE):
@@ -156,7 +156,7 @@ func _displayButtons() -> void:
 	
 	#If hell sigil is active and hell is not unlocked, show challenge options based on emote buff
 	#Nothing prepared for no emote buff, shouldn't be easy or possible to get
-	if (GVars.sigilData.curSigilBuff == 5) and not GVars.ifhell:
+	if (GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_HELL) and not GVars.ifhell:
 		challengeButton.show()
 		if GVars.curEmotionBuff <= 0:
 			newChallenge = GVars.CHALLENGE_INCONGRUENT

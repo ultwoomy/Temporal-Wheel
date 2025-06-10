@@ -173,6 +173,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_8gecd")
 position = Vector2(651, 482)
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("11_bvjjd")
+animation = &"sand"
 
 [node name="PacksmithMenu" type="Control" parent="." node_paths=PackedStringArray("dialogueText", "packback")]
 anchors_preset = 0

@@ -8,7 +8,7 @@ class_name SigilData
 @export var costMomentumScale : float
 @export var costRotScale : float
 @export var acquiredSigils : Array[Sigil]
-@export var curSigilBuff : int
+@export var currentAugmentedSigil : Sigil
 
 
 # L.B: Use for better legibility on what sigil is being used in code.
@@ -38,7 +38,7 @@ func resetData() -> void:
 	costMomentumScale = 1.24
 	costRotScale = 3
 	acquiredSigils = []
-	curSigilBuff = -1
+	currentAugmentedSigil = null
 	
 	for key in activeSigils:
 		key = false

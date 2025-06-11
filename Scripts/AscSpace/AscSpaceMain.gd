@@ -130,7 +130,7 @@ func _awaken():
 		GVars.spinData.momentum = GVars.dollarData.insuranceAmtSpin
 		GVars.rustData.rust = GVars.dollarData.insuranceAmtRust
 		GVars.spinData.rotations = GVars.dollarData.insuranceAmtRot
-	GVars.setChallengeToCurrentChallenges()
+	GVars.setCurrentChallengeToChallenges()
 	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
 
 

@@ -297,7 +297,7 @@ func setChallenge(challenge : ChallengeData) -> void:
 	challenges[challenge.layer] = challenge
 
 
-func setChallengeToCurrentChallenges() -> void:
+func setCurrentChallengeToChallenges() -> void:
 	# Error checking
 	if not challenges:
 		return

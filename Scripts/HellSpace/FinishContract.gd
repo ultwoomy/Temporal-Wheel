@@ -1,11 +1,11 @@
 extends Button
-var hellSigil : Sigil = load("res://Resources/Sigil/HellSigil.tres")
+
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print((GVars.sigilData.acquiredSigils.has(hellSigil)))
-	if(GVars.sigilData.acquiredSigils.has(hellSigil) and GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND)):
+	print(GVars.sigilData.acquiredSigils.has(GVars.SIGIL_HELL))
+	if GVars.sigilData.acquiredSigils.has(GVars.SIGIL_HELL) and GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND):
 		show()
 	else:
 		hide()

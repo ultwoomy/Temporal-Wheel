@@ -16,6 +16,11 @@ const SIGIL_EMPTINESS : Sigil = preload("res://Resources/Sigil/EmptinessSigil.tr
 const SIGIL_RITUAL : Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
 const SIGIL_HELL : Sigil = preload("res://Resources/Sigil/HellSigil.tres")
 
+const SIGIL_TWIN : Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
+const SIGIL_SAND : Sigil = preload("res://Resources/Sigil/SandSigil.tres")
+const SIGIL_UNDERCITY : Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
+const SIGIL_ZUNDANIGHT : Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
+
 
 # Layer 1 Challenges
 # This one does nothing. It is activated when the player enters a challenge with no emotion buff

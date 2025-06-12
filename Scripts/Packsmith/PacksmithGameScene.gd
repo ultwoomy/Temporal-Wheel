@@ -85,8 +85,7 @@ func _introduce() -> void:
 		nextButton.pressed.connect(_continueDialogue.bind(dialogue))
 	
 	# If Packsmith sigil unlocked, allow the Player to progress.
-	const packsmithSigil : Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
-	if packsmithSigil in GVars.sigilData.acquiredSigils:
+	if GVars.SIGIL_PACKSMITH in GVars.sigilData.acquiredSigils:
 		nextButton.show()
 		nextButton.text = "Perhaps this will\nchange your mind"
 

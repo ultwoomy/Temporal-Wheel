@@ -53,8 +53,7 @@ func displayStatistics() -> void:
 func _endSequence() -> void:
 	#hides every ui element before playing reset animation
 	controlUI.hide()
-	const emptinessSigil : Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
-	if not GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_EMPTINESS and emptinessSigil in GVars.sigilData.acquiredSigils:
+	if not GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_EMPTINESS and GVars.SIGIL_EMPTINESS in GVars.sigilData.acquiredSigils:
 		confirmationPanel.show()
 	else:
 		centerpiece.setEndSequence(true)

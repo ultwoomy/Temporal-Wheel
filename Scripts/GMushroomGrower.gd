@@ -17,8 +17,7 @@ func _onWheelRotationCompleted() -> void:
 	# Local Variables
 	var basePendingRotationValue : float = WheelSpinner.wheelRotation / WheelSpinner.FULL_ROTATION_RADIANS  # Usually just a value of 1.
 	
-	const candleSigil : Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
-	if candleSigil in GVars.sigilData.acquiredSigils:
+	if GVars.SIGIL_CANDLE in GVars.sigilData.acquiredSigils:
 		GVars.mushroomData.pendingRots += basePendingRotationValue * GlobalBuffs.mushroomPendingRotationModifier * GVars.mushroomData.fearMushBuff
 		if(GVars.ritualData.candlesLit[1]):
 			GVars.mushroomData.xp += GVars.mushroomData.xpThresh/(50 * GVars.mushroomData.level)

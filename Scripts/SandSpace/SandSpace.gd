@@ -4,7 +4,7 @@ extends Control
 @onready var invert : TextureButton = $Invert
 @onready var background : AnimatedSprite2D = $Background
 @onready var dollarLabel : Label = $Invert/DollarLabel
-const sandSigil : Sigil = preload("res://Resources/Sigil/SandSigil.tres")
+
 var lightSigil = preload("res://Sprites/Sigils/sigil10.png")
 var darkSigil = preload("res://Sprites/SandSpace/invert_sand_sigil.png")
 
@@ -48,7 +48,7 @@ func _on_invert_pressed() -> void:
 		insurancePanel.hide()
 
 func updateLabel():
-	if sandSigil in GVars.sigilData.acquiredSigils:
+	if GVars.SIGIL_SAND in GVars.sigilData.acquiredSigils:
 		dollarLabel.text = "Dollar Sigil: Active\nMultiply Identity bonus by " + str(GVars.getScientific(pow(GVars.dollarData.sandDollars,2)))
 		## TODO:
 		#if GVars.sigilData.currentAugmentedSigil == 9:

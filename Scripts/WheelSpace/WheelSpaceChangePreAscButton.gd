@@ -17,6 +17,5 @@ func _process(_delta: float) -> void:
 
 #@ Public Methods
 func changeToPreAsc():
-	const ascensionSigil : Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
-	if ascensionSigil in GVars.sigilData.acquiredSigils:
+	if GVars.SIGIL_ASCENSION in GVars.sigilData.acquiredSigils:
 		SceneHandler.changeSceneToFilePath(SceneHandler.PRE_ASCENSIONSPACE)

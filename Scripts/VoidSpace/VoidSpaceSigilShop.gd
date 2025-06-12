@@ -3,17 +3,6 @@ class_name VoidSpaceSigilShop
 
 
 #@ Constants
-const SIGIL_PACKSMITH 	: Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
-const SIGIL_CANDLE 		: Sigil = preload("res://Resources/Sigil/CandleSigil.tres")
-const SIGIL_ASCENSION 	: Sigil = preload("res://Resources/Sigil/AscensionSigil.tres")
-const SIGIL_EMPTINESS 	: Sigil = preload("res://Resources/Sigil/EmptinessSigil.tres")
-const SIGIL_RITUAL 		: Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
-const SIGIL_HELL 		: Sigil = preload("res://Resources/Sigil/HellSigil.tres")
-const SIGIL_SAND      	: Sigil = preload("res://Resources/Sigil/SandSigil.tres")
-const SIGIL_TWINS  	  	: Sigil = preload("res://Resources/Sigil/TwinsSigil.tres")
-const SIGIL_UNDERCITY 	: Sigil = preload("res://Resources/Sigil/UndercitySigil.tres")
-const SIGIL_ZUNDA_NIGHT	: Sigil = preload("res://Resources/Sigil/ZundaNightSigil.tres")
-
 const FAILED_PURCHASE_DIALOGUE_FILE_PATH : String = "res://JSON/Dialogue/VoidSpaceStop/VoidSpaceSigilShop.json"
 const FAILED_PURCHASE_DIALOGUE_KEY : String = "failedPurchase"  # The key in the FAILED_PURCHASE_DIALOGUE_FILE_PATH JSON file to access the data.
 
@@ -71,7 +60,7 @@ func _process(_delta: float) -> void:
 func reset() -> void:
 	# Check to see if the shop is out of Sigils.
 	# TODO: Have condition be modular.
-	if GVars.sigilData.acquiredSigils.has(SIGIL_HELL):
+	if GVars.sigilData.acquiredSigils.has(GVars.SIGIL_HELL):
 		sigilLabel.text = "We're out lmao."
 		buyButton.hide()
 		return
@@ -81,7 +70,7 @@ func reset() -> void:
 	if sigilPurchaseOrderIndex < GVars.currentSigilOrder.purchaseOrder.size():  # Make sure that index is in bounds.
 		sigilForSale = GVars.currentSigilOrder.purchaseOrder[sigilPurchaseOrderIndex]
 	
-	if not sigilForSale == SIGIL_HELL:  # (!) If buying the hell sigil, the text becomes different. Check _getSigilPrice().
+	if not sigilForSale == GVars.SIGIL_HELL:  # (!) If buying the hell sigil, the text becomes different. Check _getSigilPrice().
 		sigilLabel.text = "Here for a sigil?\nIt'll cost ya:\n"
 	else:
 		sigilLabel.text = ""
@@ -144,13 +133,13 @@ func _onButtonPressed():
 func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> void:
 	match specialConditions:
 		"BITTERSWEET":
-			if not GVars.sigilData.acquiredSigils.has(SIGIL_PACKSMITH):  # Player should have 0 owned sigils.
+			if not GVars.sigilData.acquiredSigils.has(GVars.SIGIL_PACKSMITH):  # Player should have 0 owned sigils.
 				shopPrice.spinCost = 1000
 				sigilAdditionalPriceAsString = str(shopPrice.spinCost) + " momentum"
-			elif not GVars.sigilData.acquiredSigils.has(SIGIL_CANDLE):
+			elif not GVars.sigilData.acquiredSigils.has(GVars.SIGIL_CANDLE):
 				shopPrice.rustCost = 20
 				sigilAdditionalPriceAsString = str(shopPrice.rustCost) + " rust"
-			elif not GVars.sigilData.acquiredSigils.has(SIGIL_ASCENSION):
+			elif not GVars.sigilData.acquiredSigils.has(GVars.SIGIL_ASCENSION):
 				if GVars.altSigilSand:
 					sigilAdditionalPriceAsString = "5 sand dollars"
 					# TODO:
@@ -158,13 +147,13 @@ func _getSigilPrice(shopPrice : ShopPrice, specialConditions : String = "") -> v
 				else:
 					shopPrice.mushroomLevelCost = 5
 					sigilAdditionalPriceAsString = str(shopPrice.mushroomLevelCost) + " mush levels\nYou\'ll need " + str(shopPrice.mushroomLevelCost + 1) + "."
-			elif not GVars.sigilData.acquiredSigils.has(SIGIL_EMPTINESS):
+			elif not GVars.sigilData.acquiredSigils.has(GVars.SIGIL_EMPTINESS):
 				shopPrice.wheelSizeCost = 4
 				sigilAdditionalPriceAsString = str(shopPrice.wheelSizeCost) + " size\nYou\'ll need " + str(shopPrice.wheelSizeCost + 1) + "."
-			elif not GVars.sigilData.acquiredSigils.has(SIGIL_RITUAL):
+			elif not GVars.sigilData.acquiredSigils.has(GVars.SIGIL_RITUAL):
 				shopPrice.ascensionSpinBuffCost = 6
 				sigilAdditionalPriceAsString = str(shopPrice.ascensionSpinBuffCost) + " identity\nYou\'ll need " + str(shopPrice.ascensionSpinBuffCost + 1) + "."
-			elif not GVars.sigilData.acquiredSigils.has(SIGIL_HELL):
+			elif not GVars.sigilData.acquiredSigils.has(GVars.SIGIL_HELL):
 				# TODO: L.B: There was no price assigned for hell sigil for the BITTERSWEET challenge!
 				# No idea what altprice is! Need to make it a variable in the subclass!
 				# (!!!) As it stands, you don't pay anything at all to get this sigil!

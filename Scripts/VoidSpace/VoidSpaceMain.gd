@@ -62,8 +62,7 @@ func changeState(newState : VS_MenuState) -> void:
 
 
 func unlockRitualButton() -> void:
-	const ritualSigil : Sigil = preload("res://Resources/Sigil/RitualSigil.tres")
-	ritualButton.visible = GVars.sigilData.acquiredSigils.has(ritualSigil)
+	ritualButton.visible = GVars.sigilData.acquiredSigils.has(GVars.SIGIL_RITUAL)
 
 
 func unlockKbityButton() -> void:

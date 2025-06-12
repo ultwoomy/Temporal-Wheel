@@ -58,8 +58,7 @@ func _ready():
 	
 	nextButton.hide()
 	
-	const packsmithSigil : Sigil = preload("res://Resources/Sigil/PacksmithSigil.tres")
-	if not packsmithSigil in GVars.sigilData.acquiredSigils:
+	if not GVars.SIGIL_PACKSMITH in GVars.sigilData.acquiredSigils:
 		inspectButton.hide()
 		augmentButton.hide()
 		upgradeButton.hide()

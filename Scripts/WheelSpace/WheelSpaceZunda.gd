@@ -1,13 +1,23 @@
 extends AnimatedSprite2D
 
+
+#@ Export Variables
 @export var countdownBack : Sprite2D
 @export var countdownText : Label
 @export var requestButton : TextureButton
 @export var upperContractExit : Container
+
+
+#@ Public Variables
 var currentRequest : Request
 var requestsDone : int
+
+
+#@ Onready Variables
 @onready var requestLabelScene = preload("res://Scenes/RequestGraphic.tscn")
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not GVars.hasChallengeActive(GVars.CHALLENGE_BITTERSWEET):
@@ -19,6 +29,7 @@ func _ready():
 		updateCounter()
 
 
+#@ Public Methods
 func updateCounter():
 	GVars.nightChallengeData.hungerCurrent += 1
 	if GVars.nightChallengeData.extraHungry:
@@ -32,7 +43,8 @@ func updateCounter():
 		#SceneHandler.changeSceneToFilePath(SceneHandler.NIGHT_LOSS)
 	elif GVars.nightChallengeData.hungerLimit - GVars.nightChallengeData.hungerCurrent - GVars.nightChallengeData.hungerDeduction < 20:
 		countdownBack.self_modulate = Color.DARK_RED
-	
+
+
 func resetRequest():
 	requestsDone = 0
 	for i in GVars.nightChallengeData.requestList:
@@ -54,12 +66,14 @@ func resetRequest():
 		GVars.nightChallengeData.extraHungry = true
 	#requestButton.get_child(0).position = Vector2(30,-200)
 
+
 func _on_texture_button_pressed():
 	if currentRequest.checkPassing():
 		currentRequest.finished = true
 		GVars.nightChallengeData.hungerCurrent = 0
 		requestButton.get_child(0).queue_free()
 		resetRequest()
+
 
 func quitContract():
 	WheelSpinner.wheelRotationCompleted.disconnect(updateCounter)

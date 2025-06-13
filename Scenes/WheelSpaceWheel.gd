@@ -27,7 +27,6 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Scale the wheel based on the given size.
 	self.scale = Vector2(0.5 + log(GVars.spinData.size)/5, 0.5 + log(GVars.spinData.size)/5)
-
 	
 	# Rotates the wheel.
 	self.rotation = WheelSpinner.wheelRotation

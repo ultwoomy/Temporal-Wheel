@@ -45,11 +45,13 @@ func _ready():
 	else:
 		active = false
 
+
 func containsTime(x):
 	for i in activeTimes:
 		if i == x:
 			return true
 	return false
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

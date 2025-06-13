@@ -9,6 +9,7 @@ func _ready():
 	_double_check()
 
 
+#@ Private Methods
 func _double_check():
 	if Automation.contains("Spinbot"):
 		show()

@@ -1,4 +1,6 @@
 extends Container
+
+#@ Public Variables
 var frame = 0
 var changex = -1
 var changey = 1
@@ -19,10 +21,15 @@ var lines = ["", "", "", "Grow absorbs momentum to increase size",
 			 "You've pressed Condense right?",
 			 "Press Travel and head to Voidspace",
 			 "I'll tell ya the rest there"]
+
+
+#@ Onready Variables
 @onready var bun : Sprite2D = $Bun
 @onready var textBubble : TextureButton = $Sprite2D
 @onready var text : Label = $Label
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bun.hide()
@@ -54,11 +61,14 @@ func _process(delta):
 		text.text = "You just toggled it off, click Grow again"
 	elif phase == 1 and GVars.spinData.sizeToggle and not ifFirstGrowPress:
 		text.text = "Now wait for a full wheel rotation"
-			
+
+
+#@ Public Methods
 func introduceSelf():
 	bun.show()
 	startMoving = true
-	
+
+
 func bubbleOne():
 	text.show()
 	textBubble.show()
@@ -78,11 +88,13 @@ func bubbleOne():
 		text.text = "Hellos! Press grow to toggle it on"
 		phase = 1
 
+
 func growClicked():
 	if phase < 2:
 		text.text = "Now we wait for a full wheel rotation"
 		ifFirstGrowPress = false
-	
+
+
 func fullRotation():
 	if phase == 1:
 		text.text = "(Click bubble to advance dialogue)"
@@ -94,7 +106,7 @@ func _on_text_bubble_pressed():
 		if nextPhaseCondition():
 			phase += 1
 		text.text = lines[phase]
-		
+
 
 func nextPhaseCondition() -> bool:
 	if phase == 2:

@@ -35,13 +35,13 @@ func checkCurrentTrack():
 		swap.show()
 	if displayedTrack == 0:
 		text.text = "MKD20"
-		desc.text = "Music box version of Mikage's Diary by Harumaki Gohan"
+		desc.text = "Music box fragment of Mikage's Diary by Harumaki Gohan"
 	elif displayedTrack == 1:
 		text.text = "SL40"
-		desc.text = "Music box version of Strobe Light by PowaPowaP"
+		desc.text = "Music box fragment of Strobe Light by PowaPowaP"
 	elif displayedTrack == 2:
 		text.text = "SYT80"
-		desc.text = "Music box version of See You Tomorrow by 想太 (soh_ta__)"
+		desc.text = "Music box fragment of See You Tomorrow by 想太 (soh_ta__)"
 
 
 func _on_swap_pressed() -> void:

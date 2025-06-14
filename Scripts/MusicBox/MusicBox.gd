@@ -22,5 +22,6 @@ func _process(delta):
 
 func _on_dialogue_button_pressed():
 	text.text = "The drum floats on indifferently."
+	GVars.ifFirstDrum = false
 	nextButton.hide()
 	currentSong.show()

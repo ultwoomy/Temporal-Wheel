@@ -22,13 +22,7 @@ func _ready():
 	cheese.hide()
 	ribbon.hide()
 	drum.hide()
-	
-	if GVars.backpackData.cheese:
-		cheese.show()
-	if GVars.backpackData.ribbon:
-		ribbon.show()
-	if GVars.backpackData.drum:
-		drum.show()
+	_onBackpackPressed()
 
 
 #@ Private Methods
@@ -36,6 +30,12 @@ func _onBackpackPressed():
 	momentumLabel.text = str(GVars.getScientific(GVars.spinData.spin))
 	rotationLabel.text = str(GVars.getScientific(GVars.spinData.rotations))
 	rustLabel.text = str(GVars.getScientific(GVars.rustData.rust))
+	if GVars.backpackData.cheese:
+		cheese.show()
+	if GVars.backpackData.ribbon:
+		ribbon.show()
+	if GVars.backpackData.drum:
+		drum.show()
 
 
 func _onCheeseFocusEntered():

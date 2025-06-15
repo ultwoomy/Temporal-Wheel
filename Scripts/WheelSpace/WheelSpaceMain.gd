@@ -36,6 +36,8 @@ var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 
 @onready var challengeManager : ChallengeManager = $ChallengeManager
 
+@onready var introTutorial = $IntroTutorial  # Separates the intro tutorial code in a different script.
+
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
@@ -142,6 +144,7 @@ func _onTravelButtonPressed() -> void:
 	if GVars.ifFirstBoot:
 		GVars.ifFirstBoot = false
 	SceneHandler.changeSceneToFilePath(SceneHandler.TRAVELSPACE)
+
 
 func checkTutorial():
 	if GVars.spinData.density > 1:

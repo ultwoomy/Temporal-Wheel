@@ -3,7 +3,6 @@ class_name WheelSpaceDensityButton
 
 
 #@ Signals
-signal densUp
 
 
 #@ Export Variables
@@ -40,11 +39,12 @@ func _onButtonPressed() -> void:
 	playAnimation(GameButtonPopAnimation.new(self))
 	var playPriority = 0
 	if(GVars.spinData.size >= GVars.spinData.densTresh + 1):
-		GVars.spinData.density += 1
+		GVars.spinData.density += 1  # NOTE: A signal is emitted when density changes value.
+		
 		if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.density > 1:
 			EventManager.tutorial_travel_found.emit()
+		
 		GVars.spinData.size -= GVars.spinData.densTresh
-		densUp.emit()
 		densityDisplay.text = str(GVars.spinData.density)
 		GVars.spinData.curSucDens = 0
 		GVars.spinData.densTresh += 1

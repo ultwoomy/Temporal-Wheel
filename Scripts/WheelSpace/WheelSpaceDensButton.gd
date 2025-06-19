@@ -24,7 +24,7 @@ var ifsucc = false
 func _ready() -> void:
 	# Connecting Signals.
 	button.pressed.connect(self._onButtonPressed)
-	EventManager.tutorial_dens_found.connect(self.checkTutorial)
+	#EventManager.tutorial_dens_found.connect(self.checkTutorial)
 	GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
 	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 3 and GVars.spinData.density < 2:
 		hide()
@@ -63,18 +63,18 @@ func _onButtonPressed() -> void:
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
 
-
+'
 func checkTutorial():
 	if GVars.spinData.size > 2 or GVars.density > 1:
 		show()
 		EventManager.tutorial_dens_found.disconnect(self.checkTutorial)
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)
-		sf.start(load("res://Sound/SFX/nono.wav"))		
+		sf.start(load("res://Sound/SFX/nono.wav"))
 	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100
-
+'
 
 # When the container(s) have finished resizing.
 func _onChildSorted() -> void:
 	# Resize the density gauge after resorting.
-	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100
+	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100  # TODO: L.B - This seems odd that it has its own function. Maybe there's a fix?

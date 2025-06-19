@@ -78,6 +78,9 @@ func _ready() -> void:
 		numOfCandles = 5
 	
 	Challenger.refresh()
+	
+	# Start tutorial if haven't done so already.
+	introTutorial.start(self)
 
 
 func _process(_delta : float) -> void:

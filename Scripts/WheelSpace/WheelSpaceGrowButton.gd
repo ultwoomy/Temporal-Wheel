@@ -26,7 +26,7 @@ func _ready():
 	
 	# Connecting Signals.
 	button.pressed.connect(self._buttonPressed)
-	EventManager.wheel_spun.connect(self.checkTutorial)
+	#EventManager.wheel_spun.connect(self.checkTutorial)
 	WheelSpinner.wheelRotationCompleted.connect(self.suc_loop)
 	growToggleRectContainer.sort_children.connect(_onChildSorted)  # Needed to resize the ColorRect.
 	
@@ -75,13 +75,13 @@ func suc_loop():
 				GVars.spinData.sucTresh *= 3
 	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100
 
-
+'
 func checkTutorial():
 	if GVars.spinData.momentum >= 50:
 		show()
 		EventManager.wheel_spun.disconnect(self.checkTutorial)
 		EventManager.tutorial_grow_found.emit()
-
+'
 
 #@ Private Methods
 func _buttonPressed():

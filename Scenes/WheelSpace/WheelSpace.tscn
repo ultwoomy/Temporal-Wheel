@@ -232,8 +232,8 @@ script = ExtResource("12_naexq")
 level = 0
 sprite = NodePath("../ButtonBackground")
 
-[node name="TutorialBunny" type="Container" parent="."]
-layout_mode = 0
+[node name="TutorialBunny" type="Control" parent="."]
+anchors_preset = 0
 offset_left = 769.0
 offset_top = 269.0
 offset_right = 916.0

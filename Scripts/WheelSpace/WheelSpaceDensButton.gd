@@ -26,8 +26,8 @@ func _ready() -> void:
 	button.pressed.connect(self._onButtonPressed)
 	#EventManager.tutorial_dens_found.connect(self.checkTutorial)
 	GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
-	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 3 and GVars.spinData.density < 2:
-		hide()
+	#if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 3 and GVars.spinData.density < 2:
+		#hide()
 	densityGaugeContainer.sort_children.connect(_onChildSorted)  # For resizing the gauge meter when starting the scene
 	
 	densityDisplay.text = str(GVars.spinData.density)
@@ -40,10 +40,6 @@ func _onButtonPressed() -> void:
 	var playPriority = 0
 	if(GVars.spinData.size >= GVars.spinData.densTresh + 1):
 		GVars.spinData.density += 1  # NOTE: A signal is emitted when density changes value.
-		
-		if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.density > 1:
-			EventManager.tutorial_travel_found.emit()
-		
 		GVars.spinData.size -= GVars.spinData.densTresh
 		densityDisplay.text = str(GVars.spinData.density)
 		GVars.spinData.curSucDens = 0
@@ -63,16 +59,6 @@ func _onButtonPressed() -> void:
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
 
-'
-func checkTutorial():
-	if GVars.spinData.size > 2 or GVars.density > 1:
-		show()
-		EventManager.tutorial_dens_found.disconnect(self.checkTutorial)
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)
-		sf.start(load("res://Sound/SFX/nono.wav"))
-	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100
-'
 
 # When the container(s) have finished resizing.
 func _onChildSorted() -> void:

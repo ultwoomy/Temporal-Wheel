@@ -1,4 +1,6 @@
-extends Container
+extends Control
+class_name TutorialBunny
+
 
 #@ Public Variables
 var frame = 0
@@ -11,7 +13,7 @@ var ifFirstGrowPress = true
 var lines = ["", "", "", "Grow absorbs momentum to increase size",
 			 "Each level of size takes more momentum",
 			 "Momentum gain is multiplied by size",
-			 "Click again when you have 3 size",
+			 "Talk to me again when you have 3 size",
 			 "Density costs 1 more size than its current value",
 			 "But you can't have 0 size, so you'll need 3",
 			 "Would you look at that, you have 3 size!",
@@ -41,12 +43,6 @@ func _ready():
 	text.size = Vector2(150,100)
 	startMoving = false
 	bun.position = Vector2(11,40)
-	if GVars.ifFirstBoot:
-		EventManager.tutorial_grow_found.connect(self.introduceSelf)
-		EventManager.tutorial_grow_clicked.connect(self.growClicked)
-		WheelSpinner.wheelRotationCompleted.connect(self.fullRotation)
-		if GVars.spinData.momentum > 49:
-			EventManager.tutorial_grow_found.emit()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

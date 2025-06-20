@@ -2,6 +2,10 @@ extends GameButton
 class_name WheelSpaceGrowButton
 
 
+#@ Signals
+signal toggled(on : bool)
+
+
 #@ Constants
 
 
@@ -39,9 +43,6 @@ func _ready():
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 	else :
 		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
-	if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.momentum <= 50:
-		hide()
-		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
 
 
 #@ Public Methods
@@ -66,8 +67,6 @@ func suc_loop():
 			GVars.spinData.curSucSize += suc
 			if(GVars.spinData.curSucSize >= GVars.spinData.sucTresh):
 				GVars.spinData.size += 1
-				if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size == 3:
-					EventManager.tutorial_dens_found.emit()
 				if(GVars.spinData.size > GVars.spinData.sizeRecord):
 					GVars.spinData.sizeRecord = GVars.spinData.size
 				growDisplay.text = str(GVars.spinData.size)
@@ -75,17 +74,9 @@ func suc_loop():
 				GVars.spinData.sucTresh *= 3
 	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100
 
-'
-func checkTutorial():
-	if GVars.spinData.momentum >= 50:
-		show()
-		EventManager.wheel_spun.disconnect(self.checkTutorial)
-		EventManager.tutorial_grow_found.emit()
-'
 
 #@ Private Methods
 func _buttonPressed():
-	EventManager.tutorial_grow_clicked.emit()
 	playAnimation(GameButtonPopAnimation.new(self))
 	if ifsucc:
 		ifsucc = false
@@ -94,6 +85,7 @@ func _buttonPressed():
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
+		toggled.emit(false)
 	else :
 		ifsucc = true
 		GVars.spinData.sizeToggle = true
@@ -101,6 +93,7 @@ func _buttonPressed():
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/yes.wav"))
+		toggled.emit(true)
 
 
 # When the container(s) have finished resizing.

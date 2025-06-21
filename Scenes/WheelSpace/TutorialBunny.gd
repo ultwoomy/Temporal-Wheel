@@ -2,15 +2,17 @@ extends Control
 class_name TutorialBunny
 
 
+#@ Constants
+const END_POSITION : Vector2 = Vector2(650,390)
+const DURATION_OF_TRAVEL : float = 2.0  # Time it takes for the bunny to travel to end position.
+
+
 #@ Public Variables
-var frame = 0
-var changex = -1
-var changey = 1
+var frame : int = 0
 var startMoving : bool
-var finalPos = Vector2(650,520)
-var phase = 0
-var ifFirstGrowPress = true
-var lines = ["", "", "", "Grow absorbs momentum to increase size",
+var phase : int = 0
+var ifFirstGrowPress : bool = true
+var lines : Array[String] = ["", "", "", "Grow absorbs momentum to increase size",
 			 "Each level of size takes more momentum",
 			 "Momentum gain is multiplied by size",
 			 "Talk to me again when you have 3 size",
@@ -26,31 +28,27 @@ var lines = ["", "", "", "Grow absorbs momentum to increase size",
 
 
 #@ Onready Variables
-@onready var bun : Sprite2D = $Bun
-@onready var textBubble : TextureButton = $Sprite2D
+@onready var bunnySprite : Sprite2D = $BunnySprite
+@onready var textBubble : TextureButton = $TextBubble
 @onready var text : Label = $Label
+
+@onready var tween : Tween = self.create_tween()
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	bun.hide()
+	bunnySprite.hide()
 	textBubble.hide()
-	textBubble.position = Vector2(-170,-120)
-	textBubble.scale = Vector2(0.55,0.55)
 	text.hide()
-	text.position = Vector2(-160,-105)
-	text.size = Vector2(150,100)
 	startMoving = false
-	bun.position = Vector2(11,40)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if startMoving:
-		position = Vector2(position.x + changex,position.y + changey)
-		changey += 1/58
-		if position.y > finalPos.y or position.x < finalPos.x:
+		tween.tween_property(self, "position", END_POSITION, DURATION_OF_TRAVEL)
+		if position == END_POSITION:
 			startMoving = false
 			bubbleOne()
 	if phase == 1 and not GVars.spinData.sizeToggle and not ifFirstGrowPress:
@@ -61,7 +59,7 @@ func _process(delta):
 
 #@ Public Methods
 func introduceSelf():
-	bun.show()
+	bunnySprite.show()
 	startMoving = true
 
 

@@ -1,0 +1,26 @@
+{
+	"grow_info": [
+		{
+			"TEXT": "Grow absorbs momentum to increase size"
+		},
+		{
+			"TEXT": "Each level of size takes more momentum"
+		},
+		{
+			"TEXT": "Momentum gain is multiplied by size"
+		},
+		{
+			"TEXT": "Talk to me again when you have 3 size"
+		}
+	],
+	"grow_toggled_on": [
+		{
+			"TEXT": "Now wait for a full wheel rotation"
+		},
+	],
+	"grow_toggled_off": [
+		{
+			"TEXT": "You just toggled it off, click Grow again"
+		},
+	]
+}

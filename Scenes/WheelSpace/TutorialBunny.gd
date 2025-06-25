@@ -2,6 +2,10 @@ extends Control
 class_name TutorialBunny
 
 
+#@ Signals
+signal changedState(state : TutorialBunnyState)
+
+
 #@ Constants
 const END_POSITION : Vector2 = Vector2(650,390)
 const DURATION_OF_TRAVEL : float = 2.0  # Time it takes for the bunny to travel to end position.
@@ -9,9 +13,9 @@ const DURATION_OF_TRAVEL : float = 2.0  # Time it takes for the bunny to travel 
 
 #@ Public Variables
 var frame : int = 0
-var startMoving : bool
 var phase : int = 0
 var ifFirstGrowPress : bool = true
+var state : TutorialBunnyState
 var lines : Array[String] = ["", "", "", "Grow absorbs momentum to increase size",
 			 "Each level of size takes more momentum",
 			 "Momentum gain is multiplied by size",
@@ -41,16 +45,15 @@ func _ready():
 	bunnySprite.hide()
 	textBubble.hide()
 	text.hide()
-	startMoving = false
+	
+	# Listen to signals.
+	textBubble.pressed.connect(_onTextBubblePressed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if startMoving:
-		tween.tween_property(self, "position", END_POSITION, DURATION_OF_TRAVEL)
-		if position == END_POSITION:
-			startMoving = false
-			bubbleOne()
+	if self.position == END_POSITION:
+		bubbleOne()
 	if phase == 1 and not GVars.spinData.sizeToggle and not ifFirstGrowPress:
 		text.text = "You just toggled it off, click Grow again"
 	elif phase == 1 and GVars.spinData.sizeToggle and not ifFirstGrowPress:
@@ -60,24 +63,32 @@ func _process(delta):
 #@ Public Methods
 func introduceSelf():
 	bunnySprite.show()
-	startMoving = true
+	tween.tween_property(self, "position", END_POSITION, DURATION_OF_TRAVEL)
 
 
+func changeState(newState : TutorialBunnyState) -> void:
+	if state:
+		state._exit()
+	state = newState
+	state._enter()
+
+
+## TODO: Keep this function but use it as a way to remember what state to put the TutorialBunny in.
 func bubbleOne():
 	text.show()
 	textBubble.show()
 	if GVars.spinData.density > 1:
 		phase = 13
-		_on_text_bubble_pressed()
+		_onTextBubblePressed()
 	elif GVars.spinData.size > 2:
 		phase = 6
-		_on_text_bubble_pressed()
+		_onTextBubblePressed()
 	elif GVars.spinData.size > 1:
 		phase = 5
-		_on_text_bubble_pressed()
+		_onTextBubblePressed()
 	elif GVars.spinData.curSucSize > 0:
 		phase = 2
-		_on_text_bubble_pressed()
+		_onTextBubblePressed()
 	else:
 		text.text = "Hellos! Press grow to toggle it on"
 		phase = 1
@@ -95,7 +106,7 @@ func fullRotation():
 		phase += 1
 
 
-func _on_text_bubble_pressed():
+func _onTextBubblePressed():
 	if phase >= 2:
 		if nextPhaseCondition():
 			phase += 1

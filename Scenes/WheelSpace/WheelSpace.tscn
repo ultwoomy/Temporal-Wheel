@@ -758,7 +758,6 @@ position = Vector2(500, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("55_aqsov")
 
-[connection signal="pressed" from="TutorialBunny/TextBubble" to="TutorialBunny" method="_on_text_bubble_pressed"]
 [connection signal="pressed" from="Zunda/TextureButton" to="Zunda" method="_on_texture_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_onSettingButtonPressed"]
 [connection signal="pressed" from="BackpackButton" to="." method="_onBackpackButtonPressed"]

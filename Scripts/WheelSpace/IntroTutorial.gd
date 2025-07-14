@@ -35,7 +35,7 @@ func _startGrowTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 		
 		# Reveal the tutorial bunny.
 		wheelSpace.tutorialBunny.introduceSelf()
-		wheelSpace.growButton.toggled.connect(wheelSpace.tutorialBunny.growClicked.unbind(1))
+		wheelSpace.growButton.toggled.connect(wheelSpace.tutorialBunny._onGrowButtonPressed)
 		
 		# Next, wait for size value to change
 		GVars.spinData.sizeValueChanged.connect(_startDensityTutorialOnMetRequirement.bind(wheelSpace))
@@ -51,7 +51,7 @@ func _startDensityTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 		# Reveal the density button.
 		wheelSpace.densityButton.show()
 		GVars.spinData.sizeValueChanged.disconnect(self._startDensityTutorialOnMetRequirement)
-		wheelSpace.growButton.toggled.disconnect(wheelSpace.tutorialBunny.growClicked)
+		wheelSpace.growButton.toggled.disconnect(wheelSpace.tutorialBunny._onGrowButtonPressed)
 		
 		wheelSpace.densityButton.densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100  # TODO: L.B - This seems odd that it has its own function. Maybe there's a fix?
 		

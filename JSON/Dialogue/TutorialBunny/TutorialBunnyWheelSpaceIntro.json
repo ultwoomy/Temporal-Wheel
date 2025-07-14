@@ -1,0 +1,62 @@
+{
+	"intro": [
+		{
+			"TEXT": "Hellos! Press grow to toggle it on"
+		}
+	],
+	"grow_toggled_on": [
+		{
+			"TEXT": "Now wait for a full wheel rotation"
+		},
+	],
+	"grow_toggled_off": [
+		{
+			"TEXT": "You just toggled it off, click Grow again"
+		},
+	],
+	"grow_info": [
+		{
+			"TEXT": "Grow absorbs momentum to increase size"
+		},
+		{
+			"TEXT": "Each level of size takes more momentum"
+		},
+		{
+			"TEXT": "Momentum gain is multiplied by size"
+		},
+		{
+			"TEXT": "Talk to me again when you have 3 size"
+		}
+	],
+	"condense_info": [
+		{
+			"TEXT": "Density costs 1 more size than its current value",
+		},
+		{
+			"TEXT": "But you can't have 0 size, so you'll need 3",
+		},
+		{
+			"TEXT": "Would you look at that, you have 3 size!",
+		},
+		{
+			"TEXT": "Pressing condense will increase the wheel's density",
+		},
+		{
+			"TEXT": "Each level of density makes the wheel spin faster",
+		},
+		{
+			"TEXT": "It's almost time for us to part",
+		},
+		{
+			"TEXT": "You've pressed Condense right?",
+		}
+	],
+	"departure": [
+		{
+			"TEXT": "Good, now press Travel and head to Voidspace",
+		},
+		{
+			"TEXT": "I'll tell ya the rest there"
+		}
+	]
+}

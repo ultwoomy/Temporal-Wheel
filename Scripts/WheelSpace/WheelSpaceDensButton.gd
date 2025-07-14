@@ -38,7 +38,7 @@ func _ready() -> void:
 func _onButtonPressed() -> void:
 	playAnimation(GameButtonPopAnimation.new(self))
 	var playPriority = 0
-	if(GVars.spinData.size >= GVars.spinData.densTresh + 1):
+	if GVars.spinData.size >= GVars.spinData.densTresh + 1:
 		GVars.spinData.density += 1  # NOTE: A signal is emitted when density changes value.
 		GVars.spinData.size -= GVars.spinData.densTresh
 		densityDisplay.text = str(GVars.spinData.density)

@@ -52,15 +52,17 @@ func suc_loop():
 	var Ebuff = 0;
 	var rustUpBuff = GVars.rustData.increaseHunger
 	
-	if(GVars.curEmotionBuff == 4):
+	if GVars.curEmotionBuff == 4:
 		rustUpBuff = rustUpBuff * GVars.rustData.fourth
-	if(GVars.curEmotionBuff == 2):
+	if GVars.curEmotionBuff == 2:
 		Ebuff = (GVars.rustData.fourth - 1) * GVars.spinData.sucTresh
-	if(GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_ASCENSION):
+	
+	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_ASCENSION:
 		suc = GVars.spinData.sucPerTick * rustUpBuff * GVars.spinData.sizeRecord + Ebuff
 	else:
 		suc = GVars.spinData.sucPerTick * rustUpBuff + Ebuff
-	if(ifsucc):
+	
+	if ifsucc:
 		if(GVars.spinData.momentum >= suc):
 			_displayIncrementValue(-suc)
 			GVars.spinData.momentum -= suc
@@ -86,7 +88,7 @@ func _buttonPressed():
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
 		toggled.emit(false)
-	else :
+	else:
 		ifsucc = true
 		GVars.spinData.sizeToggle = true
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN

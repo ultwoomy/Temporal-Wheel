@@ -12,7 +12,7 @@ signal rotationValueChanged
 signal densityValueChanged
 
 signal wheelPhaseChanged
-
+signal currentSuckSizeChanged
 
 #@ Export Variables
 @export var momentum : float :
@@ -33,7 +33,11 @@ signal wheelPhaseChanged
 @export var sizeToggle : bool
 @export var sucPerTick : float
 @export var sucTresh : float
-@export var curSucSize : float
+@export var curSucSize : float :
+	set(value):
+		if size != value:
+			curSucSize = value
+			currentSuckSizeChanged.emit()
 @export var sizeRecord : float
 @export var density : float :
 	set(value):

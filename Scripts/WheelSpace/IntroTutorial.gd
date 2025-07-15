@@ -68,3 +68,4 @@ func _startTravelTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 	if fulfillsRequirement:
 		# Reveal the travel button.
 		wheelSpace.travelButton.show()
+		wheelSpace.densityButton.button.pressed.disconnect(wheelSpace.tutorialBunny._resetAndDisplayDialogue)

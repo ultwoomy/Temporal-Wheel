@@ -112,16 +112,16 @@ func _findStage() -> Stage:
 	if not hasToggledGrowButton and not hasWheelSize and not hasWheelDensity:
 		return Stage.HAS_NOT_CLICKED_GROW_YET
 	# Stage 1: Player has Grow button toggled ON but does NOT have any wheel size or any progress to wheel size.
-	elif hasToggledGrowButton and not hasWheelSize and not hasWheelSizeProgress:
+	elif hasToggledGrowButton and not hasWheelSize and not hasWheelSizeProgress and not hasWheelDensity:
 		return Stage.HAS_NOT_GAINED_LEVELS_IN_SIZE_SINCE_TOGGLED
 	# Stage 2: Player has Grow button toggled OFF *and* does NOT have any wheel size.
-	elif not hasToggledGrowButton and not hasWheelSize:
+	elif not hasToggledGrowButton and not hasWheelSize and not hasWheelDensity:
 		return Stage.HAS_NOT_GAINED_LEVELS_BEFORE_TOGGLING_OFF
 	# Stage 3: Player has some wheel size but no density.
 	elif (hasWheelSize or hasWheelSizeProgress) and not hasWheelDensity and not hasDensityRequirement:
 		return Stage.HAS_GAINED_LEVELS_IN_SIZE
 	# Stage 4: Player has enough to condense.
-	elif hasDensityRequirement:
+	elif hasDensityRequirement and not hasWheelDensity:
 		return Stage.ABLE_TO_CONDENSE
 	# Stage 5: Player has condensed.
 	elif hasWheelDensity:

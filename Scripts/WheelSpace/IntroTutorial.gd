@@ -36,6 +36,7 @@ func _startGrowTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 		# Reveal the tutorial bunny.
 		wheelSpace.tutorialBunny.introduceSelf()
 		wheelSpace.growButton.toggled.connect(wheelSpace.tutorialBunny._onGrowButtonPressed)
+		wheelSpace.densityButton.button.pressed.connect(wheelSpace.tutorialBunny._resetAndDisplayDialogue)
 		
 		# Next, wait for size value to change
 		GVars.spinData.sizeValueChanged.connect(_startDensityTutorialOnMetRequirement.bind(wheelSpace))

@@ -26,6 +26,7 @@ const DIALOGUE_GROW_TOGGLED_ON_KEY : String = "grow_toggled_on"
 const DIALOGUE_GROW_TOGGLED_OFF_KEY : String = "grow_toggled_off"
 const DIALOGUE_TRAVEL_KEY : String = "departure"
 
+const START_POSITION : Vector2 = Vector2(769, 269)  # Position for the root node, NOT the sprite.
 const END_POSITION : Vector2 = Vector2(650,390)
 const DURATION_OF_TRAVEL : float = 2.0  # Time it takes for the bunny to travel to end position.
 

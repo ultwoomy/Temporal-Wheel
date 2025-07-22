@@ -5,6 +5,11 @@ class_name IntroTutorial
 #@ Constants
 const REQUIRED_AMOUNT_OF_MOMENTUM_TO_UNLOCK_GROW_BTN : float = 50
 const REQUIRED_SIZE_TO_UNLOCK_DENSITY_BTN : int = 3
+const TUTORIAL_BUNNY_SCENE : PackedScene = preload("res://Scenes/WheelSpace/TutorialBunny.tscn")
+
+
+#@ Public Variables
+var tutorialBunny : TutorialBunny
 
 
 #@ Public Method
@@ -34,9 +39,12 @@ func _startGrowTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 		GVars.spinData.momentumValueChanged.disconnect(self._startGrowTutorialOnMetRequirement)
 		
 		# Reveal the tutorial bunny.
-		wheelSpace.tutorialBunny.introduceSelf()
-		wheelSpace.growButton.toggled.connect(wheelSpace.tutorialBunny._onGrowButtonPressed)
-		wheelSpace.densityButton.button.pressed.connect(wheelSpace.tutorialBunny._resetAndDisplayDialogue)
+		tutorialBunny = TUTORIAL_BUNNY_SCENE.instantiate()
+		wheelSpace.add_child(tutorialBunny)
+		wheelSpace.move_child(tutorialBunny, wheelSpace.growButton.get_index() - 1)
+		tutorialBunny.introduceSelf()
+		wheelSpace.growButton.toggled.connect(tutorialBunny._onGrowButtonPressed)
+		wheelSpace.densityButton.button.pressed.connect(tutorialBunny._resetAndDisplayDialogue)
 		
 		# Next, wait for size value to change
 		GVars.spinData.sizeValueChanged.connect(_startDensityTutorialOnMetRequirement.bind(wheelSpace))
@@ -52,7 +60,7 @@ func _startDensityTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 		# Reveal the density button.
 		wheelSpace.densityButton.show()
 		GVars.spinData.sizeValueChanged.disconnect(self._startDensityTutorialOnMetRequirement)
-		wheelSpace.growButton.toggled.disconnect(wheelSpace.tutorialBunny._onGrowButtonPressed)
+		wheelSpace.growButton.toggled.disconnect(tutorialBunny._onGrowButtonPressed)
 		
 		wheelSpace.densityButton.densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100  # TODO: L.B - This seems odd that it has its own function. Maybe there's a fix?
 		
@@ -68,4 +76,4 @@ func _startTravelTutorialOnMetRequirement(wheelSpace : WheelSpaceMain) -> void:
 	if fulfillsRequirement:
 		# Reveal the travel button.
 		wheelSpace.travelButton.show()
-		wheelSpace.densityButton.button.pressed.disconnect(wheelSpace.tutorialBunny._resetAndDisplayDialogue)
+		wheelSpace.densityButton.button.pressed.disconnect(tutorialBunny._resetAndDisplayDialogue)

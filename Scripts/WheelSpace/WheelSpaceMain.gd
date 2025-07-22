@@ -37,8 +37,6 @@ var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 @onready var challengeManager : ChallengeManager = $ChallengeManager
 
 @onready var introTutorial : IntroTutorial = $IntroTutorial  # Separates the intro tutorial code in a different script.
-@onready var tutorialBunny : TutorialBunny = $TutorialBunny
-
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.

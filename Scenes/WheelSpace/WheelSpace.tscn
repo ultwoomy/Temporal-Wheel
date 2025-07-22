@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://ce8dqgnx70qx0"]
+[gd_scene load_steps=72 format=3 uid="uid://ce8dqgnx70qx0"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
@@ -55,9 +55,6 @@
 [ext_resource type="Script" path="res://Scripts/VoidSpace/VoidbotShow.gd" id="44_gayhw"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceResetContract.gd" id="44_kqfr3"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/UpperExit.gd" id="45_3mkif"]
-[ext_resource type="Script" path="res://Scenes/WheelSpace/TutorialBunny.gd" id="50_twnyn"]
-[ext_resource type="Texture2D" uid="uid://cmnfooc2xd55c" path="res://Sprites/WheelSpace/tutorialbun.png" id="51_ewy6v"]
-[ext_resource type="Texture2D" uid="uid://btsdyf15q58f8" path="res://Sprites/WheelSpace/Zundamon/zun_wip.png" id="51_qvhl7"]
 [ext_resource type="Script" path="res://Scripts/ChallengeManager.gd" id="52_d2l6h"]
 [ext_resource type="Texture2D" uid="uid://hw3tsgb8fwb2" path="res://Sprites/FabChallenge/thornsbackground.png" id="55_aqsov"]
 
@@ -231,44 +228,6 @@ text = "SpinPerClick"
 script = ExtResource("12_naexq")
 level = 0
 sprite = NodePath("../ButtonBackground")
-
-[node name="TutorialBunny" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 769.0
-offset_top = 269.0
-offset_right = 916.0
-offset_bottom = 331.0
-script = ExtResource("50_twnyn")
-
-[node name="TextBubble" type="TextureButton" parent="TutorialBunny"]
-layout_mode = 2
-offset_left = -170.0
-offset_top = -120.0
-offset_right = 129.0
-offset_bottom = 179.0
-scale = Vector2(0.55, 0.55)
-texture_normal = ExtResource("19_urc6w")
-texture_pressed = ExtResource("19_urc6w")
-texture_hover = ExtResource("20_fbisg")
-texture_disabled = ExtResource("51_qvhl7")
-texture_focused = ExtResource("20_fbisg")
-flip_h = true
-
-[node name="Label" type="Label" parent="TutorialBunny"]
-layout_mode = 2
-offset_left = -165.0
-offset_top = -105.0
-offset_right = -15.0
-offset_bottom = -5.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-text = "sdfsd"
-autowrap_mode = 2
-
-[node name="BunnySprite" type="Sprite2D" parent="TutorialBunny"]
-position = Vector2(11, 40)
-texture = ExtResource("51_ewy6v")
 
 [node name="GrowButton" type="PanelContainer" parent="." node_paths=PackedStringArray("growDisplay", "button")]
 layout_mode = 0

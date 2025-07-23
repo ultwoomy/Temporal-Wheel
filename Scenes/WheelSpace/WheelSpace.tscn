@@ -171,7 +171,7 @@ script = ExtResource("3_7r1my")
 
 [node name="Foreground" type="Sprite2D" parent="."]
 self_modulate = Color(0.266667, 0.266667, 0.266667, 1)
-position = Vector2(498, 541)
+position = Vector2(500, 541)
 texture = ExtResource("4_m45rb")
 
 [node name="Wheel" type="Node2D" parent="."]
@@ -213,7 +213,7 @@ text = "Spin"
 expand_icon = true
 
 [node name="ButtonBackground" type="Sprite2D" parent="SpinButton"]
-position = Vector2(200, 100)
+position = Vector2(97.5, 48)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
 
@@ -256,7 +256,7 @@ text = "Toggle Grow"
 expand_icon = true
 
 [node name="ButtonBackground" type="Sprite2D" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
-position = Vector2(200, 100)
+position = Vector2(97.5, 48)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
 
@@ -317,7 +317,7 @@ text = "Condense"
 expand_icon = true
 
 [node name="ButtonBackground" type="Sprite2D" parent="DensButton/VBoxContainer/DensityButtonContainer"]
-position = Vector2(200, 100)
+position = Vector2(97.5, 48)
 texture = ExtResource("13_6dtuh")
 script = ExtResource("13_he60b")
 
@@ -707,12 +707,11 @@ offset = Vector2(50, 105)
 layout_mode = 2
 text = "Toggle Grow"
 
-[node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers", "thornsbackground")]
+[node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers")]
 script = ExtResource("52_d2l6h")
 buttonContainers = [null, null, null]
-thornsbackground = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="ChallengeManager"]
+[node name="ThornsBackgroundSprite" type="Sprite2D" parent="ChallengeManager"]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("55_aqsov")

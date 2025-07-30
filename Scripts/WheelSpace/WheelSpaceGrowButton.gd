@@ -7,7 +7,8 @@ signal toggled(on : bool)
 
 
 #@ Constants
-
+const RED_COLOR : Color = Color(0.93, 0.11, 0.14)
+const GREEN_COLOR : Color = Color(0.04, 0.4, 0.14)
 
 
 #@ Export Variables
@@ -44,10 +45,7 @@ func _ready():
 	
 	growSizeLabel.text = str(GVars.spinData.size)
 	
-	if ifsucc:
-		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
-	else :
-		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
+	_showToggleIndicators(ifsucc)
 
 
 #@ Public Methods
@@ -87,8 +85,7 @@ func _buttonPressed():
 	playAnimation(GameButtonPopAnimation.new(self))
 	if ifsucc:
 		ifsucc = false
-		GVars.spinData.sizeToggle = false
-		growToggleRect.color = Color(0.93, 0.11, 0.14)  # RED
+		GVars.spinData.sizeToggle = false		
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
@@ -96,11 +93,11 @@ func _buttonPressed():
 	else:
 		ifsucc = true
 		GVars.spinData.sizeToggle = true
-		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/yes.wav"))
 		toggled.emit(true)
+	_showToggleIndicators(ifsucc)
 
 
 # When the container(s) have finished resizing.
@@ -112,3 +109,14 @@ func _onChildSorted() -> void:
 func _displayIncrementValue(value : float) -> void:
 	var incrementLabel : IncrementLabel = createIncrementLabel(value)
 	incrementLabel.position = self.position + Vector2(self.size.x/2.0, self.size.y/2.0) - (incrementLabel.size / 2.0)
+
+
+func _showToggleIndicators(on : bool) -> void:
+	if on:
+		growToggleRect.color = GREEN_COLOR
+		toggleLabel.add_theme_color_override("font_color", GREEN_COLOR)
+		toggleLabel.text = "ON"
+	else:
+		growToggleRect.color = RED_COLOR
+		toggleLabel.add_theme_color_override("font_color", RED_COLOR)
+		toggleLabel.text = "OFF"

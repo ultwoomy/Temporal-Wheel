@@ -356,6 +356,8 @@ damage = 10
 level = 2
 sprite = NodePath("../../SpinButton/ButtonBackground")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DensButton"]
+
 [node name="Zunda" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("countdownBack", "countdownText", "requestButton", "upperContractExit")]
 position = Vector2(500, 470)
 sprite_frames = SubResource("SpriteFrames_1tw6m")

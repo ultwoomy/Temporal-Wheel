@@ -5,6 +5,12 @@ class_name WheelSpaceDensityButton
 #@ Signals
 
 
+#@ Constants
+const Z_SOUND_EFFECT : AudioStreamWAV = preload("res://Sound/SFX/z.wav")
+const TSU_SOUND_EFFECT : AudioStreamWAV = preload("res://Sound/SFX/tsu.wav")
+const NONO_SOUND_EFFECT : AudioStreamWAV = preload("res://Sound/SFX/nono.wav")
+
+
 #@ Export Variables
 
 
@@ -47,17 +53,11 @@ func _onButtonPressed() -> void:
 		GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
 		playPriority = 2
 	if playPriority == 1:
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.start(load("res://Sound/SFX/z.wav"))
+		playSound(Z_SOUND_EFFECT)
 	elif playPriority == 2:
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.start(load("res://Sound/SFX/tsu.wav"))
+		playSound(TSU_SOUND_EFFECT)
 	else:
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.start(load("res://Sound/SFX/nono.wav"))
+		playSound(NONO_SOUND_EFFECT)
 
 
 # When the container(s) have finished resizing.

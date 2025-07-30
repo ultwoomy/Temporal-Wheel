@@ -95,7 +95,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
 script = ExtResource("34_1r7lx")
 buttonContainers = [null]
 
-[node name="Sprite2D" type="Sprite2D" parent="ChallengeManager"]
+[node name="ThornsBackgroundSprite" type="Sprite2D" parent="ChallengeManager"]
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("35_7eho0")

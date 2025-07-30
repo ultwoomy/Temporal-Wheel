@@ -13,6 +13,7 @@ class_name ChallengeManager
 
 
 #@ Onready Variables
+## TODO: INSTEAD OF HAVING THIS BE IN THE SCENE, JUST INSTANTIATE IT IF NEEDED.
 @onready var thornsBackgroundSprite : Sprite2D = $ThornsBackgroundSprite
 
 
@@ -21,6 +22,8 @@ func _ready() -> void:
 	EventManager.refresh_challenges.connect(self.refresh)
 	EventManager.disconnect_thorns.connect(self.disconnectThorns)
 	
+	## TODO: INSTEAD OF HAVING THIS BE IN THE SCENE, JUST INSTANTIATE IT IF NEEDED.
+	## THIS WOULD SOLVE THIS ERROR CHECK BY ITSELF.
 	if thornsBackgroundSprite:
 		thornsBackgroundSprite.hide()
 	await get_tree().create_timer(0.1).timeout

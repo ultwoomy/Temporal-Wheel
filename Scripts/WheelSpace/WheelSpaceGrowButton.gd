@@ -23,6 +23,10 @@ signal toggled(on : bool)
 var ifsucc = false
 
 
+#@ Onready Variables
+@onready var toggleLabel : Label = $VBoxContainer/GrowButtonContainer/ToggleGrowButton/ToggleLabel
+
+
 #@ Virtual Methods
 func _ready():
 	#Yu: Every time one rotation finishes, succ will trigger once. Changed from once per second.

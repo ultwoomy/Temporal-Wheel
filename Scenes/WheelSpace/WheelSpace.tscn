@@ -255,6 +255,12 @@ size_flags_vertical = 3
 text = "Toggle Grow"
 expand_icon = true
 
+[node name="ToggleLabel" type="Label" parent="GrowButton/VBoxContainer/GrowButtonContainer/ToggleGrowButton"]
+layout_mode = 2
+offset_top = 65.0
+offset_right = 200.0
+offset_bottom = 85.0
+
 [node name="ButtonBackground" type="Sprite2D" parent="GrowButton/VBoxContainer/GrowButtonContainer"]
 position = Vector2(97.5, 48)
 texture = ExtResource("13_6dtuh")

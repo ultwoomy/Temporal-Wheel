@@ -11,12 +11,7 @@ signal toggled(on : bool)
 
 
 #@ Export Variables
-@export var growDisplay: Label
-@export var button : Button
-@onready var growToggleRect : ColorRect = $VBoxContainer/GrowRectContainer/GrowRectDisplay
-@onready var growToggleRectContainer : PanelContainer = $VBoxContainer/GrowRectContainer
-@export var spinbody: CharacterBody2D
-@onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent
+
 
 
 #@ Public Variables
@@ -24,7 +19,13 @@ var ifsucc = false
 
 
 #@ Onready Variables
+@onready var growSizeLabel : Label = $GrowDisplay
+@onready var button : Button = $VBoxContainer/GrowButtonContainer/ToggleGrowButton
 @onready var toggleLabel : Label = $VBoxContainer/GrowButtonContainer/ToggleGrowButton/ToggleLabel
+
+@onready var growToggleRect : ColorRect = $VBoxContainer/GrowRectContainer/GrowRectDisplay
+@onready var growToggleRectContainer : PanelContainer = $VBoxContainer/GrowRectContainer
+@onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent
 
 
 #@ Virtual Methods
@@ -41,7 +42,7 @@ func _ready():
 	if GVars.spinData.sizeToggle:
 		ifsucc = true
 	
-	growDisplay.text = str(GVars.spinData.size)
+	growSizeLabel.text = str(GVars.spinData.size)
 	
 	if ifsucc:
 		growToggleRect.color = Color(0.04, 0.4, 0.14)  # GREEN
@@ -75,7 +76,7 @@ func suc_loop():
 				GVars.spinData.size += 1
 				if(GVars.spinData.size > GVars.spinData.sizeRecord):
 					GVars.spinData.sizeRecord = GVars.spinData.size
-				growDisplay.text = str(GVars.spinData.size)
+				growSizeLabel.text = str(GVars.spinData.size)
 				GVars.spinData.curSucSize = 0
 				GVars.spinData.sucTresh *= 3
 	growToggleRect.size.x = GVars.spinData.curSucSize/GVars.spinData.sucTresh * 2 * 100

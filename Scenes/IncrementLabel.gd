@@ -5,6 +5,8 @@ class_name IncrementLabel
 #@ Constants
 const LIFETIME : float = 0.75
 const FONT_SIZE : int = 35
+const BRIGHT_RED_COLOR : Color = Color.RED
+const BRIGHT_GREEN_COLOR : Color = Color.GREEN
 
 
 #@ Public Variables
@@ -17,14 +19,14 @@ func _init(value : float) -> void:
 	# Change text upon spawning.
 	if value >= 0:
 		self.text = "+" + str(GVars.getScientific(value))
+		self.add_theme_color_override("font_color", BRIGHT_GREEN_COLOR)
 	else:
 		self.text = str(GVars.getScientific(value))
-	
-	
+		self.add_theme_color_override("font_color", BRIGHT_RED_COLOR)
 
 
 func _ready() -> void:
-	# Change font size.
+	# Change font appearance.
 	self.add_theme_font_size_override("font_size", FONT_SIZE)
 	
 	# Set origin point and anchor point to center, as well as text alignment.

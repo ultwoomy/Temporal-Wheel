@@ -292,6 +292,8 @@ script = ExtResource("12_naexq")
 damage = 5
 sprite = NodePath("../VBoxContainer/GrowButtonContainer/ButtonBackground")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GrowButton"]
+
 [node name="DensButton" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 750.0

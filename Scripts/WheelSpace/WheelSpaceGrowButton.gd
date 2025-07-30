@@ -9,6 +9,8 @@ signal toggled(on : bool)
 #@ Constants
 const RED_COLOR : Color = Color(0.93, 0.11, 0.14)
 const GREEN_COLOR : Color = Color(0.04, 0.4, 0.14)
+const SOUND_EFFECT_TOGGLED_ON : AudioStreamWAV = preload("res://Sound/SFX/yes.wav")
+const SOUND_EFFECT_TOGGLED_OFF : AudioStreamWAV = preload("res://Sound/SFX/nono.wav")
 
 
 #@ Export Variables
@@ -85,16 +87,12 @@ func _buttonPressed() -> void:
 	if growing:
 		growing = false
 		GVars.spinData.sizeToggle = false		
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.start(load("res://Sound/SFX/nono.wav"))
+		playSound(SOUND_EFFECT_TOGGLED_OFF)
 		toggled.emit(false)
 	else:
 		growing = true
 		GVars.spinData.sizeToggle = true
-		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
-		self.add_child(sf)	
-		sf.start(load("res://Sound/SFX/yes.wav"))
+		playSound(SOUND_EFFECT_TOGGLED_ON)
 		toggled.emit(true)
 	_showToggleIndicators(growing)
 

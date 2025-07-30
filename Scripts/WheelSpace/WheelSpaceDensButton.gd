@@ -62,5 +62,7 @@ func _onButtonPressed() -> void:
 
 # When the container(s) have finished resizing.
 func _onChildSorted() -> void:
+	const DENSITY_GAUGE_CONTAINER_WIDTH : float = 200.0
+	
 	# Resize the density gauge after resorting.
-	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * 2 * 100  # TODO: L.B - This seems odd that it has its own function. Maybe there's a fix?
+	densityGauge.size.x = GVars.spinData.curSucDens/GVars.spinData.densTresh * DENSITY_GAUGE_CONTAINER_WIDTH  # TODO: L.B - This seems odd that it has its own function. Maybe there's a fix?

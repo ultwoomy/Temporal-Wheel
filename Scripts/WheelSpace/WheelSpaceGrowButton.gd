@@ -16,7 +16,7 @@ const GREEN_COLOR : Color = Color(0.04, 0.4, 0.14)
 
 
 #@ Public Variables
-var ifsucc = false
+var growing : bool = false
 
 
 #@ Onready Variables
@@ -31,27 +31,26 @@ var ifsucc = false
 
 #@ Virtual Methods
 func _ready():
-	#Yu: Every time one rotation finishes, succ will trigger once. Changed from once per second.
+	#Yu: Every time one rotation finishes, growth will trigger once. Changed from once per second.
 	#    Threshold and threshold multiplier for size reduced accordingly
 	
 	# Connecting Signals.
 	button.pressed.connect(self._buttonPressed)
 	#EventManager.wheel_spun.connect(self.checkTutorial)
-	WheelSpinner.wheelRotationCompleted.connect(self.suc_loop)
+	WheelSpinner.wheelRotationCompleted.connect(self.grow)
 	growToggleRectContainer.sort_children.connect(_onChildSorted)  # Needed to resize the ColorRect.
 	
-	if GVars.spinData.sizeToggle:
-		ifsucc = true
+	growing = GVars.spinData.sizeToggle
 	
 	growSizeLabel.text = str(GVars.spinData.size)
 	
-	_showToggleIndicators(ifsucc)
+	_showToggleIndicators(growing)
 
 
 #@ Public Methods
-func suc_loop():
+func grow() -> void:
 	# Local Variables.
-	var suc = 0.0;
+	var suc : float = 0.0;
 	var Ebuff = 0;
 	var rustUpBuff = GVars.rustData.increaseHunger
 	
@@ -65,7 +64,7 @@ func suc_loop():
 	else:
 		suc = GVars.spinData.sucPerTick * rustUpBuff + Ebuff
 	
-	if ifsucc:
+	if growing:
 		if(GVars.spinData.momentum >= suc):
 			_displayIncrementValue(-suc)
 			GVars.spinData.momentum -= suc
@@ -81,23 +80,23 @@ func suc_loop():
 
 
 #@ Private Methods
-func _buttonPressed():
+func _buttonPressed() -> void:
 	playAnimation(GameButtonPopAnimation.new(self))
-	if ifsucc:
-		ifsucc = false
+	if growing:
+		growing = false
 		GVars.spinData.sizeToggle = false		
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/nono.wav"))
 		toggled.emit(false)
 	else:
-		ifsucc = true
+		growing = true
 		GVars.spinData.sizeToggle = true
 		var sf = load("res://Scenes/SoundEffect.tscn").instantiate()
 		self.add_child(sf)	
 		sf.start(load("res://Sound/SFX/yes.wav"))
 		toggled.emit(true)
-	_showToggleIndicators(ifsucc)
+	_showToggleIndicators(growing)
 
 
 # When the container(s) have finished resizing.

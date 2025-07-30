@@ -91,10 +91,9 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_e772k")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ssjow")
 theme_override_styles/normal = SubResource("StyleBoxTexture_nc7py")
 
-[node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers", "thornsbackground")]
+[node name="ChallengeManager" type="Node" parent="." node_paths=PackedStringArray("buttonContainers")]
 script = ExtResource("34_1r7lx")
 buttonContainers = [null]
-thornsbackground = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="ChallengeManager"]
 position = Vector2(500, 300)

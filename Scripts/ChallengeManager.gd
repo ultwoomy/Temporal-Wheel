@@ -20,7 +20,9 @@ class_name ChallengeManager
 func _ready() -> void:
 	EventManager.refresh_challenges.connect(self.refresh)
 	EventManager.disconnect_thorns.connect(self.disconnectThorns)
-	thornsBackgroundSprite.hide()
+	
+	if thornsBackgroundSprite:
+		thornsBackgroundSprite.hide()
 	await get_tree().create_timer(0.1).timeout
 	refresh()
 

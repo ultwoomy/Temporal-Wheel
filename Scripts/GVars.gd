@@ -103,6 +103,7 @@ const CHALLENGE_FABULOUS : ChallengeData = preload("res://Resources/Challenge/Fa
 @export var ratmail : int
 @export var challengesFailed : int
 @export var currentTrack : int
+@export var numberOfTimesAscended : int
 
 
 #@ Public Variables
@@ -113,7 +114,6 @@ var fmat = preload("res://Scripts/FormatNo.gd")
 
 #@ Virtual Methods
 func _init():
-	
 	load_as_normal()
 
 
@@ -208,6 +208,7 @@ func save_prog():
 	loader.ratmail = ratmail
 	loader.challengesFailed = challengesFailed
 	loader.currentTrack = currentTrack
+	loader.numberOfTimesAscended = numberOfTimesAscended
 	loader.save_stats(loader)
 
 
@@ -253,7 +254,8 @@ func resetR2Stats():
 	dollarData.resetData()
 	currentSigilOrder = SigilPurchaseOrder.new()
 	nextSigilOrder = SigilPurchaseOrder.new()
-	
+
+
 func resetPermStats():
 	ifFirstBoot = true
 	ifSecondBoot = 0
@@ -276,6 +278,7 @@ func resetPermStats():
 	versNo = 19
 	ratmail = 0
 	currentTrack = 0
+	numberOfTimesAscended = 0
 
 
 func getScientific(val):
@@ -306,6 +309,7 @@ func setCurrentChallengeToChallenges() -> void:
 	# Error checking
 	if not challenges:
 		return
+	
 	# Currently duplicates second layer challenges over to the next run if theres one active
 	if doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND):
 		challenges.append(currentChallenges[1])
@@ -484,6 +488,7 @@ func load_as_normal():
 	bleedstacks = loader.bleedstacks
 	currentTrack = loader.currentTrack
 	challengesFailed = loader.challengesFailed
+	numberOfTimesAscended = loader.numberOfTimesAscended
 
 
 func unlock_all_sigils():

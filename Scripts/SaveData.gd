@@ -62,6 +62,7 @@ var nightChallengeData : NightChallengeData
 @export var ratmail : int
 @export var challengesFailed : int
 @export var currentTrack : int
+@export var numberOfTimesAscended : int
 var save_path = "user://stats.tres"
 
 
@@ -139,6 +140,8 @@ func _init():
 	ratmail = 0
 	challengesFailed = 0
 	currentTrack = 0
+	numberOfTimesAscended = 0
+
 
 func save_stats(data):
 	if ResourceSaver.save(data, save_path):

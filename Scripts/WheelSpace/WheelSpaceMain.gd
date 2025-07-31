@@ -23,6 +23,7 @@ var menuState : WS_MenuState
 
 
 #@ Onready Variables
+@onready var background : AnimatedSprite2D = $BackgroundSprite
 @onready var wheel : WheelSpaceWheel = $Wheel
 @onready var spinButton : WheelSpaceSpinButton = $SpinButton
 @onready var growButton : WheelSpaceGrowButton = $GrowButton
@@ -76,6 +77,11 @@ func _ready() -> void:
 		numOfCandles = 5
 	
 	Challenger.refresh()
+	
+	if GVars.ifSecondBoot % 4 == 3 or GVars.ifSecondBoot % 4 == 0:
+		background.frame = 0
+	else:
+		background.frame = 1
 	
 	# Start tutorial if haven't done so already.
 	introTutorial.start(self)

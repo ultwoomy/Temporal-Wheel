@@ -115,6 +115,7 @@ func _awaken():
 	GVars.atlasData.hasReset = false
 	#Advances the bunny dialouge by 1 (should be an odd number upon exiting this screen)
 	GVars.ifSecondBoot += 1
+	GVars.numberOfTimesAscended += 1
 	
 	#If going into a layer 2 challenge, reset ascbuff
 	if GVars.doesLayerHaveFutureChallenge(ChallengeData.ChallengeLayer.SECOND) and GVars.hellChallengeInit:

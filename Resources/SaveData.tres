@@ -1,18 +1,21 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://masin1kdhswu"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://masin1kdhswu"]
 
 [ext_resource type="Script" path="res://Scripts/SaveData.gd" id="1_ba8r7"]
+[ext_resource type="Script" path="res://Resources/Data/ChallengeData.gd" id="1_oiiek"]
 
 [resource]
 script = ExtResource("1_ba8r7")
 sand = 0.0
 sandCost = 0.0
 sandScaling = 0.0
+health = 0
+bleedstacks = 0
 Aspinbuff = 0.0
 curEmotionBuff = 0.0
 inContract = false
 souls = 0.0
-challenges = Array[Resource("res://Resources/Data/ChallengeData.gd")]([])
-currentChallenges = Array[Resource("res://Resources/Data/ChallengeData.gd")]([])
+challenges = Array[ExtResource("1_oiiek")]([])
+currentChallenges = Array[ExtResource("1_oiiek")]([])
 hellChallengeLayer2 = 0
 hellChallengeInit = false
 kbityProgSpin = 0.0
@@ -28,6 +31,9 @@ ifFirstAtlas = false
 ifFirstZunda = false
 ifFirstFearcatDay = false
 ifFirstFearcatNight = false
+ifFirstDrum = false
+ifFirstDollar = false
+ifFirstHunt = false
 altSigilSand = false
 altSigilCity = false
 altSigilNight = false
@@ -36,3 +42,6 @@ musicvol = 0.0
 sfxvol = 0.0
 versNo = 0
 ratmail = 0
+challengesFailed = 0
+currentTrack = 0
+numberOfTimesAscended = 0

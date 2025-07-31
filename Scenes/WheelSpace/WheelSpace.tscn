@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_6ihys"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceMain.gd" id="1_daddu"]
 [ext_resource type="Texture2D" uid="uid://cysiy4xi7xnjj" path="res://Sprites/WheelSpace/Sky/night.png" id="2_ty02u"]
-[ext_resource type="Script" path="res://Scripts/WheelSpace/Back.gd" id="3_7r1my"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceBackground.gd" id="3_7r1my"]
 [ext_resource type="Script" path="res://Scripts/WheelSpace/IntroTutorial.gd" id="3_i66s4"]
 [ext_resource type="Texture2D" uid="uid://cl253grxrtanl" path="res://Sprites/WheelSpace/ground.png" id="4_m45rb"]
 [ext_resource type="Texture2D" uid="uid://bqsm8hfoejatb" path="res://Sprites/WheelSpace/Sky/day.png" id="4_rmxgl"]
@@ -162,12 +162,32 @@ script = ExtResource("1_daddu")
 [node name="IntroTutorial" type="Node" parent="."]
 script = ExtResource("3_i66s4")
 
-[node name="Background" type="AnimatedSprite2D" parent="."]
+[node name="BackgroundSprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.635294)
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_68d5r")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("3_7r1my")
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_right = 1000.0
+offset_bottom = 600.0
+mouse_filter = 2
+color = Color(0.0352941, 0.129412, 0.184314, 1)
+
+[node name="Stars" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 1000.0
+offset_bottom = 420.0
 
 [node name="Foreground" type="Sprite2D" parent="."]
 self_modulate = Color(0.266667, 0.266667, 0.266667, 1)

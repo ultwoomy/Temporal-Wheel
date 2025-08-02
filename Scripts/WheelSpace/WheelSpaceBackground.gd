@@ -3,7 +3,7 @@ class_name WheelSpaceBackground
 
 
 #@ Constants
-const STAR_SPRITE : CompressedTexture2D = preload("res://Sprites/WheelSpace/Sky/star.png")
+const STAR : Resource = preload("res://Scenes/WheelSpace/WheelSpaceStar.tscn")
 const BASE_AMOUNT_OF_STARS : int = 5
 
 
@@ -31,14 +31,22 @@ func _process(_delta) -> void:
 #@ Public Methods
 func createStars() -> void:
 	for starIndex in range(numberOfStars):
-		# Create star sprite.
-		var newStar : Sprite2D = Sprite2D.new()
-		newStar.texture = STAR_SPRITE
+		# Create star.
+		var newStar : WheelSpaceStar = STAR.instantiate()
 		starsParent.add_child(newStar)
 		
-		# Reposition star sprite randomly.
-		var max_width_spawn : float = starsParent.size.x - STAR_SPRITE.get_width()
-		var max_height_spawn : float = starsParent.size.y - STAR_SPRITE.get_height()
-		var random_x_spawn_position : float = randf_range(STAR_SPRITE.get_width(), max_width_spawn)
-		var random_y_spawn_position : float = randf_range(STAR_SPRITE.get_height(), max_height_spawn)
-		newStar.position = Vector2(random_x_spawn_position, random_y_spawn_position)
+		# Reposition star sprite randomly on created and when finished blinking.
+		_repositionStar(newStar)
+		newStar.blinkFinished.connect(_repositionStar)
+		
+		# Randomize size of star.
+		newStar.randomizeLook()
+
+
+#@ Private Methods
+func _repositionStar(star : WheelSpaceStar) -> void:
+	var max_width_spawn : float = starsParent.size.x - star.get_rect().size.x
+	var max_height_spawn : float = starsParent.size.y - star.get_rect().size.y
+	var random_x_spawn_position : float = randf_range(star.get_rect().size.x, max_width_spawn)
+	var random_y_spawn_position : float = randf_range(star.get_rect().size.y, max_height_spawn)
+	star.position = Vector2(random_x_spawn_position, random_y_spawn_position)

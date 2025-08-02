@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://rbblrnxis2nk"]
+
+[ext_resource type="Texture2D" uid="uid://cbcd5l6h4qdm2" path="res://Sprites/WheelSpace/Sky/star.png" id="1_wkbql"]
+[ext_resource type="Script" path="res://Scripts/WheelSpace/WheelSpaceStar.gd" id="1_wknlv"]
+
+[node name="WheelSpaceStar" type="Sprite2D"]
+texture = ExtResource("1_wkbql")
+script = ExtResource("1_wknlv")

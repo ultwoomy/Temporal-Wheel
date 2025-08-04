@@ -48,7 +48,7 @@ func randomizeLook() -> void:
 #@ Private Methods
 func _blink(loop : bool) -> void:
 	const TWEEN_DURATION : float = 0.4
-	var waitDuration : float = randf_range(3.0, 15.0)
+	var waitDuration : float = randf_range(3.0, 30.0)
 	
 	# Fade in.
 	var tween : Tween = self.create_tween()

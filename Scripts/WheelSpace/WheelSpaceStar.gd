@@ -7,7 +7,8 @@ signal blinkFinished(star : WheelSpaceStar)
 
 
 #@ Public Variables
-var loopingBlink : bool = true
+var blinking : bool = true
+var pulsing : bool = true
 
 
 #@ Virtual Methods
@@ -17,7 +18,9 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	self._blink(loopingBlink)
+	self.self_modulate = Color(Color.WHITE, 0.0)  # Start off by being invisible.
+	self._blink(blinking)
+	self._pulse(pulsing)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,16 +40,37 @@ func _blink(loop : bool) -> void:
 	const TWEEN_DURATION : float = 0.4
 	var waitDuration : float = randf_range(3.0, 15.0)
 	
-	await get_tree().create_timer(waitDuration).timeout
+	# Fade in.
 	var tween : Tween = self.create_tween()
-	tween.tween_property(self, "self_modulate", Color(Color.WHITE, 0.0), TWEEN_DURATION)
-	
+	tween.tween_property(self, "self_modulate", Color.WHITE, TWEEN_DURATION)
 	await tween.finished
+	tween.kill()
+	
+	# Fade out.
+	await get_tree().create_timer(waitDuration).timeout
+	tween = self.create_tween()
+	tween.tween_property(self, "self_modulate", Color(Color.WHITE, 0.0), TWEEN_DURATION)
+	await tween.finished
+	
 	blinkFinished.emit(self)
 	if loop:
 		self.randomizeLook()
-		self.self_modulate = Color.WHITE
-		_blink(loopingBlink)
+		self._blink(blinking)
+
+
+func _pulse(loop : bool) -> void:
+	const TWEEN_DURATION : float = 1.5
+	var defaultScale : Vector2 = self.scale
+	var pulseMaxScale : Vector2 = self.scale + Vector2(0.10, 0.10)
+	
+	var tween : Tween = self.create_tween()
+	tween.tween_property(self, "scale", pulseMaxScale, TWEEN_DURATION)
+	tween.tween_property(self, "scale", defaultScale, TWEEN_DURATION)
+	await tween.finished
+	
+	if loop:
+		self.scale = defaultScale
+		self._pulse(pulsing)
 
 
 func _randomizeFlip() -> void:

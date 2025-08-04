@@ -6,6 +6,9 @@ class_name WheelSpaceStar
 signal blinkFinished(star : WheelSpaceStar)
 
 
+#@ Constants
+
+
 #@ Public Variables
 var blinking : bool = true
 var pulsing : bool = true

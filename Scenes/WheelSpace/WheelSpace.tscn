@@ -156,6 +156,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_6ihys")
 script = ExtResource("1_daddu")
 
@@ -175,6 +176,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("3_7r1my")
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
@@ -188,6 +190,7 @@ color = Color(0.0352941, 0.129412, 0.184314, 1)
 anchors_preset = 0
 offset_right = 1000.0
 offset_bottom = 420.0
+mouse_filter = 1
 
 [node name="Foreground" type="Sprite2D" parent="."]
 self_modulate = Color(0.266667, 0.266667, 0.266667, 1)

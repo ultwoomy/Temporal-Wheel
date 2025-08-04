@@ -11,6 +11,14 @@ var blinking : bool = true
 var pulsing : bool = true
 
 
+#@ Private Variables
+var spinTween : Tween
+
+
+#@ Onready Variables
+@onready var clickableArea : Area2D = $Area2D
+
+
 #@ Virtual Methods
 func _init() -> void:
 	pass
@@ -21,11 +29,13 @@ func _ready() -> void:
 	self.self_modulate = Color(Color.WHITE, 0.0)  # Start off by being invisible.
 	self._blink(blinking)
 	self._pulse(pulsing)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
+	# Connect signals.
+	var checkCorrectInputCallable : Callable = func checkCorrectInput(viewport : Node, event : InputEvent, shape_idx : int) -> void:
+		if event.is_action_pressed("mouseLeftClick"):
+			if not spinTween:
+				_spin()
+	clickableArea.input_event.connect(checkCorrectInputCallable)
 
 
 #@ Public Methods
@@ -71,6 +81,20 @@ func _pulse(loop : bool) -> void:
 	if loop:
 		self.scale = defaultScale
 		self._pulse(pulsing)
+
+
+func _spin() -> void:
+	const TWEEN_DURATION : float = 0.1
+	var defaultRotation : float = self.rotation_degrees
+	var rotationGoal : float = self.rotation_degrees - 360  # Negative to make it look like it is moving clockwise thanks to TWEEN_DURATION.
+	
+	spinTween = self.create_tween()
+	spinTween.tween_property(self, "rotation_degrees", rotationGoal, TWEEN_DURATION)
+	await spinTween.finished
+	spinTween.kill()
+	
+	self.rotation_degrees = defaultRotation
+	spinTween = null
 
 
 func _randomizeFlip() -> void:

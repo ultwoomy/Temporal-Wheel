@@ -2,32 +2,28 @@ extends Control
 
 
 #@ Onready Variables
-@onready var sandspace : Button = $SandButton
-@onready var huntspace : Button = $HuntButton
+@onready var sandspaceButton : Button = $SandButton
+@onready var huntspaceButton : Button = $HuntButton
 
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if GVars.SIGIL_SAND in GVars.sigilData.acquiredSigils or not GVars.ifFirstDollar:
-		sandspace.disabled = false
+		sandspaceButton.disabled = false
 	else:
-		sandspace.disabled = true
+		sandspaceButton.disabled = true
 	if GVars.SIGIL_ZUNDANIGHT in GVars.sigilData.acquiredSigils or not GVars.ifFirstHunt:
-		huntspace.disabled = false
+		huntspaceButton.disabled = false
 	else:
-		huntspace.disabled = true
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+		huntspaceButton.disabled = true
 
 
 #@ Private Methods
-func _on_sand_button_pressed() -> void:
+# TODO: Have this be one function with a match keyword
+func _onSandButtonPressed() -> void:
 	SceneHandler.changeSceneToFilePath(SceneHandler.SANDSPACE)
 
 
-func _on_hunt_button_pressed() -> void:
+func _onHuntButtonPressed() -> void:
 	SceneHandler.changeSceneToFilePath(SceneHandler.HUNTSPACE)

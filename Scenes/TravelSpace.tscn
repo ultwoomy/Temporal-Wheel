@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_aryn6"]
 [ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceGameScene.gd" id="3_5ruey"]
-[ext_resource type="Script" path="res://Scripts/TravelSpace/top_buttons.gd" id="3_ahjqb"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceTopButtons.gd" id="3_ahjqb"]
 [ext_resource type="Texture2D" uid="uid://cjrponoa23g0e" path="res://Sprites/Spaces/Rust/rust_space.png" id="4_5gufq"]
 [ext_resource type="Texture2D" uid="uid://bs53g0yb4iw38" path="res://Sprites/Spaces/Rust/rust_space_light.png" id="4_b0c6l"]
 [ext_resource type="Texture2D" uid="uid://bb2574fidse41" path="res://Sprites/Spaces/Rust/rust_space_dark.png" id="5_04br7"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cqhoo5ciyed2n" path="res://Sprites/Spaces/Heaven/heaven_space_dark.png" id="14_ncq0l"]
 [ext_resource type="Texture2D" uid="uid://j0rjelh2i5n7" path="res://Sprites/Spaces/window.png" id="19_v6fbh"]
 [ext_resource type="Texture2D" uid="uid://bccaejjrcfi44" path="res://Sprites/Spaces/window_alt.png" id="20_iyiwn"]
-[ext_resource type="Script" path="res://Scripts/TravelSpace/bottom_buttons.gd" id="21_4brlu"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceBottomButtons.gd" id="21_4brlu"]
 [ext_resource type="Texture2D" uid="uid://n8a4ylvitq85" path="res://Sprites/Spaces/Sand/sand_space.png" id="22_1xh15"]
 [ext_resource type="Texture2D" uid="uid://bn012ygpeoo1b" path="res://Sprites/Spaces/Sand/sand_space_dark.png" id="23_bp2cu"]
 [ext_resource type="Texture2D" uid="uid://dm3rilhvqcs5d" path="res://Sprites/Spaces/Hunt/hunt_space.png" id="24_0t3r0"]
@@ -233,9 +233,8 @@ focus_mode = 0
 texture_normal = ExtResource("19_v6fbh")
 texture_pressed = ExtResource("20_iyiwn")
 texture_hover = ExtResource("20_iyiwn")
-texture_disabled = ExtResource("20_iyiwn")
+texture_disabled = ExtResource("19_v6fbh")
 texture_focused = ExtResource("20_iyiwn")
 
 [connection signal="pressed" from="BottomButtons/SandButton" to="BottomButtons" method="_on_sand_button_pressed"]
 [connection signal="pressed" from="BottomButtons/HuntButton" to="BottomButtons" method="_on_hunt_button_pressed"]
-[connection signal="pressed" from="SwapButton" to="." method="_on_swap_button_pressed"]

@@ -18,10 +18,6 @@ func _ready():
 	voidButton.pressed.connect(self._button_pressed2)
 	heavenButton.pressed.connect(self._button_pressed3)
 	hellButton.pressed.connect(self._button_pressed4)
-	rustButton.position = Vector2(0,0)
-	voidButton.position = Vector2(500,0)
-	heavenButton.position = Vector2(0,300)
-	hellButton.position = Vector2(500,300)
 	
 	if not GVars.ifheaven:
 		heavenButton.disabled = true
@@ -30,7 +26,7 @@ func _ready():
 
 
 #@ Private Methods
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# TODO: Have all of this be one function and use match keyword
 func _button_pressed():
 	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)
 

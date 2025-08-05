@@ -1,4 +1,4 @@
-extends Container
+extends Control
 
 
 #@ Export Variables
@@ -18,10 +18,6 @@ func _ready():
 	voidButton.pressed.connect(self._button_pressed2)
 	heavenButton.pressed.connect(self._button_pressed3)
 	hellButton.pressed.connect(self._button_pressed4)
-	rustButton.size = Vector2(500,300)
-	voidButton.size = Vector2(500,300)
-	heavenButton.size = Vector2(500,300)
-	hellButton.size = Vector2(500,300)
 	rustButton.position = Vector2(0,0)
 	voidButton.position = Vector2(500,0)
 	heavenButton.position = Vector2(0,300)

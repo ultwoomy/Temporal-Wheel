@@ -126,14 +126,16 @@ grow_vertical = 2
 theme = ExtResource("1_aryn6")
 script = ExtResource("3_5ruey")
 
-[node name="TopButtons" type="Container" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="TopButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1000.0
+offset_bottom = 600.0
 script = ExtResource("3_ahjqb")
 
 [node name="RustButton" type="Button" parent="TopButtons"]
 layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_nmcpj")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_oqpa5")
 theme_override_styles/hover = SubResource("StyleBoxTexture_bvht3")
@@ -144,6 +146,9 @@ expand_icon = true
 
 [node name="VoidButton" type="Button" parent="TopButtons"]
 layout_mode = 2
+offset_left = 500.0
+offset_right = 1000.0
+offset_bottom = 300.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_ct34u")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_v61fm")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fiv7o")
@@ -154,6 +159,9 @@ expand_icon = true
 
 [node name="HeavenButton" type="Button" parent="TopButtons"]
 layout_mode = 2
+offset_top = 300.0
+offset_right = 500.0
+offset_bottom = 600.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_0w2vc")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_yvaq7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_e3rua")
@@ -164,6 +172,10 @@ expand_icon = true
 
 [node name="HellButton" type="Button" parent="TopButtons"]
 layout_mode = 2
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 1000.0
+offset_bottom = 600.0
 theme_override_styles/focus = SubResource("StyleBoxTexture_whn2k")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_43nh8")
 theme_override_styles/hover = SubResource("StyleBoxTexture_27swn")
@@ -172,14 +184,17 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_pr3a5")
 text = "Hell"
 expand_icon = true
 
-[node name="BottomButtons" type="Container" parent="."]
-layout_mode = 0
+[node name="BottomButtons" type="Control" parent="."]
+visible = false
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("21_4brlu")
 
 [node name="SandButton" type="Button" parent="BottomButtons"]
 layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
 theme_override_colors/font_hover_color = Color(0.619678, 0.0989291, 0.184396, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -193,6 +208,9 @@ expand_icon = true
 
 [node name="HuntButton" type="Button" parent="BottomButtons"]
 layout_mode = 2
+offset_left = 500.0
+offset_right = 1000.0
+offset_bottom = 300.0
 theme_override_colors/font_hover_color = Color(0.789461, 0.594653, 0.368911, 1)
 theme_override_colors/font_color = Color(0.733061, 6.73831e-07, 0.431557, 1)
 theme_override_colors/font_outline_color = Color(0.733061, 6.73831e-07, 0.431557, 1)

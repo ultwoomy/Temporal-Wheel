@@ -1,15 +1,16 @@
 extends GameScene
 
+
+#@ Public Variables
 var topWindow = preload("res://Sprites/Spaces/window.png")
 var bottomWinodw = preload("res://Sprites/Spaces/window_alt.png")
-
+var showTop = true
 
 #@ Onready Variables
-@onready var topButtons : Container = $TopButtons
-@onready var bottomButtons : Container = $BottomButtons
+@onready var topButtons : Control = $TopButtons
+@onready var bottomButtons : Control = $BottomButtons
 @onready var swapButton : TextureButton = $SwapButton
 
-var showTop = true
 
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.

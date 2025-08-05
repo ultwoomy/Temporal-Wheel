@@ -1,4 +1,4 @@
-extends Container
+extends Control
 
 
 #@ Onready Variables
@@ -9,10 +9,6 @@ extends Container
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	sandspace.size = Vector2(500,300)
-	sandspace.position = Vector2(0,0)
-	huntspace.size = Vector2(500,300)
-	huntspace.position = Vector2(500,0)
 	if GVars.SIGIL_SAND in GVars.sigilData.acquiredSigils or not GVars.ifFirstDollar:
 		sandspace.disabled = false
 	else:

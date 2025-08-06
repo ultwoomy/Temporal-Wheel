@@ -14,6 +14,7 @@ var showTop : bool = true
 @onready var topButtons : Control = $TopButtons
 @onready var bottomButtons : Control = $BottomButtons
 @onready var swapButton : TextureButton = $SwapButton
+@onready var backButton : TextureButton = $BackButton
 
 
 #@ Virtual Methods
@@ -24,6 +25,7 @@ func _ready():
 	
 	# Connect signals.
 	swapButton.pressed.connect(_onSwapButtonPressed)
+	backButton.pressed.connect(_changeScene.bind(SceneHandler.WHEELSPACE))
 
 
 #@ Private Methods
@@ -46,3 +48,7 @@ func _onSwapButtonPressed() -> void:
 		swapButton.texture_hover = WINDOW_ALT_SPRITE
 		swapButton.texture_focused = WINDOW_ALT_SPRITE
 		showTop = true
+
+
+func _changeScene(scenePath : String) -> void:
+	SceneHandler.changeSceneToFilePath(scenePath)

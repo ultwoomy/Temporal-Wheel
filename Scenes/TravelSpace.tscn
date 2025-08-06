@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cuk5evkb4ykl3"]
+[gd_scene load_steps=59 format=3 uid="uid://cuk5evkb4ykl3"]
 
 [ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_aryn6"]
 [ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceGameScene.gd" id="3_5ruey"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://dj6cxchuau4kw" path="res://Sprites/Spaces/Hunt/hunt_space_dark.png" id="25_agq2w"]
 [ext_resource type="Texture2D" uid="uid://de8rpwtq7hxus" path="res://Sprites/Spaces/Sand/sand_space_light.png" id="25_y000t"]
 [ext_resource type="Texture2D" uid="uid://cn0r38pyom3kv" path="res://Sprites/Spaces/Hunt/hunt_space_alt.png" id="26_cck1v"]
+[ext_resource type="Texture2D" uid="uid://banr2p8j4a4v6" path="res://Sprites/Spaces/travel_backarrow.png" id="29_uwu6k"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nmcpj"]
 texture = ExtResource("4_5gufq")
@@ -235,6 +236,14 @@ texture_pressed = ExtResource("20_iyiwn")
 texture_hover = ExtResource("20_iyiwn")
 texture_disabled = ExtResource("19_v6fbh")
 texture_focused = ExtResource("20_iyiwn")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 260.0
+offset_right = 130.0
+offset_bottom = 340.0
+texture_normal = ExtResource("29_uwu6k")
 
 [connection signal="pressed" from="BottomButtons/SandButton" to="BottomButtons" method="_on_sand_button_pressed"]
 [connection signal="pressed" from="BottomButtons/HuntButton" to="BottomButtons" method="_on_hunt_button_pressed"]

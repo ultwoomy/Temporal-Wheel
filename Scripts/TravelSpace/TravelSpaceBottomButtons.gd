@@ -9,21 +9,18 @@ extends Control
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if GVars.SIGIL_SAND in GVars.sigilData.acquiredSigils or not GVars.ifFirstDollar:
-		sandspaceButton.disabled = false
-	else:
-		sandspaceButton.disabled = true
-	if GVars.SIGIL_ZUNDANIGHT in GVars.sigilData.acquiredSigils or not GVars.ifFirstHunt:
-		huntspaceButton.disabled = false
-	else:
-		huntspaceButton.disabled = true
+	# Connect signals.
+	sandspaceButton.pressed.connect(_changeScene.bind(SceneHandler.SANDSPACE))
+	huntspaceButton.pressed.connect(_changeScene.bind(SceneHandler.HUNTSPACE))
+	
+	# Unlock areas the Player can go to.
+	var sandSpaceUnlockRequirement : bool = GVars.SIGIL_SAND in GVars.sigilData.acquiredSigils or not GVars.ifFirstDollar
+	sandspaceButton.disabled = not sandSpaceUnlockRequirement
+	
+	var huntSpaceUnlockRequirement : bool = GVars.SIGIL_ZUNDANIGHT in GVars.sigilData.acquiredSigils or not GVars.ifFirstHunt
+	huntspaceButton.disabled = not huntSpaceUnlockRequirement
 
 
 #@ Private Methods
-# TODO: Have this be one function with a match keyword
-func _onSandButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.SANDSPACE)
-
-
-func _onHuntButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.HUNTSPACE)
+func _changeScene(scenePath : String) -> void:
+	SceneHandler.changeSceneToFilePath(scenePath)

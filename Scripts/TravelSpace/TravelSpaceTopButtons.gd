@@ -1,6 +1,9 @@
 extends Control
 
 
+#@ Constants
+
+
 #@ Export Variables
 
 
@@ -14,30 +17,20 @@ extends Control
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	rustButton.pressed.connect(self._button_pressed)
-	voidButton.pressed.connect(self._button_pressed2)
-	heavenButton.pressed.connect(self._button_pressed3)
-	hellButton.pressed.connect(self._button_pressed4)
+	# Connect signals.
+	rustButton.pressed.connect(self._changeScene.bind(SceneHandler.RUSTSPACE_OUTSIDE))
+	voidButton.pressed.connect(self._changeScene.bind(SceneHandler.VOIDSPACE_STOP))
+	heavenButton.pressed.connect(self._changeScene.bind(SceneHandler.HELLSPACE))  # TODO
+	hellButton.pressed.connect(self._changeScene.bind(SceneHandler.HELLSPACE))
 	
-	if not GVars.ifheaven:
-		heavenButton.disabled = true
-	if not GVars.ifhell:
-		hellButton.disabled = true
+	# Unlock areas the Player can go to.
+	var heavenUnlockRequirement : bool = GVars.ifheaven
+	heavenButton.disabled = not heavenUnlockRequirement
+	
+	var hellUnlockRequirement : bool = GVars.ifhell
+	hellButton.disabled = not hellUnlockRequirement
 
 
 #@ Private Methods
-# TODO: Have all of this be one function and use match keyword
-func _button_pressed():
-	SceneHandler.changeSceneToFilePath(SceneHandler.RUSTSPACE_OUTSIDE)
-
-
-func _button_pressed2():
-	SceneHandler.changeSceneToFilePath(SceneHandler.VOIDSPACE_STOP)
-
-
-func _button_pressed3():
-	SceneHandler.changeSceneToFilePath(SceneHandler.HELLSPACE)
-
-
-func _button_pressed4():
-	SceneHandler.changeSceneToFilePath(SceneHandler.HELLSPACE)
+func _changeScene(scenePath : String) -> void:
+	SceneHandler.changeSceneToFilePath(scenePath)

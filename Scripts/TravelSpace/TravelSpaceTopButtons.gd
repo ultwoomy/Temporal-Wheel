@@ -2,6 +2,7 @@ extends Control
 
 
 #@ Constants
+const LOCATION_LOCK_TEXTURE : CompressedTexture2D = preload("res://Sprites/Spaces/location_lock.png")
 
 
 #@ Export Variables
@@ -26,11 +27,21 @@ func _ready():
 	# Unlock areas the Player can go to.
 	var heavenUnlockRequirement : bool = GVars.ifheaven
 	heavenButton.disabled = not heavenUnlockRequirement
+	self._addLock(heavenButton)
 	
 	var hellUnlockRequirement : bool = GVars.ifhell
 	hellButton.disabled = not hellUnlockRequirement
+	self._addLock(hellButton)
 
 
 #@ Private Methods
 func _changeScene(scenePath : String) -> void:
 	SceneHandler.changeSceneToFilePath(scenePath)
+
+
+func _addLock(button : Button) -> void:
+	if button.disabled:
+		var newSprite : Sprite2D = Sprite2D.new()
+		newSprite.texture = LOCATION_LOCK_TEXTURE
+		newSprite.offset = Vector2(LOCATION_LOCK_TEXTURE.get_width()/2.0, LOCATION_LOCK_TEXTURE.get_height()/2.0)
+		button.add_child(newSprite)

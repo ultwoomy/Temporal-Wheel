@@ -87,7 +87,4 @@ script = ExtResource("8_2yc0t")
 [node name="SelectionMenu" parent="Rustbot" instance=ExtResource("9_0pwsb")]
 script = ExtResource("10_bm31r")
 
-[connection signal="pressed" from="InsideButton" to="." method="_onInsideButtonPressed"]
-[connection signal="pressed" from="BackButton" to="." method="_onBackButtonPressed"]
-[connection signal="pressed" from="EnterAtlasButton" to="." method="_onEnterAtlasButtonPressed"]
 [connection signal="pressed" from="Rustbot" to="Rustbot" method="_on_pressed"]

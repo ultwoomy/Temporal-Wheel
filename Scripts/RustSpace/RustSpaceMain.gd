@@ -7,16 +7,16 @@ extends GameScene
 @onready var backButton : Button = $BackButton
 @onready var enterAtlasButton : Button = $EnterAtlasButton
 
+
 #@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	unlockAtlas()
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+	
+	# Connect signals.
+	insideButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.PACKSMITH))
+	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.WHEELSPACE))
+	enterAtlasButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.ATLAS))
 
 
 #@ Public Methods
@@ -27,13 +27,3 @@ func unlockAtlas() -> void:
 
 
 #@ Private Methods
-func _onInsideButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.PACKSMITH)
-
-
-func _onBackButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
-
-
-func _onEnterAtlasButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.ATLAS)

@@ -19,4 +19,4 @@ func _init(_voidSpace : VoidSpaceMain) -> void:
 func _enter() -> void:
 	# Connect signals.
 	if not voidSpace.backButton.pressed.is_connected(voidSpace._changeScene):
-		voidSpace.backButton.pressed.connect(voidSpace._changeScene.bind(backButtonDestination))
+		voidSpace.backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(backButtonDestination))

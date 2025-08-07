@@ -4,6 +4,7 @@ extends GameScene
 #@ Constants
 const WINDOW_TEXTURE : CompressedTexture2D = preload("res://Sprites/Spaces/window.png")
 const WINDOW_ALT_TEXTURE : CompressedTexture2D = preload("res://Sprites/Spaces/window_alt.png")
+const BACK_BUTTON_DESTINATION : String = SceneHandler.WHEELSPACE
 
 
 #@ Public Variables
@@ -28,7 +29,7 @@ func _ready():
 	
 	# Connect signals.
 	swapButton.pressed.connect(_onSwapButtonPressed)
-	backButton.pressed.connect(_changeScene.bind(SceneHandler.WHEELSPACE))
+	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(BACK_BUTTON_DESTINATION))
 
 
 #@ Private Methods

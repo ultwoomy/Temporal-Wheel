@@ -9,6 +9,7 @@ class_name MushSpace
 
 
 #@ Constants
+const BACK_BUTTON_DESTINATION : String = SceneHandler.WHEELSPACE
 
 
 #@ Onready Variables
@@ -45,7 +46,7 @@ func _ready() -> void:
 	_connectPlanterSignals()
 	_connectHarvesterSignals()
 	_connectRemoverSignals()
-	backButton.pressed.connect(_changeScene.bind(SceneHandler.WHEELSPACE))
+	backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(BACK_BUTTON_DESTINATION))
 	
 	# Firstly, make sure that when the Player enters the scene, time has gone by for the mushrooms to grow.
 	updateFromPendingRotations()

@@ -147,6 +147,7 @@ func _onChallengesButtonPressed() -> void:
 	changeMenuState(WS_MenuChallengesState.new(self))  # Otherwise, open the Challenges menu.
 
 
+# There is a _sceneChange() method in GameScene.gd. But since this is doing its own thing as well it is *maybe* better not to call it.
 func _onTravelButtonPressed() -> void:
 	if GVars.ifFirstBoot:
 		GVars.ifFirstBoot = false

@@ -30,6 +30,7 @@ var menuState : WS_MenuState
 @onready var densityButton : WheelSpaceDensityButton = $DensButton
 @onready var challengesButton : TextureButton = $ChallengesButton
 @onready var travelButton : Button = $TravelButton
+@onready var settingsButton : TextureButton = $SettingsButton
 var bb = load("res://Scenes/BleedBar.tscn").instantiate()
 
 @onready var spinAmountLabel : Label = $SpinAmountLabel
@@ -59,6 +60,7 @@ func _ready() -> void:
 	#if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.density < 2:
 		#travelButton.hide()
 	challengesButton.pressed.connect(_onChallengesButtonPressed)
+	settingsButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(SceneHandler.SETTINGS))
 	
 	# Display currency.
 	updateSpinAmountText()
@@ -127,10 +129,6 @@ func changeMenuState(newMenuState : WS_MenuState) -> void:
 
 
 #@ Private Methods
-func _onSettingButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.SETTINGS)
-
-
 func _onBackpackButtonPressed() -> void:
 	if menuState:
 		if menuState is WS_MenuBackpackState:  # If already in the Backpack menu, then close it.

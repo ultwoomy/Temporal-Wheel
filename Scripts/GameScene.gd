@@ -36,3 +36,8 @@ func calcClick() -> float:
 	else:
 		temp = GVars.spinData.momentumPerClick * GVars.spinData.size * densityPower * GVars.rustData.increaseMomentum * GVars.mushroomData.momentumBuff * GVars.Aspinbuff * emoBuff
 	return temp
+
+
+#@ Private Methods
+func _changeScene(scenePath : String) -> void:
+	SceneHandler.changeSceneToFilePath(scenePath)

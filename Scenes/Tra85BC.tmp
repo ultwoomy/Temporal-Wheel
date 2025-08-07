@@ -1,0 +1,249 @@
+[gd_scene load_steps=59 format=3 uid="uid://cuk5evkb4ykl3"]
+
+[ext_resource type="Theme" uid="uid://b84n433bjm87t" path="res://Scenes/GlobalTheme.theme" id="1_aryn6"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceGameScene.gd" id="3_5ruey"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceTopButtons.gd" id="3_ahjqb"]
+[ext_resource type="Texture2D" uid="uid://cjrponoa23g0e" path="res://Sprites/Spaces/Rust/rust_space.png" id="4_5gufq"]
+[ext_resource type="Texture2D" uid="uid://bs53g0yb4iw38" path="res://Sprites/Spaces/Rust/rust_space_light.png" id="4_b0c6l"]
+[ext_resource type="Texture2D" uid="uid://bb2574fidse41" path="res://Sprites/Spaces/Rust/rust_space_dark.png" id="5_04br7"]
+[ext_resource type="Texture2D" uid="uid://ccl18cp7pfb35" path="res://Sprites/Spaces/Rust/rust_space_demonic.png" id="6_ury4k"]
+[ext_resource type="Texture2D" uid="uid://bx7a75qankfgn" path="res://Sprites/Spaces/Hell/hell_space_light.png" id="7_6a35o"]
+[ext_resource type="Texture2D" uid="uid://xu7p3a58kc4a" path="res://Sprites/Spaces/Void/void_space_light.png" id="7_fogj8"]
+[ext_resource type="Texture2D" uid="uid://djma1nsfo5pjs" path="res://Sprites/Spaces/Void/void_space_blue.png" id="8_7e8s2"]
+[ext_resource type="Texture2D" uid="uid://bsaqojpiws71x" path="res://Sprites/Spaces/Void/void_space.png" id="8_065bd"]
+[ext_resource type="Texture2D" uid="uid://dbdy44qqrr817" path="res://Sprites/Spaces/Hell/hell_space_green.png" id="8_71bsy"]
+[ext_resource type="Texture2D" uid="uid://2gm34l35jfir" path="res://Sprites/Spaces/Void/void_space_dark.png" id="9_461di"]
+[ext_resource type="Texture2D" uid="uid://7nii5ko2gqhw" path="res://Sprites/Spaces/Hell/hell_space_dark.png" id="9_b7kgu"]
+[ext_resource type="Texture2D" uid="uid://7a0t43kecggf" path="res://Sprites/Spaces/Hell/hell_space.png" id="12_1gx3u"]
+[ext_resource type="Texture2D" uid="uid://c0da0iu7f6lnp" path="res://Sprites/Spaces/Heaven/heaven_space.png" id="12_7sbpn"]
+[ext_resource type="Texture2D" uid="uid://busup1exm6ph6" path="res://Sprites/Spaces/Heaven/heaven_space_purple.png" id="13_bcsvk"]
+[ext_resource type="Texture2D" uid="uid://cqhoo5ciyed2n" path="res://Sprites/Spaces/Heaven/heaven_space_dark.png" id="14_ncq0l"]
+[ext_resource type="Texture2D" uid="uid://j0rjelh2i5n7" path="res://Sprites/Spaces/window.png" id="19_v6fbh"]
+[ext_resource type="Texture2D" uid="uid://bccaejjrcfi44" path="res://Sprites/Spaces/window_alt.png" id="20_iyiwn"]
+[ext_resource type="Script" path="res://Scripts/TravelSpace/TravelSpaceBottomButtons.gd" id="21_4brlu"]
+[ext_resource type="Texture2D" uid="uid://n8a4ylvitq85" path="res://Sprites/Spaces/Sand/sand_space.png" id="22_1xh15"]
+[ext_resource type="Texture2D" uid="uid://bn012ygpeoo1b" path="res://Sprites/Spaces/Sand/sand_space_dark.png" id="23_bp2cu"]
+[ext_resource type="Texture2D" uid="uid://dm3rilhvqcs5d" path="res://Sprites/Spaces/Hunt/hunt_space.png" id="24_0t3r0"]
+[ext_resource type="Texture2D" uid="uid://doajbw7uw2jwp" path="res://Sprites/Spaces/Sand/sand_space_invert.png" id="24_lref3"]
+[ext_resource type="Texture2D" uid="uid://dj6cxchuau4kw" path="res://Sprites/Spaces/Hunt/hunt_space_dark.png" id="25_agq2w"]
+[ext_resource type="Texture2D" uid="uid://de8rpwtq7hxus" path="res://Sprites/Spaces/Sand/sand_space_light.png" id="25_y000t"]
+[ext_resource type="Texture2D" uid="uid://cn0r38pyom3kv" path="res://Sprites/Spaces/Hunt/hunt_space_alt.png" id="26_cck1v"]
+[ext_resource type="Texture2D" uid="uid://banr2p8j4a4v6" path="res://Sprites/Spaces/travel_backarrow.png" id="29_uwu6k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nmcpj"]
+texture = ExtResource("4_5gufq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqpa5"]
+texture = ExtResource("5_04br7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bvht3"]
+texture = ExtResource("6_ury4k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_582ce"]
+texture = ExtResource("6_ury4k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_croqx"]
+texture = ExtResource("4_b0c6l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ct34u"]
+texture = ExtResource("7_fogj8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v61fm"]
+texture = ExtResource("9_461di")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fiv7o"]
+texture = ExtResource("8_7e8s2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4b8qu"]
+texture = ExtResource("8_7e8s2")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eh58t"]
+texture = ExtResource("8_065bd")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0w2vc"]
+texture = ExtResource("12_7sbpn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvaq7"]
+texture = ExtResource("14_ncq0l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3rua"]
+texture = ExtResource("13_bcsvk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d0xlg"]
+texture = ExtResource("13_bcsvk")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1iwfb"]
+texture = ExtResource("12_7sbpn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_whn2k"]
+texture = ExtResource("7_6a35o")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_43nh8"]
+texture = ExtResource("9_b7kgu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_27swn"]
+texture = ExtResource("8_71bsy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_engd3"]
+texture = ExtResource("8_71bsy")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pr3a5"]
+texture = ExtResource("12_1gx3u")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vwss3"]
+texture = ExtResource("22_1xh15")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7jqrv"]
+texture = ExtResource("23_bp2cu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w4s4c"]
+texture = ExtResource("24_lref3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c081o"]
+texture = ExtResource("25_y000t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pl10w"]
+texture = ExtResource("24_0t3r0")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8e4yc"]
+texture = ExtResource("25_agq2w")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qvxcb"]
+texture = ExtResource("26_cck1v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ibgkp"]
+texture = ExtResource("26_cck1v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_shebd"]
+texture = ExtResource("24_0t3r0")
+
+[node name="TravelSpace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aryn6")
+script = ExtResource("3_5ruey")
+
+[node name="TopButtons" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1000.0
+offset_bottom = 600.0
+script = ExtResource("3_ahjqb")
+
+[node name="RustButton" type="Button" parent="TopButtons"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_nmcpj")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_oqpa5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bvht3")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_582ce")
+theme_override_styles/normal = SubResource("StyleBoxTexture_croqx")
+text = "Rust Space"
+expand_icon = true
+
+[node name="VoidButton" type="Button" parent="TopButtons"]
+layout_mode = 2
+offset_left = 500.0
+offset_right = 1000.0
+offset_bottom = 300.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_ct34u")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_v61fm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fiv7o")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_4b8qu")
+theme_override_styles/normal = SubResource("StyleBoxTexture_eh58t")
+text = "Void Space"
+expand_icon = true
+
+[node name="HeavenButton" type="Button" parent="TopButtons"]
+layout_mode = 2
+offset_top = 300.0
+offset_right = 500.0
+offset_bottom = 600.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_0w2vc")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_yvaq7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_e3rua")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_d0xlg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1iwfb")
+text = "Heaven"
+expand_icon = true
+
+[node name="HellButton" type="Button" parent="TopButtons"]
+layout_mode = 2
+offset_left = 500.0
+offset_top = 300.0
+offset_right = 1000.0
+offset_bottom = 600.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_whn2k")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_43nh8")
+theme_override_styles/hover = SubResource("StyleBoxTexture_27swn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_engd3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pr3a5")
+text = "Hell"
+expand_icon = true
+
+[node name="BottomButtons" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_4brlu")
+
+[node name="SandButton" type="Button" parent="BottomButtons"]
+layout_mode = 2
+offset_right = 500.0
+offset_bottom = 300.0
+theme_override_colors/font_hover_color = Color(0.619678, 0.0989291, 0.184396, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_vwss3")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7jqrv")
+theme_override_styles/hover = SubResource("StyleBoxTexture_w4s4c")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w4s4c")
+theme_override_styles/normal = SubResource("StyleBoxTexture_c081o")
+text = "Sand Space"
+expand_icon = true
+
+[node name="HuntButton" type="Button" parent="BottomButtons"]
+layout_mode = 2
+offset_left = 500.0
+offset_right = 1000.0
+offset_bottom = 300.0
+theme_override_colors/font_hover_color = Color(0.789461, 0.594653, 0.368911, 1)
+theme_override_colors/font_color = Color(0.733061, 6.73831e-07, 0.431557, 1)
+theme_override_colors/font_outline_color = Color(0.733061, 6.73831e-07, 0.431557, 1)
+theme_override_styles/focus = SubResource("StyleBoxTexture_pl10w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_8e4yc")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qvxcb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ibgkp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_shebd")
+text = "Hunt Space"
+expand_icon = true
+
+[node name="SwapButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 225.0
+offset_right = 725.0
+offset_bottom = 524.0
+scale = Vector2(0.5, 0.5)
+focus_mode = 0
+texture_normal = ExtResource("19_v6fbh")
+texture_pressed = ExtResource("20_iyiwn")
+texture_hover = ExtResource("20_iyiwn")
+texture_disabled = ExtResource("19_v6fbh")
+texture_focused = ExtResource("20_iyiwn")
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 260.0
+offset_right = 130.0
+offset_bottom = 340.0
+texture_normal = ExtResource("29_uwu6k")
+
+[connection signal="pressed" from="BottomButtons/SandButton" to="BottomButtons" method="_on_sand_button_pressed"]
+[connection signal="pressed" from="BottomButtons/HuntButton" to="BottomButtons" method="_on_hunt_button_pressed"]

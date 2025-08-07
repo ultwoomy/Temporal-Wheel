@@ -51,7 +51,3 @@ func _onSwapButtonPressed() -> void:
 		swapButton.texture_hover = WINDOW_ALT_TEXTURE
 		swapButton.texture_focused = WINDOW_ALT_TEXTURE
 		showTop = true
-
-
-func _changeScene(scenePath : String) -> void:
-	SceneHandler.changeSceneToFilePath(scenePath)

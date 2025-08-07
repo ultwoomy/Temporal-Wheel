@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://1863b6ndwp7b"]
+[gd_scene load_steps=33 format=3 uid="uid://1863b6ndwp7b"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_s7sal"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_8ef3o"]
@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://jek5ca32hi06" path="res://Sprites/MushSpace/mush_back/tile002.png" id="20_0jlj8"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmHarvester.gd" id="20_nayqg"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmRemover.gd" id="21_76ho1"]
-[ext_resource type="Script" path="res://Scripts/MushSpace/MBack.gd" id="21_dy18d"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmSelector.gd" id="22_vpwsq"]
 [ext_resource type="Script" path="res://Scripts/MushSpace/MushFarmAutomator.gd" id="23_nwmjw"]
 
@@ -143,7 +142,7 @@ offset_top = 120.0
 offset_right = 500.0
 offset_bottom = 120.0
 
-[node name="BackButton" type="Button" parent="." node_paths=PackedStringArray("back")]
+[node name="BackButton" type="Button" parent="."]
 layout_mode = 0
 offset_right = 193.0
 offset_bottom = 146.0
@@ -151,8 +150,6 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_lww6x")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lww6x")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_f2vid")
 theme_override_styles/normal = SubResource("StyleBoxTexture_1ja8l")
-script = ExtResource("21_dy18d")
-back = NodePath(".")
 
 [node name="Selector" type="Node" parent="."]
 script = ExtResource("22_vpwsq")

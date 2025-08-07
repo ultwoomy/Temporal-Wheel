@@ -2,6 +2,10 @@ extends State
 class_name VS_MenuState
 
 
+#@ Constants
+const backButtonDestination : String = SceneHandler.WHEELSPACE
+
+
 #@ Global Variables
 var voidSpace : VoidSpaceMain
 
@@ -14,9 +18,5 @@ func _init(_voidSpace : VoidSpaceMain) -> void:
 # Derived classes should call super._enter() in their _enter() function.
 func _enter() -> void:
 	# Connect signals.
-	if not voidSpace.backButton.pressed.is_connected(_onBackButtonPressed):
-		voidSpace.backButton.pressed.connect(_onBackButtonPressed)
-
-
-func _onBackButtonPressed() -> void:
-	SceneHandler.changeSceneToFilePath(SceneHandler.WHEELSPACE)
+	if not voidSpace.backButton.pressed.is_connected(voidSpace._changeScene):
+		voidSpace.backButton.pressed.connect(voidSpace._changeScene.bind(backButtonDestination))

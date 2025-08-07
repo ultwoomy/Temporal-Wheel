@@ -29,7 +29,6 @@ var dialogueCounter : int = 0
 #@ Onready Variables
 @onready var sigilLabel : Label = $SigilLabel
 @onready var buyButton : Button = $BuyButton
-@onready var button : Button = $BuyButton
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var sandLabel : Label = $SandLabel
 @onready var fabulousChallengeComponent : FabulousCComp = $FabulousCComponent  # Optional (it's not)

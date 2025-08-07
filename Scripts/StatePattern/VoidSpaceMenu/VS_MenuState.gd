@@ -18,5 +18,5 @@ func _init(_voidSpace : VoidSpaceMain) -> void:
 # Derived classes should call super._enter() in their _enter() function.
 func _enter() -> void:
 	# Connect signals.
-	if not voidSpace.backButton.pressed.is_connected(voidSpace._changeScene):
+	if not voidSpace.backButton.pressed.is_connected(SceneHandler.changeSceneToFilePath):
 		voidSpace.backButton.pressed.connect(SceneHandler.changeSceneToFilePath.bind(backButtonDestination))

@@ -1,6 +1,11 @@
 extends Panel
+
+
+#@ Onready Variables
 @onready var desc : Label = $Label
 
+
+#@ Virtual Methods
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	updateText()
@@ -10,12 +15,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
+#@ Public Methods
 func updateText():
 	desc.text = "Sand Dollar Count: " + str(GVars.getScientific(GVars.dollarData.sandDollars)) +  "\n\nUpon reset, you will
 	 start out with:\n" + str(GVars.getScientific(GVars.dollarData.insuranceAmtSpin)) + " Momentum
 	\n" + str(GVars.getScientific(GVars.dollarData.insuranceAmtRot)) + " Rotations\n" + str(GVars.getScientific(GVars.dollarData.insuranceAmtRust)) + " Rust\n\nInsurance Upgrade 
 	Cost: " + str(GVars.getScientific(GVars.dollarData.insuranceCost)) + " sand dollars\nGet sand dollars by completing achievements"
 
+
+#@ Private Methods
 func _on_upgrade_insurance_pressed() -> void:
 	if GVars.dollarData.sandDollars >= GVars.dollarData.insuranceCost:
 		GVars.dollarData.sandDollars -= GVars.dollarData.insuranceCost

@@ -69,7 +69,7 @@ func _ready() -> void:
 		self.add_child(bb)
 	checkBleedBar()
 	
-	numOfCandles = 0.0
+	numOfCandles = 0
 	for n in GVars.ritualData.candlesLit.size():
 		if(GVars.ritualData.candlesLit[n]):
 			numOfCandles += 1

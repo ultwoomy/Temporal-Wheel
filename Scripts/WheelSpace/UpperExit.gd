@@ -1,5 +1,9 @@
 extends Container
+
+
+#@ Signals
 signal exitUpperContract
+
 
 #@ Export Variables
 
@@ -34,6 +38,7 @@ func _button_pressed():
 	if presses > 0:
 		resetButton.text = "5 presses to confirm"
 	image.scale.x = float(2 * presses) / 5.0
+
 
 func refresh():
 	if GVars.doesLayerHaveChallenge(ChallengeData.ChallengeLayer.SECOND):

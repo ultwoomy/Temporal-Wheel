@@ -10,11 +10,17 @@ var mushroomPendingRotationModifier : float = 1.0
 var wheelRotationGainModifier : float = 1.0
 var dollarRotationModifier : float = 1.0
 
+
+#@ Virtual Methods
 func _ready() -> void:
 	EventManager.refresh_augment_buffs.connect(self.augmentSigilBuffs)
 
+
 #@ Public Methods
 func augmentSigilBuffs() -> void:
+	# TODO:
+	#  Implement the Strategy design pattern to determine what the augment sigil does.
+	#  Each strategy will have its own derived class that will execute buff.
 	reset_buffs()
 	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_PACKSMITH:  # Packsmith sigil
 		# Rust gain doubled.

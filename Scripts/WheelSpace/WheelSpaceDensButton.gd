@@ -31,7 +31,7 @@ func _ready() -> void:
 	# Connecting Signals.
 	button.pressed.connect(self._onButtonPressed)
 	#EventManager.tutorial_dens_found.connect(self.checkTutorial)
-	GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
+	GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone / 4.0)
 	#if GVars.ifFirstBoot and GVars.sigilData.acquiredSigils.is_empty() and GVars.spinData.size < 3 and GVars.spinData.density < 2:
 		#hide()
 	densityGaugeContainer.sort_children.connect(_onChildSorted)  # For resizing the gauge meter when starting the scene
@@ -50,7 +50,7 @@ func _onButtonPressed() -> void:
 		densityDisplay.text = str(GVars.spinData.density)
 		GVars.spinData.curSucDens = 0
 		GVars.spinData.densTresh += 1
-		GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone/4)
+		GVars.spinData.wheelPhase = int(GVars.spinData.density) + int(GVars.atlasData.dumpRustMilestone / 4.0)
 		playPriority = 2
 	if playPriority == 1:
 		playSound(Z_SOUND_EFFECT)

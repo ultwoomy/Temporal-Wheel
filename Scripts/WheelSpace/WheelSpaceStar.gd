@@ -34,7 +34,7 @@ func _ready() -> void:
 	self._pulse(pulsing)
 	
 	# Connect signals.
-	var checkCorrectInputCallable : Callable = func checkCorrectInput(viewport : Node, event : InputEvent, shape_idx : int) -> void:
+	var checkCorrectInputCallable : Callable = func checkCorrectInput(_viewport : Node, event : InputEvent, _shape_idx : int) -> void:
 		if event.is_action_pressed("mouseLeftClick"):
 			if not spinTween:
 				_spin()

@@ -194,7 +194,7 @@ func _completeRotation() -> void:
 	
 	# Gain rotation.
 	var amount : float = float(wheelRotation / FULL_ROTATION_RADIANS)  # Usually a value of 1, since rotation resets at 2*PI.
-	GVars.spinData.rotations += amount * (GVars.kbityData.kbityLevel + 2 / 2) * GlobalBuffs.dollarRotationModifier
+	GVars.spinData.rotations += amount * (GVars.kbityData.kbityLevel + 2 / 2.0) * GlobalBuffs.dollarRotationModifier
 	
 	# Update fearcat buffs
 	# Find ratio
@@ -204,10 +204,10 @@ func _completeRotation() -> void:
 	else:
 		ratio = ((GVars.fearcatData.bankedDayRots + 4)/ (GVars.fearcatData.bankedNightRots + 1))/4 + 0.75
 	if GVars.ifSecondBoot % 4 == 3 or GVars.ifSecondBoot % 4 == 0:
-		GVars.fearcatData.bankedNightRots += amount * (GVars.kbityData.kbityLevel + 2 / 2)
+		GVars.fearcatData.bankedNightRots += amount * (GVars.kbityData.kbityLevel + 2 / 2.0)
 		GVars.fearcatData.fearcatBuffNight = 1 + (GVars.fearcatData.bankedNightRots * GVars.Aspinbuff/50000) * ratio
 	else:
-		GVars.fearcatData.bankedDayRots += amount * (GVars.kbityData.kbityLevel + 2 / 2)
+		GVars.fearcatData.bankedDayRots += amount * (GVars.kbityData.kbityLevel + 2 / 2.0)
 		GVars.fearcatData.fearcatBuffDay = GVars.fearcatData.bankedDayRots * GVars.Aspinbuff/3500 * ratio
 	
 	# Make rust progress for rotateWheel().

@@ -20,7 +20,7 @@ func start() -> void:
 	pass
 
 
-func update(delta : float) -> void:
+func update(_delta : float) -> void:
 	pass
 
 

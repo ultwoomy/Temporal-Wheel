@@ -132,7 +132,6 @@ func _findStage() -> Stage:
 
 
 func _getDialogueKeyFromStage(stage : Stage) -> String:
-	var result : String
 	match stage:
 		Stage.HAS_NOT_CLICKED_GROW_YET: return DIALOGUE_INTRO_KEY
 		Stage.HAS_NOT_GAINED_LEVELS_IN_SIZE_SINCE_TOGGLED: return DIALOGUE_GROW_TOGGLED_ON_KEY
@@ -149,7 +148,7 @@ func _onTextBubblePressed() -> void:
 		bubbleLabel.text = dialogueHandler.getFromSpecialKey(dialogueData[dialogueLineIndex], DialogueHandler.SpecialKeys.TEXT)
 
 
-func _onGrowButtonPressed(toggled : bool) -> void:
+func _onGrowButtonPressed(_toggled : bool) -> void:
 	_resetAndDisplayDialogue()
 	_onTextBubblePressed()
 

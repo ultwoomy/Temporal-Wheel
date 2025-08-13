@@ -14,11 +14,9 @@ var state : PacksmithState
 func _ready() -> void:
 	var newState : PacksmithState
 	if GVars.ifFirstPack:
-		newState = PacksmithDefaultState.new(self)
+		newState = PacksmithPeakState.new(self)
 	else:
 		newState = PacksmithDefaultState.new(self)
-	self.position = newState.STATE_POSITION
-	self.rotation_degrees = newState.STATE_ROTATION_DEGREES
 	changeState(newState)
 
 

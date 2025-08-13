@@ -1,15 +1,20 @@
-[gd_scene load_steps=30 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=36 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithGameScene.gd" id="3_dpe5n"]
 [ext_resource type="Texture2D" uid="uid://d1kfudrwc6xdn" path="res://Sprites/RustSpace/packsmith.png" id="4_fgp7f"]
 [ext_resource type="Texture2D" uid="uid://bm6i3qh08rmsl" path="res://Sprites/RustSpace/pack_concern.png" id="5_v31bx"]
+[ext_resource type="Texture2D" uid="uid://bxgj4lxc5obgs" path="res://Sprites/RustSpace/background_packsmith.png" id="6_jabj8"]
+[ext_resource type="Texture2D" uid="uid://kpx386o2jfa6" path="res://Sprites/RustSpace/packsmith_anvil.png" id="7_oypch"]
 [ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="8_gghju"]
+[ext_resource type="Texture2D" uid="uid://ddh87olf0b088" path="res://Sprites/RustSpace/Packsmith/packsmith_neck.png" id="9_dqvor"]
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="9_i3m1l"]
 [ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="10_sia5t"]
+[ext_resource type="Texture2D" uid="uid://fumry35nh4po" path="res://Sprites/RustSpace/Packsmith/packsmith_head_01.png" id="10_tlbj4"]
 [ext_resource type="Script" path="res://Scripts/Packsmith/PacksmithMenu.gd" id="10_trrmv"]
 [ext_resource type="SpriteFrames" uid="uid://cj1arsu3uvlgg" path="res://Sprites/sigilSprites.tres" id="11_bvjjd"]
+[ext_resource type="Texture2D" uid="uid://crldf01df7nfj" path="res://Sprites/RustSpace/Packsmith/packsmith_eye_01.png" id="11_g5io8"]
 [ext_resource type="PackedScene" uid="uid://dxsc031p4uo1q" path="res://Scenes/Packsmith/PacksmithSelectionMenu.tscn" id="13_2lk1p"]
 [ext_resource type="PackedScene" uid="uid://by7i3len3apkx" path="res://Scenes/Packsmith/AutomationMenu.tscn" id="13_18xu6"]
 [ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
@@ -92,6 +97,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3k33s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_tlbj4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ickp"]
 bg_color = Color(0.386719, 0.0351563, 0, 1)
 
@@ -120,10 +136,39 @@ theme = SubResource("Theme_5gkbs")
 script = ExtResource("3_dpe5n")
 
 [node name="PacksmithBackground" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
-frame = 1
+frame = 2
+
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("6_jabj8")
+centered = false
+
+[node name="AnvilSprite" type="Sprite2D" parent="."]
+position = Vector2(652.5, 300)
+scale = Vector2(1.97248, 2)
+texture = ExtResource("7_oypch")
+
+[node name="Packsmith" type="Node2D" parent="."]
+position = Vector2(700, 393)
+
+[node name="NeckSprite" type="Sprite2D" parent="Packsmith"]
+position = Vector2(315, 73)
+scale = Vector2(2, 2)
+texture = ExtResource("9_dqvor")
+
+[node name="HeadSprite" type="AnimatedSprite2D" parent="Packsmith"]
+position = Vector2(171, -108)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_3k33s")
+
+[node name="EyeSprite" type="Sprite2D" parent="Packsmith"]
+position = Vector2(185, -129)
+scale = Vector2(2, 2)
+texture = ExtResource("11_g5io8")
 
 [node name="TextBoxBackground" type="Panel" parent="."]
 layout_mode = 0
@@ -176,6 +221,7 @@ sprite_frames = ExtResource("11_bvjjd")
 animation = &"sand"
 
 [node name="PacksmithMenu" type="Control" parent="." node_paths=PackedStringArray("dialogueText", "packback")]
+visible = false
 anchors_preset = 0
 script = ExtResource("10_trrmv")
 dialogueText = NodePath("../DialogueText")

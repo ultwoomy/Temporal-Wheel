@@ -50,7 +50,8 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 	# Remove any buffs from the last sigil if possible.
 	var currentSigil : Sigil = GVars.sigilData.currentAugmentedSigil
 	if currentSigil:
-		currentSigil.sigilStrategy._exit()
+		if currentSigil.sigilStrategy:
+			currentSigil.sigilStrategy._exit()
 	
 	# Ask for a particular topic from _dialogueHandler that will be said.
 	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)

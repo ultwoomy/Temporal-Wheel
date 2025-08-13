@@ -3,6 +3,13 @@ extends Node
 # Runs calculations for buffs.
 
 
+#@ Enumerators
+enum MutableFields {  # Used to determine which variables of other classes can be buffed.
+	SPIN_GAIN,
+	RUST_GAIN,
+}
+
+
 #@ Global Variables
 var spinGainModifier : float = 1.0
 var rustGainModifier : float = 1.0
@@ -22,10 +29,13 @@ func augmentSigilBuffs() -> void:
 	#  Implement the Strategy design pattern to determine what the augment sigil does.
 	#  Each strategy will have its own derived class that will execute buff.
 	reset_buffs()
-	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_PACKSMITH:  # Packsmith sigil
+	# WARNING: L.B
+	#  This causes an error if uncommented!
+	#  Because so, the next if statement is no longer an elif statement!
+	#if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_PACKSMITH:  # Packsmith sigil
 		# Rust gain doubled.
-		rustGainModifier = 2.0
-	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_CANDLE:  # Candle sigil
+		#rustGainModifier = 2.0
+	if GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_CANDLE:  # Candle sigil
 		# Mushrooms grow 1.5x as fast.
 		mushroomPendingRotationModifier = 1.5
 	elif GVars.sigilData.currentAugmentedSigil == GVars.SIGIL_ASCENSION:

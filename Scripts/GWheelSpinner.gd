@@ -3,6 +3,14 @@ extends Node
 # Runs calculations for wheel-related things.
 
 
+#@ Enumerators
+enum RustGainOperationOrder {
+	FIRST,
+	DEFAULT,
+	LAST,
+}
+
+
 #@ Signals
 signal wheelRotationCompleted
 signal rustProgressed(rustPerThresh : float)
@@ -14,9 +22,14 @@ const FULL_ROTATION_RADIANS : float = 2 * PI
 
 #@ Public Variables
 var incrementAmount : float
-# Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
-# wheelRotation keeps track of the value, but doesn't do anything itself.
+## Needed so that the Player doesn't have to be in WheelSpace scene for wheel to rotate.
+## wheelRotation keeps track of the value, but doesn't do anything itself.
 var wheelRotation : float = 0.0
+
+## 
+var rustGainFirstStrategies : Array[RustGainStrategy] = []
+var rustGainStrategies : Array[RustGainStrategy] = []
+var rustGainLastStrategies : Array[RustGainStrategy] = []
 
 
 #@ Private Variables
@@ -123,6 +136,29 @@ func getWheelRotationAmount() -> float:
 		else:
 			result *= GVars.spinData.rotations/(log(GVars.spinData.rotations)/log(1.05)) + 1
 	return result
+
+
+## Adds a RustGainStrategy, which is done in a particular order dictated by RustGainOperationOrder.
+func buffRustGain(strategy : RustGainStrategy, order : RustGainOperationOrder) -> void:
+	var rustGainStrategiesRef : Array[RustGainStrategy] = _getRustStrategyArray(order)
+	
+	if strategy in rustGainStrategiesRef:
+		return
+	
+	rustGainStrategiesRef.append(strategy)
+
+
+## Removes the buff strategy from the RustGainStrategies arrays if it is in there.
+func removeRustGainBuff(strategy : RustGainStrategy) -> void:
+	if strategy in rustGainStrategies:  # Most popular array.
+		rustGainStrategies.erase(strategy)
+		return
+	elif strategy in rustGainFirstStrategies:  # Next most popular array.
+		rustGainFirstStrategies.erase(strategy)
+		return
+	elif strategy in rustGainLastStrategies:  # Least popular array.
+		rustGainLastStrategies.erase(strategy)
+
 
 #@ Private Methods
 func _calculateMomentumGain() -> float:
@@ -244,6 +280,21 @@ func _calculateRust() -> float:
 	result *= GVars.rustData.perThresh
 	
 	# Multiply value by any buff.
-	result *= GlobalBuffs.rustGainModifier
+	#result *= GlobalBuffs.rustGainModifier
+	var strategiesList : Array[Array] = [rustGainFirstStrategies, rustGainStrategies, rustGainLastStrategies]
+	for strategies in strategiesList:
+		for strategy in strategies:
+			result = strategy._applyBuff(result)
 	
 	return result
+
+
+func _getRustStrategyArray(order : RustGainOperationOrder) -> Array[RustGainStrategy]:
+	# NOTE: Arrays are passed by reference.
+	match order:
+		RustGainOperationOrder.FIRST:
+			return rustGainFirstStrategies
+		RustGainOperationOrder.LAST:
+			return rustGainLastStrategies
+		_:
+			return rustGainStrategies

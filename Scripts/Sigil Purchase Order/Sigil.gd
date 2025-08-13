@@ -11,6 +11,7 @@ class_name Sigil
 @export var sigilName : String
 @export var spriteTexture : CompressedTexture2D
 @export var sigilBuffIndex : int
+@export var sigilStrategy : SigilStrategy
 @export_multiline var sigilShopDescription : String
 
 

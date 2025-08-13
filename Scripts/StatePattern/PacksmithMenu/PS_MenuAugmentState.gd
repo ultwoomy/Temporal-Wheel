@@ -40,13 +40,21 @@ func _onButtonPressed(button: Button) -> void:
 			packsmithMenu.changeState(PS_MenuAutomateState.new(packsmithMenu))
 
 
+# L.B: TODO:
+#  Have the function only run when the new sigil being augmented is NOT the same sigil that is already augmented.
+#  Purpose: Removes the need to run through the function and could possibly avoid any potential bugs.
 func _onSigilButtonPressed(sigil: Sigil) -> void:
 	# Change _dialogueHandler to have dialogue be about augmenting sigils.
 	packsmithMenu._dialogueHandler.dialogueFilePath = "res://JSON/Dialogue/Packsmith/PacksmithAugment.json"
 	
+	# Remove any buffs from the last sigil if possible.
+	var currentSigil : Sigil = GVars.sigilData.currentAugmentedSigil
+	if currentSigil:
+		currentSigil.sigilStrategy._exit()
+	
 	# Ask for a particular topic from _dialogueHandler that will be said.
 	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
-	print("buff index" + str(sigil.sigilBuffIndex))
+	print("buff index " + str(sigil.sigilBuffIndex) + " | " + sigil.sigilName)
 	GVars.sigilData.currentAugmentedSigil = sigil
 	
 	# Exception. Maybe there is a cleaner way?
@@ -66,6 +74,10 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 			GVars.inContract = false
 			GVars.removeLayer1Challenge()
 		GVars.sigilData.currentAugmentedSigil = GVars.SIGIL_HELL
+	
+	# Once augmented, do stuff that the sigil says to do via their sigil strategy.
+	if sigil.sigilStrategy:
+		sigil.sigilStrategy._execute()
 	augmentChanged.emit()
 	GlobalBuffs.augmentSigilBuffs()
 	

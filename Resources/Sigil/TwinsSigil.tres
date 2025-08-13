@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://dlwy8jai2v0qq"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://dlwy8jai2v0qq"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_bpiqo"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilTwinsStrategy.gd" id="2_d34vq"]
 [ext_resource type="Texture2D" uid="uid://bx3ma2ow43448" path="res://Sprites/Sigils/sigil13.png" id="2_wnkbv"]
+
+[sub_resource type="Resource" id="Resource_bpv8h"]
+script = ExtResource("2_d34vq")
 
 [resource]
 script = ExtResource("1_bpiqo")
 sigilName = "twins"
 spriteTexture = ExtResource("2_wnkbv")
 sigilBuffIndex = 12
+sigilStrategy = SubResource("Resource_bpv8h")
 sigilShopDescription = "Twin Rose!
 Don't let them intimidate you!
 They're actually quite nice!

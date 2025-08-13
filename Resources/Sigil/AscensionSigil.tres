@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://b0l6876hj0708"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://b0l6876hj0708"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_5svuj"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilAscensionStrategy.gd" id="2_1qyi8"]
 [ext_resource type="Texture2D" uid="uid://bcte3ctqjjdpd" path="res://Sprites/Sigils/sigil03.png" id="2_m0yvg"]
+
+[sub_resource type="Resource" id="Resource_ixc8w"]
+script = ExtResource("2_1qyi8")
 
 [resource]
 script = ExtResource("1_5svuj")
 sigilName = "ascension"
 spriteTexture = ExtResource("2_m0yvg")
 sigilBuffIndex = 2
+sigilStrategy = SubResource("Resource_ixc8w")
 sigilShopDescription = "Reincarnation Ascension!
 I don't know what this does!
 Mysteries are fun!"

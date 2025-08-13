@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://bb2l3hcj4yqyc"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://bb2l3hcj4yqyc"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_hk2ag"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilRitualStrategy.gd" id="2_4qunv"]
 [ext_resource type="Texture2D" uid="uid://cl7c2hd2fd15v" path="res://Sprites/Sigils/sigil05.png" id="2_nm8p7"]
+
+[sub_resource type="Resource" id="Resource_l72kc"]
+script = ExtResource("2_4qunv")
 
 [resource]
 script = ExtResource("1_hk2ag")
 sigilName = "ritual"
 spriteTexture = ExtResource("2_nm8p7")
 sigilBuffIndex = 4
+sigilStrategy = SubResource("Resource_l72kc")
 sigilShopDescription = "Ritual!
 Every candle lit gives a buff!
 And lowers wheel spin speed!

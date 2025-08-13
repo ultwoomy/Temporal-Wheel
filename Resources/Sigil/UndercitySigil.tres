@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://bv2u4u3hiheqo"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://bv2u4u3hiheqo"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_rth64"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilUndercityStrategy.gd" id="2_tdykn"]
 [ext_resource type="Texture2D" uid="uid://qmihvwi8y4pi" path="res://Sprites/Sigils/sigil12.png" id="2_vwjfk"]
+
+[sub_resource type="Resource" id="Resource_31b74"]
+script = ExtResource("2_tdykn")
 
 [resource]
 script = ExtResource("1_rth64")
 sigilName = "undercity"
 spriteTexture = ExtResource("2_vwjfk")
 sigilBuffIndex = 11
+sigilStrategy = SubResource("Resource_31b74")
 sigilShopDescription = "Undercity!
 The birthplace of fae and fun!
 Isn't this themeing reused?

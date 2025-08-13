@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://j8xe1of816xc"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://j8xe1of816xc"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_2dddq"]
 [ext_resource type="Texture2D" uid="uid://bxmxksutsmrtl" path="res://Sprites/Sigils/sigil11.png" id="2_bahc3"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilZundaNightStrategy.gd" id="2_quo28"]
+
+[sub_resource type="Resource" id="Resource_hfg8d"]
+script = ExtResource("2_quo28")
 
 [resource]
 script = ExtResource("1_2dddq")
 sigilName = "zundanight"
 spriteTexture = ExtResource("2_bahc3")
 sigilBuffIndex = 10
+sigilStrategy = SubResource("Resource_hfg8d")
 sigilShopDescription = "Zunda Of The Night
 I don't know how I have this!
 It's probably ok!

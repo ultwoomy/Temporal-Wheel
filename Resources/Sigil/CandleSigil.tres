@@ -1,12 +1,17 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://uv4ap585eg8w"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://uv4ap585eg8w"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_3k73o"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilCandleStrategy.gd" id="2_12dhb"]
 [ext_resource type="Texture2D" uid="uid://dmit8kja5co48" path="res://Sprites/Sigils/sigil02.png" id="2_v65gx"]
+
+[sub_resource type="Resource" id="Resource_eejqw"]
+script = ExtResource("2_12dhb")
 
 [resource]
 script = ExtResource("1_3k73o")
 sigilName = "candle"
 spriteTexture = ExtResource("2_v65gx")
 sigilBuffIndex = 1
+sigilStrategy = SubResource("Resource_eejqw")
 sigilShopDescription = "A warm candle!
 Lights up your entire universe!"

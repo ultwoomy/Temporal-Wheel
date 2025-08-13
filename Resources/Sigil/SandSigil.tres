@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://bs1oagingc28k"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://bs1oagingc28k"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_4m4rf"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilSandStrategy.gd" id="2_rfnyl"]
 [ext_resource type="Texture2D" uid="uid://dupfwrc8dt6qn" path="res://Sprites/Sigils/sigil10.png" id="2_yvei5"]
+
+[sub_resource type="Resource" id="Resource_6l237"]
+script = ExtResource("2_rfnyl")
 
 [resource]
 script = ExtResource("1_4m4rf")
 sigilName = "sand"
 spriteTexture = ExtResource("2_yvei5")
 sigilBuffIndex = 9
+sigilStrategy = SubResource("Resource_6l237")
 sigilShopDescription = "Sand Dollar!
 Pick them and knock them down!
 They're just along for the ride!

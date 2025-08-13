@@ -1,13 +1,18 @@
-[gd_resource type="Resource" script_class="Sigil" load_steps=3 format=3 uid="uid://60cykqo6h2ct"]
+[gd_resource type="Resource" script_class="Sigil" load_steps=5 format=3 uid="uid://60cykqo6h2ct"]
 
 [ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil.gd" id="1_ts2sc"]
 [ext_resource type="Texture2D" uid="uid://7cw64cpkjgv3" path="res://Sprites/Sigils/sigil06.png" id="2_dramb"]
+[ext_resource type="Script" path="res://Scripts/Sigil Purchase Order/Sigil Strategy/SigilHellStrategy.gd" id="2_knq3h"]
+
+[sub_resource type="Resource" id="Resource_xjpb7"]
+script = ExtResource("2_knq3h")
 
 [resource]
 script = ExtResource("1_ts2sc")
 sigilName = "hell"
 spriteTexture = ExtResource("2_dramb")
 sigilBuffIndex = 5
+sigilStrategy = SubResource("Resource_xjpb7")
 sigilShopDescription = "Dinner Hell!
 Access a wonderful new realm!
 Do you hear something?"

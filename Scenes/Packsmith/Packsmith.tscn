@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=37 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxgj4lxc5obgs" path="res://Sprites/RustSpace/background_packsmith.png" id="6_jabj8"]
 [ext_resource type="Texture2D" uid="uid://kpx386o2jfa6" path="res://Sprites/RustSpace/packsmith_anvil.png" id="7_oypch"]
 [ext_resource type="Texture2D" uid="uid://dm7diklqyrenn" path="res://Sprites/RustSpace/back_smith/tile000.png" id="8_gghju"]
+[ext_resource type="Script" path="res://Scripts/Packsmith/Packsmith.gd" id="8_ngw6i"]
 [ext_resource type="Texture2D" uid="uid://ddh87olf0b088" path="res://Sprites/RustSpace/Packsmith/packsmith_neck.png" id="9_dqvor"]
 [ext_resource type="Texture2D" uid="uid://dsbvkjihwkbni" path="res://Sprites/RustSpace/back_smith/tile001.png" id="9_i3m1l"]
 [ext_resource type="Texture2D" uid="uid://tb0sd3vah0l1" path="res://Sprites/RustSpace/back_smith/tile002.png" id="10_sia5t"]
@@ -136,11 +137,9 @@ theme = SubResource("Theme_5gkbs")
 script = ExtResource("3_dpe5n")
 
 [node name="PacksmithBackground" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
-frame = 2
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -153,7 +152,9 @@ scale = Vector2(1.97248, 2)
 texture = ExtResource("7_oypch")
 
 [node name="Packsmith" type="Node2D" parent="."]
-position = Vector2(700, 393)
+position = Vector2(880, 434)
+rotation = -0.401426
+script = ExtResource("8_ngw6i")
 
 [node name="NeckSprite" type="Sprite2D" parent="Packsmith"]
 position = Vector2(315, 73)

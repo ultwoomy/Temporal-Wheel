@@ -6,6 +6,8 @@ class_name PacksmithDefaultState
 const STATE_POSITION : Vector2 = Vector2(700, 393)
 const STATE_ROTATION_DEGREES : float = 0.0
 const TWEEN_DURATION : float = 0.5
+const EYEBROW_POSITION : Vector2 = Vector2(122, -177)
+const EYEBROW_ANIMATION : String = "angry"
 
 
 #@ Virtual Methods

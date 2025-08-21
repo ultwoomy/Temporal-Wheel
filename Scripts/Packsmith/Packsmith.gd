@@ -6,6 +6,12 @@ class_name Packsmith
 
 
 #@ Constants
+const EYEBROW_ANIMATION_NAMES : Array[String] = [
+	"angry",
+	"default",
+	"mean",
+	"surprised",
+]
 
 
 #@ Public Variables
@@ -40,7 +46,7 @@ func changeState(newState : PacksmithState) -> void:
 
 func expressEmotion(headAnimation : String = "default", eyebrowAnimation : String = "default") -> void:
 	headSprites.animation = headAnimation
-	eyebrowSprites.animation = eyebrowAnimation
+	_displayEyebrow(eyebrowAnimation)
 
 
 func getFaceExpressionsFromDialogueData(dialogueData : Array[Dictionary]) -> void:
@@ -56,9 +62,45 @@ func getFaceExpressionsFromDialogueData(dialogueData : Array[Dictionary]) -> voi
 
 func playNextFaceExpression() -> void:
 	if not dialogueFaceExpressions.is_empty():
-		var expressionName : String = dialogueFaceExpressions.pop_front().to_lower()
+		var expressionPresetName : String = dialogueFaceExpressions.pop_front()
 		
-		expressEmotion(expressionName, expressionName)
+		_expressEmotionFromPreset(expressionPresetName)
 
 
 #@ Private Methods
+# NOTE: This is a work around from having to change the JSON!
+#  The JSON, as of currently, only has one field that determines the animation name!
+#  Since Packsmith has more than one sprite, the animation names don't line up!
+func _expressEmotionFromPreset(presetName : String) -> void:
+	match presetName:
+		"TALKING":
+			expressEmotion("talking", "mean")
+		"EYEBROW":
+			expressEmotion("default", "surprised")
+		"CONCERN":
+			expressEmotion("default", "flat")
+		_:
+			expressEmotion()
+
+
+func _displayEyebrow(eyebrowAnimation : String) -> void:
+	var showRequirements : bool = not (eyebrowAnimation in EYEBROW_ANIMATION_NAMES) or (eyebrowAnimation == "default")
+	eyebrowSprites.visible = not showRequirements
+	eyebrowSprites.animation = eyebrowAnimation
+	
+	# Reposition eyebrow.
+	match eyebrowSprites.animation:
+		"angry":
+			#
+			# TODO
+			#
+			eyebrowSprites.position = Vector2()
+		"surprised":
+			eyebrowSprites.position = Vector2(165, -190)
+		"flat":
+			#
+			# TODO
+			#
+			eyebrowSprites.position = Vector2()
+		_:  # Default for "mean"
+			eyebrowSprites.position = Vector2(122, -177)

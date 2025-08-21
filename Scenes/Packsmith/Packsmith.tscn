@@ -185,7 +185,7 @@ visible = false
 position = Vector2(500, 300)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_fvof8")
-frame = 3
+frame = 5
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -218,7 +218,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("11_g5io8")
 
 [node name="EyebrowSprites" type="AnimatedSprite2D" parent="Packsmith"]
-position = Vector2(122, -177)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ytq66")
 

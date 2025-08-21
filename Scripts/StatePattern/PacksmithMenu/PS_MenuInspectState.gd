@@ -54,9 +54,6 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 	# Ask for a particular topic from _dialogueHandler that will be said.
 	var dialogueData : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
 	
-	# Signal if anything uses this dialogue.
-	packsmithMenu.receivedDialogue.emit(dialogueData)
-	
 	# Get a new TalkState using the correct dialogue.
 	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogueData)
 	

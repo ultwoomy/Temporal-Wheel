@@ -18,6 +18,9 @@ func _init(_packsmithMenu : PacksmithMenu, dialogueData : Array[Dictionary]) -> 
 
 
 func _enter() -> void:
+	# Let other scripts allow the use of this dialogue data as well.
+	packsmithMenu.receivedDialogue.emit(_dialogueData)
+	
 	# Listeners
 	if not packsmithMenu.nextButton.pressed.is_connected(self._nextLine):
 		packsmithMenu.nextButton.pressed.connect(self._nextLine)

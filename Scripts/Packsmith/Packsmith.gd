@@ -38,7 +38,7 @@ func changeState(newState : PacksmithState) -> void:
 	state._enter()
 
 
-func expressEmotion(headAnimation : String, eyebrowAnimation : String) -> void:
+func expressEmotion(headAnimation : String = "default", eyebrowAnimation : String = "default") -> void:
 	headSprites.animation = headAnimation
 	eyebrowSprites.animation = eyebrowAnimation
 

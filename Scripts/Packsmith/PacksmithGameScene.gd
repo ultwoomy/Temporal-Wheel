@@ -46,6 +46,7 @@ func _ready():
 	backButton.pressed.connect(self._onBackButtonPressed)
 	menu.receivedDialogue.connect(packsmith.getFaceExpressionsFromDialogueData)
 	menu.playedDialogueLine.connect(packsmith.playNextFaceExpression)
+	menu.completedDialogue.connect(packsmith.expressEmotion)
 	
 	# Displays the sigil on the anvil that is currently augmented.
 	_setSigilDisplay()

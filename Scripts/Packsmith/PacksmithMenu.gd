@@ -5,6 +5,7 @@ class_name PacksmithMenu
 #@ Signals
 signal receivedDialogue(dialogue : Array[Dictionary])
 signal playedDialogueLine
+signal completedDialogue
 
 
 #@ Enumerators

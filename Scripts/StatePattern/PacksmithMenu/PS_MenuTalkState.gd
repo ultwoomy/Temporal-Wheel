@@ -51,6 +51,7 @@ func _exit() -> void:
 func _nextLine() -> void:
 	# Check to see if _dialogueLine is out of bounds. If it is, dialogue is complete.
 	if (_dialogueLine < 0) or (_dialogueLine >= _dialogueData.size()):
+		packsmithMenu.completedDialogue.emit()
 		packsmithMenu.changeState(PS_MenuPickState.new(packsmithMenu))
 		return
 	

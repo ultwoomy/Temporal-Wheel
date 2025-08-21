@@ -52,25 +52,13 @@ func _onSigilButtonPressed(sigil: Sigil) -> void:
 		return
 	
 	# Ask for a particular topic from _dialogueHandler that will be said.
-	var dialogue : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
-	' TODO: Remove later. Testing out changes to PacksmithSelectionMenuSigils.
-	match sigil.sigilName:
-		SigilData.Sigils.PACKSMITH:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("packsmith")
-		SigilData.Sigils.CANDLE:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("candle")
-		SigilData.Sigils.ASCENSION:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ascension")
-		SigilData.Sigils.EMPTINESS:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("emptiness")
-		SigilData.Sigils.RITUAL:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("ritual")
-		SigilData.Sigils.HELL:
-			dialogue = packsmithMenu._dialogueHandler.getDialogueData("hell")
-	'
+	var dialogueData : Array[Dictionary] = packsmithMenu._dialogueHandler.getDialogueData(sigil.sigilName)
+	
+	# Signal if anything uses this dialogue.
+	packsmithMenu.receivedDialogue.emit(dialogueData)
 	
 	# Get a new TalkState using the correct dialogue.
-	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogue) 
+	var newState : PS_MenuTalkState = PS_MenuTalkState.new(packsmithMenu, dialogueData)
 	
 	# Then change state to the new_state with the variables intact.
 	packsmithMenu.changeState(newState)

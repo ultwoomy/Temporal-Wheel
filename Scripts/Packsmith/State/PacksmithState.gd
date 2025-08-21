@@ -2,6 +2,12 @@ extends RefCounted
 class_name PacksmithState
 
 
+#@ Enumerator
+
+
+#@ Constants
+
+
 #@ Public Variables
 var packsmith : Packsmith
 

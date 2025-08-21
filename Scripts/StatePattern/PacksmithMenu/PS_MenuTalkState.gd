@@ -1,19 +1,20 @@
 extends PS_MenuState
 class_name PS_MenuTalkState
 
-#@ Enumerators
+
+#@ Signals
 
 
 #@ Private Variables
 var _dialogueLine : int = 0
-var _dialogue : Array[Dictionary]
+var _dialogueData : Array[Dictionary]
 
 
 #@ Virtual Methods
 # Override PacksmithMenuState's _init() function to also ask for dialogue.
-func _init(_packsmithMenu : PacksmithMenu, dialogue : Array[Dictionary]) -> void:
+func _init(_packsmithMenu : PacksmithMenu, dialogueData : Array[Dictionary]) -> void:
 	packsmithMenu = _packsmithMenu
-	_dialogue = dialogue
+	_dialogueData = dialogueData
 
 
 func _enter() -> void:
@@ -49,13 +50,16 @@ func _exit() -> void:
 #@ Private Methods
 func _nextLine() -> void:
 	# Check to see if _dialogueLine is out of bounds. If it is, dialogue is complete.
-	if (_dialogueLine < 0) or (_dialogueLine >= _dialogue.size()):
+	if (_dialogueLine < 0) or (_dialogueLine >= _dialogueData.size()):
 		packsmithMenu.changeState(PS_MenuPickState.new(packsmithMenu))
 		return
 	
 	# Display dialogue.
-	packsmithMenu.dialogueText.text = packsmithMenu._dialogueHandler.getFromSpecialKey(_dialogue[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
-	packsmithMenu.packback.frame = packsmithMenu.Emotes[packsmithMenu._dialogueHandler.getFromSpecialKey(_dialogue[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
+	packsmithMenu.dialogueText.text = packsmithMenu._dialogueHandler.getFromSpecialKey(_dialogueData[_dialogueLine], DialogueHandler.SpecialKeys.TEXT)
+	packsmithMenu.packback.frame = packsmithMenu.Emotes[packsmithMenu._dialogueHandler.getFromSpecialKey(_dialogueData[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
+	
+	packsmithMenu.playedDialogueLine.emit()
+	
 	GVars._dialouge(packsmithMenu.dialogueText, 0, 0.03)
 	
 	# Increment counter.

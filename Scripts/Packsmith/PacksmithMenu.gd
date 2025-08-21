@@ -2,6 +2,11 @@ extends Control
 class_name PacksmithMenu
 
 
+#@ Signals
+signal receivedDialogue(dialogue : Array[Dictionary])
+signal playedDialogueLine
+
+
 #@ Enumerators
 enum Emotes {
 	PEEK,

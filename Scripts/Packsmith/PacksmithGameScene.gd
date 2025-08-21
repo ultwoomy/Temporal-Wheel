@@ -26,6 +26,7 @@ var _dialogueLine : int = 0
 
 #@ Onready Variables
 @onready var packsmithBackground : AnimatedSprite2D = $PacksmithBackground
+@onready var packsmith : Packsmith = $Packsmith
 @onready var sigilDisplay : AnimatedSprite2D = $SigilDisplay
 @onready var nextButton : Button = $NextButton
 @onready var backButton : Button = $BackButton
@@ -43,6 +44,8 @@ func _ready():
 	
 	# Listening to signals.
 	backButton.pressed.connect(self._onBackButtonPressed)
+	menu.receivedDialogue.connect(packsmith.getFaceExpressionsFromDialogueData)
+	menu.playedDialogueLine.connect(packsmith.playNextFaceExpression)
 	
 	# Displays the sigil on the anvil that is currently augmented.
 	_setSigilDisplay()
@@ -100,6 +103,12 @@ func _continueDialogue(dialogue: Array[Dictionary]) -> void:
 
 		# Change face/background to the dialogue face at index, _dialogueLine. Matches with the Emotes enumerator.
 		packsmithBackground.frame = Emotes[_dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)]
+		
+		# TODO
+		# TODO: Figure out how to replace the old one and do this.
+		# TODO
+		packsmith.headSprites.animation = Emotes[_dialogueHandler.getFromSpecialKey(dialogue[_dialogueLine], DialogueHandler.SpecialKeys.ANIMATION_NAME)].to_lower()
+		#packsmith.expressEmotion()
 		
 		# Change nextButton text to dialogue's BUTTON_TEXT, if it exists.
 		if "BUTTON_TEXT" in dialogue[_dialogueLine]:

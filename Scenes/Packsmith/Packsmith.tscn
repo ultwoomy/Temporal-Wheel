@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://bxl1u18lcp2y8"]
+[gd_scene load_steps=43 format=3 uid="uid://bxl1u18lcp2y8"]
 
 [ext_resource type="StyleBox" uid="uid://diog42f2gf1e6" path="res://Scenes/button.tres" id="1_xywfy"]
 [ext_resource type="FontFile" uid="uid://bbharg5e2q6cb" path="res://Fonts/xolonium/Xolonium-Regular.ttf" id="2_48aai"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://davbld4wvxovi" path="res://Sprites/RustSpace/Packsmith/packsmith_eyebrow_01.png" id="13_jyheo"]
 [ext_resource type="Texture2D" uid="uid://dh0le0xb8fy0l" path="res://Sprites/RustSpace/Packsmith/packsmith_eyebrow_03.png" id="14_54aie"]
 [ext_resource type="PackedScene" uid="uid://b7kfqqace81yq" path="res://Scenes/Packsmith/PacksmithUpgradeMenu.tscn" id="14_is4hy"]
+[ext_resource type="Texture2D" uid="uid://ck3jqckmn7ssy" path="res://Sprites/RustSpace/Packsmith/packsmith_eyebrow_04.png" id="14_ydk6i"]
 [ext_resource type="Texture2D" uid="uid://dyy82q0pi4iqu" path="res://Sprites/RustSpace/Packsmith/packsmith_eyebrow_02.png" id="15_q4t5q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sj4wp"]
@@ -138,6 +139,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("14_ydk6i")
+}],
+"loop": true,
+"name": &"flat",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("13_jyheo")
 }],
 "loop": true,
@@ -220,6 +229,7 @@ texture = ExtResource("11_g5io8")
 [node name="EyebrowSprites" type="AnimatedSprite2D" parent="Packsmith"]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ytq66")
+animation = &"flat"
 
 [node name="TextBoxBackground" type="Panel" parent="."]
 layout_mode = 0
